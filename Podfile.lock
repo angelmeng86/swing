@@ -1,27 +1,27 @@
 PODS:
-  - AFNetworking (3.0.4):
-    - AFNetworking/NSURLSession (= 3.0.4)
-    - AFNetworking/Reachability (= 3.0.4)
-    - AFNetworking/Security (= 3.0.4)
-    - AFNetworking/Serialization (= 3.0.4)
-    - AFNetworking/UIKit (= 3.0.4)
-  - AFNetworking/NSURLSession (3.0.4):
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.0.4)
-  - AFNetworking/Security (3.0.4)
-  - AFNetworking/Serialization (3.0.4)
-  - AFNetworking/UIKit (3.0.4):
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - IQKeyboardManager (3.3.6)
-  - PureLayout (3.0.1)
-  - SDWebImage (3.7.5):
-    - SDWebImage/Core (= 3.7.5)
-  - SDWebImage/Core (3.7.5)
+  - IQKeyboardManager (3.3.7)
+  - PureLayout (3.0.2)
+  - SDWebImage (3.8.1):
+    - SDWebImage/Core (= 3.8.1)
+  - SDWebImage/Core (3.8.1)
   - UIActivityIndicator-for-SDWebImage (1.2):
     - SDWebImage (~> 3.7)
-  - UIViewController-KeyboardAdditions (1.1)
+  - UIViewController-KeyboardAdditions (1.2)
 
 DEPENDENCIES:
   - AFNetworking
@@ -32,11 +32,11 @@ DEPENDENCIES:
   - UIViewController-KeyboardAdditions
 
 SPEC CHECKSUMS:
-  AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
-  IQKeyboardManager: 037cf3aec1d0a045108859a47818714eb1bfc149
-  PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
-  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  IQKeyboardManager: 249c3946acf61345c18b038eb50863fe2793e3a8
+  PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
+  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c
-  UIViewController-KeyboardAdditions: 5db782fc55ec1e49a20caf80f8d4217f4032eaee
+  UIViewController-KeyboardAdditions: 9c9c69a012890f71010dc7ffef18d98e4e0768d2
 
 COCOAPODS: 0.38.2

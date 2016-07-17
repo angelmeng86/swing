@@ -17,10 +17,17 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
+    self.navigationItem.title = [self.viewControllers firstObject].title;
+    self.delegate = self;
+    
     for (UITabBarItem *item in self.tabBar.items) {
         item.image = [item.image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         item.selectedImage = [item.selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
+}
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+    self.navigationItem.title = viewController.title;
 }
 
 - (void)viewDidLoad {

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD05B5BD1D3BCAA4007BCF7C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD05B5BC1D3BCAA4007BCF7C /* LoginViewController.m */; settings = {ASSET_TAGS = (); }; };
+		AD05B5C01D3BD187007BCF7C /* SwingClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AD05B5BF1D3BD187007BCF7C /* SwingClient.m */; settings = {ASSET_TAGS = (); }; };
 		AD0B81171D37EF7400F43E72 /* ControlFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B810B1D37EF7400F43E72 /* ControlFactory.m */; settings = {ASSET_TAGS = (); }; };
 		AD0B81181D37EF7400F43E72 /* Fun.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B810D1D37EF7400F43E72 /* Fun.m */; settings = {ASSET_TAGS = (); }; };
 		AD0B81191D37EF7400F43E72 /* GlobalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B810F1D37EF7400F43E72 /* GlobalCache.m */; settings = {ASSET_TAGS = (); }; };
@@ -17,6 +19,12 @@
 		AD0B81281D37F09900F43E72 /* SimpleLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B81231D37F09900F43E72 /* SimpleLogger.m */; settings = {ASSET_TAGS = (); }; };
 		AD0B81291D37F09900F43E72 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AD0B81251D37F09900F43E72 /* SVProgressHUD.bundle */; settings = {ASSET_TAGS = (); }; };
 		AD0B812A1D37F09900F43E72 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B81271D37F09900F43E72 /* SVProgressHUD.m */; settings = {ASSET_TAGS = (); }; };
+		AD9B0D881D3BB5D4009FDD95 /* MainTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD9B0D871D3BB5D4009FDD95 /* MainTab.storyboard */; settings = {ASSET_TAGS = (); }; };
+		AD9B0D8A1D3BB62D009FDD95 /* LoginFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD9B0D891D3BB62D009FDD95 /* LoginFlow.storyboard */; settings = {ASSET_TAGS = (); }; };
+		AD9B0D911D3BB935009FDD95 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D901D3BB935009FDD95 /* DashboardViewController.m */; settings = {ASSET_TAGS = (); }; };
+		AD9B0D941D3BB947009FDD95 /* BatteryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D931D3BB947009FDD95 /* BatteryViewController.m */; settings = {ASSET_TAGS = (); }; };
+		AD9B0D971D3BB954009FDD95 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D961D3BB954009FDD95 /* CalendarViewController.m */; settings = {ASSET_TAGS = (); }; };
+		AD9B0D9A1D3BB964009FDD95 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D991D3BB964009FDD95 /* ProfileViewController.m */; settings = {ASSET_TAGS = (); }; };
 		ADFC2C2D1D369949004EDCDF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFC2C2C1D369949004EDCDF /* main.m */; };
 		ADFC2C301D369949004EDCDF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFC2C2F1D369949004EDCDF /* AppDelegate.m */; };
 		ADFC2C331D369949004EDCDF /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFC2C321D369949004EDCDF /* FirstViewController.m */; };
@@ -28,6 +36,10 @@
 
 /* Begin PBXFileReference section */
 		0A892F16F4220A9DEBE01E9D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		AD05B5BB1D3BCAA4007BCF7C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		AD05B5BC1D3BCAA4007BCF7C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		AD05B5BE1D3BD187007BCF7C /* SwingClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwingClient.h; sourceTree = "<group>"; };
+		AD05B5BF1D3BD187007BCF7C /* SwingClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwingClient.m; sourceTree = "<group>"; };
 		AD0B81091D37EF7400F43E72 /* CommonDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonDef.h; sourceTree = "<group>"; };
 		AD0B810A1D37EF7400F43E72 /* ControlFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlFactory.h; sourceTree = "<group>"; };
 		AD0B810B1D37EF7400F43E72 /* ControlFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlFactory.m; sourceTree = "<group>"; };
@@ -48,6 +60,16 @@
 		AD0B81251D37F09900F43E72 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		AD0B81261D37F09900F43E72 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		AD0B81271D37F09900F43E72 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		AD9B0D871D3BB5D4009FDD95 /* MainTab.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainTab.storyboard; sourceTree = "<group>"; };
+		AD9B0D891D3BB62D009FDD95 /* LoginFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginFlow.storyboard; sourceTree = "<group>"; };
+		AD9B0D8F1D3BB935009FDD95 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
+		AD9B0D901D3BB935009FDD95 /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardViewController.m; sourceTree = "<group>"; };
+		AD9B0D921D3BB947009FDD95 /* BatteryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BatteryViewController.h; sourceTree = "<group>"; };
+		AD9B0D931D3BB947009FDD95 /* BatteryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BatteryViewController.m; sourceTree = "<group>"; };
+		AD9B0D951D3BB954009FDD95 /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
+		AD9B0D961D3BB954009FDD95 /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
+		AD9B0D981D3BB964009FDD95 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		AD9B0D991D3BB964009FDD95 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		ADFC2C281D369949004EDCDF /* Swing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADFC2C2C1D369949004EDCDF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		ADFC2C2E1D369949004EDCDF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -86,6 +108,11 @@
 		AD0B81061D37EF7400F43E72 /* C */ = {
 			isa = PBXGroup;
 			children = (
+				AD9B0D9B1D3BB97C009FDD95 /* Login */,
+				AD9B0D8B1D3BB89E009FDD95 /* Battery */,
+				AD9B0D8C1D3BB89E009FDD95 /* Calendar */,
+				AD9B0D8D1D3BB89E009FDD95 /* Dashboard */,
+				AD9B0D8E1D3BB89E009FDD95 /* Profile */,
 				AD0B811D1D37EFEA00F43E72 /* LMTabBarController.h */,
 				AD0B811E1D37EFEA00F43E72 /* LMTabBarController.m */,
 			);
@@ -95,6 +122,8 @@
 		AD0B81071D37EF7400F43E72 /* M */ = {
 			isa = PBXGroup;
 			children = (
+				AD05B5BE1D3BD187007BCF7C /* SwingClient.h */,
+				AD05B5BF1D3BD187007BCF7C /* SwingClient.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -154,6 +183,60 @@
 			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
+		AD9B0D861D3BB596009FDD95 /* storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				AD9B0D871D3BB5D4009FDD95 /* MainTab.storyboard */,
+				AD9B0D891D3BB62D009FDD95 /* LoginFlow.storyboard */,
+			);
+			path = storyboard;
+			sourceTree = "<group>";
+		};
+		AD9B0D8B1D3BB89E009FDD95 /* Battery */ = {
+			isa = PBXGroup;
+			children = (
+				AD9B0D921D3BB947009FDD95 /* BatteryViewController.h */,
+				AD9B0D931D3BB947009FDD95 /* BatteryViewController.m */,
+			);
+			path = Battery;
+			sourceTree = "<group>";
+		};
+		AD9B0D8C1D3BB89E009FDD95 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				AD9B0D951D3BB954009FDD95 /* CalendarViewController.h */,
+				AD9B0D961D3BB954009FDD95 /* CalendarViewController.m */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		AD9B0D8D1D3BB89E009FDD95 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				AD9B0D8F1D3BB935009FDD95 /* DashboardViewController.h */,
+				AD9B0D901D3BB935009FDD95 /* DashboardViewController.m */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		AD9B0D8E1D3BB89E009FDD95 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				AD9B0D981D3BB964009FDD95 /* ProfileViewController.h */,
+				AD9B0D991D3BB964009FDD95 /* ProfileViewController.m */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		AD9B0D9B1D3BB97C009FDD95 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				AD05B5BB1D3BCAA4007BCF7C /* LoginViewController.h */,
+				AD05B5BC1D3BCAA4007BCF7C /* LoginViewController.m */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		ADFC2C1F1D369949004EDCDF = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +273,7 @@
 				ADFC2C3A1D369949004EDCDF /* Assets.xcassets */,
 				ADFC2C3F1D369949004EDCDF /* Info.plist */,
 				ADFC2C2B1D369949004EDCDF /* Supporting Files */,
+				AD9B0D861D3BB596009FDD95 /* storyboard */,
 			);
 			path = Swing;
 			sourceTree = "<group>";
@@ -271,7 +355,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADFC2C3B1D369949004EDCDF /* Assets.xcassets in Resources */,
+				AD9B0D881D3BB5D4009FDD95 /* MainTab.storyboard in Resources */,
 				AD0B81291D37F09900F43E72 /* SVProgressHUD.bundle in Resources */,
+				AD9B0D8A1D3BB62D009FDD95 /* LoginFlow.storyboard in Resources */,
 				ADFC2C391D369949004EDCDF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,13 +405,19 @@
 				ADFC2C361D369949004EDCDF /* SecondViewController.m in Sources */,
 				AD0B811A1D37EF7400F43E72 /* LMBaseTableViewController.m in Sources */,
 				AD0B811C1D37EF7400F43E72 /* LMBaseViewController.m in Sources */,
+				AD9B0D911D3BB935009FDD95 /* DashboardViewController.m in Sources */,
 				ADFC2C301D369949004EDCDF /* AppDelegate.m in Sources */,
+				AD9B0D941D3BB947009FDD95 /* BatteryViewController.m in Sources */,
 				AD0B811F1D37EFEA00F43E72 /* LMTabBarController.m in Sources */,
 				AD0B81171D37EF7400F43E72 /* ControlFactory.m in Sources */,
+				AD05B5C01D3BD187007BCF7C /* SwingClient.m in Sources */,
 				AD0B81181D37EF7400F43E72 /* Fun.m in Sources */,
+				AD9B0D9A1D3BB964009FDD95 /* ProfileViewController.m in Sources */,
 				AD0B81281D37F09900F43E72 /* SimpleLogger.m in Sources */,
 				AD0B811B1D37EF7400F43E72 /* LMBaseTableViewController2.m in Sources */,
 				AD0B812A1D37F09900F43E72 /* SVProgressHUD.m in Sources */,
+				AD9B0D971D3BB954009FDD95 /* CalendarViewController.m in Sources */,
+				AD05B5BD1D3BCAA4007BCF7C /* LoginViewController.m in Sources */,
 				ADFC2C331D369949004EDCDF /* FirstViewController.m in Sources */,
 				ADFC2C2D1D369949004EDCDF /* main.m in Sources */,
 				AD0B81191D37EF7400F43E72 /* GlobalCache.m in Sources */,

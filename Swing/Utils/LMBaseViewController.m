@@ -15,29 +15,20 @@
 
 @implementation LMBaseViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
-    {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-        self.extendedLayoutIncludesOpaqueBars = YES;
-    }
-    
-    
-    if (self.navigationController.viewControllers.count > 1) {
-        self.navigationItem.leftBarButtonItem = [ControlFactory backBarButtonItemWithTarget:self action:@selector(backAction)];
-    }
+//    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
+//    {
+//        self.edgesForExtendedLayout = UIRectEdgeNone;
+//        self.extendedLayoutIncludesOpaqueBars = YES;
+//    }
+//    
+//    
+//    if (self.navigationController.viewControllers.count > 1) {
+//        self.navigationItem.leftBarButtonItem = [ControlFactory backBarButtonItemWithTarget:self action:@selector(backAction)];
+//    }
     
     self.view.backgroundColor = COMMON_BACKGROUND_COLOR;
 }

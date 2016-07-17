@@ -24,4 +24,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)testAction:(id)sender {
+    UIStoryboard *secondStroyBoard=[UIStoryboard storyboardWithName:@"Test" bundle:nil];
+    
+    UIViewController *test2obj = [secondStroyBoard instantiateInitialViewController];
+    
+    [self.navigationController pushViewController:test2obj animated:YES];
+}
+
 @end

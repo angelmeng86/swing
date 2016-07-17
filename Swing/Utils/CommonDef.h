@@ -52,5 +52,8 @@
 #import "UIViewController+KeyboardAdditions.h"
 
 #import "SimpleLogger.h"
+#import <AFNetworking.h>
+
+#import "SwingClient.h"
 
 #endif

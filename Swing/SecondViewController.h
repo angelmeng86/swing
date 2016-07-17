@@ -10,6 +10,7 @@
 
 @interface SecondViewController : UIViewController
 
+- (IBAction)testAction:(id)sender;
 
 @end
 
