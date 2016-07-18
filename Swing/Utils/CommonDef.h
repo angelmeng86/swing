@@ -11,8 +11,6 @@
 #ifndef Mapple_CommonDef_h
 #define Mapple_CommonDef_h
 
-#define MAPPLE_DEBUG
-
 #define IS_IOS7 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
 
 #define RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
@@ -37,6 +35,9 @@
 
 //------------------------------------------------------------------
 
+#import "SwingClient.h"
+#import "LoginedModel.h"
+
 #import "Fun.h"
 #import "ControlFactory.h"
 #import "LMBaseViewController.h"
@@ -49,11 +50,10 @@
 #import <PureLayout/PureLayout.h>
 
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
-#import "UIViewController+KeyboardAdditions.h"
 
 #import "SimpleLogger.h"
 #import <AFNetworking.h>
 
-#import "SwingClient.h"
+
 
 #endif

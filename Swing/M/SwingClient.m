@@ -7,6 +7,13 @@
 //
 
 #import "SwingClient.h"
+#import "CommonDef.h"
+
+@interface SwingClient ()
+
+@property (readwrite, nonatomic, strong) NSURLSessionConfiguration *config;
+
+@end
 
 @implementation SwingClient
 
@@ -19,7 +26,13 @@
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
 //        [config setHTTPAdditionalHeaders:@{ @"User-Agent" : @"TuneStore iOS 1.0"}];
         
-        //设置我们的缓存大小 其中内存缓存大小设置1M  磁盘缓存5M
+        if ([GlobalCache shareInstance].info.access_token.length > 0) {
+            [config setHTTPAdditionalHeaders:@{@"x-auth-token":[GlobalCache shareInstance].info.access_token}];
+        }
+        
+        config.timeoutIntervalForRequest = 30;//请求超时时间
+        
+        //设置缓存大小 其中内存缓存大小设置1M  磁盘缓存5M
         NSURLCache *cache = [[NSURLCache alloc] initWithMemoryCapacity:1 * 1024 * 1024
                                                           diskCapacity:5 * 1024 * 1024
                                                               diskPath:nil];
@@ -29,13 +42,14 @@
         _sharedClient = [[SwingClient alloc] initWithBaseURL:baseURL
                                          sessionConfiguration:config];
         _sharedClient.responseSerializer = [AFJSONResponseSerializer serializer];
+        _sharedClient.config = config;
     });
     
     return _sharedClient;
 }
 
-- (NSURLSessionDataTask *)isEmailRegistered:(id)parameters completion:( void (^)(NSNumber *result, NSError *error) )completion {
-    NSURLSessionDataTask *task = [self POST:@"/user/isEmailRegistered" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+- (NSURLSessionDataTask *)isEmailRegistered:(NSString*)email completion:( void (^)(NSNumber *result, NSError *error) )completion {
+    NSURLSessionDataTask *task = [self POST:@"/user/isEmailRegistered" parameters:@{@"email":email} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             completion([responseObject valueForKey:@"registered"], nil);
         });
@@ -48,31 +62,23 @@
     return task;
 }
 
-- (NSURLSessionDataTask *)searchForTerm:(NSString *)term completion:( void (^)(NSArray *results, NSError *error) )completion {
-    NSURLSessionDataTask *task = [self GET:@"/search"
-                                  //为了速度我们将地区设置为台湾
-                                  
-                                parameters:@{ @"country" : @"TW",
-                                              @"term" : term }
-                                   success:^(NSURLSessionDataTask *task, id responseObject) {
-                                       NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)task.response;
-                                       if (httpResponse.statusCode == 200) {
-                                           dispatch_async(dispatch_get_main_queue(), ^{
-                                               completion(responseObject[@"results"], nil);
-                                           });
-                                       } else {
-                                           dispatch_async(dispatch_get_main_queue(), ^{
-                                               completion(nil, nil);
-                                           });
-                                           NSLog(@"Received: %@", responseObject);
-                                           NSLog(@"Received HTTP %d", httpResponse.statusCode);
-                                       }
-                                       
-                                   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                                       dispatch_async(dispatch_get_main_queue(), ^{
-                                           completion(nil, error);
-                                       });
-                                   }];
+- (NSURLSessionDataTask *)login:(NSString*)email password:(NSString*)pwd completion:( void (^)(NSNumber *result, NSError *error) )completion {
+    NSURLSessionDataTask *task = [self POST:@"/api/login" parameters:@{@"email":email, @"password":pwd} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LoginedModel* model = [[LoginedModel alloc] initWithDictionary:responseObject error:nil];
+            [GlobalCache shareInstance].info = model;
+            LOG_D(@"login info:%@", responseObject);
+            
+            [self.config setHTTPAdditionalHeaders:@{@"x-auth-token":model.access_token}];
+            
+            completion([NSNumber numberWithBool:YES], nil);
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(nil, error);
+        });
+    }];
+    
     return task;
 }
 

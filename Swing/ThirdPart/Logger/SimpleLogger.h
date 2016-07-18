@@ -10,6 +10,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define MAPPLE_DEBUG
+
 #ifndef __SELF_DEFING_CLOSELOGGER__
 
 #define LOG(level, format, ...) [[SimpleLogger getLogger] log:[NSString stringWithFormat:(format), ##__VA_ARGS__] \

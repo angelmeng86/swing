@@ -13,4 +13,8 @@
 
 + (GlobalCache*)shareInstance;
 
+- (void)initConfig;
+
+@property (strong, nonatomic) LoginedModel* info;
+
 @end

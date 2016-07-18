@@ -19,26 +19,17 @@
     return globalCache;
 }
 
-- (NSDate*)examDate
-{
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"examDate"];
+- (void)initConfig {
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+    
+    NSString *json = [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
+    _info = [[LoginedModel alloc] initWithString:json error:nil];
 }
 
-- (void)setExamDate:(NSDate *)examDate
-{
-    [[NSUserDefaults standardUserDefaults] setObject:examDate forKey:@"examDate"];
+- (void)setInfo:(LoginedModel *)info {
+    _info = info;
+    [[NSUserDefaults standardUserDefaults] setObject:[info toJSONString] forKey:@"token"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-- (void)setIsInited:(BOOL)isInited
-{
-    [[NSUserDefaults standardUserDefaults] setBool:isInited forKey:@"isInited"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-- (BOOL)isInited
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:@"isInited"];
 }
 
 - (id)init

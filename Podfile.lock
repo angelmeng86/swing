@@ -14,29 +14,29 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - IQKeyboardManager (3.3.7)
+  - JSONModel (1.2.0)
   - PureLayout (3.0.2)
   - SDWebImage (3.8.1):
     - SDWebImage/Core (= 3.8.1)
   - SDWebImage/Core (3.8.1)
+  - SVProgressHUD (2.0.3)
   - UIActivityIndicator-for-SDWebImage (1.2):
     - SDWebImage (~> 3.7)
-  - UIViewController-KeyboardAdditions (1.2)
 
 DEPENDENCIES:
   - AFNetworking
-  - IQKeyboardManager
+  - JSONModel
   - PureLayout
   - SDWebImage
+  - SVProgressHUD
   - UIActivityIndicator-for-SDWebImage
-  - UIViewController-KeyboardAdditions
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  IQKeyboardManager: 249c3946acf61345c18b038eb50863fe2793e3a8
+  JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c
-  UIViewController-KeyboardAdditions: 9c9c69a012890f71010dc7ffef18d98e4e0768d2
 
 COCOAPODS: 0.38.2

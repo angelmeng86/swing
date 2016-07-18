@@ -9,7 +9,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>IQKeyboardManager.xcscheme</key>
+		<key>JSONModel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -29,12 +29,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>UIActivityIndicator-for-SDWebImage.xcscheme</key>
+		<key>SVProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>UIViewController-KeyboardAdditions.xcscheme</key>
+		<key>UIActivityIndicator-for-SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -42,12 +42,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>4B6594470FC369F61C9679A35408F50E</key>
+		<key>06DBBC85D854BF965FBC178A49FCAF2E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>67444DF56447693299D7855B59293671</key>
+		<key>0C9136474CABAD34D0F02B50EB6A4D25</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1D6EB6DB9B3306885F71F40920D0600E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3073F53682A67A3B745157F3D07E5941</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,17 +67,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>999CCE84C83869CE025684A92F2A186D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>BB124B8E379C6B7774C2AF7C20E182EF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CBBA5DF99AD0449D9C2F78A49F96942C</key>
+		<key>D5EFB26E66481889FEE35FB8C53835DB</key>
 		<dict>
 			<key>primary</key>
 			<true/>

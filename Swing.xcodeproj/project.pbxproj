@@ -17,14 +17,14 @@
 		AD0B811C1D37EF7400F43E72 /* LMBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B81151D37EF7400F43E72 /* LMBaseViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD0B811F1D37EFEA00F43E72 /* LMTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B811E1D37EFEA00F43E72 /* LMTabBarController.m */; settings = {ASSET_TAGS = (); }; };
 		AD0B81281D37F09900F43E72 /* SimpleLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B81231D37F09900F43E72 /* SimpleLogger.m */; settings = {ASSET_TAGS = (); }; };
-		AD0B81291D37F09900F43E72 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AD0B81251D37F09900F43E72 /* SVProgressHUD.bundle */; settings = {ASSET_TAGS = (); }; };
-		AD0B812A1D37F09900F43E72 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B81271D37F09900F43E72 /* SVProgressHUD.m */; settings = {ASSET_TAGS = (); }; };
 		AD9B0D881D3BB5D4009FDD95 /* MainTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD9B0D871D3BB5D4009FDD95 /* MainTab.storyboard */; settings = {ASSET_TAGS = (); }; };
 		AD9B0D8A1D3BB62D009FDD95 /* LoginFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD9B0D891D3BB62D009FDD95 /* LoginFlow.storyboard */; settings = {ASSET_TAGS = (); }; };
 		AD9B0D911D3BB935009FDD95 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D901D3BB935009FDD95 /* DashboardViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD9B0D941D3BB947009FDD95 /* BatteryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D931D3BB947009FDD95 /* BatteryViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD9B0D971D3BB954009FDD95 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D961D3BB954009FDD95 /* CalendarViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD9B0D9A1D3BB964009FDD95 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D991D3BB964009FDD95 /* ProfileViewController.m */; settings = {ASSET_TAGS = (); }; };
+		ADCED9E41D3D2BAC002E3F78 /* LoginedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCED9E31D3D2BAC002E3F78 /* LoginedModel.m */; settings = {ASSET_TAGS = (); }; };
+		ADCED9E71D3D3C8B002E3F78 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCED9E61D3D3C8B002E3F78 /* RegisterViewController.m */; settings = {ASSET_TAGS = (); }; };
 		ADFC2C2D1D369949004EDCDF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFC2C2C1D369949004EDCDF /* main.m */; };
 		ADFC2C301D369949004EDCDF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFC2C2F1D369949004EDCDF /* AppDelegate.m */; };
 		ADFC2C331D369949004EDCDF /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFC2C321D369949004EDCDF /* FirstViewController.m */; };
@@ -57,9 +57,6 @@
 		AD0B811E1D37EFEA00F43E72 /* LMTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMTabBarController.m; sourceTree = "<group>"; };
 		AD0B81221D37F09900F43E72 /* SimpleLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleLogger.h; sourceTree = "<group>"; };
 		AD0B81231D37F09900F43E72 /* SimpleLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleLogger.m; sourceTree = "<group>"; };
-		AD0B81251D37F09900F43E72 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
-		AD0B81261D37F09900F43E72 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
-		AD0B81271D37F09900F43E72 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		AD9B0D871D3BB5D4009FDD95 /* MainTab.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainTab.storyboard; sourceTree = "<group>"; };
 		AD9B0D891D3BB62D009FDD95 /* LoginFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginFlow.storyboard; sourceTree = "<group>"; };
 		AD9B0D8F1D3BB935009FDD95 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
@@ -70,6 +67,10 @@
 		AD9B0D961D3BB954009FDD95 /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
 		AD9B0D981D3BB964009FDD95 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		AD9B0D991D3BB964009FDD95 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		ADCED9E21D3D2BAC002E3F78 /* LoginedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginedModel.h; sourceTree = "<group>"; };
+		ADCED9E31D3D2BAC002E3F78 /* LoginedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginedModel.m; sourceTree = "<group>"; };
+		ADCED9E51D3D3C8B002E3F78 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		ADCED9E61D3D3C8B002E3F78 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		ADFC2C281D369949004EDCDF /* Swing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADFC2C2C1D369949004EDCDF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		ADFC2C2E1D369949004EDCDF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -124,6 +125,8 @@
 			children = (
 				AD05B5BE1D3BD187007BCF7C /* SwingClient.h */,
 				AD05B5BF1D3BD187007BCF7C /* SwingClient.m */,
+				ADCED9E21D3D2BAC002E3F78 /* LoginedModel.h */,
+				ADCED9E31D3D2BAC002E3F78 /* LoginedModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -159,7 +162,6 @@
 			isa = PBXGroup;
 			children = (
 				AD0B81211D37F09900F43E72 /* Logger */,
-				AD0B81241D37F09900F43E72 /* SVProgressHUD */,
 			);
 			path = ThirdPart;
 			sourceTree = "<group>";
@@ -171,16 +173,6 @@
 				AD0B81231D37F09900F43E72 /* SimpleLogger.m */,
 			);
 			path = Logger;
-			sourceTree = "<group>";
-		};
-		AD0B81241D37F09900F43E72 /* SVProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-				AD0B81251D37F09900F43E72 /* SVProgressHUD.bundle */,
-				AD0B81261D37F09900F43E72 /* SVProgressHUD.h */,
-				AD0B81271D37F09900F43E72 /* SVProgressHUD.m */,
-			);
-			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
 		AD9B0D861D3BB596009FDD95 /* storyboard */ = {
@@ -233,6 +225,8 @@
 			children = (
 				AD05B5BB1D3BCAA4007BCF7C /* LoginViewController.h */,
 				AD05B5BC1D3BCAA4007BCF7C /* LoginViewController.m */,
+				ADCED9E51D3D3C8B002E3F78 /* RegisterViewController.h */,
+				ADCED9E61D3D3C8B002E3F78 /* RegisterViewController.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -356,7 +350,6 @@
 			files = (
 				ADFC2C3B1D369949004EDCDF /* Assets.xcassets in Resources */,
 				AD9B0D881D3BB5D4009FDD95 /* MainTab.storyboard in Resources */,
-				AD0B81291D37F09900F43E72 /* SVProgressHUD.bundle in Resources */,
 				AD9B0D8A1D3BB62D009FDD95 /* LoginFlow.storyboard in Resources */,
 				ADFC2C391D369949004EDCDF /* Main.storyboard in Resources */,
 			);
@@ -402,6 +395,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADCED9E41D3D2BAC002E3F78 /* LoginedModel.m in Sources */,
 				ADFC2C361D369949004EDCDF /* SecondViewController.m in Sources */,
 				AD0B811A1D37EF7400F43E72 /* LMBaseTableViewController.m in Sources */,
 				AD0B811C1D37EF7400F43E72 /* LMBaseViewController.m in Sources */,
@@ -415,8 +409,8 @@
 				AD9B0D9A1D3BB964009FDD95 /* ProfileViewController.m in Sources */,
 				AD0B81281D37F09900F43E72 /* SimpleLogger.m in Sources */,
 				AD0B811B1D37EF7400F43E72 /* LMBaseTableViewController2.m in Sources */,
-				AD0B812A1D37F09900F43E72 /* SVProgressHUD.m in Sources */,
 				AD9B0D971D3BB954009FDD95 /* CalendarViewController.m in Sources */,
+				ADCED9E71D3D3C8B002E3F78 /* RegisterViewController.m in Sources */,
 				AD05B5BD1D3BCAA4007BCF7C /* LoginViewController.m in Sources */,
 				ADFC2C331D369949004EDCDF /* FirstViewController.m in Sources */,
 				ADFC2C2D1D369949004EDCDF /* main.m in Sources */,

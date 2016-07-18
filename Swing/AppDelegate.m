@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "CommonDef.h"
 
 @interface AppDelegate ()
 
@@ -26,7 +27,7 @@
 //    UIStoryboard *secondStroyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
 //    UIViewController *test2obj = [secondStroyBoard instantiateInitialViewController];
 //    self.window.rootViewController = test2obj;
-    
+    [[GlobalCache shareInstance] initConfig];
     
     return YES;
 }
