@@ -1,0 +1,33 @@
+//
+//  DeviceTableViewCell.m
+//  Swing
+//
+//  Created by 刘武忠 on 16/7/21.
+//  Copyright © 2016年 zzteam. All rights reserved.
+//
+
+#import "DeviceTableViewCell.h"
+
+@implementation DeviceTableViewCell
+
+- (void)awakeFromNib {
+    // Initialization code
+    self.btn.layer.cornerRadius = 5.f;
+//    self.contentView.backgroundColor = [UIColor clearColor];
+    
+//    self.backgroundColor = [UIColor clearColor];
+    
+//    UIView *backView = [UIView new];
+//    backView.backgroundColor = [UIColor clearColor];
+//    self.backgroundView = backView;
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+- (IBAction)btnAction:(id)sender {
+}
+@end

@@ -28,11 +28,34 @@
     self.lastNameTF.delegate = self;
     self.phoneTF.delegate = self;
     self.zipCodeTF.delegate = self;
+    
+    self.imageBtn.layer.cornerRadius = 60.f;
+    self.imageBtn.layer.borderColor = [self.imageBtn titleColorForState:UIControlStateNormal].CGColor;
+    self.imageBtn.layer.borderWidth = 2.f;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == self.firstNameTF) {
+        [self.lastNameTF becomeFirstResponder];
+    }
+    else if (textField == self.lastNameTF) {
+        [self.phoneTF resignFirstResponder];
+    }
+    else if (textField == self.phoneTF) {
+        [self.zipCodeTF resignFirstResponder];
+    }
+    else if (textField == self.zipCodeTF) {
+        //Go
+        UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
+        UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"AskStep"];
+        [self.navigationController pushViewController:ctl animated:YES];
+    }
+    return YES;
 }
 
 /*

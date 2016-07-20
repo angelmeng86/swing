@@ -59,6 +59,7 @@
                     LOG_D(@"isEmailRegistered success: %@", result);
                     if (![result boolValue]) {
                         [SVProgressHUD showSuccessWithStatus:@"The email is not registered"];
+                        [SVProgressHUD dismissWithDelay:1.5];
                         //Go to register
                         UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
                         UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"Register"];
