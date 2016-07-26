@@ -2,7 +2,7 @@
 //  GlobalCache.h
 //  GmatProject
 //
-//  Created by 刘武忠 on 15-6-10.
+//  Created by Mapple on 15-6-10.
 //  Copyright (c) 2015年 Yan Cui. All rights reserved.
 //
 

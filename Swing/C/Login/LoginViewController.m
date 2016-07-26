@@ -2,14 +2,14 @@
 //  LoginViewController.m
 //  Swing
 //
-//  Created by 刘武忠 on 16/7/17.
+//  Created by Mapple on 16/7/17.
 //  Copyright © 2016年 zzteam. All rights reserved.
 //
 
 #import "LoginViewController.h"
 #import "CommonDef.h"
 
-@interface LoginViewController ()
+@interface LoginViewController ()<UITextFieldDelegate>
 
 @end
 

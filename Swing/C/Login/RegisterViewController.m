@@ -2,13 +2,13 @@
 //  RegisterViewController.m
 //  Swing
 //
-//  Created by 刘武忠 on 16/7/19.
+//  Created by Mapple on 16/7/19.
 //  Copyright © 2016年 zzteam. All rights reserved.
 //
 
 #import "RegisterViewController.h"
 
-@interface RegisterViewController ()
+@interface RegisterViewController ()<UITextFieldDelegate>
 
 @end
 

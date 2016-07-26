@@ -2,13 +2,13 @@
 //  RegisterViewController.h
 //  Swing
 //
-//  Created by 刘武忠 on 16/7/19.
+//  Created by Mapple on 16/7/19.
 //  Copyright © 2016年 zzteam. All rights reserved.
 //
 
 #import "LMBaseViewController.h"
 
-@interface RegisterViewController : LMBaseViewController<UITextFieldDelegate>
+@interface RegisterViewController : LMBaseViewController
 
 @property (weak, nonatomic) IBOutlet UIButton *imageBtn;
 @property (weak, nonatomic) IBOutlet UITextField *firstNameTF;

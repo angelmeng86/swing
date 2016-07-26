@@ -2,7 +2,7 @@
 //  BaseViewController.m
 //  
 //
-//  Created by 刘武忠 on 15-4-24.
+//  Created by Mapple on 15-4-24.
 //  Copyright (c) 2015年 TriggerOnce. All rights reserved.
 //
 
@@ -31,6 +31,19 @@
 //    }
     
     self.view.backgroundColor = COMMON_BACKGROUND_COLOR;
+}
+
+- (void)awakeFromNib {
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:LOAD_IMAGE(@"login_bg")];
+    
+    [self.view addSubview:imageView];
+    
+    [imageView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeTop];
+    [imageView autoSetDimension:ALDimensionHeight toSize:kDeviceWidth];
+    
+    
+    [self.view sendSubviewToBack:imageView];
+    
 }
 
 - (void)backAction
