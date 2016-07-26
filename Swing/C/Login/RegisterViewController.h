@@ -15,4 +15,5 @@
 @property (weak, nonatomic) IBOutlet UITextField *lastNameTF;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTF;
 @property (weak, nonatomic) IBOutlet UITextField *zipCodeTF;
+- (IBAction)imageAction:(id)sender;
 @end

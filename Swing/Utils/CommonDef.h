@@ -27,6 +27,9 @@
 
 #define COMMON_BACKGROUND_COLOR         RGBA(185, 232, 245, 1.0f)
 
+#define ORIGINAL_MAX_WIDTH 640.0f
+#define TAGET_MAX_WIDTH 160.0f
+
 //------------------------------------------------------------------
 
 #import "SwingClient.h"

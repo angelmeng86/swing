@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self performSelector:@selector(nextAction) withObject:nil afterDelay:5];
+    [self performSelector:@selector(nextAction) withObject:nil afterDelay:3];
 }
 
 - (void)didReceiveMemoryWarning {

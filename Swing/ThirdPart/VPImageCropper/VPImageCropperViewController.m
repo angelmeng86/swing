@@ -93,7 +93,7 @@
     self.ratioView = [[UIView alloc] initWithFrame:self.cropFrame];
     self.ratioView.layer.cornerRadius = self.ratioView.frame.size.width / 2;
     self.ratioView.layer.masksToBounds = YES;
-    self.ratioView.layer.borderColor = [UIColor yellowColor].CGColor;
+    self.ratioView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.ratioView.layer.borderWidth = 1.0f;
     self.ratioView.autoresizingMask = UIViewAutoresizingNone;
     [self.view addSubview:self.ratioView];

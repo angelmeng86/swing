@@ -21,6 +21,14 @@
     self.imageView.layer.cornerRadius = 60.f;
     self.imageView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.imageView.layer.borderWidth = 2.f;
+    self.imageView.layer.masksToBounds = YES;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (_image) {
+        self.imageView.image = _image;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

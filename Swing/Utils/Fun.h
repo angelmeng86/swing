@@ -28,4 +28,6 @@
 
 + (NSString*)getTimeString:(NSDate*)updatedAt;
 
++ (UIImage *)imageByScalingToMaxSize:(UIImage *)sourceImage maxWidth:(CGFloat)maxWidth;
+
 @end

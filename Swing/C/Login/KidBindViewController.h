@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *imageBtn;
 @property (weak, nonatomic) IBOutlet UITextField *kidNameTF;
 @property (weak, nonatomic) IBOutlet UITextField *zipCodeTF;
+- (IBAction)imageAction:(id)sender;
 
 @end

@@ -32,10 +32,10 @@
 		ADEF31CC1D47856200BB6A9B /* KidBindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31CB1D47856200BB6A9B /* KidBindViewController.m */; settings = {ASSET_TAGS = (); }; };
 		ADEF31CF1D478D2B00BB6A9B /* BindReadyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31CE1D478D2B00BB6A9B /* BindReadyViewController.m */; settings = {ASSET_TAGS = (); }; };
 		ADEF31D21D478E9900BB6A9B /* RoundButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31D11D478E9900BB6A9B /* RoundButton.m */; settings = {ASSET_TAGS = (); }; };
+		ADEF31D61D47B04200BB6A9B /* VPImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31D51D47B04200BB6A9B /* VPImageCropperViewController.m */; settings = {ASSET_TAGS = (); }; };
 		ADFC2C2D1D369949004EDCDF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFC2C2C1D369949004EDCDF /* main.m */; };
 		ADFC2C301D369949004EDCDF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFC2C2F1D369949004EDCDF /* AppDelegate.m */; };
 		ADFC2C331D369949004EDCDF /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFC2C321D369949004EDCDF /* FirstViewController.m */; };
-		ADFC2C361D369949004EDCDF /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFC2C351D369949004EDCDF /* SecondViewController.m */; };
 		ADFC2C3B1D369949004EDCDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADFC2C3A1D369949004EDCDF /* Assets.xcassets */; };
 		DB7BDC5D8E60CBB192A098C4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF5277BA1A108CEB33181FD8 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -91,14 +91,14 @@
 		ADEF31CE1D478D2B00BB6A9B /* BindReadyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BindReadyViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		ADEF31D01D478E9900BB6A9B /* RoundButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundButton.h; sourceTree = "<group>"; };
 		ADEF31D11D478E9900BB6A9B /* RoundButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundButton.m; sourceTree = "<group>"; };
+		ADEF31D41D47B04200BB6A9B /* VPImageCropperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPImageCropperViewController.h; sourceTree = "<group>"; };
+		ADEF31D51D47B04200BB6A9B /* VPImageCropperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPImageCropperViewController.m; sourceTree = "<group>"; };
 		ADFC2C281D369949004EDCDF /* Swing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADFC2C2C1D369949004EDCDF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		ADFC2C2E1D369949004EDCDF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		ADFC2C2F1D369949004EDCDF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		ADFC2C311D369949004EDCDF /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = FirstViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		ADFC2C321D369949004EDCDF /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FirstViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		ADFC2C341D369949004EDCDF /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		ADFC2C351D369949004EDCDF /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		ADFC2C3A1D369949004EDCDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ADFC2C3F1D369949004EDCDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF5277BA1A108CEB33181FD8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,6 +183,7 @@
 		AD0B81201D37F09900F43E72 /* ThirdPart */ = {
 			isa = PBXGroup;
 			children = (
+				ADEF31D31D47B04200BB6A9B /* VPImageCropper */,
 				AD0B81211D37F09900F43E72 /* Logger */,
 			);
 			path = ThirdPart;
@@ -272,6 +273,15 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		ADEF31D31D47B04200BB6A9B /* VPImageCropper */ = {
+			isa = PBXGroup;
+			children = (
+				ADEF31D41D47B04200BB6A9B /* VPImageCropperViewController.h */,
+				ADEF31D51D47B04200BB6A9B /* VPImageCropperViewController.m */,
+			);
+			path = VPImageCropper;
+			sourceTree = "<group>";
+		};
 		ADFC2C1F1D369949004EDCDF = {
 			isa = PBXGroup;
 			children = (
@@ -302,8 +312,6 @@
 				ADFC2C2F1D369949004EDCDF /* AppDelegate.m */,
 				ADFC2C311D369949004EDCDF /* FirstViewController.h */,
 				ADFC2C321D369949004EDCDF /* FirstViewController.m */,
-				ADFC2C341D369949004EDCDF /* SecondViewController.h */,
-				ADFC2C351D369949004EDCDF /* SecondViewController.m */,
 				ADFC2C3A1D369949004EDCDF /* Assets.xcassets */,
 				ADFC2C3F1D369949004EDCDF /* Info.plist */,
 				ADFC2C2B1D369949004EDCDF /* Supporting Files */,
@@ -435,7 +443,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADCED9E41D3D2BAC002E3F78 /* LoginedModel.m in Sources */,
-				ADFC2C361D369949004EDCDF /* SecondViewController.m in Sources */,
 				AD0B811A1D37EF7400F43E72 /* LMBaseTableViewController.m in Sources */,
 				AD0B811C1D37EF7400F43E72 /* LMBaseViewController.m in Sources */,
 				AD9B0D911D3BB935009FDD95 /* DashboardViewController.m in Sources */,
@@ -452,6 +459,7 @@
 				AD9B0D971D3BB954009FDD95 /* CalendarViewController.m in Sources */,
 				AD347D1B1D3FDE1A00E91DDD /* DeviceTableViewCell.m in Sources */,
 				ADCED9E71D3D3C8B002E3F78 /* RegisterViewController.m in Sources */,
+				ADEF31D61D47B04200BB6A9B /* VPImageCropperViewController.m in Sources */,
 				AD347D171D3FD8DD00E91DDD /* SearchWatchViewController.m in Sources */,
 				AD05B5BD1D3BCAA4007BCF7C /* LoginViewController.m in Sources */,
 				ADEF31CC1D47856200BB6A9B /* KidBindViewController.m in Sources */,

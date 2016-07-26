@@ -203,6 +203,9 @@
                                 <state key="normal" title="+">
                                     <color key="titleColor" red="0.2196078431372549" green="0.71764705882352942" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="imageAction:" destination="XRh-0w-wfB" eventType="touchUpInside" id="CXz-HJ-Q9d"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZYJ-mQ-jdn">
                                 <rect key="frame" x="60" y="189" width="480" height="30"/>
@@ -474,6 +477,9 @@
                                 <state key="normal" title="+">
                                     <color key="titleColor" red="0.21960784310000001" green="0.71764705880000002" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="imageAction:" destination="cdu-5p-LYN" eventType="touchUpInside" id="AR3-pU-lbd"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kid's Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gKt-no-jls">
                                 <rect key="frame" x="60" y="189" width="480" height="30"/>

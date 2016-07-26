@@ -12,6 +12,9 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+
+@property (strong, nonatomic) UIImage* image;
+
 - (IBAction)goAction:(id)sender;
 - (IBAction)addAnotherAction:(id)sender;
 
