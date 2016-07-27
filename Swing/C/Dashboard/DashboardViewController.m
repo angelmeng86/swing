@@ -17,6 +17,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.uvBtn.layer.cornerRadius = 40.f;
+    self.uvBtn.layer.masksToBounds = YES;
+    
+    self.stepBtn.layer.cornerRadius = 40.f;
+    self.stepBtn.layer.masksToBounds = YES;
+    
+    self.tempBtn.layer.cornerRadius = 40.f;
+    self.tempBtn.layer.masksToBounds = YES;
+    
+    [self performSelector:@selector(showSyncDialog) withObject:nil afterDelay:0];
+}
+
+- (void)showSyncDialog {
+    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"SyncDevice" bundle:nil];
+    UIViewController *ctl = [stroyBoard instantiateInitialViewController];
+    [self presentViewController:ctl animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

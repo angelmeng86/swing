@@ -1,20 +1,18 @@
 //
-//  BindReadyViewController.h
+//  SyncDeviceViewController.h
 //  Swing
 //
-//  Created by Mapple on 16/7/26.
+//  Created by Mapple on 16/7/27.
 //  Copyright © 2016年 zzteam. All rights reserved.
 //
 
 #import "LMBaseViewController.h"
 
-@interface BindReadyViewController : LMBaseViewController
+@interface SyncDeviceViewController : LMBaseViewController
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
-@property (strong, nonatomic) UIImage* image;
-
-- (IBAction)goAction:(id)sender;
+- (IBAction)goDashboardAction:(id)sender;
 
 @end

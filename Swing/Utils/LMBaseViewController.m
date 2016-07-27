@@ -43,7 +43,7 @@
     
     
     [self.view sendSubviewToBack:imageView];
-    
+    [self updateViewConstraints];
 }
 
 - (void)backAction

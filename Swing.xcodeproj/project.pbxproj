@@ -21,6 +21,9 @@
 		AD347D171D3FD8DD00E91DDD /* SearchWatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD347D161D3FD8DD00E91DDD /* SearchWatchViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD347D1B1D3FDE1A00E91DDD /* DeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD347D1A1D3FDE1A00E91DDD /* DeviceTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		AD347D1E1D3FDEEC00E91DDD /* SelectWatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD347D1D1D3FDEEC00E91DDD /* SelectWatchViewController.m */; settings = {ASSET_TAGS = (); }; };
+		AD6654501D4904CE0056632C /* SyncDevice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD66544F1D4904CE0056632C /* SyncDevice.storyboard */; settings = {ASSET_TAGS = (); }; };
+		AD6654541D490C110056632C /* SyncDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6654531D490C110056632C /* SyncDeviceViewController.m */; settings = {ASSET_TAGS = (); }; };
+		AD6654571D490EC20056632C /* SearchDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6654561D490EC20056632C /* SearchDeviceViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD9B0D881D3BB5D4009FDD95 /* MainTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD9B0D871D3BB5D4009FDD95 /* MainTab.storyboard */; settings = {ASSET_TAGS = (); }; };
 		AD9B0D8A1D3BB62D009FDD95 /* LoginFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD9B0D891D3BB62D009FDD95 /* LoginFlow.storyboard */; settings = {ASSET_TAGS = (); }; };
 		AD9B0D911D3BB935009FDD95 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D901D3BB935009FDD95 /* DashboardViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -35,7 +38,6 @@
 		ADEF31D61D47B04200BB6A9B /* VPImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31D51D47B04200BB6A9B /* VPImageCropperViewController.m */; settings = {ASSET_TAGS = (); }; };
 		ADFC2C2D1D369949004EDCDF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFC2C2C1D369949004EDCDF /* main.m */; };
 		ADFC2C301D369949004EDCDF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFC2C2F1D369949004EDCDF /* AppDelegate.m */; };
-		ADFC2C331D369949004EDCDF /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFC2C321D369949004EDCDF /* FirstViewController.m */; };
 		ADFC2C3B1D369949004EDCDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADFC2C3A1D369949004EDCDF /* Assets.xcassets */; };
 		DB7BDC5D8E60CBB192A098C4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF5277BA1A108CEB33181FD8 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -71,6 +73,11 @@
 		AD347D1A1D3FDE1A00E91DDD /* DeviceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DeviceTableViewCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AD347D1C1D3FDEEC00E91DDD /* SelectWatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectWatchViewController.h; sourceTree = "<group>"; };
 		AD347D1D1D3FDEEC00E91DDD /* SelectWatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectWatchViewController.m; sourceTree = "<group>"; };
+		AD66544F1D4904CE0056632C /* SyncDevice.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SyncDevice.storyboard; sourceTree = "<group>"; };
+		AD6654521D490C110056632C /* SyncDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncDeviceViewController.h; sourceTree = "<group>"; };
+		AD6654531D490C110056632C /* SyncDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncDeviceViewController.m; sourceTree = "<group>"; };
+		AD6654551D490EC20056632C /* SearchDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDeviceViewController.h; sourceTree = "<group>"; };
+		AD6654561D490EC20056632C /* SearchDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDeviceViewController.m; sourceTree = "<group>"; };
 		AD9B0D871D3BB5D4009FDD95 /* MainTab.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainTab.storyboard; sourceTree = "<group>"; };
 		AD9B0D891D3BB62D009FDD95 /* LoginFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginFlow.storyboard; sourceTree = "<group>"; };
 		AD9B0D8F1D3BB935009FDD95 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DashboardViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -97,8 +104,6 @@
 		ADFC2C2C1D369949004EDCDF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		ADFC2C2E1D369949004EDCDF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		ADFC2C2F1D369949004EDCDF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		ADFC2C311D369949004EDCDF /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = FirstViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		ADFC2C321D369949004EDCDF /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FirstViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		ADFC2C3A1D369949004EDCDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ADFC2C3F1D369949004EDCDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF5277BA1A108CEB33181FD8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				AD9B0D9B1D3BB97C009FDD95 /* Login */,
+				AD6654511D490BD00056632C /* Sync */,
 				AD9B0D8B1D3BB89E009FDD95 /* Battery */,
 				AD9B0D8C1D3BB89E009FDD95 /* Calendar */,
 				AD9B0D8D1D3BB89E009FDD95 /* Dashboard */,
@@ -207,11 +213,23 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		AD6654511D490BD00056632C /* Sync */ = {
+			isa = PBXGroup;
+			children = (
+				AD6654521D490C110056632C /* SyncDeviceViewController.h */,
+				AD6654531D490C110056632C /* SyncDeviceViewController.m */,
+				AD6654551D490EC20056632C /* SearchDeviceViewController.h */,
+				AD6654561D490EC20056632C /* SearchDeviceViewController.m */,
+			);
+			path = Sync;
+			sourceTree = "<group>";
+		};
 		AD9B0D861D3BB596009FDD95 /* storyboard */ = {
 			isa = PBXGroup;
 			children = (
 				AD9B0D871D3BB5D4009FDD95 /* MainTab.storyboard */,
 				AD9B0D891D3BB62D009FDD95 /* LoginFlow.storyboard */,
+				AD66544F1D4904CE0056632C /* SyncDevice.storyboard */,
 			);
 			path = storyboard;
 			sourceTree = "<group>";
@@ -310,8 +328,6 @@
 				AD0B81161D37EF7400F43E72 /* V */,
 				ADFC2C2E1D369949004EDCDF /* AppDelegate.h */,
 				ADFC2C2F1D369949004EDCDF /* AppDelegate.m */,
-				ADFC2C311D369949004EDCDF /* FirstViewController.h */,
-				ADFC2C321D369949004EDCDF /* FirstViewController.m */,
 				ADFC2C3A1D369949004EDCDF /* Assets.xcassets */,
 				ADFC2C3F1D369949004EDCDF /* Info.plist */,
 				ADFC2C2B1D369949004EDCDF /* Supporting Files */,
@@ -397,6 +413,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADFC2C3B1D369949004EDCDF /* Assets.xcassets in Resources */,
+				AD6654501D4904CE0056632C /* SyncDevice.storyboard in Resources */,
 				AD9B0D881D3BB5D4009FDD95 /* MainTab.storyboard in Resources */,
 				AD9B0D8A1D3BB62D009FDD95 /* LoginFlow.storyboard in Resources */,
 			);
@@ -445,12 +462,14 @@
 				ADCED9E41D3D2BAC002E3F78 /* LoginedModel.m in Sources */,
 				AD0B811A1D37EF7400F43E72 /* LMBaseTableViewController.m in Sources */,
 				AD0B811C1D37EF7400F43E72 /* LMBaseViewController.m in Sources */,
+				AD6654571D490EC20056632C /* SearchDeviceViewController.m in Sources */,
 				AD9B0D911D3BB935009FDD95 /* DashboardViewController.m in Sources */,
 				ADFC2C301D369949004EDCDF /* AppDelegate.m in Sources */,
 				AD9B0D941D3BB947009FDD95 /* BatteryViewController.m in Sources */,
 				AD0B811F1D37EFEA00F43E72 /* LMTabBarController.m in Sources */,
 				AD0B81171D37EF7400F43E72 /* ControlFactory.m in Sources */,
 				AD05B5C01D3BD187007BCF7C /* SwingClient.m in Sources */,
+				AD6654541D490C110056632C /* SyncDeviceViewController.m in Sources */,
 				AD0B81181D37EF7400F43E72 /* Fun.m in Sources */,
 				AD9B0D9A1D3BB964009FDD95 /* ProfileViewController.m in Sources */,
 				AD0B81281D37F09900F43E72 /* SimpleLogger.m in Sources */,
@@ -463,7 +482,6 @@
 				AD347D171D3FD8DD00E91DDD /* SearchWatchViewController.m in Sources */,
 				AD05B5BD1D3BCAA4007BCF7C /* LoginViewController.m in Sources */,
 				ADEF31CC1D47856200BB6A9B /* KidBindViewController.m in Sources */,
-				ADFC2C331D369949004EDCDF /* FirstViewController.m in Sources */,
 				AD347D1E1D3FDEEC00E91DDD /* SelectWatchViewController.m in Sources */,
 				ADFC2C2D1D369949004EDCDF /* main.m in Sources */,
 				AD289A5E1D3FD0E800898F92 /* AskStepViewController.m in Sources */,

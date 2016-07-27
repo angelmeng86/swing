@@ -51,9 +51,60 @@
                     <view key="view" contentMode="scaleToFill" id="86Z-xz-evu">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How are you doing today?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLT-Qw-x0i">
+                                <rect key="frame" x="200" y="84" width="200" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="HKg-vc-ASb"/>
+                                    <constraint firstAttribute="width" constant="200" id="oN8-sw-OTN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <color key="textColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lel-WX-fVP">
+                                <rect key="frame" x="260" y="451" width="80" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="gp3-lA-MBB"/>
+                                    <constraint firstAttribute="height" constant="80" id="hgU-GA-nTg"/>
+                                </constraints>
+                                <state key="normal" title="Step"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wrh-Sa-nRP">
+                                <rect key="frame" x="160" y="451" width="80" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="UV"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="09g-2d-e7H">
+                                <rect key="frame" x="360" y="451" width="80" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Temp"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="09g-2d-e7H" firstAttribute="width" secondItem="Wrh-Sa-nRP" secondAttribute="width" id="3jL-pu-nOm"/>
+                            <constraint firstItem="lel-WX-fVP" firstAttribute="centerX" secondItem="86Z-xz-evu" secondAttribute="centerX" id="4si-EW-fVo"/>
+                            <constraint firstItem="09g-2d-e7H" firstAttribute="centerY" secondItem="Wrh-Sa-nRP" secondAttribute="centerY" id="8Cb-xI-7Uy"/>
+                            <constraint firstItem="FLT-Qw-x0i" firstAttribute="centerX" secondItem="86Z-xz-evu" secondAttribute="centerX" id="EqE-XS-kS2"/>
+                            <constraint firstItem="lel-WX-fVP" firstAttribute="height" secondItem="Wrh-Sa-nRP" secondAttribute="height" id="FXs-PU-oHe"/>
+                            <constraint firstItem="ixT-zX-1fi" firstAttribute="top" secondItem="lel-WX-fVP" secondAttribute="bottom" constant="20" id="O62-B3-t0J"/>
+                            <constraint firstItem="lel-WX-fVP" firstAttribute="centerY" secondItem="Wrh-Sa-nRP" secondAttribute="centerY" id="W2b-9l-u00"/>
+                            <constraint firstItem="09g-2d-e7H" firstAttribute="height" secondItem="Wrh-Sa-nRP" secondAttribute="height" id="YTs-Wz-ilk"/>
+                            <constraint firstItem="lel-WX-fVP" firstAttribute="width" secondItem="Wrh-Sa-nRP" secondAttribute="width" id="cT4-u2-msw"/>
+                            <constraint firstItem="09g-2d-e7H" firstAttribute="leading" secondItem="lel-WX-fVP" secondAttribute="trailing" constant="20" id="iWw-7R-QDJ"/>
+                            <constraint firstItem="lel-WX-fVP" firstAttribute="leading" secondItem="Wrh-Sa-nRP" secondAttribute="trailing" constant="20" id="rqn-jv-oE2"/>
+                            <constraint firstItem="FLT-Qw-x0i" firstAttribute="top" secondItem="nTU-V2-bM4" secondAttribute="bottom" constant="20" id="whV-C2-mAM"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Dashboard" image="tab_chart" selectedImage="tab_chart_selected" id="ENG-KG-Dub"/>
+                    <connections>
+                        <outlet property="stepBtn" destination="lel-WX-fVP" id="njh-HS-lBW"/>
+                        <outlet property="tempBtn" destination="09g-2d-e7H" id="bOC-lT-pbl"/>
+                        <outlet property="titleLabel" destination="FLT-Qw-x0i" id="avI-cK-Wyi"/>
+                        <outlet property="uvBtn" destination="Wrh-Sa-nRP" id="1zs-Un-yfT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xK0-bq-z9b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

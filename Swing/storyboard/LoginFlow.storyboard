@@ -95,13 +95,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOUR SWING WATCH" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oma-tX-zTH">
-                                <rect key="frame" x="20" y="133" width="560" height="45"/>
+                                <rect key="frame" x="20" y="125" width="560" height="45"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                 <color key="textColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qLh-Of-xg8">
-                                <rect key="frame" x="20" y="198" width="560" height="402"/>
+                                <rect key="frame" x="20" y="190" width="560" height="410"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DeviceCell" id="ByX-Df-QKI" customClass="DeviceTableViewCell">
@@ -170,7 +170,7 @@
                             <constraint firstItem="OtG-BV-EPQ" firstAttribute="leading" secondItem="BSq-2c-WnI" secondAttribute="leadingMargin" id="mp7-Sh-DIL"/>
                             <constraint firstItem="qLh-Of-xg8" firstAttribute="centerX" secondItem="OtG-BV-EPQ" secondAttribute="centerX" id="rIS-zx-Gnd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qLh-Of-xg8" secondAttribute="trailing" id="rpq-Mv-1Le"/>
-                            <constraint firstItem="oma-tX-zTH" firstAttribute="top" secondItem="OtG-BV-EPQ" secondAttribute="bottom" constant="8" id="tdg-4k-pv4"/>
+                            <constraint firstItem="oma-tX-zTH" firstAttribute="top" secondItem="OtG-BV-EPQ" secondAttribute="bottom" id="tdg-4k-pv4"/>
                         </constraints>
                     </view>
                     <connections>
@@ -286,7 +286,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t77-M9-zqa" customClass="RoundButton">
-                                <rect key="frame" x="60" y="205" width="480" height="30"/>
+                                <rect key="frame" x="60" y="197" width="480" height="30"/>
                                 <color key="backgroundColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="cYF-Nz-gh4"/>
@@ -309,13 +309,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A SWING WATCH?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3D-wq-luT">
-                                <rect key="frame" x="20" y="134" width="560" height="45"/>
+                                <rect key="frame" x="20" y="126" width="560" height="45"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                 <color key="textColor" red="0.94117647058823528" green="0.36078431372549019" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6lr-9t-aES" customClass="RoundButton">
-                                <rect key="frame" x="60" y="255" width="480" height="30"/>
+                                <rect key="frame" x="60" y="247" width="480" height="30"/>
                                 <color key="backgroundColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <state key="normal" title="No">
@@ -335,7 +335,7 @@
                             <constraint firstItem="f3D-wq-luT" firstAttribute="centerX" secondItem="p9i-3y-4V0" secondAttribute="centerX" id="BlX-65-ouE"/>
                             <constraint firstItem="f3D-wq-luT" firstAttribute="height" secondItem="p9i-3y-4V0" secondAttribute="height" id="G6d-nj-XyX"/>
                             <constraint firstAttribute="trailingMargin" secondItem="p9i-3y-4V0" secondAttribute="trailing" id="NdK-7n-g32"/>
-                            <constraint firstItem="f3D-wq-luT" firstAttribute="top" secondItem="p9i-3y-4V0" secondAttribute="bottom" constant="8" id="Von-Gf-fnn"/>
+                            <constraint firstItem="f3D-wq-luT" firstAttribute="top" secondItem="p9i-3y-4V0" secondAttribute="bottom" id="Von-Gf-fnn"/>
                             <constraint firstItem="6lr-9t-aES" firstAttribute="centerX" secondItem="p9i-3y-4V0" secondAttribute="centerX" id="Wwj-2h-vgZ"/>
                             <constraint firstItem="f3D-wq-luT" firstAttribute="width" secondItem="p9i-3y-4V0" secondAttribute="width" id="hJJ-pH-o8c"/>
                             <constraint firstItem="p9i-3y-4V0" firstAttribute="top" secondItem="lzJ-T5-hLE" secondAttribute="bottom" constant="61" id="hjv-zm-7Ie"/>
@@ -386,8 +386,10 @@
                             <constraint firstItem="DzD-A9-bys" firstAttribute="centerX" secondItem="eWw-Tw-RM5" secondAttribute="centerX" id="Q9V-0T-bhW"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="VJu-dC-d89"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dS7-eW-3GI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="zE9-og-xXM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="859" y="1203"/>
         </scene>
@@ -563,7 +565,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="addAnotherAction:" destination="FrE-IK-IHA" eventType="touchUpInside" id="nwF-s7-NLr"/>
+                                    <segue destination="zE9-og-xXM" kind="unwind" unwindAction="unwindSegueToSearchViewController:" id="MEe-UP-wzM"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mary" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wUo-ew-U50">

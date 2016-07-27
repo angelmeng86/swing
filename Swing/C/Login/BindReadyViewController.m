@@ -7,6 +7,7 @@
 //
 
 #import "BindReadyViewController.h"
+#import "AppDelegate.h"
 
 @interface BindReadyViewController ()
 
@@ -37,13 +38,10 @@
 }
 
 - (IBAction)goAction:(id)sender {
-    
-}
-
-- (IBAction)addAnotherAction:(id)sender {
-    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
-    UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"SearchWatch"];
-    [self.navigationController pushViewController:ctl animated:YES];
+    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
+    UIViewController *ctl = [stroyBoard instantiateInitialViewController];
+    AppDelegate *ad = [UIApplication sharedApplication].delegate;
+    ad.window.rootViewController = ctl;
 }
 
 @end
