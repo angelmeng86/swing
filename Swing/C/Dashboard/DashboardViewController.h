@@ -11,6 +11,8 @@
 @interface DashboardViewController : LMBaseViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UILabel *subTitleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *uvBtn;
 @property (weak, nonatomic) IBOutlet UIButton *stepBtn;
 @property (weak, nonatomic) IBOutlet UIButton *tempBtn;

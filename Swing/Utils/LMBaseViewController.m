@@ -29,21 +29,19 @@
 //    if (self.navigationController.viewControllers.count > 1) {
 //        self.navigationItem.leftBarButtonItem = [ControlFactory backBarButtonItemWithTarget:self action:@selector(backAction)];
 //    }
+    if (!self.notLoadBackgroudImage) {
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:LOAD_IMAGE(@"login_bg")];
+        
+        [self.view addSubview:imageView];
+        
+        [imageView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeTop];
+        [imageView autoSetDimension:ALDimensionHeight toSize:kDeviceWidth];
+        
+        
+        [self.view sendSubviewToBack:imageView];
+    }
     
     self.view.backgroundColor = COMMON_BACKGROUND_COLOR;
-}
-
-- (void)awakeFromNib {
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:LOAD_IMAGE(@"login_bg")];
-    
-    [self.view addSubview:imageView];
-    
-    [imageView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeTop];
-    [imageView autoSetDimension:ALDimensionHeight toSize:kDeviceWidth];
-    
-    
-    [self.view sendSubviewToBack:imageView];
-    [self updateViewConstraints];
 }
 
 - (void)backAction

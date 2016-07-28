@@ -7,14 +7,25 @@
 //
 
 #import "DashboardViewController.h"
+#import "CommonDef.h"
+
+typedef enum : NSUInteger {
+    DashboardTypeHappy = 0,
+    DashboardTypeNormal,
+    DashboardTypeDown,
+} DashboardType;
 
 @interface DashboardViewController ()
+{
+    NSUInteger _type;
+}
 
 @end
 
 @implementation DashboardViewController
 
 - (void)viewDidLoad {
+    self.notLoadBackgroudImage = YES;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
@@ -26,8 +37,70 @@
     
     self.tempBtn.layer.cornerRadius = 40.f;
     self.tempBtn.layer.masksToBounds = YES;
+    _type = -1;
     
     [self performSelector:@selector(showSyncDialog) withObject:nil afterDelay:0];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    switch (_type) {
+        case DashboardTypeHappy:
+            [self setType:DashboardTypeNormal];
+            break;
+            
+        case DashboardTypeNormal:
+            [self setType:DashboardTypeDown];
+            break;
+            
+        default:
+            [self setType:DashboardTypeHappy];
+            break;
+    }
+}
+
+- (void)setType:(DashboardType)type {
+    switch (type) {
+        case DashboardTypeHappy:
+        {
+            self.titleLabel.textColor = RGBA(226, 103, 46, 1.0f);
+            self.subTitleLabel.textColor = self.titleLabel.textColor;
+            self.subTitleLabel.text = @"Excellent!";
+            self.view.backgroundColor = RGBA(249, 211, 186, 1.0f);
+            self.imageView.image = LOAD_IMAGE(@"monster-yellow");
+            [self.uvBtn setImage:LOAD_IMAGE(@"orange_uv_button") forState:UIControlStateNormal];
+            [self.stepBtn setImage:LOAD_IMAGE(@"orange_activity_button") forState:UIControlStateNormal];
+            [self.tempBtn setImage:LOAD_IMAGE(@"orange_weather_button") forState:UIControlStateNormal];
+        }
+            break;
+        case DashboardTypeNormal:
+        {
+            self.titleLabel.textColor = RGBA(56, 181, 155, 1.0f);
+            self.subTitleLabel.textColor = self.titleLabel.textColor;
+            self.subTitleLabel.text = @"Almost There!";
+            self.view.backgroundColor = RGBA(167, 205, 191, 1.0f);
+            self.imageView.image = LOAD_IMAGE(@"monster-bluegreen");
+            [self.uvBtn setImage:LOAD_IMAGE(@"blue_uv_button") forState:UIControlStateNormal];
+            [self.stepBtn setImage:LOAD_IMAGE(@"blue_activity_button") forState:UIControlStateNormal];
+            [self.tempBtn setImage:LOAD_IMAGE(@"blue_weather_button") forState:UIControlStateNormal];
+        }
+            break;
+        case DashboardTypeDown:
+        {
+            self.titleLabel.textColor = RGBA(99, 92, 170, 1.0f);
+            self.subTitleLabel.textColor = self.titleLabel.textColor;
+            self.subTitleLabel.text = @"Below Average!";
+            self.view.backgroundColor = RGBA(218, 193, 247, 1.0f);
+            self.imageView.image = LOAD_IMAGE(@"monster-purple");
+            [self.uvBtn setImage:LOAD_IMAGE(@"uv_button") forState:UIControlStateNormal];
+            [self.stepBtn setImage:LOAD_IMAGE(@"activity_button") forState:UIControlStateNormal];
+            [self.tempBtn setImage:LOAD_IMAGE(@"weather_button") forState:UIControlStateNormal];
+        }
+            break;
+        default:
+            break;
+    }
+    _type = type;
 }
 
 - (void)showSyncDialog {
@@ -40,15 +113,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

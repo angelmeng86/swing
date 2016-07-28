@@ -10,6 +10,8 @@
 
 @interface LMBaseViewController : UIViewController
 
+@property (nonatomic) BOOL notLoadBackgroudImage;
+
 - (void)backAction;
 
 @end
