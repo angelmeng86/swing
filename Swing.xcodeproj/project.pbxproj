@@ -21,17 +21,24 @@
 		AD347D171D3FD8DD00E91DDD /* SearchWatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD347D161D3FD8DD00E91DDD /* SearchWatchViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD347D1B1D3FDE1A00E91DDD /* DeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD347D1A1D3FDE1A00E91DDD /* DeviceTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		AD347D1E1D3FDEEC00E91DDD /* SelectWatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD347D1D1D3FDEEC00E91DDD /* SelectWatchViewController.m */; settings = {ASSET_TAGS = (); }; };
-		AD6654501D4904CE0056632C /* SyncDevice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD66544F1D4904CE0056632C /* SyncDevice.storyboard */; settings = {ASSET_TAGS = (); }; };
 		AD6654541D490C110056632C /* SyncDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6654531D490C110056632C /* SyncDeviceViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD6654571D490EC20056632C /* SearchDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6654561D490EC20056632C /* SearchDeviceViewController.m */; settings = {ASSET_TAGS = (); }; };
-		AD9B0D881D3BB5D4009FDD95 /* MainTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD9B0D871D3BB5D4009FDD95 /* MainTab.storyboard */; settings = {ASSET_TAGS = (); }; };
-		AD9B0D8A1D3BB62D009FDD95 /* LoginFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD9B0D891D3BB62D009FDD95 /* LoginFlow.storyboard */; settings = {ASSET_TAGS = (); }; };
+		AD7797931D4C8D0600472B27 /* ProfileDeviceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7797921D4C8D0600472B27 /* ProfileDeviceCell.m */; settings = {ASSET_TAGS = (); }; };
+		AD7797961D4C9B5200472B27 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7797951D4C9B5200472B27 /* EditProfileViewController.m */; settings = {ASSET_TAGS = (); }; };
+		AD7797991D4CCFD200472B27 /* UnderlineTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7797981D4CCFD200472B27 /* UnderlineTextField.m */; settings = {ASSET_TAGS = (); }; };
 		AD9B0D911D3BB935009FDD95 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D901D3BB935009FDD95 /* DashboardViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD9B0D941D3BB947009FDD95 /* BatteryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D931D3BB947009FDD95 /* BatteryViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD9B0D971D3BB954009FDD95 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D961D3BB954009FDD95 /* CalendarViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD9B0D9A1D3BB964009FDD95 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D991D3BB964009FDD95 /* ProfileViewController.m */; settings = {ASSET_TAGS = (); }; };
 		ADCED9E41D3D2BAC002E3F78 /* LoginedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCED9E31D3D2BAC002E3F78 /* LoginedModel.m */; settings = {ASSET_TAGS = (); }; };
 		ADCED9E71D3D3C8B002E3F78 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCED9E61D3D3C8B002E3F78 /* RegisterViewController.m */; settings = {ASSET_TAGS = (); }; };
+		ADDCD3E81D4C4DA90031DC66 /* UVIndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDCD3E71D4C4DA90031DC66 /* UVIndexViewController.m */; settings = {ASSET_TAGS = (); }; };
+		ADDCD3F31D4C54960031DC66 /* LoginFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADDCD3EE1D4C54960031DC66 /* LoginFlow.storyboard */; settings = {ASSET_TAGS = (); }; };
+		ADDCD3F41D4C54960031DC66 /* MainTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADDCD3EF1D4C54960031DC66 /* MainTab.storyboard */; settings = {ASSET_TAGS = (); }; };
+		ADDCD3F51D4C54960031DC66 /* SyncDevice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADDCD3F01D4C54960031DC66 /* SyncDevice.storyboard */; settings = {ASSET_TAGS = (); }; };
+		ADDCD3F81D4C557E0031DC66 /* UIFont+AvenirFont.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDCD3F71D4C557E0031DC66 /* UIFont+AvenirFont.m */; settings = {ASSET_TAGS = (); }; };
+		ADDCD3FB1D4C59F10031DC66 /* Avenir-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADDCD3F91D4C59E10031DC66 /* Avenir-bold.ttf */; };
+		ADDCD3FC1D4C59F10031DC66 /* Avenir-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = ADDCD3FA1D4C59E10031DC66 /* Avenir-Book.otf */; };
 		ADEF31CC1D47856200BB6A9B /* KidBindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31CB1D47856200BB6A9B /* KidBindViewController.m */; settings = {ASSET_TAGS = (); }; };
 		ADEF31CF1D478D2B00BB6A9B /* BindReadyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31CE1D478D2B00BB6A9B /* BindReadyViewController.m */; settings = {ASSET_TAGS = (); }; };
 		ADEF31D21D478E9900BB6A9B /* RoundButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31D11D478E9900BB6A9B /* RoundButton.m */; settings = {ASSET_TAGS = (); }; };
@@ -73,13 +80,16 @@
 		AD347D1A1D3FDE1A00E91DDD /* DeviceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DeviceTableViewCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AD347D1C1D3FDEEC00E91DDD /* SelectWatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectWatchViewController.h; sourceTree = "<group>"; };
 		AD347D1D1D3FDEEC00E91DDD /* SelectWatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectWatchViewController.m; sourceTree = "<group>"; };
-		AD66544F1D4904CE0056632C /* SyncDevice.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SyncDevice.storyboard; sourceTree = "<group>"; };
 		AD6654521D490C110056632C /* SyncDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncDeviceViewController.h; sourceTree = "<group>"; };
 		AD6654531D490C110056632C /* SyncDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncDeviceViewController.m; sourceTree = "<group>"; };
 		AD6654551D490EC20056632C /* SearchDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDeviceViewController.h; sourceTree = "<group>"; };
 		AD6654561D490EC20056632C /* SearchDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDeviceViewController.m; sourceTree = "<group>"; };
-		AD9B0D871D3BB5D4009FDD95 /* MainTab.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainTab.storyboard; sourceTree = "<group>"; };
-		AD9B0D891D3BB62D009FDD95 /* LoginFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginFlow.storyboard; sourceTree = "<group>"; };
+		AD7797911D4C8D0600472B27 /* ProfileDeviceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileDeviceCell.h; sourceTree = "<group>"; };
+		AD7797921D4C8D0600472B27 /* ProfileDeviceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileDeviceCell.m; sourceTree = "<group>"; };
+		AD7797941D4C9B5200472B27 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
+		AD7797951D4C9B5200472B27 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
+		AD7797971D4CCFD200472B27 /* UnderlineTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnderlineTextField.h; sourceTree = "<group>"; };
+		AD7797981D4CCFD200472B27 /* UnderlineTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnderlineTextField.m; sourceTree = "<group>"; };
 		AD9B0D8F1D3BB935009FDD95 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DashboardViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		AD9B0D901D3BB935009FDD95 /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DashboardViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AD9B0D921D3BB947009FDD95 /* BatteryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BatteryViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -92,6 +102,15 @@
 		ADCED9E31D3D2BAC002E3F78 /* LoginedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginedModel.m; sourceTree = "<group>"; };
 		ADCED9E51D3D3C8B002E3F78 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		ADCED9E61D3D3C8B002E3F78 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		ADDCD3E61D4C4DA90031DC66 /* UVIndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVIndexViewController.h; sourceTree = "<group>"; };
+		ADDCD3E71D4C4DA90031DC66 /* UVIndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVIndexViewController.m; sourceTree = "<group>"; };
+		ADDCD3EE1D4C54960031DC66 /* LoginFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginFlow.storyboard; sourceTree = "<group>"; };
+		ADDCD3EF1D4C54960031DC66 /* MainTab.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainTab.storyboard; sourceTree = "<group>"; };
+		ADDCD3F01D4C54960031DC66 /* SyncDevice.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SyncDevice.storyboard; sourceTree = "<group>"; };
+		ADDCD3F61D4C557E0031DC66 /* UIFont+AvenirFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+AvenirFont.h"; sourceTree = "<group>"; };
+		ADDCD3F71D4C557E0031DC66 /* UIFont+AvenirFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+AvenirFont.m"; sourceTree = "<group>"; };
+		ADDCD3F91D4C59E10031DC66 /* Avenir-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir-bold.ttf"; sourceTree = "<group>"; };
+		ADDCD3FA1D4C59E10031DC66 /* Avenir-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir-Book.otf"; sourceTree = "<group>"; };
 		ADEF31CA1D47856200BB6A9B /* KidBindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = KidBindViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		ADEF31CB1D47856200BB6A9B /* KidBindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KidBindViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		ADEF31CD1D478D2B00BB6A9B /* BindReadyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BindReadyViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -159,6 +178,8 @@
 		AD0B81081D37EF7400F43E72 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				ADDCD3F61D4C557E0031DC66 /* UIFont+AvenirFont.h */,
+				ADDCD3F71D4C557E0031DC66 /* UIFont+AvenirFont.m */,
 				AD0B81091D37EF7400F43E72 /* CommonDef.h */,
 				AD0B810A1D37EF7400F43E72 /* ControlFactory.h */,
 				AD0B810B1D37EF7400F43E72 /* ControlFactory.m */,
@@ -179,6 +200,7 @@
 		AD0B81161D37EF7400F43E72 /* V */ = {
 			isa = PBXGroup;
 			children = (
+				AD7797901D4C8CF900472B27 /* Profile */,
 				AD347D181D3FDDF700E91DDD /* Login */,
 				ADEF31D01D478E9900BB6A9B /* RoundButton.h */,
 				ADEF31D11D478E9900BB6A9B /* RoundButton.m */,
@@ -224,14 +246,15 @@
 			path = Sync;
 			sourceTree = "<group>";
 		};
-		AD9B0D861D3BB596009FDD95 /* storyboard */ = {
+		AD7797901D4C8CF900472B27 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				AD9B0D871D3BB5D4009FDD95 /* MainTab.storyboard */,
-				AD9B0D891D3BB62D009FDD95 /* LoginFlow.storyboard */,
-				AD66544F1D4904CE0056632C /* SyncDevice.storyboard */,
+				AD7797911D4C8D0600472B27 /* ProfileDeviceCell.h */,
+				AD7797921D4C8D0600472B27 /* ProfileDeviceCell.m */,
+				AD7797971D4CCFD200472B27 /* UnderlineTextField.h */,
+				AD7797981D4CCFD200472B27 /* UnderlineTextField.m */,
 			);
-			path = storyboard;
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		AD9B0D8B1D3BB89E009FDD95 /* Battery */ = {
@@ -257,6 +280,8 @@
 			children = (
 				AD9B0D8F1D3BB935009FDD95 /* DashboardViewController.h */,
 				AD9B0D901D3BB935009FDD95 /* DashboardViewController.m */,
+				ADDCD3E61D4C4DA90031DC66 /* UVIndexViewController.h */,
+				ADDCD3E71D4C4DA90031DC66 /* UVIndexViewController.m */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -266,6 +291,8 @@
 			children = (
 				AD9B0D981D3BB964009FDD95 /* ProfileViewController.h */,
 				AD9B0D991D3BB964009FDD95 /* ProfileViewController.m */,
+				AD7797941D4C9B5200472B27 /* EditProfileViewController.h */,
+				AD7797951D4C9B5200472B27 /* EditProfileViewController.m */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -289,6 +316,34 @@
 				ADEF31CE1D478D2B00BB6A9B /* BindReadyViewController.m */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		ADDCD3E91D4C54960031DC66 /* Res */ = {
+			isa = PBXGroup;
+			children = (
+				ADDCD3EA1D4C54960031DC66 /* font */,
+				ADDCD3ED1D4C54960031DC66 /* storyboard */,
+			);
+			path = Res;
+			sourceTree = "<group>";
+		};
+		ADDCD3EA1D4C54960031DC66 /* font */ = {
+			isa = PBXGroup;
+			children = (
+				ADDCD3F91D4C59E10031DC66 /* Avenir-bold.ttf */,
+				ADDCD3FA1D4C59E10031DC66 /* Avenir-Book.otf */,
+			);
+			path = font;
+			sourceTree = "<group>";
+		};
+		ADDCD3ED1D4C54960031DC66 /* storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				ADDCD3EE1D4C54960031DC66 /* LoginFlow.storyboard */,
+				ADDCD3EF1D4C54960031DC66 /* MainTab.storyboard */,
+				ADDCD3F01D4C54960031DC66 /* SyncDevice.storyboard */,
+			);
+			path = storyboard;
 			sourceTree = "<group>";
 		};
 		ADEF31D31D47B04200BB6A9B /* VPImageCropper */ = {
@@ -330,8 +385,8 @@
 				ADFC2C2F1D369949004EDCDF /* AppDelegate.m */,
 				ADFC2C3A1D369949004EDCDF /* Assets.xcassets */,
 				ADFC2C3F1D369949004EDCDF /* Info.plist */,
+				ADDCD3E91D4C54960031DC66 /* Res */,
 				ADFC2C2B1D369949004EDCDF /* Supporting Files */,
-				AD9B0D861D3BB596009FDD95 /* storyboard */,
 			);
 			path = Swing;
 			sourceTree = "<group>";
@@ -412,10 +467,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADDCD3FB1D4C59F10031DC66 /* Avenir-bold.ttf in Resources */,
+				ADDCD3FC1D4C59F10031DC66 /* Avenir-Book.otf in Resources */,
+				ADDCD3F31D4C54960031DC66 /* LoginFlow.storyboard in Resources */,
+				ADDCD3F51D4C54960031DC66 /* SyncDevice.storyboard in Resources */,
+				ADDCD3F41D4C54960031DC66 /* MainTab.storyboard in Resources */,
 				ADFC2C3B1D369949004EDCDF /* Assets.xcassets in Resources */,
-				AD6654501D4904CE0056632C /* SyncDevice.storyboard in Resources */,
-				AD9B0D881D3BB5D4009FDD95 /* MainTab.storyboard in Resources */,
-				AD9B0D8A1D3BB62D009FDD95 /* LoginFlow.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,20 +528,25 @@
 				AD05B5C01D3BD187007BCF7C /* SwingClient.m in Sources */,
 				AD6654541D490C110056632C /* SyncDeviceViewController.m in Sources */,
 				AD0B81181D37EF7400F43E72 /* Fun.m in Sources */,
+				AD7797961D4C9B5200472B27 /* EditProfileViewController.m in Sources */,
 				AD9B0D9A1D3BB964009FDD95 /* ProfileViewController.m in Sources */,
 				AD0B81281D37F09900F43E72 /* SimpleLogger.m in Sources */,
 				ADEF31CF1D478D2B00BB6A9B /* BindReadyViewController.m in Sources */,
 				AD0B811B1D37EF7400F43E72 /* LMBaseTableViewController2.m in Sources */,
 				AD9B0D971D3BB954009FDD95 /* CalendarViewController.m in Sources */,
+				ADDCD3E81D4C4DA90031DC66 /* UVIndexViewController.m in Sources */,
 				AD347D1B1D3FDE1A00E91DDD /* DeviceTableViewCell.m in Sources */,
 				ADCED9E71D3D3C8B002E3F78 /* RegisterViewController.m in Sources */,
 				ADEF31D61D47B04200BB6A9B /* VPImageCropperViewController.m in Sources */,
+				AD7797991D4CCFD200472B27 /* UnderlineTextField.m in Sources */,
 				AD347D171D3FD8DD00E91DDD /* SearchWatchViewController.m in Sources */,
 				AD05B5BD1D3BCAA4007BCF7C /* LoginViewController.m in Sources */,
 				ADEF31CC1D47856200BB6A9B /* KidBindViewController.m in Sources */,
+				AD7797931D4C8D0600472B27 /* ProfileDeviceCell.m in Sources */,
 				AD347D1E1D3FDEEC00E91DDD /* SelectWatchViewController.m in Sources */,
 				ADFC2C2D1D369949004EDCDF /* main.m in Sources */,
 				AD289A5E1D3FD0E800898F92 /* AskStepViewController.m in Sources */,
+				ADDCD3F81D4C557E0031DC66 /* UIFont+AvenirFont.m in Sources */,
 				ADEF31D21D478E9900BB6A9B /* RoundButton.m in Sources */,
 				AD0B81191D37EF7400F43E72 /* GlobalCache.m in Sources */,
 			);

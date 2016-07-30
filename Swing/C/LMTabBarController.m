@@ -7,6 +7,7 @@
 //
 
 #import "LMTabBarController.h"
+#import "CommonDef.h"
 
 @interface LMTabBarController ()
 
@@ -16,6 +17,9 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
+    // 设置导航默认标题的颜色及字体大小
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: RGBA(240, 92, 37, 1.0f), NSFontAttributeName : [UIFont boldAvenirFontOfSize:18]};
     
     self.navigationItem.title = [self.viewControllers firstObject].title;
     self.delegate = self;

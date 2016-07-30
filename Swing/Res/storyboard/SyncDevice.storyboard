@@ -80,8 +80,6 @@
                                 <rect key="frame" x="60" y="354" width="480" height="30"/>
                                 <color key="backgroundColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="U6R-c7-2pZ"/>
-                                    <constraint firstAttribute="width" constant="480" id="iT8-GY-Ppb"/>
                                     <constraint firstAttribute="height" constant="30" id="sGR-Vd-dBo"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>

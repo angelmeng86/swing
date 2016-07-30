@@ -39,6 +39,7 @@ typedef enum : NSUInteger {
     self.tempBtn.layer.masksToBounds = YES;
     _type = -1;
     
+    
     [self performSelector:@selector(showSyncDialog) withObject:nil afterDelay:0];
 }
 

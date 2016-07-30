@@ -30,12 +30,12 @@
 //        self.navigationItem.leftBarButtonItem = [ControlFactory backBarButtonItemWithTarget:self action:@selector(backAction)];
 //    }
     if (!self.notLoadBackgroudImage) {
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:LOAD_IMAGE(@"login_bg")];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:LOAD_IMAGE(@"main_bg")];
         
         [self.view addSubview:imageView];
         
         [imageView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeTop];
-        [imageView autoSetDimension:ALDimensionHeight toSize:kDeviceWidth];
+        [imageView autoSetDimension:ALDimensionHeight toSize:kDeviceWidth / 2];
         
         
         [self.view sendSubviewToBack:imageView];

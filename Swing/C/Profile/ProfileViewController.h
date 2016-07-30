@@ -10,4 +10,9 @@
 
 @interface ProfileViewController : LMBaseViewController
 
+@property (weak, nonatomic) IBOutlet UIButton *headerBtn;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
+@property (weak, nonatomic) IBOutlet UILabel *emailLabel;
+@property (weak, nonatomic) IBOutlet UICollectionView *deviceConllectionView;
 @end

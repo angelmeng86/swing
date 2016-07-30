@@ -28,7 +28,28 @@
 //    UIViewController *test2obj = [secondStroyBoard instantiateInitialViewController];
 //    self.window.rootViewController = test2obj;
     [[GlobalCache shareInstance] initConfig];
-    
+    /*
+    NSArray *familyNames =[[NSArray alloc]initWithArray:[UIFont familyNames]];
+    NSArray *fontNames;
+    NSInteger indFamily, indFont;
+    NSLog(@"[familyNames count]===%lu",(unsigned long)[familyNames count]);
+    for(indFamily=0;indFamily<[familyNames count];++indFamily)
+        
+    {
+//        if (![[familyNames objectAtIndex:indFamily] containsString:@"Avenir"]) {
+//            continue;
+//        }
+        NSLog(@"Family name: %@", [familyNames objectAtIndex:indFamily]);
+        fontNames =[[NSArray alloc]initWithArray:[UIFont fontNamesForFamilyName:[familyNames objectAtIndex:indFamily]]];
+        
+        for(indFont=0; indFont<[fontNames count]; ++indFont)
+            
+        {
+            NSLog(@"Font name: %@",[fontNames objectAtIndex:indFont]);
+            
+        }
+    }
+    */
     return YES;
 }
 
