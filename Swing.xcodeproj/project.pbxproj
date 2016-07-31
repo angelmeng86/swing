@@ -23,9 +23,18 @@
 		AD347D1E1D3FDEEC00E91DDD /* SelectWatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD347D1D1D3FDEEC00E91DDD /* SelectWatchViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD6654541D490C110056632C /* SyncDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6654531D490C110056632C /* SyncDeviceViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD6654571D490EC20056632C /* SearchDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6654561D490EC20056632C /* SearchDeviceViewController.m */; settings = {ASSET_TAGS = (); }; };
+		AD7438231D4DD47100F5F9D2 /* JBChartTooltipTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7438201D4DD47100F5F9D2 /* JBChartTooltipTipView.m */; settings = {ASSET_TAGS = (); }; };
+		AD7438241D4DD47100F5F9D2 /* JBChartTooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7438221D4DD47100F5F9D2 /* JBChartTooltipView.m */; settings = {ASSET_TAGS = (); }; };
+		AD7438271D4DD50C00F5F9D2 /* JBBaseChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7438261D4DD50C00F5F9D2 /* JBBaseChartViewController.m */; settings = {ASSET_TAGS = (); }; };
+		AD74382A1D4DDD3600F5F9D2 /* WeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7438291D4DDD3600F5F9D2 /* WeatherViewController.m */; settings = {ASSET_TAGS = (); }; };
+		AD74382D1D4DE08000F5F9D2 /* WeatherContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD74382C1D4DE08000F5F9D2 /* WeatherContentViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD7797931D4C8D0600472B27 /* ProfileDeviceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7797921D4C8D0600472B27 /* ProfileDeviceCell.m */; settings = {ASSET_TAGS = (); }; };
 		AD7797961D4C9B5200472B27 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7797951D4C9B5200472B27 /* EditProfileViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD7797991D4CCFD200472B27 /* UnderlineTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7797981D4CCFD200472B27 /* UnderlineTextField.m */; settings = {ASSET_TAGS = (); }; };
+		AD77979C1D4CE11B00472B27 /* CameraUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = AD77979B1D4CE11B00472B27 /* CameraUtility.m */; settings = {ASSET_TAGS = (); }; };
+		AD7797A01D4CF9C400472B27 /* ChartFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD77979F1D4CF9C400472B27 /* ChartFooterView.m */; settings = {ASSET_TAGS = (); }; };
+		AD7797A31D4D034600472B27 /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7797A21D4D034600472B27 /* ActivityViewController.m */; settings = {ASSET_TAGS = (); }; };
+		AD7797A61D4D085600472B27 /* ChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7797A51D4D085600472B27 /* ChartViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD9B0D911D3BB935009FDD95 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D901D3BB935009FDD95 /* DashboardViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD9B0D941D3BB947009FDD95 /* BatteryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D931D3BB947009FDD95 /* BatteryViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD9B0D971D3BB954009FDD95 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D961D3BB954009FDD95 /* CalendarViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -84,12 +93,30 @@
 		AD6654531D490C110056632C /* SyncDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncDeviceViewController.m; sourceTree = "<group>"; };
 		AD6654551D490EC20056632C /* SearchDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDeviceViewController.h; sourceTree = "<group>"; };
 		AD6654561D490EC20056632C /* SearchDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDeviceViewController.m; sourceTree = "<group>"; };
+		AD74381F1D4DD47100F5F9D2 /* JBChartTooltipTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBChartTooltipTipView.h; sourceTree = "<group>"; };
+		AD7438201D4DD47100F5F9D2 /* JBChartTooltipTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBChartTooltipTipView.m; sourceTree = "<group>"; };
+		AD7438211D4DD47100F5F9D2 /* JBChartTooltipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBChartTooltipView.h; sourceTree = "<group>"; };
+		AD7438221D4DD47100F5F9D2 /* JBChartTooltipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBChartTooltipView.m; sourceTree = "<group>"; };
+		AD7438251D4DD50C00F5F9D2 /* JBBaseChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBaseChartViewController.h; sourceTree = "<group>"; };
+		AD7438261D4DD50C00F5F9D2 /* JBBaseChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBBaseChartViewController.m; sourceTree = "<group>"; };
+		AD7438281D4DDD3600F5F9D2 /* WeatherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherViewController.h; sourceTree = "<group>"; };
+		AD7438291D4DDD3600F5F9D2 /* WeatherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherViewController.m; sourceTree = "<group>"; };
+		AD74382B1D4DE08000F5F9D2 /* WeatherContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherContentViewController.h; sourceTree = "<group>"; };
+		AD74382C1D4DE08000F5F9D2 /* WeatherContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherContentViewController.m; sourceTree = "<group>"; };
 		AD7797911D4C8D0600472B27 /* ProfileDeviceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileDeviceCell.h; sourceTree = "<group>"; };
 		AD7797921D4C8D0600472B27 /* ProfileDeviceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileDeviceCell.m; sourceTree = "<group>"; };
 		AD7797941D4C9B5200472B27 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		AD7797951D4C9B5200472B27 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		AD7797971D4CCFD200472B27 /* UnderlineTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnderlineTextField.h; sourceTree = "<group>"; };
 		AD7797981D4CCFD200472B27 /* UnderlineTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnderlineTextField.m; sourceTree = "<group>"; };
+		AD77979A1D4CE11B00472B27 /* CameraUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraUtility.h; sourceTree = "<group>"; };
+		AD77979B1D4CE11B00472B27 /* CameraUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraUtility.m; sourceTree = "<group>"; };
+		AD77979E1D4CF9C400472B27 /* ChartFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartFooterView.h; sourceTree = "<group>"; };
+		AD77979F1D4CF9C400472B27 /* ChartFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartFooterView.m; sourceTree = "<group>"; };
+		AD7797A11D4D034600472B27 /* ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityViewController.h; sourceTree = "<group>"; };
+		AD7797A21D4D034600472B27 /* ActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityViewController.m; sourceTree = "<group>"; };
+		AD7797A41D4D085600472B27 /* ChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartViewController.h; sourceTree = "<group>"; };
+		AD7797A51D4D085600472B27 /* ChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartViewController.m; sourceTree = "<group>"; };
 		AD9B0D8F1D3BB935009FDD95 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DashboardViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		AD9B0D901D3BB935009FDD95 /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DashboardViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AD9B0D921D3BB947009FDD95 /* BatteryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BatteryViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -193,6 +220,8 @@
 				AD0B81131D37EF7400F43E72 /* LMBaseTableViewController2.m */,
 				AD0B81141D37EF7400F43E72 /* LMBaseViewController.h */,
 				AD0B81151D37EF7400F43E72 /* LMBaseViewController.m */,
+				AD77979A1D4CE11B00472B27 /* CameraUtility.h */,
+				AD77979B1D4CE11B00472B27 /* CameraUtility.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -200,6 +229,7 @@
 		AD0B81161D37EF7400F43E72 /* V */ = {
 			isa = PBXGroup;
 			children = (
+				AD77979D1D4CF90C00472B27 /* Dashboard */,
 				AD7797901D4C8CF900472B27 /* Profile */,
 				AD347D181D3FDDF700E91DDD /* Login */,
 				ADEF31D01D478E9900BB6A9B /* RoundButton.h */,
@@ -257,6 +287,19 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		AD77979D1D4CF90C00472B27 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				AD74381F1D4DD47100F5F9D2 /* JBChartTooltipTipView.h */,
+				AD7438201D4DD47100F5F9D2 /* JBChartTooltipTipView.m */,
+				AD7438211D4DD47100F5F9D2 /* JBChartTooltipView.h */,
+				AD7438221D4DD47100F5F9D2 /* JBChartTooltipView.m */,
+				AD77979E1D4CF9C400472B27 /* ChartFooterView.h */,
+				AD77979F1D4CF9C400472B27 /* ChartFooterView.m */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
 		AD9B0D8B1D3BB89E009FDD95 /* Battery */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,10 +321,20 @@
 		AD9B0D8D1D3BB89E009FDD95 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				AD7438251D4DD50C00F5F9D2 /* JBBaseChartViewController.h */,
+				AD7438261D4DD50C00F5F9D2 /* JBBaseChartViewController.m */,
 				AD9B0D8F1D3BB935009FDD95 /* DashboardViewController.h */,
 				AD9B0D901D3BB935009FDD95 /* DashboardViewController.m */,
 				ADDCD3E61D4C4DA90031DC66 /* UVIndexViewController.h */,
 				ADDCD3E71D4C4DA90031DC66 /* UVIndexViewController.m */,
+				AD7797A11D4D034600472B27 /* ActivityViewController.h */,
+				AD7797A21D4D034600472B27 /* ActivityViewController.m */,
+				AD7797A41D4D085600472B27 /* ChartViewController.h */,
+				AD7797A51D4D085600472B27 /* ChartViewController.m */,
+				AD7438281D4DDD3600F5F9D2 /* WeatherViewController.h */,
+				AD7438291D4DDD3600F5F9D2 /* WeatherViewController.m */,
+				AD74382B1D4DE08000F5F9D2 /* WeatherContentViewController.h */,
+				AD74382C1D4DE08000F5F9D2 /* WeatherContentViewController.m */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -523,16 +576,24 @@
 				AD9B0D911D3BB935009FDD95 /* DashboardViewController.m in Sources */,
 				ADFC2C301D369949004EDCDF /* AppDelegate.m in Sources */,
 				AD9B0D941D3BB947009FDD95 /* BatteryViewController.m in Sources */,
+				AD7797A31D4D034600472B27 /* ActivityViewController.m in Sources */,
 				AD0B811F1D37EFEA00F43E72 /* LMTabBarController.m in Sources */,
 				AD0B81171D37EF7400F43E72 /* ControlFactory.m in Sources */,
+				AD77979C1D4CE11B00472B27 /* CameraUtility.m in Sources */,
+				AD74382A1D4DDD3600F5F9D2 /* WeatherViewController.m in Sources */,
+				AD7438231D4DD47100F5F9D2 /* JBChartTooltipTipView.m in Sources */,
 				AD05B5C01D3BD187007BCF7C /* SwingClient.m in Sources */,
 				AD6654541D490C110056632C /* SyncDeviceViewController.m in Sources */,
+				AD7797A01D4CF9C400472B27 /* ChartFooterView.m in Sources */,
 				AD0B81181D37EF7400F43E72 /* Fun.m in Sources */,
+				AD7797A61D4D085600472B27 /* ChartViewController.m in Sources */,
 				AD7797961D4C9B5200472B27 /* EditProfileViewController.m in Sources */,
 				AD9B0D9A1D3BB964009FDD95 /* ProfileViewController.m in Sources */,
 				AD0B81281D37F09900F43E72 /* SimpleLogger.m in Sources */,
 				ADEF31CF1D478D2B00BB6A9B /* BindReadyViewController.m in Sources */,
 				AD0B811B1D37EF7400F43E72 /* LMBaseTableViewController2.m in Sources */,
+				AD74382D1D4DE08000F5F9D2 /* WeatherContentViewController.m in Sources */,
+				AD7438271D4DD50C00F5F9D2 /* JBBaseChartViewController.m in Sources */,
 				AD9B0D971D3BB954009FDD95 /* CalendarViewController.m in Sources */,
 				ADDCD3E81D4C4DA90031DC66 /* UVIndexViewController.m in Sources */,
 				AD347D1B1D3FDE1A00E91DDD /* DeviceTableViewCell.m in Sources */,
@@ -542,6 +603,7 @@
 				AD347D171D3FD8DD00E91DDD /* SearchWatchViewController.m in Sources */,
 				AD05B5BD1D3BCAA4007BCF7C /* LoginViewController.m in Sources */,
 				ADEF31CC1D47856200BB6A9B /* KidBindViewController.m in Sources */,
+				AD7438241D4DD47100F5F9D2 /* JBChartTooltipView.m in Sources */,
 				AD7797931D4C8D0600472B27 /* ProfileDeviceCell.m in Sources */,
 				AD347D1E1D3FDEEC00E91DDD /* SelectWatchViewController.m in Sources */,
 				ADFC2C2D1D369949004EDCDF /* main.m in Sources */,

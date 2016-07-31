@@ -19,4 +19,5 @@
 @property (weak, nonatomic) IBOutlet UITextField *cityTF;
 @property (weak, nonatomic) IBOutlet UITextField *stateTF;
 @property (weak, nonatomic) IBOutlet UITextField *zipCodeTF;
+- (IBAction)imageBtnAction:(id)sender;
 @end

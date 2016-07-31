@@ -9,7 +9,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>JBChartView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>JSONModel.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>JTCalendar.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -42,7 +52,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>06DBBC85D854BF965FBC178A49FCAF2E</key>
+		<key>3D1624C4A89977717A3EECC7057499C7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4729C99F431C95E304DFC0F491A897D9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>591E0B862FEE71B61DA41AB1E2BF76A1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -52,12 +72,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A8D5A2B06B61E8A1BC93B0658123E267</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D39BAA0656B2315DCFCF1D47DDA0DF9F</key>
+		<key>9FCC89C7C02331E062781DDFB48E1699</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -67,12 +82,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E46E986333EF60805B3352848483235E</key>
+		<key>EC511E28905FE2C20E23DA0E564D2673</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EC511E28905FE2C20E23DA0E564D2673</key>
+		<key>F38731C49FF280155CD5771C54E4AD7B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FF3E538A4AE290A46B9417F1D9DA4E86</key>
 		<dict>
 			<key>primary</key>
 			<true/>

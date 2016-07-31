@@ -40,6 +40,7 @@
 - (void)editProfileAction:(id)sender {
     UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
     UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"EditProfile"];
+//    [self presentViewController:ctl animated:YES completion:nil];
     [self.navigationController pushViewController:ctl animated:YES];
 }
 

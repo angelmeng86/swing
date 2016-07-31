@@ -49,7 +49,7 @@
         navBar.tintColor = RGBA(0x50, 0x8f, 0xce, 1.0f);
     }
     
-    navBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+//    navBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
 }
 
 + (UILabel*)createNavigationTitleLabel

@@ -92,10 +92,10 @@
             [Fun showMessageBoxWithTitle:NSLocalizedString(@"Prompt", nil) andMessage:@"Simulator does not support camera."];
 #else
             // 拍照
-            if ([self isCameraAvailable] && [self doesCameraSupportTakingPhotos]) {
+            if ([CameraUtility isCameraAvailable] && [CameraUtility doesCameraSupportTakingPhotos]) {
                 UIImagePickerController *controller = [[UIImagePickerController alloc] init];
                 controller.sourceType = UIImagePickerControllerSourceTypeCamera;
-                if ([self isFrontCameraAvailable]) {
+                if ([CameraUtility isFrontCameraAvailable]) {
                     controller.cameraDevice = UIImagePickerControllerCameraDeviceFront;
                 }
                 NSMutableArray *mediaTypes = [[NSMutableArray alloc] init];
@@ -111,7 +111,7 @@
 #endif
         } else if (buttonIndex == 1) {
             // 从相册中选取
-            if ([self isPhotoLibraryAvailable]) {
+            if ([CameraUtility isPhotoLibraryAvailable]) {
                 UIImagePickerController *controller = [[UIImagePickerController alloc] init];
                 controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                 NSMutableArray *mediaTypes = [[NSMutableArray alloc] init];
@@ -156,52 +156,6 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:nil];
-}
-
-#pragma mark camera utility
-- (BOOL) isCameraAvailable{
-    return [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
-}
-
-- (BOOL) isRearCameraAvailable{
-    return [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear];
-}
-
-- (BOOL) isFrontCameraAvailable {
-    return [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront];
-}
-
-- (BOOL) doesCameraSupportTakingPhotos {
-    return [self cameraSupportsMedia:(__bridge NSString *)kUTTypeImage sourceType:UIImagePickerControllerSourceTypeCamera];
-}
-
-- (BOOL) isPhotoLibraryAvailable{
-    return [UIImagePickerController isSourceTypeAvailable:
-            UIImagePickerControllerSourceTypePhotoLibrary];
-}
-- (BOOL) canUserPickVideosFromPhotoLibrary{
-    return [self
-            cameraSupportsMedia:(__bridge NSString *)kUTTypeMovie sourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-}
-- (BOOL) canUserPickPhotosFromPhotoLibrary{
-    return [self
-            cameraSupportsMedia:(__bridge NSString *)kUTTypeImage sourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-}
-
-- (BOOL) cameraSupportsMedia:(NSString *)paramMediaType sourceType:(UIImagePickerControllerSourceType)paramSourceType{
-    __block BOOL result = NO;
-    if ([paramMediaType length] == 0) {
-        return NO;
-    }
-    NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:paramSourceType];
-    [availableMediaTypes enumerateObjectsUsingBlock: ^(id obj, NSUInteger idx, BOOL *stop) {
-        NSString *mediaType = (NSString *)obj;
-        if ([mediaType isEqualToString:paramMediaType]){
-            result = YES;
-            *stop= YES;
-        }
-    }];
-    return result;
 }
 
 @end

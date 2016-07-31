@@ -19,18 +19,17 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
-//    {
-//        self.edgesForExtendedLayout = UIRectEdgeNone;
-//        self.extendedLayoutIncludesOpaqueBars = YES;
-//    }
-//    
-//    
+    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
+    {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.extendedLayoutIncludesOpaqueBars = YES;
+    }
+    
 //    if (self.navigationController.viewControllers.count > 1) {
 //        self.navigationItem.leftBarButtonItem = [ControlFactory backBarButtonItemWithTarget:self action:@selector(backAction)];
 //    }
     if (!self.notLoadBackgroudImage) {
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:LOAD_IMAGE(@"main_bg")];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:LOAD_IMAGE(self.backgroudImageName == nil ? @"main_bg" : self.backgroudImageName)];
         
         [self.view addSubview:imageView];
         

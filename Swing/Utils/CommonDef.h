@@ -36,6 +36,7 @@
 #import "LoginedModel.h"
 
 #import "Fun.h"
+#import "CameraUtility.h"
 #import "ControlFactory.h"
 #import "LMBaseViewController.h"
 #import "LMBaseTableViewController.h"

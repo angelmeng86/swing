@@ -37,6 +37,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+//    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
+//    {
+//        self.edgesForExtendedLayout = UIRectEdgeNone;
+//        self.extendedLayoutIncludesOpaqueBars = YES;
+//    }
 }
 
 - (void)didReceiveMemoryWarning {
