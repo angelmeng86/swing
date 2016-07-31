@@ -13,6 +13,7 @@
 
 
 - (void)drawRect:(CGRect)rect {
+    [super drawRect:rect];
     // Drawing code
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, RGBA(218, 218, 218, 1.0f).CGColor);

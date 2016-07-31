@@ -48,6 +48,11 @@
 		ADDCD3F81D4C557E0031DC66 /* UIFont+AvenirFont.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDCD3F71D4C557E0031DC66 /* UIFont+AvenirFont.m */; settings = {ASSET_TAGS = (); }; };
 		ADDCD3FB1D4C59F10031DC66 /* Avenir-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADDCD3F91D4C59E10031DC66 /* Avenir-bold.ttf */; };
 		ADDCD3FC1D4C59F10031DC66 /* Avenir-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = ADDCD3FA1D4C59E10031DC66 /* Avenir-Book.otf */; };
+		ADE6ED8A1D4E229D00FFA573 /* MonthCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE6ED891D4E229D00FFA573 /* MonthCalendarViewController.m */; settings = {ASSET_TAGS = (); }; };
+		ADE6ED8D1D4E355300FFA573 /* BaseCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE6ED8C1D4E355300FFA573 /* BaseCalendarViewController.m */; settings = {ASSET_TAGS = (); }; };
+		ADE6ED901D4E3B7D00FFA573 /* DayCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE6ED8F1D4E3B7D00FFA573 /* DayCalendarViewController.m */; settings = {ASSET_TAGS = (); }; };
+		ADE6ED941D4E415900FFA573 /* TimeLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE6ED931D4E415900FFA573 /* TimeLineView.m */; settings = {ASSET_TAGS = (); }; };
+		ADE6ED971D4E538B00FFA573 /* EventModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE6ED961D4E538B00FFA573 /* EventModel.m */; settings = {ASSET_TAGS = (); }; };
 		ADEF31CC1D47856200BB6A9B /* KidBindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31CB1D47856200BB6A9B /* KidBindViewController.m */; settings = {ASSET_TAGS = (); }; };
 		ADEF31CF1D478D2B00BB6A9B /* BindReadyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31CE1D478D2B00BB6A9B /* BindReadyViewController.m */; settings = {ASSET_TAGS = (); }; };
 		ADEF31D21D478E9900BB6A9B /* RoundButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31D11D478E9900BB6A9B /* RoundButton.m */; settings = {ASSET_TAGS = (); }; };
@@ -138,6 +143,16 @@
 		ADDCD3F71D4C557E0031DC66 /* UIFont+AvenirFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+AvenirFont.m"; sourceTree = "<group>"; };
 		ADDCD3F91D4C59E10031DC66 /* Avenir-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir-bold.ttf"; sourceTree = "<group>"; };
 		ADDCD3FA1D4C59E10031DC66 /* Avenir-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir-Book.otf"; sourceTree = "<group>"; };
+		ADE6ED881D4E229D00FFA573 /* MonthCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthCalendarViewController.h; sourceTree = "<group>"; };
+		ADE6ED891D4E229D00FFA573 /* MonthCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthCalendarViewController.m; sourceTree = "<group>"; };
+		ADE6ED8B1D4E355300FFA573 /* BaseCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCalendarViewController.h; sourceTree = "<group>"; };
+		ADE6ED8C1D4E355300FFA573 /* BaseCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCalendarViewController.m; sourceTree = "<group>"; };
+		ADE6ED8E1D4E3B7D00FFA573 /* DayCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayCalendarViewController.h; sourceTree = "<group>"; };
+		ADE6ED8F1D4E3B7D00FFA573 /* DayCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayCalendarViewController.m; sourceTree = "<group>"; };
+		ADE6ED921D4E415900FFA573 /* TimeLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineView.h; sourceTree = "<group>"; };
+		ADE6ED931D4E415900FFA573 /* TimeLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeLineView.m; sourceTree = "<group>"; };
+		ADE6ED951D4E538B00FFA573 /* EventModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventModel.h; sourceTree = "<group>"; };
+		ADE6ED961D4E538B00FFA573 /* EventModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventModel.m; sourceTree = "<group>"; };
 		ADEF31CA1D47856200BB6A9B /* KidBindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = KidBindViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		ADEF31CB1D47856200BB6A9B /* KidBindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KidBindViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		ADEF31CD1D478D2B00BB6A9B /* BindReadyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BindReadyViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -198,6 +213,8 @@
 				AD05B5BF1D3BD187007BCF7C /* SwingClient.m */,
 				ADCED9E21D3D2BAC002E3F78 /* LoginedModel.h */,
 				ADCED9E31D3D2BAC002E3F78 /* LoginedModel.m */,
+				ADE6ED951D4E538B00FFA573 /* EventModel.h */,
+				ADE6ED961D4E538B00FFA573 /* EventModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -229,6 +246,7 @@
 		AD0B81161D37EF7400F43E72 /* V */ = {
 			isa = PBXGroup;
 			children = (
+				ADE6ED911D4E413E00FFA573 /* Calendar */,
 				AD77979D1D4CF90C00472B27 /* Dashboard */,
 				AD7797901D4C8CF900472B27 /* Profile */,
 				AD347D181D3FDDF700E91DDD /* Login */,
@@ -314,6 +332,12 @@
 			children = (
 				AD9B0D951D3BB954009FDD95 /* CalendarViewController.h */,
 				AD9B0D961D3BB954009FDD95 /* CalendarViewController.m */,
+				ADE6ED881D4E229D00FFA573 /* MonthCalendarViewController.h */,
+				ADE6ED891D4E229D00FFA573 /* MonthCalendarViewController.m */,
+				ADE6ED8B1D4E355300FFA573 /* BaseCalendarViewController.h */,
+				ADE6ED8C1D4E355300FFA573 /* BaseCalendarViewController.m */,
+				ADE6ED8E1D4E3B7D00FFA573 /* DayCalendarViewController.h */,
+				ADE6ED8F1D4E3B7D00FFA573 /* DayCalendarViewController.m */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -397,6 +421,15 @@
 				ADDCD3F01D4C54960031DC66 /* SyncDevice.storyboard */,
 			);
 			path = storyboard;
+			sourceTree = "<group>";
+		};
+		ADE6ED911D4E413E00FFA573 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				ADE6ED921D4E415900FFA573 /* TimeLineView.h */,
+				ADE6ED931D4E415900FFA573 /* TimeLineView.m */,
+			);
+			path = Calendar;
 			sourceTree = "<group>";
 		};
 		ADEF31D31D47B04200BB6A9B /* VPImageCropper */ = {
@@ -571,10 +604,12 @@
 			files = (
 				ADCED9E41D3D2BAC002E3F78 /* LoginedModel.m in Sources */,
 				AD0B811A1D37EF7400F43E72 /* LMBaseTableViewController.m in Sources */,
+				ADE6ED8A1D4E229D00FFA573 /* MonthCalendarViewController.m in Sources */,
 				AD0B811C1D37EF7400F43E72 /* LMBaseViewController.m in Sources */,
 				AD6654571D490EC20056632C /* SearchDeviceViewController.m in Sources */,
 				AD9B0D911D3BB935009FDD95 /* DashboardViewController.m in Sources */,
 				ADFC2C301D369949004EDCDF /* AppDelegate.m in Sources */,
+				ADE6ED901D4E3B7D00FFA573 /* DayCalendarViewController.m in Sources */,
 				AD9B0D941D3BB947009FDD95 /* BatteryViewController.m in Sources */,
 				AD7797A31D4D034600472B27 /* ActivityViewController.m in Sources */,
 				AD0B811F1D37EFEA00F43E72 /* LMTabBarController.m in Sources */,
@@ -591,6 +626,7 @@
 				AD9B0D9A1D3BB964009FDD95 /* ProfileViewController.m in Sources */,
 				AD0B81281D37F09900F43E72 /* SimpleLogger.m in Sources */,
 				ADEF31CF1D478D2B00BB6A9B /* BindReadyViewController.m in Sources */,
+				ADE6ED971D4E538B00FFA573 /* EventModel.m in Sources */,
 				AD0B811B1D37EF7400F43E72 /* LMBaseTableViewController2.m in Sources */,
 				AD74382D1D4DE08000F5F9D2 /* WeatherContentViewController.m in Sources */,
 				AD7438271D4DD50C00F5F9D2 /* JBBaseChartViewController.m in Sources */,
@@ -599,6 +635,7 @@
 				AD347D1B1D3FDE1A00E91DDD /* DeviceTableViewCell.m in Sources */,
 				ADCED9E71D3D3C8B002E3F78 /* RegisterViewController.m in Sources */,
 				ADEF31D61D47B04200BB6A9B /* VPImageCropperViewController.m in Sources */,
+				ADE6ED8D1D4E355300FFA573 /* BaseCalendarViewController.m in Sources */,
 				AD7797991D4CCFD200472B27 /* UnderlineTextField.m in Sources */,
 				AD347D171D3FD8DD00E91DDD /* SearchWatchViewController.m in Sources */,
 				AD05B5BD1D3BCAA4007BCF7C /* LoginViewController.m in Sources */,
@@ -611,6 +648,7 @@
 				ADDCD3F81D4C557E0031DC66 /* UIFont+AvenirFont.m in Sources */,
 				ADEF31D21D478E9900BB6A9B /* RoundButton.m in Sources */,
 				AD0B81191D37EF7400F43E72 /* GlobalCache.m in Sources */,
+				ADE6ED941D4E415900FFA573 /* TimeLineView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

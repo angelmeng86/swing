@@ -25,9 +25,11 @@
         self.extendedLayoutIncludesOpaqueBars = YES;
     }
     
-//    if (self.navigationController.viewControllers.count > 1) {
+    if (self.navigationController.viewControllers.count > 1) {
 //        self.navigationItem.leftBarButtonItem = [ControlFactory backBarButtonItemWithTarget:self action:@selector(backAction)];
-//    }
+        
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    }
     if (!self.notLoadBackgroudImage) {
         UIImageView *imageView = [[UIImageView alloc] initWithImage:LOAD_IMAGE(self.backgroudImageName == nil ? @"main_bg" : self.backgroudImageName)];
         

@@ -28,6 +28,9 @@
 //    UIViewController *test2obj = [secondStroyBoard instantiateInitialViewController];
 //    self.window.rootViewController = test2obj;
     [[GlobalCache shareInstance] initConfig];
+    
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
+    
     /*
     NSArray *familyNames =[[NSArray alloc]initWithArray:[UIFont familyNames]];
     NSArray *fontNames;
