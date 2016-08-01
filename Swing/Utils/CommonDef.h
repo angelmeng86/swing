@@ -26,7 +26,7 @@
 #define KNOWLEDGE_FILE(name)            [DATA_BUNDLE(@"Knowledge") stringByAppendingPathComponent:name]
 
 #define COMMON_TITLE_COLOR              RGBA(240, 92, 37, 1.0f)
-#define COMMON_BACKGROUND_COLOR         RGBA(185, 232, 245, 1.0f)
+#define COMMON_BACKGROUND_COLOR         RGBA(194, 235, 246, 1.0f)//RGBA(185, 232, 245, 1.0f)
 
 #define ORIGINAL_MAX_WIDTH 640.0f
 #define TAGET_MAX_WIDTH 160.0f

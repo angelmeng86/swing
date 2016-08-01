@@ -28,6 +28,9 @@
 		AD7438271D4DD50C00F5F9D2 /* JBBaseChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7438261D4DD50C00F5F9D2 /* JBBaseChartViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD74382A1D4DDD3600F5F9D2 /* WeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7438291D4DDD3600F5F9D2 /* WeatherViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD74382D1D4DE08000F5F9D2 /* WeatherContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD74382C1D4DE08000F5F9D2 /* WeatherContentViewController.m */; settings = {ASSET_TAGS = (); }; };
+		AD74D4DC1D4F90B5001F3B36 /* EventLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD74D4DB1D4F90B5001F3B36 /* EventLabel.m */; settings = {ASSET_TAGS = (); }; };
+		AD74D4DF1D4FA08E001F3B36 /* EventInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD74D4DE1D4FA08E001F3B36 /* EventInfoViewController.m */; settings = {ASSET_TAGS = (); }; };
+		AD74D4E21D4FA750001F3B36 /* EventSelectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD74D4E11D4FA750001F3B36 /* EventSelectTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		AD7797931D4C8D0600472B27 /* ProfileDeviceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7797921D4C8D0600472B27 /* ProfileDeviceCell.m */; settings = {ASSET_TAGS = (); }; };
 		AD7797961D4C9B5200472B27 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7797951D4C9B5200472B27 /* EditProfileViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD7797991D4CCFD200472B27 /* UnderlineTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7797981D4CCFD200472B27 /* UnderlineTextField.m */; settings = {ASSET_TAGS = (); }; };
@@ -108,6 +111,12 @@
 		AD7438291D4DDD3600F5F9D2 /* WeatherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherViewController.m; sourceTree = "<group>"; };
 		AD74382B1D4DE08000F5F9D2 /* WeatherContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherContentViewController.h; sourceTree = "<group>"; };
 		AD74382C1D4DE08000F5F9D2 /* WeatherContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherContentViewController.m; sourceTree = "<group>"; };
+		AD74D4DA1D4F90B5001F3B36 /* EventLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventLabel.h; sourceTree = "<group>"; };
+		AD74D4DB1D4F90B5001F3B36 /* EventLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventLabel.m; sourceTree = "<group>"; };
+		AD74D4DD1D4FA08E001F3B36 /* EventInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventInfoViewController.h; sourceTree = "<group>"; };
+		AD74D4DE1D4FA08E001F3B36 /* EventInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventInfoViewController.m; sourceTree = "<group>"; };
+		AD74D4E01D4FA750001F3B36 /* EventSelectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventSelectTableViewCell.h; sourceTree = "<group>"; };
+		AD74D4E11D4FA750001F3B36 /* EventSelectTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventSelectTableViewCell.m; sourceTree = "<group>"; };
 		AD7797911D4C8D0600472B27 /* ProfileDeviceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileDeviceCell.h; sourceTree = "<group>"; };
 		AD7797921D4C8D0600472B27 /* ProfileDeviceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileDeviceCell.m; sourceTree = "<group>"; };
 		AD7797941D4C9B5200472B27 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
@@ -338,6 +347,8 @@
 				ADE6ED8C1D4E355300FFA573 /* BaseCalendarViewController.m */,
 				ADE6ED8E1D4E3B7D00FFA573 /* DayCalendarViewController.h */,
 				ADE6ED8F1D4E3B7D00FFA573 /* DayCalendarViewController.m */,
+				AD74D4DD1D4FA08E001F3B36 /* EventInfoViewController.h */,
+				AD74D4DE1D4FA08E001F3B36 /* EventInfoViewController.m */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -428,6 +439,10 @@
 			children = (
 				ADE6ED921D4E415900FFA573 /* TimeLineView.h */,
 				ADE6ED931D4E415900FFA573 /* TimeLineView.m */,
+				AD74D4DA1D4F90B5001F3B36 /* EventLabel.h */,
+				AD74D4DB1D4F90B5001F3B36 /* EventLabel.m */,
+				AD74D4E01D4FA750001F3B36 /* EventSelectTableViewCell.h */,
+				AD74D4E11D4FA750001F3B36 /* EventSelectTableViewCell.m */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -604,6 +619,7 @@
 			files = (
 				ADCED9E41D3D2BAC002E3F78 /* LoginedModel.m in Sources */,
 				AD0B811A1D37EF7400F43E72 /* LMBaseTableViewController.m in Sources */,
+				AD74D4DF1D4FA08E001F3B36 /* EventInfoViewController.m in Sources */,
 				ADE6ED8A1D4E229D00FFA573 /* MonthCalendarViewController.m in Sources */,
 				AD0B811C1D37EF7400F43E72 /* LMBaseViewController.m in Sources */,
 				AD6654571D490EC20056632C /* SearchDeviceViewController.m in Sources */,
@@ -643,11 +659,13 @@
 				AD7438241D4DD47100F5F9D2 /* JBChartTooltipView.m in Sources */,
 				AD7797931D4C8D0600472B27 /* ProfileDeviceCell.m in Sources */,
 				AD347D1E1D3FDEEC00E91DDD /* SelectWatchViewController.m in Sources */,
+				AD74D4DC1D4F90B5001F3B36 /* EventLabel.m in Sources */,
 				ADFC2C2D1D369949004EDCDF /* main.m in Sources */,
 				AD289A5E1D3FD0E800898F92 /* AskStepViewController.m in Sources */,
 				ADDCD3F81D4C557E0031DC66 /* UIFont+AvenirFont.m in Sources */,
 				ADEF31D21D478E9900BB6A9B /* RoundButton.m in Sources */,
 				AD0B81191D37EF7400F43E72 /* GlobalCache.m in Sources */,
+				AD74D4E21D4FA750001F3B36 /* EventSelectTableViewCell.m in Sources */,
 				ADE6ED941D4E415900FFA573 /* TimeLineView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

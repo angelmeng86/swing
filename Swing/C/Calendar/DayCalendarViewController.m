@@ -8,6 +8,7 @@
 
 #import "DayCalendarViewController.h"
 #import "TimeLineView.h"
+#import "EventLabel.h"
 #import "CommonDef.h"
 
 CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
@@ -15,6 +16,7 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
 @interface DayCalendarViewController ()
 
 @property (nonatomic, strong) NSArray *eventData;
+@property (nonatomic, strong) NSArray *eventColors;
 
 @property (nonatomic, strong) NSArray *hourLines;
 @property (nonatomic, strong) UIView *contentView;
@@ -58,6 +60,8 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     [mutableData addObject:model];
     
     _eventData = [NSArray arrayWithArray:mutableData];
+    
+    _eventColors = @[RGBA(247, 202, 49, 1.0f), RGBA(99, 90, 185, 1.0f), RGBA(58, 187, 166, 1.0f), RGBA(237, 47, 107, 1.0f)];
 }
 
 - (void)viewDidLoad {
@@ -112,34 +116,64 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
 }
 
 - (void)loadEventData {
+    int i = 0;
     for (EventModel *model in self.eventData) {
-        [self addEvent:model];
+        [self addEvent:model color:[_eventColors objectAtIndex:i % 4]];
+        i++;
     }
 }
 
-- (void)addEvent:(EventModel*)model  {
+- (void)addEvent:(EventModel*)model color:(UIColor*)color {
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *start = [cal components:NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:model.start];
     TimeLineView *startLine = [self.hourLines objectAtIndex:[start hour]];
     float startH = [start minute] * 40 / 60;
     
-    NSTimeInterval interval = [model.end timeIntervalSince1970] - [model.start timeIntervalSince1970];
     
-    float height = interval / 60 * 40 / 60;
+    NSDateComponents *end = [cal components:NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:model.end];
+    float height = (([end hour] - [start hour]) * 60 + [end minute] - [start minute]) * 40 / 60;
     
-    UILabel *label = [UILabel new];
+//    NSTimeInterval interval = [model.end timeIntervalSince1970] - [model.start timeIntervalSince1970];
+//    float height = interval / 60 * 40 / 60;
+    
+    EventLabel *label = [EventLabel new];
 //    label.textAlignment = NSTextAlignmentCenter;
     label.textColor = [UIColor whiteColor];
     label.font = [UIFont boldAvenirFontOfSize:20];
     label.text = model.name;
-    label.backgroundColor = [UIColor lightGrayColor];
+    label.backgroundColor = color;
     
     [self.contentView addSubview:label];
-    [label autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:startLine withOffset:40];
-    [label autoPinEdge:ALEdgeTrailing toEdge:ALEdgeTrailing ofView:startLine];
+    label.positionLayoutConstaint = [label autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:startLine withOffset:40];
     [label autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:startLine withOffset:kDayCalendarViewControllerTimePading / 2 + startH];
     [label autoSetDimension:ALDimensionHeight toSize:height];
+    [label autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:startLine withOffset:-40];
     
+    label.userInteractionEnabled = YES;
+    UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeToDelete:)];
+    [swipeGesture setDirection:UISwipeGestureRecognizerDirectionRight];
+    [label addGestureRecognizer:swipeGesture];
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+    [label addGestureRecognizer:tapGesture];
+}
+
+- (void)tapAction:(UITapGestureRecognizer*)recognizer {
+    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
+    UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"EventInfo"];
+    [self.navigationController pushViewController:ctl animated:YES];
+}
+
+- (void)swipeToDelete:(UISwipeGestureRecognizer *)recognizer {
+    EventLabel *label = (EventLabel *)[recognizer view];
+    label.positionLayoutConstaint.constant += kDeviceWidth;
+    
+    [UIView animateWithDuration:0.5f animations:^{
+        label.alpha = 0.0;
+        [label.superview layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        [label removeFromSuperview];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
