@@ -33,7 +33,7 @@
 		<string>Avenir-Book.otf</string>
 	</array>
 	<key>UIMainStoryboardFile</key>
-	<string>MainTab</string>
+	<string>LoginFlow</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
