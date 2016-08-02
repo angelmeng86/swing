@@ -7,6 +7,7 @@
 //
 
 #import "GlobalCache.h"
+#import "KeyboardManager.h"
 
 @implementation GlobalCache
 
@@ -19,8 +20,19 @@
     return globalCache;
 }
 
+- (void)setKeyboradManager {
+    IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
+    manager.shouldResignOnTouchOutside = YES;
+    manager.enableAutoToolbar = NO;
+    
+    //    [manager disableInViewControllerClass:[TagImageViewController class]];
+    //    [manager disableInViewControllerClass:[PhotoDetailViewController class]];
+    //    [manager disableInViewControllerClass:[LCUserFeedbackViewController class]];
+}
+
 - (void)initConfig {
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+    [self setKeyboradManager];
     
     NSString *json = [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
     _info = [[LoginedModel alloc] initWithString:json error:nil];

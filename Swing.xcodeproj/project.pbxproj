@@ -60,6 +60,10 @@
 		ADEF31CF1D478D2B00BB6A9B /* BindReadyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31CE1D478D2B00BB6A9B /* BindReadyViewController.m */; settings = {ASSET_TAGS = (); }; };
 		ADEF31D21D478E9900BB6A9B /* RoundButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31D11D478E9900BB6A9B /* RoundButton.m */; settings = {ASSET_TAGS = (); }; };
 		ADEF31D61D47B04200BB6A9B /* VPImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31D51D47B04200BB6A9B /* VPImageCropperViewController.m */; settings = {ASSET_TAGS = (); }; };
+		ADF985531D50C4A200B02075 /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF985521D50C4A200B02075 /* AddEventViewController.m */; settings = {ASSET_TAGS = (); }; };
+		ADF985561D50C64A00B02075 /* ToDoListView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF985551D50C64A00B02075 /* ToDoListView.m */; settings = {ASSET_TAGS = (); }; };
+		ADF985591D50CBFC00B02075 /* DoItemLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF985581D50CBFC00B02075 /* DoItemLabel.m */; settings = {ASSET_TAGS = (); }; };
+		ADF9855C1D50D27400B02075 /* ColorLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF9855B1D50D27400B02075 /* ColorLabel.m */; settings = {ASSET_TAGS = (); }; };
 		ADFC2C2D1D369949004EDCDF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFC2C2C1D369949004EDCDF /* main.m */; };
 		ADFC2C301D369949004EDCDF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFC2C2F1D369949004EDCDF /* AppDelegate.m */; };
 		ADFC2C3B1D369949004EDCDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADFC2C3A1D369949004EDCDF /* Assets.xcassets */; };
@@ -170,6 +174,14 @@
 		ADEF31D11D478E9900BB6A9B /* RoundButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundButton.m; sourceTree = "<group>"; };
 		ADEF31D41D47B04200BB6A9B /* VPImageCropperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPImageCropperViewController.h; sourceTree = "<group>"; };
 		ADEF31D51D47B04200BB6A9B /* VPImageCropperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPImageCropperViewController.m; sourceTree = "<group>"; };
+		ADF985511D50C4A200B02075 /* AddEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventViewController.h; sourceTree = "<group>"; };
+		ADF985521D50C4A200B02075 /* AddEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventViewController.m; sourceTree = "<group>"; };
+		ADF985541D50C64A00B02075 /* ToDoListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToDoListView.h; sourceTree = "<group>"; };
+		ADF985551D50C64A00B02075 /* ToDoListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToDoListView.m; sourceTree = "<group>"; };
+		ADF985571D50CBFC00B02075 /* DoItemLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoItemLabel.h; sourceTree = "<group>"; };
+		ADF985581D50CBFC00B02075 /* DoItemLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoItemLabel.m; sourceTree = "<group>"; };
+		ADF9855A1D50D27400B02075 /* ColorLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorLabel.h; sourceTree = "<group>"; };
+		ADF9855B1D50D27400B02075 /* ColorLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorLabel.m; sourceTree = "<group>"; };
 		ADFC2C281D369949004EDCDF /* Swing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADFC2C2C1D369949004EDCDF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		ADFC2C2E1D369949004EDCDF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -349,6 +361,8 @@
 				ADE6ED8F1D4E3B7D00FFA573 /* DayCalendarViewController.m */,
 				AD74D4DD1D4FA08E001F3B36 /* EventInfoViewController.h */,
 				AD74D4DE1D4FA08E001F3B36 /* EventInfoViewController.m */,
+				ADF985511D50C4A200B02075 /* AddEventViewController.h */,
+				ADF985521D50C4A200B02075 /* AddEventViewController.m */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -443,6 +457,12 @@
 				AD74D4DB1D4F90B5001F3B36 /* EventLabel.m */,
 				AD74D4E01D4FA750001F3B36 /* EventSelectTableViewCell.h */,
 				AD74D4E11D4FA750001F3B36 /* EventSelectTableViewCell.m */,
+				ADF985541D50C64A00B02075 /* ToDoListView.h */,
+				ADF985551D50C64A00B02075 /* ToDoListView.m */,
+				ADF985571D50CBFC00B02075 /* DoItemLabel.h */,
+				ADF985581D50CBFC00B02075 /* DoItemLabel.m */,
+				ADF9855A1D50D27400B02075 /* ColorLabel.h */,
+				ADF9855B1D50D27400B02075 /* ColorLabel.m */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -631,6 +651,7 @@
 				AD0B811F1D37EFEA00F43E72 /* LMTabBarController.m in Sources */,
 				AD0B81171D37EF7400F43E72 /* ControlFactory.m in Sources */,
 				AD77979C1D4CE11B00472B27 /* CameraUtility.m in Sources */,
+				ADF985561D50C64A00B02075 /* ToDoListView.m in Sources */,
 				AD74382A1D4DDD3600F5F9D2 /* WeatherViewController.m in Sources */,
 				AD7438231D4DD47100F5F9D2 /* JBChartTooltipTipView.m in Sources */,
 				AD05B5C01D3BD187007BCF7C /* SwingClient.m in Sources */,
@@ -652,12 +673,15 @@
 				ADCED9E71D3D3C8B002E3F78 /* RegisterViewController.m in Sources */,
 				ADEF31D61D47B04200BB6A9B /* VPImageCropperViewController.m in Sources */,
 				ADE6ED8D1D4E355300FFA573 /* BaseCalendarViewController.m in Sources */,
+				ADF9855C1D50D27400B02075 /* ColorLabel.m in Sources */,
+				ADF985591D50CBFC00B02075 /* DoItemLabel.m in Sources */,
 				AD7797991D4CCFD200472B27 /* UnderlineTextField.m in Sources */,
 				AD347D171D3FD8DD00E91DDD /* SearchWatchViewController.m in Sources */,
 				AD05B5BD1D3BCAA4007BCF7C /* LoginViewController.m in Sources */,
 				ADEF31CC1D47856200BB6A9B /* KidBindViewController.m in Sources */,
 				AD7438241D4DD47100F5F9D2 /* JBChartTooltipView.m in Sources */,
 				AD7797931D4C8D0600472B27 /* ProfileDeviceCell.m in Sources */,
+				ADF985531D50C4A200B02075 /* AddEventViewController.m in Sources */,
 				AD347D1E1D3FDEEC00E91DDD /* SelectWatchViewController.m in Sources */,
 				AD74D4DC1D4F90B5001F3B36 /* EventLabel.m in Sources */,
 				ADFC2C2D1D369949004EDCDF /* main.m in Sources */,
