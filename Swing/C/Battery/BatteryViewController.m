@@ -17,6 +17,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+//    UIColor *color = RGBA(0xe5, 0x65, 0x35, 1.0f);
+    MDRadialProgressTheme *newTheme = [[MDRadialProgressTheme alloc] init];
+    newTheme.completedColor = COMMON_TITLE_COLOR;
+    newTheme.incompletedColor = [UIColor whiteColor];
+    newTheme.centerColor = [UIColor clearColor];
+    newTheme.sliceDividerHidden = YES;
+    newTheme.thickness = 25;
+    
+    self.progressView.theme = newTheme;
+    self.progressView.label.hidden = YES;
+    
+    self.progressView.progressTotal = 100;
+    self.progressView.progressCounter = 75;
 }
 
 - (void)didReceiveMemoryWarning {

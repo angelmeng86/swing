@@ -175,20 +175,39 @@
                                     <action selector="btnAction:" destination="wsN-k8-0pK" eventType="touchUpInside" id="LM1-Cs-kMS"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bux-VL-Gf7" customClass="MDRadialProgressView">
+                                <rect key="frame" x="180" y="119" width="240" height="240"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="Vy6-Ek-OWo"/>
+                                    <constraint firstAttribute="height" constant="240" id="WW3-rR-eEb"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="oCJ-Re-lCW" secondAttribute="trailing" constant="40" id="3bQ-Uu-BhI"/>
+                            <constraint firstItem="bux-VL-Gf7" firstAttribute="centerX" secondItem="bGl-ha-vBw" secondAttribute="centerX" id="5zq-eN-vUz"/>
                             <constraint firstItem="oCJ-Re-lCW" firstAttribute="top" secondItem="bGl-ha-vBw" secondAttribute="bottom" constant="36" id="AfW-C7-c08"/>
                             <constraint firstItem="bGl-ha-vBw" firstAttribute="centerX" secondItem="zz1-3a-css" secondAttribute="centerX" id="JHW-cV-IEx"/>
+                            <constraint firstItem="bGl-ha-vBw" firstAttribute="centerX" secondItem="bux-VL-Gf7" secondAttribute="centerX" id="MO4-aq-Jlc"/>
                             <constraint firstItem="oCJ-Re-lCW" firstAttribute="centerX" secondItem="zz1-3a-css" secondAttribute="centerX" id="TUA-Mr-fdb"/>
+                            <constraint firstItem="bGl-ha-vBw" firstAttribute="centerY" secondItem="bux-VL-Gf7" secondAttribute="centerY" id="Umj-c4-vyL"/>
                             <constraint firstItem="bGl-ha-vBw" firstAttribute="top" secondItem="D1F-id-ziC" secondAttribute="bottom" constant="80" id="cZs-iB-0Eg"/>
+                            <constraint firstItem="bGl-ha-vBw" firstAttribute="top" secondItem="bux-VL-Gf7" secondAttribute="bottom" constant="-173" id="e7U-sx-aEW"/>
                             <constraint firstItem="oCJ-Re-lCW" firstAttribute="leading" secondItem="zz1-3a-css" secondAttribute="leadingMargin" constant="40" id="fh4-Ph-KUt"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="5zq-eN-vUz"/>
+                                <exclude reference="e7U-sx-aEW"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="bhd-FT-Gc1"/>
                     <connections>
                         <outlet property="button" destination="oCJ-Re-lCW" id="trx-Vq-YNW"/>
+                        <outlet property="progressView" destination="bux-VL-Gf7" id="8Yd-tb-vhh"/>
                         <outlet property="statusLabel" destination="bGl-ha-vBw" id="MWp-nx-b14"/>
                     </connections>
                 </viewController>

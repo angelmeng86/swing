@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>CHCircleGaugeView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>IQKeyboardManager.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -25,6 +30,11 @@
 			<false/>
 		</dict>
 		<key>JTCalendar.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MDRadialProgress.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -57,22 +67,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>366A2036FEF8DCFCA33DD0D950A6EC14</key>
+		<key>0FE871B9561330BB6D280DC377560DAE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>52E8387BA2F786F4DCC424A0F43078E5</key>
+		<key>1978A6C5C42B4B5F7E341DAE5D344D70</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>62AF25C5B1B8CD80FEE87DC52EC50B03</key>
+		<key>1BAA5F05ACF74D72B63C8F04882F38CC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>66740F7A6D24E882C78F004535E092B1</key>
+		<key>2BCBFE454BC26D07A84C8952D8FF52DF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3FC1A75782DC8DCB250B79BA33545FEB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,7 +97,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C22D5EEDD0D9C183A78C93BB0255A81C</key>
+		<key>831BC36132C03CA0AD45658C2264C8C3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9AED2385CDFE40563D007D989E3F0170</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,17 +112,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D6C26E40ADC4EAED23BCBF26CC6B685E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DC2B1BDB2AB3B941819A79D1E23A37EF</key>
+		<key>D670846A1DFE75CA94601FD0AD703CE0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>EC511E28905FE2C20E23DA0E564D2673</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EF13DBC293DB6B2C6760711CB28CD40C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

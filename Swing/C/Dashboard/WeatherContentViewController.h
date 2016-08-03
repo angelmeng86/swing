@@ -7,6 +7,7 @@
 //
 
 #import "LMBaseViewController.h"
+#import "CommonDef.h"
 
 @interface WeatherContentViewController : LMBaseViewController
 
@@ -16,5 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *valueLabel;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
+@property (weak, nonatomic) IBOutlet MDRadialProgressView *progressView;
 
 @end

@@ -10,3 +10,5 @@ pod 'SVProgressHUD'
 pod 'JBChartView'
 pod 'JTCalendar', '~> 2.0'
 pod 'IQKeyboardManager'
+pod ‘CHCircleGaugeView’
+pod 'MDRadialProgress'

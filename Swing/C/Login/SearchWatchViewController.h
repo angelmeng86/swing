@@ -7,7 +7,10 @@
 //
 
 #import "LMBaseViewController.h"
+#import "CommonDef.h"
 
 @interface SearchWatchViewController : LMBaseViewController
+
+@property (weak, nonatomic) IBOutlet MDRadialProgressView *progressView;
 
 @end

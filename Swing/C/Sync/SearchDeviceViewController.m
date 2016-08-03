@@ -18,6 +18,9 @@ typedef enum : NSUInteger {
 @interface SearchDeviceViewController ()
 {
     NSUInteger _status;
+    
+    MDRadialProgressTheme *progressTheme;
+    MDRadialProgressTheme *doneTheme;
 }
 
 @end
@@ -27,6 +30,24 @@ typedef enum : NSUInteger {
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    progressTheme = [[MDRadialProgressTheme alloc] init];
+    progressTheme.completedColor = COMMON_TITLE_COLOR;
+    progressTheme.incompletedColor = [UIColor whiteColor];
+    progressTheme.centerColor = [UIColor clearColor];
+    progressTheme.sliceDividerHidden = YES;
+    progressTheme.thickness = 20;
+    
+    doneTheme = [[MDRadialProgressTheme alloc] init];
+    doneTheme.completedColor = COMMON_TITLE_COLOR;
+    doneTheme.incompletedColor = [UIColor whiteColor];
+    doneTheme.centerColor = [UIColor clearColor];
+    doneTheme.sliceDividerHidden = NO;
+    doneTheme.thickness = 20;
+    doneTheme.sliceDividerThickness = 4;
+    doneTheme.sliceDividerColor = [UIColor whiteColor];
+    
+    self.progressView.label.hidden = YES;
     
     [self changeStatus:SyncStatusSearching];
 }
@@ -46,6 +67,12 @@ typedef enum : NSUInteger {
         {
             self.statusLabel.text = @"Searching for your device!";
             self.button.hidden = YES;
+            
+            self.progressView.theme = progressTheme;
+            self.progressView.progressTotal = 12;
+            self.progressView.progressCounter = 1;
+            self.progressView.isIndeterminateProgress = YES;
+            
             [self performSelector:@selector(performStatus:) withObject:[NSNumber numberWithUnsignedInteger:SyncStatusFound] afterDelay:3];
         }
             break;
@@ -53,6 +80,13 @@ typedef enum : NSUInteger {
         {
             self.statusLabel.text = @"Found your device!";
             self.button.hidden = NO;
+            
+            self.progressView.isIndeterminateProgress = NO;
+            self.progressView.theme = doneTheme;
+            self.progressView.progressTotal = 8;
+            self.progressView.progressCounter = 8;
+            
+            
             [self.button setTitle:@"Sync Now" forState:UIControlStateNormal];
         }
             break;
@@ -60,6 +94,12 @@ typedef enum : NSUInteger {
         {
             self.statusLabel.text = @"Syncing";
             self.button.hidden = YES;
+            
+            self.progressView.theme = progressTheme;
+            self.progressView.progressTotal = 12;
+            self.progressView.progressCounter = 1;
+            self.progressView.isIndeterminateProgress = YES;
+            
             [self performSelector:@selector(performStatus:) withObject:[NSNumber numberWithUnsignedInteger:SyncStatusSyncCompleted] afterDelay:3];
         }
             break;
@@ -67,6 +107,13 @@ typedef enum : NSUInteger {
         {
             self.statusLabel.text = @"Sync Completed";
             [self.button setTitle:@"Go to Dashboard" forState:UIControlStateNormal];
+            
+            self.progressView.isIndeterminateProgress = NO;
+            self.progressView.theme = doneTheme;
+            self.progressView.progressTotal = 8;
+            self.progressView.progressCounter = 8;
+            
+            
             self.button.hidden = NO;
         }
             break;

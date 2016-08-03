@@ -377,6 +377,14 @@
                                 <color key="textColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Evs-Aa-9Up" customClass="MDRadialProgressView">
+                                <rect key="frame" x="180" y="180" width="240" height="240"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="Ie7-FN-dLN"/>
+                                    <constraint firstAttribute="width" constant="240" id="ufo-Hi-4aJ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -384,9 +392,14 @@
                             <constraint firstItem="DzD-A9-bys" firstAttribute="centerY" secondItem="eWw-Tw-RM5" secondAttribute="centerY" id="JMu-G9-1NJ"/>
                             <constraint firstItem="DzD-A9-bys" firstAttribute="leading" secondItem="eWw-Tw-RM5" secondAttribute="leadingMargin" constant="40" id="KXh-04-2lR"/>
                             <constraint firstItem="DzD-A9-bys" firstAttribute="centerX" secondItem="eWw-Tw-RM5" secondAttribute="centerX" id="Q9V-0T-bhW"/>
+                            <constraint firstItem="Evs-Aa-9Up" firstAttribute="centerX" secondItem="eWw-Tw-RM5" secondAttribute="centerX" id="cUf-Jg-2dj"/>
+                            <constraint firstItem="Evs-Aa-9Up" firstAttribute="centerY" secondItem="eWw-Tw-RM5" secondAttribute="centerY" id="pl4-lg-hqQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="VJu-dC-d89"/>
+                    <connections>
+                        <outlet property="progressView" destination="Evs-Aa-9Up" id="fYa-UH-Az8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dS7-eW-3GI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="zE9-og-xXM" userLabel="Exit" sceneMemberID="exit"/>

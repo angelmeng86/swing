@@ -54,6 +54,10 @@
 #import "SimpleLogger.h"
 #import <AFNetworking.h>
 
+#import "MDRadialProgressView.h"
+#import "MDRadialProgressLabel.h"
+#import "MDRadialProgressTheme.h"
+
 #import "UIFont+AvenirFont.h"
 
 #endif

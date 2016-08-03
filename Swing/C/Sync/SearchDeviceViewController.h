@@ -7,11 +7,13 @@
 //
 
 #import "LMBaseViewController.h"
+#import "CommonDef.h"
 
 @interface SearchDeviceViewController : LMBaseViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet UIButton *button;
+@property (weak, nonatomic) IBOutlet MDRadialProgressView *progressView;
 - (IBAction)btnAction:(id)sender;
 
 @end

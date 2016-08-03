@@ -7,7 +7,11 @@
 //
 
 #import "LMBaseViewController.h"
+#import "CommonDef.h"
 
 @interface BatteryViewController : LMBaseViewController
+
+@property (weak, nonatomic) IBOutlet MDRadialProgressView *progressView;
+@property (weak, nonatomic) IBOutlet UILabel *textLabel;
 
 @end
