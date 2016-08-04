@@ -9,6 +9,7 @@
 #import "RegisterViewController.h"
 #import "VPImageCropperViewController.h"
 #import "CommonDef.h"
+#import "AppDelegate.h"
 
 @interface RegisterViewController ()<UITextFieldDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, VPImageCropperDelegate>
 {
@@ -38,11 +39,21 @@
     self.imageBtn.layer.borderColor = [self.imageBtn titleColorForState:UIControlStateNormal].CGColor;
     self.imageBtn.layer.borderWidth = 2.f;
     self.imageBtn.layer.masksToBounds = YES;
+    image = nil;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)validateTextField {
+    if (self.firstNameTF.text.length == 0 || self.lastNameTF.text.length == 0 || self.phoneTF.text.length == 0) {
+        [Fun showMessageBoxWithTitle:@"Error" andMessage:@"Please input info."];
+        return NO;
+    }
+
+    return YES;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -57,9 +68,47 @@
     }
     else if (textField == self.zipCodeTF) {
         //Go
-        UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
-        UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"AskStep"];
-        [self.navigationController pushViewController:ctl animated:YES];
+        if ([self validateTextField]) {
+            [SVProgressHUD showWithStatus:@"Register, please wait..."];
+            [[SwingClient sharedClient] userRegister:@{@"email":self.email, @"password":self.pwd, @"phoneNumber":self.phoneTF.text, @"firstName":self.firstNameTF.text, @"lastName":self.lastNameTF.text, @"zipCode":self.zipCodeTF.text} completion:^(NSError *error) {
+                if (error) {
+                    LOG_D(@"registerUser fail: %@", error);
+                    [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                }
+                else {
+                    [SVProgressHUD showWithStatus:@"Login, please wait..."];
+                    [[SwingClient sharedClient] userLogin:self.email password:self.pwd completion:^(NSError *error) {
+                        if (!error) {
+                            //Login success
+                            if (image) {
+                                [SVProgressHUD showWithStatus:@"UploadImage, please wait..."];
+                                [[SwingClient sharedClient] userUploadProfileImage:image completion:^(NSString *profileImage, NSError *error) {
+                                    if (error) {
+                                        LOG_D(@"uploadProfileImage fail: %@", error);
+                                    }
+                                    [SVProgressHUD dismiss];
+                                    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
+                                    UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"AskStep"];
+                                    [self.navigationController pushViewController:ctl animated:YES];
+                                }];
+                            }
+                            else {
+                                [SVProgressHUD dismiss];
+                                UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
+                                UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"AskStep"];
+                                [self.navigationController pushViewController:ctl animated:YES];
+                            }
+                        }
+                        else {
+                            LOG_D(@"login fail: %@", error);
+                            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                        }
+                    }];
+                    
+                }
+            }];
+        }
+        
     }
     return YES;
 }

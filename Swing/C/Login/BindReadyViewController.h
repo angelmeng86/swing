@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
 @property (strong, nonatomic) UIImage* image;
+@property (strong, nonatomic) NSString* name;
 
 - (IBAction)goAction:(id)sender;
 

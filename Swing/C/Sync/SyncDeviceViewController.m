@@ -8,6 +8,7 @@
 
 #import "SyncDeviceViewController.h"
 #import "CommonDef.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface SyncDeviceViewController ()
 
@@ -25,6 +26,10 @@
     self.imageView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.imageView.layer.borderWidth = 2.f;
     self.imageView.layer.masksToBounds = YES;
+    
+    if ([GlobalCache shareInstance].info.profileImage) {
+        [self.imageView setImageWithURL:[NSURL URLWithString:[@"http://avatar.childrenlab.com/" stringByAppendingString:[GlobalCache shareInstance].info.profileImage]]];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

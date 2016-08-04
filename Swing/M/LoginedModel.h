@@ -10,10 +10,11 @@
 
 @interface LoginedModel : JSONModel
 
-@property (strong, nonatomic) NSString* username;
+@property (strong, nonatomic) NSString* email;
 @property (strong, nonatomic) NSString* access_token;
-@property (strong, nonatomic) NSString* token_type;
+@property (strong, nonatomic) NSString<Optional>* profileImage;
+@property (strong, nonatomic) NSArray* rule;
 
-@property (strong, nonatomic) NSArray* roles;
+@property (strong, nonatomic) NSString<Optional>* test;
 
 @end

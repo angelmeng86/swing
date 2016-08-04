@@ -18,6 +18,8 @@
 		AD0B811F1D37EFEA00F43E72 /* LMTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B811E1D37EFEA00F43E72 /* LMTabBarController.m */; settings = {ASSET_TAGS = (); }; };
 		AD0B81281D37F09900F43E72 /* SimpleLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B81231D37F09900F43E72 /* SimpleLogger.m */; settings = {ASSET_TAGS = (); }; };
 		AD289A5E1D3FD0E800898F92 /* AskStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD289A5D1D3FD0E800898F92 /* AskStepViewController.m */; settings = {ASSET_TAGS = (); }; };
+		AD2D338D1D5378AD005D9298 /* KidModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2D338C1D5378AD005D9298 /* KidModel.m */; settings = {ASSET_TAGS = (); }; };
+		AD2D33901D538418005D9298 /* ToDoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2D338F1D538418005D9298 /* ToDoModel.m */; settings = {ASSET_TAGS = (); }; };
 		AD347D171D3FD8DD00E91DDD /* SearchWatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD347D161D3FD8DD00E91DDD /* SearchWatchViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD347D1B1D3FDE1A00E91DDD /* DeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD347D1A1D3FDE1A00E91DDD /* DeviceTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		AD347D1E1D3FDEEC00E91DDD /* SelectWatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD347D1D1D3FDEEC00E91DDD /* SelectWatchViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -38,6 +40,7 @@
 		AD7797A01D4CF9C400472B27 /* ChartFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD77979F1D4CF9C400472B27 /* ChartFooterView.m */; settings = {ASSET_TAGS = (); }; };
 		AD7797A31D4D034600472B27 /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7797A21D4D034600472B27 /* ActivityViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD7797A61D4D085600472B27 /* ChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7797A51D4D085600472B27 /* ChartViewController.m */; settings = {ASSET_TAGS = (); }; };
+		AD95A51B1D5243390047A0A2 /* SwingClientTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AD95A51A1D5243390047A0A2 /* SwingClientTest.m */; settings = {ASSET_TAGS = (); }; };
 		AD9B0D911D3BB935009FDD95 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D901D3BB935009FDD95 /* DashboardViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD9B0D941D3BB947009FDD95 /* BatteryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D931D3BB947009FDD95 /* BatteryViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD9B0D971D3BB954009FDD95 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D961D3BB954009FDD95 /* CalendarViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -95,6 +98,10 @@
 		AD0B81231D37F09900F43E72 /* SimpleLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleLogger.m; sourceTree = "<group>"; };
 		AD289A5C1D3FD0E800898F92 /* AskStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AskStepViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		AD289A5D1D3FD0E800898F92 /* AskStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AskStepViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		AD2D338B1D5378AD005D9298 /* KidModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KidModel.h; sourceTree = "<group>"; };
+		AD2D338C1D5378AD005D9298 /* KidModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KidModel.m; sourceTree = "<group>"; };
+		AD2D338E1D538418005D9298 /* ToDoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToDoModel.h; sourceTree = "<group>"; };
+		AD2D338F1D538418005D9298 /* ToDoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToDoModel.m; sourceTree = "<group>"; };
 		AD347D151D3FD8DD00E91DDD /* SearchWatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchWatchViewController.h; sourceTree = "<group>"; };
 		AD347D161D3FD8DD00E91DDD /* SearchWatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchWatchViewController.m; sourceTree = "<group>"; };
 		AD347D191D3FDE1A00E91DDD /* DeviceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DeviceTableViewCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -135,6 +142,8 @@
 		AD7797A21D4D034600472B27 /* ActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityViewController.m; sourceTree = "<group>"; };
 		AD7797A41D4D085600472B27 /* ChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartViewController.h; sourceTree = "<group>"; };
 		AD7797A51D4D085600472B27 /* ChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartViewController.m; sourceTree = "<group>"; };
+		AD95A5191D5243390047A0A2 /* SwingClientTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwingClientTest.h; sourceTree = "<group>"; };
+		AD95A51A1D5243390047A0A2 /* SwingClientTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwingClientTest.m; sourceTree = "<group>"; };
 		AD9B0D8F1D3BB935009FDD95 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DashboardViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		AD9B0D901D3BB935009FDD95 /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DashboardViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AD9B0D921D3BB947009FDD95 /* BatteryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BatteryViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -232,10 +241,16 @@
 			children = (
 				AD05B5BE1D3BD187007BCF7C /* SwingClient.h */,
 				AD05B5BF1D3BD187007BCF7C /* SwingClient.m */,
+				AD95A5191D5243390047A0A2 /* SwingClientTest.h */,
+				AD95A51A1D5243390047A0A2 /* SwingClientTest.m */,
 				ADCED9E21D3D2BAC002E3F78 /* LoginedModel.h */,
 				ADCED9E31D3D2BAC002E3F78 /* LoginedModel.m */,
 				ADE6ED951D4E538B00FFA573 /* EventModel.h */,
 				ADE6ED961D4E538B00FFA573 /* EventModel.m */,
+				AD2D338B1D5378AD005D9298 /* KidModel.h */,
+				AD2D338C1D5378AD005D9298 /* KidModel.m */,
+				AD2D338E1D538418005D9298 /* ToDoModel.h */,
+				AD2D338F1D538418005D9298 /* ToDoModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -667,11 +682,14 @@
 				AD0B811B1D37EF7400F43E72 /* LMBaseTableViewController2.m in Sources */,
 				AD74382D1D4DE08000F5F9D2 /* WeatherContentViewController.m in Sources */,
 				AD7438271D4DD50C00F5F9D2 /* JBBaseChartViewController.m in Sources */,
+				AD2D33901D538418005D9298 /* ToDoModel.m in Sources */,
+				AD2D338D1D5378AD005D9298 /* KidModel.m in Sources */,
 				AD9B0D971D3BB954009FDD95 /* CalendarViewController.m in Sources */,
 				ADDCD3E81D4C4DA90031DC66 /* UVIndexViewController.m in Sources */,
 				AD347D1B1D3FDE1A00E91DDD /* DeviceTableViewCell.m in Sources */,
 				ADCED9E71D3D3C8B002E3F78 /* RegisterViewController.m in Sources */,
 				ADEF31D61D47B04200BB6A9B /* VPImageCropperViewController.m in Sources */,
+				AD95A51B1D5243390047A0A2 /* SwingClientTest.m in Sources */,
 				ADE6ED8D1D4E355300FFA573 /* BaseCalendarViewController.m in Sources */,
 				ADF9855C1D50D27400B02075 /* ColorLabel.m in Sources */,
 				ADF985591D50CBFC00B02075 /* DoItemLabel.m in Sources */,

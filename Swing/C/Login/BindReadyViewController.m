@@ -8,6 +8,7 @@
 
 #import "BindReadyViewController.h"
 #import "AppDelegate.h"
+#import "CommonDef.h"
 
 @interface BindReadyViewController ()
 
@@ -30,6 +31,7 @@
     if (_image) {
         self.imageView.image = _image;
     }
+    self.nameLabel.text = self.name;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,9 +40,10 @@
 }
 
 - (IBAction)goAction:(id)sender {
+//    [[GlobalCache shareInstance] queryKids];
     UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
     UIViewController *ctl = [stroyBoard instantiateInitialViewController];
-    AppDelegate *ad = [UIApplication sharedApplication].delegate;
+    AppDelegate *ad = (AppDelegate*)[UIApplication sharedApplication].delegate;
     ad.window.rootViewController = ctl;
 }
 

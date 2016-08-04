@@ -11,8 +11,9 @@
 @interface KidBindViewController : LMBaseViewController
 
 @property (weak, nonatomic) IBOutlet UIButton *imageBtn;
-@property (weak, nonatomic) IBOutlet UITextField *kidNameTF;
-@property (weak, nonatomic) IBOutlet UITextField *zipCodeTF;
+@property (weak, nonatomic) IBOutlet UITextField *firstNameTF;
+@property (weak, nonatomic) IBOutlet UITextField *lastNameTF;
+@property (weak, nonatomic) IBOutlet UITextField *birthdayTF;
 - (IBAction)imageAction:(id)sender;
 
 @end

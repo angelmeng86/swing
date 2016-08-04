@@ -9,12 +9,20 @@
 #import <Foundation/Foundation.h>
 #import "CommonDef.h"
 
+#define KIDS_LIST_LOAD_NOTI @"KIDS_LIST_LOAD_NOTI"
+
 @interface GlobalCache : NSObject
 
 + (GlobalCache*)shareInstance;
 
 - (void)initConfig;
 
+- (void)saveInfo;
+
+- (void)queryKids;
+
 @property (strong, nonatomic) LoginedModel* info;
+@property (strong, nonatomic) NSArray* kidsList;
+@property (strong, nonatomic) NSURLSessionDataTask *kidsTask;
 
 @end

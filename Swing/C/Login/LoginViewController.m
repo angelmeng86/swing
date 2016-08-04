@@ -7,7 +7,9 @@
 //
 
 #import "LoginViewController.h"
+#import "AppDelegate.h"
 #import "CommonDef.h"
+#import "RegisterViewController.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 
@@ -24,8 +26,8 @@
     self.emailTextField.delegate = self;
     self.pwdTextField.delegate = self;
     
-    self.emailTextField.text = @"123@qq.com";
-    self.pwdTextField.text = @"111111";
+//    self.emailTextField.text = @"123@qq.com";
+//    self.pwdTextField.text = @"111111";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,24 +56,30 @@
         
         if ([self validateTextField]) {
             [SVProgressHUD showWithStatus:@"Please wait..."];
-            [[SwingClient sharedClient] isEmailRegistered:textField.text completion:^(NSNumber *result, NSError *error) {
+            [[SwingClient sharedClient] userIsEmailRegistered:self.emailTextField.text completion:^(NSNumber *result, NSError *error) {
                 if (!error) {
                     LOG_D(@"isEmailRegistered success: %@", result);
                     if (![result boolValue]) {
                         [SVProgressHUD showSuccessWithStatus:@"The email is not registered"];
-                        [SVProgressHUD dismissWithDelay:1.5];
+                        [SVProgressHUD dismissWithDelay:1.0];
                         //Go to register
                         UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
-                        UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"Register"];
+                        RegisterViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"Register"];
+                        ctl.email = self.emailTextField.text;
+                        ctl.pwd = self.pwdTextField.text;
                         [self.navigationController pushViewController:ctl animated:YES];
                     }
                     else {
                         [SVProgressHUD showWithStatus:@"Login, please wait..."];
-                        [[SwingClient sharedClient] login:self.emailTextField.text password:self.pwdTextField.text completion:^(NSNumber *result, NSError *error) {
+                        [[SwingClient sharedClient] userLogin:self.emailTextField.text password:self.pwdTextField.text completion:^(NSError *error) {
                             if (!error) {
                                 //Login success
                                 [SVProgressHUD dismiss];
-                                
+                                [[GlobalCache shareInstance] queryKids];
+                                UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
+                                UIViewController *ctl = [stroyBoard instantiateInitialViewController];
+                                AppDelegate *ad = (AppDelegate*)[UIApplication sharedApplication].delegate;
+                                ad.window.rootViewController = ctl;
                             }
                             else {
                                 LOG_D(@"login fail: %@", error);

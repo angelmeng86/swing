@@ -36,6 +36,8 @@
 #import "SwingClient.h"
 #import "LoginedModel.h"
 #import "EventModel.h"
+#import "KidModel.h"
+#import "ToDoModel.h"
 
 #import "Fun.h"
 #import "CameraUtility.h"

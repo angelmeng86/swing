@@ -9,6 +9,8 @@
 #import "EditProfileViewController.h"
 #import "CommonDef.h"
 #import "VPImageCropperViewController.h"
+#import "UIButton+AFNetworking.h"
+#import "ProfileDeviceCell.h"
 
 @interface EditProfileViewController ()<UITextFieldDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, VPImageCropperDelegate>
 {
@@ -27,17 +29,67 @@
     
     self.imageBtn.layer.cornerRadius = 60.f;
     self.imageBtn.layer.masksToBounds = YES;
+    image = nil;
     
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(doneAction:)];
+    
+    if ([GlobalCache shareInstance].info.profileImage) {
+        [self.imageBtn setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[@"http://avatar.childrenlab.com/" stringByAppendingString:[GlobalCache shareInstance].info.profileImage]]];
+    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kidsListLoaded:) name:KIDS_LIST_LOAD_NOTI object:nil];
 }
 
+- (void)kidsListLoaded:(NSNotification*)notification {
+    [self.deviceConllectionView reloadData];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+- (void)doneAction:(id)sender {
+    if ([self validateTextField]) {
+        [SVProgressHUD showWithStatus:@"Saving, please wait..."];
+        [[SwingClient sharedClient] userUpdateProfile:@{@"email":self.emailTF.text, @"phoneNumber":self.phoneTF.text, @"firstName":self.firstNameTF.text, @"lastName":self.lastNameTF.text} completion:^(NSError *error) {
+            if (error) {
+                LOG_D(@"userUpdateProfile fail: %@", error);
+                [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+            }
+            else {
+                if (image) {
+                    [SVProgressHUD showWithStatus:@"UploadImage, please wait..."];
+                    [[SwingClient sharedClient] userUploadProfileImage:image completion:^(NSString *profileImage, NSError *error) {
+                        if (error) {
+                            LOG_D(@"uploadProfileImage fail: %@", error);
+                            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                        }
+                        else {
+                            [SVProgressHUD dismiss];
+                            [self.navigationController popViewControllerAnimated:YES];
+                        }
+                    }];
+                }
+                else {
+                    [SVProgressHUD dismiss];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+            }
+        }];
+    }
+}
+
+- (BOOL)validateTextField {
+    if (self.firstNameTF.text.length == 0 || self.lastNameTF.text.length == 0 || self.phoneTF.text.length == 0 || self.emailTF.text.length == 0) {
+        [Fun showMessageBoxWithTitle:@"Error" andMessage:@"Please input info."];
+        return NO;
+    }
+    
+    return YES;
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 1;
+    return [GlobalCache shareInstance].kidsList.count + 1;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
@@ -53,17 +105,32 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    ProfileDeviceCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DeviceCell2" forIndexPath:indexPath];
+    if (indexPath.row == [GlobalCache shareInstance].kidsList.count) {
+        [cell.imageBtn setTitle:@"+" forState:UIControlStateNormal];
+        [cell.imageBtn setBackgroundImage:nil forState:UIControlStateNormal];
+        return cell;
+    }
     
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DeviceCell2" forIndexPath:indexPath];
+    KidModel *model = [[GlobalCache shareInstance].kidsList objectAtIndex:indexPath.row];
+    if (model.profile) {
+        [cell.imageBtn setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[@"http://avatar.childrenlab.com/" stringByAppendingString:model.profile]]];
+    }
+    else {
+        [cell.imageBtn setBackgroundImage:nil forState:UIControlStateNormal];
+    }
+    [cell.imageBtn setTitle:nil forState:UIControlStateNormal];
     
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
-    UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"SearchWatch"];
-    [self.navigationController pushViewController:ctl animated:YES];
+    if (indexPath.row == [GlobalCache shareInstance].kidsList.count) {
+        UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
+        UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"SearchWatch"];
+        [self.navigationController pushViewController:ctl animated:YES];
+    }
 }
 
 - (void)setHeaderImage:(UIImage*)headImage {

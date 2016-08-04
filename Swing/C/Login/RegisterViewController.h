@@ -10,6 +10,9 @@
 
 @interface RegisterViewController : LMBaseViewController
 
+@property (nonatomic, strong) NSString* email;
+@property (nonatomic, strong) NSString* pwd;
+
 @property (weak, nonatomic) IBOutlet UIButton *imageBtn;
 @property (weak, nonatomic) IBOutlet UITextField *firstNameTF;
 @property (weak, nonatomic) IBOutlet UITextField *lastNameTF;

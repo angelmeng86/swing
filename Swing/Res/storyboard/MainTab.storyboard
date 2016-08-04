@@ -588,7 +588,7 @@
                                     <constraint firstAttribute="width" constant="120" id="caB-N5-48N"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                <state key="normal" title="+">
+                                <state key="normal">
                                     <color key="titleColor" red="0.21960784310000001" green="0.71764705880000002" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
@@ -972,6 +972,7 @@
                     </view>
                     <connections>
                         <outlet property="cityTF" destination="6aj-lM-x3q" id="ZEB-r4-nfJ"/>
+                        <outlet property="deviceConllectionView" destination="dLq-f0-PCA" id="IbV-zL-Yex"/>
                         <outlet property="emailTF" destination="fE5-Nq-t2H" id="w2V-Nu-KyU"/>
                         <outlet property="firstNameTF" destination="NiD-7a-WAV" id="hm9-Im-kMh"/>
                         <outlet property="imageBtn" destination="6cN-xo-ZdG" id="uw2-7C-njb"/>

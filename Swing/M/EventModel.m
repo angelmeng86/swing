@@ -10,4 +10,12 @@
 
 @implementation EventModel
 
++ (JSONKeyMapper*)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+                                                       @"id": @"objId",
+                                                       @"description": @"desc",
+                                                       }];
+}
+
 @end

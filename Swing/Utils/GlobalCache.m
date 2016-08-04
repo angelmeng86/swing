@@ -40,8 +40,24 @@
 
 - (void)setInfo:(LoginedModel *)info {
     _info = info;
-    [[NSUserDefaults standardUserDefaults] setObject:[info toJSONString] forKey:@"token"];
+    [self saveInfo];
+}
+
+- (void)saveInfo {
+    [[NSUserDefaults standardUserDefaults] setObject:[_info toJSONString] forKey:@"token"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)queryKids {
+    self.kidsTask = [[SwingClient sharedClient] kidsListWithCompletion:^(NSArray *list, NSError *error) {
+        if (error) {
+            LOG_D(@"kidsListWithCompletion fail: %@", error);
+        }
+        else {
+            self.kidsList = list;
+            [[NSNotificationCenter defaultCenter] postNotificationName:KIDS_LIST_LOAD_NOTI object:list];
+        }
+    }];
 }
 
 - (id)init

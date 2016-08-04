@@ -8,6 +8,8 @@
 
 #import "ProfileViewController.h"
 #import "CommonDef.h"
+#import "UIButton+AFNetworking.h"
+#import "ProfileDeviceCell.h"
 
 @interface ProfileViewController ()
 
@@ -25,6 +27,11 @@
     self.headerBtn.layer.borderWidth = 2.f;
     self.headerBtn.layer.masksToBounds = YES;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kidsListLoaded:) name:KIDS_LIST_LOAD_NOTI object:nil];
+}
+
+- (void)kidsListLoaded:(NSNotification*)notification {
+    [self.deviceConllectionView reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -35,6 +42,11 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     self.tabBarController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editProfileAction:)];
+    if ([GlobalCache shareInstance].info.profileImage) {
+        [self.headerBtn setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[@"http://avatar.childrenlab.com/" stringByAppendingString:[GlobalCache shareInstance].info.profileImage]]];
+    }
+//    self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", [GlobalCache shareInstance].info., self.lastNameTF.text];
+    self.emailLabel.text = [GlobalCache shareInstance].info.email;
 }
 
 - (void)editProfileAction:(id)sender {
@@ -51,7 +63,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 3;
+    return [GlobalCache shareInstance].kidsList.count;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
@@ -68,7 +80,15 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DeviceCell" forIndexPath:indexPath];
+    ProfileDeviceCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DeviceCell" forIndexPath:indexPath];
+    KidModel *model = [[GlobalCache shareInstance].kidsList objectAtIndex:indexPath.row];
+    if (model.profile) {
+        [cell.imageBtn setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[@"http://avatar.childrenlab.com/" stringByAppendingString:model.profile]]];
+    }
+    else {
+        [cell.imageBtn setBackgroundImage:nil forState:UIControlStateNormal];
+    }
+    [cell.imageBtn setTitle:nil forState:UIControlStateNormal];
     
     return cell;
 }

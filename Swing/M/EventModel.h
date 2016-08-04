@@ -11,8 +11,17 @@
 
 @interface EventModel : JSONModel
 
-@property (nonatomic, strong) NSDate *start;
-@property (nonatomic, strong) NSDate *end;
-@property (nonatomic, strong) NSString *name;
+@property (nonatomic) int objId;
+@property (strong, nonatomic) NSString* eventName;
+@property (strong, nonatomic) NSDate* startDate;
+@property (strong, nonatomic) NSDate* endDate;
+
+@property (strong, nonatomic) NSString* color;
+@property (strong, nonatomic) NSString* status;
+
+@property (nonatomic, strong) NSString *desc;
+@property (nonatomic) int alert;
+@property (nonatomic, strong) NSString *city;
+@property (nonatomic, strong) NSString *state;
 
 @end

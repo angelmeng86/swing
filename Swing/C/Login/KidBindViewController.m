@@ -26,16 +26,19 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = self.title;
     
-    [self.kidNameTF setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
-    [self.zipCodeTF setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+    [self.firstNameTF setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+    [self.lastNameTF setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+    [self.birthdayTF setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     
-    self.kidNameTF.delegate = self;
-    self.zipCodeTF.delegate = self;
+    self.firstNameTF.delegate = self;
+    self.lastNameTF.delegate = self;
+    self.birthdayTF.delegate = self;
     
     self.imageBtn.layer.cornerRadius = 60.f;
     self.imageBtn.layer.borderColor = [self.imageBtn titleColorForState:UIControlStateNormal].CGColor;
     self.imageBtn.layer.borderWidth = 2.f;
     self.imageBtn.layer.masksToBounds = YES;
+    image = nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,32 +46,77 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if (textField == self.kidNameTF) {
-        [self.zipCodeTF becomeFirstResponder];
+- (BOOL)validateTextField {
+    if (self.firstNameTF.text.length == 0 || self.lastNameTF.text.length == 0 || self.birthdayTF.text.length == 0) {
+        [Fun showMessageBoxWithTitle:@"Error" andMessage:@"Please input info."];
+        return NO;
     }
-    else if (textField == self.zipCodeTF) {
-        //Go
-        for (UIViewController *ctl in self.navigationController.viewControllers) {
-            if ([ctl isKindOfClass:[EditProfileViewController class]]) {
-                //EditProfile add device flow
-                [self.navigationController popToViewController:ctl animated:YES];
-                return YES;
-            }
+    
+    return YES;
+}
+
+- (void)goNext {
+    [[GlobalCache shareInstance] queryKids];
+    for (UIViewController *ctl in self.navigationController.viewControllers) {
+        if ([ctl isKindOfClass:[EditProfileViewController class]]) {
+            //EditProfile add device flow
+            [self.navigationController popToViewController:ctl animated:YES];
+            return;
+        }
+    }
+    
+    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
+    BindReadyViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"BindReady"];
+    ctl.image = image;
+    ctl.name = [NSString stringWithFormat:@"%@ %@", self.firstNameTF.text, self.lastNameTF.text];
+    [self.navigationController pushViewController:ctl animated:YES];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == self.firstNameTF) {
+        [self.lastNameTF becomeFirstResponder];
+    }
+    else if (textField == self.lastNameTF) {
+        [self.birthdayTF becomeFirstResponder];
+    }
+    else if (textField == self.birthdayTF) {
+        
+        if ([self validateTextField]) {
+            [SVProgressHUD showWithStatus:@"Add kid info, please wait..."];
+            [[SwingClient sharedClient] kidsAdd:@{@"firstName":self.firstNameTF.text, @"lastName":self.lastNameTF.text, @"birthday":self.birthdayTF.text} completion:^(NSError *error) {
+                if (error) {
+                    LOG_D(@"kidsAdd fail: %@", error);
+                    [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                }
+                else {
+                    if (image) {
+                        [SVProgressHUD showWithStatus:@"UploadImage, please wait..."];
+                        [[SwingClient sharedClient] kidsUploadKidsProfileImage:image kidId:@"2" completion:^(NSString *profileImage, NSError *error) {
+                            if (error) {
+                                LOG_D(@"uploadProfileImage fail: %@", error);
+                            }
+                            [SVProgressHUD dismiss];
+                            [self goNext];
+                        }];
+                    }
+                    else {
+                        [SVProgressHUD dismiss];
+                        [self goNext];
+                    }
+                }
+            }];
+            
+            
         }
         
-        //login flow
-        UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
-        BindReadyViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"BindReady"];
-        ctl.image = image;
-        [self.navigationController pushViewController:ctl animated:YES];
     }
     return YES;
 }
 
 - (IBAction)imageAction:(id)sender {
-    [self.kidNameTF resignFirstResponder];
-    [self.zipCodeTF resignFirstResponder];
+    [self.firstNameTF resignFirstResponder];
+    [self.lastNameTF resignFirstResponder];
+    [self.birthdayTF resignFirstResponder];
     
     UIActionSheet *choiceSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                              delegate:self

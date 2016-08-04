@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "CommonDef.h"
+#import "SwingClientTest.h"
 
 @interface AppDelegate ()
 
@@ -30,6 +31,8 @@
     [[GlobalCache shareInstance] initConfig];
     
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
+    
+//    [SwingClientTest testAll];
     
     /*
     NSArray *familyNames =[[NSArray alloc]initWithArray:[UIFont familyNames]];

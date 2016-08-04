@@ -36,27 +36,27 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     NSMutableArray *mutableData = [NSMutableArray array];
     
     EventModel *model = [EventModel new];
-    model.name = @"Walk in the park";
-    model.start = [dateFormatter dateFromString:@"6:30"];
-    model.end = [dateFormatter dateFromString:@"8:00"];
+    model.eventName = @"Walk in the park";
+    model.startDate = [dateFormatter dateFromString:@"6:30"];
+    model.endDate = [dateFormatter dateFromString:@"8:00"];
     [mutableData addObject:model];
     
     model = [EventModel new];
-    model.name = @"Swimming";
-    model.start = [dateFormatter dateFromString:@"9:00"];
-    model.end = [dateFormatter dateFromString:@"10:00"];
+    model.eventName = @"Swimming";
+    model.startDate = [dateFormatter dateFromString:@"9:00"];
+    model.endDate = [dateFormatter dateFromString:@"10:00"];
     [mutableData addObject:model];
     
     model = [EventModel new];
-    model.name = @"Baseball";
-    model.start = [dateFormatter dateFromString:@"11:00"];
-    model.end = [dateFormatter dateFromString:@"12:00"];
+    model.eventName = @"Baseball";
+    model.startDate = [dateFormatter dateFromString:@"11:00"];
+    model.endDate = [dateFormatter dateFromString:@"12:00"];
     [mutableData addObject:model];
     
     model = [EventModel new];
-    model.name = @"Walk in the park";
-    model.start = [dateFormatter dateFromString:@"12:00"];
-    model.end = [dateFormatter dateFromString:@"13:45"];
+    model.eventName = @"Walk in the park";
+    model.startDate = [dateFormatter dateFromString:@"12:00"];
+    model.endDate = [dateFormatter dateFromString:@"13:45"];
     [mutableData addObject:model];
     
     _eventData = [NSArray arrayWithArray:mutableData];
@@ -125,12 +125,12 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
 
 - (void)addEvent:(EventModel*)model color:(UIColor*)color {
     NSCalendar *cal = [NSCalendar currentCalendar];
-    NSDateComponents *start = [cal components:NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:model.start];
+    NSDateComponents *start = [cal components:NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:model.startDate];
     TimeLineView *startLine = [self.hourLines objectAtIndex:[start hour]];
     float startH = [start minute] * 40 / 60;
     
     
-    NSDateComponents *end = [cal components:NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:model.end];
+    NSDateComponents *end = [cal components:NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:model.endDate];
     float height = (([end hour] - [start hour]) * 60 + [end minute] - [start minute]) * 40 / 60;
     
 //    NSTimeInterval interval = [model.end timeIntervalSince1970] - [model.start timeIntervalSince1970];
@@ -140,7 +140,7 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
 //    label.textAlignment = NSTextAlignmentCenter;
     label.textColor = [UIColor whiteColor];
     label.font = [UIFont boldAvenirFontOfSize:20];
-    label.text = model.name;
+    label.text = model.eventName;
     label.backgroundColor = color;
     
     [self.contentView addSubview:label];

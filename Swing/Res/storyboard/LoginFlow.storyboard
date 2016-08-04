@@ -5,6 +5,33 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Avenir-bold.ttf">
+            <string>ArialRoundedMTBold</string>
+            <string>ArialRoundedMTBold</string>
+            <string>ArialRoundedMTBold</string>
+            <string>ArialRoundedMTBold</string>
+            <string>ArialRoundedMTBold</string>
+            <string>ArialRoundedMTBold</string>
+            <string>ArialRoundedMTBold</string>
+            <string>ArialRoundedMTBold</string>
+            <string>ArialRoundedMTBold</string>
+            <string>ArialRoundedMTBold</string>
+            <string>ArialRoundedMTBold</string>
+            <string>ArialRoundedMTBold</string>
+            <string>ArialRoundedMTBold</string>
+            <string>ArialRoundedMTBold</string>
+            <string>ArialRoundedMTBold</string>
+            <string>ArialRoundedMTBold</string>
+            <string>ArialRoundedMTBold</string>
+            <string>ArialRoundedMTBold</string>
+            <string>ArialRoundedMTBold</string>
+            <string>ArialRoundedMTBold</string>
+            <string>ArialRoundedMTBold</string>
+            <string>ArialRoundedMTBold</string>
+            <string>ArialRoundedMTBold</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="DD9-UR-pLH">
@@ -41,14 +68,14 @@
                                     <constraint firstAttribute="height" constant="30" id="03g-NA-czV"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Po-Ah-Mkw">
                                 <rect key="frame" x="60" y="150" width="480" height="30"/>
                                 <color key="backgroundColor" red="0.94117647058823528" green="0.36078431372549019" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" secureTextEntry="YES"/>
                             </textField>
                         </subviews>
@@ -90,13 +117,13 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="U76-nG-YCC"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="30"/>
                                 <color key="textColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOUR SWING WATCH" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oma-tX-zTH">
                                 <rect key="frame" x="20" y="125" width="560" height="45"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="30"/>
                                 <color key="textColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -116,7 +143,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="WgO-gA-H8h"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                                     <color key="textColor" red="0.47058823529411764" green="0.57647058823529407" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -215,28 +242,28 @@
                                     <constraint firstAttribute="height" constant="30" id="cRG-0S-Rjb"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vmj-xD-blG">
                                 <rect key="frame" x="60" y="289" width="480" height="30"/>
                                 <color key="backgroundColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zip Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rRK-g5-407">
                                 <rect key="frame" x="60" y="339" width="480" height="30"/>
                                 <color key="backgroundColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2iW-kP-oTj">
                                 <rect key="frame" x="60" y="239" width="480" height="30"/>
                                 <color key="backgroundColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                             </textField>
                         </subviews>
@@ -291,7 +318,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="cYF-Nz-gh4"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                 <state key="normal" title="Yes">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -304,20 +331,20 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="uQb-CD-k0o"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="30"/>
                                 <color key="textColor" red="0.94117647058823528" green="0.36078431372549019" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A SWING WATCH?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3D-wq-luT">
                                 <rect key="frame" x="20" y="126" width="560" height="45"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="30"/>
                                 <color key="textColor" red="0.94117647058823528" green="0.36078431372549019" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6lr-9t-aES" customClass="RoundButton">
                                 <rect key="frame" x="60" y="247" width="480" height="30"/>
                                 <color key="backgroundColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                 <state key="normal" title="No">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -373,7 +400,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="KLL-iY-oB8"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="30"/>
                                 <color key="textColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -424,7 +451,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="6bZ-0V-TdC"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                 <state key="normal" title="Sign up / Login">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -435,7 +462,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dhg-eb-I8g" customClass="RoundButton">
                                 <rect key="frame" x="60" y="293" width="480" height="30"/>
                                 <color key="backgroundColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                 <state key="normal" title="Login with Google">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -443,25 +470,57 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KiV-oZ-mBX" customClass="RoundButton">
                                 <rect key="frame" x="60" y="243" width="480" height="30"/>
                                 <color key="backgroundColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                 <state key="normal" title="Login with Facebook">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QFr-VV-FQK">
+                                <rect key="frame" x="275" y="188" width="50" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="Ar1-vR-qvN"/>
+                                    <constraint firstAttribute="height" constant="21" id="c2c-yv-L1L"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <color key="textColor" red="0.49019607843137253" green="0.60784313725490191" blue="0.6470588235294118" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RRq-jW-W6S">
+                                <rect key="frame" x="80" y="198" width="185" height="1"/>
+                                <color key="backgroundColor" red="0.49019607840000001" green="0.60784313729999995" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="x1W-ce-X0g"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oY1-qB-pJW">
+                                <rect key="frame" x="335" y="198" width="185" height="1"/>
+                                <color key="backgroundColor" red="0.49019607840000001" green="0.60784313729999995" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="XGq-Fi-i3X"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="QFr-VV-FQK" firstAttribute="centerY" secondItem="RRq-jW-W6S" secondAttribute="centerY" id="0RG-0q-KJD"/>
+                            <constraint firstItem="QFr-VV-FQK" firstAttribute="leading" secondItem="RRq-jW-W6S" secondAttribute="trailing" constant="10" id="6Ds-IG-wLW"/>
                             <constraint firstItem="KiV-oZ-mBX" firstAttribute="centerX" secondItem="2qL-MI-OHb" secondAttribute="centerX" id="70V-Re-EGk"/>
                             <constraint firstItem="Dhg-eb-I8g" firstAttribute="top" secondItem="KiV-oZ-mBX" secondAttribute="bottom" constant="20" id="7a0-EW-f7f"/>
                             <constraint firstItem="2qL-MI-OHb" firstAttribute="top" secondItem="qtl-eg-ON2" secondAttribute="bottom" constant="113" id="BBh-Zr-fUG"/>
+                            <constraint firstItem="oY1-qB-pJW" firstAttribute="leading" secondItem="QFr-VV-FQK" secondAttribute="trailing" constant="10" id="Ct0-EF-ItG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2qL-MI-OHb" secondAttribute="trailing" constant="40" id="EUD-BQ-bfS"/>
                             <constraint firstItem="KiV-oZ-mBX" firstAttribute="height" secondItem="2qL-MI-OHb" secondAttribute="height" id="G1X-2w-1RF"/>
                             <constraint firstItem="Dhg-eb-I8g" firstAttribute="height" secondItem="2qL-MI-OHb" secondAttribute="height" id="GBE-gm-feO"/>
+                            <constraint firstItem="oY1-qB-pJW" firstAttribute="centerY" secondItem="QFr-VV-FQK" secondAttribute="centerY" id="HvO-QG-tbF"/>
                             <constraint firstItem="KiV-oZ-mBX" firstAttribute="top" secondItem="2qL-MI-OHb" secondAttribute="bottom" constant="80" id="IZo-Ut-X62"/>
+                            <constraint firstItem="oY1-qB-pJW" firstAttribute="trailing" secondItem="2qL-MI-OHb" secondAttribute="trailing" constant="-20" id="PgB-3R-k5b"/>
                             <constraint firstItem="Dhg-eb-I8g" firstAttribute="centerX" secondItem="2qL-MI-OHb" secondAttribute="centerX" id="UMG-qd-NG2"/>
                             <constraint firstItem="Dhg-eb-I8g" firstAttribute="width" secondItem="2qL-MI-OHb" secondAttribute="width" id="YoG-TE-wCQ"/>
+                            <constraint firstItem="QFr-VV-FQK" firstAttribute="top" secondItem="2qL-MI-OHb" secondAttribute="bottom" constant="25" id="Z0S-0G-Prn"/>
+                            <constraint firstItem="RRq-jW-W6S" firstAttribute="leading" secondItem="2qL-MI-OHb" secondAttribute="leading" constant="20" id="myp-rC-Sy4"/>
                             <constraint firstItem="2qL-MI-OHb" firstAttribute="leading" secondItem="MbA-YJ-MlC" secondAttribute="leadingMargin" constant="40" id="opO-vQ-yXu"/>
                             <constraint firstItem="KiV-oZ-mBX" firstAttribute="width" secondItem="2qL-MI-OHb" secondAttribute="width" id="vox-Y6-rsA"/>
+                            <constraint firstItem="QFr-VV-FQK" firstAttribute="centerX" secondItem="MbA-YJ-MlC" secondAttribute="centerX" id="wzy-7g-QZh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Swing" id="u00-Hd-xBH"/>
@@ -496,30 +555,40 @@
                                     <action selector="imageAction:" destination="cdu-5p-LYN" eventType="touchUpInside" id="AR3-pU-lbd"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kid's Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gKt-no-jls">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kid's firstName" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gKt-no-jls">
                                 <rect key="frame" x="60" y="189" width="480" height="30"/>
                                 <color key="backgroundColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="7hB-2x-l3b"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zip Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jkL-uI-Ab6">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kid's lastName" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jkL-uI-Ab6">
                                 <rect key="frame" x="60" y="239" width="480" height="30"/>
                                 <color key="backgroundColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kid's birthday" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y1h-bD-KAh">
+                                <rect key="frame" x="60" y="289" width="480" height="30"/>
+                                <color key="backgroundColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Y1h-bD-KAh" firstAttribute="top" secondItem="jkL-uI-Ab6" secondAttribute="bottom" constant="20" id="10m-sg-s6R"/>
+                            <constraint firstItem="Y1h-bD-KAh" firstAttribute="width" secondItem="gKt-no-jls" secondAttribute="width" id="2TS-rm-nEz"/>
                             <constraint firstItem="gKt-no-jls" firstAttribute="top" secondItem="N2T-lL-kcY" secondAttribute="bottom" constant="29" id="45Z-PG-J6b"/>
                             <constraint firstItem="N2T-lL-kcY" firstAttribute="centerX" secondItem="dTy-NP-k9X" secondAttribute="centerX" id="49s-Ji-8CA"/>
                             <constraint firstItem="jkL-uI-Ab6" firstAttribute="centerX" secondItem="gKt-no-jls" secondAttribute="centerX" id="D4o-bh-IEd"/>
                             <constraint firstItem="gKt-no-jls" firstAttribute="leading" secondItem="dTy-NP-k9X" secondAttribute="leadingMargin" constant="40" id="M8b-pS-MNG"/>
+                            <constraint firstItem="Y1h-bD-KAh" firstAttribute="centerX" secondItem="dTy-NP-k9X" secondAttribute="centerX" id="MdI-XI-N32"/>
                             <constraint firstItem="jkL-uI-Ab6" firstAttribute="top" secondItem="gKt-no-jls" secondAttribute="bottom" constant="20" id="Qlm-Xq-tge"/>
                             <constraint firstItem="jkL-uI-Ab6" firstAttribute="height" secondItem="gKt-no-jls" secondAttribute="height" id="Rof-xS-fEP"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gKt-no-jls" secondAttribute="trailing" constant="40" id="Vv9-M9-fXv"/>
@@ -528,9 +597,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="birthdayTF" destination="Y1h-bD-KAh" id="Tln-ll-YRR"/>
+                        <outlet property="firstNameTF" destination="gKt-no-jls" id="Xge-TE-H0N"/>
                         <outlet property="imageBtn" destination="N2T-lL-kcY" id="zpI-p5-te8"/>
-                        <outlet property="kidNameTF" destination="gKt-no-jls" id="0bG-sL-5ma"/>
-                        <outlet property="zipCodeTF" destination="jkL-uI-Ab6" id="2wS-0T-O7j"/>
+                        <outlet property="lastNameTF" destination="jkL-uI-Ab6" id="abV-DM-pgz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eUA-0E-V5f" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -562,7 +632,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Osz-2K-F1l"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                 <state key="normal" title="Go To Dashboard">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -573,7 +643,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jiX-Uw-3aV" customClass="RoundButton">
                                 <rect key="frame" x="60" y="280" width="480" height="30"/>
                                 <color key="backgroundColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                 <state key="normal" title="Add Another Watch">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -586,7 +656,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="30m-sI-waU"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="25"/>
                                 <color key="textColor" red="0.21176470588235294" green="0.68627450980392157" blue="0.63529411764705879" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
