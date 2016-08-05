@@ -70,7 +70,7 @@
         //Go
         if ([self validateTextField]) {
             [SVProgressHUD showWithStatus:@"Register, please wait..."];
-            [[SwingClient sharedClient] userRegister:@{@"email":self.email, @"password":self.pwd, @"phoneNumber":self.phoneTF.text, @"firstName":self.firstNameTF.text, @"lastName":self.lastNameTF.text, @"zipCode":self.zipCodeTF.text} completion:^(NSError *error) {
+            [[SwingClient sharedClient] userRegister:@{@"email":self.email, @"password":self.pwd, @"phoneNumber":self.phoneTF.text, @"firstName":self.firstNameTF.text, @"lastName":self.lastNameTF.text, @"zipCode":self.zipCodeTF.text} completion:^(id user, NSError *error) {
                 if (error) {
                     LOG_D(@"registerUser fail: %@", error);
                     [SVProgressHUD showErrorWithStatus:[error localizedDescription]];

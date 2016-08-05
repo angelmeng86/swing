@@ -59,6 +59,11 @@
 		ADE6ED901D4E3B7D00FFA573 /* DayCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE6ED8F1D4E3B7D00FFA573 /* DayCalendarViewController.m */; settings = {ASSET_TAGS = (); }; };
 		ADE6ED941D4E415900FFA573 /* TimeLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE6ED931D4E415900FFA573 /* TimeLineView.m */; settings = {ASSET_TAGS = (); }; };
 		ADE6ED971D4E538B00FFA573 /* EventModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE6ED961D4E538B00FFA573 /* EventModel.m */; settings = {ASSET_TAGS = (); }; };
+		ADE820731D54C26200E12768 /* JSONValueTransformer+NSDate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE820721D54C26200E12768 /* JSONValueTransformer+NSDate.m */; settings = {ASSET_TAGS = (); }; };
+		ADE820761D54C62D00E12768 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE820751D54C62D00E12768 /* UserModel.m */; settings = {ASSET_TAGS = (); }; };
+		ADE820791D54D99000E12768 /* WeartherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE820781D54D99000E12768 /* WeartherModel.m */; settings = {ASSET_TAGS = (); }; };
+		ADE8207C1D54F08200E12768 /* MMLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8207B1D54F08200E12768 /* MMLocationManager.m */; settings = {ASSET_TAGS = (); }; };
+		ADE8207F1D54F0E100E12768 /* NSDictionary+MM.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8207E1D54F0E100E12768 /* NSDictionary+MM.m */; settings = {ASSET_TAGS = (); }; };
 		ADEF31CC1D47856200BB6A9B /* KidBindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31CB1D47856200BB6A9B /* KidBindViewController.m */; settings = {ASSET_TAGS = (); }; };
 		ADEF31CF1D478D2B00BB6A9B /* BindReadyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31CE1D478D2B00BB6A9B /* BindReadyViewController.m */; settings = {ASSET_TAGS = (); }; };
 		ADEF31D21D478E9900BB6A9B /* RoundButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31D11D478E9900BB6A9B /* RoundButton.m */; settings = {ASSET_TAGS = (); }; };
@@ -175,6 +180,16 @@
 		ADE6ED931D4E415900FFA573 /* TimeLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeLineView.m; sourceTree = "<group>"; };
 		ADE6ED951D4E538B00FFA573 /* EventModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventModel.h; sourceTree = "<group>"; };
 		ADE6ED961D4E538B00FFA573 /* EventModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventModel.m; sourceTree = "<group>"; };
+		ADE820711D54C26200E12768 /* JSONValueTransformer+NSDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSONValueTransformer+NSDate.h"; sourceTree = "<group>"; };
+		ADE820721D54C26200E12768 /* JSONValueTransformer+NSDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JSONValueTransformer+NSDate.m"; sourceTree = "<group>"; };
+		ADE820741D54C62D00E12768 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		ADE820751D54C62D00E12768 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		ADE820771D54D99000E12768 /* WeartherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeartherModel.h; sourceTree = "<group>"; };
+		ADE820781D54D99000E12768 /* WeartherModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeartherModel.m; sourceTree = "<group>"; };
+		ADE8207A1D54F08200E12768 /* MMLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLocationManager.h; sourceTree = "<group>"; };
+		ADE8207B1D54F08200E12768 /* MMLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLocationManager.m; sourceTree = "<group>"; };
+		ADE8207D1D54F0E100E12768 /* NSDictionary+MM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+MM.h"; sourceTree = "<group>"; };
+		ADE8207E1D54F0E100E12768 /* NSDictionary+MM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+MM.m"; sourceTree = "<group>"; };
 		ADEF31CA1D47856200BB6A9B /* KidBindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = KidBindViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		ADEF31CB1D47856200BB6A9B /* KidBindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KidBindViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		ADEF31CD1D478D2B00BB6A9B /* BindReadyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BindReadyViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -251,6 +266,12 @@
 				AD2D338C1D5378AD005D9298 /* KidModel.m */,
 				AD2D338E1D538418005D9298 /* ToDoModel.h */,
 				AD2D338F1D538418005D9298 /* ToDoModel.m */,
+				ADE820711D54C26200E12768 /* JSONValueTransformer+NSDate.h */,
+				ADE820721D54C26200E12768 /* JSONValueTransformer+NSDate.m */,
+				ADE820741D54C62D00E12768 /* UserModel.h */,
+				ADE820751D54C62D00E12768 /* UserModel.m */,
+				ADE820771D54D99000E12768 /* WeartherModel.h */,
+				ADE820781D54D99000E12768 /* WeartherModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -295,6 +316,10 @@
 		AD0B81201D37F09900F43E72 /* ThirdPart */ = {
 			isa = PBXGroup;
 			children = (
+				ADE8207D1D54F0E100E12768 /* NSDictionary+MM.h */,
+				ADE8207E1D54F0E100E12768 /* NSDictionary+MM.m */,
+				ADE8207A1D54F08200E12768 /* MMLocationManager.h */,
+				ADE8207B1D54F08200E12768 /* MMLocationManager.m */,
 				ADEF31D31D47B04200BB6A9B /* VPImageCropper */,
 				AD0B81211D37F09900F43E72 /* Logger */,
 			);
@@ -653,6 +678,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADCED9E41D3D2BAC002E3F78 /* LoginedModel.m in Sources */,
+				ADE820791D54D99000E12768 /* WeartherModel.m in Sources */,
 				AD0B811A1D37EF7400F43E72 /* LMBaseTableViewController.m in Sources */,
 				AD74D4DF1D4FA08E001F3B36 /* EventInfoViewController.m in Sources */,
 				ADE6ED8A1D4E229D00FFA573 /* MonthCalendarViewController.m in Sources */,
@@ -663,7 +689,9 @@
 				ADE6ED901D4E3B7D00FFA573 /* DayCalendarViewController.m in Sources */,
 				AD9B0D941D3BB947009FDD95 /* BatteryViewController.m in Sources */,
 				AD7797A31D4D034600472B27 /* ActivityViewController.m in Sources */,
+				ADE8207C1D54F08200E12768 /* MMLocationManager.m in Sources */,
 				AD0B811F1D37EFEA00F43E72 /* LMTabBarController.m in Sources */,
+				ADE820731D54C26200E12768 /* JSONValueTransformer+NSDate.m in Sources */,
 				AD0B81171D37EF7400F43E72 /* ControlFactory.m in Sources */,
 				AD77979C1D4CE11B00472B27 /* CameraUtility.m in Sources */,
 				ADF985561D50C64A00B02075 /* ToDoListView.m in Sources */,
@@ -673,6 +701,7 @@
 				AD6654541D490C110056632C /* SyncDeviceViewController.m in Sources */,
 				AD7797A01D4CF9C400472B27 /* ChartFooterView.m in Sources */,
 				AD0B81181D37EF7400F43E72 /* Fun.m in Sources */,
+				ADE8207F1D54F0E100E12768 /* NSDictionary+MM.m in Sources */,
 				AD7797A61D4D085600472B27 /* ChartViewController.m in Sources */,
 				AD7797961D4C9B5200472B27 /* EditProfileViewController.m in Sources */,
 				AD9B0D9A1D3BB964009FDD95 /* ProfileViewController.m in Sources */,
@@ -683,6 +712,7 @@
 				AD74382D1D4DE08000F5F9D2 /* WeatherContentViewController.m in Sources */,
 				AD7438271D4DD50C00F5F9D2 /* JBBaseChartViewController.m in Sources */,
 				AD2D33901D538418005D9298 /* ToDoModel.m in Sources */,
+				ADE820761D54C62D00E12768 /* UserModel.m in Sources */,
 				AD2D338D1D5378AD005D9298 /* KidModel.m in Sources */,
 				AD9B0D971D3BB954009FDD95 /* CalendarViewController.m in Sources */,
 				ADDCD3E81D4C4DA90031DC66 /* UVIndexViewController.m in Sources */,

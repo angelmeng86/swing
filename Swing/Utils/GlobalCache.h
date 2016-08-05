@@ -21,7 +21,11 @@
 
 - (void)queryKids;
 
+- (void)logout;
+
 @property (strong, nonatomic) LoginedModel* info;
+@property (strong, nonatomic) UserModel* user;
+
 @property (strong, nonatomic) NSArray* kidsList;
 @property (strong, nonatomic) NSURLSessionDataTask *kidsTask;
 

@@ -20,19 +20,24 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    
-//    self.window.backgroundColor = [UIColor whiteColor];
-//    [self.window makeKeyAndVisible];
-//    
-//    UIStoryboard *secondStroyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    UIViewController *test2obj = [secondStroyBoard instantiateInitialViewController];
-//    self.window.rootViewController = test2obj;
     [[GlobalCache shareInstance] initConfig];
     
-    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
+//    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
     
-//    [SwingClientTest testAll];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+    
+    
+    NSString *name = [GlobalCache shareInstance].info == nil ? @"LoginFlow" : @"MainTab";
+    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:name bundle:nil];
+    UIViewController *ctl = [stroyBoard instantiateInitialViewController];
+    self.window.rootViewController = ctl;
+    
+    
+    
+//    [SwingClientTest testAll:11];
     
     /*
     NSArray *familyNames =[[NSArray alloc]initWithArray:[UIFont familyNames]];

@@ -10,6 +10,6 @@
 
 @interface SwingClientTest : NSObject
 
-+ (void)testAll;
++ (void)testAll:(int)index;
 
 @end

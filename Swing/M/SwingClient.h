@@ -18,18 +18,22 @@ typedef enum : NSUInteger {
 
 + (SwingClient *)sharedClient;
 
+- (void)logout;
+
+
+
 - (NSURLSessionDataTask *)userIsEmailRegistered:(NSString*)email completion:( void (^)(NSNumber *result, NSError *error) ) completion;
 
 - (NSURLSessionDataTask *)userLogin:(NSString*)email password:(NSString*)pwd completion:( void (^)(NSError *error) )completion;
 
-- (NSURLSessionDataTask *)userRegister:(NSDictionary*)data completion:( void (^)(NSError *error) )completion;
+- (NSURLSessionDataTask *)userRegister:(NSDictionary*)data completion:( void (^)(id user, NSError *error) )completion;
 
 - (NSURLSessionDataTask *)userUploadProfileImage:(UIImage*)image completion:( void (^)(NSString *profileImage, NSError *error) )completion;
 
 - (NSURLSessionDataTask *)userUpdateProfile:(NSDictionary*)data completion:( void (^)(NSError *error) )completion;
 
 
-- (NSURLSessionDataTask *)kidsAdd:(NSDictionary*)data completion:( void (^)(NSError *error) )completion;
+- (NSURLSessionDataTask *)kidsAdd:(NSDictionary*)data completion:( void (^)(id kid, NSError *error) )completion;
 
 //- (NSURLSessionDataTask *)kidsRemove:(NSString*)kidid completion:( void (^)(NSError *error) )completion;
 

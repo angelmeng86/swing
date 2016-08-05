@@ -75,7 +75,6 @@
                             if (!error) {
                                 //Login success
                                 [SVProgressHUD dismiss];
-                                [[GlobalCache shareInstance] queryKids];
                                 UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
                                 UIViewController *ctl = [stroyBoard instantiateInitialViewController];
                                 AppDelegate *ad = (AppDelegate*)[UIApplication sharedApplication].delegate;

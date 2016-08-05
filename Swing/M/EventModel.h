@@ -16,12 +16,12 @@
 @property (strong, nonatomic) NSDate* startDate;
 @property (strong, nonatomic) NSDate* endDate;
 
-@property (strong, nonatomic) NSString* color;
-@property (strong, nonatomic) NSString* status;
+@property (strong, nonatomic) NSString<Optional>* color;
+@property (strong, nonatomic) NSString<Optional>* status;
 
-@property (nonatomic, strong) NSString *desc;
+@property (nonatomic, strong) NSString<Optional> *desc;
 @property (nonatomic) int alert;
-@property (nonatomic, strong) NSString *city;
-@property (nonatomic, strong) NSString *state;
+@property (nonatomic, strong) NSString<Optional> *city;
+@property (nonatomic, strong) NSString<Optional> *state;
 
 @end

@@ -17,10 +17,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    _uvi = [[WeartherModel alloc] init];
+    _uvi.uvi = (rand() % 10) + 1;
+    
+    [self.uvLabel setTitleColor:[_uvi color] forState:UIControlStateNormal];
+    
     self.uvLabel.layer.cornerRadius = 50.f;
     self.uvLabel.layer.borderColor = [self.uvLabel titleColorForState:UIControlStateNormal].CGColor;
     self.uvLabel.layer.borderWidth = 5.f;
     self.uvLabel.layer.masksToBounds = YES;
+    
+    self.infoLabel.textColor = [_uvi color];
+    self.titleLabel.textColor = [_uvi color];
+    
+    [self.uvLabel setTitle:[NSString stringWithFormat:@"%d", _uvi.uvi] forState:UIControlStateNormal];
+    self.infoLabel.text = [_uvi recommend];
+    
+    UIView *bgView = [UIView new];
+    [self.view addSubview:bgView];
+    [bgView autoPinEdgesToSuperviewEdges];
+    bgView.backgroundColor = [[_uvi color] colorWithAlphaComponent:0.3f];
+    [self.view sendSubviewToBack:bgView];
+    
+    self.infoLabel.adjustsFontSizeToFitWidth = YES;
 }
 
 - (void)didReceiveMemoryWarning {

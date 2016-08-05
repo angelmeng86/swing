@@ -24,6 +24,7 @@
             <string>ArialRoundedMTBold</string>
             <string>ArialRoundedMTBold</string>
             <string>ArialRoundedMTBold</string>
+            <string>ArialRoundedMTBold</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -407,11 +408,11 @@
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seek shade during midday hours! Slip on a shirt, slop on sunscreen and slap on hat!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMx-fb-bUH">
-                                <rect key="frame" x="40" y="284" width="520" height="180"/>
+                                <rect key="frame" x="40" y="284" width="520" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="180" id="YlW-51-gjR"/>
+                                    <constraint firstAttribute="height" constant="200" id="YlW-51-gjR"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="28"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="26"/>
                                 <color key="textColor" red="0.25882352939999997" green="0.6705882353" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -435,6 +436,7 @@
                     <connections>
                         <outlet property="addressLabel" destination="hac-oQ-GRq" id="TNP-AV-G4X"/>
                         <outlet property="infoLabel" destination="CMx-fb-bUH" id="XX0-z3-uz2"/>
+                        <outlet property="titleLabel" destination="BlI-sR-ZR9" id="JYS-Rs-fvF"/>
                         <outlet property="uvLabel" destination="Och-J1-KEt" id="194-mp-OHw"/>
                     </connections>
                 </viewController>
@@ -690,6 +692,20 @@
                                     <outlet property="delegate" destination="eYA-pI-eh2" id="wPs-3r-XLW"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7D-GG-PY0" customClass="RoundButton">
+                                <rect key="frame" x="80" y="386" width="440" height="30"/>
+                                <color key="backgroundColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="0EA-Wd-eZm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logoutAction:" destination="eYA-pI-eh2" eventType="touchUpInside" id="sut-yI-t7U"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -707,8 +723,10 @@
                             <constraint firstItem="BcC-Ks-IRB" firstAttribute="height" secondItem="Tjr-st-s0S" secondAttribute="height" id="Q9L-Cv-vsX"/>
                             <constraint firstItem="dKh-7F-FU5" firstAttribute="centerX" secondItem="Gd7-Wq-P2W" secondAttribute="centerX" id="Smd-yx-KbY"/>
                             <constraint firstItem="c8e-YE-BjS" firstAttribute="height" secondItem="Tjr-st-s0S" secondAttribute="height" id="WeG-WT-6xl"/>
+                            <constraint firstAttribute="trailing" secondItem="Q7D-GG-PY0" secondAttribute="trailing" constant="80" id="XqI-ai-C2o"/>
                             <constraint firstAttribute="trailing" secondItem="LdG-Au-u84" secondAttribute="trailing" id="aTs-Fi-7B2"/>
                             <constraint firstItem="LdG-Au-u84" firstAttribute="leading" secondItem="Gd7-Wq-P2W" secondAttribute="leading" id="as6-qZ-1bw"/>
+                            <constraint firstItem="Q7D-GG-PY0" firstAttribute="leading" secondItem="Gd7-Wq-P2W" secondAttribute="leading" constant="80" id="b88-e1-H0i"/>
                             <constraint firstItem="dKh-7F-FU5" firstAttribute="top" secondItem="RQQ-aW-ceG" secondAttribute="bottom" constant="20" id="fea-2o-Gcx"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Tjr-st-s0S" secondAttribute="trailing" constant="40" id="h8u-Af-4fE"/>
                             <constraint firstItem="bYk-7e-37m" firstAttribute="centerX" secondItem="Gd7-Wq-P2W" secondAttribute="centerX" id="jm7-ba-ecw"/>
@@ -716,6 +734,7 @@
                             <constraint firstItem="Tjr-st-s0S" firstAttribute="top" secondItem="dKh-7F-FU5" secondAttribute="bottom" constant="10" id="rGi-wV-Gfg"/>
                             <constraint firstItem="c8e-YE-BjS" firstAttribute="width" secondItem="Tjr-st-s0S" secondAttribute="width" id="uW1-aG-8yN"/>
                             <constraint firstItem="c8e-YE-BjS" firstAttribute="centerX" secondItem="Gd7-Wq-P2W" secondAttribute="centerX" id="vFk-hJ-zbk"/>
+                            <constraint firstItem="LdG-Au-u84" firstAttribute="top" secondItem="Q7D-GG-PY0" secondAttribute="bottom" constant="15" id="vda-61-zcR"/>
                             <constraint firstItem="BOL-Be-MZl" firstAttribute="width" secondItem="Tjr-st-s0S" secondAttribute="width" id="x8E-ve-HWZ"/>
                         </constraints>
                     </view>

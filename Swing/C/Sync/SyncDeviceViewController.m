@@ -30,6 +30,10 @@
     if ([GlobalCache shareInstance].info.profileImage) {
         [self.imageView setImageWithURL:[NSURL URLWithString:[@"http://avatar.childrenlab.com/" stringByAppendingString:[GlobalCache shareInstance].info.profileImage]]];
     }
+    if ([GlobalCache shareInstance].user) {
+        self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", [GlobalCache shareInstance].user.firstName, [GlobalCache shareInstance].user.lastName];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {

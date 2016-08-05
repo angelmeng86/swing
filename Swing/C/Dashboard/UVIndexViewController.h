@@ -7,10 +7,15 @@
 //
 
 #import "LMBaseViewController.h"
+#import "CommonDef.h"
 
 @interface UVIndexViewController : LMBaseViewController
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UIButton *uvLabel;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
+
+@property (strong, nonatomic) WeartherModel* uvi;
+
 @end

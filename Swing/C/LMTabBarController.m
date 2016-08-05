@@ -28,6 +28,8 @@
         item.image = [item.image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         item.selectedImage = [item.selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
+    
+    [[GlobalCache shareInstance] queryKids];
 }
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
@@ -36,6 +38,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.selectedIndex = 2;
     // Do any additional setup after loading the view.
 //    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
 //    {

@@ -36,6 +36,15 @@
     if ([GlobalCache shareInstance].info.profileImage) {
         [self.imageBtn setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[@"http://avatar.childrenlab.com/" stringByAppendingString:[GlobalCache shareInstance].info.profileImage]]];
     }
+    
+    if ([GlobalCache shareInstance].user) {
+        self.firstNameTF.text = [GlobalCache shareInstance].user.firstName;
+        self.lastNameTF.text = [GlobalCache shareInstance].user.lastName;
+        self.phoneTF.text = [GlobalCache shareInstance].user.phoneNumber;
+        self.emailTF.text = [GlobalCache shareInstance].info.email;
+    }
+    
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kidsListLoaded:) name:KIDS_LIST_LOAD_NOTI object:nil];
 }
 

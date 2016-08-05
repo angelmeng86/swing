@@ -47,6 +47,10 @@
     return _sharedClient;
 }
 
+- (void)logout {
+    [self.config setHTTPAdditionalHeaders:nil];
+}
+
 - (NSError*)getErrorMessage:(NSDictionary*)response {
     if ([response[@"success"] boolValue]) {
         return nil;
@@ -83,6 +87,10 @@
                 completion(err);
             }
             else {
+                UserModel *user = [[UserModel alloc] initWithDictionary:responseObject[@"user"] error:nil];
+                if (user) {
+                    [GlobalCache shareInstance].user = user;
+                }
                 
                 [self.config setHTTPAdditionalHeaders:@{@"x-auth-token":model.access_token}];
                 [GlobalCache shareInstance].info = model;
@@ -98,22 +106,24 @@
     return task;
 }
 
-- (NSURLSessionDataTask *)userRegister:(NSDictionary*)data completion:( void (^)(NSError *error) )completion {
+- (NSURLSessionDataTask *)userRegister:(NSDictionary*)data completion:( void (^)(id user, NSError *error) )completion {
     NSURLSessionDataTask *task = [self POST:@"/user/register" parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"registerUser info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
             if (err) {
-                completion(err);
+                completion(nil, err);
             }
             else {
-                completion(nil);
+                UserModel *model = [[UserModel alloc] initWithDictionary:responseObject[@"user"] error:nil];
+                [GlobalCache shareInstance].user = model;
+                completion(model, nil);
             }
             
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            completion(error);
+            completion(nil, error);
         });
     }];
     
@@ -168,21 +178,22 @@
     return task;
 }
 
-- (NSURLSessionDataTask *)kidsAdd:(NSDictionary*)data completion:( void (^)(NSError *error) )completion {
+- (NSURLSessionDataTask *)kidsAdd:(NSDictionary*)data completion:( void (^)(id kid, NSError *error) )completion {
     NSURLSessionDataTask *task = [self POST:@"/kids/add" parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"kidsAdd info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
             if (err) {
-                completion(err);
+                completion(nil, err);
             }
             else {
-                completion(nil);
+                KidModel *kid = [[KidModel alloc] initWithDictionary:responseObject[@"kid"] error:nil];
+                completion(kid, nil);
             }
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            completion(error);
+            completion(nil, error);
         });
     }];
     

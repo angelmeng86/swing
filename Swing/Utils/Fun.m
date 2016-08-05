@@ -202,4 +202,22 @@
     return newImage;
 }
 
++ (NSDate*)dateFromString:(NSString*)str {
+    static NSDateFormatter *df = nil;
+    if (df == nil) {
+        df = [[NSDateFormatter alloc] init];
+        [df setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
+    }
+    return [df dateFromString:str];
+}
+
++ (NSString*)dateToString:(NSDate*)date {
+    static NSDateFormatter *df = nil;
+    if (df == nil) {
+        df = [[NSDateFormatter alloc] init];
+        [df setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
+    }
+    return [df stringFromDate:date];
+}
+
 @end

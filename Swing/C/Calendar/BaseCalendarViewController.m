@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    _dateSelected = [NSDate date];
     // Generate random events sort by date using a dateformatter for the demonstration
     [self createRandomEvents];
 }
@@ -84,6 +84,40 @@
 }
 
 #pragma mark - Views customization
+
+//- (BOOL)calendar:(JTCalendarManager *)calendar canDisplayPageWithDate:(NSDate *)date {
+//    NSLog(@"canDisplayPageWithDate:%@", date);
+//    return YES;
+//}
+
+//- (NSDate *)calendar:(JTCalendarManager *)calendar dateForPreviousPageWithCurrentDate:(NSDate *)currentDate{
+//    NSLog(@"dateForPreviousPageWithCurrentDate:%@", currentDate);
+//    return currentDate;
+//}
+
+/*!
+ * Provide the date for the next page.
+ * Return 1 month after the current date by default.
+ */
+//- (NSDate *)calendar:(JTCalendarManager *)calendar dateForNextPageWithCurrentDate:(NSDate *)currentDate {
+//    NSLog(@"dateForPreviousPageWithCurrentDate:%@", currentDate);
+//    return currentDate;
+//}
+
+/*!
+ * Indicate the previous page became the current page.
+ */
+- (void)calendarDidLoadPreviousPage:(JTCalendarManager *)calendar {
+    NSLog(@"calendarDidLoadPreviousPage:%@", calendar.date);
+    
+}
+
+/*!
+ * Indicate the next page became the current page.
+ */
+- (void)calendarDidLoadNextPage:(JTCalendarManager *)calendar {
+    NSLog(@"calendarDidLoadNextPage:%@", calendar.date);
+}
 
 - (UIView *)calendarBuildMenuItemView:(JTCalendarManager *)calendar
 {

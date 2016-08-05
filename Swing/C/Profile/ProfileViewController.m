@@ -10,6 +10,7 @@
 #import "CommonDef.h"
 #import "UIButton+AFNetworking.h"
 #import "ProfileDeviceCell.h"
+#import "AppDelegate.h"
 
 @interface ProfileViewController ()
 
@@ -45,7 +46,11 @@
     if ([GlobalCache shareInstance].info.profileImage) {
         [self.headerBtn setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[@"http://avatar.childrenlab.com/" stringByAppendingString:[GlobalCache shareInstance].info.profileImage]]];
     }
-//    self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", [GlobalCache shareInstance].info., self.lastNameTF.text];
+    if ([GlobalCache shareInstance].user) {
+        self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", [GlobalCache shareInstance].user.firstName, [GlobalCache shareInstance].user.lastName];
+        self.phoneLabel.text = [GlobalCache shareInstance].user.phoneNumber;
+        
+    }
     self.emailLabel.text = [GlobalCache shareInstance].info.email;
 }
 
@@ -96,6 +101,14 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
+}
+
+- (IBAction)logoutAction:(id)sender {
+    [[GlobalCache shareInstance] logout];
+    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
+    UIViewController *ctl = [stroyBoard instantiateInitialViewController];
+    AppDelegate *ad = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    ad.window.rootViewController = ctl;
 }
 
 @end

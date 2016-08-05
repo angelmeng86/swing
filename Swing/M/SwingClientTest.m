@@ -8,24 +8,33 @@
 
 #import "SwingClientTest.h"
 #import "CommonDef.h"
+#import "MMLocationManager.h"
 
+@interface SwingClientTest ()
+
+@property (nonatomic, strong) KidModel* kid;
+@property (nonatomic, strong) EventModel* event;
+
+@end
 
 @implementation SwingClientTest
 
-+ (void)testAll {
-    [SwingClientTest test:0];
++ (void)testAll:(int)index {
+    SwingClientTest *test = [[SwingClientTest alloc] init];
+    [test test:index];
 }
 
-+ (void)test:(int)index {
+- (void)test:(int)index {
+    NSLog(@"test[%d]----------------", index);
     switch (index) {
         case 0:
         {
             //Params(required) email
-            [[SwingClient sharedClient] userIsEmailRegistered:@"test1@swing.com" completion:^(NSNumber *result, NSError *error) {
+            [[SwingClient sharedClient] userIsEmailRegistered:@"test10@swing.com" completion:^(NSNumber *result, NSError *error) {
                 if (error) {
                     LOG_D(@"isEmailRegistered fail: %@", error);
                 }
-                [SwingClientTest test:index + 1];
+                [self test:index + 1];
             }];
         }
             break;
@@ -33,21 +42,24 @@
         {
             //Params(required) - email, password, phoneNumber, firstName, lastName
             //other Params - birthday, nickName, sex, address, city, zipCode, role(2 type: ROLE_USER, ROLE_NANNY)
-            [[SwingClient sharedClient] userRegister:@{@"email":@"test1@swing.com", @"password":@"111111", @"phoneNumber":@"13838078273", @"firstName":@"Mapple", @"lastName":@"Liu", @"zipCode":@"123456"} completion:^(NSError *error) {
+            [[SwingClient sharedClient] userRegister:@{@"email":@"test10@swing.com", @"password":@"111111", @"phoneNumber":@"13838078273", @"firstName":@"Mapple", @"lastName":@"Liu", @"zipCode":@"123456"} completion:^(id user, NSError *error) {
                 if (error) {
                     LOG_D(@"registerUser fail: %@", error);
                 }
-                [SwingClientTest test:index + 1];
+                else {
+                    NSLog(@"user:%@", user);
+                }
+                [self test:index + 1];
             }];
         }
             break;
         case 2:
         {
-            [[SwingClient sharedClient]userLogin:@"test1@swing.com" password:@"111111" completion:^(NSError *error) {
+            [[SwingClient sharedClient]userLogin:@"test10@swing.com" password:@"111111" completion:^(NSError *error) {
                 if (error) {
                     LOG_D(@"login fail: %@", error);
                 }
-                [SwingClientTest test:index + 1];
+                [self test:index + 1];
             }];
         }
             break;
@@ -57,7 +69,7 @@
                 if (error) {
                     LOG_D(@"uploadProfileImage fail: %@", error);
                 }
-                [SwingClientTest test:index + 1];
+                [self test:index + 1];
             }];
         }
             break;
@@ -65,21 +77,32 @@
         {
             //Params(required) - firstName, lastName, birthday(Format must be: "yyyy-MM-dd")
             //Params(not required) - nickName, note
-            [[SwingClient sharedClient] kidsAdd:@{@"firstName":@"Lucy", @"lastName":@"Kid", @"":@"1900-08-04"} completion:^(NSError *error) {
+            [[SwingClient sharedClient] kidsAdd:@{@"firstName":@"Lucy", @"lastName":@"Kid", @"birthday":@"1900-08-04"} completion:^(id kid,NSError *error) {
                 if (error) {
                     LOG_D(@"kidsAdd fail: %@", error);
                 }
-                [SwingClientTest test:index + 1];
+                else {
+                    NSLog(@"kid:%@", kid);
+                    self.kid = kid;
+                }
+                [self test:index + 1];
             }];
         }
             break;
         case 5:
         {
-            [[SwingClient sharedClient] kidsUploadKidsProfileImage:LOAD_IMAGE(@"battery_icon") kidId:@"2" completion:^(NSString *profileImage, NSError *error) {
+            NSString *objId = @"2";
+            if (self.kid) {
+                objId = [NSString stringWithFormat:@"%d", self.kid.objId];
+            }
+            [[SwingClient sharedClient] kidsUploadKidsProfileImage:LOAD_IMAGE(@"battery_icon") kidId:objId completion:^(NSString *profileImage, NSError *error) {
                 if (error) {
                     LOG_D(@"kidsUploadKidsProfileImage fail: %@", error);
                 }
-                [SwingClientTest test:index + 1];
+                else {
+                    NSLog(@"profileImage:%@", profileImage);
+                }
+                [self test:index + 1];
             }];
         }
             break;
@@ -89,27 +112,100 @@
                 if (error) {
                     LOG_D(@"kidsListWithCompletion fail: %@", error);
                 }
-                [SwingClientTest test:index + 1];
+                else {
+                    NSLog(@"list:%@", list);
+                }
+                [self test:index + 1];
             }];
         }
             break;
         case 7:
         {
-            [[SwingClient sharedClient] kidsListWithCompletion:^(NSArray *list, NSError *error) {
+            //Params(required) - eventName, startDate, endDate, color, status, description, alert, city, state
+            //startDate and endDate format: yyyy/MM/dd HH:mm:ss
+            NSDictionary *data = @{@"eventName":@"Swing", @"startDate":@"2016/08/04 08:30:00", @"endDate":@"2016/08/04 10:40:00", @"color":@"blue", @"status":@"", @"description":@"Test", @"alert":@"0", @"city":@"Cechi"};
+            [[SwingClient sharedClient] calendarAddEvent:data completion:^(id event, NSError *error) {
                 if (error) {
-                    LOG_D(@"kidsListWithCompletion fail: %@", error);
+                    LOG_D(@"calendarAddEvent fail: %@", error);
                 }
-                [SwingClientTest test:index + 1];
+                else {
+                    NSLog(@"event:%@", event);
+                    self.event = event;
+                }
+                [self test:index + 1];
             }];
         }
             break;
         case 8:
         {
-            [[SwingClient sharedClient] kidsListWithCompletion:^(NSArray *list, NSError *error) {
+            NSString *objId = @"10";
+            if (self.event) {
+                objId = [NSString stringWithFormat:@"%d", self.event.objId];
+            }
+            //Params(required) - eventId, todoList
+            [[SwingClient sharedClient] calendarAddTodo:objId todoList:@"hello|world" completion:^(id event, NSArray *todoArray, NSError *error) {
                 if (error) {
-                    LOG_D(@"kidsListWithCompletion fail: %@", error);
+                    LOG_D(@"calendarAddTodo fail: %@", error);
                 }
-                [SwingClientTest test:index + 1];
+                else {
+                    NSLog(@"event:%@", event);
+                    NSLog(@"todoArray:%@", todoArray);
+                }
+                [self test:index + 1];
+            }];
+        }
+            break;
+        case 9:
+        {
+            //Params - query, month, year, day
+            //query - month or day.
+            //If query == month, only month and year are required from parameters.
+            //If query == day, month, year, and day are required from parameters.
+            [[SwingClient sharedClient] calendarGetEvents:[NSDate date] type:GetEventTypeMonth completion:^(NSArray *eventArray, NSError *error) {
+                if (error) {
+                    LOG_D(@"calendarGetEvents1 fail: %@", error);
+                }
+                else {
+                    NSLog(@"eventArray:%@", eventArray);
+                }
+                [self test:index + 1];
+            }];
+        }
+            break;
+        case 10:
+        {
+            //Params - query, month, year, day
+            //query - month or day.
+            //If query == month, only month and year are required from parameters.
+            //If query == day, month, year, and day are required from parameters.
+            [[SwingClient sharedClient] calendarGetEvents:[NSDate date] type:GetEventTypeDay completion:^(NSArray *eventArray, NSError *error) {
+                if (error) {
+                    LOG_D(@"calendarGetEvents2 fail: %@", error);
+                }
+                else {
+                    NSLog(@"eventArray:%@", eventArray);
+                }
+                [self test:index + 1];
+            }];
+        }
+            break;
+        case 11:
+        {
+            [WeartherModel weatherQuery:@"37.793293" lon:@"-122.404442" completion:^(id weather, NSError *error) {
+                if (error) {
+                    LOG_D(@"weatherQuery fail: %@", error);
+                }
+                else {
+                    NSLog(@"weather:%@", weather);
+                }
+                [self test:index + 1];
+            }];
+        }
+            break;
+            case 12:
+        {
+            [[MMLocationManager shareLocation] getLocationCoordinate:^(CLLocationCoordinate2D locationCorrrdinate) {
+                NSLog(@"latitude:%f longitude:%f", locationCorrrdinate.latitude,locationCorrrdinate.longitude);
             }];
         }
             break;

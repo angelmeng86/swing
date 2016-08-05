@@ -47,7 +47,7 @@
 }
 
 - (BOOL)validateTextField {
-    if (self.firstNameTF.text.length == 0 || self.lastNameTF.text.length == 0 || self.birthdayTF.text.length == 0) {
+    if (self.firstNameTF.text.length == 0 || self.lastNameTF.text.length == 0) {
         [Fun showMessageBoxWithTitle:@"Error" andMessage:@"Please input info."];
         return NO;
     }
@@ -56,10 +56,10 @@
 }
 
 - (void)goNext {
-    [[GlobalCache shareInstance] queryKids];
     for (UIViewController *ctl in self.navigationController.viewControllers) {
         if ([ctl isKindOfClass:[EditProfileViewController class]]) {
             //EditProfile add device flow
+            [[GlobalCache shareInstance] queryKids];
             [self.navigationController popToViewController:ctl animated:YES];
             return;
         }
@@ -77,21 +77,19 @@
         [self.lastNameTF becomeFirstResponder];
     }
     else if (textField == self.lastNameTF) {
-        [self.birthdayTF becomeFirstResponder];
-    }
-    else if (textField == self.birthdayTF) {
         
         if ([self validateTextField]) {
             [SVProgressHUD showWithStatus:@"Add kid info, please wait..."];
-            [[SwingClient sharedClient] kidsAdd:@{@"firstName":self.firstNameTF.text, @"lastName":self.lastNameTF.text, @"birthday":self.birthdayTF.text} completion:^(NSError *error) {
+            [[SwingClient sharedClient] kidsAdd:@{@"firstName":self.firstNameTF.text, @"lastName":self.lastNameTF.text} completion:^(id kid, NSError *error) {
                 if (error) {
                     LOG_D(@"kidsAdd fail: %@", error);
                     [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
                 }
                 else {
-                    if (image) {
+                    KidModel *model = kid;
+                    if (image && model) {
                         [SVProgressHUD showWithStatus:@"UploadImage, please wait..."];
-                        [[SwingClient sharedClient] kidsUploadKidsProfileImage:image kidId:@"2" completion:^(NSString *profileImage, NSError *error) {
+                        [[SwingClient sharedClient] kidsUploadKidsProfileImage:image kidId:[NSString stringWithFormat:@"%d", model.objId] completion:^(NSString *profileImage, NSError *error) {
                             if (error) {
                                 LOG_D(@"uploadProfileImage fail: %@", error);
                             }

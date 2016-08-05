@@ -15,4 +15,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *deviceConllectionView;
+- (IBAction)logoutAction:(id)sender;
 @end

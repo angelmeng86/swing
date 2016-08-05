@@ -30,4 +30,7 @@
 
 + (UIImage *)imageByScalingToMaxSize:(UIImage *)sourceImage maxWidth:(CGFloat)maxWidth;
 
++ (NSDate*)dateFromString:(NSString*)str;
++ (NSString*)dateToString:(NSDate*)date;
+
 @end

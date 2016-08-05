@@ -38,6 +38,8 @@
 #import "EventModel.h"
 #import "KidModel.h"
 #import "ToDoModel.h"
+#import "UserModel.h"
+#import "WeartherModel.h"
 
 #import "Fun.h"
 #import "CameraUtility.h"

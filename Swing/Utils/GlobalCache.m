@@ -36,16 +36,38 @@
     
     NSString *json = [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
     _info = [[LoginedModel alloc] initWithString:json error:nil];
+    
+    json = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
+    _user = [[UserModel alloc] initWithString:json error:nil];
 }
 
 - (void)setInfo:(LoginedModel *)info {
     _info = info;
-    [self saveInfo];
+    [[NSUserDefaults standardUserDefaults] setObject:[_info toJSONString] forKey:@"token"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)setUser:(UserModel *)user {
+    _user = user;
+    [[NSUserDefaults standardUserDefaults] setObject:[_user toJSONString] forKey:@"user"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)saveInfo {
     [[NSUserDefaults standardUserDefaults] setObject:[_info toJSONString] forKey:@"token"];
+    [[NSUserDefaults standardUserDefaults] setObject:[_user toJSONString] forKey:@"user"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)logout {
+    self.info = nil;
+    self.user = nil;
+    self.kidsList = nil;
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"token"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [[SwingClient sharedClient] logout];
 }
 
 - (void)queryKids {
