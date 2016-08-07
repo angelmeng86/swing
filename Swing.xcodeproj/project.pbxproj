@@ -45,6 +45,7 @@
 		AD9B0D941D3BB947009FDD95 /* BatteryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D931D3BB947009FDD95 /* BatteryViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD9B0D971D3BB954009FDD95 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D961D3BB954009FDD95 /* CalendarViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD9B0D9A1D3BB964009FDD95 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D991D3BB964009FDD95 /* ProfileViewController.m */; settings = {ASSET_TAGS = (); }; };
+		ADBC9BD31D578403007E4A2C /* JSONValueTransformer+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBC9BD21D578403007E4A2C /* JSONValueTransformer+UIColor.m */; settings = {ASSET_TAGS = (); }; };
 		ADCED9E41D3D2BAC002E3F78 /* LoginedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCED9E31D3D2BAC002E3F78 /* LoginedModel.m */; settings = {ASSET_TAGS = (); }; };
 		ADCED9E71D3D3C8B002E3F78 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCED9E61D3D3C8B002E3F78 /* RegisterViewController.m */; settings = {ASSET_TAGS = (); }; };
 		ADDCD3E81D4C4DA90031DC66 /* UVIndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDCD3E71D4C4DA90031DC66 /* UVIndexViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -157,6 +158,8 @@
 		AD9B0D961D3BB954009FDD95 /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CalendarViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AD9B0D981D3BB964009FDD95 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		AD9B0D991D3BB964009FDD95 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		ADBC9BD11D578403007E4A2C /* JSONValueTransformer+UIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSONValueTransformer+UIColor.h"; sourceTree = "<group>"; };
+		ADBC9BD21D578403007E4A2C /* JSONValueTransformer+UIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JSONValueTransformer+UIColor.m"; sourceTree = "<group>"; };
 		ADCED9E21D3D2BAC002E3F78 /* LoginedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginedModel.h; sourceTree = "<group>"; };
 		ADCED9E31D3D2BAC002E3F78 /* LoginedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginedModel.m; sourceTree = "<group>"; };
 		ADCED9E51D3D3C8B002E3F78 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -254,6 +257,8 @@
 		AD0B81071D37EF7400F43E72 /* M */ = {
 			isa = PBXGroup;
 			children = (
+				ADBC9BD11D578403007E4A2C /* JSONValueTransformer+UIColor.h */,
+				ADBC9BD21D578403007E4A2C /* JSONValueTransformer+UIColor.m */,
 				AD05B5BE1D3BD187007BCF7C /* SwingClient.h */,
 				AD05B5BF1D3BD187007BCF7C /* SwingClient.m */,
 				AD95A5191D5243390047A0A2 /* SwingClientTest.h */,
@@ -709,6 +714,7 @@
 				ADEF31CF1D478D2B00BB6A9B /* BindReadyViewController.m in Sources */,
 				ADE6ED971D4E538B00FFA573 /* EventModel.m in Sources */,
 				AD0B811B1D37EF7400F43E72 /* LMBaseTableViewController2.m in Sources */,
+				ADBC9BD31D578403007E4A2C /* JSONValueTransformer+UIColor.m in Sources */,
 				AD74382D1D4DE08000F5F9D2 /* WeatherContentViewController.m in Sources */,
 				AD7438271D4DD50C00F5F9D2 /* JBBaseChartViewController.m in Sources */,
 				AD2D33901D538418005D9298 /* ToDoModel.m in Sources */,

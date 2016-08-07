@@ -33,4 +33,10 @@
 + (NSDate*)dateFromString:(NSString*)str;
 + (NSString*)dateToString:(NSDate*)date;
 
++ (UIColor*)colorFromNSString:(NSString *)string;
++ (NSString*)stringFromColor:(UIColor*)color;
+
++ (NSData*)longToByteArray:(long)data;
++ (long)byteArrayToLong:(NSData*)data;
+
 @end

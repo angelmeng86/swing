@@ -220,4 +220,53 @@
     return [df stringFromDate:date];
 }
 
++ (UIColor*)colorFromNSString:(NSString *)string
+{
+    //
+    // http://stackoverflow.com/a/13648705
+    //
+    
+    NSString *noHashString = [string stringByReplacingOccurrencesOfString:@"#" withString:@""]; // remove the #
+    NSScanner *scanner = [NSScanner scannerWithString:noHashString];
+    [scanner setCharactersToBeSkipped:[NSCharacterSet symbolCharacterSet]]; // remove + and $
+    
+    unsigned hex;
+    if (![scanner scanHexInt:&hex]) return nil;
+    int r = (hex >> 16) & 0xFF;
+    int g = (hex >> 8) & 0xFF;
+    int b = (hex) & 0xFF;
+    
+    return [UIColor colorWithRed:r / 255.0f green:g / 255.0f blue:b / 255.0f alpha:1.0f];
+}
+
++ (NSString*)stringFromColor:(UIColor*)color
+{
+    //
+    // http://softteco.blogspot.de/2011/06/extract-hex-rgb-color-from-uicolor.mtml
+    //
+    
+    return [NSString stringWithFormat:@"#%02X%02X%02X", (int)((CGColorGetComponents(color.CGColor))[0]*255.0), (int)((CGColorGetComponents(color.CGColor))[1]*255.0), (int)((CGColorGetComponents(color.CGColor))[2]*255.0)];
+}
+
++ (NSData*)longToByteArray:(long)data {
+    
+    unsigned char byteArray[4] = { 0 };
+    for (int index = 0; index < 4; index++) {
+        unsigned char byte = data & 0xff;
+        byteArray[index] = byte;
+        data = (data - byte) / 256;
+    }
+    return [NSData dataWithBytes:byteArray length:4];
+}
+
++ (long)byteArrayToLong:(NSData*)data {
+    
+    long value = 0;
+    const unsigned char* byte = (const unsigned char*)data.bytes;
+    for (int i = (int)data.length ; --i >= 0; ) {
+        value = (value * 256) + byte[i];
+    }
+    return value;
+}
+
 @end

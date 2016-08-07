@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class EventModel;
 @interface EventLabel : UILabel
 
 @property (weak, nonatomic) NSLayoutConstraint *positionLayoutConstaint;
+@property (strong, nonatomic) EventModel *model;
 
 @end

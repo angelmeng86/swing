@@ -10,9 +10,9 @@
 #import "CommonDef.h"
 
 @interface BaseCalendarViewController ()
-{
-    NSMutableDictionary *_eventsByDate;
-}
+//{
+//    NSMutableDictionary *_eventsByDate;
+//}
 
 @end
 
@@ -22,7 +22,14 @@
     [super viewDidLoad];
     _dateSelected = [NSDate date];
     // Generate random events sort by date using a dateformatter for the demonstration
-    [self createRandomEvents];
+//    [self createRandomEvents];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(eventLoaded:) name:EVENT_LIST_UPDATE_NOTI object:nil];
+    [[GlobalCache shareInstance] queryMonthEvents:_dateSelected];
+}
+
+- (void)eventLoaded:(NSNotification*)notification {
+    [_calendarManager reload];
 }
 
 - (void)initCalendarManager:(BOOL)weekModeEnabled {
@@ -39,7 +46,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+/*
 // Used only to have a key for _eventsByDate
 - (NSDateFormatter *)dateFormatter
 {
@@ -79,10 +86,10 @@
             _eventsByDate[key] = [NSMutableArray new];
         }
         
-        [_eventsByDate[key] addObject:randomDate];
+        [_eventsByDate[key] addObject:@"OYE"];
     }
 }
-
+*/
 #pragma mark - Views customization
 
 //- (BOOL)calendar:(JTCalendarManager *)calendar canDisplayPageWithDate:(NSDate *)date {
@@ -109,7 +116,7 @@
  */
 - (void)calendarDidLoadPreviousPage:(JTCalendarManager *)calendar {
     NSLog(@"calendarDidLoadPreviousPage:%@", calendar.date);
-    
+    [[GlobalCache shareInstance] queryMonthEvents:calendar.date];
 }
 
 /*!
@@ -117,6 +124,7 @@
  */
 - (void)calendarDidLoadNextPage:(JTCalendarManager *)calendar {
     NSLog(@"calendarDidLoadNextPage:%@", calendar.date);
+    [[GlobalCache shareInstance] queryMonthEvents:calendar.date];
 }
 
 - (UIView *)calendarBuildMenuItemView:(JTCalendarManager *)calendar
@@ -188,7 +196,7 @@
         dayView.textLabel.textColor = [UIColor blackColor];
     }
     
-    if([self haveEventForDay:dayView.date]){
+    if([[GlobalCache shareInstance] haveEventForDay:dayView.date]){
         dayView.dotView.hidden = NO;
     }
     else{

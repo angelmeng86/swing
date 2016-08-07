@@ -10,6 +10,7 @@
 #import "CommonDef.h"
 
 #define KIDS_LIST_LOAD_NOTI @"KIDS_LIST_LOAD_NOTI"
+#define EVENT_LIST_UPDATE_NOTI @"EVENT_LIST_UPDATE_NOTI"
 
 @interface GlobalCache : NSObject
 
@@ -21,6 +22,16 @@
 
 - (void)queryKids;
 
+- (NSArray*)searchEventsByDay:(NSDate*)date;
+
+- (void)queryMonthEvents:(NSDate*)date;
+
+- (void)addEvent:(EventModel*)model;
+
+- (void)deleteEvent:(EventModel*)model;
+
+- (BOOL)haveEventForDay:(NSDate *)date;
+
 - (void)logout;
 
 @property (strong, nonatomic) LoginedModel* info;
@@ -28,5 +39,8 @@
 
 @property (strong, nonatomic) NSArray* kidsList;
 @property (strong, nonatomic) NSURLSessionDataTask *kidsTask;
+
+@property (strong, nonatomic) NSMutableDictionary* calendarEventsByMonth;
+@property (strong, nonatomic) NSMutableSet* calendarQueue;
 
 @end

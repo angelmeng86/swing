@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet JTHorizontalCalendarView *calendarContentView;
 
 @property (weak, nonatomic) IBOutlet UIButton *monthBtn;
+@property (weak, nonatomic) IBOutlet UIButton *todayBtn;
 
 @end

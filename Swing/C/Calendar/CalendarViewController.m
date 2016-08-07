@@ -8,6 +8,7 @@
 
 #import "CalendarViewController.h"
 #import "MonthCalendarViewController.h"
+#import "DayCalendarViewController.h"
 #import "CommonDef.h"
 
 @interface CalendarViewController ()
@@ -44,6 +45,10 @@
         MonthCalendarViewController *ctl = segue.destinationViewController;
         ctl.delegate = self;
     }
+    else if (sender == self.todayBtn) {
+        DayCalendarViewController *ctl = segue.destinationViewController;
+        ctl.date = nil;
+    }
 }
 
 - (void)monthCalendarDidSelected:(NSDate*)date {
@@ -60,7 +65,11 @@
 
 - (void)calendar:(JTCalendarManager *)calendar didTouchDayView:(JTCalendarDayView *)dayView
 {
-    [super calendar:calendar didTouchDayView:dayView];
+//    [super calendar:calendar didTouchDayView:dayView];
+    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
+    DayCalendarViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"DayCalendar"];
+    ctl.date = dayView.date;
+    [self.navigationController pushViewController:ctl animated:YES];
 }
 
 @end

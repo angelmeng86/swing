@@ -10,6 +10,8 @@
 
 @interface ColorLabel : UIView
 
++ (NSArray*)colors;
+
 @property (nonatomic, strong) UIColor *selectedColor;
 
 @end

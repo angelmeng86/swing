@@ -10,13 +10,13 @@
 #import "TimeLineView.h"
 #import "EventLabel.h"
 #import "CommonDef.h"
+#import "ColorLabel.h"
 
 CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
 
 @interface DayCalendarViewController ()
 
 @property (nonatomic, strong) NSArray *eventData;
-@property (nonatomic, strong) NSArray *eventColors;
 
 @property (nonatomic, strong) NSArray *hourLines;
 @property (nonatomic, strong) UIView *contentView;
@@ -39,29 +39,31 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     model.eventName = @"Walk in the park";
     model.startDate = [dateFormatter dateFromString:@"6:30"];
     model.endDate = [dateFormatter dateFromString:@"8:00"];
+    model.color = RGBA(247, 202, 49, 1.0f);
     [mutableData addObject:model];
     
     model = [EventModel new];
     model.eventName = @"Swimming";
     model.startDate = [dateFormatter dateFromString:@"9:00"];
     model.endDate = [dateFormatter dateFromString:@"10:00"];
+    model.color = RGBA(99, 90, 185, 1.0f);
     [mutableData addObject:model];
     
     model = [EventModel new];
     model.eventName = @"Baseball";
     model.startDate = [dateFormatter dateFromString:@"11:00"];
     model.endDate = [dateFormatter dateFromString:@"12:00"];
+    model.color = RGBA(58, 187, 166, 1.0f);
     [mutableData addObject:model];
     
     model = [EventModel new];
     model.eventName = @"Walk in the park";
     model.startDate = [dateFormatter dateFromString:@"12:00"];
     model.endDate = [dateFormatter dateFromString:@"13:45"];
+    model.color = RGBA(237, 47, 107, 1.0f);
     [mutableData addObject:model];
     
     _eventData = [NSArray arrayWithArray:mutableData];
-    
-    _eventColors = @[RGBA(247, 202, 49, 1.0f), RGBA(99, 90, 185, 1.0f), RGBA(58, 187, 166, 1.0f), RGBA(237, 47, 107, 1.0f)];
 }
 
 - (void)viewDidLoad {
@@ -70,8 +72,6 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     // Do any additional setup after loading the view.
     
     [self initCalendarManager:YES];
-    
-    [self initFakeData];
     
     UIView *contentView = [UIView new];
     self.contentView = contentView;
@@ -115,15 +115,42 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     [self loadEventData];
 }
 
+- (void)setDate:(NSDate *)date {
+    _date = date;
+    self.dateSelected = date;
+//    [self loadEventData];
+}
+
 - (void)loadEventData {
-    int i = 0;
+    if (_date == nil) {
+        [self initFakeData];
+    }
+    else {
+        self.eventData = [[GlobalCache shareInstance] searchEventsByDay:_date];
+        self.eventData = [self.eventData sortedArrayWithOptions:NSSortStable usingComparator:^NSComparisonResult(EventModel *obj1, EventModel * obj2) {
+            if ([obj1.startDate earlierDate:obj2.startDate]) {
+                return NSOrderedAscending;
+            }
+            else if ([obj1.startDate laterDate:obj2.startDate]) {
+                return NSOrderedDescending;
+            }
+            else {
+                return NSOrderedSame;
+            }
+        }];
+    }
+    
+    
     for (EventModel *model in self.eventData) {
-        [self addEvent:model color:[_eventColors objectAtIndex:i % 4]];
-        i++;
+        [self addEvent:model color:model.color];
     }
 }
 
 - (void)addEvent:(EventModel*)model color:(UIColor*)color {
+    if (color == nil) {
+        color = [[ColorLabel colors] firstObject];
+    }
+    
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *start = [cal components:NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:model.startDate];
     TimeLineView *startLine = [self.hourLines objectAtIndex:[start hour]];
@@ -142,6 +169,7 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     label.font = [UIFont boldAvenirFontOfSize:20];
     label.text = model.eventName;
     label.backgroundColor = color;
+    label.model = model;
     
     [self.contentView addSubview:label];
     label.positionLayoutConstaint = [label autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:startLine withOffset:40];
@@ -173,6 +201,15 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
         [label.superview layoutIfNeeded];
     } completion:^(BOOL finished) {
         [label removeFromSuperview];
+        [[SwingClient sharedClient] calendarDeleteEvent:[NSString stringWithFormat:@"%d", label.model.objId] completion:^(NSError *error) {
+            if (!error) {
+                LOG_D(@"calendarDeleteEvent sucess.");
+                [[GlobalCache shareInstance] deleteEvent:label.model];
+            }
+            else {
+                LOG_D(@"calendarDeleteEvent fail: %@", error);
+            }
+        }];
     }];
 }
 

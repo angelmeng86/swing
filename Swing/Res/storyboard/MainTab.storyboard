@@ -150,6 +150,7 @@
                         <outlet property="calendarContentView" destination="fkd-6t-2XK" id="VTd-Yx-F5g"/>
                         <outlet property="calendarMenuView" destination="BQ8-qt-y4x" id="ozB-D5-6Ii"/>
                         <outlet property="monthBtn" destination="1FD-iw-Etv" id="yLh-Ms-9GA"/>
+                        <outlet property="todayBtn" destination="nnY-FK-G2i" id="cpM-9N-rND"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k7E-25-tgH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -159,7 +160,7 @@
         <!--Calendar-->
         <scene sceneID="gfZ-sR-fj6">
             <objects>
-                <viewController id="ZfB-sh-Q29" customClass="DayCalendarViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DayCalendar" id="ZfB-sh-Q29" customClass="DayCalendarViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nRy-V3-7av"/>
                         <viewControllerLayoutGuide type="bottom" id="Xm9-4E-4ef"/>
@@ -1293,7 +1294,7 @@
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xbU-1G-KIb">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="380"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Alert" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YB9-n2-TXn">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Event Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YB9-n2-TXn">
                                                 <rect key="frame" x="20" y="20" width="560" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="NjG-hC-lXs"/>
@@ -1427,7 +1428,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="saveAction:" destination="Snl-Uv-aL1" eventType="touchUpInside" id="izs-dc-bmj"/>
+                                    <action selector="saveAction:" destination="6eH-KP-pi1" eventType="touchUpInside" id="WGA-Kt-5iR"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1442,6 +1443,18 @@
                             <constraint firstItem="vWK-bl-KcF" firstAttribute="leading" secondItem="SA8-rQ-VZg" secondAttribute="leading" constant="80" id="cyc-qE-OGW"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="alertTF" destination="olO-Q3-tdC" id="Le3-ve-Egk"/>
+                        <outlet property="cityTF" destination="BEC-Kj-RpK" id="hlo-xa-x9K"/>
+                        <outlet property="colorCtl" destination="Jn0-h9-dD5" id="47Z-i4-aFN"/>
+                        <outlet property="descTF" destination="Las-xa-pTI" id="aS0-WU-b0p"/>
+                        <outlet property="endTF" destination="rMe-ub-Dse" id="6BW-Tc-t8M"/>
+                        <outlet property="nameTF" destination="YB9-n2-TXn" id="ZTt-4j-lW8"/>
+                        <outlet property="repeatTF" destination="WPE-Xt-642" id="dJh-pk-0Sp"/>
+                        <outlet property="startTF" destination="qY0-G9-EEa" id="EzL-4V-4Z5"/>
+                        <outlet property="stateTF" destination="zNN-TP-nFZ" id="bIJ-b8-C1O"/>
+                        <outlet property="todoCtl" destination="BY1-4C-vmx" id="Ksj-xF-BtM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hMR-DK-H4n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

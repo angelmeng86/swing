@@ -34,6 +34,14 @@
     return self;
 }
 
++ (NSArray*)colors {
+    static NSArray* colors = nil;
+    if (colors == nil) {
+        colors = @[RGBA(247, 202, 49, 1.0f), RGBA(99, 90, 185, 1.0f), RGBA(58, 187, 166, 1.0f), RGBA(237, 47, 107, 1.0f), RGBA(240, 93, 37, 1.0f), RGBA(137, 135, 137, 1.0f)];
+    }
+    return colors;
+}
+
 - (void)initView {
     self.backgroundColor = [UIColor whiteColor];
     self.layer.cornerRadius = 5.f;
@@ -47,7 +55,8 @@
     [label autoPinEdgeToSuperviewMargin:ALEdgeLeading];
     [label autoSetDimension:ALDimensionHeight toSize:30];
     
-    selectedBtn = [self createDotBtn:RGBA(240, 93, 37, 1.0f) superView:self];
+    _selectedColor = RGBA(240, 93, 37, 1.0f);
+    selectedBtn = [self createDotBtn:_selectedColor superView:self];
     
     [label autoPinEdge:ALEdgeTrailing toEdge:ALEdgeLeading ofView:selectedBtn withOffset:10];
     [selectedBtn autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:10];
@@ -62,7 +71,7 @@
     colorsViewHeight = [colorsView autoSetDimension:ALDimensionHeight toSize:0];
     
     NSMutableArray *array = [NSMutableArray array];
-    NSArray *colors = @[RGBA(247, 202, 49, 1.0f), RGBA(99, 90, 185, 1.0f), RGBA(58, 187, 166, 1.0f), RGBA(237, 47, 107, 1.0f), RGBA(240, 93, 37, 1.0f), RGBA(137, 135, 137, 1.0f)];
+    NSArray *colors = [ColorLabel colors];
     for (int i = 0; i < colors.count; i++) {
         UIButton *btn = [self createDotBtn:colors[i] superView:colorsView];
         [array addObject:btn];
@@ -118,7 +127,8 @@
         }];
     }
     else {
-        selectedBtn.backgroundColor = sender.backgroundColor;
+        _selectedColor = sender.backgroundColor;
+        selectedBtn.backgroundColor = _selectedColor;
         colorsViewHeight.constant = 0.0f;
         [UIView animateWithDuration:0.3f animations:^{
             [self.superview layoutIfNeeded];
