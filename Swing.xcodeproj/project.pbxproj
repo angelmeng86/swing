@@ -63,9 +63,8 @@
 		ADE6ED971D4E538B00FFA573 /* EventModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE6ED961D4E538B00FFA573 /* EventModel.m */; settings = {ASSET_TAGS = (); }; };
 		ADE820731D54C26200E12768 /* JSONValueTransformer+NSDate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE820721D54C26200E12768 /* JSONValueTransformer+NSDate.m */; settings = {ASSET_TAGS = (); }; };
 		ADE820761D54C62D00E12768 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE820751D54C62D00E12768 /* UserModel.m */; settings = {ASSET_TAGS = (); }; };
-		ADE820791D54D99000E12768 /* WeartherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE820781D54D99000E12768 /* WeartherModel.m */; settings = {ASSET_TAGS = (); }; };
-		ADE8207C1D54F08200E12768 /* MMLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8207B1D54F08200E12768 /* MMLocationManager.m */; settings = {ASSET_TAGS = (); }; };
-		ADE8207F1D54F0E100E12768 /* NSDictionary+MM.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8207E1D54F0E100E12768 /* NSDictionary+MM.m */; settings = {ASSET_TAGS = (); }; };
+		ADE820791D54D99000E12768 /* WeatherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE820781D54D99000E12768 /* WeatherModel.m */; settings = {ASSET_TAGS = (); }; };
+		ADE924FD1D58C9EE00EBB87D /* RCLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE924FC1D58C9EE00EBB87D /* RCLocationManager.m */; settings = {ASSET_TAGS = (); }; };
 		ADEF31CC1D47856200BB6A9B /* KidBindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31CB1D47856200BB6A9B /* KidBindViewController.m */; settings = {ASSET_TAGS = (); }; };
 		ADEF31CF1D478D2B00BB6A9B /* BindReadyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31CE1D478D2B00BB6A9B /* BindReadyViewController.m */; settings = {ASSET_TAGS = (); }; };
 		ADEF31D21D478E9900BB6A9B /* RoundButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31D11D478E9900BB6A9B /* RoundButton.m */; settings = {ASSET_TAGS = (); }; };
@@ -190,12 +189,10 @@
 		ADE820721D54C26200E12768 /* JSONValueTransformer+NSDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JSONValueTransformer+NSDate.m"; sourceTree = "<group>"; };
 		ADE820741D54C62D00E12768 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		ADE820751D54C62D00E12768 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
-		ADE820771D54D99000E12768 /* WeartherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeartherModel.h; sourceTree = "<group>"; };
-		ADE820781D54D99000E12768 /* WeartherModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeartherModel.m; sourceTree = "<group>"; };
-		ADE8207A1D54F08200E12768 /* MMLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLocationManager.h; sourceTree = "<group>"; };
-		ADE8207B1D54F08200E12768 /* MMLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLocationManager.m; sourceTree = "<group>"; };
-		ADE8207D1D54F0E100E12768 /* NSDictionary+MM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+MM.h"; sourceTree = "<group>"; };
-		ADE8207E1D54F0E100E12768 /* NSDictionary+MM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+MM.m"; sourceTree = "<group>"; };
+		ADE820771D54D99000E12768 /* WeatherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherModel.h; sourceTree = "<group>"; };
+		ADE820781D54D99000E12768 /* WeatherModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherModel.m; sourceTree = "<group>"; };
+		ADE924FB1D58C9EE00EBB87D /* RCLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCLocationManager.h; sourceTree = "<group>"; };
+		ADE924FC1D58C9EE00EBB87D /* RCLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCLocationManager.m; sourceTree = "<group>"; };
 		ADEF31CA1D47856200BB6A9B /* KidBindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = KidBindViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		ADEF31CB1D47856200BB6A9B /* KidBindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = KidBindViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		ADEF31CD1D478D2B00BB6A9B /* BindReadyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BindReadyViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -279,8 +276,8 @@
 				ADE820721D54C26200E12768 /* JSONValueTransformer+NSDate.m */,
 				ADE820741D54C62D00E12768 /* UserModel.h */,
 				ADE820751D54C62D00E12768 /* UserModel.m */,
-				ADE820771D54D99000E12768 /* WeartherModel.h */,
-				ADE820781D54D99000E12768 /* WeartherModel.m */,
+				ADE820771D54D99000E12768 /* WeatherModel.h */,
+				ADE820781D54D99000E12768 /* WeatherModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -325,10 +322,7 @@
 		AD0B81201D37F09900F43E72 /* ThirdPart */ = {
 			isa = PBXGroup;
 			children = (
-				ADE8207D1D54F0E100E12768 /* NSDictionary+MM.h */,
-				ADE8207E1D54F0E100E12768 /* NSDictionary+MM.m */,
-				ADE8207A1D54F08200E12768 /* MMLocationManager.h */,
-				ADE8207B1D54F08200E12768 /* MMLocationManager.m */,
+				ADE924FA1D58C9EE00EBB87D /* RCLocationManager */,
 				ADEF31D31D47B04200BB6A9B /* VPImageCropper */,
 				AD0B81211D37F09900F43E72 /* Logger */,
 			);
@@ -525,6 +519,15 @@
 			path = Calendar;
 			sourceTree = "<group>";
 		};
+		ADE924FA1D58C9EE00EBB87D /* RCLocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				ADE924FB1D58C9EE00EBB87D /* RCLocationManager.h */,
+				ADE924FC1D58C9EE00EBB87D /* RCLocationManager.m */,
+			);
+			path = RCLocationManager;
+			sourceTree = "<group>";
+		};
 		ADEF31D31D47B04200BB6A9B /* VPImageCropper */ = {
 			isa = PBXGroup;
 			children = (
@@ -696,8 +699,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADCED9E41D3D2BAC002E3F78 /* LoginedModel.m in Sources */,
-				ADE820791D54D99000E12768 /* WeartherModel.m in Sources */,
+				ADE820791D54D99000E12768 /* WeatherModel.m in Sources */,
 				AD0B811A1D37EF7400F43E72 /* LMBaseTableViewController.m in Sources */,
+				ADE924FD1D58C9EE00EBB87D /* RCLocationManager.m in Sources */,
 				AD74D4DF1D4FA08E001F3B36 /* EventInfoViewController.m in Sources */,
 				ADE6ED8A1D4E229D00FFA573 /* MonthCalendarViewController.m in Sources */,
 				AD0B811C1D37EF7400F43E72 /* LMBaseViewController.m in Sources */,
@@ -707,7 +711,6 @@
 				ADE6ED901D4E3B7D00FFA573 /* DayCalendarViewController.m in Sources */,
 				AD9B0D941D3BB947009FDD95 /* BatteryViewController.m in Sources */,
 				AD7797A31D4D034600472B27 /* ActivityViewController.m in Sources */,
-				ADE8207C1D54F08200E12768 /* MMLocationManager.m in Sources */,
 				AD0B811F1D37EFEA00F43E72 /* LMTabBarController.m in Sources */,
 				ADE820731D54C26200E12768 /* JSONValueTransformer+NSDate.m in Sources */,
 				AD0B81171D37EF7400F43E72 /* ControlFactory.m in Sources */,
@@ -719,7 +722,6 @@
 				AD6654541D490C110056632C /* SyncDeviceViewController.m in Sources */,
 				AD7797A01D4CF9C400472B27 /* ChartFooterView.m in Sources */,
 				AD0B81181D37EF7400F43E72 /* Fun.m in Sources */,
-				ADE8207F1D54F0E100E12768 /* NSDictionary+MM.m in Sources */,
 				AD7797A61D4D085600472B27 /* ChartViewController.m in Sources */,
 				AD7797961D4C9B5200472B27 /* EditProfileViewController.m in Sources */,
 				AD9B0D9A1D3BB964009FDD95 /* ProfileViewController.m in Sources */,

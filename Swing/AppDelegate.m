@@ -37,7 +37,7 @@
     
     
     
-    [SwingClientTest testAll:12];
+//    [SwingClientTest testAll:11];
     
     /*
     NSArray *familyNames =[[NSArray alloc]initWithArray:[UIFont familyNames]];

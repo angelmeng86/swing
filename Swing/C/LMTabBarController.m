@@ -30,6 +30,7 @@
     }
     
     [[GlobalCache shareInstance] queryKids];
+    [[GlobalCache shareInstance] queryWeather];
 }
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {

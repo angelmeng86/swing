@@ -8,7 +8,7 @@
 
 #import "SwingClientTest.h"
 #import "CommonDef.h"
-#import "MMLocationManager.h"
+#import "RCLocationManager.h"
 
 @interface SwingClientTest ()
 
@@ -191,7 +191,7 @@
             break;
         case 11:
         {
-            [WeartherModel weatherQuery:@"37.793293" lon:@"-122.404442" completion:^(id weather, NSError *error) {
+            [WeatherModel weatherQuery:@"37.793293" lon:@"-122.404442" completion:^(id weather, NSError *error) {
                 if (error) {
                     LOG_D(@"weatherQuery fail: %@", error);
                 }
@@ -204,9 +204,33 @@
             break;
             case 12:
         {
-            [[MMLocationManager shareLocation] getLocationCoordinate:^(CLLocationCoordinate2D locationCorrrdinate) {
-                NSLog(@"latitude:%f longitude:%f", locationCorrrdinate.latitude,locationCorrrdinate.longitude);
+//            [[MMLocationManager shareLocation] getLocationCoordinate:^(CLLocationCoordinate2D locationCorrrdinate) {
+//                NSLog(@"latitude:%f longitude:%f", locationCorrrdinate.latitude,locationCorrrdinate.longitude);
+//            }];
+            [[RCLocationManager sharedManager] requestUserLocationWhenInUseWithBlockOnce:^(CLLocationManager *manager, CLAuthorizationStatus status) {
+                NSLog(@"status:%d", status);
+                [[RCLocationManager sharedManager] retrieveUserLocationWithBlock:^(CLLocationManager *manager, CLLocation *newLocation, CLLocation *oldLocation) {
+                    NSLog(@"newLocation:%@ oldLocation:%@", newLocation, oldLocation);
+                    
+                    if (newLocation) {
+                        [WeatherModel weatherQuery:[NSString stringWithFormat:@"%f", newLocation.coordinate.latitude] lon:[NSString stringWithFormat:@"%f", newLocation.coordinate.longitude] completion:^(id weather, NSError *error) {
+                            if (error) {
+                                LOG_D(@"weatherQuery fail: %@", error);
+                            }
+                            else {
+                                NSLog(@"weather:%@", weather);
+                            }
+                            [self test:index + 1];
+                        }];
+                    }
+                    
+                } errorBlock:^(CLLocationManager *manager, NSError *error) {
+                    NSLog(@"error:%@", error);
+                }];
+                
             }];
+            
+            
         }
             break;
             case 13:

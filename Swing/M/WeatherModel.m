@@ -6,10 +6,10 @@
 //  Copyright © 2016年 zzteam. All rights reserved.
 //
 
-#import "WeartherModel.h"
+#import "WeatherModel.h"
 #import "CommonDef.h"
 
-@implementation WeartherModel
+@implementation WeatherModel
 
 + (void)weatherQuery:(NSString*)lat lon:(NSString*)lon completion:( void (^)(id weather, NSError *error) )completion {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -28,12 +28,16 @@
                         LOG_D(@"conditions info:%@", responseObject);
                         NSString *uv = responseObject[@"current_observation"][@"UV"];
                         NSString *temp_c = responseObject[@"current_observation"][@"temp_c"];
+                        NSString *temp_f = responseObject[@"current_observation"][@"temp_f"];
                         NSString *relative_humidity = responseObject[@"current_observation"][@"relative_humidity"];
-                        if (uv && temp_c && relative_humidity) {
-                            WeartherModel *model = [WeartherModel new];
+                        if (uv && temp_c && temp_f && relative_humidity) {
+                            WeatherModel *model = [WeatherModel new];
                             model.uvi = [uv intValue];
                             model.temp_c = temp_c;
+                            model.temp_f = temp_f;
                             model.relative_humidity = relative_humidity;
+                            model.state = state;
+                            model.city = city;
                             completion(model, nil);
                         }
                         else {

@@ -207,10 +207,44 @@
     
 }
 
+- (void)queryWeather {
+    if (_weartherRunning) {
+        return;
+    }
+    _weartherRunning = YES;
+    [[RCLocationManager sharedManager] requestUserLocationWhenInUseWithBlockOnce:^(CLLocationManager *manager, CLAuthorizationStatus status) {
+        LOG_D(@"status:%d", status);
+        [[RCLocationManager sharedManager] retrieveUserLocationWithBlock:^(CLLocationManager *manager, CLLocation *newLocation, CLLocation *oldLocation) {
+            LOG_D(@"newLocation:%@ oldLocation:%@", newLocation, oldLocation);
+            
+            if (newLocation) {
+                [WeatherModel weatherQuery:[NSString stringWithFormat:@"%f", newLocation.coordinate.latitude] lon:[NSString stringWithFormat:@"%f", newLocation.coordinate.longitude] completion:^(id weather, NSError *error) {
+                    if (error) {
+                        LOG_D(@"weatherQuery fail: %@", error);
+                        _weartherRunning = NO;
+                    }
+                    else {
+                        self.wearther = weather;
+                        [[NSNotificationCenter defaultCenter] postNotificationName:WEATHER_UPDATE_NOTI object:weather];
+                        _weartherRunning = NO;
+                        LOG_D(@"weather:%@", weather);
+                    }
+                }];
+            }
+            
+        } errorBlock:^(CLLocationManager *manager, NSError *error) {
+            LOG_D(@"error:%@", error);
+            _weartherRunning = NO;
+            [SVProgressHUD showErrorWithStatus:@"User has explicitly denied authorization for this application, or location services are disabled in Settings."];
+        }];
+        
+    }];
+}
+
 - (id)init
 {
     if (self = [super init]) {
-
+        _weartherRunning = NO;
     }
     return self;
 }

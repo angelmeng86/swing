@@ -16,6 +16,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *uvLabel;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 
-@property (strong, nonatomic) WeartherModel* uvi;
+@property (strong, nonatomic) WeatherModel* weather;
 
 @end

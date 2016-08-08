@@ -11,6 +11,7 @@
 
 #define KIDS_LIST_LOAD_NOTI @"KIDS_LIST_LOAD_NOTI"
 #define EVENT_LIST_UPDATE_NOTI @"EVENT_LIST_UPDATE_NOTI"
+#define WEATHER_UPDATE_NOTI @"WEATHER_UPDATE_NOTI"
 
 @interface GlobalCache : NSObject
 
@@ -21,6 +22,7 @@
 - (void)saveInfo;
 
 - (void)queryKids;
+- (void)queryWeather;
 
 - (void)logout;
 
@@ -39,6 +41,9 @@
 
 @property (strong, nonatomic) LoginedModel* info;
 @property (strong, nonatomic) UserModel* user;
+
+@property (strong, nonatomic) WeatherModel* wearther;
+@property (nonatomic) BOOL weartherRunning;
 
 @property (strong, nonatomic) NSArray* kidsList;
 @property (strong, nonatomic) NSURLSessionDataTask *kidsTask;

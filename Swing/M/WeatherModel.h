@@ -9,13 +9,16 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface WeartherModel : NSObject
+@interface WeatherModel : NSObject
 
 + (void)weatherQuery:(NSString*)lat lon:(NSString*)lon completion:( void (^)(id weather, NSError *error) )completion;
 
 @property (nonatomic) int uvi;
-@property (nonatomic, strong) NSString* temp_c;
+@property (nonatomic, strong) NSNumber* temp_c;
+@property (nonatomic, strong) NSNumber* temp_f;
 @property (nonatomic, strong) NSString* relative_humidity;
+@property (nonatomic, strong) NSString* state;
+@property (nonatomic, strong) NSString* city;
 
 - (UIColor*)color;
 - (NSString*)desc;

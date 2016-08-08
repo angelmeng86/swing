@@ -10,6 +10,8 @@
 
 @interface WeatherContentViewController ()
 
+@property (strong, nonatomic) WeatherModel* weather;
+
 @end
 
 @implementation WeatherContentViewController
@@ -51,8 +53,36 @@
     }
     
     
+    self.weather = [GlobalCache shareInstance].wearther;
+    [self loadWeather];
     
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(weatherLoaded:) name:WEATHER_UPDATE_NOTI object:nil];
+    [[GlobalCache shareInstance] queryWeather];
+}
+
+- (void)weatherLoaded:(NSNotification*)notification {
+    self.weather = notification.object;
+    [self loadWeather];
+}
+
+- (void)loadWeather {
+    if (self.weather == nil) {
+        return;
+    }
+    self.placeLabel.text = [NSString stringWithFormat:@"%@, %@", self.weather.city, self.weather.state];
+    if (_pageIndex == 1) {
+        self.valueLabel.text = self.weather.relative_humidity;
+        self.progressView.progressCounter = [self.weather.relative_humidity intValue];
+    }
+    else {
+        self.valueLabel.text = [NSString stringWithFormat:@"%.1f°F", [self.weather.temp_f floatValue]];
+        int t = [self.weather.temp_f intValue];
+        if (t < 0) {
+            t = -t;
+        }
+        self.progressView.progressTotal = 140;
+        self.progressView.progressCounter = t;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

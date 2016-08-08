@@ -39,7 +39,7 @@
 #import "KidModel.h"
 #import "ToDoModel.h"
 #import "UserModel.h"
-#import "WeartherModel.h"
+#import "WeatherModel.h"
 
 #import "Fun.h"
 #import "CameraUtility.h"
@@ -50,7 +50,7 @@
 
 #import "GlobalCache.h"
 #import "SVProgressHUD.h"
-
+#import "RCLocationManager.h"
 #import <PureLayout/PureLayout.h>
 
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
