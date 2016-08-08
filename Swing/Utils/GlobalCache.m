@@ -60,7 +60,7 @@
 }
 
 - (void)logout {
-    [[SwingClient sharedClient] invalidateSessionCancelingTasks:YES];
+//    [[SwingClient sharedClient] invalidateSessionCancelingTasks:YES];
     self.info = nil;
     self.user = nil;
     self.kidsList = nil;
@@ -140,6 +140,7 @@
         return;
     }
     
+    [self.calendarQueue addObject:month];
     [[SwingClient sharedClient] calendarGetEvents:date type:GetEventTypeMonth completion:^(NSArray *eventArray, NSError *error) {
         if (error) {
             LOG_D(@"calendarGetEvents fail: %@", error);
@@ -156,18 +157,9 @@
                 
                 [dict[key] addObject:model];
             }
-            
-//            for (EventModel *model in eventArray) {
-//                NSString *key = [self dateToDayString:model.startDate];
-//                if(!self.calendarEventsByDate[key]){
-//                    self.calendarEventsByDate[key] = [NSMutableArray new];
-//                }
-//                
-//                [self.calendarEventsByDate[key] addObject:model];
-//            }
-            [self.calendarQueue removeObject:month];
             [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_LIST_UPDATE_NOTI object:month];
         }
+        [self.calendarQueue removeObject:month];
     }];
 }
 
@@ -183,6 +175,8 @@
         dict[key] = [NSMutableArray new];
     }
     [dict[key] addObject:model];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_LIST_UPDATE_NOTI object:month];
 }
 
 - (void)deleteEvent:(EventModel*)model {
@@ -193,6 +187,8 @@
         EventModel* m = array[i];
         if (model.objId == m.objId) {
             [array removeObjectAtIndex:i];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_LIST_UPDATE_NOTI object:month];
             return;
         }
     }

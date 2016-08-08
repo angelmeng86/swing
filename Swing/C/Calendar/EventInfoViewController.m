@@ -8,6 +8,7 @@
 
 #import "EventInfoViewController.h"
 #import "EventSelectTableViewCell.h"
+#import "CommonDef.h"
 
 @interface EventInfoViewController ()
 
@@ -24,6 +25,26 @@
     bgView.backgroundColor = [UIColor clearColor];
     self.selectTableView.backgroundView = bgView;
     self.selectTableView.tableFooterView = [UIView new];
+    
+    if (_model) {
+        self.titleLabel.text = [self getTitle];
+        self.descLabel.text = _model.desc;
+    }
+}
+
+- (NSString*)getTitle {
+    static NSDateFormatter *dateFormatter;
+    if(!dateFormatter){
+        dateFormatter = [NSDateFormatter new];
+        dateFormatter.dateFormat = @"HH:mm";
+    }
+    NSMutableString *info = [NSMutableString string];
+    [info appendString:[dateFormatter stringFromDate:_model.startDate]];
+    [info appendString:@"-"];
+    [info appendString:[dateFormatter stringFromDate:_model.endDate]];
+    [info appendString:@" "];
+    [info appendString:_model.eventName];
+    return info;
 }
 
 - (void)didReceiveMemoryWarning {

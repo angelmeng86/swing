@@ -22,6 +22,10 @@
 
 - (void)queryKids;
 
+- (void)logout;
+
+- (NSString*)dateToMonthString:(NSDate*)date;
+
 - (NSArray*)searchEventsByDay:(NSDate*)date;
 
 - (void)queryMonthEvents:(NSDate*)date;
@@ -31,8 +35,6 @@
 - (void)deleteEvent:(EventModel*)model;
 
 - (BOOL)haveEventForDay:(NSDate *)date;
-
-- (void)logout;
 
 @property (strong, nonatomic) LoginedModel* info;
 @property (strong, nonatomic) UserModel* user;

@@ -7,7 +7,7 @@
 //
 
 #import "BaseCalendarViewController.h"
-
+@class MDRadialProgressView;
 @interface CalendarViewController : BaseCalendarViewController
 
 @property (weak, nonatomic) IBOutlet JTCalendarMenuView *calendarMenuView;
@@ -15,5 +15,8 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *monthBtn;
 @property (weak, nonatomic) IBOutlet UIButton *todayBtn;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *descLabel;
+@property (weak, nonatomic) IBOutlet MDRadialProgressView *progressView;
 
 @end

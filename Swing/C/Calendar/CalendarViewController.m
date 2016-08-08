@@ -10,6 +10,7 @@
 #import "MonthCalendarViewController.h"
 #import "DayCalendarViewController.h"
 #import "CommonDef.h"
+#import "MDRadialProgressView.h"
 
 @interface CalendarViewController ()
 
@@ -22,6 +23,16 @@
     // Do any additional setup after loading the view.
     
     [self initCalendarManager:YES];
+    
+    self.progressView.progressTotal = 12;
+    self.progressView.progressCounter = 1;
+    self.progressView.startingSlice = 2;
+    self.progressView.clockwise = YES;
+    self.progressView.theme.completedColor = COMMON_TITLE_COLOR;
+    self.progressView.theme.incompletedColor = [UIColor whiteColor];
+    self.progressView.theme.thickness = 20;
+    self.progressView.theme.sliceDividerHidden = YES;
+    self.progressView.label.hidden = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

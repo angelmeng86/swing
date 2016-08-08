@@ -7,7 +7,7 @@
 //
 
 #import "BaseCalendarViewController.h"
-
+@class EventModel;
 @interface EventInfoViewController : BaseCalendarViewController
 
 @property (weak, nonatomic) IBOutlet JTCalendarMenuView *calendarMenuView;
@@ -16,6 +16,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
 @property (weak, nonatomic) IBOutlet UITableView *selectTableView;
+
+@property (strong, nonatomic) EventModel *model;
+
 - (IBAction)saveAction:(id)sender;
 
 @end

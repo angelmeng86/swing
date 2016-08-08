@@ -22,14 +22,14 @@
     UIDatePicker *datePicker = [[UIDatePicker alloc] init];
     datePicker.datePickerMode = UIDatePickerModeDateAndTime;
     datePicker.minimumDate = [NSDate date];
-    datePicker.minuteInterval = 5;
+    datePicker.minuteInterval = 30;
     self.startTF.inputView = datePicker;
     [datePicker addTarget:self action:@selector(startChange:) forControlEvents:UIControlEventValueChanged];
     
     UIDatePicker *datePicker2 = [[UIDatePicker alloc] init];
     datePicker2.datePickerMode = UIDatePickerModeDateAndTime;
     datePicker2.minimumDate = [NSDate date];
-    datePicker2.minuteInterval = 5;
+    datePicker2.minuteInterval = 30;
     self.endTF.inputView = datePicker2;
     [datePicker2 addTarget:self action:@selector(endChange:) forControlEvents:UIControlEventValueChanged];
     
@@ -39,8 +39,8 @@
     self.startTF.text = [Fun dateToString:datePicker.date];
     UIDatePicker* dp = (UIDatePicker*)self.endTF.inputView;
     dp.minimumDate = datePicker.date;
-    if ([dp.date earlierDate:datePicker.date]) {
-        dp.date = datePicker.date;
+    if (NSOrderedDescending == [dp.date compare:datePicker.date]) {
+//        dp.date = datePicker.date;
         self.endTF.text = self.startTF.text;
     }
     
@@ -67,6 +67,12 @@
         [Fun showMessageBoxWithTitle:@"Error" andMessage:@"Please input info."];
         return NO;
     }
+    
+    if ([self.startTF.text isEqualToString:self.endTF.text]) {
+        [Fun showMessageBoxWithTitle:@"Error" andMessage:@"Event time is valid."];
+        return NO;
+    }
+    
     if (self.todoCtl.itemList.count == 0) {
         [Fun showMessageBoxWithTitle:@"Error" andMessage:@"Please input to do list."];
         return NO;
@@ -81,7 +87,7 @@
         
         //eventName, startDate, endDate, color, status, description, alert, city, state
         NSDictionary *data = @{@"eventName":self.nameTF.text , @"startDate":self.startTF.text
-                               , @"endDate":self.startTF.text
+                               , @"endDate":self.endTF.text
                                , @"description":self.descTF.text
                                , @"alert":self.alertTF.text
                                , @"city":self.cityTF.text

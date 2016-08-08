@@ -43,7 +43,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vKm-Tb-kJn" customClass="RoundButton">
                                 <rect key="frame" x="60" y="404" width="480" height="30"/>
-                                <color key="backgroundColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <state key="normal" title="No, go to dashboard">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -67,18 +67,18 @@
                                     <constraint firstAttribute="height" constant="40" id="8ov-SX-CR3"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                <color key="textColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sync now?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKq-hb-Bey">
                                 <rect key="frame" x="20" y="294" width="560" height="40"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                <color key="textColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OSR-GF-do6" customClass="RoundButton">
                                 <rect key="frame" x="60" y="354" width="480" height="30"/>
-                                <color key="backgroundColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="sGR-Vd-dBo"/>
                                 </constraints>
@@ -92,7 +92,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1g-VS-d37" customClass="RoundButton">
                                 <rect key="frame" x="60" y="454" width="480" height="30"/>
-                                <color key="backgroundColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <state key="normal" title="Sync another watch">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -158,12 +158,12 @@
                                     <constraint firstAttribute="width" constant="190" id="e1q-EG-AAf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                <color key="textColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oCJ-Re-lCW" customClass="RoundButton">
                                 <rect key="frame" x="60" y="370" width="480" height="30"/>
-                                <color key="backgroundColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="28A-sr-Yhf"/>
                                 </constraints>

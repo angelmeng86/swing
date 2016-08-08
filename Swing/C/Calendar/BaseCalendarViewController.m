@@ -20,7 +20,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _dateSelected = [NSDate date];
+    if (_dateSelected == nil) {
+        _dateSelected = [NSDate date];
+    }
     // Generate random events sort by date using a dateformatter for the demonstration
 //    [self createRandomEvents];
     
@@ -29,7 +31,11 @@
 }
 
 - (void)eventLoaded:(NSNotification*)notification {
-    [_calendarManager reload];
+//    NSLog(@"eventLoaded:%@ month:%@", _calendarManager.date, notification.object);
+    NSString *month = [[GlobalCache shareInstance] dateToMonthString:_calendarManager.date];
+    if ([month isEqualToString:notification.object]) {
+        [_calendarManager reload];
+    }
 }
 
 - (void)initCalendarManager:(BOOL)weekModeEnabled {

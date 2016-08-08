@@ -41,6 +41,7 @@
 		AD7797A31D4D034600472B27 /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7797A21D4D034600472B27 /* ActivityViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD7797A61D4D085600472B27 /* ChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7797A51D4D085600472B27 /* ChartViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD95A51B1D5243390047A0A2 /* SwingClientTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AD95A51A1D5243390047A0A2 /* SwingClientTest.m */; settings = {ASSET_TAGS = (); }; };
+		AD978D0C1D585EF000E59D2B /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD978D0B1D585EF000E59D2B /* MessageViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD9B0D911D3BB935009FDD95 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D901D3BB935009FDD95 /* DashboardViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD9B0D941D3BB947009FDD95 /* BatteryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D931D3BB947009FDD95 /* BatteryViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD9B0D971D3BB954009FDD95 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D961D3BB954009FDD95 /* CalendarViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -150,6 +151,8 @@
 		AD7797A51D4D085600472B27 /* ChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartViewController.m; sourceTree = "<group>"; };
 		AD95A5191D5243390047A0A2 /* SwingClientTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwingClientTest.h; sourceTree = "<group>"; };
 		AD95A51A1D5243390047A0A2 /* SwingClientTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwingClientTest.m; sourceTree = "<group>"; };
+		AD978D0A1D585EF000E59D2B /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
+		AD978D0B1D585EF000E59D2B /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		AD9B0D8F1D3BB935009FDD95 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DashboardViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		AD9B0D901D3BB935009FDD95 /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DashboardViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AD9B0D921D3BB947009FDD95 /* BatteryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BatteryViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -242,6 +245,7 @@
 		AD0B81061D37EF7400F43E72 /* C */ = {
 			isa = PBXGroup;
 			children = (
+				AD978D091D585ED300E59D2B /* Message */,
 				AD9B0D9B1D3BB97C009FDD95 /* Login */,
 				AD6654511D490BD00056632C /* Sync */,
 				AD9B0D8B1D3BB89E009FDD95 /* Battery */,
@@ -382,6 +386,15 @@
 				AD77979F1D4CF9C400472B27 /* ChartFooterView.m */,
 			);
 			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		AD978D091D585ED300E59D2B /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				AD978D0A1D585EF000E59D2B /* MessageViewController.h */,
+				AD978D0B1D585EF000E59D2B /* MessageViewController.m */,
+			);
+			path = Message;
 			sourceTree = "<group>";
 		};
 		AD9B0D8B1D3BB89E009FDD95 /* Battery */ = {
@@ -736,6 +749,7 @@
 				AD7438241D4DD47100F5F9D2 /* JBChartTooltipView.m in Sources */,
 				AD7797931D4C8D0600472B27 /* ProfileDeviceCell.m in Sources */,
 				ADF985531D50C4A200B02075 /* AddEventViewController.m in Sources */,
+				AD978D0C1D585EF000E59D2B /* MessageViewController.m in Sources */,
 				AD347D1E1D3FDEEC00E91DDD /* SelectWatchViewController.m in Sources */,
 				AD74D4DC1D4F90B5001F3B36 /* EventLabel.m in Sources */,
 				ADFC2C2D1D369949004EDCDF /* main.m in Sources */,

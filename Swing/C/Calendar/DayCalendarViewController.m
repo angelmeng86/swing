@@ -128,15 +128,7 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     else {
         self.eventData = [[GlobalCache shareInstance] searchEventsByDay:_date];
         self.eventData = [self.eventData sortedArrayWithOptions:NSSortStable usingComparator:^NSComparisonResult(EventModel *obj1, EventModel * obj2) {
-            if ([obj1.startDate earlierDate:obj2.startDate]) {
-                return NSOrderedAscending;
-            }
-            else if ([obj1.startDate laterDate:obj2.startDate]) {
-                return NSOrderedDescending;
-            }
-            else {
-                return NSOrderedSame;
-            }
+            return [obj1.startDate compare:obj2.startDate];
         }];
     }
     
@@ -144,6 +136,7 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     for (EventModel *model in self.eventData) {
         [self addEvent:model color:model.color];
     }
+//    self.calendarManager.date = self.dateSelected;
 }
 
 - (void)addEvent:(EventModel*)model color:(UIColor*)color {
@@ -159,9 +152,6 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     
     NSDateComponents *end = [cal components:NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:model.endDate];
     float height = (([end hour] - [start hour]) * 60 + [end minute] - [start minute]) * 40 / 60;
-    
-//    NSTimeInterval interval = [model.end timeIntervalSince1970] - [model.start timeIntervalSince1970];
-//    float height = interval / 60 * 40 / 60;
     
     EventLabel *label = [EventLabel new];
 //    label.textAlignment = NSTextAlignmentCenter;

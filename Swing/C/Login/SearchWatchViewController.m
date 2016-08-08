@@ -17,13 +17,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UIColor *color = COMMON_TITLE_COLOR;
-    
     
     self.progressView.progressTotal = 12;
     self.progressView.progressCounter = 1;
     self.progressView.clockwise = NO;
-    self.progressView.theme.completedColor = color;
+    self.progressView.theme.completedColor = COMMON_TITLE_COLOR;
     self.progressView.theme.incompletedColor = [UIColor whiteColor];
     self.progressView.theme.thickness = 15;
     self.progressView.theme.sliceDividerHidden = YES;

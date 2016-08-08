@@ -71,28 +71,28 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZLs-hh-xJ3">
-                                <rect key="frame" x="200" y="214" width="200" height="60"/>
+                                <rect key="frame" x="200" y="264" width="200" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="NNv-S8-Sz5"/>
                                     <constraint firstAttribute="height" constant="60" id="igb-uQ-GsV"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="50"/>
-                                <color key="textColor" red="0.94117647058823528" green="0.36078431372549019" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swimming with Coach Brian" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8iF-kL-N4Q">
-                                <rect key="frame" x="200" y="274" width="200" height="60"/>
+                                <rect key="frame" x="200" y="324" width="200" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="JBl-CB-PKl"/>
                                     <constraint firstAttribute="width" constant="200" id="Nnu-mv-YnP"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
-                                <color key="textColor" red="0.94117647058823528" green="0.36078431372549019" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nnY-FK-G2i" customClass="RoundButton">
-                                <rect key="frame" x="80" y="372" width="440" height="30"/>
-                                <color key="backgroundColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="80" y="464" width="440" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="1jc-Cs-MMY"/>
                                 </constraints>
@@ -105,8 +105,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1FD-iw-Etv" customClass="RoundButton">
-                                <rect key="frame" x="80" y="412" width="440" height="30"/>
-                                <color key="backgroundColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="80" y="504" width="440" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="aDo-7k-abc"/>
                                 </constraints>
@@ -118,6 +118,14 @@
                                     <segue destination="WxS-KM-iCW" kind="push" id="SsR-gr-1hb"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LH6-Bz-oxy" customClass="MDRadialProgressView">
+                                <rect key="frame" x="180" y="204" width="240" height="240"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="SNZ-Z1-dIf"/>
+                                    <constraint firstAttribute="width" constant="240" id="oJP-0e-0ZD"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -127,29 +135,36 @@
                             <constraint firstItem="1FD-iw-Etv" firstAttribute="centerX" secondItem="svF-ri-E3e" secondAttribute="centerX" id="BTb-VL-ehE"/>
                             <constraint firstItem="fkd-6t-2XK" firstAttribute="top" secondItem="BQ8-qt-y4x" secondAttribute="bottom" id="E8E-cB-gtH"/>
                             <constraint firstItem="1FD-iw-Etv" firstAttribute="top" secondItem="nnY-FK-G2i" secondAttribute="bottom" constant="10" id="Jh6-Ky-wsx"/>
+                            <constraint firstItem="LH6-Bz-oxy" firstAttribute="top" secondItem="ZLs-hh-xJ3" secondAttribute="top" constant="-60" id="Nch-4U-unF"/>
                             <constraint firstItem="BQ8-qt-y4x" firstAttribute="top" secondItem="jtU-5O-05c" secondAttribute="bottom" constant="10" id="RM9-g2-Cme"/>
                             <constraint firstAttribute="trailing" secondItem="fkd-6t-2XK" secondAttribute="trailing" id="Sb9-Cw-8nn"/>
                             <constraint firstAttribute="trailingMargin" secondItem="nnY-FK-G2i" secondAttribute="trailing" constant="60" id="WB8-KV-hDI"/>
-                            <constraint firstItem="ZLs-hh-xJ3" firstAttribute="top" secondItem="fkd-6t-2XK" secondAttribute="bottom" constant="30" id="btd-nj-ZPn"/>
+                            <constraint firstItem="LH6-Bz-oxy" firstAttribute="centerX" secondItem="svF-ri-E3e" secondAttribute="centerX" id="X7Z-Uw-kyK"/>
+                            <constraint firstItem="ZLs-hh-xJ3" firstAttribute="top" secondItem="fkd-6t-2XK" secondAttribute="bottom" constant="80" id="btd-nj-ZPn"/>
+                            <constraint firstItem="LH6-Bz-oxy" firstAttribute="top" secondItem="BQ8-qt-y4x" secondAttribute="bottom" constant="50" id="btn-Gz-g9m"/>
                             <constraint firstItem="1FD-iw-Etv" firstAttribute="height" secondItem="nnY-FK-G2i" secondAttribute="height" id="h4w-om-pON"/>
                             <constraint firstItem="fkd-6t-2XK" firstAttribute="leading" secondItem="svF-ri-E3e" secondAttribute="leading" id="hSB-3g-y6L"/>
                             <constraint firstItem="nnY-FK-G2i" firstAttribute="leading" secondItem="svF-ri-E3e" secondAttribute="leadingMargin" constant="60" id="ngO-vG-8RK"/>
-                            <constraint firstItem="nnY-FK-G2i" firstAttribute="top" secondItem="8iF-kL-N4Q" secondAttribute="bottom" constant="38" id="sbT-2p-BRn"/>
+                            <constraint firstItem="nnY-FK-G2i" firstAttribute="top" secondItem="8iF-kL-N4Q" secondAttribute="bottom" constant="80" id="sbT-2p-BRn"/>
                             <constraint firstAttribute="trailing" secondItem="BQ8-qt-y4x" secondAttribute="trailing" id="vZc-ux-OCh"/>
                             <constraint firstItem="8iF-kL-N4Q" firstAttribute="top" secondItem="ZLs-hh-xJ3" secondAttribute="bottom" id="yGa-ra-Pio"/>
                             <constraint firstItem="8iF-kL-N4Q" firstAttribute="centerX" secondItem="svF-ri-E3e" secondAttribute="centerX" id="zS0-2f-dr9"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="btn-Gz-g9m"/>
                                 <exclude reference="h4w-om-pON"/>
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Calendar" image="tab_calendar" selectedImage="tab_calendar_selected" id="dOZ-Mu-Dge"/>
+                    <tabBarItem key="tabBarItem" title="" image="tab_calendar" selectedImage="tab_calendar_selected" id="dOZ-Mu-Dge"/>
                     <connections>
                         <outlet property="calendarContentView" destination="fkd-6t-2XK" id="VTd-Yx-F5g"/>
                         <outlet property="calendarMenuView" destination="BQ8-qt-y4x" id="ozB-D5-6Ii"/>
+                        <outlet property="descLabel" destination="8iF-kL-N4Q" id="LT0-08-x3x"/>
                         <outlet property="monthBtn" destination="1FD-iw-Etv" id="yLh-Ms-9GA"/>
+                        <outlet property="progressView" destination="LH6-Bz-oxy" id="I2J-Xb-lKu"/>
+                        <outlet property="timeLabel" destination="ZLs-hh-xJ3" id="mnX-2d-9hV"/>
                         <outlet property="todayBtn" destination="nnY-FK-G2i" id="cpM-9N-rND"/>
                     </connections>
                 </viewController>
@@ -278,7 +293,7 @@
                                     <constraint firstAttribute="width" constant="200" id="oN8-sw-OTN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="30"/>
-                                <color key="textColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lel-WX-fVP">
@@ -353,7 +368,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Dashboard" image="tab_chart" selectedImage="tab_chart_selected" id="ENG-KG-Dub"/>
+                    <tabBarItem key="tabBarItem" title="" image="tab_chart" selectedImage="tab_chart_selected" id="ENG-KG-Dub"/>
                     <connections>
                         <outlet property="imageView" destination="qgY-OH-Trk" id="Ndq-d1-My8"/>
                         <outlet property="stepBtn" destination="lel-WX-fVP" id="njh-HS-lBW"/>
@@ -601,7 +616,7 @@
                                     <constraint firstAttribute="height" constant="21" id="tSg-Wq-X1h"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="18"/>
-                                <color key="textColor" red="0.94117647058823528" green="0.36078431372549019" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+1 9117 667 3399" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYk-7e-37m">
@@ -695,7 +710,7 @@
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7D-GG-PY0" customClass="RoundButton">
                                 <rect key="frame" x="80" y="386" width="440" height="30"/>
-                                <color key="backgroundColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="0EA-Wd-eZm"/>
                                 </constraints>
@@ -739,7 +754,7 @@
                             <constraint firstItem="BOL-Be-MZl" firstAttribute="width" secondItem="Tjr-st-s0S" secondAttribute="width" id="x8E-ve-HWZ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="tab_profile" selectedImage="tab_profile_selected" id="ywc-Q9-8xN"/>
+                    <tabBarItem key="tabBarItem" title="" image="tab_profile" selectedImage="tab_profile_selected" id="ywc-Q9-8xN"/>
                     <connections>
                         <outlet property="deviceConllectionView" destination="LdG-Au-u84" id="Ahe-gk-9Ps"/>
                         <outlet property="emailLabel" destination="c8e-YE-BjS" id="z7Q-dw-fy2"/>
@@ -1010,7 +1025,7 @@
         <!--Message-->
         <scene sceneID="cAQ-tk-boe">
             <objects>
-                <viewController title="Message" id="LAu-J9-01e" sceneMemberID="viewController">
+                <viewController title="Message" id="LAu-J9-01e" customClass="MessageViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Fu1-Zk-wSR"/>
                         <viewControllerLayoutGuide type="bottom" id="z50-kU-aya"/>
@@ -1018,9 +1033,22 @@
                     <view key="view" contentMode="scaleToFill" id="lea-ho-qYb">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comingSoon" translatesAutoresizingMaskIntoConstraints="NO" id="bjA-Q0-oWo">
+                                <rect key="frame" x="150" y="147" width="300" height="306"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="306" id="w5G-kt-X2N"/>
+                                    <constraint firstAttribute="width" constant="300" id="xnu-ua-5Q1"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bjA-Q0-oWo" firstAttribute="centerY" secondItem="lea-ho-qYb" secondAttribute="centerY" id="Gsn-n5-Sat"/>
+                            <constraint firstItem="bjA-Q0-oWo" firstAttribute="centerX" secondItem="lea-ho-qYb" secondAttribute="centerX" id="MAe-4X-ldz"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Message" image="tab_mail" selectedImage="tab_mail_selected" id="eGF-kv-GbD"/>
+                    <tabBarItem key="tabBarItem" title="" image="tab_mail" selectedImage="tab_mail_selected" id="eGF-kv-GbD"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cJS-Nd-zzv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1045,7 +1073,7 @@
                                     <constraint firstAttribute="height" constant="50" id="ovm-P4-wvn"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                <color key="textColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="battery_icon" translatesAutoresizingMaskIntoConstraints="NO" id="8IO-bw-M4n">
@@ -1070,7 +1098,7 @@
                                     <constraint firstAttribute="width" constant="120" id="opp-5u-ucw"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="45"/>
-                                <color key="textColor" red="0.89803921568627454" green="0.396078431372549" blue="0.20784313725490194" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -1086,7 +1114,7 @@
                             <constraint firstItem="8IO-bw-M4n" firstAttribute="bottom" secondItem="N4o-Me-Rr7" secondAttribute="bottom" constant="-10" id="siM-xN-5Ia"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Battery" image="tab_map" selectedImage="tab_map_selected" id="8Hu-KV-jkA"/>
+                    <tabBarItem key="tabBarItem" title="" image="tab_map" selectedImage="tab_map_selected" id="8Hu-KV-jkA"/>
                     <connections>
                         <outlet property="progressView" destination="N4o-Me-Rr7" id="XOx-Is-z8l"/>
                         <outlet property="textLabel" destination="vAa-cX-sNY" id="HbS-ib-1s1"/>
@@ -1167,7 +1195,7 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gu7-eP-TUa" customClass="RoundButton">
                                         <rect key="frame" x="80" y="400" width="440" height="30"/>
-                                        <color key="backgroundColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="Xjb-MP-O0o"/>
                                         </constraints>
@@ -1419,7 +1447,7 @@
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vWK-bl-KcF" customClass="RoundButton">
                                 <rect key="frame" x="80" y="550" width="440" height="30"/>
-                                <color key="backgroundColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="LUE-55-plR"/>
                                 </constraints>
@@ -1463,6 +1491,7 @@
     </scenes>
     <resources>
         <image name="battery_icon" width="94" height="65"/>
+        <image name="comingSoon" width="300" height="306"/>
         <image name="monster-yellow" width="204" height="264"/>
         <image name="orange_activity_button" width="80" height="80"/>
         <image name="orange_uv_button" width="80" height="80"/>
