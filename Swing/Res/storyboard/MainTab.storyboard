@@ -160,6 +160,7 @@
                     <tabBarItem key="tabBarItem" title="" image="tab_calendar" selectedImage="tab_calendar_selected" id="dOZ-Mu-Dge"/>
                     <connections>
                         <outlet property="calendarContentView" destination="fkd-6t-2XK" id="VTd-Yx-F5g"/>
+                        <outlet property="calendarHeight" destination="8ah-5h-6zO" id="uvu-EL-2eI"/>
                         <outlet property="calendarMenuView" destination="BQ8-qt-y4x" id="ozB-D5-6Ii"/>
                         <outlet property="descLabel" destination="8iF-kL-N4Q" id="LT0-08-x3x"/>
                         <outlet property="monthBtn" destination="1FD-iw-Etv" id="yLh-Ms-9GA"/>

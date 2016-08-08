@@ -30,6 +30,14 @@
     [[GlobalCache shareInstance] queryMonthEvents:_dateSelected];
 }
 
+- (void)leftAction:(id)sender {
+    [self.calendarContentView loadPreviousPageWithAnimation];
+}
+
+- (void)rightAction:(id)sender {
+    [self.calendarContentView loadNextPageWithAnimation];
+}
+
 - (void)eventLoaded:(NSNotification*)notification {
 //    NSLog(@"eventLoaded:%@ month:%@", _calendarManager.date, notification.object);
     NSString *month = [[GlobalCache shareInstance] dateToMonthString:_calendarManager.date];
@@ -140,6 +148,25 @@
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont boldAvenirFontOfSize:18];
     
+    UIButton *leftBtn = [[UIButton alloc] init];
+    [leftBtn setImage:LOAD_IMAGE(@"arrow_left") forState:UIControlStateNormal];
+    [leftBtn addTarget:self action:@selector(leftAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *rightBtn = [[UIButton alloc] init];
+    [rightBtn setImage:LOAD_IMAGE(@"arrow_right") forState:UIControlStateNormal];
+    [rightBtn addTarget:self action:@selector(rightAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [label addSubview:leftBtn];
+    [label addSubview:rightBtn];
+    
+    [leftBtn autoSetDimensionsToSize:CGSizeMake(12, 24)];
+    [leftBtn autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+    [leftBtn autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:60];
+    
+    [rightBtn autoSetDimensionsToSize:CGSizeMake(12, 24)];
+    [rightBtn autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+    [rightBtn autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:60];
+    label.userInteractionEnabled = YES;
     return label;
 }
 

@@ -38,11 +38,38 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     self.tabBarController.navigationItem.rightBarButtonItem = nil;
+    self.tabBarController.navigationItem.leftBarButtonItem = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAction:)];
+    self.tabBarController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Mode" style:UIBarButtonItemStylePlain target:self action:@selector(modeAction:)];
+}
+
+- (void)modeAction:(id)sender {
+    if (!self.calendarManager.settings.weekModeEnabled) {
+        self.progressView.hidden = NO;
+        self.monthBtn.hidden = NO;
+        self.todayBtn.hidden = NO;
+        self.timeLabel.hidden = NO;
+        self.descLabel.hidden = NO;
+        self.calendarHeight.constant = 70;
+    }
+    else {
+        self.progressView.hidden = YES;
+        self.monthBtn.hidden = YES;
+        self.todayBtn.hidden = YES;
+        self.timeLabel.hidden = YES;
+        self.descLabel.hidden = YES;
+        self.calendarHeight.constant = 300;
+    }
+    self.calendarManager.settings.weekModeEnabled = !self.calendarManager.settings.weekModeEnabled;
+    [self.calendarManager reload];
+    [UIView animateWithDuration:0.3f animations:^{
+        [self.view layoutIfNeeded];
+    }];
+    
 }
 
 - (void)addAction:(id)sender {
