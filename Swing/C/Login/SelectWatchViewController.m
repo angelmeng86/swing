@@ -21,6 +21,9 @@
     UIView *bgView = [UIView new];
     bgView.backgroundColor = [UIColor clearColor];
     self.tableView.backgroundView = bgView;
+    
+    self.label1.adjustsFontSizeToFitWidth = YES;
+    self.label2.adjustsFontSizeToFitWidth = YES;
 }
 
 - (void)didReceiveMemoryWarning {

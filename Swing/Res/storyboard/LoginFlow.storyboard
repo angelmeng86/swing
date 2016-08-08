@@ -201,6 +201,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="label1" destination="OtG-BV-EPQ" id="Azo-aB-nEk"/>
+                        <outlet property="label2" destination="oma-tX-zTH" id="KfR-aX-Bzi"/>
                         <outlet property="tableView" destination="qLh-Of-xg8" id="YeZ-Ka-oOU"/>
                     </connections>
                 </viewController>
@@ -619,35 +621,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zib-ux-g9Q">
-                                <rect key="frame" x="240" y="40" width="120" height="120"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="YRm-gb-wsr"/>
-                                    <constraint firstAttribute="height" constant="120" id="kbV-Qz-nks"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jiX-Uw-3aV" customClass="RoundButton">
-                                <rect key="frame" x="60" y="280" width="480" height="30"/>
-                                <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
-                                <state key="normal" title="Add Another Watch">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="zE9-og-xXM" kind="unwind" unwindAction="unwindSegueToSearchViewController:" id="MEe-UP-wzM"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mary" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wUo-ew-U50">
-                                <rect key="frame" x="60" y="170" width="480" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="30m-sI-waU"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="25"/>
-                                <color key="textColor" red="0.21176470588235294" green="0.68627450980392157" blue="0.63529411764705879" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fnU-QH-9xl" customClass="RoundButton">
-                                <rect key="frame" x="60" y="230" width="480" height="30"/>
+                                <rect key="frame" x="60" y="220" width="480" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Osz-2K-F1l"/>
@@ -660,14 +635,41 @@
                                     <action selector="goAction:" destination="FrE-IK-IHA" eventType="touchUpInside" id="zeO-ET-edz"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jiX-Uw-3aV" customClass="RoundButton">
+                                <rect key="frame" x="60" y="270" width="480" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                <state key="normal" title="Add Another Watch">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="zE9-og-xXM" kind="unwind" unwindAction="unwindSegueToSearchViewController:" id="MEe-UP-wzM"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mary" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wUo-ew-U50">
+                                <rect key="frame" x="40" y="160" width="520" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="30m-sI-waU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="25"/>
+                                <color key="textColor" red="0.21176470588235294" green="0.68627450980392157" blue="0.63529411764705879" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zib-ux-g9Q">
+                                <rect key="frame" x="240" y="30" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="YRm-gb-wsr"/>
+                                    <constraint firstAttribute="height" constant="120" id="kbV-Qz-nks"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wUo-ew-U50" firstAttribute="leading" secondItem="pmp-6d-oi4" secondAttribute="leadingMargin" constant="40" id="3i8-tT-VHN"/>
+                            <constraint firstItem="wUo-ew-U50" firstAttribute="leading" secondItem="pmp-6d-oi4" secondAttribute="leadingMargin" constant="20" id="3i8-tT-VHN"/>
                             <constraint firstItem="jiX-Uw-3aV" firstAttribute="height" secondItem="fnU-QH-9xl" secondAttribute="height" id="5Lu-YN-3Jt"/>
                             <constraint firstItem="wUo-ew-U50" firstAttribute="centerX" secondItem="pmp-6d-oi4" secondAttribute="centerX" id="7c5-jG-G2F"/>
                             <constraint firstItem="Zib-ux-g9Q" firstAttribute="centerX" secondItem="pmp-6d-oi4" secondAttribute="centerX" id="DyH-RO-jod"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="wUo-ew-U50" secondAttribute="trailing" constant="40" id="HuK-yv-Gol"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wUo-ew-U50" secondAttribute="trailing" constant="20" id="HuK-yv-Gol"/>
                             <constraint firstAttribute="trailingMargin" secondItem="fnU-QH-9xl" secondAttribute="trailing" constant="40" id="LfQ-dr-FaA"/>
                             <constraint firstItem="wUo-ew-U50" firstAttribute="top" secondItem="Zib-ux-g9Q" secondAttribute="bottom" constant="10" id="MSc-mb-vce"/>
                             <constraint firstItem="fnU-QH-9xl" firstAttribute="top" secondItem="wUo-ew-U50" secondAttribute="bottom" constant="30" id="MY9-SC-h4b"/>
@@ -676,7 +678,7 @@
                             <constraint firstItem="fnU-QH-9xl" firstAttribute="centerX" secondItem="pmp-6d-oi4" secondAttribute="centerX" id="ip8-GH-dos"/>
                             <constraint firstItem="fnU-QH-9xl" firstAttribute="leading" secondItem="pmp-6d-oi4" secondAttribute="leadingMargin" constant="40" id="lPS-Vz-YmQ"/>
                             <constraint firstItem="Zib-ux-g9Q" firstAttribute="centerX" secondItem="pmp-6d-oi4" secondAttribute="centerX" id="mP2-Ip-XFs"/>
-                            <constraint firstItem="Zib-ux-g9Q" firstAttribute="top" secondItem="zXz-og-fYk" secondAttribute="bottom" constant="20" id="rVZ-xX-aae"/>
+                            <constraint firstItem="Zib-ux-g9Q" firstAttribute="top" secondItem="zXz-og-fYk" secondAttribute="bottom" constant="10" id="rVZ-xX-aae"/>
                             <constraint firstItem="jiX-Uw-3aV" firstAttribute="centerX" secondItem="pmp-6d-oi4" secondAttribute="centerX" id="v3Z-0P-yXH"/>
                         </constraints>
                     </view>

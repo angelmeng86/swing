@@ -25,6 +25,7 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
 
 @implementation DayCalendarViewController
 
+/*
 - (void)initFakeData
 {
     static NSDateFormatter *dateFormatter;
@@ -65,7 +66,7 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     
     _eventData = [NSArray arrayWithArray:mutableData];
 }
-
+*/
 - (void)viewDidLoad {
     self.notLoadBackgroudImage = YES;
     [super viewDidLoad];
@@ -115,28 +116,16 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     [self loadEventData];
 }
 
-- (void)setDate:(NSDate *)date {
-    _date = date;
-    self.dateSelected = date;
-//    [self loadEventData];
-}
-
 - (void)loadEventData {
-    if (_date == nil) {
-        [self initFakeData];
-    }
-    else {
-        self.eventData = [[GlobalCache shareInstance] searchEventsByDay:_date];
-        self.eventData = [self.eventData sortedArrayWithOptions:NSSortStable usingComparator:^NSComparisonResult(EventModel *obj1, EventModel * obj2) {
-            return [obj1.startDate compare:obj2.startDate];
-        }];
-    }
-    
+    self.eventData = [[GlobalCache shareInstance] searchEventsByDay:self.dateSelected];
+    self.eventData = [self.eventData sortedArrayWithOptions:NSSortStable usingComparator:^NSComparisonResult(EventModel *obj1, EventModel * obj2) {
+        return [obj1.startDate compare:obj2.startDate];
+    }];
     
     for (EventModel *model in self.eventData) {
         [self addEvent:model color:model.color];
     }
-//    self.calendarManager.date = self.dateSelected;
+    self.calendarManager.date = self.dateSelected;
 }
 
 - (void)addEvent:(EventModel*)model color:(UIColor*)color {

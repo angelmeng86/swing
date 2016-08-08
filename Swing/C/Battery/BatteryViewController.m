@@ -30,6 +30,8 @@
     
     self.progressView.progressTotal = 100;
     self.progressView.progressCounter = 75;
+    
+    self.textLabel.adjustsFontSizeToFitWidth = YES;
 }
 
 - (void)didReceiveMemoryWarning {

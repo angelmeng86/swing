@@ -33,6 +33,9 @@
     self.progressView.theme.thickness = 20;
     self.progressView.theme.sliceDividerHidden = YES;
     self.progressView.label.hidden = YES;
+    
+    self.timeLabel.adjustsFontSizeToFitWidth = YES;
+    self.descLabel.adjustsFontSizeToFitWidth = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -84,8 +87,7 @@
         ctl.delegate = self;
     }
     else if (sender == self.todayBtn) {
-        DayCalendarViewController *ctl = segue.destinationViewController;
-        ctl.date = nil;
+//        DayCalendarViewController *ctl = segue.destinationViewController;
     }
 }
 
@@ -106,7 +108,7 @@
 //    [super calendar:calendar didTouchDayView:dayView];
     UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
     DayCalendarViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"DayCalendar"];
-    ctl.date = dayView.date;
+    ctl.dateSelected = dayView.date;
     [self.navigationController pushViewController:ctl animated:YES];
 }
 

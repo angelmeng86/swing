@@ -106,7 +106,7 @@
     return _calendarQueue;
 }
 
-- (NSString*)dateToMonthString:(NSDate*)date {
++ (NSString*)dateToMonthString:(NSDate*)date {
     static NSDateFormatter *df = nil;
     if (df == nil) {
         df = [[NSDateFormatter alloc] init];
@@ -115,7 +115,7 @@
     return [df stringFromDate:date];
 }
 
-- (NSString*)dateToDayString:(NSDate*)date {
++ (NSString*)dateToDayString:(NSDate*)date {
     static NSDateFormatter *df = nil;
     if (df == nil) {
         df = [[NSDateFormatter alloc] init];
@@ -125,16 +125,16 @@
 }
 
 - (NSArray*)searchEventsByDay:(NSDate*)date {
-    NSString *month = [self dateToMonthString:date];
+    NSString *month = [GlobalCache dateToMonthString:date];
     if (self.calendarEventsByMonth[month]) {
-        NSString *key = [self dateToDayString:date];
+        NSString *key = [GlobalCache dateToDayString:date];
         return self.calendarEventsByMonth[month][key];
     }
     return nil;
 }
 
 - (void)queryMonthEvents:(NSDate*)date {
-    NSString *month = [self dateToMonthString:date];
+    NSString *month = [GlobalCache dateToMonthString:date];
     if ([self.calendarQueue containsObject:month]) {
         LOG_D(@"containsObject date: %@", month);
         return;
@@ -150,7 +150,7 @@
             self.calendarEventsByMonth[month] = dict;
             
             for (EventModel *model in eventArray) {
-                NSString *key = [self dateToDayString:model.startDate];
+                NSString *key = [GlobalCache dateToDayString:model.startDate];
                 if(!dict[key]){
                     dict[key] = [NSMutableArray new];
                 }
@@ -164,13 +164,13 @@
 }
 
 - (void)addEvent:(EventModel*)model {
-    NSString *month = [self dateToMonthString:model.startDate];
+    NSString *month = [GlobalCache dateToMonthString:model.startDate];
     NSMutableDictionary *dict = self.calendarEventsByMonth[month];
     if (!dict) {
         dict = [NSMutableDictionary new];
         self.calendarEventsByMonth[month] = dict;
     }
-    NSString *key = [self dateToDayString:model.startDate];
+    NSString *key = [GlobalCache dateToDayString:model.startDate];
     if(!dict[key]){
         dict[key] = [NSMutableArray new];
     }
@@ -180,8 +180,8 @@
 }
 
 - (void)deleteEvent:(EventModel*)model {
-    NSString *month = [self dateToMonthString:model.startDate];
-    NSString *key = [self dateToDayString:model.startDate];
+    NSString *month = [GlobalCache dateToMonthString:model.startDate];
+    NSString *key = [GlobalCache dateToDayString:model.startDate];
     NSMutableArray *array = self.calendarEventsByMonth[month][key];
     for (int i = (int)array.count; --i >= 0;) {
         EventModel* m = array[i];
@@ -196,8 +196,8 @@
 
 - (BOOL)haveEventForDay:(NSDate *)date
 {
-    NSString *month = [self dateToMonthString:date];
-    NSString *key = [self dateToDayString:date];
+    NSString *month = [GlobalCache dateToMonthString:date];
+    NSString *key = [GlobalCache dateToDayString:date];
         
     if(self.calendarEventsByMonth[month][key] && [self.calendarEventsByMonth[month][key] count] > 0){
         return YES;

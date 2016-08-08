@@ -30,7 +30,7 @@ typedef enum : NSUInteger {
 
 - (NSURLSessionDataTask *)userUploadProfileImage:(UIImage*)image completion:( void (^)(NSString *profileImage, NSError *error) )completion;
 
-- (NSURLSessionDataTask *)userUpdateProfile:(NSDictionary*)data completion:( void (^)(NSError *error) )completion;
+- (NSURLSessionDataTask *)userUpdateProfile:(NSDictionary*)data completion:( void (^)(id user, NSError *error) )completion;
 
 
 - (NSURLSessionDataTask *)kidsAdd:(NSDictionary*)data completion:( void (^)(id kid, NSError *error) )completion;

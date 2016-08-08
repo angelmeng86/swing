@@ -27,6 +27,9 @@
     self.imageView.layer.borderWidth = 2.f;
     self.imageView.layer.masksToBounds = YES;
     
+    self.label1.adjustsFontSizeToFitWidth = YES;
+    self.label2.adjustsFontSizeToFitWidth = YES;
+    
     if ([GlobalCache shareInstance].info.profileImage) {
         [self.imageView setImageWithURL:[NSURL URLWithString:[@"http://avatar.childrenlab.com/" stringByAppendingString:[GlobalCache shareInstance].info.profileImage]]];
     }

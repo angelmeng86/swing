@@ -156,22 +156,24 @@
     return task;
 }
 
-- (NSURLSessionDataTask *)userUpdateProfile:(NSDictionary*)data completion:( void (^)(NSError *error) )completion {
+- (NSURLSessionDataTask *)userUpdateProfile:(NSDictionary*)data completion:( void (^)(id user, NSError *error) )completion {
     NSURLSessionDataTask *task = [self POST:@"/user/updateProfile" parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"updateProfile info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
             if (err) {
-                completion(err);
+                completion(nil, err);
             }
             else {
-                completion(nil);
+                UserModel *model = [[UserModel alloc] initWithDictionary:responseObject[@"user"] error:nil];
+                [GlobalCache shareInstance].user = model;
+                completion(model, nil);
             }
             
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            completion(error);
+            completion(nil, error);
         });
     }];
     

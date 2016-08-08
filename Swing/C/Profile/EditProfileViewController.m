@@ -59,7 +59,9 @@
 - (void)doneAction:(id)sender {
     if ([self validateTextField]) {
         [SVProgressHUD showWithStatus:@"Saving, please wait..."];
-        [[SwingClient sharedClient] userUpdateProfile:@{@"email":self.emailTF.text, @"phoneNumber":self.phoneTF.text, @"firstName":self.firstNameTF.text, @"lastName":self.lastNameTF.text} completion:^(NSError *error) {
+        //birthday, nickName, sex, address, city, zipCode
+        NSDictionary *data = @{@"email":self.emailTF.text, @"phoneNumber":self.phoneTF.text, @"firstName":self.firstNameTF.text, @"lastName":self.lastNameTF.text, @"city":self.cityTF.text, @"zipCode":self.zipCodeTF.text};
+        [[SwingClient sharedClient] userUpdateProfile:data completion:^(id user, NSError *error) {
             if (error) {
                 LOG_D(@"userUpdateProfile fail: %@", error);
                 [SVProgressHUD showErrorWithStatus:[error localizedDescription]];

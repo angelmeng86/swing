@@ -40,7 +40,7 @@
 
 - (void)eventLoaded:(NSNotification*)notification {
 //    NSLog(@"eventLoaded:%@ month:%@", _calendarManager.date, notification.object);
-    NSString *month = [[GlobalCache shareInstance] dateToMonthString:_calendarManager.date];
+    NSString *month = [GlobalCache dateToMonthString:_calendarManager.date];
     if ([month isEqualToString:notification.object]) {
         [_calendarManager reload];
     }

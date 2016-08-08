@@ -11,7 +11,7 @@
 @implementation ProfileDeviceCell
 
 - (void)awakeFromNib {
-    self.imageBtn.layer.cornerRadius = 30.f;
+    self.imageBtn.layer.cornerRadius = 25.f;
     self.imageBtn.layer.masksToBounds = YES;
 }
 

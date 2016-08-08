@@ -24,7 +24,8 @@
 
 - (void)logout;
 
-- (NSString*)dateToMonthString:(NSDate*)date;
++ (NSString*)dateToMonthString:(NSDate*)date;
++ (NSString*)dateToDayString:(NSDate*)date;
 
 - (NSArray*)searchEventsByDay:(NSDate*)date;
 

@@ -21,6 +21,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     isAsked = NO;
+    
+    self.label1.adjustsFontSizeToFitWidth = YES;
+    self.label2.adjustsFontSizeToFitWidth = YES;
 }
 
 - (void)didReceiveMemoryWarning {

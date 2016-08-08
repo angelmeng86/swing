@@ -28,6 +28,9 @@
     self.progressView.progressTotal = 100;
     self.progressView.progressCounter = 88;
     
+    self.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.valueLabel.adjustsFontSizeToFitWidth = YES;
+    
     if (_pageIndex == 1) {
         UIColor *color = RGBA(0x4b, 0xbf, 0xdc, 1.0f);
         
