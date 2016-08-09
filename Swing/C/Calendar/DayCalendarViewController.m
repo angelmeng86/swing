@@ -118,6 +118,15 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     
     self.eventLabels = [NSMutableArray new];
     [self loadEventData];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAction:)];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+}
+
+- (void)addAction:(id)sender {
+    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
+    UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"AddEvent"];
+    [self.navigationController pushViewController:ctl animated:YES];
 }
 
 - (void)loadEventData {

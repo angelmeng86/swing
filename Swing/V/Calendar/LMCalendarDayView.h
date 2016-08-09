@@ -1,5 +1,5 @@
 //
-//  JTCalendarDayView.h
+//  LMCalendarDayView.h
 //  JTCalendar
 //
 //  Created by Jonathan Tribouharet

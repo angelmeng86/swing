@@ -8,6 +8,7 @@
 
 #import "BaseCalendarViewController.h"
 #import "LMCalendarDayView.h"
+#import "LMCalendarWeekDayView.h"
 #import "CommonDef.h"
 
 @interface BaseCalendarViewController ()
@@ -51,7 +52,7 @@
     _calendarManager = [JTCalendarManager new];
     _calendarManager.delegate = self;
     _calendarManager.settings.weekModeEnabled = weekModeEnabled;
-    
+    _calendarManager.dateHelper.calendar.locale = [NSLocale localeWithLocaleIdentifier:@"en_US"];
     [_calendarManager setMenuView:self.calendarMenuView];
     [_calendarManager setContentView:self.calendarContentView];
     [_calendarManager setDate:[NSDate date]];
@@ -125,7 +126,7 @@
 
 - (UIView<JTCalendarWeekDay> *)calendarBuildWeekDayView:(JTCalendarManager *)calendar
 {
-    JTCalendarWeekDayView *view = [JTCalendarWeekDayView new];
+    LMCalendarWeekDayView *view = [LMCalendarWeekDayView new];
     
     for(UILabel *label in view.dayViews){
         label.textColor = [UIColor blackColor];
@@ -148,16 +149,9 @@
     // Today
     if([_calendarManager.dateHelper date:[NSDate date] isTheSameDayThan:dayView.date]){
         dayView.circleView.hidden = NO;
-        dayView.circleView.backgroundColor = [UIColor redColor];
+        dayView.circleView.backgroundColor = COMMON_TITLE_COLOR;
 //        dayView.dotView.backgroundColor = [UIColor whiteColor];
         dayView.textLabel.textColor = [UIColor whiteColor];
-        
-//        dayView.dotColors = @[[UIColor blackColor], [UIColor yellowColor], [UIColor grayColor], [UIColor blueColor]];
-        
-//        dayView.dotColors = @[[UIColor blackColor], [UIColor yellowColor], [UIColor grayColor]];
-        
-//        dayView.dotColors = @[[UIColor blackColor], [UIColor yellowColor]];
-//
         dayView.dotColors = @[[UIColor blackColor]];
     }
     // Selected date

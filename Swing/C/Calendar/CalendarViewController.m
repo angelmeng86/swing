@@ -85,10 +85,10 @@
     self.tabBarController.navigationItem.leftBarButtonItem = nil;
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)viewWillAppear:(BOOL)animated {
     self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAction:)];
-    self.tabBarController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Mode" style:UIBarButtonItemStylePlain target:self action:@selector(modeAction:)];
+    self.tabBarController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"calendar_icon") style:UIBarButtonItemStylePlain target:self action:@selector(modeAction:)];
+    [super viewWillAppear:animated];
 }
 
 - (void)modeAction:(id)sender {
@@ -122,15 +122,15 @@
     [self.navigationController pushViewController:ctl animated:YES];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if (sender == self.monthBtn) {
-        MonthCalendarViewController *ctl = segue.destinationViewController;
-        ctl.delegate = self;
-    }
-    else if (sender == self.todayBtn) {
-//        DayCalendarViewController *ctl = segue.destinationViewController;
-    }
-}
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    if (sender == self.monthBtn) {
+//        MonthCalendarViewController *ctl = segue.destinationViewController;
+//        ctl.delegate = self;
+//    }
+//    else if (sender == self.todayBtn) {
+////        DayCalendarViewController *ctl = segue.destinationViewController;
+//    }
+//}
 
 - (void)monthCalendarDidSelected:(NSDate*)date {
     self.dateSelected = date;
@@ -156,6 +156,16 @@
     else {
         [super calendar:calendar didTouchDayView:dayView];
     }
+}
+
+- (IBAction)todayAction:(id)sender {
+    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
+    DayCalendarViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"DayCalendar"];
+    [self.navigationController pushViewController:ctl animated:YES];
+}
+
+- (IBAction)monthlyAction:(id)sender {
+    
 }
 
 @end

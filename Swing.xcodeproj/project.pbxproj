@@ -70,6 +70,9 @@
 		ADEF31CF1D478D2B00BB6A9B /* BindReadyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31CE1D478D2B00BB6A9B /* BindReadyViewController.m */; settings = {ASSET_TAGS = (); }; };
 		ADEF31D21D478E9900BB6A9B /* RoundButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31D11D478E9900BB6A9B /* RoundButton.m */; settings = {ASSET_TAGS = (); }; };
 		ADEF31D61D47B04200BB6A9B /* VPImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31D51D47B04200BB6A9B /* VPImageCropperViewController.m */; settings = {ASSET_TAGS = (); }; };
+		ADF33CB91D5A159400AE8874 /* LMCalendarWeekDayView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF33CB81D5A159400AE8874 /* LMCalendarWeekDayView.m */; settings = {ASSET_TAGS = (); }; };
+		ADF33CBC1D5A323000AE8874 /* TodayChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF33CBB1D5A323000AE8874 /* TodayChartViewController.m */; settings = {ASSET_TAGS = (); }; };
+		ADF33CBF1D5A32DD00AE8874 /* RectProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF33CBE1D5A32DD00AE8874 /* RectProgress.m */; settings = {ASSET_TAGS = (); }; };
 		ADF985531D50C4A200B02075 /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF985521D50C4A200B02075 /* AddEventViewController.m */; settings = {ASSET_TAGS = (); }; };
 		ADF985561D50C64A00B02075 /* ToDoListView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF985551D50C64A00B02075 /* ToDoListView.m */; settings = {ASSET_TAGS = (); }; };
 		ADF985591D50CBFC00B02075 /* DoItemLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF985581D50CBFC00B02075 /* DoItemLabel.m */; settings = {ASSET_TAGS = (); }; };
@@ -204,6 +207,12 @@
 		ADEF31D11D478E9900BB6A9B /* RoundButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundButton.m; sourceTree = "<group>"; };
 		ADEF31D41D47B04200BB6A9B /* VPImageCropperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPImageCropperViewController.h; sourceTree = "<group>"; };
 		ADEF31D51D47B04200BB6A9B /* VPImageCropperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPImageCropperViewController.m; sourceTree = "<group>"; };
+		ADF33CB71D5A159400AE8874 /* LMCalendarWeekDayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMCalendarWeekDayView.h; sourceTree = "<group>"; };
+		ADF33CB81D5A159400AE8874 /* LMCalendarWeekDayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMCalendarWeekDayView.m; sourceTree = "<group>"; };
+		ADF33CBA1D5A323000AE8874 /* TodayChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayChartViewController.h; sourceTree = "<group>"; };
+		ADF33CBB1D5A323000AE8874 /* TodayChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayChartViewController.m; sourceTree = "<group>"; };
+		ADF33CBD1D5A32DD00AE8874 /* RectProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RectProgress.h; sourceTree = "<group>"; };
+		ADF33CBE1D5A32DD00AE8874 /* RectProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RectProgress.m; sourceTree = "<group>"; };
 		ADF985511D50C4A200B02075 /* AddEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventViewController.h; sourceTree = "<group>"; };
 		ADF985521D50C4A200B02075 /* AddEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventViewController.m; sourceTree = "<group>"; };
 		ADF985541D50C64A00B02075 /* ToDoListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToDoListView.h; sourceTree = "<group>"; };
@@ -381,6 +390,8 @@
 				AD7438221D4DD47100F5F9D2 /* JBChartTooltipView.m */,
 				AD77979E1D4CF9C400472B27 /* ChartFooterView.h */,
 				AD77979F1D4CF9C400472B27 /* ChartFooterView.m */,
+				ADF33CBD1D5A32DD00AE8874 /* RectProgress.h */,
+				ADF33CBE1D5A32DD00AE8874 /* RectProgress.m */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -439,6 +450,8 @@
 				AD7438291D4DDD3600F5F9D2 /* WeatherViewController.m */,
 				AD74382B1D4DE08000F5F9D2 /* WeatherContentViewController.h */,
 				AD74382C1D4DE08000F5F9D2 /* WeatherContentViewController.m */,
+				ADF33CBA1D5A323000AE8874 /* TodayChartViewController.h */,
+				ADF33CBB1D5A323000AE8874 /* TodayChartViewController.m */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -506,6 +519,8 @@
 		ADE6ED911D4E413E00FFA573 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
+				ADF33CB71D5A159400AE8874 /* LMCalendarWeekDayView.h */,
+				ADF33CB81D5A159400AE8874 /* LMCalendarWeekDayView.m */,
 				ADE6ED921D4E415900FFA573 /* TimeLineView.h */,
 				ADE6ED931D4E415900FFA573 /* TimeLineView.m */,
 				AD74D4DA1D4F90B5001F3B36 /* EventLabel.h */,
@@ -721,6 +736,8 @@
 				AD0B81171D37EF7400F43E72 /* ControlFactory.m in Sources */,
 				AD77979C1D4CE11B00472B27 /* CameraUtility.m in Sources */,
 				ADF985561D50C64A00B02075 /* ToDoListView.m in Sources */,
+				ADF33CBF1D5A32DD00AE8874 /* RectProgress.m in Sources */,
+				ADF33CB91D5A159400AE8874 /* LMCalendarWeekDayView.m in Sources */,
 				AD74382A1D4DDD3600F5F9D2 /* WeatherViewController.m in Sources */,
 				AD7438231D4DD47100F5F9D2 /* JBChartTooltipTipView.m in Sources */,
 				AD05B5C01D3BD187007BCF7C /* SwingClient.m in Sources */,
@@ -747,6 +764,7 @@
 				ADCED9E71D3D3C8B002E3F78 /* RegisterViewController.m in Sources */,
 				ADEF31D61D47B04200BB6A9B /* VPImageCropperViewController.m in Sources */,
 				AD95A51B1D5243390047A0A2 /* SwingClientTest.m in Sources */,
+				ADF33CBC1D5A323000AE8874 /* TodayChartViewController.m in Sources */,
 				ADE6ED8D1D4E355300FFA573 /* BaseCalendarViewController.m in Sources */,
 				ADF9855C1D50D27400B02075 /* ColorLabel.m in Sources */,
 				ADF985591D50CBFC00B02075 /* DoItemLabel.m in Sources */,

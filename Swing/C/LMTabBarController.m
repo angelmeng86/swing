@@ -18,9 +18,6 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    // 设置导航默认标题的颜色及字体大小
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: COMMON_TITLE_COLOR, NSFontAttributeName : [UIFont boldAvenirFontOfSize:18]};
-    
     self.navigationItem.title = [self.viewControllers firstObject].title;
     self.delegate = self;
     

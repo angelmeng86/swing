@@ -10,6 +10,4 @@
 
 @interface ActivityViewController : LMBaseViewController
 
-@property (strong, nonatomic) UIPageViewController *pageViewController;
-
 @end

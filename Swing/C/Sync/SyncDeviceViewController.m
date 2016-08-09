@@ -18,8 +18,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // 设置导航默认标题的颜色及字体大小
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: RGBA(240, 92, 37, 1.0f), NSFontAttributeName : [UIFont boldAvenirFontOfSize:18]};
     
     // Do any additional setup after loading the view.
     self.imageView.layer.cornerRadius = 60.f;

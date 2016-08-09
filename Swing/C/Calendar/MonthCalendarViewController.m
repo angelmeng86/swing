@@ -20,11 +20,13 @@
     // Do any additional setup after loading the view.
     [self initCalendarManager:NO];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Today" style:UIBarButtonItemStylePlain target:self action:@selector(todayAction)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAction:)];
 }
 
-- (void)todayAction {
-    [self.calendarManager setDate:[NSDate date]];
+- (void)addAction:(id)sender {
+    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
+    UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"AddEvent"];
+    [self.navigationController pushViewController:ctl animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

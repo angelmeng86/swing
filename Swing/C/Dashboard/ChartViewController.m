@@ -60,7 +60,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     [self.view addSubview:_titleLabel];
     [_titleLabel autoSetDimensionsToSize:CGSizeMake(100, 30)];
     [_titleLabel autoAlignAxisToSuperviewAxis:ALAxisVertical];
-    [_titleLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:20];
+    [_titleLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:30];
     
     
     

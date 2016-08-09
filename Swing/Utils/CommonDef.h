@@ -27,6 +27,7 @@
 
 #define COMMON_TITLE_COLOR              RGBA(0xff, 0x72, 0x31, 1.0f)//RGBA(240, 92, 37, 1.0f)
 #define COMMON_BACKGROUND_COLOR         RGBA(194, 235, 246, 1.0f)//RGBA(185, 232, 245, 1.0f)
+#define COMMON_NAV_TINT_COLOR           RGBA(0x67, 0xc8, 0xe5, 1.0f)//RGBA(0x7E, 0xAD, 0xBB, 1.0f)
 
 #define ORIGINAL_MAX_WIDTH 640.0f
 #define TAGET_MAX_WIDTH 160.0f

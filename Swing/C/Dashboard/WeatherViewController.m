@@ -10,9 +10,11 @@
 #import "WeatherContentViewController.h"
 #import "CommonDef.h"
 
-@interface WeatherViewController ()<UIPageViewControllerDataSource>
+@interface WeatherViewController ()<UIPageViewControllerDataSource, UIPageViewControllerDelegate>
 
 @property (strong, nonatomic) UIPageViewController *pageViewController;
+@property (strong, nonatomic) UIPageControl *pageControl;
+
 @property (nonatomic, strong) NSArray* ctlArray;
 
 @end
@@ -25,6 +27,7 @@
     // Do any additional setup after loading the view.
     self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     self.pageViewController.dataSource = self;
+    self.pageViewController.delegate = self;
     
     UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
     WeatherContentViewController *tempCtl = [stroyBoard instantiateViewControllerWithIdentifier:@"WeatherContent"];
@@ -46,12 +49,23 @@
     [_pageViewController.view autoPinEdgesToSuperviewEdges];
     [self.pageViewController didMoveToParentViewController:self];
     
+    self.pageControl = [UIPageControl new];
+    [self.view addSubview:self.pageControl];
+    self.pageControl.numberOfPages = self.ctlArray.count;;
+    self.pageControl.currentPageIndicatorTintColor = RGBA(0x89, 0x87, 0x8b, 1.0f);
+    self.pageControl.pageIndicatorTintColor = [UIColor whiteColor];
     
+    [self.pageControl autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(5, 20, 0, 20) excludingEdge:ALEdgeBottom];
+    [self.pageControl autoSetDimension:ALDimensionHeight toSize:20];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewControllers {
+    self.pageControl.currentPage = ((WeatherContentViewController*) [pendingViewControllers firstObject]).pageIndex;
 }
 
 /*
@@ -87,16 +101,6 @@
         return nil;
     }
     return [self.ctlArray objectAtIndex:index];
-}
-
-- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
-{
-    return self.ctlArray.count;
-}
-
-- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
-{
-    return 0;
 }
 
 @end

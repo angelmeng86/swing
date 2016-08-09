@@ -22,7 +22,9 @@
     
     [[GlobalCache shareInstance] initConfig];
     
-//    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
+    //设置导航默认标题的颜色及字体大小
+    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName:COMMON_TITLE_COLOR, NSFontAttributeName:[UIFont boldAvenirFontOfSize:18]};
+    [UINavigationBar appearance].tintColor = COMMON_NAV_TINT_COLOR;
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
@@ -35,7 +37,8 @@
     UIViewController *ctl = [stroyBoard instantiateInitialViewController];
     self.window.rootViewController = ctl;
     
-    
+//    NSArray *locals = [NSLocale availableLocaleIdentifiers];
+//    NSLog(@"locals:%@", locals);
     
 //    [SwingClientTest testAll:11];
     

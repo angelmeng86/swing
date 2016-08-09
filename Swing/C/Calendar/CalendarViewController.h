@@ -20,4 +20,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
 @property (weak, nonatomic) IBOutlet MDRadialProgressView *progressView;
 
+- (IBAction)todayAction:(id)sender;
+- (IBAction)monthlyAction:(id)sender;
 @end
