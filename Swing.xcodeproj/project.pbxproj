@@ -56,6 +56,7 @@
 		ADDCD3F81D4C557E0031DC66 /* UIFont+AvenirFont.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDCD3F71D4C557E0031DC66 /* UIFont+AvenirFont.m */; settings = {ASSET_TAGS = (); }; };
 		ADDCD3FB1D4C59F10031DC66 /* Avenir-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADDCD3F91D4C59E10031DC66 /* Avenir-bold.ttf */; };
 		ADDCD3FC1D4C59F10031DC66 /* Avenir-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = ADDCD3FA1D4C59E10031DC66 /* Avenir-Book.otf */; };
+		ADE0BE731D59933400E70109 /* LMCalendarDayView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE0BE721D59933400E70109 /* LMCalendarDayView.m */; settings = {ASSET_TAGS = (); }; };
 		ADE6ED8A1D4E229D00FFA573 /* MonthCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE6ED891D4E229D00FFA573 /* MonthCalendarViewController.m */; settings = {ASSET_TAGS = (); }; };
 		ADE6ED8D1D4E355300FFA573 /* BaseCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE6ED8C1D4E355300FFA573 /* BaseCalendarViewController.m */; settings = {ASSET_TAGS = (); }; };
 		ADE6ED901D4E3B7D00FFA573 /* DayCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE6ED8F1D4E3B7D00FFA573 /* DayCalendarViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -175,6 +176,8 @@
 		ADDCD3F71D4C557E0031DC66 /* UIFont+AvenirFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+AvenirFont.m"; sourceTree = "<group>"; };
 		ADDCD3F91D4C59E10031DC66 /* Avenir-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir-bold.ttf"; sourceTree = "<group>"; };
 		ADDCD3FA1D4C59E10031DC66 /* Avenir-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir-Book.otf"; sourceTree = "<group>"; };
+		ADE0BE711D59933400E70109 /* LMCalendarDayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMCalendarDayView.h; sourceTree = "<group>"; };
+		ADE0BE721D59933400E70109 /* LMCalendarDayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMCalendarDayView.m; sourceTree = "<group>"; };
 		ADE6ED881D4E229D00FFA573 /* MonthCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthCalendarViewController.h; sourceTree = "<group>"; };
 		ADE6ED891D4E229D00FFA573 /* MonthCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthCalendarViewController.m; sourceTree = "<group>"; };
 		ADE6ED8B1D4E355300FFA573 /* BaseCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCalendarViewController.h; sourceTree = "<group>"; };
@@ -515,6 +518,8 @@
 				ADF985581D50CBFC00B02075 /* DoItemLabel.m */,
 				ADF9855A1D50D27400B02075 /* ColorLabel.h */,
 				ADF9855B1D50D27400B02075 /* ColorLabel.m */,
+				ADE0BE711D59933400E70109 /* LMCalendarDayView.h */,
+				ADE0BE721D59933400E70109 /* LMCalendarDayView.m */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -724,6 +729,7 @@
 				AD0B81181D37EF7400F43E72 /* Fun.m in Sources */,
 				AD7797A61D4D085600472B27 /* ChartViewController.m in Sources */,
 				AD7797961D4C9B5200472B27 /* EditProfileViewController.m in Sources */,
+				ADE0BE731D59933400E70109 /* LMCalendarDayView.m in Sources */,
 				AD9B0D9A1D3BB964009FDD95 /* ProfileViewController.m in Sources */,
 				AD0B81281D37F09900F43E72 /* SimpleLogger.m in Sources */,
 				ADEF31CF1D478D2B00BB6A9B /* BindReadyViewController.m in Sources */,

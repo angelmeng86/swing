@@ -17,6 +17,8 @@
 
 - (void)initCalendarManager:(BOOL)weekModeEnabled;
 
+- (void)eventLoaded:(NSNotification*)notification;
+
 // Getters
 - (JTCalendarMenuView *)calendarMenuView; // subclasses to return instance
 - (JTHorizontalCalendarView *)calendarContentView; // subclasses to return instance

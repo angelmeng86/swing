@@ -204,7 +204,23 @@
     }
     
     return NO;
+}
+
+- (NSArray*)queryEventColorForDay:(NSDate *)date
+{
+    NSString *month = [GlobalCache dateToMonthString:date];
+    NSString *key = [GlobalCache dateToDayString:date];
     
+    if(self.calendarEventsByMonth[month][key] && [self.calendarEventsByMonth[month][key] count] > 0){
+        NSArray* events = self.calendarEventsByMonth[month][key];
+        NSMutableArray *array = [NSMutableArray new];
+        for (EventModel *event in events) {
+            [array addObject:event.color == nil ? [UIColor redColor] : event.color];
+        }
+        return array;
+    }
+    
+    return nil;
 }
 
 - (void)queryWeather {
@@ -236,6 +252,7 @@
             LOG_D(@"error:%@", error);
             _weartherRunning = NO;
             [SVProgressHUD showErrorWithStatus:@"User has explicitly denied authorization for this application, or location services are disabled in Settings."];
+            [SVProgressHUD dismissWithDelay:1];
         }];
         
     }];

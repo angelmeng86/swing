@@ -30,6 +30,8 @@
     self.label1.adjustsFontSizeToFitWidth = YES;
     self.label2.adjustsFontSizeToFitWidth = YES;
     
+    self.navigationItem.title = @"Sync";
+    
     if ([GlobalCache shareInstance].info.profileImage) {
         [self.imageView setImageWithURL:[NSURL URLWithString:[@"http://avatar.childrenlab.com/" stringByAppendingString:[GlobalCache shareInstance].info.profileImage]]];
     }

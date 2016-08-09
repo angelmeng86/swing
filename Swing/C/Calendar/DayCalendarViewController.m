@@ -7,6 +7,7 @@
 //
 
 #import "DayCalendarViewController.h"
+#import "EventInfoViewController.h"
 #import "TimeLineView.h"
 #import "EventLabel.h"
 #import "CommonDef.h"
@@ -20,6 +21,8 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
 
 @property (nonatomic, strong) NSArray *hourLines;
 @property (nonatomic, strong) UIView *contentView;
+
+@property (nonatomic, strong) NSMutableArray *eventLabels;
 
 @end
 
@@ -113,6 +116,7 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     [lastView autoPinEdgeToSuperviewEdge:ALEdgeBottom];
     self.hourLines = array;
     
+    self.eventLabels = [NSMutableArray new];
     [self loadEventData];
 }
 
@@ -148,6 +152,7 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     label.font = [UIFont boldAvenirFontOfSize:20];
     label.text = model.eventName;
     label.backgroundColor = color;
+    label.adjustsFontSizeToFitWidth = YES;
     label.model = model;
     
     [self.contentView addSubview:label];
@@ -166,8 +171,11 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
 }
 
 - (void)tapAction:(UITapGestureRecognizer*)recognizer {
+    EventLabel *label = (EventLabel *)[recognizer view];
     UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
-    UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"EventInfo"];
+    EventInfoViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"EventInfo"];
+    ctl.dateSelected = self.dateSelected;
+    ctl.model = label.model;
     [self.navigationController pushViewController:ctl animated:YES];
 }
 

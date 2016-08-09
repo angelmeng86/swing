@@ -37,7 +37,8 @@
 
 - (void)deleteEvent:(EventModel*)model;
 
-- (BOOL)haveEventForDay:(NSDate *)date;
+//- (BOOL)haveEventForDay:(NSDate *)date;
+- (NSArray*)queryEventColorForDay:(NSDate *)date;
 
 @property (strong, nonatomic) LoginedModel* info;
 @property (strong, nonatomic) UserModel* user;

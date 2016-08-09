@@ -27,8 +27,8 @@
                     dispatch_async(dispatch_get_main_queue(), ^{
                         LOG_D(@"conditions info:%@", responseObject);
                         NSString *uv = responseObject[@"current_observation"][@"UV"];
-                        NSString *temp_c = responseObject[@"current_observation"][@"temp_c"];
-                        NSString *temp_f = responseObject[@"current_observation"][@"temp_f"];
+                        NSNumber *temp_c = responseObject[@"current_observation"][@"temp_c"];
+                        NSNumber *temp_f = responseObject[@"current_observation"][@"temp_f"];
                         NSString *relative_humidity = responseObject[@"current_observation"][@"relative_humidity"];
                         if (uv && temp_c && temp_f && relative_humidity) {
                             WeatherModel *model = [WeatherModel new];

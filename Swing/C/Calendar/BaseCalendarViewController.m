@@ -7,6 +7,7 @@
 //
 
 #import "BaseCalendarViewController.h"
+#import "LMCalendarDayView.h"
 #import "CommonDef.h"
 
 @interface BaseCalendarViewController ()
@@ -60,76 +61,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-/*
-// Used only to have a key for _eventsByDate
-- (NSDateFormatter *)dateFormatter
-{
-    static NSDateFormatter *dateFormatter;
-    if(!dateFormatter){
-        dateFormatter = [NSDateFormatter new];
-        dateFormatter.dateFormat = @"dd-MM-yyyy";
-    }
-    
-    return dateFormatter;
-}
 
-- (BOOL)haveEventForDay:(NSDate *)date
-{
-    NSString *key = [[self dateFormatter] stringFromDate:date];
-    
-    if(_eventsByDate[key] && [_eventsByDate[key] count] > 0){
-        return YES;
-    }
-    
-    return NO;
-    
-}
-
-- (void)createRandomEvents
-{
-    _eventsByDate = [NSMutableDictionary new];
-    
-    for(int i = 0; i < 30; ++i){
-        // Generate 30 random dates between now and 60 days later
-        NSDate *randomDate = [NSDate dateWithTimeInterval:(rand() % (3600 * 24 * 60)) sinceDate:[NSDate date]];
-        
-        // Use the date as key for eventsByDate
-        NSString *key = [[self dateFormatter] stringFromDate:randomDate];
-        
-        if(!_eventsByDate[key]){
-            _eventsByDate[key] = [NSMutableArray new];
-        }
-        
-        [_eventsByDate[key] addObject:@"OYE"];
-    }
-}
-*/
 #pragma mark - Views customization
-
-//- (BOOL)calendar:(JTCalendarManager *)calendar canDisplayPageWithDate:(NSDate *)date {
-//    NSLog(@"canDisplayPageWithDate:%@", date);
-//    return YES;
-//}
-
-//- (NSDate *)calendar:(JTCalendarManager *)calendar dateForPreviousPageWithCurrentDate:(NSDate *)currentDate{
-//    NSLog(@"dateForPreviousPageWithCurrentDate:%@", currentDate);
-//    return currentDate;
-//}
-
-/*!
- * Provide the date for the next page.
- * Return 1 month after the current date by default.
- */
-//- (NSDate *)calendar:(JTCalendarManager *)calendar dateForNextPageWithCurrentDate:(NSDate *)currentDate {
-//    NSLog(@"dateForPreviousPageWithCurrentDate:%@", currentDate);
-//    return currentDate;
-//}
 
 /*!
  * Indicate the previous page became the current page.
  */
 - (void)calendarDidLoadPreviousPage:(JTCalendarManager *)calendar {
-    NSLog(@"calendarDidLoadPreviousPage:%@", calendar.date);
+//    NSLog(@"calendarDidLoadPreviousPage:%@", calendar.date);
     [[GlobalCache shareInstance] queryMonthEvents:calendar.date];
 }
 
@@ -137,7 +76,7 @@
  * Indicate the next page became the current page.
  */
 - (void)calendarDidLoadNextPage:(JTCalendarManager *)calendar {
-    NSLog(@"calendarDidLoadNextPage:%@", calendar.date);
+//    NSLog(@"calendarDidLoadNextPage:%@", calendar.date);
     [[GlobalCache shareInstance] queryMonthEvents:calendar.date];
 }
 
@@ -198,46 +137,60 @@
 
 #pragma mark - CalendarManager delegate
 
+- (UIView<JTCalendarDay> *)calendarBuildDayView:(JTCalendarManager *)calendar {
+    return [LMCalendarDayView new];
+}
+
 // Exemple of implementation of prepareDayView method
 // Used to customize the appearance of dayView
-- (void)calendar:(JTCalendarManager *)calendar prepareDayView:(JTCalendarDayView *)dayView
+- (void)calendar:(JTCalendarManager *)calendar prepareDayView:(LMCalendarDayView *)dayView
 {
     // Today
     if([_calendarManager.dateHelper date:[NSDate date] isTheSameDayThan:dayView.date]){
         dayView.circleView.hidden = NO;
         dayView.circleView.backgroundColor = [UIColor redColor];
-        dayView.dotView.backgroundColor = [UIColor whiteColor];
+//        dayView.dotView.backgroundColor = [UIColor whiteColor];
         dayView.textLabel.textColor = [UIColor whiteColor];
+        
+//        dayView.dotColors = @[[UIColor blackColor], [UIColor yellowColor], [UIColor grayColor], [UIColor blueColor]];
+        
+//        dayView.dotColors = @[[UIColor blackColor], [UIColor yellowColor], [UIColor grayColor]];
+        
+//        dayView.dotColors = @[[UIColor blackColor], [UIColor yellowColor]];
+//
+        dayView.dotColors = @[[UIColor blackColor]];
     }
     // Selected date
     else if(_dateSelected && [_calendarManager.dateHelper date:_dateSelected isTheSameDayThan:dayView.date]){
         dayView.circleView.hidden = NO;
         dayView.circleView.backgroundColor = [UIColor blueColor];
-        dayView.dotView.backgroundColor = [UIColor whiteColor];
+//        dayView.dotView.backgroundColor = [UIColor whiteColor];
         dayView.textLabel.textColor = [UIColor whiteColor];
     }
     // Other month
     else if(![_calendarManager.dateHelper date:calendar.contentView.date isTheSameMonthThan:dayView.date]){
         dayView.circleView.hidden = YES;
-        dayView.dotView.backgroundColor = [UIColor redColor];
+//        dayView.dotView.backgroundColor = [UIColor redColor];
         dayView.textLabel.textColor = [UIColor lightGrayColor];
     }
     // Another day of the current month
     else{
         dayView.circleView.hidden = YES;
-        dayView.dotView.backgroundColor = [UIColor redColor];
+//        dayView.dotView.backgroundColor = [UIColor redColor];
         dayView.textLabel.textColor = [UIColor blackColor];
     }
     
-    if([[GlobalCache shareInstance] haveEventForDay:dayView.date]){
-        dayView.dotView.hidden = NO;
-    }
-    else{
-        dayView.dotView.hidden = YES;
-    }
+    dayView.dotColors = [[GlobalCache shareInstance] queryEventColorForDay:dayView.date];
+    [dayView setNeedsLayout];
+//    if([[GlobalCache shareInstance] haveEventForDay:dayView.date]){
+//        dayView.dotView.hidden = NO;
+//    }
+//    else{
+//        dayView.dotView.hidden = YES;
+//    }
 }
 
-- (void)calendar:(JTCalendarManager *)calendar didTouchDayView:(JTCalendarDayView *)dayView
+- (void)calendar:(JTCalendarManager *)calendar didTouchDayView:(LMCalendarDayView *)dayView
 {
     _dateSelected = dayView.date;
     
