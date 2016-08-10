@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "JSONModel.h"
+#import "ToDoModel.h"
 
 @class UIColor;
 @interface EventModel : JSONModel
@@ -24,5 +25,7 @@
 @property (nonatomic) int alert;
 @property (nonatomic, strong) NSString<Optional> *city;
 @property (nonatomic, strong) NSString<Optional> *state;
+
+@property (nonatomic, strong) NSArray<ToDoModel, Optional> *todo;
 
 @end

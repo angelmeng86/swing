@@ -42,15 +42,26 @@
         self.lastNameTF.text = [GlobalCache shareInstance].user.lastName;
         self.phoneTF.text = [GlobalCache shareInstance].user.phoneNumber;
         self.emailTF.text = [GlobalCache shareInstance].info.email;
+        
+        self.streetTF.text = [GlobalCache shareInstance].user.address;
+        self.cityTF.text = [GlobalCache shareInstance].user.city;
+        self.stateTF.text = [GlobalCache shareInstance].user.state;
+        self.zipCodeTF.text = [GlobalCache shareInstance].user.zipCode;
     }
+    self.emailTF.userInteractionEnabled = NO;
     
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kidsListLoaded:) name:KIDS_LIST_LOAD_NOTI object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userProfileLoaded:) name:USER_PROFILE_LOAD_NOTI object:nil];
 }
 
-- (void)kidsListLoaded:(NSNotification*)notification {
+- (void)userProfileLoaded:(NSNotification*)notification {
     [self.deviceConllectionView reloadData];
 }
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.deviceConllectionView reloadData];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -59,8 +70,8 @@
 - (void)doneAction:(id)sender {
     if ([self validateTextField]) {
         [SVProgressHUD showWithStatus:@"Saving, please wait..."];
-        //birthday, nickName, sex, address, city, zipCode
-        NSDictionary *data = @{@"email":self.emailTF.text, @"phoneNumber":self.phoneTF.text, @"firstName":self.firstNameTF.text, @"lastName":self.lastNameTF.text, @"city":self.cityTF.text, @"zipCode":self.zipCodeTF.text};
+        //birthday, nickName, address, city, zipCode, state
+        NSDictionary *data = @{@"email":self.emailTF.text, @"phoneNumber":self.phoneTF.text, @"firstName":self.firstNameTF.text, @"lastName":self.lastNameTF.text, @"address":self.streetTF.text, @"city":self.cityTF.text, @"state":self.stateTF.text, @"zipCode":self.zipCodeTF.text};
         [[SwingClient sharedClient] userUpdateProfile:data completion:^(id user, NSError *error) {
             if (error) {
                 LOG_D(@"userUpdateProfile fail: %@", error);

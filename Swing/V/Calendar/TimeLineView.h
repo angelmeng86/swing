@@ -11,5 +11,6 @@
 @interface TimeLineView : UIView
 
 @property (nonatomic, strong) UILabel *textLabel;
+@property (nonatomic, strong) UIColor *lineColor;
 
 @end

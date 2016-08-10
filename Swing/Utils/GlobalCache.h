@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "CommonDef.h"
 
+#define USER_PROFILE_LOAD_NOTI @"USER_PROFILE_LOAD_NOTI"
 #define KIDS_LIST_LOAD_NOTI @"KIDS_LIST_LOAD_NOTI"
 #define EVENT_LIST_UPDATE_NOTI @"EVENT_LIST_UPDATE_NOTI"
 #define WEATHER_UPDATE_NOTI @"WEATHER_UPDATE_NOTI"
@@ -21,7 +22,8 @@
 
 - (void)saveInfo;
 
-- (void)queryKids;
+- (void)queryProfile;
+//- (void)queryKids;
 - (void)queryWeather;
 
 - (void)logout;
@@ -47,7 +49,6 @@
 @property (nonatomic) BOOL weartherRunning;
 
 @property (strong, nonatomic) NSArray* kidsList;
-@property (strong, nonatomic) NSURLSessionDataTask *kidsTask;
 
 @property (strong, nonatomic) NSMutableDictionary* calendarEventsByMonth;
 @property (strong, nonatomic) NSMutableSet* calendarQueue;

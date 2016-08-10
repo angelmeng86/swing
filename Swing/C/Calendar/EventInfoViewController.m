@@ -30,6 +30,7 @@
         self.titleLabel.text = [self getTitle];
         self.descLabel.text = _model.desc;
     }
+    self.navigationItem.rightBarButtonItem = nil;
 }
 
 - (NSString*)getTitle {
@@ -55,7 +56,7 @@
 #pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return _model.todo.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -64,6 +65,8 @@
     
     EventSelectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     // Configure the cell.
+    ToDoModel *model = _model.todo[indexPath.row];
+    cell.contentLabel.text = model.text;
     
     return cell;
 }

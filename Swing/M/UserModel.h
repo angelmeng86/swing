@@ -18,8 +18,13 @@
 
 @property (strong, nonatomic) NSString<Optional>* birthday;
 @property (strong, nonatomic) NSString<Optional>* nickName;
-
+@property (strong, nonatomic) NSString<Optional>* address;
 @property (nonatomic, strong) NSString<Optional> *profile;
-@property (nonatomic, strong) NSString<Optional> *sex;
+
+@property (strong, nonatomic) NSString<Optional>* city;
+@property (strong, nonatomic) NSString<Optional>* state;
+@property (strong, nonatomic) NSString<Optional>* zipCode;
+
+- (NSString*)address2;
 
 @end

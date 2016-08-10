@@ -130,6 +130,32 @@
     return task;
 }
 
+- (NSURLSessionDataTask *)userRetrieveProfileWithCompletion:( void (^)(id user, NSArray *kids, NSError *error) )completion {
+    NSURLSessionDataTask *task = [self GET:@"/user/retrieveUserProfile" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LOG_D(@"userRetrieveProfile info:%@", responseObject);
+            NSError *err = [self getErrorMessage:responseObject];
+            if (err) {
+                completion(nil, nil, err);
+            }
+            else {
+                UserModel *model = [[UserModel alloc] initWithDictionary:responseObject[@"user"] error:nil];
+                NSArray *kids = [KidModel arrayOfModelsFromDictionaries:responseObject[@"kids"] error:nil];
+                [GlobalCache shareInstance].kidsList = kids;
+                [GlobalCache shareInstance].user = model;
+                completion(model, kids, nil);
+            }
+            
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(nil, nil, error);
+        });
+    }];
+    
+    return task;
+}
+
 - (NSURLSessionDataTask *)userUploadProfileImage:(UIImage*)image completion:( void (^)(NSString *profileImage, NSError *error) )completion {
     NSData *imageData = UIImagePNGRepresentation(image);
     NSString *content = [imageData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
@@ -278,7 +304,7 @@
                 completion(nil, err);
             }
             else {
-                EventModel *event = [[EventModel alloc] initWithDictionary:responseObject[@"newEvent"] error:nil];
+                EventModel *event = [[EventModel alloc] initWithDictionary:responseObject[@"newEvent"] error:&err];
                 completion(event, nil);
             }
         });

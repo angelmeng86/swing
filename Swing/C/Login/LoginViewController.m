@@ -74,11 +74,19 @@
                         [[SwingClient sharedClient] userLogin:self.emailTextField.text password:self.pwdTextField.text completion:^(NSError *error) {
                             if (!error) {
                                 //Login success
-                                [SVProgressHUD dismiss];
-                                UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab2" bundle:nil];
-                                UIViewController *ctl = [stroyBoard instantiateInitialViewController];
-                                AppDelegate *ad = (AppDelegate*)[UIApplication sharedApplication].delegate;
-                                ad.window.rootViewController = ctl;
+                                [[SwingClient sharedClient] userRetrieveProfileWithCompletion:^(id user, NSArray *kids, NSError *error) {
+                                    if (!error) {
+                                        [SVProgressHUD dismiss];
+                                        UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab2" bundle:nil];
+                                        UIViewController *ctl = [stroyBoard instantiateInitialViewController];
+                                        AppDelegate *ad = (AppDelegate*)[UIApplication sharedApplication].delegate;
+                                        ad.window.rootViewController = ctl;
+                                    }
+                                    else {
+                                        LOG_D(@"retrieveProfile fail: %@", error);
+                                        [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                                    }
+                                }];
                             }
                             else {
                                 LOG_D(@"login fail: %@", error);

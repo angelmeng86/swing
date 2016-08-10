@@ -32,7 +32,7 @@
     // Drawing code
     [super drawRect:rect];
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, COMMON_TITLE_COLOR.CGColor);
+    CGContextSetFillColorWithColor(context, _lineColor == nil ? RGBA(181, 219, 230, 1.0f).CGColor : _lineColor.CGColor);
     CGContextFillRect(context, CGRectMake(40, CGRectGetMidY(self.bounds) - 1, CGRectGetWidth(self.frame), 2));
 }
 

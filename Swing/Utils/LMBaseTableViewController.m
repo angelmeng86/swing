@@ -8,6 +8,7 @@
 
 #import "LMBaseTableViewController.h"
 #import "CommonDef.h"
+#import "LMArrowView.h"
 
 @interface LMBaseTableViewController ()
 
@@ -25,7 +26,12 @@
     }
     
     if (self.navigationController.viewControllers.count > 1) {
-        self.navigationItem.leftBarButtonItem = [ControlFactory backBarButtonItemWithTarget:self action:@selector(backAction)];
+        LMArrowView *arrow = [[LMArrowView alloc] initWithFrame:CGRectMake(0, 0, 10, 18)];
+        arrow.backgroundColor = [UIColor clearColor];
+        arrow.color = COMMON_NAV_TINT_COLOR;
+        arrow.isNotFill = YES;
+        [arrow addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:arrow];
     }
     
     self.view.backgroundColor = COMMON_BACKGROUND_COLOR;

@@ -28,11 +28,22 @@
     self.headerBtn.layer.borderWidth = 2.f;
     self.headerBtn.layer.masksToBounds = YES;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kidsListLoaded:) name:KIDS_LIST_LOAD_NOTI object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userProfileLoaded:) name:USER_PROFILE_LOAD_NOTI object:nil];
 }
 
-- (void)kidsListLoaded:(NSNotification*)notification {
+- (void)userProfileLoaded:(NSNotification*)notification {
+    [self loadProfile];
     [self.deviceConllectionView reloadData];
+}
+
+- (void)loadProfile {
+    if ([GlobalCache shareInstance].user) {
+        self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", [GlobalCache shareInstance].user.firstName, [GlobalCache shareInstance].user.lastName];
+        self.phoneLabel.text = [GlobalCache shareInstance].user.phoneNumber;
+        self.addressLabel.text = [GlobalCache shareInstance].user.address;
+        self.addressLabel2.text = [[GlobalCache shareInstance].user address2];
+    }
+    self.emailLabel.text = [GlobalCache shareInstance].info.email;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -46,12 +57,8 @@
     if ([GlobalCache shareInstance].info.profileImage) {
         [self.headerBtn setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[@"http://avatar.childrenlab.com/" stringByAppendingString:[GlobalCache shareInstance].info.profileImage]]];
     }
-    if ([GlobalCache shareInstance].user) {
-        self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", [GlobalCache shareInstance].user.firstName, [GlobalCache shareInstance].user.lastName];
-        self.phoneLabel.text = [GlobalCache shareInstance].user.phoneNumber;
-        
-    }
-    self.emailLabel.text = [GlobalCache shareInstance].info.email;
+    [self loadProfile];
+    [[GlobalCache shareInstance] queryProfile];
 }
 
 - (void)editProfileAction:(id)sender {

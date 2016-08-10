@@ -123,14 +123,25 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    self.navigationItem.rightBarButtonItem = nil;
     self.navigationItem.leftBarButtonItem = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAction:)];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"calendar_icon") style:UIBarButtonItemStylePlain target:self action:@selector(modeAction:)];
     [super viewWillAppear:animated];
+    
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDateComponents *start = [cal components:NSHourCalendarUnit fromDate:[NSDate date]];
+    for (int i = (int)_hourLines.count; --i >= 0;) {
+        TimeLineView *view = _hourLines[i];
+        if (i == [start hour]) {
+            view.lineColor = COMMON_TITLE_COLOR;
+        }
+        else {
+            view.lineColor = nil;
+        }
+        [view setNeedsLayout];
+    }
 }
 
 - (void)modeAction:(id)sender {
@@ -160,12 +171,6 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
 //        [self.view layoutIfNeeded];
 //    }];
     
-}
-
-- (void)addAction:(id)sender {
-    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
-    UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"AddEvent"];
-    [self.navigationController pushViewController:ctl animated:YES];
 }
 
 - (void)loadEventData {

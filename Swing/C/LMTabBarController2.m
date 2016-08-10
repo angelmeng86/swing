@@ -19,6 +19,7 @@
     [super awakeFromNib];
     
     for (UITabBarItem *item in self.tabBar.items) {
+        item.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
         item.image = [item.image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         item.selectedImage = [item.selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
@@ -31,14 +32,12 @@
         i++;
     }
     
-    [[GlobalCache shareInstance] queryKids];
-    [[GlobalCache shareInstance] queryWeather];
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[GlobalCache shareInstance] queryKids];
     [[GlobalCache shareInstance] queryWeather];
     
     self.selectedIndex = 2;

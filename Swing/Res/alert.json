@@ -1,0 +1,242 @@
+ [
+  {
+  "value" : 0,
+  "text"  : "No Alert"
+  },
+  {
+  "value" : 34,
+  "text"  : "Good morning"
+  },
+  {
+  "value" : 35,
+  "text"  : "Make bed"
+  },
+  {
+  "value" : 36,
+  "text"  : "Get Dress"
+  },
+  {
+  "value" : 37,
+  "text"  : "Eat breakfast"
+  },
+  {
+  "value" : 38,
+  "text"  : "Brush teeth"
+  },
+  {
+  "value" : 39,
+  "text"  : "Ready for school"
+  },
+  {
+  "value" : 40,
+  "text"  : "Put on pajamas"
+  },
+  {
+  "value" : 41,
+  "text"  : "use potty"
+  },
+  {
+  "value" : 42,
+  "text"  : "Story time"
+  },
+  {
+  "value" : 43,
+  "text"  : "Good night"
+  },
+  {
+  "value" : 44,
+  "text"  : "Bed time story"
+  },
+  {
+  "value" : 45,
+  "text"  : "Collect toys"
+  },
+  {
+  "value" : 46,
+  "text"  : "Going to school"
+  },
+  {
+  "value" : 47,
+  "text"  : "Watering flowers"
+  },
+  {
+  "value" : 48,
+  "text"  : "Pick up toys"
+  },
+  {
+  "value" : 49,
+  "text"  : "Packing for school"
+  },
+  {
+  "value" : 50,
+  "text"  : "Sweep"
+  },
+  {
+  "value" : 51,
+  "text"  : "Set table"
+  },
+  {
+  "value" : 52,
+  "text"  : "Feed pet"
+  },
+  {
+  "value" : 53,
+  "text"  : "Vacuum"
+  },
+  {
+  "value" : 54,
+  "text"  : "Water plants"
+  },
+  {
+  "value" : 55,
+  "text"  : "Clean table"
+  },
+  {
+  "value" : 56,
+  "text"  : "Clean bedroom"
+  },
+  {
+  "value" : 57,
+  "text"  : "Put shoes away"
+  },
+  {
+  "value" : 58,
+  "text"  : "Help with laundry"
+  },
+  {
+  "value" : 59,
+  "text"  : "Clean the sink"
+  },
+  {
+  "value" : 60,
+  "text"  : "Take a bath"
+  },
+  {
+  "value" : 61,
+  "text"  : "Homework time"
+  },
+  {
+  "value" : 62,
+  "text"  : "Grocery shopping"
+  },
+  {
+  "value" : 63,
+  "text"  : "Church"
+  },
+  {
+  "value" : 64,
+  "text"  : "Have some snacks"
+  },
+  {
+  "value" : 65,
+  "text"  : "Eat lunch"
+  },
+  {
+  "value" : 66,
+  "text"  : "Take a nap"
+  },
+  {
+  "value" : 67,
+  "text"  : "Outdoor play time"
+  },
+  {
+  "value" : 68,
+  "text"  : "Game time"
+  },
+  {
+  "value" : 69,
+  "text"  : "Watch TV"
+  },
+  {
+  "value" : 70,
+  "text"  : "Fun time"
+  },
+  {
+  "value" : 71,
+  "text"  : "Exercise"
+  },
+  {
+  "value" : 72,
+  "text"  : "Practice music"
+  },
+  {
+  "value" : 73,
+  "text"  : "Drawing time"
+  },
+  {
+  "value" : 74,
+  "text"  : "Reading time"
+  },
+  {
+  "value" : 75,
+  "text"  : "Eat dinner"
+  },
+  {
+  "value" : 76,
+  "text"  : "Reading"
+  },
+  {
+  "value" : 77,
+  "text"  : "Study"
+  },
+  {
+  "value" : 78,
+  "text"  : "Play"
+  },
+  {
+  "value" : 79,
+  "text"  : "See you tomorrow"
+  },
+  {
+  "value" : 80,
+  "text"  : "Good Afternoon"
+  },
+  {
+  "value" : 81,
+  "text"  : "Take a bath"
+  },
+  {
+  "value" : 82,
+  "text"  : "Clean room"
+  },
+  {
+  "value" : 83,
+  "text"  : "Family time"
+  },
+  {
+  "value" : 84,
+  "text"  : "Mom is home"
+  },
+  {
+  "value" : 85,
+  "text"  : "Dad is home"
+  },
+  {
+  "value" : 86,
+  "text"  : "Take a break"
+  },
+  {
+  "value" : 87,
+  "text"  : "Move your body"
+  },
+  {
+  "value" : 88,
+  "text"  : "Find some shade"
+  },
+  {
+  "value" : 89,
+  "text"  : "Get sunshine"
+  },
+  {
+  "value" : 90,
+  "text"  : "Class starts"
+  },
+  {
+  "value" : 91,
+  "text"  : "lunch time"
+  },
+  {
+  "value" : 92,
+  "text"  : "dinner time"
+  }
+]

@@ -26,7 +26,7 @@
         item.selectedImage = [item.selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
     
-    [[GlobalCache shareInstance] queryKids];
+//    [[GlobalCache shareInstance] queryProfile];
     [[GlobalCache shareInstance] queryWeather];
 }
 

@@ -59,7 +59,6 @@
     for (UIViewController *ctl in self.navigationController.viewControllers) {
         if ([ctl isKindOfClass:[EditProfileViewController class]]) {
             //EditProfile add device flow
-            [[GlobalCache shareInstance] queryKids];
             [self.navigationController popToViewController:ctl animated:YES];
             return;
         }
@@ -87,11 +86,20 @@
                 }
                 else {
                     KidModel *model = kid;
+                    if ([GlobalCache shareInstance].kidsList) {
+                        [[GlobalCache shareInstance].kidsList arrayByAddingObject:model];
+                    }
+                    else {
+                        [GlobalCache shareInstance].kidsList = @[model];
+                    }
                     if (image && model) {
                         [SVProgressHUD showWithStatus:@"UploadImage, please wait..."];
                         [[SwingClient sharedClient] kidsUploadKidsProfileImage:image kidId:[NSString stringWithFormat:@"%d", model.objId] completion:^(NSString *profileImage, NSError *error) {
                             if (error) {
                                 LOG_D(@"uploadProfileImage fail: %@", error);
+                            }
+                            else {
+                                model.profile = profileImage;
                             }
                             [SVProgressHUD dismiss];
                             [self goNext];

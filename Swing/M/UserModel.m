@@ -17,4 +17,20 @@
                                                        }];
 }
 
+- (NSString*)address2 {
+    NSMutableString *info = [NSMutableString new];
+    if (self.city) {
+        [info appendString:self.city];
+        [info appendString:@", "];
+    }
+    if (self.state) {
+        [info appendString:self.state];
+        [info appendString:@" "];
+    }
+    if (self.zipCode) {
+        [info appendString:self.zipCode];
+    }
+    return info;
+}
+
 @end

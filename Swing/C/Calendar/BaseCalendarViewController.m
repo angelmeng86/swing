@@ -30,6 +30,19 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(eventLoaded:) name:EVENT_LIST_UPDATE_NOTI object:nil];
     [[GlobalCache shareInstance] queryMonthEvents:_dateSelected];
+    
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    btn.titleLabel.font = [UIFont systemFontOfSize:22];
+    [btn setTitle:@"+" forState:UIControlStateNormal];
+    [btn setTitleColor:COMMON_NAV_TINT_COLOR forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(addAction:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+}
+
+- (void)addAction:(id)sender {
+    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
+    UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"AddEvent"];
+    [self.navigationController pushViewController:ctl animated:YES];
 }
 
 - (void)leftAction:(id)sender {

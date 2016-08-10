@@ -19,14 +19,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self initCalendarManager:NO];
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAction:)];
-}
-
-- (void)addAction:(id)sender {
-    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
-    UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"AddEvent"];
-    [self.navigationController pushViewController:ctl animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

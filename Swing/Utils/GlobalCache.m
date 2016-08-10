@@ -73,8 +73,20 @@
     [[SwingClient sharedClient] logout];
 }
 
+- (void)queryProfile {
+    [[SwingClient sharedClient] userRetrieveProfileWithCompletion:^(id user, NSArray *kids, NSError *error) {
+        if (!error) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:USER_PROFILE_LOAD_NOTI object:user];
+        }
+        else {
+            LOG_D(@"retrieveProfile fail: %@", error);
+            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+        }
+    }];
+}
+
 - (void)queryKids {
-    self.kidsTask = [[SwingClient sharedClient] kidsListWithCompletion:^(NSArray *list, NSError *error) {
+    [[SwingClient sharedClient] kidsListWithCompletion:^(NSArray *list, NSError *error) {
         if (error) {
             LOG_D(@"kidsListWithCompletion fail: %@", error);
         }

@@ -53,6 +53,9 @@
 		ADBC9BD31D578403007E4A2C /* JSONValueTransformer+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBC9BD21D578403007E4A2C /* JSONValueTransformer+UIColor.m */; settings = {ASSET_TAGS = (); }; };
 		ADCED9E41D3D2BAC002E3F78 /* LoginedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCED9E31D3D2BAC002E3F78 /* LoginedModel.m */; settings = {ASSET_TAGS = (); }; };
 		ADCED9E71D3D3C8B002E3F78 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCED9E61D3D3C8B002E3F78 /* RegisterViewController.m */; settings = {ASSET_TAGS = (); }; };
+		ADD6555C1D5B886D0054FB24 /* AlertSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD6555B1D5B886D0054FB24 /* AlertSelectViewController.m */; settings = {ASSET_TAGS = (); }; };
+		ADD6555E1D5B8D410054FB24 /* alert.json in Resources */ = {isa = PBXBuildFile; fileRef = ADD6555D1D5B89770054FB24 /* alert.json */; };
+		ADD655611D5B8DAC0054FB24 /* AlertModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD655601D5B8DAC0054FB24 /* AlertModel.m */; settings = {ASSET_TAGS = (); }; };
 		ADDCD3E81D4C4DA90031DC66 /* UVIndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDCD3E71D4C4DA90031DC66 /* UVIndexViewController.m */; settings = {ASSET_TAGS = (); }; };
 		ADDCD3F31D4C54960031DC66 /* LoginFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADDCD3EE1D4C54960031DC66 /* LoginFlow.storyboard */; settings = {ASSET_TAGS = (); }; };
 		ADDCD3F41D4C54960031DC66 /* MainTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADDCD3EF1D4C54960031DC66 /* MainTab.storyboard */; settings = {ASSET_TAGS = (); }; };
@@ -181,6 +184,11 @@
 		ADCED9E31D3D2BAC002E3F78 /* LoginedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginedModel.m; sourceTree = "<group>"; };
 		ADCED9E51D3D3C8B002E3F78 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		ADCED9E61D3D3C8B002E3F78 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		ADD6555A1D5B886D0054FB24 /* AlertSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertSelectViewController.h; sourceTree = "<group>"; };
+		ADD6555B1D5B886D0054FB24 /* AlertSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertSelectViewController.m; sourceTree = "<group>"; };
+		ADD6555D1D5B89770054FB24 /* alert.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = alert.json; sourceTree = "<group>"; };
+		ADD6555F1D5B8DAC0054FB24 /* AlertModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertModel.h; sourceTree = "<group>"; };
+		ADD655601D5B8DAC0054FB24 /* AlertModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertModel.m; sourceTree = "<group>"; };
 		ADDCD3E61D4C4DA90031DC66 /* UVIndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVIndexViewController.h; sourceTree = "<group>"; };
 		ADDCD3E71D4C4DA90031DC66 /* UVIndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVIndexViewController.m; sourceTree = "<group>"; };
 		ADDCD3EE1D4C54960031DC66 /* LoginFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginFlow.storyboard; sourceTree = "<group>"; };
@@ -303,6 +311,8 @@
 				ADE820751D54C62D00E12768 /* UserModel.m */,
 				ADE820771D54D99000E12768 /* WeatherModel.h */,
 				ADE820781D54D99000E12768 /* WeatherModel.m */,
+				ADD6555F1D5B8DAC0054FB24 /* AlertModel.h */,
+				ADD655601D5B8DAC0054FB24 /* AlertModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -446,6 +456,8 @@
 				AD74D4DE1D4FA08E001F3B36 /* EventInfoViewController.m */,
 				ADF985511D50C4A200B02075 /* AddEventViewController.h */,
 				ADF985521D50C4A200B02075 /* AddEventViewController.m */,
+				ADD6555A1D5B886D0054FB24 /* AlertSelectViewController.h */,
+				ADD6555B1D5B886D0054FB24 /* AlertSelectViewController.m */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -510,6 +522,7 @@
 			children = (
 				ADDCD3EA1D4C54960031DC66 /* font */,
 				ADDCD3ED1D4C54960031DC66 /* storyboard */,
+				ADD6555D1D5B89770054FB24 /* alert.json */,
 			);
 			path = Res;
 			sourceTree = "<group>";
@@ -687,6 +700,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADD6555E1D5B8D410054FB24 /* alert.json in Resources */,
 				ADDCD3FB1D4C59F10031DC66 /* Avenir-bold.ttf in Resources */,
 				ADDCD3FC1D4C59F10031DC66 /* Avenir-Book.otf in Resources */,
 				ADDCD3F31D4C54960031DC66 /* LoginFlow.storyboard in Resources */,
@@ -761,6 +775,7 @@
 				ADF33CBF1D5A32DD00AE8874 /* RectProgress.m in Sources */,
 				ADF33CB91D5A159400AE8874 /* LMCalendarWeekDayView.m in Sources */,
 				AD74382A1D4DDD3600F5F9D2 /* WeatherViewController.m in Sources */,
+				ADD655611D5B8DAC0054FB24 /* AlertModel.m in Sources */,
 				AD7438231D4DD47100F5F9D2 /* JBChartTooltipTipView.m in Sources */,
 				AD05B5C01D3BD187007BCF7C /* SwingClient.m in Sources */,
 				AD6654541D490C110056632C /* SyncDeviceViewController.m in Sources */,
@@ -771,6 +786,7 @@
 				ADE0BE731D59933400E70109 /* LMCalendarDayView.m in Sources */,
 				AD9B0D9A1D3BB964009FDD95 /* ProfileViewController.m in Sources */,
 				AD0B81281D37F09900F43E72 /* SimpleLogger.m in Sources */,
+				ADD6555C1D5B886D0054FB24 /* AlertSelectViewController.m in Sources */,
 				ADEF31CF1D478D2B00BB6A9B /* BindReadyViewController.m in Sources */,
 				ADE6ED971D4E538B00FFA573 /* EventModel.m in Sources */,
 				AD0B811B1D37EF7400F43E72 /* LMBaseTableViewController2.m in Sources */,

@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LMArrowView : UIView
+@interface LMArrowView : UIControl
 
 @property (nonatomic, strong) UIColor *color;
 @property (nonatomic, assign) BOOL isRight;
+
+@property (nonatomic, assign) BOOL isNotFill;
 
 @end

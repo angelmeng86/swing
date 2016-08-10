@@ -7,9 +7,12 @@
 //
 
 #import "AddEventViewController.h"
+#import "AlertSelectViewController.h"
 #import "CommonDef.h"
 
-@interface AddEventViewController ()
+@interface AddEventViewController ()<UITextFieldDelegate>
+
+@property (nonatomic, strong) AlertModel* alert;
 
 @end
 
@@ -33,6 +36,20 @@
     self.endTF.inputView = datePicker2;
     [datePicker2 addTarget:self action:@selector(endChange:) forControlEvents:UIControlEventValueChanged];
     
+    self.alertTF.delegate = self;
+    
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    AlertSelectViewController *ctl = [[AlertSelectViewController alloc] initWithStyle:UITableViewStylePlain];
+    ctl.delegate = self;
+    [self.navigationController pushViewController:ctl animated:YES];
+    return NO;
+}
+
+- (void)alertSelectViewControllerDidSelected:(AlertModel*)alert {
+    self.alert = alert;
+    self.alertTF.text = alert.text;
 }
 
 - (void)startChange:(UIDatePicker*)datePicker {
@@ -89,7 +106,7 @@
         NSDictionary *data = @{@"eventName":self.nameTF.text , @"startDate":self.startTF.text
                                , @"endDate":self.endTF.text
                                , @"description":self.descTF.text
-                               , @"alert":self.alertTF.text
+                               , @"alert":self.alert.value
                                , @"city":self.cityTF.text
                                , @"state":self.stateTF.text
                                , @"color":[Fun stringFromColor:self.colorCtl.selectedColor]};

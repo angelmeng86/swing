@@ -8,6 +8,7 @@
 
 #import "LMBaseViewController.h"
 #import "CommonDef.h"
+#import "LMArrowView.h"
 
 @interface LMBaseViewController ()
 
@@ -25,8 +26,13 @@
         self.extendedLayoutIncludesOpaqueBars = YES;
     }
     
-    if (self.navigationController) {
-        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    if (self.navigationController.viewControllers.count > 1) {
+        LMArrowView *arrow = [[LMArrowView alloc] initWithFrame:CGRectMake(0, 0, 10, 18)];
+        arrow.backgroundColor = [UIColor clearColor];
+        arrow.color = COMMON_NAV_TINT_COLOR;
+        arrow.isNotFill = YES;
+        [arrow addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:arrow];
     }
     
     if (self.tabBarController.navigationController) {

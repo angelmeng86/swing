@@ -41,20 +41,25 @@ CGFloat const kLMArrowViewDefaultHeight = 8.0f;
         CGContextBeginPath(context);
         if (_isRight) {
             CGContextMoveToPoint(context, CGRectGetMinX(rect), CGRectGetMinY(rect));
-            CGContextAddLineToPoint(context, CGRectGetMinX(rect), CGRectGetMaxY(rect));
             CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMidY(rect));
+            CGContextAddLineToPoint(context, CGRectGetMinX(rect), CGRectGetMaxY(rect));
         }
         else {
-            CGContextMoveToPoint(context, CGRectGetMinX(rect), CGRectGetMidY(rect));
-            CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMinY(rect));
+            CGContextMoveToPoint(context, CGRectGetMaxX(rect), CGRectGetMinY(rect));
+            CGContextAddLineToPoint(context, CGRectGetMinX(rect), CGRectGetMidY(rect));
             CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMaxY(rect));
         }
-        //        CGContextMoveToPoint(context, CGRectGetMidX(rect), CGRectGetMaxY(rect));
-//        CGContextAddLineToPoint(context, CGRectGetMinX(rect), CGRectGetMinY(rect));
-//        CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMinY(rect));
-        CGContextClosePath(context);
-        CGContextSetFillColorWithColor(context, _color == nil ? kJBColorTooltipColor.CGColor : _color.CGColor);
-        CGContextFillPath(context);
+        
+        if (_isNotFill) {
+            CGContextSetLineWidth(context, 1);
+            CGContextSetStrokeColorWithColor(context, _color == nil ? kJBColorTooltipColor.CGColor : _color.CGColor);
+            CGContextStrokePath(context);
+        }
+        else {
+            CGContextClosePath(context);
+            CGContextSetFillColorWithColor(context, _color == nil ? kJBColorTooltipColor.CGColor : _color.CGColor);
+            CGContextFillPath(context);
+        }
     }
     CGContextRestoreGState(context);
 }

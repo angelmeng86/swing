@@ -7,6 +7,7 @@
 //
 
 #import "JSONModel.h"
+@protocol ToDoModel @end
 
 @interface ToDoModel : JSONModel
 
