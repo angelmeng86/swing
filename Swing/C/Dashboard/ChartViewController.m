@@ -11,16 +11,17 @@
 #import "JBBarChartView.h"
 #import "JBLineChartView.h"
 #import "ChartFooterView.h"
-
+#import "LMBarView.h"
 #import "JBChartTooltipView.h"
 #import "JBChartTooltipTipView.h"
+#import "LMArrowView.h"
 
 // Numerics
 CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
 NSInteger const kJBBarChartViewControllerMaxBarHeight = 10;
 NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 
-@interface ChartViewController ()<JBBarChartViewDelegate, JBBarChartViewDataSource, JBLineChartViewDataSource, JBLineChartViewDelegate>
+@interface ChartViewController ()<JBBarChartViewDelegate, JBBarChartViewDataSource, JBLineChartViewDataSource, JBLineChartViewDelegate, ChartFooterViewDelegate>
 
 
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -62,8 +63,6 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     [_titleLabel autoAlignAxisToSuperviewAxis:ALAxisVertical];
     [_titleLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:30];
     
-    
-    
     switch (_type) {
         case ChartTypeMonth:
         {
@@ -101,16 +100,34 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
             break;
     }
     
+    _titleLabel.textColor = _stepChartColor;
+    
+    LMArrowView *leftView = [LMArrowView new];
+    LMArrowView *rightView = [LMArrowView new];
+    rightView.isRight = YES;
+    
+    leftView.color = _titleLabel.textColor;
+    rightView.color = _titleLabel.textColor;
+    
+    [self.view addSubview:leftView];
+    [self.view addSubview:rightView];
+    [leftView autoSetDimensionsToSize:CGSizeMake(6, 10)];
+    [leftView autoAlignAxis:ALAxisHorizontal toSameAxisOfView:_titleLabel];
+    [leftView autoPinEdge:ALEdgeTrailing toEdge:ALEdgeLeading ofView:_titleLabel];
+    [rightView autoSetDimensionsToSize:CGSizeMake(6, 10)];
+    [rightView autoAlignAxis:ALAxisHorizontal toSameAxisOfView:_titleLabel];
+    [rightView autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:_titleLabel];
+    
     [self.view addSubview:self.stepsChartView];
     [self.view addSubview:self.distanceChartView];
     
     [_stepsChartView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:_titleLabel withOffset:10];
-    [_stepsChartView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:40];
-    [_stepsChartView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:40];
+    [_stepsChartView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:20];
+    [_stepsChartView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:20];
     
     [_distanceChartView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:_stepsChartView withOffset:20];
-    [_distanceChartView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:40];
-    [_distanceChartView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:40];
+    [_distanceChartView autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:_stepsChartView];
+    [_distanceChartView autoPinEdge:ALEdgeTrailing toEdge:ALEdgeTrailing ofView:_stepsChartView];
     [_distanceChartView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:20];
     
     [_stepsChartView autoMatchDimension:ALDimensionHeight toDimension:ALDimensionHeight ofView:_distanceChartView];
@@ -134,14 +151,10 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     
     ChartFooterView *stepFooter = [[ChartFooterView alloc] initWithFrame:CGRectMake(0, 0, 0, 40)];
     stepFooter.titleLabel.text = @"Steps";
-    stepFooter.leftLabel.text = @"07/25";
-    stepFooter.rightLabel.text = @"08/12";
+    
     
     ChartFooterView *distanceFooter = [[ChartFooterView alloc] initWithFrame:CGRectMake(0, 0, 0, 40)];
     distanceFooter.titleLabel.text = @"Distance";
-    
-    distanceFooter.leftLabel.text = @"07/25";
-    distanceFooter.rightLabel.text = @"08/12";
     
     stepFooter.lineColor = self.stepChartColor;
     distanceFooter.lineColor = self.distanceChartColor;
@@ -149,8 +162,23 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     self.stepsChartView.footerView = stepFooter;
     self.distanceChartView.footerView = distanceFooter;
     
+    if (_type != ChartTypeMonth) {
+        stepFooter.delegate = self;
+        distanceFooter.delegate = self;
+    }
+    else {
+        stepFooter.leftLabel.text = @"07/25";
+        stepFooter.rightLabel.text = @"08/12";
+        
+        distanceFooter.leftLabel.text = @"07/25";
+        distanceFooter.rightLabel.text = @"08/12";
+    }
+    
     [_stepsChartView reloadData];
     [_distanceChartView reloadData];
+    
+    [stepFooter reload];
+    [distanceFooter reload];
 }
 
 - (JBBarChartView*)createBarChartView {
@@ -176,6 +204,25 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     // Dispose of any resources that can be recreated.
 }
 
+- (NSUInteger)numberOfBarsInChartFooterView:(ChartFooterView *)footerView {
+    return [self.chartData count];
+}
+
+- (NSString*)chartFooterView:(ChartFooterView *)footerView textAtIndex:(NSUInteger)index {
+    if (_type == ChartTypeWeek) {
+        return [NSString stringWithFormat:@"%02d/%02d", 7, 18 + index];
+    }
+    else {
+        static NSDateFormatter *dateFormatter = nil;
+        if (dateFormatter == nil) {
+            dateFormatter = [NSDateFormatter new];
+            dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US"];
+        }
+        NSArray *array = [dateFormatter shortStandaloneMonthSymbols];
+        return [array objectAtIndex:index % 12];
+    }
+}
+
 #pragma mark - JBChartViewDataSource
 
 - (BOOL)shouldExtendSelectionViewIntoHeaderPaddingForChartView:(JBChartView *)chartView
@@ -197,14 +244,14 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 
 - (void)barChartView:(JBBarChartView *)barChartView didSelectBarAtIndex:(NSUInteger)index touchPoint:(CGPoint)touchPoint
 {
-    NSNumber *valueNumber = [self.chartData objectAtIndex:index];
-    [self setTooltipVisible:YES animated:YES atTouchPoint:touchPoint atChartView:barChartView];
-    [self.tooltipView setText:[valueNumber stringValue]];
+//    NSNumber *valueNumber = [self.chartData objectAtIndex:index];
+//    [self setTooltipVisible:YES animated:YES atTouchPoint:touchPoint atChartView:barChartView];
+//    [self.tooltipView setText:[valueNumber stringValue]];
 }
 
 - (void)didDeselectBarChartView:(JBBarChartView *)barChartView
 {
-    [self setTooltipVisible:NO animated:YES atChartView:barChartView];
+//    [self setTooltipVisible:NO animated:YES atChartView:barChartView];
 }
 
 #pragma mark - JBBarChartViewDelegate
@@ -224,9 +271,24 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     }
 }
 
+- (UIView *)barChartView:(JBBarChartView *)barChartView barViewAtIndex:(NSUInteger)index {
+    UIView *view = nil;
+    
+    if (_type == ChartTypeWeek) {
+        LMBarView *v = [LMBarView new];
+        v.label.text = [NSString stringWithFormat:@"%d", (int)[self barChartView:barChartView heightForBarViewAtIndex:index]];
+        view = v;
+    }
+    else {
+        view = [UIView new];
+    }
+    view.backgroundColor = [self barChartView:barChartView colorForBarViewAtIndex:index];
+    return view;
+}
+
 - (UIColor *)barSelectionColorForBarChartView:(JBBarChartView *)barChartView
 {
-    return [UIColor whiteColor];
+    return [UIColor clearColor];
 }
 
 - (CGFloat)barPaddingForBarChartView:(JBBarChartView *)barChartView
@@ -313,7 +375,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 
 - (UIColor *)lineChartView:(JBLineChartView *)lineChartView verticalSelectionColorForLineAtLineIndex:(NSUInteger)lineIndex
 {
-    return [UIColor whiteColor];
+    return [UIColor clearColor];
 }
 
 @end

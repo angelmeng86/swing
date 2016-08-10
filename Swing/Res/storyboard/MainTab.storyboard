@@ -608,6 +608,7 @@ You can do this!</string>
                         <outlet property="indoorBtn" destination="FgC-PN-Dfn" id="fIl-SQ-VLv"/>
                         <outlet property="outdoorBtn" destination="FEo-ce-J8T" id="XKb-3h-3rI"/>
                         <outlet property="stepProgress" destination="50o-Su-OqH" id="Dbz-lm-QYX"/>
+                        <outlet property="titleLabel" destination="8gE-1z-Qcu" id="tnh-4V-I81"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qVj-Fa-Dku" userLabel="First Responder" sceneMemberID="firstResponder"/>

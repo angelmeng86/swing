@@ -9,7 +9,7 @@
 #import "RectProgress.h"
 #import "CommonDef.h"
 
-#define EDGE_VALUE  20
+#define EDGE_VALUE  10
 
 @implementation RectProgress
 

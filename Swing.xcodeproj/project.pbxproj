@@ -17,6 +17,8 @@
 		AD0B811C1D37EF7400F43E72 /* LMBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B81151D37EF7400F43E72 /* LMBaseViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD0B811F1D37EFEA00F43E72 /* LMTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B811E1D37EFEA00F43E72 /* LMTabBarController.m */; settings = {ASSET_TAGS = (); }; };
 		AD0B81281D37F09900F43E72 /* SimpleLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B81231D37F09900F43E72 /* SimpleLogger.m */; settings = {ASSET_TAGS = (); }; };
+		AD1CEF0A1D5ACB19004FEC24 /* LMBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1CEF091D5ACB19004FEC24 /* LMBarView.m */; settings = {ASSET_TAGS = (); }; };
+		AD1CEF0D1D5ADA90004FEC24 /* LMArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1CEF0C1D5ADA90004FEC24 /* LMArrowView.m */; settings = {ASSET_TAGS = (); }; };
 		AD289A5E1D3FD0E800898F92 /* AskStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD289A5D1D3FD0E800898F92 /* AskStepViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AD2D338D1D5378AD005D9298 /* KidModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2D338C1D5378AD005D9298 /* KidModel.m */; settings = {ASSET_TAGS = (); }; };
 		AD2D33901D538418005D9298 /* ToDoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2D338F1D538418005D9298 /* ToDoModel.m */; settings = {ASSET_TAGS = (); }; };
@@ -106,6 +108,10 @@
 		AD0B811E1D37EFEA00F43E72 /* LMTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMTabBarController.m; sourceTree = "<group>"; };
 		AD0B81221D37F09900F43E72 /* SimpleLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleLogger.h; sourceTree = "<group>"; };
 		AD0B81231D37F09900F43E72 /* SimpleLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleLogger.m; sourceTree = "<group>"; };
+		AD1CEF081D5ACB19004FEC24 /* LMBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMBarView.h; sourceTree = "<group>"; };
+		AD1CEF091D5ACB19004FEC24 /* LMBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMBarView.m; sourceTree = "<group>"; };
+		AD1CEF0B1D5ADA90004FEC24 /* LMArrowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMArrowView.h; sourceTree = "<group>"; };
+		AD1CEF0C1D5ADA90004FEC24 /* LMArrowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMArrowView.m; sourceTree = "<group>"; };
 		AD289A5C1D3FD0E800898F92 /* AskStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AskStepViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		AD289A5D1D3FD0E800898F92 /* AskStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AskStepViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AD2D338B1D5378AD005D9298 /* KidModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KidModel.h; sourceTree = "<group>"; };
@@ -392,6 +398,10 @@
 				AD77979F1D4CF9C400472B27 /* ChartFooterView.m */,
 				ADF33CBD1D5A32DD00AE8874 /* RectProgress.h */,
 				ADF33CBE1D5A32DD00AE8874 /* RectProgress.m */,
+				AD1CEF081D5ACB19004FEC24 /* LMBarView.h */,
+				AD1CEF091D5ACB19004FEC24 /* LMBarView.m */,
+				AD1CEF0B1D5ADA90004FEC24 /* LMArrowView.h */,
+				AD1CEF0C1D5ADA90004FEC24 /* LMArrowView.m */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -728,7 +738,9 @@
 				AD6654571D490EC20056632C /* SearchDeviceViewController.m in Sources */,
 				AD9B0D911D3BB935009FDD95 /* DashboardViewController.m in Sources */,
 				ADFC2C301D369949004EDCDF /* AppDelegate.m in Sources */,
+				AD1CEF0D1D5ADA90004FEC24 /* LMArrowView.m in Sources */,
 				ADE6ED901D4E3B7D00FFA573 /* DayCalendarViewController.m in Sources */,
+				AD1CEF0A1D5ACB19004FEC24 /* LMBarView.m in Sources */,
 				AD9B0D941D3BB947009FDD95 /* BatteryViewController.m in Sources */,
 				AD7797A31D4D034600472B27 /* ActivityViewController.m in Sources */,
 				AD0B811F1D37EFEA00F43E72 /* LMTabBarController.m in Sources */,

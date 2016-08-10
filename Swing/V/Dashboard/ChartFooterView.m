@@ -55,6 +55,42 @@
     return self;
 }
 
+- (void)reload {
+    if ([_delegate respondsToSelector:@selector(numberOfBarsInChartFooterView:)]) {
+        NSUInteger count = [_delegate numberOfBarsInChartFooterView:self];
+        for (UILabel *label in _labels) {
+            [label removeFromSuperview];
+        }
+        NSMutableArray *array = [NSMutableArray new];
+        for (int i = 0; i < count; i++) {
+            UILabel *label = [UILabel new];
+            [self addSubview:label];
+            [array addObject:label];
+            [label autoPinEdgeToSuperviewEdge:ALEdgeTop];
+            [label autoSetDimension:ALDimensionHeight toSize:20];
+            label.textColor = [UIColor whiteColor];
+            label.font = [UIFont avenirFontOfSize:13];
+            label.adjustsFontSizeToFitWidth = YES;
+            if (i == 0) {
+                label.textAlignment = NSTextAlignmentLeft;
+            }
+            else if(i == count - 1) {
+                label.textAlignment = NSTextAlignmentRight;
+            }
+            else {
+                label.textAlignment = NSTextAlignmentCenter;
+            }
+            if ([_delegate respondsToSelector:@selector(numberOfBarsInChartFooterView:)]) {
+                label.text = [_delegate chartFooterView:self textAtIndex:i];
+            }
+        }
+//        [array autoAlignViewsToEdge:ALEdgeTop];
+//        [array autoSetViewsDimension:ALDimensionHeight toSize:20];
+        [array autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeHorizontal withFixedSpacing:0];
+        self.labels = array;
+    }
+}
+
 - (void)setLineColor:(UIColor *)lineColor {
     _lineColor = lineColor;
     self.titleLabel.backgroundColor = lineColor;
