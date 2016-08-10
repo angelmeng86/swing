@@ -119,8 +119,47 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     self.eventLabels = [NSMutableArray new];
     [self loadEventData];
     
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.navigationItem.rightBarButtonItem = nil;
+    self.navigationItem.leftBarButtonItem = nil;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAction:)];
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"calendar_icon") style:UIBarButtonItemStylePlain target:self action:@selector(modeAction:)];
+    [super viewWillAppear:animated];
+}
+
+- (void)modeAction:(id)sender {
+    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
+    UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MonthCalendar"];
+    [self.navigationController pushViewController:ctl animated:YES];
+    
+//    if (!self.calendarManager.settings.weekModeEnabled) {
+//        self.scrollView.hidden = NO;
+//        self.monthBtn.hidden = NO;
+//        self.todayBtn.hidden = NO;
+//        self.timeLabel.hidden = NO;
+//        self.descLabel.hidden = NO;
+//        self.calendarHeight.constant = 70;
+//    }
+//    else {
+//        self.scrollView.hidden = YES;
+//        self.monthBtn.hidden = YES;
+//        self.todayBtn.hidden = YES;
+//        self.timeLabel.hidden = YES;
+//        self.descLabel.hidden = YES;
+//        self.calendarHeight.constant = 300;
+//    }
+//    self.calendarManager.settings.weekModeEnabled = !self.calendarManager.settings.weekModeEnabled;
+//    [self.calendarManager reload];
+//    [UIView animateWithDuration:0.3f animations:^{
+//        [self.view layoutIfNeeded];
+//    }];
+    
 }
 
 - (void)addAction:(id)sender {

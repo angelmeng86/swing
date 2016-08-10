@@ -12,6 +12,9 @@
 #import "CommonDef.h"
 
 @interface ActivityViewController ()<UIPageViewControllerDataSource, UIPageViewControllerDelegate>
+{
+    NSUInteger scrollIndex;
+}
 
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 @property (strong, nonatomic) UIPageControl *pageControl;
@@ -74,8 +77,14 @@
 }
 
 - (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewControllers {
-    self.pageControl.currentPage = (int)[[pendingViewControllers firstObject] performSelector:@selector(pageIndex) withObject:nil];
+    scrollIndex = (int)[[pendingViewControllers firstObject] performSelector:@selector(pageIndex) withObject:nil];
 //    self.pageControl.currentPage = ((ChartViewController*) [pendingViewControllers firstObject]).pageIndex;
+}
+
+- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed {
+    if (completed) {
+        self.pageControl.currentPage = scrollIndex;
+    }
 }
 
 /*

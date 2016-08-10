@@ -37,7 +37,7 @@
     
     self.timeLabel.adjustsFontSizeToFitWidth = YES;
     self.descLabel.adjustsFontSizeToFitWidth = YES;
-    self.timeLabel.text = nil;
+    self.timeLabel.text = @"No Event";
     self.descLabel.text = nil;
 }
 
@@ -81,13 +81,13 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    self.tabBarController.navigationItem.rightBarButtonItem = nil;
-    self.tabBarController.navigationItem.leftBarButtonItem = nil;
+    self.navigationItem.rightBarButtonItem = nil;
+    self.navigationItem.leftBarButtonItem = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAction:)];
-    self.tabBarController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"calendar_icon") style:UIBarButtonItemStylePlain target:self action:@selector(modeAction:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAction:)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"calendar_icon") style:UIBarButtonItemStylePlain target:self action:@selector(modeAction:)];
     [super viewWillAppear:animated];
 }
 

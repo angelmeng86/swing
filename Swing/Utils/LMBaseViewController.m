@@ -48,6 +48,13 @@
     self.view.backgroundColor = COMMON_BACKGROUND_COLOR;
 }
 
+- (UINavigationItem*)navigationItem {
+    if (self.tabBarController.navigationController && self.tabBarController.navigationController == self.navigationController) {
+        return self.tabBarController.navigationItem;
+    }
+    return [super navigationItem];
+}
+
 - (void)backAction
 {
     [self.navigationController popViewControllerAnimated:YES];

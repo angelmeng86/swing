@@ -52,7 +52,7 @@
         <!--Calendar-->
         <scene sceneID="Vgd-w8-4j6">
             <objects>
-                <viewController title="Calendar" id="4vA-Cq-YDg" customClass="CalendarViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SwingTab1" title="Calendar" id="4vA-Cq-YDg" customClass="CalendarViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jtU-5O-05c"/>
                         <viewControllerLayoutGuide type="bottom" id="vCY-RI-Lga"/>
@@ -236,7 +236,7 @@
         <!--Calendar-->
         <scene sceneID="SYV-5s-Zog">
             <objects>
-                <viewController id="WxS-KM-iCW" customClass="MonthCalendarViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MonthCalendar" id="WxS-KM-iCW" customClass="MonthCalendarViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tZK-Dp-0ja"/>
                         <viewControllerLayoutGuide type="bottom" id="5MH-bh-TG8"/>
@@ -283,7 +283,7 @@
         <!--Dashboard-->
         <scene sceneID="5hJ-r7-aoe">
             <objects>
-                <viewController title="Dashboard" id="hib-rf-jxd" customClass="DashboardViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SwingTab2" title="Dashboard" id="hib-rf-jxd" customClass="DashboardViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nTU-V2-bM4"/>
                         <viewControllerLayoutGuide type="bottom" id="ixT-zX-1fi"/>
@@ -726,7 +726,7 @@ You can do this!</string>
         <!--Profile-->
         <scene sceneID="rum-7p-0dU">
             <objects>
-                <viewController title="Profile" id="eYA-pI-eh2" customClass="ProfileViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SwingTab4" title="Profile" id="eYA-pI-eh2" customClass="ProfileViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RQQ-aW-ceG"/>
                         <viewControllerLayoutGuide type="bottom" id="34x-S9-7Qt"/>
@@ -1161,7 +1161,7 @@ You can do this!</string>
         <!--Message-->
         <scene sceneID="cAQ-tk-boe">
             <objects>
-                <viewController title="Message" id="LAu-J9-01e" customClass="MessageViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SwingTab3" title="Message" id="LAu-J9-01e" customClass="MessageViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Fu1-Zk-wSR"/>
                         <viewControllerLayoutGuide type="bottom" id="z50-kU-aya"/>
@@ -1193,7 +1193,7 @@ You can do this!</string>
         <!--My Watch-->
         <scene sceneID="fRC-FO-HH5">
             <objects>
-                <viewController title="My Watch" id="9Rg-RL-Jhf" customClass="BatteryViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SwingTab0" title="My Watch" id="9Rg-RL-Jhf" customClass="BatteryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="G6I-xx-gpp"/>
                         <viewControllerLayoutGuide type="bottom" id="EgL-K6-P0f"/>

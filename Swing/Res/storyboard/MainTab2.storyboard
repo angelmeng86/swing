@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="52W-BC-qht">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <scenes>
+        <!--Tab Bar Controller2-->
+        <scene sceneID="fZD-gn-BMj">
+            <objects>
+                <tabBarController id="52W-BC-qht" customClass="LMTabBarController2" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="i0C-0b-z3f">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="HsM-XX-rLL" kind="relationship" relationship="viewControllers" id="afB-3u-zZm"/>
+                        <segue destination="gUA-i0-GG4" kind="relationship" relationship="viewControllers" id="o5M-MU-B2v"/>
+                        <segue destination="45d-OU-vov" kind="relationship" relationship="viewControllers" id="dRo-Gy-dFx"/>
+                        <segue destination="zcl-as-bEy" kind="relationship" relationship="viewControllers" id="kWO-hz-vmP"/>
+                        <segue destination="jjj-cr-VCm" kind="relationship" relationship="viewControllers" id="CkC-k2-aAo"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Pb-Nn-GRq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="183" y="392"/>
+        </scene>
+        <!--Dashboard-->
+        <scene sceneID="RpD-Oo-nyl">
+            <objects>
+                <navigationController title="Dashboard" id="45d-OU-vov" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="tab_chart" selectedImage="tab_chart_selected" id="UNj-GL-YwH"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bYf-5S-4Vc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RO9-1U-JLj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="895" y="392"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="t6q-PO-SP9">
+            <objects>
+                <navigationController title="Profile" id="jjj-cr-VCm" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="tab_profile" selectedImage="tab_profile_selected" id="KLx-hW-79b"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cpc-9T-FNz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YOR-FL-MyQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="183" y="1104"/>
+        </scene>
+        <!--Message-->
+        <scene sceneID="7KQ-N5-yj5">
+            <objects>
+                <navigationController title="Message" id="zcl-as-bEy" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="tab_mail" selectedImage="tab_mail_selected" id="alP-Bh-zNH"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8al-k6-TID">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ag2-oU-bgQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="895" y="1104"/>
+        </scene>
+        <!--My Watch-->
+        <scene sceneID="0Hr-Fs-Baz">
+            <objects>
+                <navigationController title="My Watch" id="HsM-XX-rLL" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="tab_map" selectedImage="tab_map_selected" id="hOu-cB-duq"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="O7p-vs-MxF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hro-MG-oNe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="183" y="-313"/>
+        </scene>
+        <!--Calendar-->
+        <scene sceneID="aV4-S6-H4v">
+            <objects>
+                <navigationController title="Calendar" id="gUA-i0-GG4" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="tab_calendar" selectedImage="tab_calendar_selected" id="pef-Gm-C3T"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="y9M-qu-8ZT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E2B-mV-N0u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="895" y="-313"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="tab_calendar" width="28" height="25"/>
+        <image name="tab_calendar_selected" width="28" height="25"/>
+        <image name="tab_chart" width="20" height="28"/>
+        <image name="tab_chart_selected" width="20" height="28"/>
+        <image name="tab_mail" width="28" height="19"/>
+        <image name="tab_mail_selected" width="28" height="19"/>
+        <image name="tab_map" width="23" height="28"/>
+        <image name="tab_map_selected" width="23" height="28"/>
+        <image name="tab_profile" width="24" height="28"/>
+        <image name="tab_profile_selected" width="24" height="28"/>
+    </resources>
+</document>
