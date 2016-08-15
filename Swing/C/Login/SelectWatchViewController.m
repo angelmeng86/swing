@@ -12,6 +12,7 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "BabyBluetooth.h"
 #import "PeripheralInfo.h"
+#import "KidBindViewController.h"
 
 #define channelOnPeropheralView @"View"
 #define TimeStamp [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]]
@@ -256,6 +257,13 @@ typedef enum : NSUInteger {
         if (settingState == SwingSettingMacReaded ) {
             NSLog(@"lwz %@", characteristics.value);
 //            self.ReadMacAddress.text = [NSString stringWithFormat:@"%@",self.characteristic.value];
+            
+            [SVProgressHUD dismiss];
+                UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
+                KidBindViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"KidBind"];
+            ctl.macAddress = characteristics.value;
+                [weakSelf.navigationController pushViewController:ctl animated:YES];
+            
             settingState = SwingSettingNone;
         }
         [weakSelf insertReadValues:characteristics];

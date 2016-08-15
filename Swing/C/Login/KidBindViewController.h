@@ -10,6 +10,8 @@
 
 @interface KidBindViewController : LMBaseViewController
 
+@property (nonatomic, strong) NSData *macAddress;
+
 @property (weak, nonatomic) IBOutlet UIButton *imageBtn;
 @property (weak, nonatomic) IBOutlet UITextField *firstNameTF;
 @property (weak, nonatomic) IBOutlet UITextField *lastNameTF;
