@@ -14,4 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *label;
 @property (weak, nonatomic) IBOutlet MDRadialProgressView *progressView;
 
+@property (nonatomic) BOOL isSync;
+
 @end

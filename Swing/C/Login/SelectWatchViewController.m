@@ -86,7 +86,7 @@ typedef enum : NSUInteger {
     __weak typeof(self) weakSelf = self;
     [baby setBlockOnCentralManagerDidUpdateState:^(CBCentralManager *central) {
         if (central.state == CBCentralManagerStatePoweredOn) {
-//            [SVProgressHUD showInfoWithStatus:@"设备打开成功，开始扫描设备"];
+            [SVProgressHUD showInfoWithStatus:@"设备打开成功，开始扫描设备"];
         }
     }];
     
@@ -101,7 +101,13 @@ typedef enum : NSUInteger {
         for (CBService *service in peripheral.services) {
             NSLog(@"搜索到服务:%@",service.UUID.UUIDString);
         }
-
+        //找到cell并修改detaisText
+        for (int i=0;i<peripherals.count;i++) {
+            UITableViewCell *cell = [weakSelf.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+            if ([cell.textLabel.text isEqualToString:peripheral.name]) {
+                
+            }
+        }
     }];
     //设置发现设service的Characteristics的委托
     [baby setBlockOnDiscoverCharacteristics:^(CBPeripheral *peripheral, CBService *service, NSError *error) {
@@ -132,7 +138,6 @@ typedef enum : NSUInteger {
         
         //最常用的场景是查找某一个前缀开头的设备
         if ([peripheralName hasPrefix:@"Swing-D-X"] ) {
-            [self.devices addObject:peripheralName];
             return YES;
         }
         return NO;
@@ -159,19 +164,19 @@ typedef enum : NSUInteger {
     
     //设置设备连接成功的委托,同一个baby对象，使用不同的channel切换委托回调
     [baby setBlockOnConnectedAtChannel:channelOnPeropheralView block:^(CBCentralManager *central, CBPeripheral *peripheral) {
-//        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--连接成功",peripheral.name]];
+        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--连接成功",peripheral.name]];
     }];
     
     //设置设备连接失败的委托
     [baby setBlockOnFailToConnectAtChannel:channelOnPeropheralView block:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
         NSLog(@"设备：%@--连接失败",peripheral.name);
-//        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--连接失败",peripheral.name]];
+        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--连接失败",peripheral.name]];
     }];
     
     //设置设备断开连接的委托
     [baby setBlockOnDisconnectAtChannel:channelOnPeropheralView block:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
         NSLog(@"设备：%@--断开连接",peripheral.name);
-//        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--断开失败",peripheral.name]];
+        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--断开失败",peripheral.name]];
     }];
     
     //设置发现设备的Services的委托
@@ -242,27 +247,25 @@ typedef enum : NSUInteger {
     
     [baby setBabyOptionsAtChannel:channelOnPeropheralView scanForPeripheralsWithOptions:scanForPeripheralsWithOptions connectPeripheralWithOptions:connectOptions scanForPeripheralsWithServices:nil discoverWithServices:nil discoverWithCharacteristics:nil];
     
+    
+    
+#warning 最新设置点
     //设置读取characteristics的委托
     [baby setBlockOnReadValueForCharacteristicAtChannel:channelOnPeropheralView block:^(CBPeripheral *peripheral, CBCharacteristic *characteristics, NSError *error) {
         //        NSLog(@"CharacteristicViewController===characteristic name:%@ value is:%@",characteristics.UUID,characteristics.value);
         if (settingState == SwingSettingMacReaded ) {
             NSLog(@"lwz %@", characteristics.value);
 //            self.ReadMacAddress.text = [NSString stringWithFormat:@"%@",self.characteristic.value];
-            
-            [SVProgressHUD dismiss];
-            UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
-            UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"KidBind"];
-            [weakSelf.navigationController pushViewController:ctl animated:YES];
             settingState = SwingSettingNone;
         }
-//        [weakSelf insertReadValues:characteristics];
+        [weakSelf insertReadValues:characteristics];
     }];
     //设置发现characteristics的descriptors的委托
     [baby setBlockOnDiscoverDescriptorsForCharacteristicAtChannel:channelOnPeropheralView block:^(CBPeripheral *peripheral, CBCharacteristic *characteristic, NSError *error) {
         //        NSLog(@"CharacteristicViewController===characteristic name:%@",characteristic.service.UUID);
         for (CBDescriptor *d in characteristic.descriptors) {
             //            NSLog(@"CharacteristicViewController CBDescriptor name is :%@",d.UUID);
-//            [weakSelf insertDescriptor:d];
+            [weakSelf insertDescriptor:d];
         }
     }];
     //设置读取Descriptor的委托
@@ -282,8 +285,8 @@ typedef enum : NSUInteger {
         //lwz add
         if (settingState == SwingSettingTimeWrited && self.characteristic == characteristic) {
             NSLog(@"lwz writed");
-            self.characteristic =[[[self.services objectAtIndex:5] characteristics]objectAtIndex:5];
-            [self.currPeripheral readValueForCharacteristic:self.characteristic];
+            weakSelf.characteristic =[[[weakSelf.services objectAtIndex:5] characteristics]objectAtIndex:5];
+            [weakSelf.currPeripheral readValueForCharacteristic:weakSelf.characteristic];
             settingState = SwingSettingMacReaded;
             
         }
@@ -292,10 +295,38 @@ typedef enum : NSUInteger {
     
     //设置通知状态改变的block
     [baby setBlockOnDidUpdateNotificationStateForCharacteristicAtChannel:channelOnPeropheralView block:^(CBCharacteristic *characteristic, NSError *error) {
+//        //lwz add
+//        weakSelf.characteristic =[[[weakSelf.services objectAtIndex:5] characteristics]objectAtIndex:5];
+//        if (settingState == SwingSettingMacReaded ) {
+//            NSLog(@"lwz %@", characteristic.value);
+////            weakSelf.ReadMacAddress.text = [NSString stringWithFormat:@"%@",self.characteristic.value];
+//            settingState = SwingSettingNone;
+//        }
+//        //lwz end
         NSLog(@"uid:%@,isNotifying:%@",characteristic.UUID,characteristic.isNotifying?@"on":@"off");
     }];
     
     
+}
+
+//插入读取的值
+-(void)insertReadValues:(CBCharacteristic *)characteristics{
+    [self->readValueArray addObject:[NSString stringWithFormat:@"%@",characteristics.value]];
+    NSMutableArray *indexPaths = [[NSMutableArray alloc]init];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self->readValueArray.count-1 inSection:0];
+    //    NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:self->readValueArray.count-1 inSection:0];
+    [indexPaths addObject:indexPath];
+    //    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    //    [self.tableView scrollToRowAtIndexPath:scrollIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+}
+
+//插入描述
+-(void)insertDescriptor:(CBDescriptor *)descriptor{
+    [self->descriptors addObject:descriptor];
+    NSMutableArray *indexPahts = [[NSMutableArray alloc]init];
+    NSIndexPath *indexPaht = [NSIndexPath indexPathForRow:self->descriptors.count-1 inSection:2];
+    [indexPahts addObject:indexPaht];
+    //    [self.tableView insertRowsAtIndexPaths:indexPahts withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 -(void)insertRowToTableView:(CBService *)service{

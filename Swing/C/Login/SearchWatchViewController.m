@@ -48,9 +48,15 @@
 }
 
 - (void)nextAction {
-    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
-    UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"SelectWatch"];
-    [self.navigationController pushViewController:ctl animated:YES];
+    if (_isSync) {
+        
+    }
+    else {
+        UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
+        UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"SelectWatch"];
+        [self.navigationController pushViewController:ctl animated:YES];
+    }
+    
 }
 
 - (IBAction)unwindSegueToSearchViewController:(UIStoryboardSegue *)segue {
