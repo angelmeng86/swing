@@ -17,17 +17,28 @@
         self.textLabel = [UILabel new];
         [self addSubview:_textLabel];
         
-        UIView *dotView = [UIView new];
-        dotView.backgroundColor = [UIColor clearColor];
-        dotView.layer.cornerRadius = 7.f;
-        dotView.layer.borderColor = RGBA(150, 150, 150, 1.0f).CGColor;
-        dotView.layer.borderWidth = 2.f;
-        dotView.layer.masksToBounds = YES;
+        UIButton *dotView = [UIButton new];
+//        dotView.backgroundColor = [UIColor clearColor];
+//        dotView.layer.cornerRadius = 7.f;
+//        dotView.layer.borderColor = RGBA(150, 150, 150, 1.0f).CGColor;
+//        dotView.layer.borderWidth = 2.f;
+//        dotView.layer.masksToBounds = YES;
         [self addSubview:dotView];
+        
+        [dotView setTitle:@"-" forState:UIControlStateNormal];
+        dotView.titleEdgeInsets = UIEdgeInsetsMake(-1, 0, 1, 0);
+        
+        [dotView setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        dotView.backgroundColor = COMMON_TITLE_COLOR;
+        dotView.layer.cornerRadius = 10.f;
+        dotView.layer.masksToBounds = YES;
+        
+        [dotView addTarget:self action:@selector(deleteAction) forControlEvents:UIControlEventTouchUpInside];
         
         [dotView autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
         [dotView autoPinEdgeToSuperviewMargin:ALEdgeLeading];
-        [dotView autoSetDimensionsToSize:CGSizeMake(14, 14)];
+//        [dotView autoSetDimensionsToSize:CGSizeMake(14, 14)];
+        [dotView autoSetDimensionsToSize:CGSizeMake(20, 20)];
         [dotView autoPinEdge:ALEdgeTrailing toEdge:ALEdgeLeading ofView:_textLabel withOffset:-8];
         [_textLabel autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeLeading];
         
@@ -35,6 +46,12 @@
         _textLabel.font = [UIFont avenirFontOfSize:14];
     }
     return self;
+}
+
+- (void)deleteAction {
+    if ([_delegate respondsToSelector:@selector(doItemLabelDidDelete:)]) {
+        [_delegate doItemLabelDidDelete:self];
+    }
 }
 
 - (void)drawRect:(CGRect)rect {

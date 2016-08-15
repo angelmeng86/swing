@@ -68,11 +68,18 @@
     }];
      */
     
+    [self reset];
     self.weather = [GlobalCache shareInstance].wearther;
     [self loadWeather];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(weatherLoaded:) name:WEATHER_UPDATE_NOTI object:nil];
     [[GlobalCache shareInstance] queryWeather];
+}
+
+- (void)reset {
+    self.addressLabel.text = nil;
+    [self.uvLabel setTitle:@"N" forState:UIControlStateNormal];
+    self.infoLabel.text = nil;
 }
 
 - (void)weatherLoaded:(NSNotification*)notification {

@@ -10,7 +10,9 @@
 #import "CommonDef.h"
 #import "DoItemLabel.h"
 
-@interface ToDoListView ()
+#define ITEM_HEIGHT  30
+
+@interface ToDoListView ()<UITextFieldDelegate>
 {
     NSLayoutConstraint *listViewHeight;
 }
@@ -37,8 +39,6 @@
 }
 
 - (void)initView {
-    self.itemList = [NSMutableArray array];
-    
     self.backgroundColor = [UIColor whiteColor];
     self.layer.cornerRadius = 5.f;
     self.layer.masksToBounds = YES;
@@ -62,42 +62,74 @@
     
     _textField.placeholder = @"To Do List";
     _textField.font = [UIFont avenirFontOfSize:15];
+    _textField.delegate = self;
+    _textField.returnKeyType = UIReturnKeyDone;
     
     UIButton *addBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     [addBtn setTitle:@"+" forState:UIControlStateNormal];
+    addBtn.titleEdgeInsets = UIEdgeInsetsMake(-1, 0, 1, 0);
     [addBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     addBtn.backgroundColor = COMMON_TITLE_COLOR;
     addBtn.layer.cornerRadius = 10.f;
     addBtn.layer.masksToBounds = YES;
-    [addBtn addTarget:self action:@selector(addAction:) forControlEvents:UIControlEventTouchUpInside];
+    [addBtn addTarget:self action:@selector(addAction) forControlEvents:UIControlEventTouchUpInside];
     _textField.rightView = addBtn;
     _textField.rightViewMode = UITextFieldViewModeAlways;
 }
 
-- (void)addAction:(id)sender {
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self addAction];
+    return YES;
+}
+
+- (NSArray*)itemList {
+    NSMutableArray *array = [NSMutableArray array];
+    for (DoItemLabel *label in self.listView.subviews) {
+        [array addObject:label.textLabel.text];
+    }
+    return array;
+}
+
+- (void)addAction {
     if (_textField.text.length == 0) {
         return;
     }
     
     DoItemLabel *label = [[DoItemLabel alloc] init];
+    label.delegate = self;
     label.textLabel.text = _textField.text;
-    [self.itemList addObject:_textField.text];
     _textField.text = nil;
     
-    UIView* view = [self.listView.subviews lastObject];
+//    UIView* view = [self.listView.subviews lastObject];
     [self.listView addSubview:label];
     [label autoPinEdgeToSuperviewMargin:ALEdgeLeading];
     [label autoPinEdgeToSuperviewMargin:ALEdgeTrailing];
-    [label autoSetDimension:ALDimensionHeight toSize:30];
+    [label autoSetDimension:ALDimensionHeight toSize:ITEM_HEIGHT];
+    label.positionLayoutConstaint = [label autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:(self.listView.subviews.count - 1) * ITEM_HEIGHT];
     
-    if (view) {
-        [label autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:view];
-    }
-    else {
-        [label autoPinEdgeToSuperviewEdge:ALEdgeTop];
+//    if (view) {
+//        [label autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:view];
+//    }
+//    else {
+//        [label autoPinEdgeToSuperviewEdge:ALEdgeTop];
+//    }
+    [self.listView layoutIfNeeded];
+    listViewHeight.constant += ITEM_HEIGHT;
+    
+    [UIView animateWithDuration:0.3f animations:^{
+        [self.superview layoutIfNeeded];
+    }];
+}
+
+- (void)doItemLabelDidDelete:(DoItemLabel*)label {
+    [label removeFromSuperview];
+    int i = 0;
+    for (DoItemLabel *label in self.listView.subviews) {
+        label.positionLayoutConstaint.constant = i * ITEM_HEIGHT;
+        i++;
     }
     [self.listView layoutIfNeeded];
-    listViewHeight.constant += 30;
+    listViewHeight.constant -= ITEM_HEIGHT;
     
     [UIView animateWithDuration:0.3f animations:^{
         [self.superview layoutIfNeeded];

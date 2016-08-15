@@ -8,9 +8,13 @@
 
 #import "AddEventViewController.h"
 #import "AlertSelectViewController.h"
+#import "ChoicesViewController.h"
 #import "CommonDef.h"
 
 @interface AddEventViewController ()<UITextFieldDelegate>
+{
+    BOOL isAddTip;
+}
 
 @property (nonatomic, strong) AlertModel* alert;
 
@@ -37,14 +41,28 @@
     [datePicker2 addTarget:self action:@selector(endChange:) forControlEvents:UIControlEventValueChanged];
     
     self.alertTF.delegate = self;
-    
+    self.repeatTF.delegate = self;
+    isAddTip = NO;
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    AlertSelectViewController *ctl = [[AlertSelectViewController alloc] initWithStyle:UITableViewStylePlain];
-    ctl.delegate = self;
-    [self.navigationController pushViewController:ctl animated:YES];
+    if (textField == self.alertTF) {
+        AlertSelectViewController *ctl = [[AlertSelectViewController alloc] initWithStyle:UITableViewStylePlain];
+        ctl.delegate = self;
+        [self.navigationController pushViewController:ctl animated:YES];
+    }
+    else if (textField == self.repeatTF) {
+        ChoicesViewController *ctl = [[ChoicesViewController alloc] initWithStyle:UITableViewStylePlain];
+        ctl.delegate = self;
+        ctl.navigationItem.title = self.repeatTF.placeholder;
+        ctl.textArray = @[@"", @"Daily repeat", @"Weekly repeat", @"Monthly repeat"];
+        [self.navigationController pushViewController:ctl animated:YES];
+    }
     return NO;
+}
+
+- (void)choicesViewControllerDidSelected:(NSString*)text {
+    self.repeatTF.text = text;
 }
 
 - (void)alertSelectViewControllerDidSelected:(AlertModel*)alert {
@@ -72,16 +90,26 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)addRedTip:(UIView*)view {
+    UILabel *label = [UILabel new];
+    label.text = @"*";
+    label.textColor = [UIColor redColor];
+    [self.view addSubview:label];
+    [label autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:view withOffset:2];
+    [label autoAlignAxis:ALAxisHorizontal toSameAxisOfView:view];
+}
+
 - (BOOL)validateTextField {
-    if (self.nameTF.text.length == 0 || self.alertTF.text.length == 0
-         || self.descTF.text.length == 0
-         || self.cityTF.text.length == 0
-         || self.stateTF.text.length == 0
+    if (self.nameTF.text.length == 0
          || self.startTF.text.length == 0
-         || self.endTF.text.length == 0
-         || self.repeatTF.text.length == 0
-         || self.alertTF.text.length == 0) {
+         || self.endTF.text.length == 0) {
         [Fun showMessageBoxWithTitle:@"Error" andMessage:@"Please input info."];
+        if (!isAddTip) {
+            isAddTip = YES;
+            [self addRedTip:self.nameTF];
+            [self addRedTip:self.startTF];
+            [self addRedTip:self.endTF];
+        }
         return NO;
     }
     
@@ -90,10 +118,10 @@
         return NO;
     }
     
-    if (self.todoCtl.itemList.count == 0) {
-        [Fun showMessageBoxWithTitle:@"Error" andMessage:@"Please input to do list."];
-        return NO;
-    }
+    //if (self.todoCtl.itemList.count == 0) {
+    //    [Fun showMessageBoxWithTitle:@"Error" andMessage:@"Please input to do list."];
+    //    return NO;
+    //}
     
     return YES;
 }

@@ -1,28 +1,22 @@
 //
-//  AlertSelectViewController.m
+//  ChoicesViewController.m
 //  Swing
 //
-//  Created by Mapple on 16/8/11.
+//  Created by Mapple on 16/8/15.
 //  Copyright © 2016年 zzteam. All rights reserved.
 //
 
-#import "AlertSelectViewController.h"
+#import "ChoicesViewController.h"
 #import "CommonDef.h"
 
-@interface AlertSelectViewController ()
-
-@property (nonatomic, strong) NSArray *alertArray;
+@interface ChoicesViewController ()
 
 @end
 
-@implementation AlertSelectViewController
+@implementation ChoicesViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.navigationItem.title = @"Alert";
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"alert" ofType:@"json"];
-    self.alertArray = [AlertModel arrayOfModelsFromString:[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil] error:nil];
     self.tableView.tableFooterView = [UIView new];
 }
 
@@ -40,7 +34,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return _alertArray.count;
+    return _textArray.count;
 }
 
 
@@ -54,15 +48,14 @@
         cell.textLabel.font = [UIFont avenirFontOfSize:17];
     }
     
-    AlertModel *model = _alertArray[indexPath.row];
-    cell.textLabel.text = model.text;
+    cell.textLabel.text = _textArray[indexPath.row];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([_delegate respondsToSelector:@selector(alertSelectViewControllerDidSelected:)]) {
-        [_delegate alertSelectViewControllerDidSelected:_alertArray[indexPath.row]];
+    if ([_delegate respondsToSelector:@selector(choicesViewControllerDidSelected:)]) {
+        [_delegate choicesViewControllerDidSelected:_textArray[indexPath.row]];
     }
     [self.navigationController popViewControllerAnimated:YES];
 }

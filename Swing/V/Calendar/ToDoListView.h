@@ -11,6 +11,7 @@
 @interface ToDoListView : UIView
 
 @property (nonatomic, strong) UITextField *textField;
-@property (nonatomic, strong) NSMutableArray *itemList;
+
+- (NSArray*)itemList;
 
 @end

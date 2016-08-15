@@ -139,15 +139,15 @@
 
 - (void)calendar:(JTCalendarManager *)calendar didTouchDayView:(LMCalendarDayView *)dayView
 {
-    if (dayView.dotColors.count > 0) {
+//    if (dayView.dotColors.count > 0) {
         UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
         DayCalendarViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"DayCalendar"];
         ctl.dateSelected = dayView.date;
         [self.navigationController pushViewController:ctl animated:YES];
-    }
-    else {
-        [super calendar:calendar didTouchDayView:dayView];
-    }
+//    }
+//    else {
+//        [super calendar:calendar didTouchDayView:dayView];
+//    }
 }
 
 - (IBAction)todayAction:(id)sender {

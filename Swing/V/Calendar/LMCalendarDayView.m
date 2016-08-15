@@ -113,7 +113,7 @@ NSInteger const kLMCalendarDayViewDotViewFlex = 3;
     _circleView.layer.cornerRadius = sizeCircle / 2.;
     
     CGPoint center = CGPointMake(self.frame.size.width / 2., (self.frame.size.height / 2.) +sizeDot * 2.5);
-    int count = _dotColors.count;
+    int count = (int)_dotColors.count;
     float x = (kLMCalendarDayViewDotViewFlex + sizeDot) * (count - 1) / 2;
     int i = 0;
     for (UIView *dotView in _dotViews) {

@@ -32,7 +32,7 @@
     [[GlobalCache shareInstance] queryMonthEvents:_dateSelected];
     
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    btn.titleLabel.font = [UIFont systemFontOfSize:22];
+    btn.titleLabel.font = [UIFont systemFontOfSize:28];
     [btn setTitle:@"+" forState:UIControlStateNormal];
     [btn setTitleColor:COMMON_NAV_TINT_COLOR forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(addAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -159,6 +159,7 @@
 // Used to customize the appearance of dayView
 - (void)calendar:(JTCalendarManager *)calendar prepareDayView:(LMCalendarDayView *)dayView
 {
+    /*
     // Today
     if([_calendarManager.dateHelper date:[NSDate date] isTheSameDayThan:dayView.date]){
         dayView.circleView.hidden = NO;
@@ -168,9 +169,9 @@
         dayView.dotColors = @[[UIColor blackColor]];
     }
     // Selected date
-    else if(_dateSelected && [_calendarManager.dateHelper date:_dateSelected isTheSameDayThan:dayView.date]){
+    else*/ if(_dateSelected && [_calendarManager.dateHelper date:_dateSelected isTheSameDayThan:dayView.date]){
         dayView.circleView.hidden = NO;
-        dayView.circleView.backgroundColor = [UIColor blueColor];
+        dayView.circleView.backgroundColor = COMMON_TITLE_COLOR;//[UIColor blueColor];
 //        dayView.dotView.backgroundColor = [UIColor whiteColor];
         dayView.textLabel.textColor = [UIColor whiteColor];
     }

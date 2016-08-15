@@ -12,6 +12,7 @@
 #import "EventLabel.h"
 #import "CommonDef.h"
 #import "ColorLabel.h"
+#import "LMCalendarDayView.h"
 
 CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
 
@@ -116,9 +117,14 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     [lastView autoPinEdgeToSuperviewEdge:ALEdgeBottom];
     self.hourLines = array;
     
-    self.eventLabels = [NSMutableArray new];
-    [self loadEventData];
-    
+    [self reloadEventData];
+}
+
+- (void)eventLoaded:(NSNotification*)notification {
+    [super eventLoaded:notification];
+    if (self.eventData == nil) {
+        [self reloadEventData];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -173,7 +179,12 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     
 }
 
-- (void)loadEventData {
+- (void)reloadEventData {
+    for (UIView *view in _eventLabels) {
+        [view removeFromSuperview];
+    }
+    
+    self.eventLabels = [NSMutableArray new];
     self.eventData = [[GlobalCache shareInstance] searchEventsByDay:self.dateSelected];
     self.eventData = [self.eventData sortedArrayWithOptions:NSSortStable usingComparator:^NSComparisonResult(EventModel *obj1, EventModel * obj2) {
         return [obj1.startDate compare:obj2.startDate];
@@ -209,6 +220,7 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     label.model = model;
     
     [self.contentView addSubview:label];
+    [self.eventLabels addObject:label];
     label.positionLayoutConstaint = [label autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:startLine withOffset:40];
     [label autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:startLine withOffset:kDayCalendarViewControllerTimePading / 2 + startH];
     [label autoSetDimension:ALDimensionHeight toSize:height];
@@ -258,14 +270,10 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)calendar:(JTCalendarManager *)calendar didTouchDayView:(LMCalendarDayView *)dayView
+{
+    [super calendar:calendar didTouchDayView:dayView];
+    [self reloadEventData];
 }
-*/
 
 @end

@@ -25,7 +25,7 @@
     self.progressView.theme.centerColor = [UIColor clearColor];
     self.progressView.theme.sliceDividerHidden = YES;
     self.progressView.theme.thickness = 25;
-    
+    self.progressView.theme.drawIncompleteArcIfNoProgress = YES;
     self.progressView.label.hidden = YES;
     self.progressView.progressTotal = 100;
     self.progressView.progressCounter = 88;
@@ -52,12 +52,19 @@
         self.view.backgroundColor = RGBA( 0xff, 0xff, 0xa5, 1.0f);
     }
     
-    
+    [self reset];
     self.weather = [GlobalCache shareInstance].wearther;
     [self loadWeather];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(weatherLoaded:) name:WEATHER_UPDATE_NOTI object:nil];
     [[GlobalCache shareInstance] queryWeather];
+}
+
+- (void)reset {
+    self.placeLabel.text = nil;
+    self.valueLabel.text = @"NaN";
+    self.infoLabel.text = nil;
+    self.progressView.progressCounter = 0;
 }
 
 - (void)weatherLoaded:(NSNotification*)notification {

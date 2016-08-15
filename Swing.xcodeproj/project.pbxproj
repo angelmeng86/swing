@@ -7,83 +7,84 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AD05B5BD1D3BCAA4007BCF7C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD05B5BC1D3BCAA4007BCF7C /* LoginViewController.m */; settings = {ASSET_TAGS = (); }; };
-		AD05B5C01D3BD187007BCF7C /* SwingClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AD05B5BF1D3BD187007BCF7C /* SwingClient.m */; settings = {ASSET_TAGS = (); }; };
-		AD0B81171D37EF7400F43E72 /* ControlFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B810B1D37EF7400F43E72 /* ControlFactory.m */; settings = {ASSET_TAGS = (); }; };
-		AD0B81181D37EF7400F43E72 /* Fun.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B810D1D37EF7400F43E72 /* Fun.m */; settings = {ASSET_TAGS = (); }; };
-		AD0B81191D37EF7400F43E72 /* GlobalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B810F1D37EF7400F43E72 /* GlobalCache.m */; settings = {ASSET_TAGS = (); }; };
-		AD0B811A1D37EF7400F43E72 /* LMBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B81111D37EF7400F43E72 /* LMBaseTableViewController.m */; settings = {ASSET_TAGS = (); }; };
-		AD0B811B1D37EF7400F43E72 /* LMBaseTableViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B81131D37EF7400F43E72 /* LMBaseTableViewController2.m */; settings = {ASSET_TAGS = (); }; };
-		AD0B811C1D37EF7400F43E72 /* LMBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B81151D37EF7400F43E72 /* LMBaseViewController.m */; settings = {ASSET_TAGS = (); }; };
-		AD0B811F1D37EFEA00F43E72 /* LMTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B811E1D37EFEA00F43E72 /* LMTabBarController.m */; settings = {ASSET_TAGS = (); }; };
-		AD0B81281D37F09900F43E72 /* SimpleLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B81231D37F09900F43E72 /* SimpleLogger.m */; settings = {ASSET_TAGS = (); }; };
-		AD1CEF0A1D5ACB19004FEC24 /* LMBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1CEF091D5ACB19004FEC24 /* LMBarView.m */; settings = {ASSET_TAGS = (); }; };
-		AD1CEF0D1D5ADA90004FEC24 /* LMArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1CEF0C1D5ADA90004FEC24 /* LMArrowView.m */; settings = {ASSET_TAGS = (); }; };
-		AD1CEF101D5AE7F5004FEC24 /* LMTabBarController2.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1CEF0F1D5AE7F5004FEC24 /* LMTabBarController2.m */; settings = {ASSET_TAGS = (); }; };
-		AD1CEF121D5AE886004FEC24 /* MainTab2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD1CEF111D5AE886004FEC24 /* MainTab2.storyboard */; settings = {ASSET_TAGS = (); }; };
-		AD289A5E1D3FD0E800898F92 /* AskStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD289A5D1D3FD0E800898F92 /* AskStepViewController.m */; settings = {ASSET_TAGS = (); }; };
-		AD2D338D1D5378AD005D9298 /* KidModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2D338C1D5378AD005D9298 /* KidModel.m */; settings = {ASSET_TAGS = (); }; };
-		AD2D33901D538418005D9298 /* ToDoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2D338F1D538418005D9298 /* ToDoModel.m */; settings = {ASSET_TAGS = (); }; };
-		AD347D171D3FD8DD00E91DDD /* SearchWatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD347D161D3FD8DD00E91DDD /* SearchWatchViewController.m */; settings = {ASSET_TAGS = (); }; };
-		AD347D1B1D3FDE1A00E91DDD /* DeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD347D1A1D3FDE1A00E91DDD /* DeviceTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
-		AD347D1E1D3FDEEC00E91DDD /* SelectWatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD347D1D1D3FDEEC00E91DDD /* SelectWatchViewController.m */; settings = {ASSET_TAGS = (); }; };
-		AD6654541D490C110056632C /* SyncDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6654531D490C110056632C /* SyncDeviceViewController.m */; settings = {ASSET_TAGS = (); }; };
-		AD6654571D490EC20056632C /* SearchDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6654561D490EC20056632C /* SearchDeviceViewController.m */; settings = {ASSET_TAGS = (); }; };
-		AD7438231D4DD47100F5F9D2 /* JBChartTooltipTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7438201D4DD47100F5F9D2 /* JBChartTooltipTipView.m */; settings = {ASSET_TAGS = (); }; };
-		AD7438241D4DD47100F5F9D2 /* JBChartTooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7438221D4DD47100F5F9D2 /* JBChartTooltipView.m */; settings = {ASSET_TAGS = (); }; };
-		AD7438271D4DD50C00F5F9D2 /* JBBaseChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7438261D4DD50C00F5F9D2 /* JBBaseChartViewController.m */; settings = {ASSET_TAGS = (); }; };
-		AD74382A1D4DDD3600F5F9D2 /* WeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7438291D4DDD3600F5F9D2 /* WeatherViewController.m */; settings = {ASSET_TAGS = (); }; };
-		AD74382D1D4DE08000F5F9D2 /* WeatherContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD74382C1D4DE08000F5F9D2 /* WeatherContentViewController.m */; settings = {ASSET_TAGS = (); }; };
-		AD74D4DC1D4F90B5001F3B36 /* EventLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD74D4DB1D4F90B5001F3B36 /* EventLabel.m */; settings = {ASSET_TAGS = (); }; };
-		AD74D4DF1D4FA08E001F3B36 /* EventInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD74D4DE1D4FA08E001F3B36 /* EventInfoViewController.m */; settings = {ASSET_TAGS = (); }; };
-		AD74D4E21D4FA750001F3B36 /* EventSelectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD74D4E11D4FA750001F3B36 /* EventSelectTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
-		AD7797931D4C8D0600472B27 /* ProfileDeviceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7797921D4C8D0600472B27 /* ProfileDeviceCell.m */; settings = {ASSET_TAGS = (); }; };
-		AD7797961D4C9B5200472B27 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7797951D4C9B5200472B27 /* EditProfileViewController.m */; settings = {ASSET_TAGS = (); }; };
-		AD7797991D4CCFD200472B27 /* UnderlineTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7797981D4CCFD200472B27 /* UnderlineTextField.m */; settings = {ASSET_TAGS = (); }; };
-		AD77979C1D4CE11B00472B27 /* CameraUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = AD77979B1D4CE11B00472B27 /* CameraUtility.m */; settings = {ASSET_TAGS = (); }; };
-		AD7797A01D4CF9C400472B27 /* ChartFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD77979F1D4CF9C400472B27 /* ChartFooterView.m */; settings = {ASSET_TAGS = (); }; };
-		AD7797A31D4D034600472B27 /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7797A21D4D034600472B27 /* ActivityViewController.m */; settings = {ASSET_TAGS = (); }; };
-		AD7797A61D4D085600472B27 /* ChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7797A51D4D085600472B27 /* ChartViewController.m */; settings = {ASSET_TAGS = (); }; };
-		AD95A51B1D5243390047A0A2 /* SwingClientTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AD95A51A1D5243390047A0A2 /* SwingClientTest.m */; settings = {ASSET_TAGS = (); }; };
-		AD978D0C1D585EF000E59D2B /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD978D0B1D585EF000E59D2B /* MessageViewController.m */; settings = {ASSET_TAGS = (); }; };
-		AD9B0D911D3BB935009FDD95 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D901D3BB935009FDD95 /* DashboardViewController.m */; settings = {ASSET_TAGS = (); }; };
-		AD9B0D941D3BB947009FDD95 /* BatteryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D931D3BB947009FDD95 /* BatteryViewController.m */; settings = {ASSET_TAGS = (); }; };
-		AD9B0D971D3BB954009FDD95 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D961D3BB954009FDD95 /* CalendarViewController.m */; settings = {ASSET_TAGS = (); }; };
-		AD9B0D9A1D3BB964009FDD95 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D991D3BB964009FDD95 /* ProfileViewController.m */; settings = {ASSET_TAGS = (); }; };
-		ADBC9BD31D578403007E4A2C /* JSONValueTransformer+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBC9BD21D578403007E4A2C /* JSONValueTransformer+UIColor.m */; settings = {ASSET_TAGS = (); }; };
-		ADCED9E41D3D2BAC002E3F78 /* LoginedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCED9E31D3D2BAC002E3F78 /* LoginedModel.m */; settings = {ASSET_TAGS = (); }; };
-		ADCED9E71D3D3C8B002E3F78 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCED9E61D3D3C8B002E3F78 /* RegisterViewController.m */; settings = {ASSET_TAGS = (); }; };
-		ADD6555C1D5B886D0054FB24 /* AlertSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD6555B1D5B886D0054FB24 /* AlertSelectViewController.m */; settings = {ASSET_TAGS = (); }; };
+		0FD6B3E71D61B79300C00A45 /* ChoicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6B3E61D61B79300C00A45 /* ChoicesViewController.m */; };
+		AD05B5BD1D3BCAA4007BCF7C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD05B5BC1D3BCAA4007BCF7C /* LoginViewController.m */; };
+		AD05B5C01D3BD187007BCF7C /* SwingClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AD05B5BF1D3BD187007BCF7C /* SwingClient.m */; };
+		AD0B81171D37EF7400F43E72 /* ControlFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B810B1D37EF7400F43E72 /* ControlFactory.m */; };
+		AD0B81181D37EF7400F43E72 /* Fun.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B810D1D37EF7400F43E72 /* Fun.m */; };
+		AD0B81191D37EF7400F43E72 /* GlobalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B810F1D37EF7400F43E72 /* GlobalCache.m */; };
+		AD0B811A1D37EF7400F43E72 /* LMBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B81111D37EF7400F43E72 /* LMBaseTableViewController.m */; };
+		AD0B811B1D37EF7400F43E72 /* LMBaseTableViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B81131D37EF7400F43E72 /* LMBaseTableViewController2.m */; };
+		AD0B811C1D37EF7400F43E72 /* LMBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B81151D37EF7400F43E72 /* LMBaseViewController.m */; };
+		AD0B811F1D37EFEA00F43E72 /* LMTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B811E1D37EFEA00F43E72 /* LMTabBarController.m */; };
+		AD0B81281D37F09900F43E72 /* SimpleLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B81231D37F09900F43E72 /* SimpleLogger.m */; };
+		AD1CEF0A1D5ACB19004FEC24 /* LMBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1CEF091D5ACB19004FEC24 /* LMBarView.m */; };
+		AD1CEF0D1D5ADA90004FEC24 /* LMArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1CEF0C1D5ADA90004FEC24 /* LMArrowView.m */; };
+		AD1CEF101D5AE7F5004FEC24 /* LMTabBarController2.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1CEF0F1D5AE7F5004FEC24 /* LMTabBarController2.m */; };
+		AD1CEF121D5AE886004FEC24 /* MainTab2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD1CEF111D5AE886004FEC24 /* MainTab2.storyboard */; };
+		AD289A5E1D3FD0E800898F92 /* AskStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD289A5D1D3FD0E800898F92 /* AskStepViewController.m */; };
+		AD2D338D1D5378AD005D9298 /* KidModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2D338C1D5378AD005D9298 /* KidModel.m */; };
+		AD2D33901D538418005D9298 /* ToDoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2D338F1D538418005D9298 /* ToDoModel.m */; };
+		AD347D171D3FD8DD00E91DDD /* SearchWatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD347D161D3FD8DD00E91DDD /* SearchWatchViewController.m */; };
+		AD347D1B1D3FDE1A00E91DDD /* DeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD347D1A1D3FDE1A00E91DDD /* DeviceTableViewCell.m */; };
+		AD347D1E1D3FDEEC00E91DDD /* SelectWatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD347D1D1D3FDEEC00E91DDD /* SelectWatchViewController.m */; };
+		AD6654541D490C110056632C /* SyncDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6654531D490C110056632C /* SyncDeviceViewController.m */; };
+		AD6654571D490EC20056632C /* SearchDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6654561D490EC20056632C /* SearchDeviceViewController.m */; };
+		AD7438231D4DD47100F5F9D2 /* JBChartTooltipTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7438201D4DD47100F5F9D2 /* JBChartTooltipTipView.m */; };
+		AD7438241D4DD47100F5F9D2 /* JBChartTooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7438221D4DD47100F5F9D2 /* JBChartTooltipView.m */; };
+		AD7438271D4DD50C00F5F9D2 /* JBBaseChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7438261D4DD50C00F5F9D2 /* JBBaseChartViewController.m */; };
+		AD74382A1D4DDD3600F5F9D2 /* WeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7438291D4DDD3600F5F9D2 /* WeatherViewController.m */; };
+		AD74382D1D4DE08000F5F9D2 /* WeatherContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD74382C1D4DE08000F5F9D2 /* WeatherContentViewController.m */; };
+		AD74D4DC1D4F90B5001F3B36 /* EventLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD74D4DB1D4F90B5001F3B36 /* EventLabel.m */; };
+		AD74D4DF1D4FA08E001F3B36 /* EventInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD74D4DE1D4FA08E001F3B36 /* EventInfoViewController.m */; };
+		AD74D4E21D4FA750001F3B36 /* EventSelectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD74D4E11D4FA750001F3B36 /* EventSelectTableViewCell.m */; };
+		AD7797931D4C8D0600472B27 /* ProfileDeviceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7797921D4C8D0600472B27 /* ProfileDeviceCell.m */; };
+		AD7797961D4C9B5200472B27 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7797951D4C9B5200472B27 /* EditProfileViewController.m */; };
+		AD7797991D4CCFD200472B27 /* UnderlineTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7797981D4CCFD200472B27 /* UnderlineTextField.m */; };
+		AD77979C1D4CE11B00472B27 /* CameraUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = AD77979B1D4CE11B00472B27 /* CameraUtility.m */; };
+		AD7797A01D4CF9C400472B27 /* ChartFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD77979F1D4CF9C400472B27 /* ChartFooterView.m */; };
+		AD7797A31D4D034600472B27 /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7797A21D4D034600472B27 /* ActivityViewController.m */; };
+		AD7797A61D4D085600472B27 /* ChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7797A51D4D085600472B27 /* ChartViewController.m */; };
+		AD95A51B1D5243390047A0A2 /* SwingClientTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AD95A51A1D5243390047A0A2 /* SwingClientTest.m */; };
+		AD978D0C1D585EF000E59D2B /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD978D0B1D585EF000E59D2B /* MessageViewController.m */; };
+		AD9B0D911D3BB935009FDD95 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D901D3BB935009FDD95 /* DashboardViewController.m */; };
+		AD9B0D941D3BB947009FDD95 /* BatteryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D931D3BB947009FDD95 /* BatteryViewController.m */; };
+		AD9B0D971D3BB954009FDD95 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D961D3BB954009FDD95 /* CalendarViewController.m */; };
+		AD9B0D9A1D3BB964009FDD95 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D991D3BB964009FDD95 /* ProfileViewController.m */; };
+		ADBC9BD31D578403007E4A2C /* JSONValueTransformer+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBC9BD21D578403007E4A2C /* JSONValueTransformer+UIColor.m */; };
+		ADCED9E41D3D2BAC002E3F78 /* LoginedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCED9E31D3D2BAC002E3F78 /* LoginedModel.m */; };
+		ADCED9E71D3D3C8B002E3F78 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCED9E61D3D3C8B002E3F78 /* RegisterViewController.m */; };
+		ADD6555C1D5B886D0054FB24 /* AlertSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD6555B1D5B886D0054FB24 /* AlertSelectViewController.m */; };
 		ADD6555E1D5B8D410054FB24 /* alert.json in Resources */ = {isa = PBXBuildFile; fileRef = ADD6555D1D5B89770054FB24 /* alert.json */; };
-		ADD655611D5B8DAC0054FB24 /* AlertModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD655601D5B8DAC0054FB24 /* AlertModel.m */; settings = {ASSET_TAGS = (); }; };
-		ADDCD3E81D4C4DA90031DC66 /* UVIndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDCD3E71D4C4DA90031DC66 /* UVIndexViewController.m */; settings = {ASSET_TAGS = (); }; };
-		ADDCD3F31D4C54960031DC66 /* LoginFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADDCD3EE1D4C54960031DC66 /* LoginFlow.storyboard */; settings = {ASSET_TAGS = (); }; };
-		ADDCD3F41D4C54960031DC66 /* MainTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADDCD3EF1D4C54960031DC66 /* MainTab.storyboard */; settings = {ASSET_TAGS = (); }; };
-		ADDCD3F51D4C54960031DC66 /* SyncDevice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADDCD3F01D4C54960031DC66 /* SyncDevice.storyboard */; settings = {ASSET_TAGS = (); }; };
-		ADDCD3F81D4C557E0031DC66 /* UIFont+AvenirFont.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDCD3F71D4C557E0031DC66 /* UIFont+AvenirFont.m */; settings = {ASSET_TAGS = (); }; };
+		ADD655611D5B8DAC0054FB24 /* AlertModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD655601D5B8DAC0054FB24 /* AlertModel.m */; };
+		ADDCD3E81D4C4DA90031DC66 /* UVIndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDCD3E71D4C4DA90031DC66 /* UVIndexViewController.m */; };
+		ADDCD3F31D4C54960031DC66 /* LoginFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADDCD3EE1D4C54960031DC66 /* LoginFlow.storyboard */; };
+		ADDCD3F41D4C54960031DC66 /* MainTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADDCD3EF1D4C54960031DC66 /* MainTab.storyboard */; };
+		ADDCD3F51D4C54960031DC66 /* SyncDevice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADDCD3F01D4C54960031DC66 /* SyncDevice.storyboard */; };
+		ADDCD3F81D4C557E0031DC66 /* UIFont+AvenirFont.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDCD3F71D4C557E0031DC66 /* UIFont+AvenirFont.m */; };
 		ADDCD3FB1D4C59F10031DC66 /* Avenir-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADDCD3F91D4C59E10031DC66 /* Avenir-bold.ttf */; };
 		ADDCD3FC1D4C59F10031DC66 /* Avenir-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = ADDCD3FA1D4C59E10031DC66 /* Avenir-Book.otf */; };
-		ADE0BE731D59933400E70109 /* LMCalendarDayView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE0BE721D59933400E70109 /* LMCalendarDayView.m */; settings = {ASSET_TAGS = (); }; };
-		ADE6ED8A1D4E229D00FFA573 /* MonthCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE6ED891D4E229D00FFA573 /* MonthCalendarViewController.m */; settings = {ASSET_TAGS = (); }; };
-		ADE6ED8D1D4E355300FFA573 /* BaseCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE6ED8C1D4E355300FFA573 /* BaseCalendarViewController.m */; settings = {ASSET_TAGS = (); }; };
-		ADE6ED901D4E3B7D00FFA573 /* DayCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE6ED8F1D4E3B7D00FFA573 /* DayCalendarViewController.m */; settings = {ASSET_TAGS = (); }; };
-		ADE6ED941D4E415900FFA573 /* TimeLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE6ED931D4E415900FFA573 /* TimeLineView.m */; settings = {ASSET_TAGS = (); }; };
-		ADE6ED971D4E538B00FFA573 /* EventModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE6ED961D4E538B00FFA573 /* EventModel.m */; settings = {ASSET_TAGS = (); }; };
-		ADE820731D54C26200E12768 /* JSONValueTransformer+NSDate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE820721D54C26200E12768 /* JSONValueTransformer+NSDate.m */; settings = {ASSET_TAGS = (); }; };
-		ADE820761D54C62D00E12768 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE820751D54C62D00E12768 /* UserModel.m */; settings = {ASSET_TAGS = (); }; };
-		ADE820791D54D99000E12768 /* WeatherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE820781D54D99000E12768 /* WeatherModel.m */; settings = {ASSET_TAGS = (); }; };
-		ADE924FD1D58C9EE00EBB87D /* RCLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE924FC1D58C9EE00EBB87D /* RCLocationManager.m */; settings = {ASSET_TAGS = (); }; };
-		ADEF31CC1D47856200BB6A9B /* KidBindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31CB1D47856200BB6A9B /* KidBindViewController.m */; settings = {ASSET_TAGS = (); }; };
-		ADEF31CF1D478D2B00BB6A9B /* BindReadyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31CE1D478D2B00BB6A9B /* BindReadyViewController.m */; settings = {ASSET_TAGS = (); }; };
-		ADEF31D21D478E9900BB6A9B /* RoundButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31D11D478E9900BB6A9B /* RoundButton.m */; settings = {ASSET_TAGS = (); }; };
-		ADEF31D61D47B04200BB6A9B /* VPImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31D51D47B04200BB6A9B /* VPImageCropperViewController.m */; settings = {ASSET_TAGS = (); }; };
-		ADF33CB91D5A159400AE8874 /* LMCalendarWeekDayView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF33CB81D5A159400AE8874 /* LMCalendarWeekDayView.m */; settings = {ASSET_TAGS = (); }; };
-		ADF33CBC1D5A323000AE8874 /* TodayChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF33CBB1D5A323000AE8874 /* TodayChartViewController.m */; settings = {ASSET_TAGS = (); }; };
-		ADF33CBF1D5A32DD00AE8874 /* RectProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF33CBE1D5A32DD00AE8874 /* RectProgress.m */; settings = {ASSET_TAGS = (); }; };
-		ADF985531D50C4A200B02075 /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF985521D50C4A200B02075 /* AddEventViewController.m */; settings = {ASSET_TAGS = (); }; };
-		ADF985561D50C64A00B02075 /* ToDoListView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF985551D50C64A00B02075 /* ToDoListView.m */; settings = {ASSET_TAGS = (); }; };
-		ADF985591D50CBFC00B02075 /* DoItemLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF985581D50CBFC00B02075 /* DoItemLabel.m */; settings = {ASSET_TAGS = (); }; };
-		ADF9855C1D50D27400B02075 /* ColorLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF9855B1D50D27400B02075 /* ColorLabel.m */; settings = {ASSET_TAGS = (); }; };
+		ADE0BE731D59933400E70109 /* LMCalendarDayView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE0BE721D59933400E70109 /* LMCalendarDayView.m */; };
+		ADE6ED8A1D4E229D00FFA573 /* MonthCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE6ED891D4E229D00FFA573 /* MonthCalendarViewController.m */; };
+		ADE6ED8D1D4E355300FFA573 /* BaseCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE6ED8C1D4E355300FFA573 /* BaseCalendarViewController.m */; };
+		ADE6ED901D4E3B7D00FFA573 /* DayCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE6ED8F1D4E3B7D00FFA573 /* DayCalendarViewController.m */; };
+		ADE6ED941D4E415900FFA573 /* TimeLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE6ED931D4E415900FFA573 /* TimeLineView.m */; };
+		ADE6ED971D4E538B00FFA573 /* EventModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE6ED961D4E538B00FFA573 /* EventModel.m */; };
+		ADE820731D54C26200E12768 /* JSONValueTransformer+NSDate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE820721D54C26200E12768 /* JSONValueTransformer+NSDate.m */; };
+		ADE820761D54C62D00E12768 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE820751D54C62D00E12768 /* UserModel.m */; };
+		ADE820791D54D99000E12768 /* WeatherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE820781D54D99000E12768 /* WeatherModel.m */; };
+		ADE924FD1D58C9EE00EBB87D /* RCLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE924FC1D58C9EE00EBB87D /* RCLocationManager.m */; };
+		ADEF31CC1D47856200BB6A9B /* KidBindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31CB1D47856200BB6A9B /* KidBindViewController.m */; };
+		ADEF31CF1D478D2B00BB6A9B /* BindReadyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31CE1D478D2B00BB6A9B /* BindReadyViewController.m */; };
+		ADEF31D21D478E9900BB6A9B /* RoundButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31D11D478E9900BB6A9B /* RoundButton.m */; };
+		ADEF31D61D47B04200BB6A9B /* VPImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF31D51D47B04200BB6A9B /* VPImageCropperViewController.m */; };
+		ADF33CB91D5A159400AE8874 /* LMCalendarWeekDayView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF33CB81D5A159400AE8874 /* LMCalendarWeekDayView.m */; };
+		ADF33CBC1D5A323000AE8874 /* TodayChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF33CBB1D5A323000AE8874 /* TodayChartViewController.m */; };
+		ADF33CBF1D5A32DD00AE8874 /* RectProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF33CBE1D5A32DD00AE8874 /* RectProgress.m */; };
+		ADF985531D50C4A200B02075 /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF985521D50C4A200B02075 /* AddEventViewController.m */; };
+		ADF985561D50C64A00B02075 /* ToDoListView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF985551D50C64A00B02075 /* ToDoListView.m */; };
+		ADF985591D50CBFC00B02075 /* DoItemLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF985581D50CBFC00B02075 /* DoItemLabel.m */; };
+		ADF9855C1D50D27400B02075 /* ColorLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF9855B1D50D27400B02075 /* ColorLabel.m */; };
 		ADFC2C2D1D369949004EDCDF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFC2C2C1D369949004EDCDF /* main.m */; };
 		ADFC2C301D369949004EDCDF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFC2C2F1D369949004EDCDF /* AppDelegate.m */; };
 		ADFC2C3B1D369949004EDCDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADFC2C3A1D369949004EDCDF /* Assets.xcassets */; };
@@ -92,6 +93,8 @@
 
 /* Begin PBXFileReference section */
 		0A892F16F4220A9DEBE01E9D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		0FD6B3E51D61B79300C00A45 /* ChoicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoicesViewController.h; sourceTree = "<group>"; };
+		0FD6B3E61D61B79300C00A45 /* ChoicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoicesViewController.m; sourceTree = "<group>"; };
 		AD05B5BB1D3BCAA4007BCF7C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		AD05B5BC1D3BCAA4007BCF7C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		AD05B5BE1D3BD187007BCF7C /* SwingClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwingClient.h; sourceTree = "<group>"; };
@@ -458,6 +461,8 @@
 				ADF985521D50C4A200B02075 /* AddEventViewController.m */,
 				ADD6555A1D5B886D0054FB24 /* AlertSelectViewController.h */,
 				ADD6555B1D5B886D0054FB24 /* AlertSelectViewController.m */,
+				0FD6B3E51D61B79300C00A45 /* ChoicesViewController.h */,
+				0FD6B3E61D61B79300C00A45 /* ChoicesViewController.m */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -814,6 +819,7 @@
 				AD7797931D4C8D0600472B27 /* ProfileDeviceCell.m in Sources */,
 				ADF985531D50C4A200B02075 /* AddEventViewController.m in Sources */,
 				AD978D0C1D585EF000E59D2B /* MessageViewController.m in Sources */,
+				0FD6B3E71D61B79300C00A45 /* ChoicesViewController.m in Sources */,
 				AD347D1E1D3FDEEC00E91DDD /* SelectWatchViewController.m in Sources */,
 				AD74D4DC1D4F90B5001F3B36 /* EventLabel.m in Sources */,
 				ADFC2C2D1D369949004EDCDF /* main.m in Sources */,

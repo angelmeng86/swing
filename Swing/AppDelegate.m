@@ -33,6 +33,7 @@
     
     
     NSString *name = [GlobalCache shareInstance].info == nil ? @"LoginFlow" : @"MainTab2";
+//    NSString *name = @"MainTab2";
     UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:name bundle:nil];
     UIViewController *ctl = [stroyBoard instantiateInitialViewController];
     self.window.rootViewController = ctl;
