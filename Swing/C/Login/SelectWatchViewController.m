@@ -11,6 +11,7 @@
 #import "CommonDef.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "BabyBluetooth.h"
+#import "PeripheralInfo.h"
 
 #define channelOnPeropheralView @"View"
 #define TimeStamp [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]]
@@ -175,10 +176,10 @@ typedef enum : NSUInteger {
     
     //设置发现设备的Services的委托
     [baby setBlockOnDiscoverServicesAtChannel:channelOnPeropheralView block:^(CBPeripheral *peripheral, NSError *error) {
-//        for (CBService *s in peripheral.services) {
-//            ///插入section到tableview
-//            [weakSelf insertSectionToTableView:s];
-//        }
+        for (CBService *s in peripheral.services) {
+            ///插入section到tableview
+            [weakSelf insertSectionToTableView:s];
+        }
         
         [rhythm beats];
     }];
@@ -186,7 +187,7 @@ typedef enum : NSUInteger {
     [baby setBlockOnDiscoverCharacteristicsAtChannel:channelOnPeropheralView block:^(CBPeripheral *peripheral, CBService *service, NSError *error) {
         NSLog(@"===service name:%@",service.UUID);
         //插入row到tableview
-//        [weakSelf insertRowToTableView:service];
+        [weakSelf insertRowToTableView:service];
         
     }];
     //设置读取characteristics的委托
@@ -247,6 +248,11 @@ typedef enum : NSUInteger {
         if (settingState == SwingSettingMacReaded ) {
             NSLog(@"lwz %@", characteristics.value);
 //            self.ReadMacAddress.text = [NSString stringWithFormat:@"%@",self.characteristic.value];
+            
+            [SVProgressHUD dismiss];
+            UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
+            UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"KidBind"];
+            [weakSelf.navigationController pushViewController:ctl animated:YES];
             settingState = SwingSettingNone;
         }
 //        [weakSelf insertReadValues:characteristics];
@@ -290,6 +296,42 @@ typedef enum : NSUInteger {
     }];
     
     
+}
+
+-(void)insertRowToTableView:(CBService *)service{
+    NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
+    int sectl = -1;
+    for (int i=0;i<self.services.count;i++) {
+        PeripheralInfo *info = [self.services objectAtIndex:i];
+        if (info.serviceUUID == service.UUID) {
+            sectl = i;
+        }
+    }
+    if (sectl != -1) {
+        PeripheralInfo *info =[self.services objectAtIndex:sectl];
+        for (int row=0;row<service.characteristics.count;row++) {
+            CBCharacteristic *c = service.characteristics[row];
+            [info.characteristics addObject:c];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:sectl];
+            [indexPaths addObject:indexPath];
+            NSLog(@"add indexpath in row:%d, sect:%d",row,sectl);
+        }
+        PeripheralInfo *curInfo =[self.services objectAtIndex:sectl];
+        NSLog(@"%@",curInfo.characteristics);
+        //        [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+    }
+    
+    
+}
+
+-(void)insertSectionToTableView:(CBService *)service{
+    NSLog(@"搜索到服务:%@",service.UUID.UUIDString);
+    PeripheralInfo *info = [[PeripheralInfo alloc]init];
+    [info setServiceUUID:service.UUID];
+    [self.services addObject:info];
+    //    NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:self.services.count-1];
+    //    [self.tableView insertSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 //插入table数据
@@ -372,14 +414,14 @@ typedef enum : NSUInteger {
 }
 
 - (void)deviceTableViewCellDidClicked:(DeviceTableViewCell*)cell {
-//    [SVProgressHUD showWithStatus:@"Syncing..."];
+    [SVProgressHUD showWithStatus:@"Syncing..."];
     self.currPeripheral = [peripherals objectAtIndex:0];
     [self BeganInital];
     
     
-    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
-    UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"KidBind"];
-    [self.navigationController pushViewController:ctl animated:YES];
+//    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
+//    UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"KidBind"];
+//    [self.navigationController pushViewController:ctl animated:YES];
 }
 
 @end

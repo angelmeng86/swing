@@ -17,6 +17,7 @@
 		0FD6B4031D6207E000C00A45 /* BabyRhythm.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6B3F81D6207E000C00A45 /* BabyRhythm.m */; };
 		0FD6B4041D6207E000C00A45 /* BabySpeaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6B3FA1D6207E000C00A45 /* BabySpeaker.m */; };
 		0FD6B4051D6207E000C00A45 /* BabyToy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6B3FC1D6207E000C00A45 /* BabyToy.m */; };
+		0FD6B4081D6212B500C00A45 /* PeripheralInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6B4071D6212B500C00A45 /* PeripheralInfo.m */; };
 		AD05B5BD1D3BCAA4007BCF7C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD05B5BC1D3BCAA4007BCF7C /* LoginViewController.m */; };
 		AD05B5C01D3BD187007BCF7C /* SwingClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AD05B5BF1D3BD187007BCF7C /* SwingClient.m */; };
 		AD0B81171D37EF7400F43E72 /* ControlFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B810B1D37EF7400F43E72 /* ControlFactory.m */; };
@@ -122,6 +123,8 @@
 		0FD6B3FA1D6207E000C00A45 /* BabySpeaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BabySpeaker.m; sourceTree = "<group>"; };
 		0FD6B3FB1D6207E000C00A45 /* BabyToy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BabyToy.h; sourceTree = "<group>"; };
 		0FD6B3FC1D6207E000C00A45 /* BabyToy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BabyToy.m; sourceTree = "<group>"; };
+		0FD6B4061D6212B500C00A45 /* PeripheralInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralInfo.h; sourceTree = "<group>"; };
+		0FD6B4071D6212B500C00A45 /* PeripheralInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeripheralInfo.m; sourceTree = "<group>"; };
 		AD05B5BB1D3BCAA4007BCF7C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		AD05B5BC1D3BCAA4007BCF7C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		AD05B5BE1D3BD187007BCF7C /* SwingClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwingClient.h; sourceTree = "<group>"; };
@@ -412,6 +415,8 @@
 		AD0B81201D37F09900F43E72 /* ThirdPart */ = {
 			isa = PBXGroup;
 			children = (
+				0FD6B4061D6212B500C00A45 /* PeripheralInfo.h */,
+				0FD6B4071D6212B500C00A45 /* PeripheralInfo.m */,
 				0FD6B3EA1D6207E000C00A45 /* BabyBluetooth */,
 				ADE924FA1D58C9EE00EBB87D /* RCLocationManager */,
 				ADEF31D31D47B04200BB6A9B /* VPImageCropper */,
@@ -811,6 +816,7 @@
 			files = (
 				ADCED9E41D3D2BAC002E3F78 /* LoginedModel.m in Sources */,
 				0FD6B4031D6207E000C00A45 /* BabyRhythm.m in Sources */,
+				0FD6B4081D6212B500C00A45 /* PeripheralInfo.m in Sources */,
 				AD1CEF101D5AE7F5004FEC24 /* LMTabBarController2.m in Sources */,
 				ADE820791D54D99000E12768 /* WeatherModel.m in Sources */,
 				AD0B811A1D37EF7400F43E72 /* LMBaseTableViewController.m in Sources */,
