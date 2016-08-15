@@ -118,10 +118,10 @@
         return NO;
     }
     
-    //if (self.todoCtl.itemList.count == 0) {
-    //    [Fun showMessageBoxWithTitle:@"Error" andMessage:@"Please input to do list."];
-    //    return NO;
-    //}
+    if (self.todoCtl.itemList.count == 0) {
+        [Fun showMessageBoxWithTitle:@"Error" andMessage:@"Please input to do list."];
+        return NO;
+    }
     
     return YES;
 }
@@ -131,13 +131,22 @@
         [SVProgressHUD showWithStatus:@"Saving, please wait..."];
         
         //eventName, startDate, endDate, color, status, description, alert, city, state
-        NSDictionary *data = @{@"eventName":self.nameTF.text , @"startDate":self.startTF.text
-                               , @"endDate":self.endTF.text
-                               , @"description":self.descTF.text
-                               , @"alert":self.alert.value
-                               , @"city":self.cityTF.text
-                               , @"state":self.stateTF.text
-                               , @"color":[Fun stringFromColor:self.colorCtl.selectedColor]};
+        NSMutableDictionary *data = [NSMutableDictionary dictionary];
+        [data addEntriesFromDictionary:@{@"eventName":self.nameTF.text , @"startDate":self.startTF.text
+                                        , @"endDate":self.endTF.text
+                                        , @"color":[Fun stringFromColor:self.colorCtl.selectedColor]}];
+        if (self.descTF.text.length > 0) {
+            [data setObject:self.descTF.text forKey:@"description"];
+        }
+        if (self.alert.text.length > 0) {
+            [data setObject:self.alert.text forKey:@"alert"];
+        }
+        if (self.cityTF.text.length > 0) {
+            [data setObject:self.cityTF.text forKey:@"city"];
+        }
+        if (self.stateTF.text.length > 0) {
+            [data setObject:self.stateTF.text forKey:@"state"];
+        }
         
         [[SwingClient sharedClient] calendarAddEvent:data completion:^(id event, NSError *error) {
             if (!error) {

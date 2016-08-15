@@ -13,6 +13,7 @@
 #import "CommonDef.h"
 #import "ColorLabel.h"
 #import "LMCalendarDayView.h"
+#import "MonthCalendarViewController.h"
 
 CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
 
@@ -117,6 +118,7 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     [lastView autoPinEdgeToSuperviewEdge:ALEdgeBottom];
     self.hourLines = array;
     
+    self.calendarManager.date = self.dateSelected;
     [self reloadEventData];
 }
 
@@ -152,7 +154,8 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
 
 - (void)modeAction:(id)sender {
     UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
-    UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MonthCalendar"];
+    MonthCalendarViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MonthCalendar"];
+    ctl.delegate = self;
     [self.navigationController pushViewController:ctl animated:YES];
     
 //    if (!self.calendarManager.settings.weekModeEnabled) {
@@ -179,6 +182,12 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     
 }
 
+- (void)monthCalendarDidSelected:(NSDate*)date {
+    self.dateSelected = date;
+    [self.calendarManager setDate:date];
+    [self reloadEventData];
+}
+
 - (void)reloadEventData {
     for (UIView *view in _eventLabels) {
         [view removeFromSuperview];
@@ -193,7 +202,7 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     for (EventModel *model in self.eventData) {
         [self addEvent:model color:model.color];
     }
-    self.calendarManager.date = self.dateSelected;
+    
 }
 
 - (void)addEvent:(EventModel*)model color:(UIColor*)color {

@@ -59,8 +59,11 @@ typedef enum : NSUInteger {
     
     self.label1.adjustsFontSizeToFitWidth = YES;
     self.label2.adjustsFontSizeToFitWidth = YES;
+#if TARGET_IPHONE_SIMULATOR
     
+#else
     [self initBluetooth];
+#endif
 }
 
 - (void)initBluetooth {
@@ -391,7 +394,11 @@ typedef enum : NSUInteger {
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+#if TARGET_IPHONE_SIMULATOR
+    return 2;
+#else
     return peripherals.count;
+#endif
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -399,15 +406,17 @@ typedef enum : NSUInteger {
     static NSString *cellIdentifier = @"DeviceCell";
     DeviceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.delegate = self;
-//    if (indexPath.row == 0) {
-//        cell.titleLabel.text = @"SWING WATCH 123DAF523";
-//    }
-//    else {
-//        cell.titleLabel.text = @"SWING WATCH 568DANG5E";
-//    }
+#if TARGET_IPHONE_SIMULATOR
+    if (indexPath.row == 0) {
+        cell.titleLabel.text = @"SWING WATCH 123DAF523";
+    }
+    else {
+        cell.titleLabel.text = @"SWING WATCH 568DANG5E";
+    }
+#else
     CBPeripheral *peripheral = [peripherals objectAtIndex:indexPath.row];
     cell.titleLabel.text = peripheral.name;
-    
+#endif
     return cell;
 }
 
@@ -453,23 +462,26 @@ typedef enum : NSUInteger {
 }
 
 - (void)deviceTableViewCellDidClicked:(DeviceTableViewCell*)cell {
+#if TARGET_IPHONE_SIMULATOR
+    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
+    UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"KidBind"];
+    [self.navigationController pushViewController:ctl animated:YES];
+#else
     [SVProgressHUD showWithStatus:@"Syncing..."];
     [baby cancelScan];
     self.currPeripheral = [peripherals objectAtIndex:0];
     
     [self loadData];
     
-//    [self BeganInital];
+    //    [self BeganInital];
     [self performSelector:@selector(BeganInital) withObject:nil afterDelay:8.0];
-    
-    
-//    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
-//    UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"KidBind"];
-//    [self.navigationController pushViewController:ctl animated:YES];
+#endif
 }
 
 -(void)loadData{
     baby.having(self.currPeripheral).and.channel(channelOnPeropheralView).then.connectToPeripherals().discoverServices().discoverCharacteristics().readValueForCharacteristic().discoverDescriptorsForCharacteristic().readValueForDescriptors().begin();
+    
+//    baby.having(self.currPeripheral).and.channel(channelOnPeropheralView).then.connectToPeripherals().discoverServices().discoverCharacteristics().begin();
     //    baby.connectToPeripheral(self.currPeripheral).begin();
 }
 
