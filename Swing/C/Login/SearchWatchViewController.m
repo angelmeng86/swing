@@ -37,7 +37,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.progressView.isIndeterminateProgress = YES;
-    [self performSelector:@selector(nextAction) withObject:nil afterDelay:3];
+    
+    
+    [self performSelector:@selector(nextAction) withObject:nil afterDelay:1];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
