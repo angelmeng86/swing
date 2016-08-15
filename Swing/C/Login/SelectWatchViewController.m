@@ -74,6 +74,7 @@ typedef enum : NSUInteger {
     
     //链接后的数据准备
     self.services = [[NSMutableArray alloc]init];
+    baby.scanForPeripherals(1).begin();
 }
 
 #pragma mark -蓝牙配置和操作
