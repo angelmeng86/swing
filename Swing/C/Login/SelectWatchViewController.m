@@ -294,12 +294,12 @@ typedef enum : NSUInteger {
 //插入table数据
 -(void)insertTableView:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData{
     if(![peripherals containsObject:peripheral]) {
-//        NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
-//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:peripherals.count inSection:0];
-//        [indexPaths addObject:indexPath];
+        NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:peripherals.count inSection:0];
+        [indexPaths addObject:indexPath];
         [peripherals addObject:peripheral];
         [peripheralsAD addObject:advertisementData];
-//        [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
     }
 }
 
@@ -309,7 +309,7 @@ typedef enum : NSUInteger {
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.devices.count;
+    return peripherals.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -323,7 +323,8 @@ typedef enum : NSUInteger {
 //    else {
 //        cell.titleLabel.text = @"SWING WATCH 568DANG5E";
 //    }
-    cell.titleLabel.text = _devices[indexPath.row];
+    CBPeripheral *peripheral = [peripherals objectAtIndex:indexPath.row];
+    cell.titleLabel.text = peripheral.name;
     
     return cell;
 }
@@ -333,7 +334,7 @@ typedef enum : NSUInteger {
     self.characteristic =[[[self.services objectAtIndex:5] characteristics]objectAtIndex:0];
     NSLog(@" 选定的C值为%@",self.characteristic);
     baby.channel(channelOnPeropheralView).characteristicDetails(self.currPeripheral,self.characteristic);
-    self.currPeripheral = [peripherals objectAtIndex:0];
+    
     
     [self writeValue01];
     
@@ -371,6 +372,7 @@ typedef enum : NSUInteger {
 
 - (void)deviceTableViewCellDidClicked:(DeviceTableViewCell*)cell {
 //    [SVProgressHUD showWithStatus:@"Syncing..."];
+    self.currPeripheral = [peripherals objectAtIndex:0];
     [self BeganInital];
     
     
