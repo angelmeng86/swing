@@ -18,7 +18,7 @@
 @interface DoItemLabel : UIView
 
 @property (nonatomic, assign) id delegate;
-@property (nonatomic, strong) UILabel *textLabel;
+@property (nonatomic, strong) UITextField *textLabel;
 @property (weak, nonatomic) NSLayoutConstraint *positionLayoutConstaint;
 
 @end

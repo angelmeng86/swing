@@ -253,8 +253,12 @@
     if(self.calendarEventsByMonth[month][key] && [self.calendarEventsByMonth[month][key] count] > 0){
         NSArray* events = self.calendarEventsByMonth[month][key];
         NSMutableArray *array = [NSMutableArray new];
+        int i = 0;
         for (EventModel *event in events) {
             [array addObject:event.color == nil ? [UIColor redColor] : event.color];
+            if (++i >= 4) {
+                break;
+            }
         }
         return array;
     }
@@ -291,7 +295,7 @@
             LOG_D(@"error:%@", error);
             _weartherRunning = NO;
             [SVProgressHUD showErrorWithStatus:@"User has explicitly denied authorization for this application, or location services are disabled in Settings."];
-            [SVProgressHUD dismissWithDelay:1];
+            [SVProgressHUD dismissWithDelay:1.5];
         }];
         
     }];

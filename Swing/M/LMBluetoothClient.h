@@ -12,6 +12,7 @@
 @protocol LMBluetoothClientDelegate <NSObject>
 
 - (void)bluetoothClientScanDevice:(NSArray*)peripherals;
+- (void)bluetoothClientBattery:(int)value;
 - (void)bluetoothClientSyncFinished;
 
 @end
@@ -27,5 +28,7 @@
 - (void)stopScan;
 
 - (void)syncDevice;
+
+- (void)readBattery;
 
 @end

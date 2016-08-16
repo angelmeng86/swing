@@ -78,7 +78,7 @@ typedef enum : NSUInteger {
 }
 
 - (void)syncDevice {
-    if ([peripherals objectAtIndex:0] == nil) {
+    if (peripherals.count == 0) {
         NSLog(@"没找到设备");
     }else{
         self.currPeripheral = [peripherals objectAtIndex:0];

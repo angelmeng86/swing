@@ -53,34 +53,81 @@
   {
   "city" : "Fort Worth", "state"  : "Texas"
   },
+  {
+  "city" : "Baltimore", "state"  : "Maryland"
+  },
+  {
+  "city" : "Charlotte", "state"  : "North Carolina"
+  },
+  {
+  "city" : "El Paso", "state"  : "Texas"
+  },
+  {
+  "city" : "Milwaukee", "state"  : "Wisconsin"
+  },
+  {
+  "city" : "Boston", "state"  : "Massachusetts"
+  },
+  {
+  "city" : "Seattle", "state"  : "Washington"
+  },
+  {
+  "city" : "Washington", "state"  : "D. C."
+  },
+  {
+  "city" : "Denver", "state"  : "Colorado"
+  },
+  {
+  "city" : "Louisville", "state"  : "Kentucky"
+  },
+  {
+  "city" : "Las Vegas", "state"  : "Nevada"
+  },
+  {
+  "city" : "Nashville", "state"  : "Tennessee"
+  },
+  {
+  "city" : "Oklahoma City", "state"  : "Oklahoma"
+  },
+  {
+  "city" : "Portland", "state"  : "Oregon"
+  },
+  {
+  "city" : "Tucson", "state"  : "Arizona"
+  },
+  {
+  "city" : "Albuquerque", "state"  : "New Mexico"
+  },
+  {
+  "city" : "Atlanta", "state"  : "Georgia"
+  },
+  {
+  "city" : "Long Beach", "state"  : "California"
+  },
+  {
+  "city" : "Fresno", "state"  : "California"
+  },
+  {
+  "city" : "Sacramento", "state"  : "California"
+  },
+  {
+  "city" : "Mesa", "state"  : "Arizona"
+  },
+  {
+  "city" : "Kansas City", "state"  : "Missouri"
+  },
+  {
+  "city" : "Cleveland", "state"  : "Ohio"
+  },
+  {
+  "city" : "Virginia Beach", "state"  : "Virginia"
+  },
+  {
+  "city" : "Omaha", "state"  : "Nebraska"
+  },
   
  ]
 
-
-                    19	巴尔的摩	马里兰州	Baltimore, Maryland	640,961
-                    20	夏洛特	北卡罗来纳州	Charlotte, North Carolina	630,478
-                    21	厄尔巴索	得克萨斯州	El Paso, Texas	609,415
-                    22	密尔沃基	威斯康星州	Milwaukee, Wisconsin	602,782
-                    23	波士顿	马萨诸塞州	Boston, Massachusetts	590,763
-                    24	西雅图	华盛顿州	Seattle, Washington	582,454
-                    25	华盛顿	哥伦比亚特区	Washington, D. C.	581,530
-                    26	丹佛	科罗拉多州	Denver, Colorado	566,974
-                    27	路易维尔	肯塔基州	Louisville, Kentucky	554,496
-                    28	拉斯维加斯	内华达州	Las Vegas, Nevada	552,539
-                    29	纳什维尔	田纳西州	Nashville, Tennessee	552,120
-                    30	俄克拉荷马城	俄克拉荷马州	Oklahoma City, Oklahoma	537,734
-                    31	波特兰	俄勒冈州	Portland, Oregon	537,081
-                    32	图森	亚利桑那州	Tucson, Arizona	518,956
-                    33	阿布奎基	新墨西哥州	Albuquerque, New Mexico	504,949
-                    34	亚特兰大	佐治亚州	Atlanta, Georgia	486,411
-                    35	长滩	加利福尼亚州	Long Beach, California	472,494
-                    36	弗雷斯诺	加利福尼亚州	Fresno, California	466,714
-                    37	萨克拉门托	加利福尼亚州	Sacramento, California	453,781
-                    38	梅萨	亚利桑那州	Mesa, Arizona	447,541
-                    39	堪萨斯城	密苏里州	Kansas City, Missouri	447,306
-                    40	克里夫兰	俄亥俄州	Cleveland, Ohio	444,323
-                    41	弗吉尼亚比奇	弗吉尼亚州	Virginia Beach, Virginia	435,619
-                    42	奥马哈	内布拉斯加州	Omaha, Nebraska	419,545
                     43	迈阿密	佛罗利达州	Miami, Florida	404,048
                     44	奥克兰	加利福尼亚州	Oakland, California	397,067
                     45	图尔萨	俄克拉荷马州	Tulsa, Oklahoma	382,872

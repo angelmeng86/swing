@@ -14,7 +14,7 @@
 - (id)init {
     if (self = [super init]) {
         self.backgroundColor = [UIColor clearColor];
-        self.textLabel = [UILabel new];
+        self.textLabel = [UITextField new];
         [self addSubview:_textLabel];
         
         UIButton *dotView = [UIButton new];

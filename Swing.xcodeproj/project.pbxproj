@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0F45AB7F1D62DEDE00EF385F /* LMBluetoothClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB7E1D62DEDE00EF385F /* LMBluetoothClient.m */; };
+		0F45AB831D6316FA00EF385F /* STextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB821D6316FA00EF385F /* STextField.m */; };
 		0FD6B3E71D61B79300C00A45 /* ChoicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6B3E61D61B79300C00A45 /* ChoicesViewController.m */; };
 		0FD6B3FD1D6207E000C00A45 /* BabyBluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6B3EC1D6207E000C00A45 /* BabyBluetooth.m */; };
 		0FD6B3FE1D6207E000C00A45 /* BabyCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6B3EE1D6207E000C00A45 /* BabyCallback.m */; };
@@ -107,6 +108,8 @@
 		0F45AB7D1D62DEDE00EF385F /* LMBluetoothClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMBluetoothClient.h; sourceTree = "<group>"; };
 		0F45AB7E1D62DEDE00EF385F /* LMBluetoothClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMBluetoothClient.m; sourceTree = "<group>"; };
 		0F45AB801D62F15A00EF385F /* statecity.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = statecity.json; sourceTree = "<group>"; };
+		0F45AB811D6316FA00EF385F /* STextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STextField.h; sourceTree = "<group>"; };
+		0F45AB821D6316FA00EF385F /* STextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STextField.m; sourceTree = "<group>"; };
 		0FD6B3E51D61B79300C00A45 /* ChoicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoicesViewController.h; sourceTree = "<group>"; };
 		0FD6B3E61D61B79300C00A45 /* ChoicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoicesViewController.m; sourceTree = "<group>"; };
 		0FD6B3EB1D6207E000C00A45 /* BabyBluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BabyBluetooth.h; sourceTree = "<group>"; };
@@ -636,6 +639,8 @@
 				ADF9855B1D50D27400B02075 /* ColorLabel.m */,
 				ADE0BE711D59933400E70109 /* LMCalendarDayView.h */,
 				ADE0BE721D59933400E70109 /* LMCalendarDayView.m */,
+				0F45AB811D6316FA00EF385F /* STextField.h */,
+				0F45AB821D6316FA00EF385F /* STextField.m */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -889,6 +894,7 @@
 				AD347D171D3FD8DD00E91DDD /* SearchWatchViewController.m in Sources */,
 				AD05B5BD1D3BCAA4007BCF7C /* LoginViewController.m in Sources */,
 				ADEF31CC1D47856200BB6A9B /* KidBindViewController.m in Sources */,
+				0F45AB831D6316FA00EF385F /* STextField.m in Sources */,
 				AD7438241D4DD47100F5F9D2 /* JBChartTooltipView.m in Sources */,
 				AD7797931D4C8D0600472B27 /* ProfileDeviceCell.m in Sources */,
 				ADF985531D50C4A200B02075 /* AddEventViewController.m in Sources */,

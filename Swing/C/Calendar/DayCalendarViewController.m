@@ -124,9 +124,7 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
 
 - (void)eventLoaded:(NSNotification*)notification {
     [super eventLoaded:notification];
-    if (self.eventData == nil) {
-        [self reloadEventData];
-    }
+    [self reloadEventData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

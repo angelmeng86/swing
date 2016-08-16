@@ -85,7 +85,9 @@
 - (NSArray*)itemList {
     NSMutableArray *array = [NSMutableArray array];
     for (DoItemLabel *label in self.listView.subviews) {
-        [array addObject:label.textLabel.text];
+        if (label.textLabel.text.length > 0) {
+            [array addObject:label.textLabel.text];
+        }
     }
     return array;
 }

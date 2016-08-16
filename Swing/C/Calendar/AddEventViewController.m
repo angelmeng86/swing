@@ -36,13 +36,18 @@
     UIDatePicker *datePicker2 = [[UIDatePicker alloc] init];
     datePicker2.datePickerMode = UIDatePickerModeTime;
     datePicker2.minimumDate = [NSDate date];
-    datePicker2.minuteInterval = 30;
+    datePicker2.minuteInterval = 10;
     self.endTF.inputView = datePicker2;
     [datePicker2 addTarget:self action:@selector(endChange:) forControlEvents:UIControlEventValueChanged];
     
     self.alertTF.delegate = self;
     self.repeatTF.delegate = self;
-    isAddTip = NO;
+//    isAddTip = NO;
+    
+    isAddTip = YES;
+    [self addRedTip:self.nameTF];
+    [self addRedTip:self.startTF];
+    [self addRedTip:self.endTF];
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
@@ -63,20 +68,22 @@
 
 - (void)choicesViewControllerDidSelected:(NSString*)text {
     self.repeatTF.text = text;
+    [self.endTF becomeFirstResponder];
 }
 
 - (void)alertSelectViewControllerDidSelected:(AlertModel*)alert {
     self.alert = alert;
     self.alertTF.text = alert.text;
+    [self.endTF becomeFirstResponder];
 }
 
 - (void)startChange:(UIDatePicker*)datePicker {
     self.startTF.text = [Fun dateToString:datePicker.date];
     UIDatePicker* dp = (UIDatePicker*)self.endTF.inputView;
-    dp.minimumDate = datePicker.date;
+    dp.minimumDate = [datePicker.date dateByAddingTimeInterval:20 * 60];
     if (NSOrderedDescending == [dp.date compare:datePicker.date]) {
 //        dp.date = datePicker.date;
-        self.endTF.text = self.startTF.text;
+        self.endTF.text = [Fun dateToString:dp.minimumDate];;
     }
     
 }
@@ -113,10 +120,10 @@
         return NO;
     }
     
-    if ([self.startTF.text isEqualToString:self.endTF.text]) {
-        [Fun showMessageBoxWithTitle:@"Error" andMessage:@"Event time is valid."];
-        return NO;
-    }
+//    if ([self.startTF.text isEqualToString:self.endTF.text]) {
+//        [Fun showMessageBoxWithTitle:@"Error" andMessage:@"Event time is valid."];
+//        return NO;
+//    }
     
     if (self.todoCtl.itemList.count == 0) {
         [Fun showMessageBoxWithTitle:@"Error" andMessage:@"Please input to do list."];
