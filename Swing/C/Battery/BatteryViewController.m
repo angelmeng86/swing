@@ -10,9 +10,9 @@
 #import "LMBluetoothClient.h"
 
 @interface BatteryViewController ()
-{
-    LMBluetoothClient *client;
-}
+
+@property (nonatomic, strong) LMBluetoothClient *client;
+
 
 @end
 
@@ -37,8 +37,7 @@
     
     self.textLabel.adjustsFontSizeToFitWidth = YES;
     
-    client = [[LMBluetoothClient alloc] init];
-    client.delegate = self;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,7 +47,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [client beginBattery];
+    self.client = [[LMBluetoothClient alloc] init];
+    self.client.delegate = self;
+    [self.client beginBattery];
 }
 
 - (void)bluetoothClientBattery:(int)value {

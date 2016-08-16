@@ -10,6 +10,7 @@
 		0F45AB7F1D62DEDE00EF385F /* LMBluetoothClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB7E1D62DEDE00EF385F /* LMBluetoothClient.m */; };
 		0F45AB831D6316FA00EF385F /* STextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB821D6316FA00EF385F /* STextField.m */; };
 		0F45AB881D63593400EF385F /* ActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB871D63593400EF385F /* ActivityModel.m */; };
+		0F45AB8B1D63614800EF385F /* ActivityResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB8A1D63614800EF385F /* ActivityResultModel.m */; };
 		0FD6B3E71D61B79300C00A45 /* ChoicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6B3E61D61B79300C00A45 /* ChoicesViewController.m */; };
 		0FD6B3FD1D6207E000C00A45 /* BabyBluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6B3EC1D6207E000C00A45 /* BabyBluetooth.m */; };
 		0FD6B3FE1D6207E000C00A45 /* BabyCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6B3EE1D6207E000C00A45 /* BabyCallback.m */; };
@@ -113,6 +114,8 @@
 		0F45AB821D6316FA00EF385F /* STextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STextField.m; sourceTree = "<group>"; };
 		0F45AB861D63593400EF385F /* ActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityModel.h; sourceTree = "<group>"; };
 		0F45AB871D63593400EF385F /* ActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityModel.m; sourceTree = "<group>"; };
+		0F45AB891D63614800EF385F /* ActivityResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityResultModel.h; sourceTree = "<group>"; };
+		0F45AB8A1D63614800EF385F /* ActivityResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityResultModel.m; sourceTree = "<group>"; };
 		0FD6B3E51D61B79300C00A45 /* ChoicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoicesViewController.h; sourceTree = "<group>"; };
 		0FD6B3E61D61B79300C00A45 /* ChoicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoicesViewController.m; sourceTree = "<group>"; };
 		0FD6B3EB1D6207E000C00A45 /* BabyBluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BabyBluetooth.h; sourceTree = "<group>"; };
@@ -385,6 +388,8 @@
 				0F45AB7E1D62DEDE00EF385F /* LMBluetoothClient.m */,
 				0F45AB861D63593400EF385F /* ActivityModel.h */,
 				0F45AB871D63593400EF385F /* ActivityModel.m */,
+				0F45AB891D63614800EF385F /* ActivityResultModel.h */,
+				0F45AB8A1D63614800EF385F /* ActivityResultModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -835,6 +840,7 @@
 				0FD6B4031D6207E000C00A45 /* BabyRhythm.m in Sources */,
 				0FD6B4081D6212B500C00A45 /* PeripheralInfo.m in Sources */,
 				AD1CEF101D5AE7F5004FEC24 /* LMTabBarController2.m in Sources */,
+				0F45AB8B1D63614800EF385F /* ActivityResultModel.m in Sources */,
 				ADE820791D54D99000E12768 /* WeatherModel.m in Sources */,
 				AD0B811A1D37EF7400F43E72 /* LMBaseTableViewController.m in Sources */,
 				0F45AB881D63593400EF385F /* ActivityModel.m in Sources */,

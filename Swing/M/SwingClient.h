@@ -56,6 +56,6 @@ typedef enum : NSUInteger {
 
 - (NSURLSessionDataTask *)deviceUploadRawData:(ActivityModel*)model completion:( void (^)(NSError *error) )completion;
 
-- (NSURLSessionDataTask *)deviceGetDailyActivity:(ActivityModel*)model completion:( void (^)(id dailyAct ,NSError *error) )completion;
+- (NSURLSessionDataTask *)deviceGetDailyActivity:(NSString*)macId completion:( void (^)(id dailyAct ,NSError *error) )completion;
 
 @end

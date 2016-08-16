@@ -47,7 +47,7 @@ typedef enum : NSUInteger {
     NSMutableArray *sect;
     __block  NSMutableArray *readValueArray;
     __block  NSMutableArray *descriptors;
-    int yunsuanfu;
+    BOOL readingBattery;
 }
 
 @property __block NSMutableArray *services;
@@ -93,17 +93,24 @@ typedef enum : NSUInteger {
 }
 
 - (void)beginBattery {
-    baby.scanForPeripherals(1).channel(channelOnBattery).connectToPeripherals().discoverServices().discoverCharacteristics()
-    .begin();
-    [self performSelector:@selector(readBattery) withObject:nil afterDelay:8.0];
+    if ([baby findConnectedPeripherals].count > 0) {
+        self.currPeripheral = [[baby findConnectedPeripherals] firstObject];
+        [self readBattery];
+    }
+    else {
+        baby.scanForPeripherals(1).channel(channelOnBattery).connectToPeripherals().discoverServices().discoverCharacteristics()
+        .begin();
+        [self performSelector:@selector(readBattery) withObject:nil afterDelay:8.0];
+    }
 }
 
 - (void)readBattery {
     NSLog(@"readBattery");
+    readingBattery = YES;
     __weak BabyBluetooth *weakBaby = baby;
     __weak LMBluetoothClient *weakSelf = self;
     [baby setBlockOnReadValueForCharacteristicAtChannel:channelOnBattery block:^(CBPeripheral *peripheral, CBCharacteristic *characteristic, NSError *error) {
-        if (self.characteristic == characteristic) {
+        if (self.characteristic == characteristic && readingBattery) {
             [weakBaby cancelPeripheralConnection:peripheral];
             
             if ([weakSelf.delegate respondsToSelector:@selector(bluetoothClientBattery:)]) {
@@ -112,6 +119,7 @@ typedef enum : NSUInteger {
             }
         }
     }];
+    self.currPeripheral = [[baby findConnectedPeripherals] firstObject];
     self.characteristic =[[[self.services objectAtIndex:4] characteristics]objectAtIndex:0];
     [self.currPeripheral readValueForCharacteristic:self.characteristic];
 }

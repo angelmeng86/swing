@@ -433,10 +433,8 @@
     return task;
 }
 
-- (NSURLSessionDataTask *)deviceGetDailyActivity:(ActivityModel*)model completion:( void (^)(id dailyAct ,NSError *error) )completion {
-    NSDictionary *data = [model toDictionary];
-    LOG_D(@"deviceUploadRawData: %@", data);
-    NSURLSessionDataTask *task = [self POST:@"/device/getDailyActivity" parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+- (NSURLSessionDataTask *)deviceGetDailyActivity:(NSString*)macId completion:( void (^)(id dailyAct ,NSError *error) )completion {
+    NSURLSessionDataTask *task = [self POST:@"/device/getDailyActivity" parameters:@{@"macId":macId} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"deviceUploadRawData info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
