@@ -433,10 +433,25 @@
     return task;
 }
 
-- (NSURLSessionDataTask *)deviceGetDailyActivity:(NSString*)macId completion:( void (^)(id dailyActs ,NSError *error) )completion {
-    NSURLSessionDataTask *task = [self POST:@"/device/getDailyActivity" parameters:@{@"macId":macId} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+- (NSURLSessionDataTask *)deviceGetActivity:(NSString*)macId type:(GetActivityType)type completion:( void (^)(id dailyActs ,NSError *error) )completion {
+    NSString *url = @"/device/getDailyActivity";
+    switch (type) {
+        case GetActivityTypeYear:
+            url = @"/device/getYearlyActivity";
+            break;
+        case GetActivityTypeMonth:
+            url = @"/device/getMonthlyActivity";
+            break;
+        case GetActivityTypeWeekly:
+            url = @"/device/getWeeklyActivity";
+            break;
+        default:
+            
+            break;
+    }
+    NSURLSessionDataTask *task = [self POST:url parameters:@{@"macId":macId} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            LOG_D(@"deviceGetDailyActivity info:%@", responseObject);
+            LOG_D(@"deviceGetActivity info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
             if (err) {
                 completion(nil ,err);
