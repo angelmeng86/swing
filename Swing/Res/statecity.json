@@ -1,0 +1,302 @@
+ [
+  {
+  "city" : "New York", "state"  : "New York"
+  },
+  {
+  "city" : "Los Angele", "state"  : "California"
+  },
+  {
+  "city" : "Chicago", "state"  : "Illinois"
+  },
+  {
+  "city" : "Houston", "state"  : "Texas"
+  },
+  {
+  "city" : "Phoenix", "state"  : "Arizona"
+  },
+  {
+  "city" : "Philadelphia", "state"  : "Pennsylvania"
+  },
+  {
+  "city" : "San Antonio", "state"  : "Texas"
+  },
+  {
+  "city" : "San Diego", "state"  : "California"
+  },
+  {
+  "city" : "Dallas", "state"  : "Texas"
+  },
+  {
+  "city" : "San Jose", "state"  : "California"
+  },
+  {
+  "city" : "Detroit", "state"  : "Michigan"
+  },
+  {
+  "city" : "Jacksonville", "state"  : "Florida"
+  },
+  {
+  "city" : "Indianapolis", "state"  : "Indiana"
+  },
+  {
+  "city" : "San Francisco", "state"  : "California"
+  },
+  {
+  "city" : "Columbus", "state"  : "Ohio"
+  },
+  {
+  "city" : "Austin", "state"  : "Texas"
+  },
+  {
+  "city" : "Memphis", "state"  : "Tennessee"
+  },
+  {
+  "city" : "Fort Worth", "state"  : "Texas"
+  },
+  
+ ]
+
+
+                    19	巴尔的摩	马里兰州	Baltimore, Maryland	640,961
+                    20	夏洛特	北卡罗来纳州	Charlotte, North Carolina	630,478
+                    21	厄尔巴索	得克萨斯州	El Paso, Texas	609,415
+                    22	密尔沃基	威斯康星州	Milwaukee, Wisconsin	602,782
+                    23	波士顿	马萨诸塞州	Boston, Massachusetts	590,763
+                    24	西雅图	华盛顿州	Seattle, Washington	582,454
+                    25	华盛顿	哥伦比亚特区	Washington, D. C.	581,530
+                    26	丹佛	科罗拉多州	Denver, Colorado	566,974
+                    27	路易维尔	肯塔基州	Louisville, Kentucky	554,496
+                    28	拉斯维加斯	内华达州	Las Vegas, Nevada	552,539
+                    29	纳什维尔	田纳西州	Nashville, Tennessee	552,120
+                    30	俄克拉荷马城	俄克拉荷马州	Oklahoma City, Oklahoma	537,734
+                    31	波特兰	俄勒冈州	Portland, Oregon	537,081
+                    32	图森	亚利桑那州	Tucson, Arizona	518,956
+                    33	阿布奎基	新墨西哥州	Albuquerque, New Mexico	504,949
+                    34	亚特兰大	佐治亚州	Atlanta, Georgia	486,411
+                    35	长滩	加利福尼亚州	Long Beach, California	472,494
+                    36	弗雷斯诺	加利福尼亚州	Fresno, California	466,714
+                    37	萨克拉门托	加利福尼亚州	Sacramento, California	453,781
+                    38	梅萨	亚利桑那州	Mesa, Arizona	447,541
+                    39	堪萨斯城	密苏里州	Kansas City, Missouri	447,306
+                    40	克里夫兰	俄亥俄州	Cleveland, Ohio	444,323
+                    41	弗吉尼亚比奇	弗吉尼亚州	Virginia Beach, Virginia	435,619
+                    42	奥马哈	内布拉斯加州	Omaha, Nebraska	419,545
+                    43	迈阿密	佛罗利达州	Miami, Florida	404,048
+                    44	奥克兰	加利福尼亚州	Oakland, California	397,067
+                    45	图尔萨	俄克拉荷马州	Tulsa, Oklahoma	382,872
+                    46	檀香山	夏威夷州	Honolulu, Hawai'i	377,357
+                    47	明尼亚波利斯	明尼苏达州	Minneapolis, Minnesota	372,833
+                    48	科罗拉多泉	科罗拉多州	Colorado Springs, Colorado	372,437
+                    49	阿灵顿	得克萨斯州	Arlington, Texas	367,197
+                    50	威奇托	堪萨斯州	Wichita, Kansas	357,698
+                    51	罗利	北卡罗来纳州	Raleigh, North Carolina	356,321
+                    52	圣路易斯	密苏里州	St. Louis, Missouri	353,837
+                    53	圣安娜	加利福尼亚州	Santa Ana, California	340,024
+                    54	安那罕	加利福尼亚州	Anaheim, California	334,425
+                    55	坦帕	佛罗利达州	Tampa, Florida	332,888
+                    56	辛辛那提	俄亥俄州	Cincinnati, Ohio	332,252
+                    57	匹兹堡	宾夕法尼亚州	Pittsburgh, Pennsylvania	312,819
+                    58	贝克斯菲尔德	加利福尼亚州	Bakersfield, California	308,392
+                    59	奥罗拉	科罗拉多州	Aurora, Colorado	303,582
+                    60	托莱多	俄亥俄州	Toledo, Ohio	298,446
+                    61	里弗塞得	加利福尼亚州	Riverside, California	293,761
+                    62	斯托克顿	加利福尼亚州	Stockton, California	290,141
+                    63	科珀斯克里斯蒂	得克萨斯州	Corpus Christi, Texas	285,267
+                    64	纽瓦克	新泽西州	Newark, New Jersey	281,402
+                    65	安克雷奇	阿拉斯加州	Anchorage, Alaska	278,700
+                    66	布法罗	纽约州	Buffalo, New York	276,059
+                    67	圣保罗	明尼苏达州	St. Paul, Minnesota	273,535
+                    68	列克星顿	肯塔基州	Lexington, Kentucky	270,789
+                    69	普拉诺	得克萨斯州	Plano, Texas	255,009
+                    70	韦恩堡	印地安纳州	Fort Wayne, Indiana	248,637
+                    71	圣彼德斯堡	佛罗利达州	St. Petersburg, Florida	248,098
+                    72	格伦代尔	亚利桑那州	Glendale, Arizona	246,531
+                    73	泽西城	新泽西州	Jersey City, New Jersey	241,789
+                    74	林肯	内布拉斯加州	Lincoln, Nebraska	241,167
+                    75	亨德森	内华达州	Henderson, Nevada	240,614
+                    76	钱德勒	亚利桑那州	Chandler, Arizona	240,595
+                    77	诺福克	弗吉尼亚州	Norfolk, Virginia	238,832
+                    78	格林斯伯勒	北卡罗来纳州	Greensboro, North Carolina	236,865
+                    79	斯科茨代尔	亚利桑那州	Scottsdale, Arizona	231,127
+                    80	巴吞鲁日	路易斯安那州	Baton Rouge, Louisiana	229,553
+                    81	伯明翰	亚拉巴马州	Birmingham, Alabama	229,424
+                    82	麦迪逊	威斯康星州	Madison, Wisconsin	223,389
+                    83	纽奥良	路易斯安那州	New Orleans, Louisiana	223,388
+                    84	切萨皮克	弗吉尼亚州	Chesapeake, Virginia	220,560
+                    85	奥兰多	佛罗利达州	Orlando, Florida	220,186
+                    86	加兰	得克萨斯州	Garland, Texas	217,963
+                    87	海厄利亚	佛罗利达州	Hialeah, Florida	217,141
+                    88	拉雷多	得克萨斯州	Laredo, Texas	215,484
+                    89	丘拉维斯塔	加利福尼亚州	Chula Vista, California	212,756
+                    90	拉伯克	得克萨斯州	Lubbock, Texas	212,169
+                    91	雷诺	内华达州	Reno, Nevada	210,255
+                    92	阿克伦	俄亥俄州	Akron, Ohio	209,704
+                    93	达勒姆	北卡罗来纳州	Durham, North Carolina	209,009
+                    94	罗彻斯特	纽约州	Rochester, New York	208,123
+                    95	莫德斯托	加利福尼亚州	Modesto, California	205,721
+                    96	蒙哥马利	亚拉巴马州	Montgomery, Alabama	201,998
+                    97	弗里蒙特	加利福尼亚州	Fremont, California	201,691
+                    98	什里夫波特	路易斯安那州	Shreveport, Louisiana	200,199
+                    99	阿灵顿	弗吉尼亚州	Arlington, Virginia	199,776
+                    100	格伦代尔	加利福尼亚州	Glendale, California	199,463
+                    101	圣贝纳迪诺	加利福尼亚州	San Bernardino, California	198,985
+                    102	博伊西	爱达荷州	Boise, Idaho	198,638
+                    103	斯波坎	华盛顿州	Spokane, Washington	198,081
+                    104	扬克斯	纽约州	Yonkers, New York	197,852
+                    105	北拉斯维加斯	内华达州	North Las Vegas, Nevada	197,567
+                    106	温斯顿-塞勒姆	北卡罗来纳州	Winston-Salem, North Carolina	196,990
+                    107	塔科马	华盛顿州	Tacoma, Washington	196,532
+                    108	欧文	得克萨斯州	Irving, Texas	196,084
+                    109	亨丁顿滩	加利福尼亚州	Huntington Beach, California	194,436
+                    110	尔湾	加利福尼亚州	Irvine, California	193,956
+                    111	得梅因	艾奥瓦州	Des Moines, Iowa	193,886
+                    112	大急流城	密歇根州	Great Rapids, Michigan	193,083
+                    113	里士满	弗吉尼亚州	Richmond, Virginia	192,913
+                    114	莫比尔	亚拉巴马州	Mobile, Alabama	192,830
+                    115	吉尔伯特	亚利桑那州	Gilbert, Arizona	191,517
+                    116	奥古斯塔	佐治亚州	Augusta, Georgia	189,366
+                    117	哥伦布	佐治亚州	Columbus, Georgia	188,660
+                    118	劳德代尔堡	佛罗利达州	Fort Lauderdale, Florida	185,804
+                    119	阿马里诺	得克萨斯州	Amarillo, Texas	185,525
+                    120	奥克斯纳德	加利福尼亚州	Oxnard, California	184,463
+                    121	小石城	阿肯色州	Little Rock, Arkansas	184,422
+                    122	莫雷诺谷	加利福尼亚州	Moreno Valley, California	183,571
+                    123	诺克斯维尔	田纳西州	Knoxville, Tennessee	182,337
+                    124	盐湖城	犹他州	Salt Lake City, Utah	178,858
+                    125	纽波特纽斯	弗吉尼亚州	Newport News, Virginia	178,281
+                    126	杰克逊	密西西比州	Jackson, Mississippi	176,614
+                    127	乌斯特	马萨诸塞州	Worcester, Massachusetts	175,454
+                    128	普洛威顿斯	罗得岛州	Providence, Rhode Island	175,255
+                    129	安大略	加利福尼亚州	Ontario, California	173,351
+                    130	布朗斯维尔	得克萨斯州	Brownsville, Texas	172,437
+                    131	库卡蒙格牧场	加利福尼亚州	Rancho Cucamonga, California	170,714
+                    132	奥罗拉	伊利诺伊州	Aurora, Illinois	170,617
+                    133	方塔纳	加利福尼亚州	Fontana, California	170,099
+                    134	坦佩	亚利桑那州	Tempe, Arizona	169,712
+                    135	罗克福德	伊利诺伊州	Rockford, Illinois	155,138
+                    136	亨茨维尔	亚拉巴马州	Huntsville, Alabama	168,132
+                    137	费页特维	北卡罗来纳州	Fayetteville, North Carolina	168,033
+                    138	圣塔克拉利塔	加利福尼亚州	Santa Clarita, California	168,008
+                    139	欧弗兰帕克	堪萨斯州	Overland Park, Kansas	166,722
+                    140	园林市	加利福尼亚州	Garden Grove, California	166,296
+                    141	欧申赛德	加利福尼亚州	Oceanside, California	165,803
+                    142	塔拉哈西	佛罗利达州	Tallahassee, Florida	159,012
+                    143	温哥华	华盛顿州	Vancouver, Washington	158,855
+                    144	代顿	俄亥俄州	Dayton, Ohio	156,771
+                    145	查塔诺加	田纳西州	Chattanooga, Tennessee	168,293
+                    146	波莫纳	加利福尼亚州	Pomona, California	154,271
+                    147	圣罗莎	加利福尼亚州	Santa Rosa, California	154,212
+                    148	大草原城	得克萨斯州	Grand Prairie, Texas	153,812
+                    149	塞勒姆	俄勒冈州	Salem, Oregon	152,239
+                    150	开普科勒尔	佛罗利达州	Cape Coral, Florida	151,389
+                    151	斯普林菲尔德	马萨诸塞州	Springfield, Massachusetts	151,176
+                    152	斯普林菲尔德	密苏里州	Springfield, Missouri	150,797
+                    153	科洛纳	加利福尼亚州	Corona, California	150,253
+                    154	潘布鲁克派恩斯	佛罗利达州	Pembroke Pines, Florida	150,064
+                    155	帕特森	新泽西州	Paterson, New Jersey	148,708
+                    156	尤金	俄勒冈州	Eugene, Oregon	146,356
+                    157	好莱坞	佛罗利达州	Hollywood, Florida	145,794
+                    158	萨利纳斯	加利福尼亚州	Salinas, California	145,032
+                    159	汉普顿	弗吉尼亚州	Hampton, Virginia	145,017
+                    160	帕萨迪纳	得克萨斯州	Pasadena, Texas	144,793
+                    161	帕萨迪纳	加利福尼亚州	Pasadena, California	144,133
+                    162	圣露西港	佛罗利达州	Port St. Lucie, Florida	143,868
+                    163	堪萨斯城	堪萨斯州	Kansas City, Kansas	143,801
+                    164	内珀维尔	伊利诺伊州	Naperville, Illinois	142,901
+                    165	乔利埃特	伊利诺伊州	Joliet, Illinois	142,702
+                    166	苏瀑	南达科他州	Sioux Falls, South Dakota	142,396
+                    167	托伦斯	加利福尼亚州	Torrance, California	142,350
+                    168	皮奥里亚	亚利桑那州	Peoria, Arizona	142,024
+                    169	兰开斯特	加利福尼亚州	Lancaster, California	140,804
+                    170	雪城	纽约州	Syracuse, New York	140,658
+                    171	海沃德	加利福尼亚州	Hayward, California	140,606
+                    172	莱克伍德	科罗拉多州	Lakewood, Colorado	140,024
+                    173	棕榈谷	加利福尼亚州	Palmdale, California	138,790
+                    174	亚历山德里亚	弗吉尼亚州	Alexandria, Virginia	138,237
+                    175	桥港	康涅狄格州	Bridgeport, Connecticut	137,912
+                    176	橙市	加利福尼亚州	Orange, California	135,070
+                    177	沃伦	密歇根州	Warren, Michigan	134,589
+                    178	埃斯孔迪多	加利福尼亚州	Escondido, California	133,510
+                    179	富勒顿	加利福尼亚州	Fullerton, California	132,918
+                    180	梅斯基特	得克萨斯州	Mesquite, Texas	131,447
+                    181	森尼韦尔	加利福尼亚州	Sunnyvale, California	130,519
+                    182	科勒尔斯普林斯	佛罗利达州	Coral Springs, Florida	129,805
+                    183	科林斯堡	科罗拉多州	Fort Collins, Colorado	129,467
+                    184	埃尔克格罗夫	加利福尼亚州	Elk Grove, California	129,184
+                    185	斯特灵海茨	密歇根州	Sterling Heights, Michigan	127,991
+                    186	沙瓦纳	佐治亚州	Savannah, Georgia	127,889
+                    187	麦卡伦	得克萨斯州	McAllen, Texas	126,411
+                    188	伊丽莎白	新泽西州	Elizabeth, New Jersey	126,179
+                    189	哈特福德	康涅狄格州	Hartford, Connecticut	124,512
+                    190	锡达拉皮兹	艾奥瓦州	Cedar Rapids, Iowa	124,417
+                    191	千橡市	加利福尼亚州	Thousand Oaks, California	124,207
+                    192	纽黑文	康涅狄格州	New Haven, Connecticut	124,001
+                    193	埃尔蒙特	加利福尼亚州	El Monte, California	123,162
+                    194	康科德	加利福尼亚州	Concord, California	122,204
+                    195	托皮卡	堪萨斯州	Topeka, Kansas	122,113
+                    196	卡罗尔顿	得克萨斯州	Carrollton, Texas	121,604
+                    197	韦科	得克萨斯州	Waco, Texas	121,496
+                    198	西米谷	加利福尼亚州	Simi Valley, California	121,288
+                    199	西瓦利城	犹他州	West Valley, Utah	120,235
+                    200	哥伦比亚	南卡罗来纳州	Columbia, South Carolina	119,961
+                    201	斯坦福	康涅狄格州	Stamford, Connecticut	119,261
+                    202	贝尔维尤	华盛顿州	Bellevue, Washington	118,186
+                    203	弗林特	密歇根州	Flint, Michigan	117,068
+                    204	瓦列霍	加利福尼亚州	Vallejo, California	116,844
+                    205	斯普林菲尔德	伊利诺伊州	Springfield, Illinois	116,482
+                    206	埃文斯维尔	印地安纳州	Evansville, Indiana	115,738
+                    207	英格尔伍德	加利福尼亚州	Inglewood, California	114,914
+                    208	阿比林	得克萨斯州	Abilene, Texas	114,797
+                    209	奥拉西	堪萨斯州	Olathe, Kansas	114,662
+                    210	兰盛	密歇根州	Lansing, Michigan	114,276
+                    211	拉法叶	路易斯安那州	Lafayette, Louisiana	114,214
+                    212	普若佛	犹他州	Provo, Utah	113,984
+                    213	维塞利亚	加利福尼亚州	Visalia, California	113,487
+                    214	安娜堡	密歇根州	Ann Arbor, Michigan	113,206
+                    215	克拉克斯维尔	田纳西州	Clarksville, Tennessee	113,175
+                    216	皮奥里亚	伊利诺伊州	Peoria, Illinois	113,107
+                    217	卡瑞市	北卡罗来纳州	Cary, North Carolina	112,414
+                    218	雅典	佐治亚州	Athens, Georgia	111,580
+                    219	博蒙特	得克萨斯州	Beaumont, Texas	109,856
+                    220	科斯塔梅萨	加利福尼亚州	Costa Mesa, California	109,809
+                    221	登顿	得克萨斯州	Denton, Texas	109,561
+                    222	曼彻斯特	新罕布什尔州	Manchester, New Hampshire	109,497
+                    223	独立城	密苏里州	Independence, Missouri	109,400
+                    224	唐尼	加利福尼亚州	Downey, California	109,376
+                    225	桑顿	科罗拉多州	Thornton, Colorado	109,155
+                    226	盖恩斯维尔	佛罗利达州	Gainesville, Florida	108,655
+                    227	圣克拉拉	加利福尼亚州	Santa Clara, California	108,518
+                    228	米拉马尔	佛罗利达州	Miramar, Florida	108,072
+                    229	查尔斯顿	南卡罗来纳州	Charleston, South Carolina	107,845
+                    230	西柯汶纳	加利福尼亚州	West Covina, California	107,745
+                    231	克利尔沃特	佛罗利达州	Clearwater, Florida	107,742
+                    232	麦金尼	得克萨斯州	McKinney, Texas	107,530
+                    233	阿伦敦	宾夕法尼亚州	Allentown, Pennsylvania	107,294
+                    234	沃特伯里	康涅狄格州	Waterbury, Connecticut	107,251
+                    235	罗斯维尔	加利福尼亚州	Roseville, California	107,158
+                    236	西敏	科罗拉多州	Westminster, Colorado	105,753
+                    237	诺沃克	加利福尼亚州	Norwalk, California	105,240
+                    238	南本德	印地安纳州	South Bend, Indiana	104,905
+                    239	费尔菲尔德	加利福尼亚州	Fairfield, California	104,897
+                    240	阿瓦达	科罗拉多州	Arvada, Colorado	104,830
+                    241	庞帕诺比奇	佛罗利达州	Pompano Beach, Florida	104,402
+                    242	伯班克	加利福尼亚州	Burbank, California	104,317
+                    243	文图拉	加利福尼亚州	San Buenaventura, California	104,092
+                    244	普韦布洛	科罗拉多州	Pueblo, Colorado	103,730
+                    245	洛厄尔	马萨诸塞州	Lowell, Massachusetts	103,229
+                    246	诺曼	俄克拉荷马州	Norman, Oklahoma	102,827
+                    247	里士满	加利福尼亚州	Richmond, California	102,120
+                    248	米德兰	得克萨斯州	Midland, Texas	102,073
+                    249	伊利	宾夕法尼亚州	Erie, Pennsylvania	102,036
+                    250	基林	得克萨斯州	Killeen, Texas	102,003
+                    251	埃尔金	伊利诺伊州	Elgin, Illinois	101,903
+                    252	柏克莱	加利福尼亚州	Berkeley, California	101,555
+                    253	朴茨茅斯	弗吉尼亚州	Portsmouth, Virginia	101,377
+                    254	剑桥	马萨诸塞州	Cambridge, Massachusetts	101,365
+                    255	戴利城	加利福尼亚州	Daly City, California	101,005
+                    256	安条克	加利福尼亚州	Antioch, California	100,586
+                    257	绿湾	威斯康星州	Green Bay, Wisconsin	100,353
+                    258	西约旦	犹他州	West Jordan, Utah	100,280
+                    259	比灵斯	蒙大拿州	Billings, Montana
+    ]
+}

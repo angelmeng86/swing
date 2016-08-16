@@ -106,6 +106,7 @@
 		0A892F16F4220A9DEBE01E9D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		0F45AB7D1D62DEDE00EF385F /* LMBluetoothClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMBluetoothClient.h; sourceTree = "<group>"; };
 		0F45AB7E1D62DEDE00EF385F /* LMBluetoothClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMBluetoothClient.m; sourceTree = "<group>"; };
+		0F45AB801D62F15A00EF385F /* statecity.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = statecity.json; sourceTree = "<group>"; };
 		0FD6B3E51D61B79300C00A45 /* ChoicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoicesViewController.h; sourceTree = "<group>"; };
 		0FD6B3E61D61B79300C00A45 /* ChoicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoicesViewController.m; sourceTree = "<group>"; };
 		0FD6B3EB1D6207E000C00A45 /* BabyBluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BabyBluetooth.h; sourceTree = "<group>"; };
@@ -591,6 +592,7 @@
 				ADDCD3EA1D4C54960031DC66 /* font */,
 				ADDCD3ED1D4C54960031DC66 /* storyboard */,
 				ADD6555D1D5B89770054FB24 /* alert.json */,
+				0F45AB801D62F15A00EF385F /* statecity.json */,
 			);
 			path = Res;
 			sourceTree = "<group>";

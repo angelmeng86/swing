@@ -73,6 +73,10 @@ typedef enum : NSUInteger {
     baby.scanForPeripherals(1).begin();
 }
 
+- (void)stopScan {
+    [baby cancelScan];
+}
+
 - (void)syncDevice {
     if ([peripherals objectAtIndex:0] == nil) {
         NSLog(@"没找到设备");
@@ -86,6 +90,7 @@ typedef enum : NSUInteger {
 }
 
 - (void)beginSync {
+    NSLog(@"beginSync");
     [self writeValue01];
     syncState = SwingSyncBegin;
 }

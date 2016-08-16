@@ -52,10 +52,10 @@ typedef enum : NSUInteger {
     
     self.progressView.label.hidden = YES;
     
-    [self changeStatus:SyncStatusSearching];
-    
     client = [[LMBluetoothClient alloc] init];
+    client.delegate = self;
     
+    [self changeStatus:SyncStatusSearching];
 }
 
 
@@ -69,6 +69,9 @@ typedef enum : NSUInteger {
 }
 
 - (void)changeStatus:(SyncStatus)status {
+    if (_status == status) {
+        return;
+    }
     switch (status) {
         case SyncStatusSearching:
         {
@@ -138,6 +141,8 @@ typedef enum : NSUInteger {
 - (IBAction)btnAction:(id)sender {
     if (_status == SyncStatusFound) {
         [self changeStatus:SyncStatusSyncing];
+        
+        [client stopScan];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(eventLoaded:) name:EVENT_LIST_UPDATE_NOTI object:nil];
         [[GlobalCache shareInstance] queryMonthEvents:[NSDate date]];
 //        [client syncDevice];
@@ -151,6 +156,7 @@ typedef enum : NSUInteger {
     //    NSLog(@"eventLoaded:%@ month:%@", _calendarManager.date, notification.object);
     NSString *month = [GlobalCache dateToMonthString:[NSDate date]];
     if ([month isEqualToString:notification.object]) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
         client.alertEvents = [[GlobalCache shareInstance] searchWeeklyEventsByDay:[NSDate date]];
         [client syncDevice];
     }

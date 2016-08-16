@@ -24,6 +24,8 @@
 
 - (void)beginScan;
 
+- (void)stopScan;
+
 - (void)syncDevice;
 
 @end
