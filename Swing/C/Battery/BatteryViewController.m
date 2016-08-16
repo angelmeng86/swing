@@ -47,9 +47,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.client = [[LMBluetoothClient alloc] init];
-    self.client.delegate = self;
-    [self.client beginBattery];
+//    self.client = [[LMBluetoothClient alloc] init];
+//    self.client.delegate = self;
+//    [self.client beginBattery];
 }
 
 - (void)bluetoothClientBattery:(int)value {

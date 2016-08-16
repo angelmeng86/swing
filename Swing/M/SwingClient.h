@@ -13,6 +13,14 @@ typedef enum : NSUInteger {
     GetEventTypeMonth,
     GetEventTypeDay,
 } GetEventType;
+
+typedef enum : NSUInteger {
+    GetActivityTypeYear,
+    GetActivityTypeMonth,
+    GetActivityTypeWeekly,
+    GetActivityTypeDay,
+} GetActivityType;
+
 @class ActivityModel;
 @interface SwingClient : AFHTTPSessionManager
 
@@ -56,6 +64,6 @@ typedef enum : NSUInteger {
 
 - (NSURLSessionDataTask *)deviceUploadRawData:(ActivityModel*)model completion:( void (^)(NSError *error) )completion;
 
-- (NSURLSessionDataTask *)deviceGetDailyActivity:(NSString*)macId completion:( void (^)(id dailyAct ,NSError *error) )completion;
+- (NSURLSessionDataTask *)deviceGetActivity:(NSString*)macId type: completion:( void (^)(id dailyActs ,NSError *error) )completion;
 
 @end

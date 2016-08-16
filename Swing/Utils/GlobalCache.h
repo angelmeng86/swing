@@ -47,6 +47,9 @@
 @property (strong, nonatomic) UserModel* user;
 @property (strong, nonatomic) NSArray* devicesMAC;
 
+@property (nonatomic) long indoorSteps;
+@property (nonatomic) long outdoorSteps;
+
 @property (strong, nonatomic) WeatherModel* wearther;
 @property (nonatomic) BOOL weartherRunning;
 

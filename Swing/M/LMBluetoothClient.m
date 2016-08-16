@@ -47,7 +47,7 @@ typedef enum : NSUInteger {
     NSMutableArray *sect;
     __block  NSMutableArray *readValueArray;
     __block  NSMutableArray *descriptors;
-    BOOL readingBattery;
+    
 }
 
 @property __block NSMutableArray *services;
@@ -57,6 +57,7 @@ typedef enum : NSUInteger {
 @property (nonatomic) long timeStamp;
 @property (nonatomic, strong) NSData *ffa4Data;
 @property (nonatomic, strong) NSData *macAddress;
+@property (nonatomic) BOOL readingBattery;
 
 @end
 
@@ -88,7 +89,7 @@ typedef enum : NSUInteger {
         
         baby.having(self.currPeripheral).and.channel(channelOnPeropheralView).then.connectToPeripherals().discoverServices().discoverCharacteristics().begin();
         
-        [self performSelector:@selector(beginSync) withObject:nil afterDelay:8.0];
+        [self performSelector:@selector(beginSync) withObject:nil afterDelay:12.0];
     }
 }
 
@@ -100,17 +101,17 @@ typedef enum : NSUInteger {
     else {
         baby.scanForPeripherals(1).channel(channelOnBattery).connectToPeripherals().discoverServices().discoverCharacteristics()
         .begin();
-        [self performSelector:@selector(readBattery) withObject:nil afterDelay:8.0];
+        [self performSelector:@selector(readBattery) withObject:nil afterDelay:12.0];
     }
 }
 
 - (void)readBattery {
     NSLog(@"readBattery");
-    readingBattery = YES;
+    _readingBattery = YES;
     __weak BabyBluetooth *weakBaby = baby;
     __weak LMBluetoothClient *weakSelf = self;
     [baby setBlockOnReadValueForCharacteristicAtChannel:channelOnBattery block:^(CBPeripheral *peripheral, CBCharacteristic *characteristic, NSError *error) {
-        if (self.characteristic == characteristic && readingBattery) {
+        if (self.characteristic == characteristic && _readingBattery) {
             [weakBaby cancelPeripheralConnection:peripheral];
             
             if ([weakSelf.delegate respondsToSelector:@selector(bluetoothClientBattery:)]) {
@@ -126,8 +127,15 @@ typedef enum : NSUInteger {
 
 - (void)beginSync {
     NSLog(@"beginSync");
-    [self writeValue01];
-    syncState = SwingSyncBegin;
+    _readingBattery = YES;
+    if (_readingBattery) {
+        self.characteristic =[[[self.services objectAtIndex:4] characteristics]objectAtIndex:0];
+        [self.currPeripheral readValueForCharacteristic:self.characteristic];
+    }
+    else {
+        [self writeValue01];
+        syncState = SwingSyncBegin;
+    }
 }
 
 -(void)writeValue01{
@@ -176,7 +184,7 @@ typedef enum : NSUInteger {
     return NO;
 }
 
-- (void)syncReaded:(CBCharacteristic*)characteristic {
+- (void)syncReaded:(CBCharacteristic*)characteristic error:(NSError*)err {
     NSLog(@"syncReaded %lu", (unsigned long)syncState);
     switch (syncState) {
         case SwingSyncMacReaded:
@@ -258,6 +266,10 @@ typedef enum : NSUInteger {
                     model.macId = [Fun dataToHex:self.macAddress];
                     [model setIndoorData:_ffa4Data];
                     [model setOutdoorData:characteristic.value];
+                    
+                    [GlobalCache shareInstance].indoorSteps += [Fun byteArrayToLong:_ffa4Data pos:5 length:4];
+                    [GlobalCache shareInstance].outdoorSteps += [Fun byteArrayToLong:characteristic.value pos:5 length:4];
+                    
                     [_delegate bluetoothClientActivity:model];
                 }
             }
@@ -272,7 +284,11 @@ typedef enum : NSUInteger {
     }
 }
 
-- (void)syncWrited:(CBCharacteristic*)characteristic {
+- (void)syncWrited:(CBCharacteristic*)characteristic error:(NSError*)err{
+    if (err) {
+        
+        return;
+    }
     NSLog(@"syncWrited %lu", (unsigned long)syncState);
     switch (syncState) {
         case SwingSyncBegin:
@@ -526,8 +542,11 @@ typedef enum : NSUInteger {
             
             settingState = SwingSettingNone;
         }
-        if (syncState > SwingSyncNone) {
-            [weakSelf syncReaded:characteristic];
+        if (weakSelf.readingBattery) {
+            
+        }
+        else if (syncState > SwingSyncNone) {
+            [weakSelf syncReaded:characteristic error:error];
         }
         [weakSelf insertReadValues:characteristic];
     }];
@@ -562,7 +581,7 @@ typedef enum : NSUInteger {
             
         }
         if (syncState > SwingSyncNone) {
-            [weakSelf syncWrited:characteristic];
+            [weakSelf syncWrited:characteristic error:error];
         }
         //lwz end
     }];

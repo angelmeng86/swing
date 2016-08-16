@@ -86,7 +86,9 @@
         }
 //        [array autoAlignViewsToEdge:ALEdgeTop];
 //        [array autoSetViewsDimension:ALDimensionHeight toSize:20];
-        [array autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeHorizontal withFixedSpacing:0];
+        if(array.count > 0) {
+            [array autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeHorizontal withFixedSpacing:0];
+        }
         self.labels = array;
     }
 }

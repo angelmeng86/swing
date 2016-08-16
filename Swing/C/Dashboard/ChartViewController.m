@@ -39,13 +39,18 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 
 @implementation ChartViewController
 
-- (void)initFakeData:(int)count
+- (void)initFakeData:(int)count value:(int)value
 {
     NSMutableArray *mutableChartData = [NSMutableArray array];
     for (int i=0; i<count; i++)
     {
         NSInteger delta = (count - labs((count - i) - i)) + 2;
-        [mutableChartData addObject:[NSNumber numberWithFloat:MAX((delta * kJBBarChartViewControllerMinBarHeight), arc4random() % (delta * kJBBarChartViewControllerMaxBarHeight))]];
+        if (value < 0) {
+            [mutableChartData addObject:[NSNumber numberWithFloat:MAX((delta * kJBBarChartViewControllerMinBarHeight), arc4random() % (delta * kJBBarChartViewControllerMaxBarHeight))]];
+        }
+        else {
+            [mutableChartData addObject:[NSNumber numberWithInt:value]];
+        }
         
     }
     _chartData = [NSArray arrayWithArray:mutableChartData];
@@ -66,7 +71,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     switch (_type) {
         case ChartTypeMonth:
         {
-            [self initFakeData:30];
+//            [self initFakeData:30 value:0];
             self.stepsChartView = [self createLineChartView];
             self.distanceChartView = [self createLineChartView];
             self.stepChartColor = RGBA(58, 188, 164, 1.0f);
@@ -77,7 +82,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
             break;
         case ChartTypeYear:
         {
-            [self initFakeData:12];
+//            [self initFakeData:12 value:0];
             self.stepsChartView = [self createBarChartView];
             self.distanceChartView = [self createLineChartView];
             self.stepChartColor = RGBA(240, 91, 36, 1.0f);
@@ -89,7 +94,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
         default:
             //ChartTypeWeek
         {
-            [self initFakeData:7];
+//            [self initFakeData:7 value:0];
             self.stepsChartView = [self createBarChartView];
             self.distanceChartView = [self createBarChartView];
             self.stepChartColor = RGBA(98, 91, 180, 1.0f);

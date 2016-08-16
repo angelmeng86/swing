@@ -169,6 +169,8 @@ typedef enum : NSUInteger {
 - (void)bluetoothClientActivity:(ActivityModel*)data {
     NSLog(@"bluetoothClientActivity: indoor:%@ outdoor:%@", data.indoorActivity, data.outdoorActivity);
     [self.activitys addObject:data];
+    
+    
 }
 
 - (void)bluetoothClientScanDevice:(NSArray*)peripherals {

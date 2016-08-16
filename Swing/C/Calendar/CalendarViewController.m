@@ -63,7 +63,13 @@
                 NSDateComponents *start = [cal components:NSHourCalendarUnit fromDate:event.startDate];
                 
                 self.progressView.progressCounter = 1;
-                self.progressView.startingSlice = [start hour] % 12;
+                if([start hour] % 12 == 0) {
+                    self.progressView.startingSlice = 12;
+                }
+                else {
+                    self.progressView.startingSlice = [start hour] % 12;
+                }
+                
                 return;
             }
         }

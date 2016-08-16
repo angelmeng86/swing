@@ -39,6 +39,7 @@
 + (NSData*)longToByteArray:(long)data;
 + (long)byteArrayToLong:(NSData*)data;
 + (long)byteArrayToLong:(NSData*)data length:(int)len;
++ (long)byteArrayToLong:(NSData*)data pos:(int)pos length:(int)len;
 
 + (NSString*)dataToHex:(NSData*)data;
 + (NSData*)hexToData:(NSString*)data;

@@ -44,10 +44,10 @@
     self.stepProgress.progressCounter = 95;
     
     self.distanceProgress.progressTotal = 150;
-    self.distanceProgress.progressCounter = 73;
+    self.distanceProgress.progressCounter = 0;
     
     self.flightsProgress.progressTotal = 150;
-    self.flightsProgress.progressCounter = 85;
+    self.flightsProgress.progressCounter = 0;
     
     UIView *line = [UIView new];
     line.backgroundColor = [UIColor redColor];
@@ -83,16 +83,34 @@
     if (self.indoorBtn == sender) {
         self.indoorBtn.selected = YES;
         self.outdoorBtn.selected = NO;
+        self.stepProgress.progressTotal = [GlobalCache shareInstance].indoorSteps * 2 + 60;
+        self.stepProgress.progressCounter = [GlobalCache shareInstance].indoorSteps;
     }
     else {
         self.indoorBtn.selected = NO;
         self.outdoorBtn.selected = YES;
+        self.stepProgress.progressTotal = [GlobalCache shareInstance].outdoorSteps * 2 + 60;
+        self.stepProgress.progressCounter = [GlobalCache shareInstance].outdoorSteps;
     }
+    [self.stepProgress setNeedsLayout];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (self.indoorBtn.selected) {
+        self.stepProgress.progressTotal = [GlobalCache shareInstance].indoorSteps * 2 + 60;
+        self.stepProgress.progressCounter = [GlobalCache shareInstance].indoorSteps;
+    }
+    else {
+        self.stepProgress.progressTotal = [GlobalCache shareInstance].outdoorSteps * 2 + 60;
+        self.stepProgress.progressCounter = [GlobalCache shareInstance].outdoorSteps;
+    }
+    [self.stepProgress setNeedsLayout];
 }
 
 /*
