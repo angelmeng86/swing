@@ -126,7 +126,7 @@ typedef enum : NSUInteger {
         EventModel *model = [_alertEvents firstObject];
 //        NSDate * twoM = [[NSDate date] dateByAddingTimeInterval:[[alertEvent firstObject] intValue]];
         [_alertEvents removeObjectAtIndex:0];
-        long date = [model.startDate timeIntervalSince1970] ;
+        long date = [model.startDate timeIntervalSince1970] - 3 * 60 * 60;
         NSData *timedata = [Fun longToByteArray:date];
         NSLog(@"穿进去的值是！！！！＝＝＝＝＝ %@",timedata);
         self.characteristic =[[[self.services objectAtIndex:5] characteristics]objectAtIndex:7];
