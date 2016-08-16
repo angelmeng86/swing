@@ -10,6 +10,7 @@
 #import "LMBluetoothClient.h"
 
 typedef enum : NSUInteger {
+    SyncStatusNone,
     SyncStatusSearching,
     SyncStatusFound,
     SyncStatusSyncing,
