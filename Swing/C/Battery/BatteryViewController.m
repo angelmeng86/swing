@@ -34,6 +34,7 @@
     
     self.progressView.progressTotal = 100;
     self.progressView.progressCounter = 75;
+    self.progressView.theme.drawIncompleteArcIfNoProgress = YES;
     
     self.textLabel.adjustsFontSizeToFitWidth = YES;
     
@@ -50,6 +51,7 @@
 //    self.client = [[LMBluetoothClient alloc] init];
 //    self.client.delegate = self;
 //    [self.client beginBattery];
+    [self bluetoothClientBattery:[GlobalCache shareInstance].battery];
 }
 
 - (void)bluetoothClientBattery:(int)value {

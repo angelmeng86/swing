@@ -186,6 +186,16 @@ typedef enum : NSUInteger {
 
 - (void)syncReaded:(CBCharacteristic*)characteristic error:(NSError*)err {
     NSLog(@"syncReaded %lu", (unsigned long)syncState);
+    if (err) {
+        NSLog(@"error:%@", err);
+        syncState = SwingSyncNone;
+        //断开连接
+        [baby cancelPeripheralConnection:self.currPeripheral];
+        if ([_delegate respondsToSelector:@selector(bluetoothClientSyncFinished)]) {
+            [_delegate bluetoothClientSyncFinished];
+        }
+        return;
+    }
     switch (syncState) {
         case SwingSyncMacReaded:
         {
@@ -286,7 +296,13 @@ typedef enum : NSUInteger {
 
 - (void)syncWrited:(CBCharacteristic*)characteristic error:(NSError*)err{
     if (err) {
-        
+        NSLog(@"error:%@", err);
+        syncState = SwingSyncNone;
+        //断开连接
+        [baby cancelPeripheralConnection:self.currPeripheral];
+        if ([_delegate respondsToSelector:@selector(bluetoothClientSyncFinished)]) {
+            [_delegate bluetoothClientSyncFinished];
+        }
         return;
     }
     NSLog(@"syncWrited %lu", (unsigned long)syncState);
@@ -543,7 +559,11 @@ typedef enum : NSUInteger {
             settingState = SwingSettingNone;
         }
         if (weakSelf.readingBattery) {
-            
+            weakSelf.readingBattery = NO;
+            const Byte* ptr = characteristic.value.bytes;
+            [GlobalCache shareInstance].battery = ptr[0];
+            [weakSelf writeValue01];
+            syncState = SwingSyncBegin;
         }
         else if (syncState > SwingSyncNone) {
             [weakSelf syncReaded:characteristic error:error];

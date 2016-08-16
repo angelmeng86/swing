@@ -49,6 +49,7 @@
 
 @property (nonatomic) long indoorSteps;
 @property (nonatomic) long outdoorSteps;
+@property (nonatomic) int battery;
 
 @property (strong, nonatomic) WeatherModel* wearther;
 @property (nonatomic) BOOL weartherRunning;
