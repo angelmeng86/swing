@@ -54,7 +54,9 @@ typedef enum : NSUInteger {
 @property(strong,nonatomic)CBPeripheral *currPeripheral;
 @property (nonatomic,strong)CBCharacteristic *characteristic;
 
+@property (nonatomic) long timeStamp;
 @property (nonatomic, strong) NSData *ffa4Data;
+@property (nonatomic, strong) NSData *macAddress;
 
 @end
 
@@ -97,14 +99,16 @@ typedef enum : NSUInteger {
 }
 
 - (void)readBattery {
+    NSLog(@"readBattery");
     __weak BabyBluetooth *weakBaby = baby;
+    __weak LMBluetoothClient *weakSelf = self;
     [baby setBlockOnReadValueForCharacteristicAtChannel:channelOnBattery block:^(CBPeripheral *peripheral, CBCharacteristic *characteristic, NSError *error) {
         if (self.characteristic == characteristic) {
             [weakBaby cancelPeripheralConnection:peripheral];
             
-            if ([_delegate respondsToSelector:@selector(bluetoothClientBattery:)]) {
+            if ([weakSelf.delegate respondsToSelector:@selector(bluetoothClientBattery:)]) {
                 const Byte* ptr = characteristic.value.bytes;
-                [_delegate bluetoothClientBattery:ptr[0]];
+                [weakSelf.delegate bluetoothClientBattery:ptr[0]];
             }
         }
     }];
@@ -170,7 +174,7 @@ typedef enum : NSUInteger {
         case SwingSyncMacReaded:
         {
             NSLog(@"SwingSyncMacReaded %@", characteristic.value);
-            
+            self.macAddress = characteristic.value;
 //            alertEvent = [NSMutableArray array];
 //            [alertEvent addObject:@60];
 //            [alertEvent addObject:@70];
@@ -207,6 +211,7 @@ typedef enum : NSUInteger {
         case SwingSyncTimeReaded:
         {
             long value = [Fun byteArrayToLong:characteristic.value];
+            self.timeStamp = value;
             NSLog(@"SwingSyncTimeReaded:%@", [NSDate dateWithTimeIntervalSince1970:value]);
             //FFA4
             self.characteristic =[[[self.services objectAtIndex:5] characteristics]objectAtIndex:3];
@@ -239,6 +244,14 @@ typedef enum : NSUInteger {
             }
             else {
                 array[0] = 0x01;
+                if ([_delegate respondsToSelector:@selector(bluetoothClientActivity:)]) {
+                    ActivityModel *model = [ActivityModel new];
+                    model.time = self.timeStamp;
+                    model.macId = [Fun dataToHex:self.macAddress];
+                    [model setIndoorData:_ffa4Data];
+                    [model setOutdoorData:characteristic.value];
+                    [_delegate bluetoothClientActivity:model];
+                }
             }
             NSData *data = [NSData dataWithBytes:array length:1];
             [self.currPeripheral writeValue:data forCharacteristic:self.characteristic type:CBCharacteristicWriteWithResponse];
@@ -419,6 +432,11 @@ typedef enum : NSUInteger {
     //设置设备断开连接的委托
     [baby setBlockOnDisconnectAtChannel:channelOnPeropheralView block:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
         NSLog(@"设备：%@--断开连接",peripheral.name);
+        if (syncState > SwingSyncNone) {
+            if ([weakSelf.delegate respondsToSelector:@selector(bluetoothClientSyncFinished)]) {
+                [weakSelf.delegate bluetoothClientSyncFinished];
+            }
+        }
         //        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--断开失败",peripheral.name]];
     }];
     

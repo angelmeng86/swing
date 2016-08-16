@@ -27,6 +27,8 @@ typedef enum : NSUInteger {
     LMBluetoothClient *client;
 }
 
+@property (nonatomic, strong) NSMutableArray *activitys;
+
 @end
 
 @implementation SearchDeviceViewController
@@ -160,7 +162,13 @@ typedef enum : NSUInteger {
         [[NSNotificationCenter defaultCenter] removeObserver:self];
         client.alertEvents = [[GlobalCache shareInstance] searchWeeklyEventsByDay:[NSDate date]];
         [client syncDevice];
+        self.activitys = [NSMutableArray array];
     }
+}
+
+- (void)bluetoothClientActivity:(ActivityModel*)data {
+    NSLog(@"bluetoothClientActivity: indoor:%@ outdoor:%@", data.indoorActivity, data.outdoorActivity);
+    [self.activitys addObject:data];
 }
 
 - (void)bluetoothClientScanDevice:(NSArray*)peripherals {
@@ -168,6 +176,7 @@ typedef enum : NSUInteger {
 }
 
 - (void)bluetoothClientSyncFinished {
+    client.delegate = nil;
     [self changeStatus:SyncStatusSyncCompleted];
 }
 

@@ -8,12 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
+#import "ActivityModel.h"
 
 @protocol LMBluetoothClientDelegate <NSObject>
 
 - (void)bluetoothClientScanDevice:(NSArray*)peripherals;
 - (void)bluetoothClientBattery:(int)value;
 - (void)bluetoothClientSyncFinished;
+
+- (void)bluetoothClientActivity:(ActivityModel *)data;
 
 @end
 
@@ -29,6 +32,6 @@
 
 - (void)syncDevice;
 
-- (void)readBattery;
+- (void)beginBattery;
 
 @end

@@ -7,8 +7,12 @@
 //
 
 #import "BatteryViewController.h"
+#import "LMBluetoothClient.h"
 
 @interface BatteryViewController ()
+{
+    LMBluetoothClient *client;
+}
 
 @end
 
@@ -32,11 +36,27 @@
     self.progressView.progressCounter = 75;
     
     self.textLabel.adjustsFontSizeToFitWidth = YES;
+    
+    client = [[LMBluetoothClient alloc] init];
+    client.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [client beginBattery];
+}
+
+- (void)bluetoothClientBattery:(int)value {
+    NSLog(@"bluetoothClientBattery:%d", value);
+    if (value <= 100) {
+        self.progressView.progressCounter = value;
+        self.textLabel.text = [NSString stringWithFormat:@"%%%d", value];
+    }
 }
 
 /*

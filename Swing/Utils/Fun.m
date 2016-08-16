@@ -269,6 +269,16 @@
     return value;
 }
 
++ (long)byteArrayToLong:(NSData*)data length:(int)len {
+    
+    long value = 0;
+    const unsigned char* byte = (const unsigned char*)data.bytes;
+    for (int i = len ; --i >= 0; ) {
+        value = (value * 256) + byte[i];
+    }
+    return value;
+}
+
 + (NSString*)dataToHex:(NSData*)data {
     NSMutableString *str = [NSMutableString string];
     const Byte* ptr = data.bytes;

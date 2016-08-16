@@ -13,7 +13,7 @@ typedef enum : NSUInteger {
     GetEventTypeMonth,
     GetEventTypeDay,
 } GetEventType;
-
+@class ActivityModel;
 @interface SwingClient : AFHTTPSessionManager
 
 + (SwingClient *)sharedClient;
@@ -53,5 +53,9 @@ typedef enum : NSUInteger {
 - (NSURLSessionDataTask *)calendarGetEvents:(NSDate*)date type:(GetEventType)type completion:( void (^)(NSArray* eventArray, NSError *error) )completion;
 
 - (NSURLSessionDataTask *)calendarDeleteEvent:(NSString*)eventId completion:( void (^)(NSError *error) )completion;
+
+- (NSURLSessionDataTask *)deviceUploadRawData:(ActivityModel*)model completion:( void (^)(NSError *error) )completion;
+
+- (NSURLSessionDataTask *)deviceGetDailyActivity:(ActivityModel*)model completion:( void (^)(id dailyAct ,NSError *error) )completion;
 
 @end

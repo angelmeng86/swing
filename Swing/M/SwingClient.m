@@ -410,4 +410,50 @@
     return task;
 }
 
+- (NSURLSessionDataTask *)deviceUploadRawData:(ActivityModel*)model completion:( void (^)(NSError *error) )completion {
+    NSDictionary *data = [model toDictionary];
+    LOG_D(@"deviceUploadRawData: %@", data);
+    NSURLSessionDataTask *task = [self POST:@"/device/uploadRawData" parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LOG_D(@"deviceUploadRawData info:%@", responseObject);
+            NSError *err = [self getErrorMessage:responseObject];
+            if (err) {
+                completion(err);
+            }
+            else {
+                completion(nil);
+            }
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(error);
+        });
+    }];
+    
+    return task;
+}
+
+- (NSURLSessionDataTask *)deviceGetDailyActivity:(ActivityModel*)model completion:( void (^)(id dailyAct ,NSError *error) )completion {
+    NSDictionary *data = [model toDictionary];
+    LOG_D(@"deviceUploadRawData: %@", data);
+    NSURLSessionDataTask *task = [self POST:@"/device/getDailyActivity" parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LOG_D(@"deviceUploadRawData info:%@", responseObject);
+            NSError *err = [self getErrorMessage:responseObject];
+            if (err) {
+                completion(nil ,err);
+            }
+            else {
+                completion(nil ,nil);
+            }
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(nil ,error);
+        });
+    }];
+    
+    return task;
+}
+
 @end

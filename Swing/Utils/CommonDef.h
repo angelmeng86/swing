@@ -42,6 +42,7 @@
 #import "UserModel.h"
 #import "WeatherModel.h"
 #import "AlertModel.h"
+#import "ActivityModel.h"
 
 #import "Fun.h"
 #import "CameraUtility.h"
