@@ -1,0 +1,29 @@
+//
+//  LMBluetoothClient.h
+//  Swing
+//
+//  Created by Mapple on 16/8/16.
+//  Copyright © 2016年 zzteam. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import <CoreBluetooth/CoreBluetooth.h>
+
+@protocol LMBluetoothClientDelegate <NSObject>
+
+- (void)bluetoothClientScanDevice:(NSArray*)peripherals;
+- (void)bluetoothClientSyncFinished;
+
+@end
+
+@interface LMBluetoothClient : NSObject
+
+@property (nonatomic, weak) id delegate;
+
+@property (nonatomic, strong) NSMutableArray* alertEvents;
+
+- (void)beginScan;
+
+- (void)syncDevice;
+
+@end

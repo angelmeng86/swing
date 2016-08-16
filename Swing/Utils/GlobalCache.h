@@ -32,6 +32,7 @@
 + (NSString*)dateToDayString:(NSDate*)date;
 
 - (NSArray*)searchEventsByDay:(NSDate*)date;
+- (NSMutableArray*)searchWeeklyEventsByDay:(NSDate*)date;
 
 - (void)queryMonthEvents:(NSDate*)date;
 
@@ -44,6 +45,7 @@
 
 @property (strong, nonatomic) LoginedModel* info;
 @property (strong, nonatomic) UserModel* user;
+@property (strong, nonatomic) NSArray* devicesMAC;
 
 @property (strong, nonatomic) WeatherModel* wearther;
 @property (nonatomic) BOOL weartherRunning;

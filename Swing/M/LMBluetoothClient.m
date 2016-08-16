@@ -1,23 +1,18 @@
 //
-//  SelectWatchViewController.m
+//  LMBluetoothClient.m
 //  Swing
 //
-//  Created by Mapple on 16/7/21.
+//  Created by Mapple on 16/8/16.
 //  Copyright © 2016年 zzteam. All rights reserved.
 //
 
-#import "SelectWatchViewController.h"
-#import "DeviceTableViewCell.h"
-#import "CommonDef.h"
-#import <CoreBluetooth/CoreBluetooth.h>
+#import "LMBluetoothClient.h"
 #import "BabyBluetooth.h"
 #import "PeripheralInfo.h"
-#import "KidBindViewController.h"
+#import "CommonDef.h"
 
-#define channelOnPeropheralView @"View"
+#define channelOnPeropheralView @"View2"
 #define TimeStamp [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]]
-#define kScreenHeight [UIScreen mainScreen].bounds.size.height
-#define kScreenWidth  [UIScreen mainScreen].bounds.size.width
 
 typedef enum : NSUInteger {
     SwingSettingNone,
@@ -25,49 +20,272 @@ typedef enum : NSUInteger {
     SwingSettingMacReaded,
 } SwingSettingState;
 
-@interface SelectWatchViewController ()<DeviceTableViewCellDelegate>
-{
+typedef enum : NSUInteger {
+    SwingSyncNone,
+    SwingSyncBegin,
+    SwingSyncTimeWrited,
+    SwingSyncMacReaded,
+    SwingSyncAlertNumberWrited,
+    SwingSyncAlertTimeWrited,
+    SwingSyncHeaderReaded,
+    SwingSyncTimeReaded,
+    SwingSyncData1Readed,
+    SwingSyncData2Readed,
+    SwingSyncChecksumWrited,
+} SwingSyncState;
+
+@interface LMBluetoothClient () {
+    NSMutableArray *peripherals;
+    NSMutableArray *peripheralsAD;
+    //lwz add
+    SwingSettingState settingState;
+    SwingSyncState syncState;
+//    NSMutableArray *alertEvent;
+    //lwz end
     BabyBluetooth *baby;
     NSMutableArray *sect;
     __block  NSMutableArray *readValueArray;
     __block  NSMutableArray *descriptors;
     int yunsuanfu;
-    
-    NSMutableArray *peripherals;
-    NSMutableArray *peripheralsAD;
-    //lwz add
-    SwingSettingState settingState;
-    //lwz end
 }
 
 @property __block NSMutableArray *services;
-@property (strong,nonatomic) CBPeripheral *currPeripheral;
-@property (nonatomic,strong) CBCharacteristic *characteristic;
+@property(strong,nonatomic)CBPeripheral *currPeripheral;
+@property (nonatomic,strong)CBCharacteristic *characteristic;
 
-@property (strong, nonatomic) NSMutableArray *devices;
+@property (nonatomic, strong) NSData *ffa4Data;
 
 @end
 
-@implementation SelectWatchViewController
+@implementation LMBluetoothClient
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    UIView *bgView = [UIView new];
-    bgView.backgroundColor = [UIColor clearColor];
-    self.tableView.backgroundView = bgView;
+- (id)init {
+    if (self = [super init]) {
+        //初始化BabyBluetooth 蓝牙库
+        baby = [BabyBluetooth shareBabyBluetooth];
+        //设置蓝牙委托
+        [self initBluetooth];
+    }
+    return self;
+}
+
+- (void)beginScan {
+    baby.scanForPeripherals(1).begin();
+}
+
+- (void)syncDevice {
+    if ([peripherals objectAtIndex:0] == nil) {
+        NSLog(@"没找到设备");
+    }else{
+        self.currPeripheral = [peripherals objectAtIndex:0];
+        
+        baby.having(self.currPeripheral).and.channel(channelOnPeropheralView).then.connectToPeripherals().discoverServices().discoverCharacteristics().begin();
+        
+        [self performSelector:@selector(beginSync) withObject:nil afterDelay:8.0];
+    }
+}
+
+- (void)beginSync {
+    [self writeValue01];
+    syncState = SwingSyncBegin;
+}
+
+-(void)writeValue01{
+    self.characteristic =[[[self.services objectAtIndex:5] characteristics]objectAtIndex:0];
+    //    int i = 1;
+    Byte array[1];
+    array[0] = 0x01;
+    NSData *data = [NSData dataWithBytes:array length:1];
+    [self.currPeripheral writeValue:data forCharacteristic:self.characteristic type:CBCharacteristicWriteWithResponse];
     
-    self.label1.adjustsFontSizeToFitWidth = YES;
-    self.label2.adjustsFontSizeToFitWidth = YES;
-#if TARGET_IPHONE_SIMULATOR
-    
-#else
-    [self initBluetooth];
-#endif
+}
+
+- (BOOL)writeAlertNumber {
+    if (_alertEvents.count > 0) {
+        //往FFA7里面写
+        self.characteristic =[[[self.services objectAtIndex:5] characteristics]objectAtIndex:6];
+        Byte array[1];
+        EventModel *model = [_alertEvents firstObject];
+        array[0] = model.alert == 0 ? 40 : model.alert;
+        NSData *data = [NSData dataWithBytes:array length:1];
+        [self.currPeripheral writeValue:data forCharacteristic:self.characteristic type:CBCharacteristicWriteWithResponse];
+        return YES;
+    }
+    //往FFA7里面写 0x00
+    self.characteristic =[[[self.services objectAtIndex:5] characteristics]objectAtIndex:6];
+    Byte array[1];
+    array[0] = 0x00;
+    NSData *data = [NSData dataWithBytes:array length:1];
+    [self.currPeripheral writeValue:data forCharacteristic:self.characteristic type:CBCharacteristicWriteWithResponse];
+    return NO;
+}
+
+- (BOOL)writeAlertTimestmp {
+    if (_alertEvents.count > 0) {
+        // 往FFA8里面放未来的时间戳
+        EventModel *model = [_alertEvents firstObject];
+//        NSDate * twoM = [[NSDate date] dateByAddingTimeInterval:[[alertEvent firstObject] intValue]];
+        [_alertEvents removeObjectAtIndex:0];
+        long date = [model.startDate timeIntervalSince1970] ;
+        NSData *timedata = [Fun longToByteArray:date];
+        NSLog(@"穿进去的值是！！！！＝＝＝＝＝ %@",timedata);
+        self.characteristic =[[[self.services objectAtIndex:5] characteristics]objectAtIndex:7];
+        [self.currPeripheral writeValue:timedata forCharacteristic:self.characteristic type:CBCharacteristicWriteWithResponse];
+        return YES;
+    }
+    return NO;
+}
+
+- (void)syncReaded:(CBCharacteristic*)characteristic {
+    NSLog(@"syncReaded %lu", (unsigned long)syncState);
+    switch (syncState) {
+        case SwingSyncMacReaded:
+        {
+            NSLog(@"SwingSyncMacReaded %@", characteristic.value);
+            
+//            alertEvent = [NSMutableArray array];
+//            [alertEvent addObject:@60];
+//            [alertEvent addObject:@70];
+//            [alertEvent addObject:@80];
+//            [alertEvent addObject:@90];
+            
+            [self writeAlertNumber];
+            syncState = SwingSyncAlertNumberWrited;
+        }
+            break;
+        case SwingSyncHeaderReaded:
+        {
+            const Byte *ptr = characteristic.value.bytes;
+            NSLog(@"SwingSyncHeaderReaded %x%x", ptr[0], ptr[1]);
+            if (ptr[0] == 0x00 && ptr[1] == 0x01) {
+                NSLog(@"Have Data!");
+                //FFA3
+                self.characteristic =[[[self.services objectAtIndex:5] characteristics]objectAtIndex:2];
+                
+                [self.currPeripheral readValueForCharacteristic:self.characteristic];
+                syncState = SwingSyncTimeReaded;
+            }
+            else if (ptr[0] == 0x01 && ptr[1] == 0x00) {
+                NSLog(@"No Data!");
+                syncState = SwingSyncNone;
+                //断开连接
+                [baby cancelPeripheralConnection:self.currPeripheral];
+                if ([_delegate respondsToSelector:@selector(bluetoothClientSyncFinished)]) {
+                    [_delegate bluetoothClientSyncFinished];
+                }
+            }
+        }
+            break;
+        case SwingSyncTimeReaded:
+        {
+            long value = [Fun byteArrayToLong:characteristic.value];
+            NSLog(@"SwingSyncTimeReaded:%@", [NSDate dateWithTimeIntervalSince1970:value]);
+            //FFA4
+            self.characteristic =[[[self.services objectAtIndex:5] characteristics]objectAtIndex:3];
+            
+            [self.currPeripheral readValueForCharacteristic:self.characteristic];
+            syncState = SwingSyncData1Readed;
+        }
+            break;
+        case SwingSyncData1Readed:
+        {
+            NSLog(@"SwingSyncData1Readed:%lu", characteristic.value.length);
+            self.ffa4Data = characteristic.value;
+            //FFA4
+            self.characteristic =[[[self.services objectAtIndex:5] characteristics]objectAtIndex:3];
+            
+            [self.currPeripheral readValueForCharacteristic:self.characteristic];
+            syncState = SwingSyncData2Readed;
+        }
+            break;
+        case SwingSyncData2Readed:
+        {
+            NSLog(@"SwingSyncData2Readed:%lu", characteristic.value.length);
+            
+            self.characteristic =[[[self.services objectAtIndex:5] characteristics]objectAtIndex:0];
+            //    int i = 1;
+            Byte array[1];
+            if ([_ffa4Data isEqualToData:characteristic.value]) {
+                //数据有误
+                array[0] = 0x00;
+            }
+            else {
+                array[0] = 0x01;
+            }
+            NSData *data = [NSData dataWithBytes:array length:1];
+            [self.currPeripheral writeValue:data forCharacteristic:self.characteristic type:CBCharacteristicWriteWithResponse];
+            syncState = SwingSyncChecksumWrited;
+            
+        }
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)syncWrited:(CBCharacteristic*)characteristic {
+    NSLog(@"syncWrited %lu", (unsigned long)syncState);
+    switch (syncState) {
+        case SwingSyncBegin:
+        {
+            //FFA3
+            self.characteristic =[[[self.services objectAtIndex:5] characteristics]objectAtIndex:2];
+            
+            NSLog(@"时间戳为！！！！＝＝＝＝＝＝＝＝＝＝ @%@",TimeStamp);
+            
+            long date = [[NSDate date] timeIntervalSince1970] - 3 * 60 * 60;
+            NSData *data = [Fun longToByteArray:date];
+            
+            self.characteristic =[[[self.services objectAtIndex:5] characteristics]objectAtIndex:2];
+            [self.currPeripheral writeValue:data forCharacteristic:self.characteristic type:CBCharacteristicWriteWithResponse];
+            syncState = SwingSyncTimeWrited;
+        }
+            break;
+        case SwingSyncTimeWrited:
+        {
+            //FFA6
+            self.characteristic =[[[self.services objectAtIndex:5] characteristics]objectAtIndex:5];
+            
+            [self.currPeripheral readValueForCharacteristic:self.characteristic];
+            
+            syncState = SwingSyncMacReaded;
+        }
+            break;
+        case SwingSyncAlertNumberWrited:
+        {
+            if ([self writeAlertTimestmp]) {
+                syncState = SwingSyncAlertTimeWrited;
+            }
+            else {
+                //FFA9
+                self.characteristic =[[[self.services objectAtIndex:5] characteristics]objectAtIndex:8];
+                
+                [self.currPeripheral readValueForCharacteristic:self.characteristic];
+                syncState = SwingSyncHeaderReaded;
+            }
+        }
+            break;
+        case SwingSyncAlertTimeWrited:
+        {
+            [self writeAlertNumber];
+            syncState = SwingSyncAlertNumberWrited;
+        }
+            break;
+        case SwingSyncChecksumWrited:
+        {
+            //FFA9
+            self.characteristic =[[[self.services objectAtIndex:5] characteristics]objectAtIndex:8];
+            
+            [self.currPeripheral readValueForCharacteristic:self.characteristic];
+            syncState = SwingSyncHeaderReaded;
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)initBluetooth {
-    self.devices = [NSMutableArray array];
     //初始化其他数据 init other
     peripherals = [[NSMutableArray alloc]init];
     peripheralsAD = [[NSMutableArray alloc]init];
@@ -79,7 +297,7 @@ typedef enum : NSUInteger {
     
     //链接后的数据准备
     self.services = [[NSMutableArray alloc]init];
-    baby.scanForPeripherals(1).begin();
+    
 }
 
 #pragma mark -蓝牙配置和操作
@@ -90,7 +308,7 @@ typedef enum : NSUInteger {
     __weak typeof(self) weakSelf = self;
     [baby setBlockOnCentralManagerDidUpdateState:^(CBCentralManager *central) {
         if (central.state == CBCentralManagerStatePoweredOn) {
-//            [SVProgressHUD showInfoWithStatus:@"设备打开成功，开始扫描设备"];
+            //            [SVProgressHUD showInfoWithStatus:@"设备打开成功，开始扫描设备"];
         }
     }];
     
@@ -104,13 +322,6 @@ typedef enum : NSUInteger {
     [baby setBlockOnDiscoverServices:^(CBPeripheral *peripheral, NSError *error) {
         for (CBService *service in peripheral.services) {
             NSLog(@"搜索到服务:%@",service.UUID.UUIDString);
-        }
-        //找到cell并修改detaisText
-        for (int i=0;i<peripherals.count;i++) {
-            UITableViewCell *cell = [weakSelf.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
-            if ([cell.textLabel.text isEqualToString:peripheral.name]) {
-                
-            }
         }
     }];
     //设置发现设service的Characteristics的委托
@@ -168,19 +379,19 @@ typedef enum : NSUInteger {
     
     //设置设备连接成功的委托,同一个baby对象，使用不同的channel切换委托回调
     [baby setBlockOnConnectedAtChannel:channelOnPeropheralView block:^(CBCentralManager *central, CBPeripheral *peripheral) {
-//        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--连接成功",peripheral.name]];
+        //        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--连接成功",peripheral.name]];
     }];
     
     //设置设备连接失败的委托
     [baby setBlockOnFailToConnectAtChannel:channelOnPeropheralView block:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
         NSLog(@"设备：%@--连接失败",peripheral.name);
-//        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--连接失败",peripheral.name]];
+        //        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--连接失败",peripheral.name]];
     }];
     
     //设置设备断开连接的委托
     [baby setBlockOnDisconnectAtChannel:channelOnPeropheralView block:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
         NSLog(@"设备：%@--断开连接",peripheral.name);
-//        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--断开失败",peripheral.name]];
+        //        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--断开失败",peripheral.name]];
     }];
     
     //设置发现设备的Services的委托
@@ -252,30 +463,19 @@ typedef enum : NSUInteger {
     [baby setBabyOptionsAtChannel:channelOnPeropheralView scanForPeripheralsWithOptions:scanForPeripheralsWithOptions connectPeripheralWithOptions:connectOptions scanForPeripheralsWithServices:nil discoverWithServices:nil discoverWithCharacteristics:nil];
     
     
-    
-#warning 最新设置点
     //设置读取characteristics的委托
-    [baby setBlockOnReadValueForCharacteristicAtChannel:channelOnPeropheralView block:^(CBPeripheral *peripheral, CBCharacteristic *characteristics, NSError *error) {
+    [baby setBlockOnReadValueForCharacteristicAtChannel:channelOnPeropheralView block:^(CBPeripheral *peripheral, CBCharacteristic *characteristic, NSError *error) {
         //        NSLog(@"CharacteristicViewController===characteristic name:%@ value is:%@",characteristics.UUID,characteristics.value);
         if (settingState == SwingSettingMacReaded ) {
-            NSLog(@"lwz %@", characteristics.value);
-//            self.ReadMacAddress.text = [NSString stringWithFormat:@"%@",self.characteristic.value];
-            
-            [SVProgressHUD dismiss];
-                UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
-                KidBindViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"KidBind"];
-            ctl.macAddress = characteristics.value;
-            if ([GlobalCache shareInstance].devicesMAC) {
-                [GlobalCache shareInstance].devicesMAC = [[GlobalCache shareInstance].devicesMAC arrayByAddingObject:characteristics.value];
-            }
-            else {
-                [GlobalCache shareInstance].devicesMAC = @[characteristics.value];
-            }
-                [weakSelf.navigationController pushViewController:ctl animated:YES];
+            NSLog(@"lwz %@", characteristic.value);
+            //            self.ReadMacAddress.text = [NSString stringWithFormat:@"%@",self.characteristic.value];
             
             settingState = SwingSettingNone;
         }
-        [weakSelf insertReadValues:characteristics];
+        if (syncState > SwingSyncNone) {
+            [weakSelf syncReaded:characteristic];
+        }
+        [weakSelf insertReadValues:characteristic];
     }];
     //设置发现characteristics的descriptors的委托
     [baby setBlockOnDiscoverDescriptorsForCharacteristicAtChannel:channelOnPeropheralView block:^(CBPeripheral *peripheral, CBCharacteristic *characteristic, NSError *error) {
@@ -307,19 +507,22 @@ typedef enum : NSUInteger {
             settingState = SwingSettingMacReaded;
             
         }
+        if (syncState > SwingSyncNone) {
+            [weakSelf syncWrited:characteristic];
+        }
         //lwz end
     }];
     
     //设置通知状态改变的block
     [baby setBlockOnDidUpdateNotificationStateForCharacteristicAtChannel:channelOnPeropheralView block:^(CBCharacteristic *characteristic, NSError *error) {
-//        //lwz add
-//        weakSelf.characteristic =[[[weakSelf.services objectAtIndex:5] characteristics]objectAtIndex:5];
-//        if (settingState == SwingSettingMacReaded ) {
-//            NSLog(@"lwz %@", characteristic.value);
-////            weakSelf.ReadMacAddress.text = [NSString stringWithFormat:@"%@",self.characteristic.value];
-//            settingState = SwingSettingNone;
-//        }
-//        //lwz end
+        //        //lwz add
+        //        weakSelf.characteristic =[[[weakSelf.services objectAtIndex:5] characteristics]objectAtIndex:5];
+        //        if (settingState == SwingSettingMacReaded ) {
+        //            NSLog(@"lwz %@", characteristic.value);
+        ////            weakSelf.ReadMacAddress.text = [NSString stringWithFormat:@"%@",self.characteristic.value];
+        //            settingState = SwingSettingNone;
+        //        }
+        //        //lwz end
         NSLog(@"uid:%@,isNotifying:%@",characteristic.UUID,characteristic.isNotifying?@"on":@"off");
     }];
     
@@ -385,110 +588,16 @@ typedef enum : NSUInteger {
 //插入table数据
 -(void)insertTableView:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData{
     if(![peripherals containsObject:peripheral]) {
-        NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:peripherals.count inSection:0];
-        [indexPaths addObject:indexPath];
+//        NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
+//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:peripherals.count inSection:0];
+//        [indexPaths addObject:indexPath];
         [peripherals addObject:peripheral];
         [peripheralsAD addObject:advertisementData];
-        [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+//        [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
     }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#if TARGET_IPHONE_SIMULATOR
-    return 2;
-#else
-    return peripherals.count;
-#endif
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *cellIdentifier = @"DeviceCell";
-    DeviceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    cell.delegate = self;
-#if TARGET_IPHONE_SIMULATOR
-    if (indexPath.row == 0) {
-        cell.titleLabel.text = @"SWING WATCH 123DAF523";
+    if ([_delegate respondsToSelector:@selector(bluetoothClientScanDevice:)]) {
+        [_delegate bluetoothClientScanDevice:peripherals];
     }
-    else {
-        cell.titleLabel.text = @"SWING WATCH 568DANG5E";
-    }
-#else
-    CBPeripheral *peripheral = [peripherals objectAtIndex:indexPath.row];
-    cell.titleLabel.text = peripheral.name;
-#endif
-    return cell;
-}
-
--(void)BeganInital{
-    //读取数据
-    self.characteristic =[[[self.services objectAtIndex:5] characteristics]objectAtIndex:0];
-    NSLog(@" 选定的C值为%@",self.characteristic);
-    baby.channel(channelOnPeropheralView).characteristicDetails(self.currPeripheral,self.characteristic);
-    
-    
-    [self writeValue01];
-    
-    [self writeValueTimeStamp];
-    //lwz edit
-    //    [self readMACaddress];
-    //lwz end
-}
--(void)writeValue01{
-    //    int i = 1;
-    Byte array[1];
-    array[0] = 0x01;
-    NSData *data = [NSData dataWithBytes:array length:1];
-    [self.currPeripheral writeValue:data forCharacteristic:self.characteristic type:CBCharacteristicWriteWithResponse];
-    
-}
-
--(void)writeValueTimeStamp{
-    //先读一下子
-    self.characteristic =[[[self.services objectAtIndex:5] characteristics]objectAtIndex:2];
-    
-    NSLog(@"时间戳为！！！！＝＝＝＝＝＝＝＝＝＝ @%@",TimeStamp);
-    
-    long date = [[NSDate date] timeIntervalSince1970] - 3 * 60 * 60;
-    NSData *data = [Fun longToByteArray:date];
-    
-    NSLog(@"穿进去的值是！！！！＝＝＝＝＝ %@",data);
-    
-    self.characteristic =[[[self.services objectAtIndex:5] characteristics]objectAtIndex:2];
-    [self.currPeripheral writeValue:data forCharacteristic:self.characteristic type:CBCharacteristicWriteWithResponse];
-    //lwz add
-    settingState = SwingSettingTimeWrited;
-    //lwz end
-}
-
-- (void)deviceTableViewCellDidClicked:(DeviceTableViewCell*)cell {
-#if TARGET_IPHONE_SIMULATOR
-    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
-    UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"KidBind"];
-    [self.navigationController pushViewController:ctl animated:YES];
-#else
-    [SVProgressHUD showWithStatus:@"Syncing..."];
-    [baby cancelScan];
-    self.currPeripheral = [peripherals objectAtIndex:0];
-    
-    [self loadData];
-    
-    //    [self BeganInital];
-    [self performSelector:@selector(BeganInital) withObject:nil afterDelay:8.0];
-#endif
-}
-
--(void)loadData{
-    baby.having(self.currPeripheral).and.channel(channelOnPeropheralView).then.connectToPeripherals().discoverServices().discoverCharacteristics().readValueForCharacteristic().discoverDescriptorsForCharacteristic().readValueForDescriptors().begin();
-    
-//    baby.having(self.currPeripheral).and.channel(channelOnPeropheralView).then.connectToPeripherals().discoverServices().discoverCharacteristics().begin();
-    //    baby.connectToPeripheral(self.currPeripheral).begin();
 }
 
 @end

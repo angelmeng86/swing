@@ -39,6 +39,8 @@
     
     json = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
     _user = [[UserModel alloc] initWithString:json error:nil];
+    
+    _devicesMAC = [[NSUserDefaults standardUserDefaults] arrayForKey:@"devices"];
 }
 
 - (void)setInfo:(LoginedModel *)info {
@@ -53,7 +55,14 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+- (void)setDevicesMAC:(NSArray *)devicesMAC {
+    _devicesMAC = devicesMAC;
+    [[NSUserDefaults standardUserDefaults] setObject:_devicesMAC forKey:@"devices"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 - (void)saveInfo {
+    [[NSUserDefaults standardUserDefaults] setObject:_devicesMAC forKey:@"devices"];
     [[NSUserDefaults standardUserDefaults] setObject:[_info toJSONString] forKey:@"token"];
     [[NSUserDefaults standardUserDefaults] setObject:[_user toJSONString] forKey:@"user"];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -64,8 +73,11 @@
     self.info = nil;
     self.user = nil;
     self.kidsList = nil;
+    self.devicesMAC = nil;
     [self.calendarEventsByMonth removeAllObjects];
     [self.calendarQueue removeAllObjects];
+    
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"devices"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"token"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user"];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -141,6 +153,21 @@
     if (self.calendarEventsByMonth[month]) {
         NSString *key = [GlobalCache dateToDayString:date];
         return self.calendarEventsByMonth[month][key];
+    }
+    return nil;
+}
+
+- (NSMutableArray*)searchWeeklyEventsByDay:(NSDate*)date {
+    NSString *month = [GlobalCache dateToMonthString:date];
+    if (self.calendarEventsByMonth[month]) {
+        NSMutableArray *array = [NSMutableArray array];
+        for (int i = 0; i < 7; i++) {
+            NSString *key = [GlobalCache dateToDayString:[date dateByAddingTimeInterval:i * 24 * 60 * 60]];
+            if (self.calendarEventsByMonth[month][key]) {
+                [array addObjectsFromArray:self.calendarEventsByMonth[month][key]];
+            }
+        }
+        return array;
     }
     return nil;
 }

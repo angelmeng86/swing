@@ -79,7 +79,14 @@
         
         if ([self validateTextField]) {
             [SVProgressHUD showWithStatus:@"Add kid info, please wait..."];
-            [[SwingClient sharedClient] kidsAdd:@{@"firstName":self.firstNameTF.text, @"lastName":self.lastNameTF.text} completion:^(id kid, NSError *error) {
+            
+            NSMutableDictionary *data = [NSMutableDictionary dictionaryWithDictionary:@{@"firstName":self.firstNameTF.text, @"lastName":self.lastNameTF.text}];
+            if (self.macAddress) {
+                NSString *mac = [Fun dataToHex:self.macAddress];
+                [data setObject:mac forKey:@"note"];
+            }
+            
+            [[SwingClient sharedClient] kidsAdd:data completion:^(id kid, NSError *error) {
                 if (error) {
                     LOG_D(@"kidsAdd fail: %@", error);
                     [SVProgressHUD showErrorWithStatus:[error localizedDescription]];

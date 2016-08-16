@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F45AB7F1D62DEDE00EF385F /* LMBluetoothClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB7E1D62DEDE00EF385F /* LMBluetoothClient.m */; };
 		0FD6B3E71D61B79300C00A45 /* ChoicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6B3E61D61B79300C00A45 /* ChoicesViewController.m */; };
 		0FD6B3FD1D6207E000C00A45 /* BabyBluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6B3EC1D6207E000C00A45 /* BabyBluetooth.m */; };
 		0FD6B3FE1D6207E000C00A45 /* BabyCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6B3EE1D6207E000C00A45 /* BabyCallback.m */; };
@@ -103,6 +104,8 @@
 
 /* Begin PBXFileReference section */
 		0A892F16F4220A9DEBE01E9D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		0F45AB7D1D62DEDE00EF385F /* LMBluetoothClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMBluetoothClient.h; sourceTree = "<group>"; };
+		0F45AB7E1D62DEDE00EF385F /* LMBluetoothClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMBluetoothClient.m; sourceTree = "<group>"; };
 		0FD6B3E51D61B79300C00A45 /* ChoicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoicesViewController.h; sourceTree = "<group>"; };
 		0FD6B3E61D61B79300C00A45 /* ChoicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoicesViewController.m; sourceTree = "<group>"; };
 		0FD6B3EB1D6207E000C00A45 /* BabyBluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BabyBluetooth.h; sourceTree = "<group>"; };
@@ -371,6 +374,8 @@
 				ADE820781D54D99000E12768 /* WeatherModel.m */,
 				ADD6555F1D5B8DAC0054FB24 /* AlertModel.h */,
 				ADD655601D5B8DAC0054FB24 /* AlertModel.m */,
+				0F45AB7D1D62DEDE00EF385F /* LMBluetoothClient.h */,
+				0F45AB7E1D62DEDE00EF385F /* LMBluetoothClient.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -890,6 +895,7 @@
 				AD347D1E1D3FDEEC00E91DDD /* SelectWatchViewController.m in Sources */,
 				AD74D4DC1D4F90B5001F3B36 /* EventLabel.m in Sources */,
 				ADFC2C2D1D369949004EDCDF /* main.m in Sources */,
+				0F45AB7F1D62DEDE00EF385F /* LMBluetoothClient.m in Sources */,
 				AD289A5E1D3FD0E800898F92 /* AskStepViewController.m in Sources */,
 				0FD6B4041D6207E000C00A45 /* BabySpeaker.m in Sources */,
 				ADDCD3F81D4C557E0031DC66 /* UIFont+AvenirFont.m in Sources */,

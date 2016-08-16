@@ -7,6 +7,7 @@
 //
 
 #import "SearchDeviceViewController.h"
+#import "LMBluetoothClient.h"
 
 typedef enum : NSUInteger {
     SyncStatusSearching,
@@ -21,6 +22,8 @@ typedef enum : NSUInteger {
     
     MDRadialProgressTheme *progressTheme;
     MDRadialProgressTheme *doneTheme;
+    
+    LMBluetoothClient *client;
 }
 
 @end
@@ -50,7 +53,11 @@ typedef enum : NSUInteger {
     self.progressView.label.hidden = YES;
     
     [self changeStatus:SyncStatusSearching];
+    
+    client = [[LMBluetoothClient alloc] init];
+    
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -72,8 +79,11 @@ typedef enum : NSUInteger {
             self.progressView.progressTotal = 12;
             self.progressView.progressCounter = 1;
             self.progressView.isIndeterminateProgress = YES;
-            
+#if TARGET_IPHONE_SIMULATOR
             [self performSelector:@selector(performStatus:) withObject:[NSNumber numberWithUnsignedInteger:SyncStatusFound] afterDelay:3];
+#else
+            [client beginScan];
+#endif
         }
             break;
         case SyncStatusFound:
@@ -100,7 +110,9 @@ typedef enum : NSUInteger {
             self.progressView.progressCounter = 1;
             self.progressView.isIndeterminateProgress = YES;
             
+#if TARGET_IPHONE_SIMULATOR
             [self performSelector:@selector(performStatus:) withObject:[NSNumber numberWithUnsignedInteger:SyncStatusSyncCompleted] afterDelay:3];
+#endif
         }
             break;
         case SyncStatusSyncCompleted:
@@ -126,10 +138,30 @@ typedef enum : NSUInteger {
 - (IBAction)btnAction:(id)sender {
     if (_status == SyncStatusFound) {
         [self changeStatus:SyncStatusSyncing];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(eventLoaded:) name:EVENT_LIST_UPDATE_NOTI object:nil];
+        [[GlobalCache shareInstance] queryMonthEvents:[NSDate date]];
+//        [client syncDevice];
     }
     else if (_status == SyncStatusSyncCompleted) {
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }
+}
+
+- (void)eventLoaded:(NSNotification*)notification {
+    //    NSLog(@"eventLoaded:%@ month:%@", _calendarManager.date, notification.object);
+    NSString *month = [GlobalCache dateToMonthString:[NSDate date]];
+    if ([month isEqualToString:notification.object]) {
+        client.alertEvents = [[GlobalCache shareInstance] searchWeeklyEventsByDay:[NSDate date]];
+        [client syncDevice];
+    }
+}
+
+- (void)bluetoothClientScanDevice:(NSArray*)peripherals {
+    [self changeStatus:SyncStatusFound];
+}
+
+- (void)bluetoothClientSyncFinished {
+    [self changeStatus:SyncStatusSyncCompleted];
 }
 
 @end
