@@ -39,7 +39,7 @@ typedef enum : NSUInteger {
     self.tempBtn.layer.masksToBounds = YES;
     _type = -1;
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sync" style:UIBarButtonItemStylePlain target:self action:@selector(showSyncDialog)];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sync" style:UIBarButtonItemStylePlain target:self action:@selector(showSyncDialog)];
     [self performSelector:@selector(showSyncDialog) withObject:nil afterDelay:0];
 }
 

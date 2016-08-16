@@ -9,7 +9,7 @@
 #import "LMTabBarController2.h"
 #import "CommonDef.h"
 
-@interface LMTabBarController2 ()
+@interface LMTabBarController2 ()<UITabBarControllerDelegate>
 
 @end
 
@@ -35,11 +35,24 @@
     
 }
 
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+    if (tabBarController.viewControllers[2] == viewController) {
+        [self showSyncDialog];
+    }
+}
+
+- (void)showSyncDialog {
+    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"SyncDevice" bundle:nil];
+    UIViewController *ctl = [stroyBoard instantiateInitialViewController];
+    [self presentViewController:ctl animated:YES completion:nil];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [[GlobalCache shareInstance] queryWeather];
     
+    self.delegate = self;
     self.selectedIndex = 2;
 }
 

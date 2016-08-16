@@ -10,6 +10,7 @@
 #import "AlertSelectViewController.h"
 #import "ChoicesViewController.h"
 #import "CommonDef.h"
+#import "KeyboardManager.h"
 
 @interface AddEventViewController ()<UITextFieldDelegate>
 {
@@ -51,6 +52,7 @@
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    [[IQKeyboardManager sharedManager] resignFirstResponder];
     if (textField == self.alertTF) {
         AlertSelectViewController *ctl = [[AlertSelectViewController alloc] initWithStyle:UITableViewStylePlain];
         ctl.delegate = self;
@@ -68,13 +70,13 @@
 
 - (void)choicesViewControllerDidSelected:(NSString*)text {
     self.repeatTF.text = text;
-    [self.endTF becomeFirstResponder];
+    [[IQKeyboardManager sharedManager] resignFirstResponder];
 }
 
 - (void)alertSelectViewControllerDidSelected:(AlertModel*)alert {
     self.alert = alert;
     self.alertTF.text = alert.text;
-    [self.endTF becomeFirstResponder];
+    
 }
 
 - (void)startChange:(UIDatePicker*)datePicker {

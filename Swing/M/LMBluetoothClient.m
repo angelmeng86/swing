@@ -12,6 +12,7 @@
 #import "CommonDef.h"
 
 #define channelOnPeropheralView @"View2"
+#define channelOnBattery @"Battery"
 #define TimeStamp [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]]
 
 typedef enum : NSUInteger {
@@ -81,12 +82,34 @@ typedef enum : NSUInteger {
     if (peripherals.count == 0) {
         NSLog(@"没找到设备");
     }else{
-        self.currPeripheral = [peripherals objectAtIndex:0];
+        self.currPeripheral = [peripherals firstObject];
         
         baby.having(self.currPeripheral).and.channel(channelOnPeropheralView).then.connectToPeripherals().discoverServices().discoverCharacteristics().begin();
         
         [self performSelector:@selector(beginSync) withObject:nil afterDelay:8.0];
     }
+}
+
+- (void)beginBattery {
+    baby.scanForPeripherals(1).channel(channelOnBattery).connectToPeripherals().discoverServices().discoverCharacteristics()
+    .begin();
+    [self performSelector:@selector(readBattery) withObject:nil afterDelay:8.0];
+}
+
+- (void)readBattery {
+    __weak BabyBluetooth *weakBaby = baby;
+    [baby setBlockOnReadValueForCharacteristicAtChannel:channelOnBattery block:^(CBPeripheral *peripheral, CBCharacteristic *characteristic, NSError *error) {
+        if (self.characteristic == characteristic) {
+            [weakBaby cancelPeripheralConnection:peripheral];
+            
+            if ([_delegate respondsToSelector:@selector(bluetoothClientBattery:)]) {
+                const Byte* ptr = characteristic.value.bytes;
+                [_delegate bluetoothClientBattery:ptr[0]];
+            }
+        }
+    }];
+    self.characteristic =[[[self.services objectAtIndex:4] characteristics]objectAtIndex:0];
+    [self.currPeripheral readValueForCharacteristic:self.characteristic];
 }
 
 - (void)beginSync {
