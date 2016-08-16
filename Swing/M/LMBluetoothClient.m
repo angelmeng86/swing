@@ -174,7 +174,7 @@ typedef enum : NSUInteger {
         EventModel *model = [_alertEvents firstObject];
 //        NSDate * twoM = [[NSDate date] dateByAddingTimeInterval:[[alertEvent firstObject] intValue]];
         [_alertEvents removeObjectAtIndex:0];
-        long date = [model.startDate timeIntervalSince1970] - 2 * 60 * 60;
+        long date = [model.startDate timeIntervalSince1970] - 3 * 60 * 60;
         NSData *timedata = [Fun longToByteArray:date];
         NSLog(@"穿进去的值是！！！！＝＝＝＝＝ %@",timedata);
         self.characteristic =[[[self.services objectAtIndex:5] characteristics]objectAtIndex:7];
@@ -187,7 +187,7 @@ typedef enum : NSUInteger {
 - (void)syncReaded:(CBCharacteristic*)characteristic error:(NSError*)err {
     NSLog(@"syncReaded %lu", (unsigned long)syncState);
     if (err) {
-        NSLog(@"error:%@", err);
+        NSLog(@"syncReaded error:%@", err);
         syncState = SwingSyncNone;
         //断开连接
         [baby cancelPeripheralConnection:self.currPeripheral];
@@ -295,8 +295,9 @@ typedef enum : NSUInteger {
 }
 
 - (void)syncWrited:(CBCharacteristic*)characteristic error:(NSError*)err{
+    NSLog(@"syncWrited %lu", (unsigned long)syncState);
     if (err) {
-        NSLog(@"error:%@", err);
+        NSLog(@"syncWrited error:%@", err);
         syncState = SwingSyncNone;
         //断开连接
         [baby cancelPeripheralConnection:self.currPeripheral];
@@ -305,7 +306,6 @@ typedef enum : NSUInteger {
         }
         return;
     }
-    NSLog(@"syncWrited %lu", (unsigned long)syncState);
     switch (syncState) {
         case SwingSyncBegin:
         {
@@ -314,7 +314,7 @@ typedef enum : NSUInteger {
             
             NSLog(@"时间戳为！！！！＝＝＝＝＝＝＝＝＝＝ @%@",TimeStamp);
             
-            long date = [[NSDate date] timeIntervalSince1970] - 2 * 60 * 60;
+            long date = [[NSDate date] timeIntervalSince1970] - 3 * 60 * 60;
             NSData *data = [Fun longToByteArray:date];
             
             self.characteristic =[[[self.services objectAtIndex:5] characteristics]objectAtIndex:2];

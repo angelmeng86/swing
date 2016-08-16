@@ -242,6 +242,15 @@
             NSLog(@"test:%ld data:%@ test2:%ld", test, data, test2);
         }
             break;
+        case 14:
+        {
+            long test = [[NSDate date] timeIntervalSince1970];
+            NSData *data = [Fun longToByteArray:test];
+            long test2 = [Fun byteArrayToLong:data];
+            
+            NSLog(@"test:%ld data:%@ test2:%ld", test, data, test2);
+        }
+            break;
         default:
             break;
     }
