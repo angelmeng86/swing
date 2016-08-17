@@ -14,4 +14,6 @@
 
 - (NSArray*)itemList;
 
+- (void)setItemList:(NSArray*)todolist;
+
 @end

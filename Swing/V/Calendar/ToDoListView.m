@@ -78,7 +78,8 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [self addAction];
+//    [self addAction];
+    [textField resignFirstResponder];
     return YES;
 }
 
@@ -90,6 +91,29 @@
         }
     }
     return array;
+}
+
+- (void)setItemList:(NSArray*)todolist {
+    for (ToDoModel *str in todolist) {
+        DoItemLabel *label = [[DoItemLabel alloc] init];
+        label.delegate = self;
+        label.textLabel.text = str.text;
+        
+        [self.listView addSubview:label];
+        [label autoPinEdgeToSuperviewMargin:ALEdgeLeading];
+        [label autoPinEdgeToSuperviewMargin:ALEdgeTrailing];
+        [label autoSetDimension:ALDimensionHeight toSize:ITEM_HEIGHT];
+        label.positionLayoutConstaint = [label autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:(self.listView.subviews.count - 1) * ITEM_HEIGHT];
+        listViewHeight.constant += ITEM_HEIGHT;
+    }
+    
+    
+//    [self.listView layoutIfNeeded];
+    
+    
+//    [UIView animateWithDuration:0.3f animations:^{
+//        [self.superview layoutIfNeeded];
+//    }];
 }
 
 - (void)addAction {

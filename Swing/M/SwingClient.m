@@ -317,6 +317,27 @@
     return task;
 }
 
+- (NSURLSessionDataTask *)calendarEditEvent:(NSDictionary*)data completion:( void (^)(NSError *error) )completion {
+    NSURLSessionDataTask *task = [self POST:@"/calendarEvent/editEvent" parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LOG_D(@"calendarEditEvent info:%@", responseObject);
+            NSError *err = [self getErrorMessage:responseObject];
+            if (err) {
+                completion(err);
+            }
+            else {
+                completion(nil);
+            }
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(error);
+        });
+    }];
+    
+    return task;
+}
+
 - (NSURLSessionDataTask *)calendarAddTodo:(NSString*)eventId todoList:(NSString*)todoList completion:( void (^)(id event, NSArray* todoArray, NSError *error) )completion {
     NSURLSessionDataTask *task = [self POST:@"/calendarEvent/addTodo" parameters:@{@"eventId":eventId, @"todoList":todoList} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{

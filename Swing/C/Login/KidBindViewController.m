@@ -11,6 +11,7 @@
 #import "CommonDef.h"
 #import "BindReadyViewController.h"
 #import "EditProfileViewController.h"
+#import "SyncDeviceViewController.h"
 
 @interface KidBindViewController ()<UITextFieldDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, VPImageCropperDelegate>
 {
@@ -57,7 +58,7 @@
 
 - (void)goNext {
     for (UIViewController *ctl in self.navigationController.viewControllers) {
-        if ([ctl isKindOfClass:[EditProfileViewController class]]) {
+        if ([ctl isKindOfClass:[EditProfileViewController class]] || [ctl isKindOfClass:[SyncDeviceViewController class]]) {
             //EditProfile add device flow
             [self.navigationController popToViewController:ctl animated:YES];
             return;

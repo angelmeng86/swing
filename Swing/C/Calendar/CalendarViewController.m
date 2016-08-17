@@ -120,21 +120,21 @@
     
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if (sender == self.monthBtn) {
-        MonthCalendarViewController *ctl = segue.destinationViewController;
-        ctl.delegate = self;
-    }
-    else if (sender == self.todayBtn) {
-//        DayCalendarViewController *ctl = segue.destinationViewController;
-    }
-}
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    if (sender == self.monthBtn) {
+//        MonthCalendarViewController *ctl = segue.destinationViewController;
+//        ctl.delegate = self;
+//    }
+//    else if (sender == self.todayBtn) {
+////        DayCalendarViewController *ctl = segue.destinationViewController;
+//    }
+//}
 
-- (void)monthCalendarDidSelected:(NSDate*)date {
-    self.dateSelected = date;
-    [self.calendarManager setDate:date];
-    [self loadEventView];
-}
+//- (void)monthCalendarDidSelected:(NSDate*)date {
+//    self.dateSelected = date;
+//    [self.calendarManager setDate:date];
+//    [self loadEventView];
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

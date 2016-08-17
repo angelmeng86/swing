@@ -15,7 +15,7 @@
 
 @end
 
-@interface DoItemLabel : UIView
+@interface DoItemLabel : UIView<UITextFieldDelegate>
 
 @property (nonatomic, assign) id delegate;
 @property (nonatomic, strong) UITextField *textLabel;

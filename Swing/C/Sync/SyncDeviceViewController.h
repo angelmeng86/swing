@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *label1;
 @property (weak, nonatomic) IBOutlet UILabel *label2;
+- (IBAction)syncAnotherAction:(id)sender;
 
 - (IBAction)goDashboardAction:(id)sender;
 

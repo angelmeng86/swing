@@ -7,6 +7,7 @@
 //
 
 #import "MonthCalendarViewController.h"
+#import "DayCalendarViewController.h"
 #import "CommonDef.h"
 
 @interface MonthCalendarViewController ()
@@ -30,10 +31,18 @@
 
 - (void)calendar:(JTCalendarManager *)calendar didTouchDayView:(JTCalendarDayView *)dayView
 {
+    
     if ([_delegate respondsToSelector:@selector(monthCalendarDidSelected:)]) {
         [_delegate monthCalendarDidSelected:dayView.date];
+        [self.navigationController popViewControllerAnimated:YES];
     }
-    [self.navigationController popViewControllerAnimated:YES];
+    else {
+    
+        UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
+        DayCalendarViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"DayCalendar"];
+        ctl.dateSelected = dayView.date;
+        [self.navigationController pushViewController:ctl animated:YES];
+    }
     /*
     _dateSelected = dayView.date;
     

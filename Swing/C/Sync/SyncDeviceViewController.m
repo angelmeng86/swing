@@ -44,6 +44,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)syncAnotherAction:(id)sender {
+    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
+    UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"SearchWatch"];
+    [self.navigationController pushViewController:ctl animated:YES];
+}
+
 - (IBAction)goDashboardAction:(id)sender {
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }

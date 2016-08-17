@@ -27,6 +27,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.repeatTF.enabled = NO;
+    
     UIDatePicker *datePicker = [[UIDatePicker alloc] init];
     datePicker.datePickerMode = UIDatePickerModeDateAndTime;
     datePicker.minimumDate = [NSDate date];
@@ -49,6 +51,27 @@
     [self addRedTip:self.nameTF];
     [self addRedTip:self.startTF];
     [self addRedTip:self.endTF];
+    
+    if (self.model) {
+        self.nameTF.text = self.model.eventName;
+        
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"alert" ofType:@"json"];
+        NSArray *alertArray = [AlertModel arrayOfModelsFromString:[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil] error:nil];
+        for (AlertModel *m in alertArray) {
+            if ([m.value intValue] == self.model.alert) {
+                self.alertTF.text = m.text;
+            }
+        }
+        self.descTF.text = self.model.desc;
+        self.stateTF.text = self.model.state;
+        self.cityTF.text = self.model.city;
+        
+        self.startTF.text = [Fun dateToString:self.model.startDate];;
+        self.endTF.text = [Fun dateToString:self.model.endDate];
+        
+        self.colorCtl.selectedColor = self.model.color;
+        [self.todoCtl setItemList:self.model.todo];
+    }
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
@@ -85,7 +108,7 @@
     dp.minimumDate = [datePicker.date dateByAddingTimeInterval:20 * 60];
     if (NSOrderedDescending == [dp.date compare:datePicker.date]) {
 //        dp.date = datePicker.date;
-        self.endTF.text = [Fun dateToString:dp.minimumDate];;
+        self.endTF.text = [Fun dateToString:dp.minimumDate];
     }
     
 }
@@ -104,7 +127,7 @@
     label.text = @"*";
     label.textColor = [UIColor redColor];
     [self.view addSubview:label];
-    [label autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:view withOffset:2];
+    [label autoPinEdge:ALEdgeTrailing toEdge:ALEdgeLeading ofView:view withOffset:-2];
     [label autoAlignAxis:ALAxisHorizontal toSameAxisOfView:view];
 }
 
@@ -157,6 +180,34 @@
             [data setObject:self.stateTF.text forKey:@"state"];
         }
         
+        if (self.model) {
+            [data setObject:[NSNumber numberWithInt:self.model.objId] forKey:@"id"];
+            [[SwingClient sharedClient] calendarEditEvent:data completion:^(NSError *error) {
+                if (!error) {
+                    [[SwingClient sharedClient] calendarAddTodo:[NSString stringWithFormat:@"%d", _model.objId] todoList:[self.todoCtl.itemList componentsJoinedByString:@"|"] completion:^(id event, NSArray *todoArray, NSError *error) {
+                        if (!error) {
+//                            [[GlobalCache shareInstance] addEvent:event];
+                            [SVProgressHUD dismiss];
+                            if ([_delegate respondsToSelector:@selector(eventViewDidAdded:)]) {
+                                UIDatePicker *datePicker = (UIDatePicker*)self.startTF.inputView;
+                                [_delegate eventViewDidAdded:datePicker.date];
+                            }
+                            [self.navigationController popViewControllerAnimated:YES];
+                        }
+                        else {
+                            LOG_D(@"calendarAddTodo fail: %@", error);
+                            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                        }
+                    }];
+                }
+                else {
+                    LOG_D(@"calendarAddEvent fail: %@", error);
+                    [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                }
+            }];
+            return;
+        }
+        
         [[SwingClient sharedClient] calendarAddEvent:data completion:^(id event, NSError *error) {
             if (!error) {
                 EventModel *model = event;
@@ -164,6 +215,10 @@
                     if (!error) {
                         [[GlobalCache shareInstance] addEvent:event];
                         [SVProgressHUD dismiss];
+                        if ([_delegate respondsToSelector:@selector(eventViewDidAdded:)]) {
+                            UIDatePicker *datePicker = (UIDatePicker*)self.startTF.inputView;
+                            [_delegate eventViewDidAdded:datePicker.date];
+                        }
                         [self.navigationController popViewControllerAnimated:YES];
                     }
                     else {

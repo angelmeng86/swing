@@ -28,6 +28,9 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 @property (nonatomic, strong) JBChartView *stepsChartView;
 @property (nonatomic, strong) JBChartView *distanceChartView;
 
+@property (nonatomic, strong) ChartFooterView *stepFooter;
+@property (nonatomic, strong) ChartFooterView *distanceFooter;
+
 @property (nonatomic, strong) UIColor *stepChartColor;
 @property (nonatomic, strong) UIColor *distanceChartColor;
 
@@ -162,25 +165,68 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
             LOG_D(@"dailyActs:%@", dailyActs);
             NSMutableArray *indoors = [NSMutableArray array];
             NSMutableArray *outdoors = [NSMutableArray array];
-            NSMutableArray *mutableChartData = [NSMutableArray array];
             for (ActivityResultModel *m in dailyActs) {
                 if ([m.type isEqualToString:@"INDOOR"]) {
                     [indoors addObject:m];
-                    [mutableChartData addObject:[NSNumber numberWithLong:m.steps]];
-                    
-                    _chartData = [NSArray arrayWithArray:mutableChartData];
-                    [self.stepsChartView reloadData];
                 }
                 else if([m.type isEqualToString:@"OUTDOOR"]) {
                     [outdoors addObject:m];
                 }
             }
-            
+            self.indoorData = indoors;
+            self.outdoorData = outdoors;
+            [self reloadData];
         }
         else {
             LOG_D(@"deviceGetActivity fail: %@", error);
         }
     }];
+}
+
+- (void)setIsOutdoor:(BOOL)isOutdoor {
+    _isOutdoor = isOutdoor;
+    [self reloadData];
+}
+
+- (void)reloadData {
+    NSArray *dailyActs = _isOutdoor ? self.outdoorData : self.indoorData;
+    NSMutableArray *mutableChartData = [NSMutableArray array];
+    for (ActivityResultModel *m in dailyActs) {
+        [mutableChartData addObject:[NSNumber numberWithLong:m.steps]];
+    }
+    
+    switch (_type) {
+        case ChartTypeMonth:
+        {
+            for (int i = (int)mutableChartData.count; i < 30; i++) {
+                [mutableChartData addObject:[NSNumber numberWithLong:0]];
+            }
+        }
+            break;
+        case ChartTypeYear:
+        {
+            for (int i = (int)mutableChartData.count; i < 12; i++) {
+                [mutableChartData addObject:[NSNumber numberWithLong:0]];
+            }
+        }
+            break;
+        default:
+        {
+            for (int i = (int)mutableChartData.count; i < 7; i++) {
+                [mutableChartData addObject:[NSNumber numberWithLong:0]];
+            }
+        }
+            break;
+    }
+    
+    _chartData = [NSArray arrayWithArray:mutableChartData];
+    [self.stepsChartView reloadData];
+    
+    [_stepsChartView reloadData];
+    [_distanceChartView reloadData];
+    
+    [self.stepFooter reload];
+    [self.distanceFooter reload];
 }
 
 - (void)reloadChartView {
@@ -219,6 +265,9 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     
     [stepFooter reload];
     [distanceFooter reload];
+    
+    self.stepFooter = stepFooter;
+    self.distanceFooter = distanceFooter;
 }
 
 - (JBBarChartView*)createBarChartView {

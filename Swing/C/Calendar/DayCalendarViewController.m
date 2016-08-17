@@ -283,4 +283,10 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     [self reloadEventData];
 }
 
+- (void)eventViewDidAdded:(NSDate*)date {
+    self.dateSelected = date;
+    [self.calendarManager setDate:date];
+    [self reloadEventData];
+}
+
 @end

@@ -93,6 +93,11 @@
 //    [array autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeHorizontal withFixedSpacing:10.0 insetSpacing:YES matchedSizes:NO];
 }
 
+- (void)setSelectedColor:(UIColor *)selectedColor {
+    _selectedColor = selectedColor;
+    selectedBtn.backgroundColor = _selectedColor;
+}
+
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     // Drawing code
@@ -127,8 +132,8 @@
         }];
     }
     else {
-        _selectedColor = sender.backgroundColor;
-        selectedBtn.backgroundColor = _selectedColor;
+        self.selectedColor = sender.backgroundColor;
+//        selectedBtn.backgroundColor = _selectedColor;
         colorsViewHeight.constant = 0.0f;
         [UIView animateWithDuration:0.3f animations:^{
             [self.superview layoutIfNeeded];

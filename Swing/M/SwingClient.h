@@ -54,6 +54,8 @@ typedef enum : NSUInteger {
 
 - (NSURLSessionDataTask *)calendarAddEvent:(NSDictionary*)data completion:( void (^)(id event, NSError *error) )completion;
 
+- (NSURLSessionDataTask *)calendarEditEvent:(NSDictionary*)data completion:( void (^)(NSError *error) )completion;
+
 - (NSURLSessionDataTask *)calendarAddTodo:(NSString*)eventId todoList:(NSString*)todoList completion:( void (^)(id event, NSArray* todoArray, NSError *error) )completion;
 
 - (NSURLSessionDataTask *)calendarTodoDone:(NSString*)todoId completion:( void (^)(NSError *error) )completion;

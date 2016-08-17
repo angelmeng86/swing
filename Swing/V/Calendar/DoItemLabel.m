@@ -16,6 +16,8 @@
         self.backgroundColor = [UIColor clearColor];
         self.textLabel = [UITextField new];
         [self addSubview:_textLabel];
+        _textLabel.returnKeyType = UIReturnKeyDone;
+        _textLabel.delegate = self;
         
         UIButton *dotView = [UIButton new];
 //        dotView.backgroundColor = [UIColor clearColor];
@@ -24,6 +26,8 @@
 //        dotView.layer.borderWidth = 2.f;
 //        dotView.layer.masksToBounds = YES;
         [self addSubview:dotView];
+        
+        
         
         [dotView setTitle:@"-" forState:UIControlStateNormal];
         dotView.titleEdgeInsets = UIEdgeInsetsMake(-1, 0, 1, 0);
@@ -46,6 +50,11 @@
         _textLabel.font = [UIFont avenirFontOfSize:14];
     }
     return self;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (void)deleteAction {

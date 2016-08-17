@@ -10,6 +10,13 @@
 #import "ColorLabel.h"
 #import "ToDoListView.h"
 
+@class EventModel;
+@protocol AddEventViewDelegate <NSObject>
+
+- (void)eventViewDidAdded:(NSDate*)date;
+
+@end
+
 @interface AddEventViewController : LMBaseViewController
 @property (weak, nonatomic) IBOutlet UITextField *nameTF;
 @property (weak, nonatomic) IBOutlet UITextField *alertTF;
@@ -22,6 +29,11 @@
 
 @property (weak, nonatomic) IBOutlet ColorLabel *colorCtl;
 @property (weak, nonatomic) IBOutlet ToDoListView *todoCtl;
+
+@property (strong, nonatomic) NSDate* currentDate;
+@property (weak, nonatomic) id delegate;
+//if exits, edit mode
+@property (strong, nonatomic) EventModel* model;
 
 - (IBAction)saveAction:(id)sender;
 

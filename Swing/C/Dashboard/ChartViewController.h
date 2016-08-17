@@ -19,4 +19,6 @@ typedef enum : NSUInteger {
 @property (nonatomic) ChartType type;
 @property (nonatomic) NSUInteger pageIndex;
 
+@property (nonatomic) BOOL isOutdoor;
+
 @end

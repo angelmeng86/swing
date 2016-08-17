@@ -9,6 +9,7 @@
 #import "BaseCalendarViewController.h"
 #import "LMCalendarDayView.h"
 #import "LMCalendarWeekDayView.h"
+#import "AddEventViewController.h"
 #import "CommonDef.h"
 
 @interface BaseCalendarViewController ()
@@ -41,9 +42,12 @@
 
 - (void)addAction:(id)sender {
     UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
-    UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"AddEvent"];
+    AddEventViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"AddEvent"];
+    ctl.delegate = self;
     [self.navigationController pushViewController:ctl animated:YES];
 }
+
+
 
 - (void)leftAction:(id)sender {
     [self.calendarContentView loadPreviousPageWithAnimation];
