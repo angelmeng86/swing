@@ -40,7 +40,7 @@
     json = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
     _user = [[UserModel alloc] initWithString:json error:nil];
     
-    _devicesMAC = [[NSUserDefaults standardUserDefaults] arrayForKey:@"devices"];
+    _deviceMAC = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceMac"];
 }
 
 - (void)setInfo:(LoginedModel *)info {
@@ -55,14 +55,14 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (void)setDevicesMAC:(NSArray *)devicesMAC {
-    _devicesMAC = devicesMAC;
-    [[NSUserDefaults standardUserDefaults] setObject:_devicesMAC forKey:@"devices"];
+- (void)setDeviceMAC:(NSData *)deviceMAC {
+    _deviceMAC = deviceMAC;
+    [[NSUserDefaults standardUserDefaults] setObject:_deviceMAC forKey:@"deviceMac"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)saveInfo {
-    [[NSUserDefaults standardUserDefaults] setObject:_devicesMAC forKey:@"devices"];
+    [[NSUserDefaults standardUserDefaults] setObject:_deviceMAC forKey:@"deviceMac"];
     [[NSUserDefaults standardUserDefaults] setObject:[_info toJSONString] forKey:@"token"];
     [[NSUserDefaults standardUserDefaults] setObject:[_user toJSONString] forKey:@"user"];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -73,11 +73,11 @@
     self.info = nil;
     self.user = nil;
     self.kidsList = nil;
-    self.devicesMAC = nil;
+    self.deviceMAC = nil;
     [self.calendarEventsByMonth removeAllObjects];
     [self.calendarQueue removeAllObjects];
     
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"devices"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"deviceMac"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"token"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user"];
     [[NSUserDefaults standardUserDefaults] synchronize];

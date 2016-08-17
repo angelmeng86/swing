@@ -9,9 +9,9 @@
 #import "JBBaseChartViewController.h"
 
 typedef enum : NSUInteger {
-    ChartTypeWeek,
-    ChartTypeMonth,
     ChartTypeYear,
+    ChartTypeMonth,
+    ChartTypeWeek,
 } ChartType;
 
 @interface ChartViewController : JBBaseChartViewController

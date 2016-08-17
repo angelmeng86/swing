@@ -33,6 +33,9 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 
 @property (nonatomic, strong) NSArray *chartData;
 
+@property (nonatomic, strong) NSArray *indoorData;
+@property (nonatomic, strong) NSArray *outdoorData;
+
 @property (nonatomic) BOOL isLoadData;
 
 @end
@@ -91,8 +94,8 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
             self.titleLabel.text = @"This Year";
         }
             break;
-        default:
-            //ChartTypeWeek
+//        case ChartTypeWeek:
+            default:
         {
 //            [self initFakeData:7 value:0];
             self.stepsChartView = [self createBarChartView];
@@ -146,6 +149,38 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     if (!self.isLoadData) {
         [self reloadChartView];
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSString *macId = [Fun dataToHex:[GlobalCache shareInstance].deviceMAC];
+    if (macId.length == 0) {
+        return;
+    }
+    [[SwingClient sharedClient] deviceGetActivity:macId type:(GetActivityType)_type completion:^(id dailyActs, NSError *error) {
+        if (!error) {
+            LOG_D(@"dailyActs:%@", dailyActs);
+            NSMutableArray *indoors = [NSMutableArray array];
+            NSMutableArray *outdoors = [NSMutableArray array];
+            NSMutableArray *mutableChartData = [NSMutableArray array];
+            for (ActivityResultModel *m in dailyActs) {
+                if ([m.type isEqualToString:@"INDOOR"]) {
+                    [indoors addObject:m];
+                    [mutableChartData addObject:[NSNumber numberWithLong:m.steps]];
+                    
+                    _chartData = [NSArray arrayWithArray:mutableChartData];
+                    [self.stepsChartView reloadData];
+                }
+                else if([m.type isEqualToString:@"OUTDOOR"]) {
+                    [outdoors addObject:m];
+                }
+            }
+            
+        }
+        else {
+            LOG_D(@"deviceGetActivity fail: %@", error);
+        }
+    }];
 }
 
 - (void)reloadChartView {
@@ -299,10 +334,14 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 - (CGFloat)barPaddingForBarChartView:(JBBarChartView *)barChartView
 {
     CGFloat padWidth = barChartView.frame.size.width / (self.chartData.count * 2 - 1);
-    if (padWidth < kJBBarChartViewControllerBarPadding) {
-        return padWidth;
-    }
-    return kJBBarChartViewControllerBarPadding;
+//    if (padWidth < kJBBarChartViewControllerBarPadding) {
+//        return padWidth;
+//    }
+//    if (padWidth > barChartView.frame.size.width / 3) {
+//        return barChartView.frame.size.width / 3;
+//    }
+//    return kJBBarChartViewControllerBarPadding;
+    return padWidth;
 }
 
 #pragma mark - JBLineChartViewDataSource

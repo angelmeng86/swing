@@ -56,7 +56,7 @@ typedef enum : NSUInteger {
 
 @property (nonatomic) long timeStamp;
 @property (nonatomic, strong) NSData *ffa4Data;
-@property (nonatomic, strong) NSData *macAddress;
+
 @property (nonatomic) BOOL readingBattery;
 
 @end
@@ -201,6 +201,7 @@ typedef enum : NSUInteger {
         {
             NSLog(@"SwingSyncMacReaded %@", characteristic.value);
             self.macAddress = characteristic.value;
+            [GlobalCache shareInstance].deviceMAC = self.macAddress;
 //            alertEvent = [NSMutableArray array];
 //            [alertEvent addObject:@60];
 //            [alertEvent addObject:@70];
@@ -214,7 +215,7 @@ typedef enum : NSUInteger {
         case SwingSyncHeaderReaded:
         {
             const Byte *ptr = characteristic.value.bytes;
-            NSLog(@"SwingSyncHeaderReaded %x%x", ptr[0], ptr[1]);
+            NSLog(@"SwingSyncHeaderReaded len %lu %02x%02x", [characteristic.value length], ptr[0], ptr[1]);
             if (ptr[0] == 0x00 && ptr[1] == 0x01) {
                 NSLog(@"Have Data!");
                 //FFA3
@@ -261,7 +262,7 @@ typedef enum : NSUInteger {
         {
             NSLog(@"SwingSyncData2Readed:%lu", characteristic.value.length);
             
-            self.characteristic =[[[self.services objectAtIndex:5] characteristics]objectAtIndex:0];
+            self.characteristic =[[[self.services objectAtIndex:5] characteristics]objectAtIndex:4];
             //    int i = 1;
             Byte array[1];
             if ([_ffa4Data isEqualToData:characteristic.value]) {
@@ -562,6 +563,7 @@ typedef enum : NSUInteger {
             weakSelf.readingBattery = NO;
             const Byte* ptr = characteristic.value.bytes;
             [GlobalCache shareInstance].battery = ptr[0];
+            NSLog(@"battery:%d", ptr[0]);
             [weakSelf writeValue01];
             syncState = SwingSyncBegin;
         }

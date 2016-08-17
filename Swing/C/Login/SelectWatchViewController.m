@@ -265,13 +265,8 @@ typedef enum : NSUInteger {
                 UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
                 KidBindViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"KidBind"];
             ctl.macAddress = characteristics.value;
-            if ([GlobalCache shareInstance].devicesMAC) {
-                [GlobalCache shareInstance].devicesMAC = [[GlobalCache shareInstance].devicesMAC arrayByAddingObject:characteristics.value];
-            }
-            else {
-                [GlobalCache shareInstance].devicesMAC = @[characteristics.value];
-            }
-                [weakSelf.navigationController pushViewController:ctl animated:YES];
+            [GlobalCache shareInstance].deviceMAC = characteristics.value;
+            [weakSelf.navigationController pushViewController:ctl animated:YES];
             
             settingState = SwingSettingNone;
         }

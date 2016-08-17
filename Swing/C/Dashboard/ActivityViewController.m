@@ -38,6 +38,7 @@
     todayCtl.pageIndex = 0;
     
     ChartViewController *weekCtl = [ChartViewController new];
+    weekCtl.type = ChartTypeWeek;
     weekCtl.pageIndex = 1;
     
     ChartViewController *monthCtl = [ChartViewController new];

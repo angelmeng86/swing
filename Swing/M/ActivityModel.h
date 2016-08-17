@@ -19,4 +19,6 @@
 - (void)setIndoorData:(NSData*)data;
 - (void)setOutdoorData:(NSData*)data;
 
+- (void)reset;
+
 @end

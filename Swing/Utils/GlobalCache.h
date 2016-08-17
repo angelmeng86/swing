@@ -45,7 +45,7 @@
 
 @property (strong, nonatomic) LoginedModel* info;
 @property (strong, nonatomic) UserModel* user;
-@property (strong, nonatomic) NSArray* devicesMAC;
+@property (strong, nonatomic) NSData* deviceMAC;
 
 @property (nonatomic) long indoorSteps;
 @property (nonatomic) long outdoorSteps;

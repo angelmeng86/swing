@@ -15,6 +15,9 @@
 
 @property (nonatomic, strong) NSLayoutConstraint *lineWidth;
 
+@property (nonatomic, strong) ActivityResultModel* indoor;
+@property (nonatomic, strong) ActivityResultModel* outdoor;
+
 @end
 
 @implementation TodayChartViewController
@@ -41,7 +44,7 @@
     [rightView autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:_titleLabel];
     
     self.stepProgress.progressTotal = 150;
-    self.stepProgress.progressCounter = 95;
+    self.stepProgress.progressCounter = 0;
     
     self.distanceProgress.progressTotal = 150;
     self.distanceProgress.progressCounter = 0;
@@ -83,14 +86,12 @@
     if (self.indoorBtn == sender) {
         self.indoorBtn.selected = YES;
         self.outdoorBtn.selected = NO;
-        self.stepProgress.progressTotal = [GlobalCache shareInstance].indoorSteps * 2 + 60;
-        self.stepProgress.progressCounter = [GlobalCache shareInstance].indoorSteps;
+        [self reloadData];
     }
     else {
         self.indoorBtn.selected = NO;
         self.outdoorBtn.selected = YES;
-        self.stepProgress.progressTotal = [GlobalCache shareInstance].outdoorSteps * 2 + 60;
-        self.stepProgress.progressCounter = [GlobalCache shareInstance].outdoorSteps;
+        [self reloadData];
     }
     [self.stepProgress setNeedsLayout];
 }
@@ -100,17 +101,54 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)reloadData {
     if (self.indoorBtn.selected) {
-        self.stepProgress.progressTotal = [GlobalCache shareInstance].indoorSteps * 2 + 60;
-        self.stepProgress.progressCounter = [GlobalCache shareInstance].indoorSteps;
+        self.stepProgress.progressTotal = self.indoor.steps * 2;
+        self.stepProgress.progressCounter = self.indoor.steps;
+        self.stepProgress.text = [NSString stringWithFormat:@"Step %ld", self.indoor.steps];
     }
     else {
-        self.stepProgress.progressTotal = [GlobalCache shareInstance].outdoorSteps * 2 + 60;
-        self.stepProgress.progressCounter = [GlobalCache shareInstance].outdoorSteps;
+        self.stepProgress.progressTotal = self.outdoor.steps * 2;
+        self.stepProgress.progressCounter = self.outdoor.steps;
+        self.stepProgress.text = [NSString stringWithFormat:@"Step %ld", self.outdoor.steps];
     }
-    [self.stepProgress setNeedsLayout];
+//    [self.stepProgress setNeedsLayout];
+    [self.stepProgress setNeedsDisplay];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+//    if (self.indoorBtn.selected) {
+//        self.stepProgress.progressTotal = [GlobalCache shareInstance].indoorSteps * 2 + 60;
+//        self.stepProgress.progressCounter = [GlobalCache shareInstance].indoorSteps;
+//    }
+//    else {
+//        self.stepProgress.progressTotal = [GlobalCache shareInstance].outdoorSteps * 2 + 60;
+//        self.stepProgress.progressCounter = [GlobalCache shareInstance].outdoorSteps;
+//    }
+//    [self.stepProgress setNeedsLayout];
+    
+    NSString *macId = [Fun dataToHex:[GlobalCache shareInstance].deviceMAC];
+    if (macId.length == 0) {
+        return;
+    }
+    [[SwingClient sharedClient] deviceGetActivity:macId type:GetActivityTypeDay completion:^(id dailyActs, NSError *error) {
+        if (!error) {
+            LOG_D(@"dailyActs:%@", dailyActs);
+            for (ActivityResultModel *m in dailyActs) {
+                if ([m.type isEqualToString:@"INDOOR"]) {
+                    self.indoor = m;
+                }
+                else if([m.type isEqualToString:@"OUTDOOR"]) {
+                    self.outdoor = m;
+                }
+            }
+            [self reloadData];
+        }
+        else {
+            LOG_D(@"deviceGetActivity fail: %@", error);
+        }
+    }];
 }
 
 /*

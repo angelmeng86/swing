@@ -25,6 +25,7 @@
 @property (nonatomic, weak) id delegate;
 
 @property (nonatomic, strong) NSMutableArray* alertEvents;
+@property (nonatomic, strong) NSData *macAddress;
 
 - (void)beginScan;
 

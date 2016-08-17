@@ -147,8 +147,10 @@ typedef enum : NSUInteger {
         
         [client stopScan];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(eventLoaded:) name:EVENT_LIST_UPDATE_NOTI object:nil];
-        [[GlobalCache shareInstance] queryMonthEvents:[NSDate date]];
+//        [[GlobalCache shareInstance] queryMonthEvents:[NSDate date]];
 //        [client syncDevice];
+        [client syncDevice];
+        self.activitys = [NSMutableArray array];
     }
     else if (_status == SyncStatusSyncCompleted) {
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
@@ -179,7 +181,36 @@ typedef enum : NSUInteger {
 
 - (void)bluetoothClientSyncFinished {
     client.delegate = nil;
-    [self changeStatus:SyncStatusSyncCompleted];
+//    [self changeStatus:SyncStatusSyncCompleted];
+    
+    if (_activitys.count == 0) {
+        ActivityModel *model = [ActivityModel new];
+        model.macId = [Fun dataToHex:client.macAddress];
+        [model reset];
+        _activitys = [NSMutableArray arrayWithObject:model];
+    }
+    [self uploadData];
+}
+
+- (void)uploadData {
+    ActivityModel *model = [_activitys firstObject];
+    if (model) {
+        [[SwingClient sharedClient] deviceUploadRawData:model completion:^(NSError *error) {
+            if (!error) {
+                [_activitys removeObject:model];
+                [self uploadData];
+            }
+            else {
+                LOG_D(@"deviceUploadRawData fail: %@", error);
+                [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                [self changeStatus:SyncStatusSyncCompleted];
+            }
+            
+        }];
+    }
+    else {
+        [self changeStatus:SyncStatusSyncCompleted];
+    }
 }
 
 @end

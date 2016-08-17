@@ -30,14 +30,14 @@
     UIDatePicker *datePicker = [[UIDatePicker alloc] init];
     datePicker.datePickerMode = UIDatePickerModeDateAndTime;
     datePicker.minimumDate = [NSDate date];
-    datePicker.minuteInterval = 30;
+//    datePicker.minuteInterval = 5;
     self.startTF.inputView = datePicker;
     [datePicker addTarget:self action:@selector(startChange:) forControlEvents:UIControlEventValueChanged];
     
     UIDatePicker *datePicker2 = [[UIDatePicker alloc] init];
     datePicker2.datePickerMode = UIDatePickerModeTime;
     datePicker2.minimumDate = [NSDate date];
-    datePicker2.minuteInterval = 10;
+//    datePicker2.minuteInterval = 5;
     self.endTF.inputView = datePicker2;
     [datePicker2 addTarget:self action:@selector(endChange:) forControlEvents:UIControlEventValueChanged];
     
