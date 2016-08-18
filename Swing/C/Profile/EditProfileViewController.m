@@ -51,6 +51,21 @@
     self.emailTF.userInteractionEnabled = NO;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userProfileLoaded:) name:USER_PROFILE_LOAD_NOTI object:nil];
+    
+    self.firstNameTF.delegate = self;
+    self.lastNameTF.delegate = self;
+    self.phoneTF.delegate = self;
+    self.emailTF.delegate = self;
+    
+    self.streetTF.delegate = self;
+    self.cityTF.delegate = self;
+    self.stateTF.delegate = self;
+    self.zipCodeTF.delegate = self;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (void)userProfileLoaded:(NSNotification*)notification {

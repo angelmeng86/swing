@@ -13,4 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *checkBtn;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 
+- (void)update:(BOOL)selected;
+
 @end

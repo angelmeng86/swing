@@ -38,13 +38,19 @@
     
     UIDatePicker *datePicker2 = [[UIDatePicker alloc] init];
     datePicker2.datePickerMode = UIDatePickerModeTime;
-    datePicker2.minimumDate = [NSDate date];
+    datePicker2.minimumDate = [datePicker.date dateByAddingTimeInterval:30 * 60];
 //    datePicker2.minuteInterval = 5;
     self.endTF.inputView = datePicker2;
     [datePicker2 addTarget:self action:@selector(endChange:) forControlEvents:UIControlEventValueChanged];
     
     self.alertTF.delegate = self;
     self.repeatTF.delegate = self;
+    
+    self.nameTF.delegate = self;
+    self.stateTF.delegate = self;
+    self.cityTF.delegate = self;
+    self.descTF.delegate = self;
+    
 //    isAddTip = NO;
     
     isAddTip = YES;
@@ -60,6 +66,7 @@
         for (AlertModel *m in alertArray) {
             if ([m.value intValue] == self.model.alert) {
                 self.alertTF.text = m.text;
+                break;
             }
         }
         self.descTF.text = self.model.desc;
@@ -72,23 +79,36 @@
         self.colorCtl.selectedColor = self.model.color;
         [self.todoCtl setItemList:self.model.todo];
     }
+    else {
+        self.startTF.text = [Fun dateToString:datePicker.minimumDate];
+        self.endTF.text = [Fun dateToString:datePicker2.minimumDate];
+    }
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    [[IQKeyboardManager sharedManager] resignFirstResponder];
+    
     if (textField == self.alertTF) {
+        [[IQKeyboardManager sharedManager] resignFirstResponder];
         AlertSelectViewController *ctl = [[AlertSelectViewController alloc] initWithStyle:UITableViewStylePlain];
         ctl.delegate = self;
         [self.navigationController pushViewController:ctl animated:YES];
+        return NO;
     }
     else if (textField == self.repeatTF) {
+        [[IQKeyboardManager sharedManager] resignFirstResponder];
         ChoicesViewController *ctl = [[ChoicesViewController alloc] initWithStyle:UITableViewStylePlain];
         ctl.delegate = self;
         ctl.navigationItem.title = self.repeatTF.placeholder;
         ctl.textArray = @[@"", @"Daily repeat", @"Weekly repeat", @"Monthly repeat"];
         [self.navigationController pushViewController:ctl animated:YES];
+        return NO;
     }
-    return NO;
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (void)choicesViewControllerDidSelected:(NSString*)text {
@@ -105,7 +125,7 @@
 - (void)startChange:(UIDatePicker*)datePicker {
     self.startTF.text = [Fun dateToString:datePicker.date];
     UIDatePicker* dp = (UIDatePicker*)self.endTF.inputView;
-    dp.minimumDate = [datePicker.date dateByAddingTimeInterval:20 * 60];
+    dp.minimumDate = [datePicker.date dateByAddingTimeInterval:30 * 60];
     if (NSOrderedDescending == [dp.date compare:datePicker.date]) {
 //        dp.date = datePicker.date;
         self.endTF.text = [Fun dateToString:dp.minimumDate];
@@ -171,7 +191,15 @@
             [data setObject:self.descTF.text forKey:@"description"];
         }
         if (self.alert.text.length > 0) {
-            [data setObject:self.alert.text forKey:@"alert"];
+            NSString *path = [[NSBundle mainBundle] pathForResource:@"alert" ofType:@"json"];
+            NSArray *alertArray = [AlertModel arrayOfModelsFromString:[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil] error:nil];
+            for (AlertModel *m in alertArray) {
+                if ([m.text isEqualToString:self.alertTF.text]) {
+                    [data setObject:m.value forKey:@"alert"];
+                    break;
+                }
+            }
+            
         }
         if (self.cityTF.text.length > 0) {
             [data setObject:self.cityTF.text forKey:@"city"];
@@ -184,9 +212,21 @@
             [data setObject:[NSNumber numberWithInt:self.model.objId] forKey:@"id"];
             [[SwingClient sharedClient] calendarEditEvent:data completion:^(NSError *error) {
                 if (!error) {
-                    [[SwingClient sharedClient] calendarAddTodo:[NSString stringWithFormat:@"%d", _model.objId] todoList:[self.todoCtl.itemList componentsJoinedByString:@"|"] completion:^(id event, NSArray *todoArray, NSError *error) {
+                    self.model.eventName = data[@"eventName"];
+                    self.model.alert = [data[@"alert"] intValue];
+                    self.model.city = data[@"city"];
+                    self.model.state = data[@"state"];
+                    self.model.desc = data[@"description"];
+                    self.model.color = _colorCtl.selectedColor;
+                    UIDatePicker *datePicker = (UIDatePicker*)self.startTF.inputView;
+                    self.model.startDate = datePicker.date;
+                    UIDatePicker *datePicker2 = (UIDatePicker*)self.endTF.inputView;
+                    self.model.endDate = datePicker2.date;
+                    
+                    [[SwingClient sharedClient] calendarAddTodo:[NSString stringWithFormat:@"%d", _model.objId] todoList:[self.todoCtl.itemList componentsJoinedByString:@"|"] completion:^(id event, NSArray<ToDoModel> *todoArray, NSError *error) {
                         if (!error) {
 //                            [[GlobalCache shareInstance] addEvent:event];
+                            self.model.todo = todoArray;
                             [SVProgressHUD dismiss];
                             if ([_delegate respondsToSelector:@selector(eventViewDidAdded:)]) {
                                 UIDatePicker *datePicker = (UIDatePicker*)self.startTF.inputView;

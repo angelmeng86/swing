@@ -30,9 +30,9 @@
     self.selectTableView.backgroundView = bgView;
     self.selectTableView.tableFooterView = [UIView new];
     
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"edit_btn") style:UIBarButtonItemStylePlain target:self action:@selector(editEventAction)];
-    
-    self.navigationItem.rightBarButtonItem = nil;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"edit_btn") style:UIBarButtonItemStylePlain target:self action:@selector(editEventAction)];
+    [self reloadData];
+//    self.navigationItem.rightBarButtonItem = nil;
 }
 
 - (void)reloadData {
@@ -89,8 +89,12 @@
     // Configure the cell.
     ToDoModel *model = _model.todo[indexPath.row];
     cell.contentLabel.text = model.text;
-    [cell setSelected:[self.selected containsObject:model] animated:YES];
-    
+    if ([model.status isEqualToString:@"DONE"]) {
+        [cell update:YES];
+    }
+    else {
+        [cell update:[self.selected containsObject:model]];
+    }
     return cell;
 }
 
@@ -122,6 +126,7 @@
     }
     [[SwingClient sharedClient] calendarTodoDone:[NSString stringWithFormat:@"%d", model.objId] completion:^(NSError *error) {
         if (!error) {
+            model.status = @"DONE";
             [self.selected removeObject:model];
             if (![self uploadDoneInfo]) {
                 [SVProgressHUD dismiss];

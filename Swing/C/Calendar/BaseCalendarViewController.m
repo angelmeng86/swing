@@ -121,13 +121,13 @@
     [label addSubview:leftBtn];
     [label addSubview:rightBtn];
     
-    [leftBtn autoSetDimensionsToSize:CGSizeMake(12, 24)];
+    [leftBtn autoSetDimensionsToSize:CGSizeMake(120, 24)];
     [leftBtn autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
-    [leftBtn autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:60];
+    [leftBtn autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:0];
     
-    [rightBtn autoSetDimensionsToSize:CGSizeMake(12, 24)];
+    [rightBtn autoSetDimensionsToSize:CGSizeMake(120, 24)];
     [rightBtn autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
-    [rightBtn autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:60];
+    [rightBtn autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:0];
     label.userInteractionEnabled = YES;
     return label;
 }

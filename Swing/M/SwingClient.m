@@ -339,6 +339,7 @@
 }
 
 - (NSURLSessionDataTask *)calendarAddTodo:(NSString*)eventId todoList:(NSString*)todoList completion:( void (^)(id event, NSArray* todoArray, NSError *error) )completion {
+    LOG_D(@"eventId:%@ todoList:%@", eventId, todoList);
     NSURLSessionDataTask *task = [self POST:@"/calendarEvent/addTodo" parameters:@{@"eventId":eventId, @"todoList":todoList} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"calendarAddTodo info:%@", responseObject);
@@ -365,6 +366,27 @@
     NSURLSessionDataTask *task = [self POST:@"/calendarEvent/todoDone" parameters:@{@"todoId":todoId} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"calendarTodoDone info:%@", responseObject);
+            NSError *err = [self getErrorMessage:responseObject];
+            if (err) {
+                completion(err);
+            }
+            else {
+                completion(nil);
+            }
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(error);
+        });
+    }];
+    
+    return task;
+}
+
+- (NSURLSessionDataTask *)calendarTodoDelete:(NSString*)eventId todoId:(NSString*)todoId completion:( void (^)(NSError *error) )completion {
+    NSURLSessionDataTask *task = [self POST:@"/calendarEvent/deleteTodo" parameters:@{@"eventId":todoId, @"todoId":todoId} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LOG_D(@"calendarTodoDelete info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
             if (err) {
                 completion(err);
