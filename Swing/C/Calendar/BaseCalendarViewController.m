@@ -30,7 +30,7 @@
 //    [self createRandomEvents];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(eventLoaded:) name:EVENT_LIST_UPDATE_NOTI object:nil];
-    [[GlobalCache shareInstance] queryMonthEvents:_dateSelected];
+//    [[GlobalCache shareInstance] queryMonthEvents:_dateSelected];
     
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     btn.titleLabel.font = [UIFont systemFontOfSize:28];
@@ -81,6 +81,11 @@
 }
 
 #pragma mark - Views customization
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[GlobalCache shareInstance] queryMonthEvents:_dateSelected];
+}
 
 /*!
  * Indicate the previous page became the current page.

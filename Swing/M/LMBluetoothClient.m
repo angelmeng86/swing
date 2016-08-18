@@ -63,6 +63,11 @@ typedef enum : NSUInteger {
 
 @implementation LMBluetoothClient
 
+- (void)setCharacteristic:(CBCharacteristic *)characteristic {
+    _characteristic = characteristic;
+    NSLog(@"setCharacteristic:%@", characteristic);
+}
+
 - (id)init {
     if (self = [super init]) {
         //初始化BabyBluetooth 蓝牙库
@@ -174,7 +179,7 @@ typedef enum : NSUInteger {
         EventModel *model = [_alertEvents firstObject];
 //        NSDate * twoM = [[NSDate date] dateByAddingTimeInterval:[[alertEvent firstObject] intValue]];
         [_alertEvents removeObjectAtIndex:0];
-        long date = [model.startDate timeIntervalSince1970] - 3 * 60 * 60;
+        long date = [model.startDate timeIntervalSince1970] - 4 * 60 * 60;
         NSData *timedata = [Fun longToByteArray:date];
         NSLog(@"穿进去的值是！！！！＝＝＝＝＝ %@",timedata);
         self.characteristic =[[[self.services objectAtIndex:5] characteristics]objectAtIndex:7];
@@ -216,7 +221,7 @@ typedef enum : NSUInteger {
         {
             const Byte *ptr = characteristic.value.bytes;
             NSLog(@"SwingSyncHeaderReaded len %lu %02x%02x", [characteristic.value length], ptr[0], ptr[1]);
-            if (ptr[0] == 0x00 && ptr[1] == 0x01) {
+            if (ptr[0] == 0x01 && ptr[1] == 0x00) {
                 NSLog(@"Have Data!");
                 //FFA3
                 self.characteristic =[[[self.services objectAtIndex:5] characteristics]objectAtIndex:2];
@@ -224,7 +229,7 @@ typedef enum : NSUInteger {
                 [self.currPeripheral readValueForCharacteristic:self.characteristic];
                 syncState = SwingSyncTimeReaded;
             }
-            else if (ptr[0] == 0x01 && ptr[1] == 0x00) {
+            else if (ptr[0] == 0x00 && ptr[1] == 0x01) {
                 NSLog(@"No Data!");
                 syncState = SwingSyncNone;
                 //断开连接
@@ -315,7 +320,7 @@ typedef enum : NSUInteger {
             
             NSLog(@"时间戳为！！！！＝＝＝＝＝＝＝＝＝＝ @%@",TimeStamp);
             
-            long date = [[NSDate date] timeIntervalSince1970] - 3 * 60 * 60;
+            long date = [[NSDate date] timeIntervalSince1970] - 4 * 60 * 60;
             NSData *data = [Fun longToByteArray:date];
             
             self.characteristic =[[[self.services objectAtIndex:5] characteristics]objectAtIndex:2];

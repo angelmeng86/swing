@@ -34,7 +34,8 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 @property (nonatomic, strong) UIColor *stepChartColor;
 @property (nonatomic, strong) UIColor *distanceChartColor;
 
-@property (nonatomic, strong) NSArray *chartData;
+@property (nonatomic, strong) NSArray *stepChartData;
+@property (nonatomic, strong) NSArray *distanceChartData;
 
 @property (nonatomic, strong) NSArray *indoorData;
 @property (nonatomic, strong) NSArray *outdoorData;
@@ -59,7 +60,8 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
         }
         
     }
-    _chartData = [NSArray arrayWithArray:mutableChartData];
+    _stepChartData = [NSArray arrayWithArray:mutableChartData];
+    _distanceChartData = [NSArray arrayWithArray:mutableChartData];
 }
 
 - (void)viewDidLoad {
@@ -219,7 +221,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
             break;
     }
     
-    _chartData = [NSArray arrayWithArray:mutableChartData];
+    _stepChartData = [NSArray arrayWithArray:mutableChartData];
     [self.stepsChartView reloadData];
     
     [_stepsChartView reloadData];
@@ -294,11 +296,18 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 }
 
 - (NSUInteger)numberOfBarsInChartFooterView:(ChartFooterView *)footerView {
-    return [self.chartData count];
+    if (footerView == self.stepFooter) {
+        return [self.stepChartData count];
+    }
+    else {
+        return [self.distanceChartData count];
+    }
+    
 }
 
 - (NSString*)chartFooterView:(ChartFooterView *)footerView textAtIndex:(NSUInteger)index {
     if (_type == ChartTypeWeek) {
+        
         return [NSString stringWithFormat:@"%02d/%02d", 7, 18 + index];
     }
     else {
@@ -328,7 +337,12 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 
 - (NSUInteger)numberOfBarsInBarChartView:(JBBarChartView *)barChartView
 {
-    return [self.chartData count];
+    if(barChartView == _stepsChartView) {
+        return [self.stepChartData count];
+    }
+    else {
+        return [self.distanceChartData count];
+    }
 }
 
 - (void)barChartView:(JBBarChartView *)barChartView didSelectBarAtIndex:(NSUInteger)index touchPoint:(CGPoint)touchPoint
@@ -347,7 +361,12 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 
 - (CGFloat)barChartView:(JBBarChartView *)barChartView heightForBarViewAtIndex:(NSUInteger)index
 {
-    return [[self.chartData objectAtIndex:index] floatValue];
+    if(barChartView == _stepsChartView) {
+        return [[self.stepChartData objectAtIndex:index] floatValue];
+    }
+    else {
+        return [[self.distanceChartData objectAtIndex:index] floatValue];
+    }
 }
 
 - (UIColor *)barChartView:(JBBarChartView *)barChartView colorForBarViewAtIndex:(NSUInteger)index
@@ -382,15 +401,13 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 
 - (CGFloat)barPaddingForBarChartView:(JBBarChartView *)barChartView
 {
-    CGFloat padWidth = barChartView.frame.size.width / (self.chartData.count * 2 - 1);
-//    if (padWidth < kJBBarChartViewControllerBarPadding) {
-//        return padWidth;
-//    }
-//    if (padWidth > barChartView.frame.size.width / 3) {
-//        return barChartView.frame.size.width / 3;
-//    }
-//    return kJBBarChartViewControllerBarPadding;
-    return padWidth;
+    NSUInteger count = barChartView == _stepsChartView ? self.stepChartData.count : self.distanceChartData.count;
+    CGFloat padWidth = barChartView.frame.size.width / (count * 2 - 1);
+    if (padWidth < kJBBarChartViewControllerBarPadding) {
+        return padWidth;
+    }
+    return kJBBarChartViewControllerBarPadding;
+//    return padWidth;
 }
 
 #pragma mark - JBLineChartViewDataSource
@@ -402,7 +419,8 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 
 - (NSUInteger)lineChartView:(JBLineChartView *)lineChartView numberOfVerticalValuesAtLineIndex:(NSUInteger)lineIndex
 {
-    return [self.chartData count];
+    NSArray *chartData = lineChartView == _stepsChartView ? self.stepChartData : self.distanceChartData;
+    return [chartData count];
 }
 
 - (BOOL)lineChartView:(JBLineChartView *)lineChartView showsDotsForLineAtLineIndex:(NSUInteger)lineIndex
@@ -419,7 +437,8 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 
 - (CGFloat)lineChartView:(JBLineChartView *)lineChartView verticalValueForHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex
 {
-    return [[self.chartData objectAtIndex:horizontalIndex] floatValue];
+    NSArray *chartData = lineChartView == _stepsChartView ? self.stepChartData : self.distanceChartData;
+    return [[chartData objectAtIndex:horizontalIndex] floatValue];
 }
 
 - (void)lineChartView:(JBLineChartView *)lineChartView didSelectLineAtIndex:(NSUInteger)lineIndex horizontalIndex:(NSUInteger)horizontalIndex touchPoint:(CGPoint)touchPoint
@@ -448,7 +467,8 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 }
 
 - (UIView *)lineChartView:(JBLineChartView *)lineChartView dotViewAtHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex {
-    if (horizontalIndex == 0 || self.chartData.count == horizontalIndex + 1) {
+    NSArray *chartData = lineChartView == _stepsChartView ? self.stepChartData : self.distanceChartData;
+    if (horizontalIndex == 0 || chartData.count == horizontalIndex + 1) {
         UIView *dot = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 16, 16)];
         dot.backgroundColor = [UIColor whiteColor];
         dot.layer.cornerRadius = 8.0f;

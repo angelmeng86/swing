@@ -450,7 +450,7 @@ typedef enum : NSUInteger {
     
     NSLog(@"时间戳为！！！！＝＝＝＝＝＝＝＝＝＝ @%@",TimeStamp);
     
-    long date = [[NSDate date] timeIntervalSince1970] - 3 * 60 * 60;
+    long date = [[NSDate date] timeIntervalSince1970] - 4 * 60 * 60;
     NSData *data = [Fun longToByteArray:date];
     
     NSLog(@"穿进去的值是！！！！＝＝＝＝＝ %@",data);

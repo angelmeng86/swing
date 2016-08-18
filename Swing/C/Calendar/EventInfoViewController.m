@@ -30,9 +30,9 @@
     self.selectTableView.backgroundView = bgView;
     self.selectTableView.tableFooterView = [UIView new];
     
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"edit_btn") style:UIBarButtonItemStylePlain target:self action:@selector(editEventAction)];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editEventAction)];
-        self.navigationItem.rightBarButtonItem = nil;
+    self.navigationItem.rightBarButtonItem = nil;
 }
 
 - (void)reloadData {

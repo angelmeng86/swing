@@ -470,6 +470,7 @@
             
             break;
     }
+    LOG_D(@"macId:%@", macId);
     NSURLSessionDataTask *task = [self POST:url parameters:@{@"macId":macId} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"deviceGetActivity info:%@", responseObject);
