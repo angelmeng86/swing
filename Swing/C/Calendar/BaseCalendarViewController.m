@@ -143,7 +143,7 @@
         dateFormatter.timeZone = _calendarManager.dateHelper.calendar.timeZone;
     }
     
-    menuItemView.text = [dateFormatter stringFromDate:date];
+    menuItemView.text = [dateFormatter stringFromDate:_dateSelected];//[dateFormatter stringFromDate:date];
 }
 
 - (UIView<JTCalendarWeekDay> *)calendarBuildWeekDayView:(JTCalendarManager *)calendar
