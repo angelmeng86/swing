@@ -76,6 +76,14 @@
                                 //Login success
                                 [[SwingClient sharedClient] userRetrieveProfileWithCompletion:^(id user, NSArray *kids, NSError *error) {
                                     if (!error) {
+                                        for (KidModel *kid in kids) {
+                                            if (kid.note.length > 0) {
+                                                //默认设置第一个Kid的设备为当前设备
+                                                [GlobalCache shareInstance].deviceMAC = [Fun hexToData:kid.note];
+                                                break;
+                                            }
+                                        }
+                                        
                                         [SVProgressHUD dismiss];
                                         UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab2" bundle:nil];
                                         UIViewController *ctl = [stroyBoard instantiateInitialViewController];

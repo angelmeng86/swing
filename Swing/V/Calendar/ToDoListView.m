@@ -90,6 +90,9 @@
             [array addObject:label.textLabel.text];
         }
     }
+    if (_textField.text.length > 0) {
+        [array addObject:_textField.text];
+    }
     return array;
 }
 

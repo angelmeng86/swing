@@ -210,38 +210,31 @@
         
         if (self.model) {
             [data setObject:[NSNumber numberWithInt:self.model.objId] forKey:@"id"];
-            [[SwingClient sharedClient] calendarEditEvent:data completion:^(NSError *error) {
+            [data setObject:[self.todoCtl.itemList componentsJoinedByString:@"|"] forKey:@"todoList"];
+            [[SwingClient sharedClient] calendarEditEvent:data completion:^(id event,NSError *error) {
                 if (!error) {
-                    self.model.eventName = data[@"eventName"];
-                    self.model.alert = [data[@"alert"] intValue];
-                    self.model.city = data[@"city"];
-                    self.model.state = data[@"state"];
-                    self.model.desc = data[@"description"];
-                    self.model.color = _colorCtl.selectedColor;
-                    UIDatePicker *datePicker = (UIDatePicker*)self.startTF.inputView;
-                    self.model.startDate = datePicker.date;
-                    UIDatePicker *datePicker2 = (UIDatePicker*)self.endTF.inputView;
-                    self.model.endDate = datePicker2.date;
                     
-                    [[SwingClient sharedClient] calendarAddTodo:[NSString stringWithFormat:@"%d", _model.objId] todoList:[self.todoCtl.itemList componentsJoinedByString:@"|"] completion:^(id event, NSArray<ToDoModel> *todoArray, NSError *error) {
-                        if (!error) {
-//                            [[GlobalCache shareInstance] addEvent:event];
-                            self.model.todo = todoArray;
-                            [SVProgressHUD dismiss];
-                            if ([_delegate respondsToSelector:@selector(eventViewDidAdded:)]) {
-                                UIDatePicker *datePicker = (UIDatePicker*)self.startTF.inputView;
-                                [_delegate eventViewDidAdded:datePicker.date];
-                            }
-                            [self.navigationController popViewControllerAnimated:YES];
-                        }
-                        else {
-                            LOG_D(@"calendarAddTodo fail: %@", error);
-                            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-                        }
-                    }];
+                    [self.model mergeFromDictionary:[event toDictionary] useKeyMapping:YES error:nil];
+                    
+//                    self.model.eventName = data[@"eventName"];
+//                    self.model.alert = [data[@"alert"] intValue];
+//                    self.model.city = data[@"city"];
+//                    self.model.state = data[@"state"];
+//                    self.model.desc = data[@"description"];
+//                    self.model.color = _colorCtl.selectedColor;
+//                    UIDatePicker *datePicker = (UIDatePicker*)self.startTF.inputView;
+//                    self.model.startDate = datePicker.date;
+//                    UIDatePicker *datePicker2 = (UIDatePicker*)self.endTF.inputView;
+//                    self.model.endDate = datePicker2.date;
+                    
+                    [SVProgressHUD dismiss];
+                    if ([_delegate respondsToSelector:@selector(eventViewDidAdded:)]) {
+                        [_delegate eventViewDidAdded:_model.startDate];
+                    }
+                    [self.navigationController popViewControllerAnimated:YES];
                 }
                 else {
-                    LOG_D(@"calendarAddEvent fail: %@", error);
+                    LOG_D(@"calendarEditEvent fail: %@", error);
                     [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
                 }
             }];

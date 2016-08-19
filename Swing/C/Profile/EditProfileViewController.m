@@ -9,8 +9,8 @@
 #import "EditProfileViewController.h"
 #import "CommonDef.h"
 #import "VPImageCropperViewController.h"
-#import "UIButton+AFNetworking.h"
 #import "ProfileDeviceCell.h"
+#import <SDWebImage/UIButton+WebCache.h>
 
 @interface EditProfileViewController ()<UITextFieldDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, VPImageCropperDelegate>
 {
@@ -34,7 +34,7 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(doneAction:)];
     
     if ([GlobalCache shareInstance].info.profileImage) {
-        [self.imageBtn setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[@"http://avatar.childrenlab.com/" stringByAppendingString:[GlobalCache shareInstance].info.profileImage]]];
+        [self.imageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[@"http://avatar.childrenlab.com/" stringByAppendingString:[GlobalCache shareInstance].info.profileImage]] forState:UIControlStateNormal];
     }
     
     if ([GlobalCache shareInstance].user) {
@@ -126,7 +126,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [GlobalCache shareInstance].kidsList.count + 1;
+    return [GlobalCache shareInstance].kidsList.count;// + 1;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
@@ -151,7 +151,7 @@
     
     KidModel *model = [[GlobalCache shareInstance].kidsList objectAtIndex:indexPath.row];
     if (model.profile) {
-        [cell.imageBtn setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[@"http://avatar.childrenlab.com/" stringByAppendingString:model.profile]]];
+        [cell.imageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[@"http://avatar.childrenlab.com/" stringByAppendingString:model.profile]] forState:UIControlStateNormal];
     }
     else {
         [cell.imageBtn setBackgroundImage:nil forState:UIControlStateNormal];

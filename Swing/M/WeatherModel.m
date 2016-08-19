@@ -18,18 +18,20 @@
     NSString *url = [NSString stringWithFormat:@"http://api.wunderground.com/api/4e52e4fac905f5f7/geolookup/q/%@,%@.json", lat, lon];
     [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            LOG_D(@"geolookup info:%@", responseObject);
+//            LOG_D(@"geolookup info:%@", responseObject);
             NSString *state = responseObject[@"location"][@"state"];
             NSString *city = responseObject[@"location"][@"city"];
+            LOG_D(@"state:%@ city:%@", state, city);
             if (state && city) {
                 NSString *url2 = [NSString stringWithFormat:@"http://api.wunderground.com/api/4e52e4fac905f5f7/conditions/q/%@/%@.json", state, [city stringByReplacingOccurrencesOfString:@" " withString:@"_"]];
                 [manager GET:url2 parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        LOG_D(@"conditions info:%@", responseObject);
+//                        LOG_D(@"conditions info:%@", responseObject);
                         NSString *uv = responseObject[@"current_observation"][@"UV"];
                         NSNumber *temp_c = responseObject[@"current_observation"][@"temp_c"];
                         NSNumber *temp_f = responseObject[@"current_observation"][@"temp_f"];
                         NSString *relative_humidity = responseObject[@"current_observation"][@"relative_humidity"];
+                        LOG_D(@"uv:%@ temp_c:%@ temp_f:%@ relative_humidity:%@", uv, temp_c, temp_f, relative_humidity);
                         if (uv && temp_c && temp_f && relative_humidity) {
                             WeatherModel *model = [WeatherModel new];
                             model.uvi = [uv intValue];
@@ -41,7 +43,7 @@
                             completion(model, nil);
                         }
                         else {
-                            NSError* err = [NSError errorWithDomain:@"SwingDomain" code:-2 userInfo:[NSDictionary dictionaryWithObject:@"can't find." forKey:NSLocalizedDescriptionKey]];
+                            NSError* err = [NSError errorWithDomain:@"SwingDomain" code:-2 userInfo:[NSDictionary dictionaryWithObject:@"can't find.." forKey:NSLocalizedDescriptionKey]];
                             completion(nil, err);
                         }
                     });

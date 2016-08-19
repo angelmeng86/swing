@@ -8,7 +8,7 @@
 
 #import "ProfileViewController.h"
 #import "CommonDef.h"
-#import "UIButton+AFNetworking.h"
+#import <SDWebImage/UIButton+WebCache.h>
 #import "ProfileDeviceCell.h"
 #import "AppDelegate.h"
 
@@ -55,7 +55,7 @@
     [super viewDidAppear:animated];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editProfileAction:)];
     if ([GlobalCache shareInstance].info.profileImage) {
-        [self.headerBtn setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[@"http://avatar.childrenlab.com/" stringByAppendingString:[GlobalCache shareInstance].info.profileImage]]];
+        [self.headerBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[@"http://avatar.childrenlab.com/" stringByAppendingString:[GlobalCache shareInstance].info.profileImage]] forState:UIControlStateNormal];
     }
     [self loadProfile];
     [[GlobalCache shareInstance] queryProfile];
@@ -95,7 +95,7 @@
     ProfileDeviceCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DeviceCell" forIndexPath:indexPath];
     KidModel *model = [[GlobalCache shareInstance].kidsList objectAtIndex:indexPath.row];
     if (model.profile) {
-        [cell.imageBtn setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:[@"http://avatar.childrenlab.com/" stringByAppendingString:model.profile]]];
+        [cell.imageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[@"http://avatar.childrenlab.com/" stringByAppendingString:model.profile]] forState:UIControlStateNormal];
     }
     else {
         [cell.imageBtn setBackgroundImage:nil forState:UIControlStateNormal];

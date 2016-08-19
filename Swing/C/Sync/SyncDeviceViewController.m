@@ -8,7 +8,7 @@
 
 #import "SyncDeviceViewController.h"
 #import "CommonDef.h"
-#import "UIImageView+AFNetworking.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface SyncDeviceViewController ()
 
@@ -31,7 +31,7 @@
     self.navigationItem.title = @"Sync";
     
     if ([GlobalCache shareInstance].info.profileImage) {
-        [self.imageView setImageWithURL:[NSURL URLWithString:[@"http://avatar.childrenlab.com/" stringByAppendingString:[GlobalCache shareInstance].info.profileImage]]];
+        [self.imageView sd_setImageWithURL:[NSURL URLWithString:[@"http://avatar.childrenlab.com/" stringByAppendingString:[GlobalCache shareInstance].info.profileImage]]];
     }
     if ([GlobalCache shareInstance].user) {
         self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", [GlobalCache shareInstance].user.firstName, [GlobalCache shareInstance].user.lastName];

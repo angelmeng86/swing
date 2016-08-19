@@ -53,6 +53,8 @@
 
 - (void)eventViewDidAdded:(NSDate*)date {
     [self reloadData];
+    self.dateSelected = date;
+    [self.calendarManager setDate:date];
 }
 
 - (NSString*)getTitle {

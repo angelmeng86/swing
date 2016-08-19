@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CommonDef.h"
+#import "JSONModel.h"
 
 #define USER_PROFILE_LOAD_NOTI @"USER_PROFILE_LOAD_NOTI"
 #define KIDS_LIST_LOAD_NOTI @"KIDS_LIST_LOAD_NOTI"

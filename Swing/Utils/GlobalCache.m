@@ -68,6 +68,10 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+//- (void)setKidsList:(NSArray *)kidsList {
+//    _kidsList = kidsList;
+//}
+
 - (void)logout {
 //    [[SwingClient sharedClient] invalidateSessionCancelingTasks:YES];
     self.info = nil;
@@ -77,6 +81,7 @@
     [self.calendarEventsByMonth removeAllObjects];
     [self.calendarQueue removeAllObjects];
     
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"kids"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"deviceMac"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"token"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user"];

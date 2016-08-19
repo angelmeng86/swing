@@ -143,6 +143,7 @@
                 NSArray *kids = [KidModel arrayOfModelsFromDictionaries:responseObject[@"kids"] error:nil];
                 [GlobalCache shareInstance].kidsList = kids;
                 [GlobalCache shareInstance].user = model;
+                
                 completion(model, kids, nil);
             }
             
@@ -317,21 +318,23 @@
     return task;
 }
 
-- (NSURLSessionDataTask *)calendarEditEvent:(NSDictionary*)data completion:( void (^)(NSError *error) )completion {
-    NSURLSessionDataTask *task = [self POST:@"/calendarEvent/editEvent" parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+- (NSURLSessionDataTask *)calendarEditEvent:(NSDictionary*)data completion:( void (^)(id event, NSError *error) )completion {
+    LOG_D(@"data:%@", data);
+    NSURLSessionDataTask *task = [self POST:@"/calendarEvent/editEventWithTodo" parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"calendarEditEvent info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
             if (err) {
-                completion(err);
+                completion(nil, err);
             }
             else {
-                completion(nil);
+                EventModel *event = [[EventModel alloc] initWithDictionary:responseObject[@"event"] error:&err];
+                completion(event, nil);
             }
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            completion(error);
+           completion(nil, error);
         });
     }];
     
