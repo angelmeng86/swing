@@ -43,8 +43,24 @@
     _label.textColor = [UIColor whiteColor];
     _label.font = [UIFont avenirFontOfSize:15];
     _label.adjustsFontSizeToFitWidth = YES;
-    [_label autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeBottom];
+    [_label autoPinEdgeToSuperviewEdge:ALEdgeLeading];
+    [_label autoPinEdgeToSuperviewEdge:ALEdgeTrailing];
+    [_label autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0 relation:NSLayoutRelationLessThanOrEqual];
+    NSLayoutConstraint *bottom = [_label autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:0 relation:NSLayoutRelationGreaterThanOrEqual];
+    bottom.priority = UILayoutPriorityDefaultHigh;
+    
     [_label autoSetDimension:ALDimensionHeight toSize:20];
+    
+    self.dateLabel = [UILabel new];
+    [self addSubview:_dateLabel];
+    _dateLabel.textAlignment = NSTextAlignmentCenter;
+    _dateLabel.textColor = [UIColor whiteColor];
+    _dateLabel.font = [UIFont avenirFontOfSize:15];
+    _dateLabel.adjustsFontSizeToFitWidth = YES;
+    [_dateLabel autoAlignAxisToSuperviewMarginAxis:ALAxisVertical];
+    [_dateLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self];
+    [_dateLabel autoSetDimension:ALDimensionHeight toSize:20];
+    [_dateLabel autoConstrainAttribute:ALAttributeWidth toAttribute:ALAttributeWidth ofView:self withMultiplier:1.5];
 }
 
 @end

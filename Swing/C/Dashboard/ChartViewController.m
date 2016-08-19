@@ -22,7 +22,9 @@ NSInteger const kJBBarChartViewControllerMaxBarHeight = 10;
 NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 
 @interface ChartViewController ()<JBBarChartViewDelegate, JBBarChartViewDataSource, JBLineChartViewDataSource, JBLineChartViewDelegate, ChartFooterViewDelegate>
-
+{
+    NSURLSessionDataTask *task;
+}
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) JBChartView *stepsChartView;
@@ -146,6 +148,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     [_stepsChartView autoMatchDimension:ALDimensionHeight toDimension:ALDimensionHeight ofView:_distanceChartView];
     
     self.isLoadData = NO;
+    task = nil;
 //    [self performSelector:@selector(reloadChartView) withObject:nil afterDelay:1];
 }
 
@@ -158,11 +161,15 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    if (task) {
+        return;
+    }
     NSString *macId = [Fun dataToHex:[GlobalCache shareInstance].deviceMAC];
     if (macId.length == 0) {
         return;
     }
-    [[SwingClient sharedClient] deviceGetActivity:macId type:(GetActivityType)_type completion:^(id dailyActs, NSError *error) {
+    task = [[SwingClient sharedClient] deviceGetActivity:macId type:(GetActivityType)_type completion:^(id dailyActs, NSError *error) {
+        task = nil;
         if (!error) {
             LOG_D(@"dailyActs:%@", dailyActs);
             NSMutableArray *indoors = [NSMutableArray array];
@@ -259,7 +266,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     self.distanceChartView.footerView = distanceFooter;
     
     if (_type != ChartTypeMonth) {
-        stepFooter.delegate = self;
+//        stepFooter.delegate = self;
         distanceFooter.delegate = self;
     }
     else {
@@ -395,6 +402,18 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     if (_type == ChartTypeWeek) {
         LMBarView *v = [LMBarView new];
         v.label.text = [NSString stringWithFormat:@"%d", (int)[self barChartView:barChartView heightForBarViewAtIndex:index]];
+        v.dateLabel.text = [NSString stringWithFormat:@"%02d/%02d", 7, 18 + index];
+        view = v;
+    }
+    else if (_type == ChartTypeYear) {
+        static NSDateFormatter *dateFormatter = nil;
+        if (dateFormatter == nil) {
+            dateFormatter = [NSDateFormatter new];
+            dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US"];
+        }
+        NSArray *array = [dateFormatter shortStandaloneMonthSymbols];
+        LMBarView *v = [LMBarView new];
+        v.dateLabel.text = [array objectAtIndex:index % 12];
         view = v;
     }
     else {
