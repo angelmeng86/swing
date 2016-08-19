@@ -193,32 +193,33 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 - (void)reloadData {
     NSArray *dailyActs = _isOutdoor ? self.outdoorData : self.indoorData;
     NSMutableArray *mutableChartData = [NSMutableArray array];
-    for (ActivityResultModel *m in dailyActs) {
-        [mutableChartData addObject:[NSNumber numberWithLong:m.steps]];
-    }
     
     switch (_type) {
         case ChartTypeMonth:
         {
-            for (int i = (int)mutableChartData.count; i < 30; i++) {
+            for (int i = (int)dailyActs.count; i < 30; i++) {
                 [mutableChartData addObject:[NSNumber numberWithLong:0]];
             }
         }
             break;
         case ChartTypeYear:
         {
-            for (int i = (int)mutableChartData.count; i < 12; i++) {
+            for (int i = (int)dailyActs.count; i < 12; i++) {
                 [mutableChartData addObject:[NSNumber numberWithLong:0]];
             }
         }
             break;
         default:
         {
-            for (int i = (int)mutableChartData.count; i < 7; i++) {
+            for (int i = (int)dailyActs.count; i < 7; i++) {
                 [mutableChartData addObject:[NSNumber numberWithLong:0]];
             }
         }
             break;
+    }
+    
+    for (ActivityResultModel *m in dailyActs) {
+        [mutableChartData addObject:[NSNumber numberWithLong:m.steps]];
     }
     
     _stepChartData = [NSArray arrayWithArray:mutableChartData];
@@ -279,6 +280,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     barChartView.headerPadding = 10.f;
     barChartView.minimumValue = 0.0f;
     barChartView.inverted = NO;
+    barChartView.minimumValue = 0.0f;
     return barChartView;
 }
 
@@ -287,6 +289,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     lineChartView.delegate = self;
     lineChartView.dataSource = self;
     lineChartView.headerPadding = 10.f;
+    lineChartView.minimumValue = 0.0f;
     return lineChartView;
 }
 

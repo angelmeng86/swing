@@ -21,4 +21,6 @@ typedef enum : NSUInteger {
 
 @property (nonatomic) BOOL isOutdoor;
 
+- (void)reloadChartView;
+
 @end

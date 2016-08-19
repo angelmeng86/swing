@@ -35,6 +35,7 @@
     
     UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
     TodayChartViewController *todayCtl = [stroyBoard instantiateViewControllerWithIdentifier:@"TodayChart"];
+    todayCtl.delegate = self;
     todayCtl.pageIndex = 0;
     
     ChartViewController *weekCtl = [ChartViewController new];
@@ -70,6 +71,13 @@
     
     [self.pageControl autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(5, 20, 0, 20) excludingEdge:ALEdgeBottom];
     [self.pageControl autoSetDimension:ALDimensionHeight toSize:20];
+}
+
+- (void)showChanged:(BOOL)isOutdoor {
+    for (int i = 1; i < self.ctlArray.count; i++) {
+        ChartViewController *ctl = self.ctlArray[i];
+        ctl.isOutdoor = isOutdoor;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

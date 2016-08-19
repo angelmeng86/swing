@@ -94,6 +94,9 @@
         [self reloadData];
     }
     [self.stepProgress setNeedsLayout];
+    if ([_delegate respondsToSelector:@selector(showChanged:)]) {
+        [_delegate showChanged:self.outdoorBtn.selected];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

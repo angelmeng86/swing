@@ -160,6 +160,7 @@ typedef enum : NSUInteger {
         Byte array[1];
         EventModel *model = [_alertEvents firstObject];
         array[0] = model.alert == 0 ? 40 : model.alert;
+        NSLog(@"lwz alert:%d", model.alert);
         NSData *data = [NSData dataWithBytes:array length:1];
         [self.currPeripheral writeValue:data forCharacteristic:self.characteristic type:CBCharacteristicWriteWithResponse];
         return YES;
@@ -181,7 +182,7 @@ typedef enum : NSUInteger {
         [_alertEvents removeObjectAtIndex:0];
         long date = [model.startDate timeIntervalSince1970] - 4 * 60 * 60;
         NSData *timedata = [Fun longToByteArray:date];
-        NSLog(@"穿进去的值是！！！！＝＝＝＝＝ %@",timedata);
+        NSLog(@"穿进去的值是！！！！＝＝＝＝＝ %@  %@",timedata, model.startDate);
         self.characteristic =[[[self.services objectAtIndex:5] characteristics]objectAtIndex:7];
         [self.currPeripheral writeValue:timedata forCharacteristic:self.characteristic type:CBCharacteristicWriteWithResponse];
         return YES;
@@ -302,7 +303,7 @@ typedef enum : NSUInteger {
 
 - (void)syncWrited:(CBCharacteristic*)characteristic error:(NSError*)err{
     NSLog(@"syncWrited %lu", (unsigned long)syncState);
-    if (err) {
+    if (syncState != SwingSyncAlertTimeWrited && err) {
         NSLog(@"syncWrited error:%@", err);
         syncState = SwingSyncNone;
         //断开连接

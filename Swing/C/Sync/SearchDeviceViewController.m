@@ -143,30 +143,59 @@ typedef enum : NSUInteger {
 
 - (IBAction)btnAction:(id)sender {
     if (_status == SyncStatusFound) {
-        [self changeStatus:SyncStatusSyncing];
         
         [client stopScan];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(eventLoaded:) name:EVENT_LIST_UPDATE_NOTI object:nil];
+        
+        [SVProgressHUD showWithStatus:@"Get event, please wait..."];
+        [[SwingClient sharedClient] calendarGetEvents:[NSDate date] type:GetEventTypeMonth completion:^(NSArray *eventArray, NSError *error) {
+            if (error) {
+                LOG_D(@"calendarGetEvents fail: %@", error);
+                [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+            }
+            else {
+                [SVProgressHUD dismiss];
+                NSMutableArray *event = [NSMutableArray array];
+                for (int i = eventArray.count; --i >= 0; ) {
+                    EventModel *m = eventArray[i];
+                    if (m.alert >= 34) {
+                        [event addObject:m];
+                    }
+                }
+                client.alertEvents = event;
+                [client syncDevice];
+                self.activitys = [NSMutableArray array];
+                [self changeStatus:SyncStatusSyncing];
+            }
+        }];
+        
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(eventLoaded:) name:EVENT_LIST_UPDATE_NOTI object:nil];
 //        [[GlobalCache shareInstance] queryMonthEvents:[NSDate date]];
 //        [client syncDevice];
-        [client syncDevice];
-        self.activitys = [NSMutableArray array];
+//        self.activitys = [NSMutableArray array];
     }
     else if (_status == SyncStatusSyncCompleted) {
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
-- (void)eventLoaded:(NSNotification*)notification {
-    //    NSLog(@"eventLoaded:%@ month:%@", _calendarManager.date, notification.object);
-    NSString *month = [GlobalCache dateToMonthString:[NSDate date]];
-    if ([month isEqualToString:notification.object]) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self];
-        client.alertEvents = [[GlobalCache shareInstance] searchWeeklyEventsByDay:[NSDate date]];
-        [client syncDevice];
-        self.activitys = [NSMutableArray array];
-    }
-}
+//- (void)eventLoaded:(NSNotification*)notification {
+//    //    NSLog(@"eventLoaded:%@ month:%@", _calendarManager.date, notification.object);
+//    NSString *month = [GlobalCache dateToMonthString:[NSDate date]];
+//    if ([month isEqualToString:notification.object]) {
+//        [[NSNotificationCenter defaultCenter] removeObserver:self];
+//        NSMutableArray *event = [[GlobalCache shareInstance] searchWeeklyEventsByDay:[NSDate date]];
+//        for (int i = event.count; --i >= 0; ) {
+//            EventModel *m = event[i];
+//            if (m.alert < 34) {
+//                [event removeObjectAtIndex:i];
+//            }
+//        }
+//        client.alertEvents = event;
+//        
+//        [client syncDevice];
+//        self.activitys = [NSMutableArray array];
+//    }
+//}
 
 - (void)bluetoothClientActivity:(ActivityModel*)data {
     NSLog(@"bluetoothClientActivity: indoor:%@ outdoor:%@", data.indoorActivity, data.outdoorActivity);

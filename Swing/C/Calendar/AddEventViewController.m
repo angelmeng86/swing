@@ -28,6 +28,8 @@
     // Do any additional setup after loading the view.
     
     self.repeatTF.enabled = NO;
+    self.stateTF.enabled = NO;
+    self.cityTF.enabled = NO;
     
     UIDatePicker *datePicker = [[UIDatePicker alloc] init];
     datePicker.datePickerMode = UIDatePickerModeDateAndTime;

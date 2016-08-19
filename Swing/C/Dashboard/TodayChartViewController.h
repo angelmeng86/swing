@@ -8,9 +8,17 @@
 
 #import "LMBaseViewController.h"
 @class RectProgress;
+
+@protocol TodayChartViewDelegate <NSObject>
+
+- (void)showChanged:(BOOL)isOutdoor;
+
+@end
+
 @interface TodayChartViewController : LMBaseViewController
 
 @property (nonatomic) NSUInteger pageIndex;
+@property (nonatomic, assign) id delegate;
 
 @property (weak, nonatomic) IBOutlet RectProgress *stepProgress;
 @property (weak, nonatomic) IBOutlet RectProgress *distanceProgress;
