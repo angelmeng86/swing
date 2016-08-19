@@ -172,10 +172,10 @@
 //        return NO;
 //    }
     
-    if (self.todoCtl.itemList.count == 0) {
-        [Fun showMessageBoxWithTitle:@"Error" andMessage:@"Please input to do list."];
-        return NO;
-    }
+//    if (self.todoCtl.itemList.count == 0) {
+//        [Fun showMessageBoxWithTitle:@"Error" andMessage:@"Please input to do list."];
+//        return NO;
+//    }
     
     return YES;
 }
@@ -212,7 +212,12 @@
         
         if (self.model) {
             [data setObject:[NSNumber numberWithInt:self.model.objId] forKey:@"id"];
-            [data setObject:[self.todoCtl.itemList componentsJoinedByString:@"|"] forKey:@"todoList"];
+            if (self.todoCtl.itemList.count > 0) {
+                [data setObject:[self.todoCtl.itemList componentsJoinedByString:@"|"] forKey:@"todoList"];
+            }
+            else {
+                 [data setObject:@"" forKey:@"todoList"];
+            }
             [[SwingClient sharedClient] calendarEditEvent:data completion:^(id event,NSError *error) {
                 if (!error) {
                     
@@ -246,21 +251,33 @@
         [[SwingClient sharedClient] calendarAddEvent:data completion:^(id event, NSError *error) {
             if (!error) {
                 EventModel *model = event;
-                [[SwingClient sharedClient] calendarAddTodo:[NSString stringWithFormat:@"%d", model.objId] todoList:[self.todoCtl.itemList componentsJoinedByString:@"|"] completion:^(id event, NSArray *todoArray, NSError *error) {
-                    if (!error) {
-                        [[GlobalCache shareInstance] addEvent:event];
-                        [SVProgressHUD dismiss];
-                        if ([_delegate respondsToSelector:@selector(eventViewDidAdded:)]) {
-                            UIDatePicker *datePicker = (UIDatePicker*)self.startTF.inputView;
-                            [_delegate eventViewDidAdded:datePicker.date];
+                
+                if (self.todoCtl.itemList.count > 0) {
+                    [[SwingClient sharedClient] calendarAddTodo:[NSString stringWithFormat:@"%d", model.objId] todoList:[self.todoCtl.itemList componentsJoinedByString:@"|"] completion:^(id event, NSArray *todoArray, NSError *error) {
+                        if (!error) {
+                            [[GlobalCache shareInstance] addEvent:event];
+                            [SVProgressHUD dismiss];
+                            if ([_delegate respondsToSelector:@selector(eventViewDidAdded:)]) {
+                                UIDatePicker *datePicker = (UIDatePicker*)self.startTF.inputView;
+                                [_delegate eventViewDidAdded:datePicker.date];
+                            }
+                            [self.navigationController popViewControllerAnimated:YES];
                         }
-                        [self.navigationController popViewControllerAnimated:YES];
+                        else {
+                            LOG_D(@"calendarAddTodo fail: %@", error);
+                            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                        }
+                    }];
+                }
+                else {
+                    [[GlobalCache shareInstance] addEvent:event];
+                    [SVProgressHUD dismiss];
+                    if ([_delegate respondsToSelector:@selector(eventViewDidAdded:)]) {
+                        UIDatePicker *datePicker = (UIDatePicker*)self.startTF.inputView;
+                        [_delegate eventViewDidAdded:datePicker.date];
                     }
-                    else {
-                        LOG_D(@"calendarAddTodo fail: %@", error);
-                        [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-                    }
-                }];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
             }
             else {
                 LOG_D(@"calendarAddEvent fail: %@", error);

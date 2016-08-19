@@ -443,9 +443,10 @@ static NSInteger const kJBLineChartUnselectedLineIndex = -1;
 	
 	CGFloat availableHeightWithPadding = [self availableHeight] - ([self padding] * 2);
 	
+    //lwz edit
 	if ((maxHeight - minHeight) <= 0)
 	{
-		return availableHeightWithPadding;
+        return 0;//availableHeightWithPadding;
 	}
 	
 	return ((rawHeight - minHeight) / (maxHeight - minHeight)) * availableHeightWithPadding;

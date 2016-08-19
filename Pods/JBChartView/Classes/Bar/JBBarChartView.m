@@ -511,11 +511,12 @@ static UIColor *kJBBarChartViewDefaultBarColor = nil;
 	CGFloat minHeight = [self minimumValue];
 	CGFloat maxHeight = [self maximumValue];
 	CGFloat value = [rawHeight floatValue];
-	
+	//mapple edit
 	if ((maxHeight - minHeight) <= 0)
 	{
-		return [self availableHeight];
+        return 0;//[self availableHeight];
 	}
+    //mapple end
 	
 	return ((value - minHeight) / (maxHeight - minHeight)) * [self availableHeight];
 }
