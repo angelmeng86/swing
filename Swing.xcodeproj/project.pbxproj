@@ -23,6 +23,9 @@
 		0FD6B4051D6207E000C00A45 /* BabyToy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6B3FC1D6207E000C00A45 /* BabyToy.m */; };
 		0FD6B4081D6212B500C00A45 /* PeripheralInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6B4071D6212B500C00A45 /* PeripheralInfo.m */; };
 		0FDAF5AA1D6405EF007CD808 /* citystate.json in Resources */ = {isa = PBXBuildFile; fileRef = 0FDAF5A91D6405EF007CD808 /* citystate.json */; };
+		0FEC584A1D69D91800201EBD /* BatteryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEC58451D69D91700201EBD /* BatteryModel.m */; };
+		0FEC584B1D69D91800201EBD /* CBService+LMMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEC58471D69D91800201EBD /* CBService+LMMethod.m */; };
+		0FEC584C1D69D91800201EBD /* SwingBluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEC58491D69D91800201EBD /* SwingBluetooth.m */; };
 		AD05B5BD1D3BCAA4007BCF7C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD05B5BC1D3BCAA4007BCF7C /* LoginViewController.m */; };
 		AD05B5C01D3BD187007BCF7C /* SwingClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AD05B5BF1D3BD187007BCF7C /* SwingClient.m */; };
 		AD0B81171D37EF7400F43E72 /* ControlFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B810B1D37EF7400F43E72 /* ControlFactory.m */; };
@@ -139,6 +142,12 @@
 		0FD6B4061D6212B500C00A45 /* PeripheralInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralInfo.h; sourceTree = "<group>"; };
 		0FD6B4071D6212B500C00A45 /* PeripheralInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeripheralInfo.m; sourceTree = "<group>"; };
 		0FDAF5A91D6405EF007CD808 /* citystate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = citystate.json; sourceTree = "<group>"; };
+		0FEC58441D69D91700201EBD /* BatteryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BatteryModel.h; sourceTree = "<group>"; };
+		0FEC58451D69D91700201EBD /* BatteryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BatteryModel.m; sourceTree = "<group>"; };
+		0FEC58461D69D91800201EBD /* CBService+LMMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBService+LMMethod.h"; sourceTree = "<group>"; };
+		0FEC58471D69D91800201EBD /* CBService+LMMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBService+LMMethod.m"; sourceTree = "<group>"; };
+		0FEC58481D69D91800201EBD /* SwingBluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwingBluetooth.h; sourceTree = "<group>"; };
+		0FEC58491D69D91800201EBD /* SwingBluetooth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwingBluetooth.m; sourceTree = "<group>"; };
 		AD05B5BB1D3BCAA4007BCF7C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		AD05B5BC1D3BCAA4007BCF7C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		AD05B5BE1D3BD187007BCF7C /* SwingClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwingClient.h; sourceTree = "<group>"; };
@@ -363,6 +372,12 @@
 		AD0B81071D37EF7400F43E72 /* M */ = {
 			isa = PBXGroup;
 			children = (
+				0FEC58441D69D91700201EBD /* BatteryModel.h */,
+				0FEC58451D69D91700201EBD /* BatteryModel.m */,
+				0FEC58461D69D91800201EBD /* CBService+LMMethod.h */,
+				0FEC58471D69D91800201EBD /* CBService+LMMethod.m */,
+				0FEC58481D69D91800201EBD /* SwingBluetooth.h */,
+				0FEC58491D69D91800201EBD /* SwingBluetooth.m */,
 				ADBC9BD11D578403007E4A2C /* JSONValueTransformer+UIColor.h */,
 				ADBC9BD21D578403007E4A2C /* JSONValueTransformer+UIColor.m */,
 				AD05B5BE1D3BD187007BCF7C /* SwingClient.h */,
@@ -892,6 +907,7 @@
 				AD7438271D4DD50C00F5F9D2 /* JBBaseChartViewController.m in Sources */,
 				AD2D33901D538418005D9298 /* ToDoModel.m in Sources */,
 				ADE820761D54C62D00E12768 /* UserModel.m in Sources */,
+				0FEC584A1D69D91800201EBD /* BatteryModel.m in Sources */,
 				AD2D338D1D5378AD005D9298 /* KidModel.m in Sources */,
 				AD9B0D971D3BB954009FDD95 /* CalendarViewController.m in Sources */,
 				ADDCD3E81D4C4DA90031DC66 /* UVIndexViewController.m in Sources */,
@@ -903,8 +919,10 @@
 				ADE6ED8D1D4E355300FFA573 /* BaseCalendarViewController.m in Sources */,
 				ADF9855C1D50D27400B02075 /* ColorLabel.m in Sources */,
 				0FD6B3FD1D6207E000C00A45 /* BabyBluetooth.m in Sources */,
+				0FEC584C1D69D91800201EBD /* SwingBluetooth.m in Sources */,
 				0FD6B4011D6207E000C00A45 /* BabyOptions.m in Sources */,
 				ADF985591D50CBFC00B02075 /* DoItemLabel.m in Sources */,
+				0FEC584B1D69D91800201EBD /* CBService+LMMethod.m in Sources */,
 				AD7797991D4CCFD200472B27 /* UnderlineTextField.m in Sources */,
 				AD347D171D3FD8DD00E91DDD /* SearchWatchViewController.m in Sources */,
 				AD05B5BD1D3BCAA4007BCF7C /* LoginViewController.m in Sources */,

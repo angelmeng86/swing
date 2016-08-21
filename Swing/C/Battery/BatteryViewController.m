@@ -8,6 +8,7 @@
 
 #import "BatteryViewController.h"
 #import "LMBluetoothClient.h"
+#import "SwingBluetooth.h"
 
 @interface BatteryViewController ()
 
@@ -38,7 +39,11 @@
     
     self.textLabel.adjustsFontSizeToFitWidth = YES;
     
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(batteryNotify:) name:SWING_WATCH_BATTERY_NOTIFY object:nil];
+}
+
+- (void)batteryNotify:(NSNotification*)notify {
+    [self bluetoothClientBattery:[notify.object intValue]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,10 +53,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-//    self.client = [[LMBluetoothClient alloc] init];
-//    self.client.delegate = self;
-//    [self.client beginBattery];
     [self bluetoothClientBattery:[GlobalCache shareInstance].battery];
+    
 }
 
 - (void)bluetoothClientBattery:(int)value {

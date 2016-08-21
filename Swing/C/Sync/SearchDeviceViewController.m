@@ -7,7 +7,7 @@
 //
 
 #import "SearchDeviceViewController.h"
-#import "LMBluetoothClient.h"
+#import "SwingBluetooth.h"
 
 typedef enum : NSUInteger {
     SyncStatusNone,
@@ -24,10 +24,11 @@ typedef enum : NSUInteger {
     MDRadialProgressTheme *progressTheme;
     MDRadialProgressTheme *doneTheme;
     
-    LMBluetoothClient *client;
+    SwingBluetooth *client;
 }
 
 @property (nonatomic, strong) NSMutableArray *activitys;
+@property (nonatomic, strong) CBPeripheral *peripheral;
 
 @end
 
@@ -54,10 +55,8 @@ typedef enum : NSUInteger {
     doneTheme.sliceDividerColor = [UIColor whiteColor];
     
     self.progressView.label.hidden = YES;
-    
-    client = [[LMBluetoothClient alloc] init];
-    client.delegate = self;
-    
+    self.navigationItem.hidesBackButton = YES;
+    client = [[SwingBluetooth alloc] init];
     [self changeStatus:SyncStatusSearching];
 }
 
@@ -85,10 +84,23 @@ typedef enum : NSUInteger {
             self.progressView.progressTotal = 12;
             self.progressView.progressCounter = 1;
             self.progressView.isIndeterminateProgress = YES;
+            
+            self.navigationItem.leftBarButtonItem = nil;
+            
 #if TARGET_IPHONE_SIMULATOR
             [self performSelector:@selector(performStatus:) withObject:[NSNumber numberWithUnsignedInteger:SyncStatusFound] afterDelay:3];
 #else
-            [client beginScan];
+            [client searchDevice:[GlobalCache shareInstance].deviceMAC completion:^(CBPeripheral *peripheral, NSError *error) {
+                if (!error) {
+                    self.peripheral = peripheral;
+                    [self changeStatus:SyncStatusFound];
+                }
+                else {
+                    LOG_D(@"searchDevice error:%@", error);
+                    [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+            }];
 #endif
         }
             break;
@@ -102,6 +114,7 @@ typedef enum : NSUInteger {
             self.progressView.progressTotal = 8;
             self.progressView.progressCounter = 8;
             
+            [self setCustomBackBarButtonItem];
             
             [self.button setTitle:@"Sync Now" forState:UIControlStateNormal];
         }
@@ -115,6 +128,8 @@ typedef enum : NSUInteger {
             self.progressView.progressTotal = 12;
             self.progressView.progressCounter = 1;
             self.progressView.isIndeterminateProgress = YES;
+            
+            self.navigationItem.leftBarButtonItem = nil;
             
 #if TARGET_IPHONE_SIMULATOR
             [self performSelector:@selector(performStatus:) withObject:[NSNumber numberWithUnsignedInteger:SyncStatusSyncCompleted] afterDelay:3];
@@ -143,9 +158,6 @@ typedef enum : NSUInteger {
 
 - (IBAction)btnAction:(id)sender {
     if (_status == SyncStatusFound) {
-        
-        [client stopScan];
-        
         [SVProgressHUD showWithStatus:@"Get event, please wait..."];
         [[SwingClient sharedClient] calendarGetEvents:[NSDate date] type:GetEventTypeMonth completion:^(NSArray *eventArray, NSError *error) {
             if (error) {
@@ -154,28 +166,29 @@ typedef enum : NSUInteger {
             }
             else {
                 [SVProgressHUD dismiss];
-                NSMutableArray *event = [NSMutableArray array];
-                for (int i = eventArray.count; --i >= 0; ) {
-                    EventModel *m = eventArray[i];
-                    if (m.alert >= 34) {
-                        [event addObject:m];
-                    }
-                }
-                client.alertEvents = event;
-                [client syncDevice];
-                self.activitys = [NSMutableArray array];
                 [self changeStatus:SyncStatusSyncing];
+                [self performSelector:@selector(syncAction:) withObject:eventArray afterDelay:3];
             }
         }];
-        
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(eventLoaded:) name:EVENT_LIST_UPDATE_NOTI object:nil];
-//        [[GlobalCache shareInstance] queryMonthEvents:[NSDate date]];
-//        [client syncDevice];
-//        self.activitys = [NSMutableArray array];
     }
     else if (_status == SyncStatusSyncCompleted) {
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }
+}
+
+- (void)syncAction:(NSArray*)eventArray {
+    [client syncDevice:_peripheral event:eventArray completion:^(NSMutableArray *activities, NSError *error) {
+        LOG_D(@"syncDevice error %@", error);
+        LOG_D(@"syncDevice activities count %d", (int)activities.count);
+        self.activitys = activities;
+        if (_activitys.count == 0) {
+            ActivityModel *model = [ActivityModel new];
+            model.macId = [Fun dataToHex:[GlobalCache shareInstance].deviceMAC];
+            [model reset];
+            _activitys = [NSMutableArray arrayWithObject:model];
+        }
+        [self uploadData];
+    }];
 }
 
 //- (void)eventLoaded:(NSNotification*)notification {
@@ -197,24 +210,10 @@ typedef enum : NSUInteger {
 //    }
 //}
 
-- (void)bluetoothClientActivity:(ActivityModel*)data {
-    NSLog(@"bluetoothClientActivity: indoor:%@ outdoor:%@", data.indoorActivity, data.outdoorActivity);
-    [self.activitys addObject:data];
-    
-    
-}
-
-- (void)bluetoothClientScanDevice:(NSArray*)peripherals {
-    [self changeStatus:SyncStatusFound];
-}
-
 - (void)bluetoothClientSyncFinished {
-    client.delegate = nil;
-//    [self changeStatus:SyncStatusSyncCompleted];
-    
     if (_activitys.count == 0) {
         ActivityModel *model = [ActivityModel new];
-        model.macId = [Fun dataToHex:client.macAddress];
+        model.macId = [Fun dataToHex:[GlobalCache shareInstance].deviceMAC];
         [model reset];
         _activitys = [NSMutableArray arrayWithObject:model];
     }

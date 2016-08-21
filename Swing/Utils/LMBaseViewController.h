@@ -13,6 +13,7 @@
 @property (nonatomic) BOOL notLoadBackgroudImage;
 @property (nonatomic, strong) NSString* backgroudImageName;
 
+- (void)setCustomBackBarButtonItem;
 - (void)backAction;
 
 @end

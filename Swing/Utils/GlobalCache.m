@@ -8,6 +8,7 @@
 
 #import "GlobalCache.h"
 #import "KeyboardManager.h"
+#import "AppDelegate.h"
 
 @implementation GlobalCache
 
@@ -73,7 +74,6 @@
 //}
 
 - (void)logout {
-//    [[SwingClient sharedClient] invalidateSessionCancelingTasks:YES];
     self.info = nil;
     self.user = nil;
     self.kidsList = nil;
@@ -88,6 +88,12 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     [[SwingClient sharedClient] logout];
+    
+    [SVProgressHUD dismiss];
+    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
+    UIViewController *ctl = [stroyBoard instantiateInitialViewController];
+    AppDelegate *ad = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    ad.window.rootViewController = ctl;
 }
 
 - (void)queryProfile {

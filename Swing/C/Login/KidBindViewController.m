@@ -57,6 +57,9 @@
 }
 
 - (void)goNext {
+    if (_macAddress && [GlobalCache shareInstance].deviceMAC == nil) {
+        [GlobalCache shareInstance].deviceMAC = _macAddress;
+    }
     for (UIViewController *ctl in self.navigationController.viewControllers) {
         if ([ctl isKindOfClass:[EditProfileViewController class]] || [ctl isKindOfClass:[SyncDeviceViewController class]]) {
             //EditProfile add device flow

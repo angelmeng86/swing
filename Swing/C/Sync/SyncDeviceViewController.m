@@ -54,4 +54,17 @@
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)syncCurrentAction:(id)sender {
+    if ([GlobalCache shareInstance].deviceMAC) {
+        UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"SyncDevice" bundle:nil];
+        UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"Syncing"];
+        [self.navigationController pushViewController:ctl animated:YES];
+    }
+    else {
+        [SVProgressHUD showErrorWithStatus:@"you have not bind device yet, please sync another watch."];
+    }
+    
+    
+}
+
 @end

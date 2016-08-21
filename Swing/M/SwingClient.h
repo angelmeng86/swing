@@ -22,7 +22,7 @@ typedef enum : NSUInteger {
 } GetActivityType;
 
 @class ActivityModel;
-@interface SwingClient : AFHTTPSessionManager
+@interface SwingClient : NSObject
 
 + (SwingClient *)sharedClient;
 

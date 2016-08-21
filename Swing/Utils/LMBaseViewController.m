@@ -16,6 +16,15 @@
 
 @implementation LMBaseViewController
 
+- (void)setCustomBackBarButtonItem {
+    LMArrowView *arrow = [[LMArrowView alloc] initWithFrame:CGRectMake(0, 0, 10, 18)];
+    arrow.backgroundColor = [UIColor clearColor];
+    arrow.color = COMMON_NAV_TINT_COLOR;
+    arrow.isNotFill = YES;
+    [arrow addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:arrow];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -27,12 +36,7 @@
     }
     
     if (self.navigationController.viewControllers.count > 1) {
-        LMArrowView *arrow = [[LMArrowView alloc] initWithFrame:CGRectMake(0, 0, 10, 18)];
-        arrow.backgroundColor = [UIColor clearColor];
-        arrow.color = COMMON_NAV_TINT_COLOR;
-        arrow.isNotFill = YES;
-        [arrow addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:arrow];
+        [self setCustomBackBarButtonItem];
     }
     
     if (self.tabBarController.navigationController) {

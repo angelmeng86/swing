@@ -18,4 +18,5 @@
 
 - (IBAction)goDashboardAction:(id)sender;
 
+- (IBAction)syncCurrentAction:(id)sender;
 @end
