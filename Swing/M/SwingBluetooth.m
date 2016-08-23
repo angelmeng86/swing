@@ -95,10 +95,10 @@ typedef enum : NSUInteger {
     [baby setFilterOnDiscoverPeripheralsAtChannel:channel filter:^BOOL(NSString *peripheralName, NSDictionary *advertisementData, NSNumber *RSSI) {
         //        NSLog(@"advertisementData:%@", advertisementData);
         //最常用的场景是查找某一个前缀开头的设备
-        if ([peripheralName hasPrefix:@"Swing-D-X"] ) {
-            return YES;
-        }
-        return NO;
+//        if ([peripheralName hasPrefix:@"Swing-D-X"] ) {
+//            return YES;
+//        }
+        return YES;
     }];
     
     [baby setBlockOnCancelAllPeripheralsConnectionBlockAtChannel:channel block:^(CBCentralManager *centralManager) {
@@ -350,10 +350,10 @@ typedef enum : NSUInteger {
     [baby setFilterOnDiscoverPeripheralsAtChannel:channel filter:^BOOL(NSString *peripheralName, NSDictionary *advertisementData, NSNumber *RSSI) {
 //        NSLog(@"advertisementData:%@", advertisementData);
         //最常用的场景是查找某一个前缀开头的设备
-        if ([peripheralName hasPrefix:@"Swing-D-X"] ) {
-            return YES;
-        }
-        return NO;
+//        if ([peripheralName hasPrefix:@"Swing-D-X"] ) {
+//            return YES;
+//        }
+        return YES;
     }];
     
     [baby setBlockOnCancelAllPeripheralsConnectionBlockAtChannel:channel block:^(CBCentralManager *centralManager) {
