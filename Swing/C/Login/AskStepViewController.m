@@ -7,6 +7,7 @@
 //
 
 #import "AskStepViewController.h"
+#import "CommonDef.h"
 
 @interface AskStepViewController ()
 {
@@ -24,6 +25,8 @@
     
     self.label1.adjustsFontSizeToFitWidth = YES;
     self.label2.adjustsFontSizeToFitWidth = YES;
+    
+    [self setCustomBackButton];
 }
 
 - (void)didReceiveMemoryWarning {

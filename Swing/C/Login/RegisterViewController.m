@@ -10,6 +10,7 @@
 #import "VPImageCropperViewController.h"
 #import "CommonDef.h"
 #import "AppDelegate.h"
+#import "LMArrowView.h"
 
 @interface RegisterViewController ()<UITextFieldDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, VPImageCropperDelegate>
 {
@@ -40,6 +41,9 @@
     self.imageBtn.layer.borderWidth = 2.f;
     self.imageBtn.layer.masksToBounds = YES;
     image = nil;
+    
+    
+    [self setCustomBackButton];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,6 +73,7 @@
     else if (textField == self.zipCodeTF) {
         //Go
         if ([self validateTextField]) {
+            [textField resignFirstResponder];
             [SVProgressHUD showWithStatus:@"Register, please wait..."];
             [[SwingClient sharedClient] userRegister:@{@"email":self.email, @"password":self.pwd, @"phoneNumber":self.phoneTF.text, @"firstName":self.firstNameTF.text, @"lastName":self.lastNameTF.text, @"zipCode":self.zipCodeTF.text} completion:^(id user, NSError *error) {
                 if (error) {

@@ -16,6 +16,26 @@
 
 @implementation LMBaseViewController
 
+- (void)setCustomBackButton {
+    if (!self.navigationController.navigationBarHidden) {
+        return;
+    }
+    LMArrowView *arrow = [[LMArrowView alloc] initWithFrame:CGRectMake(0, 0, 10, 18)];
+    arrow.backgroundColor = [UIColor clearColor];
+    arrow.color = COMMON_NAV_TINT_COLOR;
+    arrow.isNotFill = YES;
+    UIButton *btn = [UIButton new];
+    [btn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+    [btn addSubview:arrow];
+    [arrow autoCenterInSuperviewMargins];
+    [arrow autoSetDimensionsToSize:CGSizeMake(10, 18)];
+    
+    [self.view addSubview:btn];
+    [btn autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:20];
+    [btn autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:10];
+    [btn autoSetDimensionsToSize:CGSizeMake(44, 44)];
+}
+
 - (void)setCustomBackBarButtonItem {
     LMArrowView *arrow = [[LMArrowView alloc] initWithFrame:CGRectMake(0, 0, 10, 18)];
     arrow.backgroundColor = [UIColor clearColor];

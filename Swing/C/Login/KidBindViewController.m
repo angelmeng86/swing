@@ -40,6 +40,8 @@
     self.imageBtn.layer.borderWidth = 2.f;
     self.imageBtn.layer.masksToBounds = YES;
     image = nil;
+    
+    [self setCustomBackButton];
 }
 
 - (void)didReceiveMemoryWarning {

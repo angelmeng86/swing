@@ -51,7 +51,7 @@ CGFloat const kLMArrowViewDefaultHeight = 8.0f;
         }
         
         if (_isNotFill) {
-            CGContextSetLineWidth(context, 1);
+            CGContextSetLineWidth(context, 1.5);
             CGContextSetStrokeColorWithColor(context, _color == nil ? kJBColorTooltipColor.CGColor : _color.CGColor);
             CGContextStrokePath(context);
         }

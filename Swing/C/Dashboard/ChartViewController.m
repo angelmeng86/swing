@@ -200,44 +200,58 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 - (void)reloadData {
     NSArray *dailyActs = _isOutdoor ? self.outdoorData : self.indoorData;
     if (dailyActs.count > 0) {
-        NSMutableArray *mutableChartData = [NSMutableArray array];
-        
+        int maxCount = 0;
+        NSMutableArray *stepData = [NSMutableArray array];
+        NSMutableArray *distanceData = [NSMutableArray array];
         switch (_type) {
             case ChartTypeMonth:
             {
                 for (int i = (int)dailyActs.count; i < 30; i++) {
-                    [mutableChartData addObject:[NSNumber numberWithLong:0]];
+                    [stepData addObject:[NSNumber numberWithLong:0]];
+                    [distanceData addObject:[NSNumber numberWithLong:0]];
                 }
+                maxCount = 30;
             }
                 break;
             case ChartTypeYear:
             {
                 for (int i = (int)dailyActs.count; i < 12; i++) {
-                    [mutableChartData addObject:[NSNumber numberWithLong:0]];
+                    [stepData addObject:[NSNumber numberWithLong:0]];
+                    [distanceData addObject:[NSNumber numberWithLong:0]];
                 }
+                maxCount = 12;
             }
                 break;
             default:
             {
                 for (int i = (int)dailyActs.count; i < 7; i++) {
-                    [mutableChartData addObject:[NSNumber numberWithLong:0]];
+                    [stepData addObject:[NSNumber numberWithLong:0]];
+                    [distanceData addObject:[NSNumber numberWithLong:2]];
                 }
+                maxCount = 7;
             }
                 break;
         }
         
         for (ActivityResultModel *m in dailyActs) {
-            [mutableChartData addObject:[NSNumber numberWithLong:m.steps]];
+            [stepData addObject:[NSNumber numberWithLong:m.steps]];
+            [distanceData addObject:[NSNumber numberWithLong:m.distance]];
+            if (stepData.count == maxCount) {
+                break;
+            }
         }
         
-        _stepChartData = [NSArray arrayWithArray:mutableChartData];
+        _stepChartData = [NSArray arrayWithArray:stepData];
+        _distanceChartData = [NSArray arrayWithArray:distanceData];
     }
     else {
         _stepChartData = nil;
+        _distanceChartData = nil;
     }
     
     LOG_D(@"stepChartData:%@", _stepChartData);
     [self.stepsChartView reloadData];
+    [self.distanceChartView reloadData];
     
     [_stepsChartView reloadData];
     [_distanceChartView reloadData];
@@ -267,14 +281,23 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     
     if (_type != ChartTypeMonth) {
 //        stepFooter.delegate = self;
-        distanceFooter.delegate = self;
+//        distanceFooter.delegate = self;
     }
     else {
-        stepFooter.leftLabel.text = @"07/25";
-        stepFooter.rightLabel.text = @"08/12";
+        static NSDateFormatter *df = nil;
+        if (df == nil) {
+            df = [[NSDateFormatter alloc] init];
+            [df setDateFormat:@"MM/dd"];
+        }
         
-        distanceFooter.leftLabel.text = @"07/25";
-        distanceFooter.rightLabel.text = @"08/12";
+        NSDate *date = [NSDate date];
+        NSDate *preMonthDate = [date dateByAddingTimeInterval:- 30 * 24 * 60 * 60];
+        
+        stepFooter.leftLabel.text = [df stringFromDate:preMonthDate];
+        stepFooter.rightLabel.text = [df stringFromDate:date];
+        
+        distanceFooter.leftLabel.text = stepFooter.leftLabel.text;
+        distanceFooter.rightLabel.text = stepFooter.rightLabel.text;
     }
     
     [_stepsChartView reloadData];
@@ -295,6 +318,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     barChartView.minimumValue = 0.0f;
     barChartView.inverted = NO;
     barChartView.minimumValue = 0.0f;
+    barChartView.clipsToBounds = NO;
     return barChartView;
 }
 
@@ -304,6 +328,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     lineChartView.dataSource = self;
     lineChartView.headerPadding = 10.f;
     lineChartView.minimumValue = 0.0f;
+    lineChartView.clipsToBounds = NO;
     return lineChartView;
 }
 
@@ -324,8 +349,14 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 
 - (NSString*)chartFooterView:(ChartFooterView *)footerView textAtIndex:(NSUInteger)index {
     if (_type == ChartTypeWeek) {
-        
-        return [NSString stringWithFormat:@"%02d/%02d", 7, 18 + index];
+        static NSDateFormatter *df = nil;
+        if (df == nil) {
+            df = [[NSDateFormatter alloc] init];
+            [df setDateFormat:@"MM/dd"];
+        }
+        int pos = index;
+        NSDate *preDate = [[NSDate date] dateByAddingTimeInterval: (pos - 6) * 24 * 60 * 60];
+        return [df stringFromDate:preDate];
     }
     else {
         static NSDateFormatter *dateFormatter = nil;
@@ -400,9 +431,17 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     UIView *view = nil;
     
     if (_type == ChartTypeWeek) {
+        static NSDateFormatter *df = nil;
+        if (df == nil) {
+            df = [[NSDateFormatter alloc] init];
+            [df setDateFormat:@"MM/dd"];
+        }
+        int pos = index;
+        NSDate *preDate = [[NSDate date] dateByAddingTimeInterval: (pos - 6) * 24 * 60 * 60];
+        
         LMBarView *v = [LMBarView new];
         v.label.text = [NSString stringWithFormat:@"%d", (int)[self barChartView:barChartView heightForBarViewAtIndex:index]];
-        v.dateLabel.text = [NSString stringWithFormat:@"%02d/%02d", 7, 18 + index];
+        v.dateLabel.text = [df stringFromDate:preDate];
         view = v;
     }
     else if (_type == ChartTypeYear) {

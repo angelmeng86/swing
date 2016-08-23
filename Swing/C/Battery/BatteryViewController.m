@@ -43,7 +43,7 @@
 }
 
 - (void)batteryNotify:(NSNotification*)notify {
-    [self bluetoothClientBattery:[notify.object intValue]];
+    [self bluetoothClientBattery:[GlobalCache shareInstance].battery];
 }
 
 - (void)didReceiveMemoryWarning {

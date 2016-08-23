@@ -21,6 +21,7 @@
     [self.checkBtn setTitle:@"●" forState:UIControlStateSelected];
     
     [self.checkBtn setTitleColor:[UIColor grayColor] forState:UIControlStateSelected];
+    self.checkBtn.userInteractionEnabled = false;
 }
 
 - (void)update:(BOOL)selected {

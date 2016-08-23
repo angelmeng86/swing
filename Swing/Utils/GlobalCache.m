@@ -89,7 +89,7 @@
     
     [[SwingClient sharedClient] logout];
     
-    [SVProgressHUD dismiss];
+//    [SVProgressHUD dismiss];
     UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
     UIViewController *ctl = [stroyBoard instantiateInitialViewController];
     AppDelegate *ad = (AppDelegate*)[UIApplication sharedApplication].delegate;
