@@ -21,8 +21,10 @@
 #define SYNC_DEVIE_CHANEL   @"SYNC_DEVIE_CHANEL"
 #define SEARCH_DEVIE_CHANEL   @"SEARCH_DEVIE_CHANEL"
 
+#define  TIME_ADJUST        [NSTimeZone localTimeZone].secondsFromGMT - 12 * 60 * 60
+#define  TIME_STAMP         [[NSDate date] timeIntervalSince1970] + TIME_ADJUST
 
-#define  TIME_STAMP         [[NSDate date] timeIntervalSince1970] - 4 * 60 * 60
+
 
 typedef enum : NSUInteger {
     SwingSyncNone,
@@ -514,8 +516,16 @@ typedef enum : NSUInteger {
                         ActivityModel *model = [ActivityModel new];
                         model.time = weakSelf.timeStamp;
                         model.macId = [Fun dataToHex:weakSelf.macAddress];
-                        [model setIndoorData:weakSelf.ffa4Data];
-                        [model setOutdoorData:characteristic.value];
+                        const Byte* ptr = weakSelf.ffa4Data.bytes;
+                        if (ptr[5] == 0x01) {
+                            LOG_D(@"activity indoor outdoor change");
+                            [model setIndoorData:characteristic.value];
+                            [model setOutdoorData:weakSelf.ffa4Data];
+                        }
+                        else {
+                            [model setIndoorData:weakSelf.ffa4Data];
+                            [model setOutdoorData:characteristic.value];
+                        }
                         [weakSelf.activityArray addObject:model];
                         LOG_D(@"activity: indoor:%@ outdoor:%@", model.indoorActivity, model.outdoorActivity);
                     }
@@ -629,7 +639,7 @@ typedef enum : NSUInteger {
         // 往FFA8里面放未来的时间戳
         EventModel *model = [_eventArray firstObject];
         [_eventArray removeObjectAtIndex:0];
-        long date = [model.startDate timeIntervalSince1970] - 4 * 60 * 60;
+        long date = [model.startDate timeIntervalSince1970] + TIME_ADJUST;
         NSData *timedata = [Fun longToByteArray:date];
         NSLog(@"date %@, timestamp:%@", model.startDate, timedata);
         CBCharacteristic *characteristic = [service findCharacteristic:@"FFA8"];

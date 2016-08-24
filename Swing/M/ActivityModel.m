@@ -19,8 +19,8 @@ macId:           tester1
 
 - (void)reset {
     self.time = [[NSDate date] timeIntervalSince1970];
-    self.indoorActivity = [NSString stringWithFormat:@"%ld,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0", _time];
-    self.outdoorActivity = [NSString stringWithFormat:@"%ld,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0", _time];
+    self.indoorActivity = [NSString stringWithFormat:@"%ld,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0", _time];
+    self.outdoorActivity = [NSString stringWithFormat:@"%ld,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0", _time];
 }
 
 - (void)setIndoorData:(NSData*)data {

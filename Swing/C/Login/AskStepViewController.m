@@ -7,6 +7,7 @@
 //
 
 #import "AskStepViewController.h"
+#import "AppDelegate.h"
 #import "CommonDef.h"
 
 @interface AskStepViewController ()
@@ -65,8 +66,11 @@
         [self.btn2 setTitle:@"Continue as a guest user" forState:UIControlStateNormal];
     }
     else {
-        //Go to search watch
-        [self searchWatch];
+        //Continue as a guest user
+        UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab2" bundle:nil];
+        UIViewController *ctl = [stroyBoard instantiateInitialViewController];
+        AppDelegate *ad = (AppDelegate*)[UIApplication sharedApplication].delegate;
+        ad.window.rootViewController = ctl;
     }
 }
 

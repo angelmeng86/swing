@@ -28,6 +28,7 @@
     
 //    self.emailTextField.text = @"123@qq.com";
 //    self.pwdTextField.text = @"111111";
+    [self setCustomBackButton];
 }
 
 - (void)didReceiveMemoryWarning {

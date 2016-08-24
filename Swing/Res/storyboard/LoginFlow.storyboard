@@ -439,7 +439,7 @@
         <!--Swing-->
         <scene sceneID="ujR-vw-VZ1">
             <objects>
-                <viewController id="xD8-cQ-C6p" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController id="xD8-cQ-C6p" customClass="LMBaseViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qtl-eg-ON2"/>
                         <viewControllerLayoutGuide type="bottom" id="egI-Pq-dam"/>
