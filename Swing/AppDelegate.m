@@ -25,6 +25,17 @@
 //    [m setIndoorData:[NSData dataWithBytes:ptr length:21]];
 //    NSLog(@"data:%@", m.indoorActivity);
     
+//    static NSDateFormatter *df = nil;
+//    if (df == nil) {
+//        df = [[NSDateFormatter alloc] init];
+//        df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+////        [df setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+//        [df setTimeStyle:NSDateFormatterFullStyle];
+//        [df setDateStyle:NSDateFormatterFullStyle];
+//    }
+//    NSDate *date = [NSDate dateWithTimeIntervalSince1970:1472164242];
+//    NSLog(@"date:%@ df:%@", date, [df stringFromDate:date]);
+    
     [[GlobalCache shareInstance] initConfig];
 //    [SwingClientTest testAll:15];
     

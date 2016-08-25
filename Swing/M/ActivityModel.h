@@ -29,6 +29,8 @@
 - (void)setIndoorData:(NSData*)data;
 - (void)setOutdoorData:(NSData*)data;
 
+- (void)add:(ActivityModel*)model;
+
 - (void)reload;
 //- (void)reset;
 

@@ -119,6 +119,17 @@ macId:           tester1
     }
 }
 
+- (void)add:(ActivityModel*)model {
+    _inData1 += model.inData1;
+    _inData2 += model.inData2;
+    _inData3 += model.inData3;
+    _inData4 += model.inData4;
+    _outData1 += model.outData1;
+    _outData2 += model.outData2;
+    _outData3 += model.outData3;
+    _outData4 += model.outData4;
+}
+
 - (void)reload {
     _indoorActivity = [NSString stringWithFormat:@"%ld,0,%ld,%ld,%ld,%ld",
                        _time == 0 ? (long)[[NSDate date] timeIntervalSince1970] : _time,

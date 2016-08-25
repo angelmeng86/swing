@@ -53,7 +53,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, copy) SwingBluetoothSyncDeviceBlock blockOnSyncDevice;
 
 @property (nonatomic, strong) NSMutableArray *eventArray;
-@property (nonatomic, strong) NSMutableArray *activityArray;
+//@property (nonatomic, strong) NSMutableArray *activityArray;
 @property (nonatomic, strong) NSMutableDictionary *activityDict;
 @property (nonatomic) long timeStamp;
 @property (nonatomic, strong) NSData *ffa4Data;
@@ -514,13 +514,29 @@ typedef enum : NSUInteger {
                     }
                     else {
                         array[0] = 0x01;
-                        
+                        static NSDateFormatter *df = nil;
+                        if (df == nil) {
+                            df = [[NSDateFormatter alloc] init];
+                            df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+                            [df setDateFormat:@"yyyy-MM-dd"];
+                        }
+                        NSString *key = [df stringFromDate:[NSDate dateWithTimeIntervalSince1970:weakSelf.timeStamp]];
                         ActivityModel *model = [ActivityModel new];
                         model.time = weakSelf.timeStamp;
                         model.macId = [Fun dataToHex:weakSelf.macAddress];
                         [model setIndoorData:weakSelf.ffa4Data];
                         [model setOutdoorData:characteristic.value];
-                        [weakSelf.activityArray addObject:model];
+                        
+                        if (weakSelf.activityDict[key]) {
+                            ActivityModel *m = weakSelf.activityDict[key];
+                            [m add:model];
+                            [m reload];
+                        }
+                        else {
+                            weakSelf.activityDict[key] = model;
+                        }
+                        
+//                        [weakSelf.activityArray addObject:model];
                         LOG_D(@"activity: time:%ld indoor:%@ outdoor:%@", model.time, model.indoorActivity, model.outdoorActivity);
                     }
                     NSLog(@"Write FFA5");
@@ -772,7 +788,7 @@ typedef enum : NSUInteger {
             [_eventArray removeObjectAtIndex:i];
         }
     }
-    self.activityArray = [NSMutableArray array];
+//    self.activityArray = [NSMutableArray array];
     self.activityDict = [NSMutableDictionary dictionary];
     self.blockOnSyncDevice = completion;
     baby.having(peripheral).and.channel(SYNC_DEVIE_CHANEL).then.connectToPeripherals().discoverServices().discoverCharacteristics().begin();
@@ -787,7 +803,8 @@ typedef enum : NSUInteger {
 - (void)reportSyncDeviceResult:(NSError*)error {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(syncDeviceTimeout) object:nil];
     if (self.blockOnSyncDevice) {
-        self.blockOnSyncDevice(_activityArray, error);
+        self.blockOnSyncDevice([NSMutableArray arrayWithArray:[_activityDict allValues]], error);
+//        self.blockOnSyncDevice(_activityArray, error);
         self.blockOnSyncDevice = nil;
     }
     [baby cancelScan];
