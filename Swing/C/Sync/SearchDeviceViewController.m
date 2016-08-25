@@ -184,7 +184,7 @@ typedef enum : NSUInteger {
         if (_activitys.count == 0) {
             ActivityModel *model = [ActivityModel new];
             model.macId = [Fun dataToHex:[GlobalCache shareInstance].deviceMAC];
-            [model reset];
+//            [model reset];
             _activitys = [NSMutableArray arrayWithObject:model];
         }
         [self uploadData];
@@ -210,15 +210,15 @@ typedef enum : NSUInteger {
 //    }
 //}
 
-- (void)bluetoothClientSyncFinished {
-    if (_activitys.count == 0) {
-        ActivityModel *model = [ActivityModel new];
-        model.macId = [Fun dataToHex:[GlobalCache shareInstance].deviceMAC];
-        [model reset];
-        _activitys = [NSMutableArray arrayWithObject:model];
-    }
-    [self uploadData];
-}
+//- (void)bluetoothClientSyncFinished {
+//    if (_activitys.count == 0) {
+//        ActivityModel *model = [ActivityModel new];
+//        model.macId = [Fun dataToHex:[GlobalCache shareInstance].deviceMAC];
+////        [model reset];
+//        _activitys = [NSMutableArray arrayWithObject:model];
+//    }
+//    [self uploadData];
+//}
 
 - (void)uploadData {
     ActivityModel *model = [_activitys firstObject];

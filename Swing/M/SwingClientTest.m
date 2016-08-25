@@ -273,7 +273,7 @@
              m.time = time;
 //            [m setIndoorData:data];
 //            [m setOutdoorData:data];
-            [m reset];
+//            [m reset];
             
             [[SwingClient sharedClient] deviceUploadRawData:m completion:^(NSError *error) {
                 if (error) {

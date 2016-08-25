@@ -21,7 +21,7 @@
 #define SYNC_DEVIE_CHANEL   @"SYNC_DEVIE_CHANEL"
 #define SEARCH_DEVIE_CHANEL   @"SEARCH_DEVIE_CHANEL"
 
-#define  TIME_ADJUST        [NSTimeZone localTimeZone].secondsFromGMT - 12 * 60 * 60
+#define  TIME_ADJUST        [NSTimeZone localTimeZone].secondsFromGMT
 #define  TIME_STAMP         [[NSDate date] timeIntervalSince1970] + TIME_ADJUST
 
 
@@ -54,6 +54,7 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, strong) NSMutableArray *eventArray;
 @property (nonatomic, strong) NSMutableArray *activityArray;
+@property (nonatomic, strong) NSMutableDictionary *activityDict;
 @property (nonatomic) long timeStamp;
 @property (nonatomic, strong) NSData *ffa4Data;
 @property (nonatomic, strong) NSData *macAddress;
@@ -517,18 +518,10 @@ typedef enum : NSUInteger {
                         ActivityModel *model = [ActivityModel new];
                         model.time = weakSelf.timeStamp;
                         model.macId = [Fun dataToHex:weakSelf.macAddress];
-                        const Byte* ptr = weakSelf.ffa4Data.bytes;
-                        if (ptr[5] == 0x01) {
-                            LOG_D(@"activity indoor outdoor change");
-                            [model setIndoorData:characteristic.value];
-                            [model setOutdoorData:weakSelf.ffa4Data];
-                        }
-                        else {
-                            [model setIndoorData:weakSelf.ffa4Data];
-                            [model setOutdoorData:characteristic.value];
-                        }
+                        [model setIndoorData:weakSelf.ffa4Data];
+                        [model setOutdoorData:characteristic.value];
                         [weakSelf.activityArray addObject:model];
-                        LOG_D(@"activity: indoor:%@ outdoor:%@", model.indoorActivity, model.outdoorActivity);
+                        LOG_D(@"activity: time:%ld indoor:%@ outdoor:%@", model.time, model.indoorActivity, model.outdoorActivity);
                     }
                     NSLog(@"Write FFA5");
                     NSData *data = [NSData dataWithBytes:array length:1];
@@ -780,6 +773,7 @@ typedef enum : NSUInteger {
         }
     }
     self.activityArray = [NSMutableArray array];
+    self.activityDict = [NSMutableDictionary dictionary];
     self.blockOnSyncDevice = completion;
     baby.having(peripheral).and.channel(SYNC_DEVIE_CHANEL).then.connectToPeripherals().discoverServices().discoverCharacteristics().begin();
     [self performSelector:@selector(syncDeviceTimeout) withObject:nil afterDelay:30];

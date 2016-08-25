@@ -495,7 +495,7 @@
 }
 
 - (NSURLSessionDataTask *)deviceUploadRawData:(ActivityModel*)model completion:( void (^)(NSError *error) )completion {
-    NSDictionary *data = [model toDictionary];
+    NSDictionary *data = [model toDictionaryWithKeys:@[@"indoorActivity",@"outdoorActivity",@"time",@"macId"]];
     LOG_D(@"deviceUploadRawData: %@", data);
     NSURLSessionDataTask *task = [self.sessionManager POST:@"/device/uploadRawData" parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{

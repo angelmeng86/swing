@@ -177,7 +177,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
             for (ActivityResultModel *m in dailyActs) {
                 if ([m.type isEqualToString:@"INDOOR"]) {
                     if (_type == ChartTypeYear) {
-                        NSString *date = [m.date substringToIndex:6];
+                        NSString *date = [m.date substringToIndex:7];
                         if (indoors[date]) {
                             ActivityResultModel *model = indoors[date];
                             model.steps += m.steps;
@@ -250,15 +250,9 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     switch (_type) {
         case ChartTypeYear:
         {
-            static NSDateFormatter *df = nil;
-            if (df == nil) {
-                df = [[NSDateFormatter alloc] init];
-                [df setDateFormat:@"yyyy-MM-dd"];
-            }
-            
             NSCalendar *cal = [NSCalendar currentCalendar];
             NSDateComponents *comp = [cal components:NSYearCalendarUnit|NSMonthCalendarUnit fromDate:date];
-            LOG_D(@"month:%ld", (long)comp.month);
+//            LOG_D(@"month:%ld", (long)comp.month);
             NSString *key = [NSString stringWithFormat:@"%ld-%02d", (long)comp.year, (int)(index + 1)];
             ActivityResultModel *model = dict[key];
             if (model) {
@@ -566,7 +560,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 
 - (CGFloat)barPaddingForBarChartView:(JBBarChartView *)barChartView
 {
-    NSUInteger count = barChartView == _stepsChartView ? self.stepChartData.count : self.distanceChartData.count;
+    NSUInteger count = [self dataCount];
     CGFloat padWidth = barChartView.frame.size.width / (count * 2 - 1);
     if (padWidth < kJBBarChartViewControllerBarPadding) {
         return padWidth;

@@ -16,9 +16,20 @@
 @property (nonatomic) long time;
 @property (nonatomic, strong) NSString *macId;
 
+@property (nonatomic) long inData1;
+@property (nonatomic) long inData2;
+@property (nonatomic) long inData3;
+@property (nonatomic) long inData4;
+
+@property (nonatomic) long outData1;
+@property (nonatomic) long outData2;
+@property (nonatomic) long outData3;
+@property (nonatomic) long outData4;
+
 - (void)setIndoorData:(NSData*)data;
 - (void)setOutdoorData:(NSData*)data;
 
-- (void)reset;
+- (void)reload;
+//- (void)reset;
 
 @end
