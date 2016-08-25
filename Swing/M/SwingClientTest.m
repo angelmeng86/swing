@@ -251,6 +251,50 @@
             NSLog(@"test:%ld data:%@ test2:%ld", test, data, test2);
         }
             break;
+        case 15:
+        {
+            [[SwingClient sharedClient]userLogin:@"lwz@swing.com" password:@"111111" completion:^(NSError *error) {
+                if (error) {
+                    LOG_D(@"userLogin fail: %@", error);
+                }
+                [self test:index + 1];
+            }];
+        }
+            break;
+        case 16:
+        {
+            long time = [[NSDate date] timeIntervalSince1970];
+            NSMutableData *data = [NSMutableData data];
+            [data appendData:[Fun longToByteArray:time]];
+            char *ptr = "\x01\x76\x01\x00\x00\x76\x01\x00\x00\x76\x01\x00\x00\x76\x01\x00\x00";
+            [data appendBytes:ptr length:17];
+            ActivityModel *m = [ActivityModel new];
+            m.macId = @"maple";
+             m.time = time;
+//            [m setIndoorData:data];
+//            [m setOutdoorData:data];
+            [m reset];
+            
+            [[SwingClient sharedClient] deviceUploadRawData:m completion:^(NSError *error) {
+                if (error) {
+                    LOG_D(@"deviceUploadRawData fail: %@", error);
+                }
+                [self test:index + 1];
+            }];
+        }
+            break;
+        case 17:
+        {
+            [[SwingClient sharedClient] deviceGetActivity:@"maple" type:GetActivityTypeDay completion:^(id dailyActs, NSError *error) {
+                if (error) {
+                    LOG_D(@"deviceGetActivity fail: %@", error);
+                }
+                else {
+                    LOG_D(@"deviceGetActivity:%@", dailyActs);
+                }
+            }];
+        }
+            break;
         default:
             break;
     }

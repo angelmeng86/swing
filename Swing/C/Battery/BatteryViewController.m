@@ -7,12 +7,9 @@
 //
 
 #import "BatteryViewController.h"
-#import "LMBluetoothClient.h"
 #import "SwingBluetooth.h"
 
 @interface BatteryViewController ()
-
-@property (nonatomic, strong) LMBluetoothClient *client;
 
 
 @end

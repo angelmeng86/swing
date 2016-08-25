@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0F45AB7F1D62DEDE00EF385F /* LMBluetoothClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB7E1D62DEDE00EF385F /* LMBluetoothClient.m */; };
 		0F45AB831D6316FA00EF385F /* STextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB821D6316FA00EF385F /* STextField.m */; };
 		0F45AB881D63593400EF385F /* ActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB871D63593400EF385F /* ActivityModel.m */; };
 		0F45AB8B1D63614800EF385F /* ActivityResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB8A1D63614800EF385F /* ActivityResultModel.m */; };
@@ -111,8 +110,6 @@
 
 /* Begin PBXFileReference section */
 		0A892F16F4220A9DEBE01E9D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		0F45AB7D1D62DEDE00EF385F /* LMBluetoothClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMBluetoothClient.h; sourceTree = "<group>"; };
-		0F45AB7E1D62DEDE00EF385F /* LMBluetoothClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMBluetoothClient.m; sourceTree = "<group>"; };
 		0F45AB811D6316FA00EF385F /* STextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STextField.h; sourceTree = "<group>"; };
 		0F45AB821D6316FA00EF385F /* STextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STextField.m; sourceTree = "<group>"; };
 		0F45AB861D63593400EF385F /* ActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityModel.h; sourceTree = "<group>"; };
@@ -400,8 +397,6 @@
 				ADE820781D54D99000E12768 /* WeatherModel.m */,
 				ADD6555F1D5B8DAC0054FB24 /* AlertModel.h */,
 				ADD655601D5B8DAC0054FB24 /* AlertModel.m */,
-				0F45AB7D1D62DEDE00EF385F /* LMBluetoothClient.h */,
-				0F45AB7E1D62DEDE00EF385F /* LMBluetoothClient.m */,
 				0F45AB861D63593400EF385F /* ActivityModel.h */,
 				0F45AB871D63593400EF385F /* ActivityModel.m */,
 				0F45AB891D63614800EF385F /* ActivityResultModel.h */,
@@ -936,7 +931,6 @@
 				AD347D1E1D3FDEEC00E91DDD /* SelectWatchViewController.m in Sources */,
 				AD74D4DC1D4F90B5001F3B36 /* EventLabel.m in Sources */,
 				ADFC2C2D1D369949004EDCDF /* main.m in Sources */,
-				0F45AB7F1D62DEDE00EF385F /* LMBluetoothClient.m in Sources */,
 				AD289A5E1D3FD0E800898F92 /* AskStepViewController.m in Sources */,
 				0FD6B4041D6207E000C00A45 /* BabySpeaker.m in Sources */,
 				ADDCD3F81D4C557E0031DC66 /* UIFont+AvenirFont.m in Sources */,

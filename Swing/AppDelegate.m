@@ -19,8 +19,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+//    char *ptr = "\x76\x01\x00\x00\x01\x76\x01\x00\x00\x76\x01\x00\x00\x76\x01\x00\x00\x76\x01\x00\x00";
+////    long data = [Fun byteArrayToLong:[NSData dataWithBytes:ptr length:4] length:4];
+//    ActivityModel *m = [ActivityModel new];
+//    [m setIndoorData:[NSData dataWithBytes:ptr length:21]];
+//    NSLog(@"data:%@", m.indoorActivity);
     
     [[GlobalCache shareInstance] initConfig];
+//    [SwingClientTest testAll:15];
     
     //设置导航默认标题的颜色及字体大小
     [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName:COMMON_TITLE_COLOR, NSFontAttributeName:[UIFont boldAvenirFontOfSize:18]};

@@ -18,13 +18,21 @@
 "receivedTime": 1471185427000,
 "receivedDate": "2016-08-14T14:37:07Z"
 */
-@property (nonatomic) int objId;
+/*
+{
+    "steps": 242,
+    "date": "2016-08-21",
+    "type": "INDOOR"
+},
+ */
+//@property (nonatomic) int objId;
 @property (nonatomic) long steps;
-@property (nonatomic) long distance;
-@property (nonatomic) long calories;
+@property (nonatomic, strong) NSString *date;
+//@property (nonatomic) long distance;
+//@property (nonatomic) long calories;
 
-@property (nonatomic) long receivedTime;
-@property (nonatomic, strong) NSString *receivedDate;
+//@property (nonatomic) long receivedTime;
+//@property (nonatomic, strong) NSString *receivedDate;
 @property (nonatomic, strong) NSString *type;
 
 @end

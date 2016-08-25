@@ -60,6 +60,7 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, strong) NSMutableDictionary *batteryModels;
 @property (nonatomic, strong) NSMutableSet *macAddressList;
+@property (nonatomic, strong) NSMutableArray *findedModels;
 
 @end
 
@@ -687,6 +688,7 @@ typedef enum : NSUInteger {
 //    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(queryBatteryTimeout) object:nil];
     self.macAddressList = [NSMutableSet setWithArray:macAddressList];
     self.batteryModels = [NSMutableDictionary dictionary];
+    self.findedModels = [NSMutableArray array];
     self.blockOnQueryBattery = completion;
     [self performSelector:@selector(queryBatteryTimeout) withObject:nil afterDelay:30];
     baby.channel(READ_BATTERY_CHANEL).scanForPeripherals().then.connectToPeripherals().discoverServices().discoverCharacteristics().begin();
@@ -713,6 +715,7 @@ typedef enum : NSUInteger {
         NSArray *array = [_batteryModels allValues];
         for (BatteryModel *m in array) {
             if([m ready] && [_macAddressList containsObject:m.macAddress]) {
+                [_findedModels addObject:m];
                 [_macAddressList removeObject:m.macAddress];
             }
         }
@@ -722,7 +725,7 @@ typedef enum : NSUInteger {
         }
     }
     if (self.blockOnQueryBattery) {
-        self.blockOnQueryBattery([_batteryModels allValues], error);
+        self.blockOnQueryBattery(_findedModels, error);
         self.blockOnQueryBattery = nil;
     }
     [baby cancelScan];
@@ -756,7 +759,13 @@ typedef enum : NSUInteger {
     [self cannelAll];
     [self queryBattery:@[macAddress] completion:^(NSArray *batteryDevices, NSError *error) {
         BatteryModel *m = [batteryDevices firstObject];
-        completion(m.peripheral, error);
+        if (m == nil) {
+            NSError *err = [NSError errorWithDomain:@"SwingBluetooth" code:-2 userInfo:[NSDictionary dictionaryWithObject:@"can not find device." forKey:NSLocalizedDescriptionKey]];
+            completion(nil, err);
+        }
+        else {
+            completion(m.peripheral, nil);
+        }
     }];
 }
 

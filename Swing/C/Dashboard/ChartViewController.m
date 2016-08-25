@@ -36,11 +36,11 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 @property (nonatomic, strong) UIColor *stepChartColor;
 @property (nonatomic, strong) UIColor *distanceChartColor;
 
-@property (nonatomic, strong) NSArray *stepChartData;
-@property (nonatomic, strong) NSArray *distanceChartData;
+@property (nonatomic, strong) NSDictionary *stepChartData;
+@property (nonatomic, strong) NSDictionary *distanceChartData;
 
-@property (nonatomic, strong) NSArray *indoorData;
-@property (nonatomic, strong) NSArray *outdoorData;
+@property (nonatomic, strong) NSDictionary *indoorData;
+@property (nonatomic, strong) NSDictionary *outdoorData;
 
 @property (nonatomic) BOOL isLoadData;
 
@@ -48,23 +48,23 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 
 @implementation ChartViewController
 
-- (void)initFakeData:(int)count value:(int)value
-{
-    NSMutableArray *mutableChartData = [NSMutableArray array];
-    for (int i=0; i<count; i++)
-    {
-        NSInteger delta = (count - labs((count - i) - i)) + 2;
-        if (value < 0) {
-            [mutableChartData addObject:[NSNumber numberWithFloat:MAX((delta * kJBBarChartViewControllerMinBarHeight), arc4random() % (delta * kJBBarChartViewControllerMaxBarHeight))]];
-        }
-        else {
-            [mutableChartData addObject:[NSNumber numberWithInt:value]];
-        }
-        
-    }
-    _stepChartData = [NSArray arrayWithArray:mutableChartData];
-    _distanceChartData = [NSArray arrayWithArray:mutableChartData];
-}
+//- (void)initFakeData:(int)count value:(int)value
+//{
+//    NSMutableArray *mutableChartData = [NSMutableArray array];
+//    for (int i=0; i<count; i++)
+//    {
+//        NSInteger delta = (count - labs((count - i) - i)) + 2;
+//        if (value < 0) {
+//            [mutableChartData addObject:[NSNumber numberWithFloat:MAX((delta * kJBBarChartViewControllerMinBarHeight), arc4random() % (delta * kJBBarChartViewControllerMaxBarHeight))]];
+//        }
+//        else {
+//            [mutableChartData addObject:[NSNumber numberWithInt:value]];
+//        }
+//        
+//    }
+//    _stepChartData = [NSArray arrayWithArray:mutableChartData];
+//    _distanceChartData = [NSArray arrayWithArray:mutableChartData];
+//}
 
 - (void)viewDidLoad {
     self.notLoadBackgroudImage = YES;
@@ -172,14 +172,50 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
         task = nil;
         if (!error) {
             LOG_D(@"dailyActs:%@", dailyActs);
-            NSMutableArray *indoors = [NSMutableArray array];
-            NSMutableArray *outdoors = [NSMutableArray array];
+            NSMutableDictionary *indoors = [NSMutableDictionary dictionary];
+            NSMutableDictionary *outdoors = [NSMutableDictionary dictionary];
             for (ActivityResultModel *m in dailyActs) {
                 if ([m.type isEqualToString:@"INDOOR"]) {
-                    [indoors addObject:m];
+                    if (_type == ChartTypeYear) {
+                        NSString *date = [m.date substringToIndex:6];
+                        if (indoors[date]) {
+                            ActivityResultModel *model = indoors[date];
+                            model.steps += m.steps;
+                        }
+                        else {
+                            indoors[date] = m;
+                        }
+                    }
+                    else {
+                        if (indoors[m.date]) {
+                            ActivityResultModel *model = indoors[m.date];
+                            model.steps += m.steps;
+                        }
+                        else {
+                            indoors[m.date] = m;
+                        }
+                    }
                 }
                 else if([m.type isEqualToString:@"OUTDOOR"]) {
-                    [outdoors addObject:m];
+                    if (_type == ChartTypeYear) {
+                        NSString *date = [m.date substringToIndex:6];
+                        if (outdoors[date]) {
+                            ActivityResultModel *model = outdoors[date];
+                            model.steps += m.steps;
+                        }
+                        else {
+                            outdoors[date] = m;
+                        }
+                    }
+                    else {
+                        if (outdoors[m.date]) {
+                            ActivityResultModel *model = outdoors[m.date];
+                            model.steps += m.steps;
+                        }
+                        else {
+                            outdoors[m.date] = m;
+                        }
+                    }
                 }
             }
             self.indoorData = indoors;
@@ -197,8 +233,63 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     [self reloadData];
 }
 
+- (int)dataCount {
+    switch (_type) {
+        case ChartTypeMonth:
+            return 30;
+        case ChartTypeYear:
+            return 12;
+        default:
+            return 7;
+    }
+}
+
+- (CGFloat)dataDate:(NSDictionary*)dict index:(NSUInteger)index {
+    int maxCount = [self dataCount];
+    NSDate *date = [NSDate date];
+    switch (_type) {
+        case ChartTypeYear:
+        {
+            static NSDateFormatter *df = nil;
+            if (df == nil) {
+                df = [[NSDateFormatter alloc] init];
+                [df setDateFormat:@"yyyy-MM-dd"];
+            }
+            
+            NSCalendar *cal = [NSCalendar currentCalendar];
+            NSDateComponents *comp = [cal components:NSYearCalendarUnit|NSMonthCalendarUnit fromDate:date];
+            LOG_D(@"month:%ld", (long)comp.month);
+            NSString *key = [NSString stringWithFormat:@"%ld-%02d", (long)comp.year, (int)(index + 1)];
+            ActivityResultModel *model = dict[key];
+            if (model) {
+                return model.steps;
+            }
+        }
+            break;
+        default:
+        {
+            static NSDateFormatter *df = nil;
+            if (df == nil) {
+                df = [[NSDateFormatter alloc] init];
+                [df setDateFormat:@"yyyy-MM-dd"];
+            }
+            
+            int pos = (int)index;
+            NSDate *preDate = [date dateByAddingTimeInterval: (pos - maxCount + 1) * 24 * 60 * 60];
+            NSString *key = [df stringFromDate:preDate];
+            ActivityResultModel *model = dict[key];
+            if (model) {
+                return model.steps;
+            }
+        }
+            break;
+    }
+    return 0.0f;
+}
+
 - (void)reloadData {
-    NSArray *dailyActs = _isOutdoor ? self.outdoorData : self.indoorData;
+    NSDictionary *dailyActs = _isOutdoor ? self.outdoorData : self.indoorData;
+    /*
     if (dailyActs.count > 0) {
         int maxCount = 0;
         NSMutableArray *stepData = [NSMutableArray array];
@@ -235,19 +326,22 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
         
         for (ActivityResultModel *m in dailyActs) {
             [stepData addObject:[NSNumber numberWithLong:m.steps]];
-            [distanceData addObject:[NSNumber numberWithLong:m.distance]];
+//            [distanceData addObject:[NSNumber numberWithLong:m.distance]];
             if (stepData.count == maxCount) {
                 break;
             }
         }
         
         _stepChartData = [NSArray arrayWithArray:stepData];
-        _distanceChartData = [NSArray arrayWithArray:distanceData];
+//        _distanceChartData = [NSArray arrayWithArray:distanceData];
     }
     else {
         _stepChartData = nil;
         _distanceChartData = nil;
     }
+     */
+    _stepChartData = dailyActs;
+    _distanceChartData = nil;
     
     LOG_D(@"stepChartData:%@", _stepChartData);
     [self.stepsChartView reloadData];
@@ -338,12 +432,14 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 }
 
 - (NSUInteger)numberOfBarsInChartFooterView:(ChartFooterView *)footerView {
-    if (footerView == self.stepFooter) {
-        return [self.stepChartData count];
-    }
-    else {
-        return [self.distanceChartData count];
-    }
+    return [self dataCount];
+    
+//    if (footerView == self.stepFooter) {
+//        return [self.stepChartData count];
+//    }
+//    else {
+//        return [self.distanceChartData count];
+//    }
     
 }
 
@@ -354,7 +450,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
             df = [[NSDateFormatter alloc] init];
             [df setDateFormat:@"MM/dd"];
         }
-        int pos = index;
+        int pos = (int)index;
         NSDate *preDate = [[NSDate date] dateByAddingTimeInterval: (pos - 6) * 24 * 60 * 60];
         return [df stringFromDate:preDate];
     }
@@ -385,12 +481,13 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 
 - (NSUInteger)numberOfBarsInBarChartView:(JBBarChartView *)barChartView
 {
-    if(barChartView == _stepsChartView) {
-        return [self.stepChartData count];
-    }
-    else {
-        return [self.distanceChartData count];
-    }
+    return [self dataCount];
+//    if(barChartView == _stepsChartView) {
+//        return [self.stepChartData count];
+//    }
+//    else {
+//        return [self.distanceChartData count];
+//    }
 }
 
 - (void)barChartView:(JBBarChartView *)barChartView didSelectBarAtIndex:(NSUInteger)index touchPoint:(CGPoint)touchPoint
@@ -410,10 +507,10 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 - (CGFloat)barChartView:(JBBarChartView *)barChartView heightForBarViewAtIndex:(NSUInteger)index
 {
     if(barChartView == _stepsChartView) {
-        return [[self.stepChartData objectAtIndex:index] floatValue];
+        return [self dataDate:_stepChartData index:index];
     }
     else {
-        return [[self.distanceChartData objectAtIndex:index] floatValue];
+        return 0.0f;//[[self.distanceChartData objectAtIndex:index] floatValue];
     }
 }
 
@@ -436,7 +533,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
             df = [[NSDateFormatter alloc] init];
             [df setDateFormat:@"MM/dd"];
         }
-        int pos = index;
+        int pos = (int)index;
         NSDate *preDate = [[NSDate date] dateByAddingTimeInterval: (pos - 6) * 24 * 60 * 60];
         
         LMBarView *v = [LMBarView new];
@@ -487,8 +584,9 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 
 - (NSUInteger)lineChartView:(JBLineChartView *)lineChartView numberOfVerticalValuesAtLineIndex:(NSUInteger)lineIndex
 {
-    NSArray *chartData = lineChartView == _stepsChartView ? self.stepChartData : self.distanceChartData;
-    return [chartData count];
+    return [self dataCount];
+//    NSArray *chartData = lineChartView == _stepsChartView ? self.stepChartData : self.distanceChartData;
+//    return [chartData count];
 }
 
 - (BOOL)lineChartView:(JBLineChartView *)lineChartView showsDotsForLineAtLineIndex:(NSUInteger)lineIndex
@@ -505,8 +603,14 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 
 - (CGFloat)lineChartView:(JBLineChartView *)lineChartView verticalValueForHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex
 {
-    NSArray *chartData = lineChartView == _stepsChartView ? self.stepChartData : self.distanceChartData;
-    return [[chartData objectAtIndex:horizontalIndex] floatValue];
+    if (lineChartView == _stepsChartView) {
+        return [self dataDate:_stepChartData index:horizontalIndex];
+    }
+    else {
+        return 0.0f;
+    }
+//    NSArray *chartData = lineChartView == _stepsChartView ? self.stepChartData : self.distanceChartData;
+//    return [[chartData objectAtIndex:horizontalIndex] floatValue];
 }
 
 - (void)lineChartView:(JBLineChartView *)lineChartView didSelectLineAtIndex:(NSUInteger)lineIndex horizontalIndex:(NSUInteger)horizontalIndex touchPoint:(CGPoint)touchPoint
@@ -535,8 +639,8 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 }
 
 - (UIView *)lineChartView:(JBLineChartView *)lineChartView dotViewAtHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex {
-    NSArray *chartData = lineChartView == _stepsChartView ? self.stepChartData : self.distanceChartData;
-    if (horizontalIndex == 0 || chartData.count == horizontalIndex + 1) {
+//    NSArray *chartData = lineChartView == _stepsChartView ? self.stepChartData : self.distanceChartData;
+    if (horizontalIndex == 0 || [self dataCount] == horizontalIndex + 1) {
         UIView *dot = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 16, 16)];
         dot.backgroundColor = [UIColor whiteColor];
         dot.layer.cornerRadius = 8.0f;
