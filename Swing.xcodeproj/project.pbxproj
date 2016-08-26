@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F445E0F1D7094A6008A092C /* JSONValueTransformer+NSData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F445E0E1D7094A6008A092C /* JSONValueTransformer+NSData.m */; };
 		0F45AB831D6316FA00EF385F /* STextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB821D6316FA00EF385F /* STextField.m */; };
 		0F45AB881D63593400EF385F /* ActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB871D63593400EF385F /* ActivityModel.m */; };
 		0F45AB8B1D63614800EF385F /* ActivityResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB8A1D63614800EF385F /* ActivityResultModel.m */; };
@@ -22,6 +23,7 @@
 		0FD6B4051D6207E000C00A45 /* BabyToy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6B3FC1D6207E000C00A45 /* BabyToy.m */; };
 		0FD6B4081D6212B500C00A45 /* PeripheralInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6B4071D6212B500C00A45 /* PeripheralInfo.m */; };
 		0FDAF5AA1D6405EF007CD808 /* citystate.json in Resources */ = {isa = PBXBuildFile; fileRef = 0FDAF5A91D6405EF007CD808 /* citystate.json */; };
+		0FDBDA951D708725004F7AAF /* LMLocalData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FDBDA941D708725004F7AAF /* LMLocalData.m */; };
 		0FEC584A1D69D91800201EBD /* BatteryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEC58451D69D91700201EBD /* BatteryModel.m */; };
 		0FEC584B1D69D91800201EBD /* CBService+LMMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEC58471D69D91800201EBD /* CBService+LMMethod.m */; };
 		0FEC584C1D69D91800201EBD /* SwingBluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEC58491D69D91800201EBD /* SwingBluetooth.m */; };
@@ -110,6 +112,8 @@
 
 /* Begin PBXFileReference section */
 		0A892F16F4220A9DEBE01E9D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		0F445E0D1D7094A6008A092C /* JSONValueTransformer+NSData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSONValueTransformer+NSData.h"; sourceTree = "<group>"; };
+		0F445E0E1D7094A6008A092C /* JSONValueTransformer+NSData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JSONValueTransformer+NSData.m"; sourceTree = "<group>"; };
 		0F45AB811D6316FA00EF385F /* STextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STextField.h; sourceTree = "<group>"; };
 		0F45AB821D6316FA00EF385F /* STextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STextField.m; sourceTree = "<group>"; };
 		0F45AB861D63593400EF385F /* ActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityModel.h; sourceTree = "<group>"; };
@@ -139,6 +143,8 @@
 		0FD6B4061D6212B500C00A45 /* PeripheralInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeripheralInfo.h; sourceTree = "<group>"; };
 		0FD6B4071D6212B500C00A45 /* PeripheralInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeripheralInfo.m; sourceTree = "<group>"; };
 		0FDAF5A91D6405EF007CD808 /* citystate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = citystate.json; sourceTree = "<group>"; };
+		0FDBDA931D708725004F7AAF /* LMLocalData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMLocalData.h; sourceTree = "<group>"; };
+		0FDBDA941D708725004F7AAF /* LMLocalData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMLocalData.m; sourceTree = "<group>"; };
 		0FEC58441D69D91700201EBD /* BatteryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BatteryModel.h; sourceTree = "<group>"; };
 		0FEC58451D69D91700201EBD /* BatteryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BatteryModel.m; sourceTree = "<group>"; };
 		0FEC58461D69D91800201EBD /* CBService+LMMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBService+LMMethod.h"; sourceTree = "<group>"; };
@@ -401,6 +407,10 @@
 				0F45AB871D63593400EF385F /* ActivityModel.m */,
 				0F45AB891D63614800EF385F /* ActivityResultModel.h */,
 				0F45AB8A1D63614800EF385F /* ActivityResultModel.m */,
+				0FDBDA931D708725004F7AAF /* LMLocalData.h */,
+				0FDBDA941D708725004F7AAF /* LMLocalData.m */,
+				0F445E0D1D7094A6008A092C /* JSONValueTransformer+NSData.h */,
+				0F445E0E1D7094A6008A092C /* JSONValueTransformer+NSData.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -866,6 +876,7 @@
 				ADFC2C301D369949004EDCDF /* AppDelegate.m in Sources */,
 				0FD6B4021D6207E000C00A45 /* BabyPeripheralManager.m in Sources */,
 				AD1CEF0D1D5ADA90004FEC24 /* LMArrowView.m in Sources */,
+				0F445E0F1D7094A6008A092C /* JSONValueTransformer+NSData.m in Sources */,
 				ADE6ED901D4E3B7D00FFA573 /* DayCalendarViewController.m in Sources */,
 				0FD6B3FE1D6207E000C00A45 /* BabyCallback.m in Sources */,
 				AD1CEF0A1D5ACB19004FEC24 /* LMBarView.m in Sources */,
@@ -897,6 +908,7 @@
 				ADEF31CF1D478D2B00BB6A9B /* BindReadyViewController.m in Sources */,
 				ADE6ED971D4E538B00FFA573 /* EventModel.m in Sources */,
 				AD0B811B1D37EF7400F43E72 /* LMBaseTableViewController2.m in Sources */,
+				0FDBDA951D708725004F7AAF /* LMLocalData.m in Sources */,
 				ADBC9BD31D578403007E4A2C /* JSONValueTransformer+UIColor.m in Sources */,
 				AD74382D1D4DE08000F5F9D2 /* WeatherContentViewController.m in Sources */,
 				AD7438271D4DD50C00F5F9D2 /* JBBaseChartViewController.m in Sources */,

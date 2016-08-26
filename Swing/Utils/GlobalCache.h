@@ -46,10 +46,8 @@
 
 @property (strong, nonatomic) LoginedModel* info;
 @property (strong, nonatomic) UserModel* user;
-@property (strong, nonatomic) NSData* deviceMAC;
+@property (strong, nonatomic) LMLocalData* local;
 
-@property (nonatomic) long indoorSteps;
-@property (nonatomic) long outdoorSteps;
 @property (nonatomic) int battery;
 
 @property (strong, nonatomic) WeatherModel* wearther;

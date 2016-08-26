@@ -41,7 +41,8 @@
     json = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
     _user = [[UserModel alloc] initWithString:json error:nil];
     
-    _deviceMAC = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceMac"];
+    NSDictionary *dict = [[NSUserDefaults standardUserDefaults] objectForKey:@"localData"];
+    _local = [[LMLocalData alloc] initWithDictionary:dict error:nil];
 }
 
 - (void)setInfo:(LoginedModel *)info {
@@ -56,14 +57,19 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (void)setDeviceMAC:(NSData *)deviceMAC {
-    _deviceMAC = deviceMAC;
-    [[NSUserDefaults standardUserDefaults] setObject:_deviceMAC forKey:@"deviceMac"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+- (LMLocalData*)local {
+    if(_local == nil) {
+        _local = [LMLocalData new];
+        _local.date = [GlobalCache dateToDayString:[NSDate date]];
+    }
+    else {
+        [_local checkDate];
+    }
+    return _local;
 }
 
 - (void)saveInfo {
-    [[NSUserDefaults standardUserDefaults] setObject:_deviceMAC forKey:@"deviceMac"];
+    [[NSUserDefaults standardUserDefaults] setObject:[_local toDictionary] forKey:@"localData"];
     [[NSUserDefaults standardUserDefaults] setObject:[_info toJSONString] forKey:@"token"];
     [[NSUserDefaults standardUserDefaults] setObject:[_user toJSONString] forKey:@"user"];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -77,12 +83,12 @@
     self.info = nil;
     self.user = nil;
     self.kidsList = nil;
-    self.deviceMAC = nil;
+    self.local = nil;
     [self.calendarEventsByMonth removeAllObjects];
     [self.calendarQueue removeAllObjects];
     
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"kids"];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"deviceMac"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"localData"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"token"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user"];
     [[NSUserDefaults standardUserDefaults] synchronize];

@@ -59,8 +59,8 @@
 }
 
 - (void)goNext {
-    if (_macAddress && [GlobalCache shareInstance].deviceMAC == nil) {
-        [GlobalCache shareInstance].deviceMAC = _macAddress;
+    if (_macAddress && [GlobalCache shareInstance].local.deviceMAC == nil) {
+        [GlobalCache shareInstance].local.deviceMAC = _macAddress;
     }
     for (UIViewController *ctl in self.navigationController.viewControllers) {
         if ([ctl isKindOfClass:[EditProfileViewController class]] || [ctl isKindOfClass:[SyncDeviceViewController class]]) {

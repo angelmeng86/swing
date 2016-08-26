@@ -44,6 +44,7 @@
 #import "AlertModel.h"
 #import "ActivityModel.h"
 #import "ActivityResultModel.h"
+#import "LMLocalData.h"
 
 #import "Fun.h"
 #import "CameraUtility.h"

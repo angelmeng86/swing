@@ -165,8 +165,16 @@
             else {
                 UserModel *model = [[UserModel alloc] initWithDictionary:responseObject[@"user"] error:nil];
                 NSArray *kids = [KidModel arrayOfModelsFromDictionaries:responseObject[@"kids"] error:nil];
+                for (KidModel *kid in kids) {
+                    if (kid.note.length > 0) {
+                        //默认设置第一个Kid的设备为当前设备
+                        [GlobalCache shareInstance].local.deviceMAC = [Fun hexToData:kid.note];
+                        break;
+                    }
+                }
                 [GlobalCache shareInstance].kidsList = kids;
                 [GlobalCache shareInstance].user = model;
+                [[GlobalCache shareInstance] saveInfo];
                 
                 completion(model, kids, nil);
             }

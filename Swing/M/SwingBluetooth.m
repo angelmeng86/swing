@@ -530,7 +530,6 @@ typedef enum : NSUInteger {
                         model.macId = [Fun dataToHex:weakSelf.macAddress];
                         [model setIndoorData:weakSelf.ffa4Data];
                         [model setOutdoorData:characteristic.value];
-                        
                         if (weakSelf.activityDict[key]) {
                             ActivityModel *m = weakSelf.activityDict[key];
                             [m add:model];
@@ -541,7 +540,7 @@ typedef enum : NSUInteger {
                         }
                         
 //                        [weakSelf.activityArray addObject:model];
-                        LOG_D(@"activity: time:%ld indoor:%@ outdoor:%@", model.time, model.indoorActivity, model.outdoorActivity);
+                        LOG_D(@"activity: time:%ld indoor:%@ outdoor:%@ date:%@", model.time, model.indoorActivity, model.outdoorActivity, key);
                     }
                     NSLog(@"Write FFA5");
                     NSData *data = [NSData dataWithBytes:array length:1];
@@ -807,6 +806,14 @@ typedef enum : NSUInteger {
 - (void)reportSyncDeviceResult:(NSError*)error {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(syncDeviceTimeout) object:nil];
     if (self.blockOnSyncDevice) {
+        NSString *key = [GlobalCache shareInstance].local.date;
+        if (key && _activityDict[key]) {
+            //累加当天的步数
+            ActivityModel *m = _activityDict[key];
+            [GlobalCache shareInstance].local.indoorSteps += m.inData1;
+            [GlobalCache shareInstance].local.outdoorSteps += m.outData1;
+            [[GlobalCache shareInstance] saveInfo];
+        }
         self.blockOnSyncDevice([NSMutableArray arrayWithArray:[_activityDict allValues]], error);
 //        self.blockOnSyncDevice(_activityArray, error);
         self.blockOnSyncDevice = nil;

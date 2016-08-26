@@ -80,6 +80,12 @@
     [self.outdoorBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     [self.outdoorBtn setBackgroundImage:image forState:UIControlStateSelected];
     [self.outdoorBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.indoor = [ActivityResultModel new];
+    self.outdoor = [ActivityResultModel new];
+    self.indoor.steps = [GlobalCache shareInstance].local.indoorSteps;
+    self.outdoor.steps = [GlobalCache shareInstance].local.outdoorSteps;
+    [self reloadData];
 }
 
 - (void)btnAction:(id)sender {
@@ -130,19 +136,15 @@
 //    }
 //    [self.stepProgress setNeedsLayout];
     
-    NSString *macId = [Fun dataToHex:[GlobalCache shareInstance].deviceMAC];
+    /*
+    NSString *macId = [Fun dataToHex:[GlobalCache shareInstance].local.deviceMAC];
     if (macId.length == 0) {
         return;
     }
     [[SwingClient sharedClient] deviceGetActivity:macId type:GetActivityTypeDay completion:^(id dailyActs, NSError *error) {
         if (!error) {
             LOG_D(@"dailyActs:%@", dailyActs);
-            static NSDateFormatter *df = nil;
-            if (df == nil) {
-                df = [[NSDateFormatter alloc] init];
-                [df setDateFormat:@"yyyy-MM-dd"];
-            }
-            NSString *date = [df stringFromDate:[NSDate date]];
+            NSString *date = [GlobalCache dateToDayString:[NSDate date]];
             for (ActivityResultModel *m in dailyActs) {
                 if ([m.date isEqualToString:date]) {
                     if ([m.type isEqualToString:@"INDOOR"]) {
@@ -159,6 +161,7 @@
             LOG_D(@"deviceGetActivity fail: %@", error);
         }
     }];
+     */
 }
 
 /*

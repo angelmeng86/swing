@@ -55,7 +55,7 @@
 }
 
 - (IBAction)syncCurrentAction:(id)sender {
-    if ([GlobalCache shareInstance].deviceMAC) {
+    if ([GlobalCache shareInstance].local.deviceMAC) {
         UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"SyncDevice" bundle:nil];
         UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"Syncing"];
         [self.navigationController pushViewController:ctl animated:YES];

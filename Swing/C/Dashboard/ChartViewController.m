@@ -164,7 +164,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     if (task) {
         return;
     }
-    NSString *macId = [Fun dataToHex:[GlobalCache shareInstance].deviceMAC];
+    NSString *macId = [Fun dataToHex:[GlobalCache shareInstance].local.deviceMAC];
     if (macId.length == 0) {
         return;
     }
@@ -262,15 +262,9 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
             break;
         default:
         {
-            static NSDateFormatter *df = nil;
-            if (df == nil) {
-                df = [[NSDateFormatter alloc] init];
-                [df setDateFormat:@"yyyy-MM-dd"];
-            }
-            
             int pos = (int)index;
             NSDate *preDate = [date dateByAddingTimeInterval: (pos - maxCount + 1) * 24 * 60 * 60];
-            NSString *key = [df stringFromDate:preDate];
+            NSString *key = [GlobalCache dateToDayString:preDate];
             ActivityResultModel *model = dict[key];
             if (model) {
                 return model.steps;

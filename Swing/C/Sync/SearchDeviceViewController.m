@@ -90,7 +90,7 @@ typedef enum : NSUInteger {
 #if TARGET_IPHONE_SIMULATOR
             [self performSelector:@selector(performStatus:) withObject:[NSNumber numberWithUnsignedInteger:SyncStatusFound] afterDelay:3];
 #else
-            [client searchDevice:[GlobalCache shareInstance].deviceMAC completion:^(CBPeripheral *peripheral, NSError *error) {
+            [client searchDevice:[GlobalCache shareInstance].local.deviceMAC completion:^(CBPeripheral *peripheral, NSError *error) {
                 if (!error) {
                     self.peripheral = peripheral;
                     [self changeStatus:SyncStatusFound];
@@ -183,7 +183,7 @@ typedef enum : NSUInteger {
         self.activitys = activities;
         if (_activitys.count == 0) {
             ActivityModel *model = [ActivityModel new];
-            model.macId = [Fun dataToHex:[GlobalCache shareInstance].deviceMAC];
+            model.macId = [Fun dataToHex:[GlobalCache shareInstance].local.deviceMAC];
 //            [model reset];
             _activitys = [NSMutableArray arrayWithObject:model];
         }
