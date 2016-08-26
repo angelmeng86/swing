@@ -169,16 +169,20 @@ typedef enum : NSUInteger {
     [baby setBlockOnDidWriteValueForCharacteristicAtChannel:channel block:^(CBCharacteristic *characteristic, NSError *error) {
         if (!error) {
             if ([characteristic.UUID.UUIDString isEqualToString:@"FFA1"]) {
-                CBCharacteristic *character = [characteristic.service findCharacteristic:@"FFA3"];
-                NSData *time = [Fun longToByteArray:TIME_STAMP];
-                NSLog(@"write FFA3 %@", time);
-                [characteristic.service.peripheral writeValue:time forCharacteristic:character type:CBCharacteristicWriteWithResponse];
-            }
-            else if ([characteristic.UUID.UUIDString isEqualToString:@"FFA3"]) {
                 NSLog(@"read FFA6");
                 CBCharacteristic *character = [characteristic.service findCharacteristic:@"FFA6"];
                 [characteristic.service.peripheral readValueForCharacteristic:character];
+                
+//                CBCharacteristic *character = [characteristic.service findCharacteristic:@"FFA3"];
+//                NSData *time = [Fun longToByteArray:TIME_STAMP];
+//                NSLog(@"write FFA3 %@", time);
+//                [characteristic.service.peripheral writeValue:time forCharacteristic:character type:CBCharacteristicWriteWithResponse];
             }
+//            else if ([characteristic.UUID.UUIDString isEqualToString:@"FFA3"]) {
+//                NSLog(@"read FFA6");
+//                CBCharacteristic *character = [characteristic.service findCharacteristic:@"FFA6"];
+//                [characteristic.service.peripheral readValueForCharacteristic:character];
+//            }
         }
     }];
     

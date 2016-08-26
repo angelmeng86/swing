@@ -137,12 +137,20 @@
     [[SwingClient sharedClient] deviceGetActivity:macId type:GetActivityTypeDay completion:^(id dailyActs, NSError *error) {
         if (!error) {
             LOG_D(@"dailyActs:%@", dailyActs);
+            static NSDateFormatter *df = nil;
+            if (df == nil) {
+                df = [[NSDateFormatter alloc] init];
+                [df setDateFormat:@"yyyy-MM-dd"];
+            }
+            NSString *date = [df stringFromDate:[NSDate date]];
             for (ActivityResultModel *m in dailyActs) {
-                if ([m.type isEqualToString:@"INDOOR"]) {
-                    self.indoor = m;
-                }
-                else if([m.type isEqualToString:@"OUTDOOR"]) {
-                    self.outdoor = m;
+                if ([m.date isEqualToString:date]) {
+                    if ([m.type isEqualToString:@"INDOOR"]) {
+                        self.indoor = m;
+                    }
+                    else if([m.type isEqualToString:@"OUTDOOR"]) {
+                        self.outdoor = m;
+                    }
                 }
             }
             [self reloadData];

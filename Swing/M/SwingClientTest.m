@@ -263,16 +263,22 @@
             break;
         case 16:
         {
-            long time = [[NSDate date] timeIntervalSince1970];
+            long time = [[NSDate date] timeIntervalSince1970] + 15 * 24 * 60 * 60;
+//            NSLog(@"date1:%@", [NSDate dateWithTimeIntervalSince1970:1472611041]);
+            NSLog(@"date2:%@", [NSDate dateWithTimeIntervalSince1970:time]);
             NSMutableData *data = [NSMutableData data];
             [data appendData:[Fun longToByteArray:time]];
-            char *ptr = "\x01\x76\x01\x00\x00\x76\x01\x00\x00\x76\x01\x00\x00\x76\x01\x00\x00";
+            char *ptr = "\x00\x76\x01\x00\x00\x76\x01\x00\x00\x76\x01\x00\x00\x76\x01\x00\x00";
             [data appendBytes:ptr length:17];
+            NSMutableData *data2 = [NSMutableData data];
+            [data2 appendData:[Fun longToByteArray:time]];
+            char *ptr2 = "\x01\x76\x01\x00\x00\x76\x01\x00\x00\x76\x01\x00\x00\x76\x01\x00\x00";
+            [data2 appendBytes:ptr2 length:17];
             ActivityModel *m = [ActivityModel new];
             m.macId = @"maple";
              m.time = time;
-//            [m setIndoorData:data];
-//            [m setOutdoorData:data];
+            [m setIndoorData:data];
+            [m setOutdoorData:data2];
 //            [m reset];
             
             [[SwingClient sharedClient] deviceUploadRawData:m completion:^(NSError *error) {
@@ -292,6 +298,46 @@
                 else {
                     LOG_D(@"deviceGetActivity:%@", dailyActs);
                 }
+                [self test:index + 1];
+            }];
+        }
+            break;
+        case 18:
+        {
+            [[SwingClient sharedClient] deviceGetActivity:@"maple" type:GetActivityTypeWeekly completion:^(id dailyActs, NSError *error) {
+                if (error) {
+                    LOG_D(@"deviceGetActivity fail: %@", error);
+                }
+                else {
+                    LOG_D(@"deviceGetActivity:%@", dailyActs);
+                }
+                [self test:index + 1];
+            }];
+        }
+            break;
+        case 19:
+        {
+            [[SwingClient sharedClient] deviceGetActivity:@"maple" type:GetActivityTypeMonth completion:^(id dailyActs, NSError *error) {
+                if (error) {
+                    LOG_D(@"deviceGetActivity fail: %@", error);
+                }
+                else {
+                    LOG_D(@"deviceGetActivity:%@", dailyActs);
+                }
+                [self test:index + 1];
+            }];
+        }
+            break;
+        case 20:
+        {
+            [[SwingClient sharedClient] deviceGetActivity:@"maple" type:GetActivityTypeYear completion:^(id dailyActs, NSError *error) {
+                if (error) {
+                    LOG_D(@"deviceGetActivity fail: %@", error);
+                }
+                else {
+                    LOG_D(@"deviceGetActivity:%@", dailyActs);
+                }
+                [self test:index + 1];
             }];
         }
             break;
