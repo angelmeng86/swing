@@ -10,6 +10,13 @@
 
 @implementation RoundButton
 
+- (id)init {
+    if (self = [super init]) {
+        self.layer.cornerRadius = 5.f;
+    }
+    return self;
+}
+
 - (void)awakeFromNib {
     self.layer.cornerRadius = 5.f;
 }

@@ -263,7 +263,7 @@
             break;
         case 16:
         {
-            long time = [[NSDate date] timeIntervalSince1970] + 15 * 24 * 60 * 60;
+            long time = [[NSDate date] timeIntervalSince1970]; //+ 15 * 24 * 60 * 60;
 //            NSLog(@"date1:%@", [NSDate dateWithTimeIntervalSince1970:1472611041]);
             NSLog(@"date2:%@", [NSDate dateWithTimeIntervalSince1970:time]);
             NSMutableData *data = [NSMutableData data];

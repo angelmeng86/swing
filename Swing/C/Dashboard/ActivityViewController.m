@@ -74,10 +74,10 @@
 }
 
 - (void)showChanged:(BOOL)isOutdoor {
-    for (int i = 1; i < self.ctlArray.count; i++) {
-        ChartViewController *ctl = self.ctlArray[i];
-        ctl.isOutdoor = isOutdoor;
-    }
+//    for (int i = 1; i < self.ctlArray.count; i++) {
+//        ChartViewController *ctl = self.ctlArray[i];
+//        ctl.isOutdoor = isOutdoor;
+//    }
 }
 
 - (void)didReceiveMemoryWarning {

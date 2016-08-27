@@ -45,6 +45,17 @@ typedef enum : NSUInteger {
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    long steps = [GlobalCache shareInstance].local.indoorSteps + [GlobalCache shareInstance].local.outdoorSteps;
+    if (steps < 7000) {
+        [self setType:DashboardTypeDown];
+    }
+    else if(steps > 10000) {
+        [self setType:DashboardTypeHappy];
+    }
+    else {
+        [self setType:DashboardTypeNormal];
+    }
+    /*
     switch (_type) {
         case DashboardTypeHappy:
             [self setType:DashboardTypeNormal];
@@ -58,6 +69,7 @@ typedef enum : NSUInteger {
             [self setType:DashboardTypeHappy];
             break;
     }
+     */
 }
 
 - (void)setType:(DashboardType)type {

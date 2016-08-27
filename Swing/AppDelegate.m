@@ -37,7 +37,7 @@
 //    NSLog(@"date:%@ df:%@", date, [df stringFromDate:date]);
     
     [[GlobalCache shareInstance] initConfig];
-//    [SwingClientTest testAll:16];
+//    [SwingClientTest testAll:15];
     
     //设置导航默认标题的颜色及字体大小
     [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName:COMMON_TITLE_COLOR, NSFontAttributeName:[UIFont boldAvenirFontOfSize:18]};

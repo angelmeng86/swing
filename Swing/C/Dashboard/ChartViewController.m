@@ -15,6 +15,7 @@
 #import "JBChartTooltipView.h"
 #import "JBChartTooltipTipView.h"
 #import "LMArrowView.h"
+#import "RoundButton.h"
 
 // Numerics
 CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
@@ -24,6 +25,8 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 @interface ChartViewController ()<JBBarChartViewDelegate, JBBarChartViewDataSource, JBLineChartViewDataSource, JBLineChartViewDelegate, ChartFooterViewDelegate>
 {
     NSURLSessionDataTask *task;
+    UIButton *indoorBtn;
+    UIButton *outdoorBtn;
 }
 
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -143,24 +146,89 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     [_distanceChartView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:_stepsChartView withOffset:20];
     [_distanceChartView autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:_stepsChartView];
     [_distanceChartView autoPinEdge:ALEdgeTrailing toEdge:ALEdgeTrailing ofView:_stepsChartView];
-    [_distanceChartView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:20];
+//    [_distanceChartView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:20];
     
     [_stepsChartView autoMatchDimension:ALDimensionHeight toDimension:ALDimensionHeight ofView:_distanceChartView];
+    
+    [self createBtn];
     
     self.isLoadData = NO;
     task = nil;
 //    [self performSelector:@selector(reloadChartView) withObject:nil afterDelay:1];
 }
 
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    if (!self.isLoadData) {
-        [self reloadChartView];
-    }
+- (void)createBtn {
+//    UIImage *image = [ControlFactory imageFromColor:RGBA(0x67, 0x5c, 0xa7, 1.0f) size:CGSizeMake(100, 30)];
+    UIImage *image = [ControlFactory imageFromColor:self.stepChartColor size:CGSizeMake(100, 30)];
+    
+    //    UIImage *image = [ControlFactory imageFromColor:[UIColor redColor] size:CGSizeMake(100, 30)];
+    
+    indoorBtn = [RoundButton new];
+    outdoorBtn = [RoundButton new];
+    UIView *middleView = [UIView new];
+    [self.view addSubview:indoorBtn];
+    [self.view addSubview:outdoorBtn];
+    [self.view addSubview:middleView];
+    
+    [middleView autoSetDimensionsToSize:CGSizeMake(20, 30)];
+    [middleView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:20];
+    [middleView autoAlignAxisToSuperviewAxis:ALAxisVertical];
+    
+    [indoorBtn autoSetDimension:ALDimensionWidth toSize:100];
+    [indoorBtn autoMatchDimension:ALDimensionHeight toDimension:ALDimensionHeight ofView:middleView];
+    [indoorBtn autoPinEdge:ALEdgeTrailing toEdge:ALEdgeLeading ofView:middleView];
+    [indoorBtn autoAlignAxis:ALAxisHorizontal toSameAxisOfView:middleView];
+    
+    [outdoorBtn autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:indoorBtn];
+    [outdoorBtn autoMatchDimension:ALDimensionHeight toDimension:ALDimensionHeight ofView:middleView];
+    [outdoorBtn autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:middleView];
+    [outdoorBtn autoAlignAxis:ALAxisHorizontal toSameAxisOfView:middleView];
+    
+    [indoorBtn setTitle:@"Indoor" forState:UIControlStateNormal];
+    indoorBtn.backgroundColor = [UIColor whiteColor];
+    indoorBtn.layer.borderWidth = 2;
+    indoorBtn.layer.borderColor = [UIColor whiteColor].CGColor;
+    indoorBtn.layer.masksToBounds = YES;
+    indoorBtn.adjustsImageWhenHighlighted = NO;
+    indoorBtn.showsTouchWhenHighlighted = NO;
+    [indoorBtn setTitleColor:self.stepChartColor forState:UIControlStateNormal];
+    [indoorBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [indoorBtn setBackgroundImage:image forState:UIControlStateSelected];
+    [indoorBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
+    indoorBtn.selected = YES;
+    
+    [outdoorBtn setTitle:@"Outdoor" forState:UIControlStateNormal];
+    outdoorBtn.backgroundColor = [UIColor whiteColor];
+    outdoorBtn.layer.borderWidth = 2;
+    outdoorBtn.layer.borderColor = [UIColor whiteColor].CGColor;
+    outdoorBtn.layer.masksToBounds = YES;
+    outdoorBtn.adjustsImageWhenHighlighted = NO;
+    outdoorBtn.showsTouchWhenHighlighted = NO;
+    [outdoorBtn setTitleColor:self.stepChartColor forState:UIControlStateNormal];
+    [outdoorBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [outdoorBtn setBackgroundImage:image forState:UIControlStateSelected];
+    [outdoorBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_distanceChartView autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:middleView withOffset:-20];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)btnAction:(id)sender {
+    if (indoorBtn == sender) {
+        indoorBtn.selected = YES;
+        outdoorBtn.selected = NO;
+        [self reloadData];
+    }
+    else {
+        indoorBtn.selected = NO;
+        outdoorBtn.selected = YES;
+        [self reloadData];
+    }
+//    if ([_delegate respondsToSelector:@selector(showChanged:)]) {
+//        [_delegate showChanged:self.outdoorBtn.selected];
+//    }
+}
+
+- (void)requestData {
     if (task) {
         return;
     }
@@ -176,46 +244,46 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
             NSMutableDictionary *outdoors = [NSMutableDictionary dictionary];
             for (ActivityResultModel *m in dailyActs) {
                 if ([m.type isEqualToString:@"INDOOR"]) {
-                    if (_type == ChartTypeYear) {
-                        NSString *date = [m.date substringToIndex:7];
-                        if (indoors[date]) {
-                            ActivityResultModel *model = indoors[date];
-                            model.steps += m.steps;
-                        }
-                        else {
-                            indoors[date] = m;
-                        }
+                    /*if (_type == ChartTypeYear) {
+                     NSString *date = [m.date substringToIndex:7];
+                     if (indoors[date]) {
+                     ActivityResultModel *model = indoors[date];
+                     model.steps += m.steps;
+                     }
+                     else {
+                     indoors[date] = m;
+                     }
+                     }
+                     else {*/
+                    if (indoors[m.date]) {
+                        ActivityResultModel *model = indoors[m.date];
+                        model.steps += m.steps;
                     }
                     else {
-                        if (indoors[m.date]) {
-                            ActivityResultModel *model = indoors[m.date];
-                            model.steps += m.steps;
-                        }
-                        else {
-                            indoors[m.date] = m;
-                        }
+                        indoors[m.date] = m;
                     }
+                    /*}*/
                 }
                 else if([m.type isEqualToString:@"OUTDOOR"]) {
-                    if (_type == ChartTypeYear) {
-                        NSString *date = [m.date substringToIndex:6];
-                        if (outdoors[date]) {
-                            ActivityResultModel *model = outdoors[date];
-                            model.steps += m.steps;
-                        }
-                        else {
-                            outdoors[date] = m;
-                        }
+                    /*if (_type == ChartTypeYear) {
+                     NSString *date = [m.date substringToIndex:6];
+                     if (outdoors[date]) {
+                     ActivityResultModel *model = outdoors[date];
+                     model.steps += m.steps;
+                     }
+                     else {
+                     outdoors[date] = m;
+                     }
+                     }
+                     else {*/
+                    if (outdoors[m.date]) {
+                        ActivityResultModel *model = outdoors[m.date];
+                        model.steps += m.steps;
                     }
                     else {
-                        if (outdoors[m.date]) {
-                            ActivityResultModel *model = outdoors[m.date];
-                            model.steps += m.steps;
-                        }
-                        else {
-                            outdoors[m.date] = m;
-                        }
+                        outdoors[m.date] = m;
                     }
+                    /*}*/
                 }
             }
             self.indoorData = indoors;
@@ -228,10 +296,25 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     }];
 }
 
-- (void)setIsOutdoor:(BOOL)isOutdoor {
-    _isOutdoor = isOutdoor;
-    [self reloadData];
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    if (!self.isLoadData) {
+        [self reloadChartView];
+        [self requestData];
+    }
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (self.indoorData == nil) {
+        [self requestData];
+    }
+}
+
+//- (void)setIsOutdoor:(BOOL)isOutdoor {
+//    _isOutdoor = isOutdoor;
+//    [self reloadData];
+//}
 
 - (int)dataCount {
     switch (_type) {
@@ -253,7 +336,14 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
             NSCalendar *cal = [NSCalendar currentCalendar];
             NSDateComponents *comp = [cal components:NSYearCalendarUnit|NSMonthCalendarUnit fromDate:date];
 //            LOG_D(@"month:%ld", (long)comp.month);
-            NSString *key = [NSString stringWithFormat:@"%ld-%02d", (long)comp.year, (int)(index + 1)];
+            NSInteger month = comp.month - 11 + (int)index;
+            NSInteger year = comp.year;
+            if (month < 0) {
+                month += 12;
+                year--;
+            }
+            NSString *key = [NSString stringWithFormat:@"%ld-%02ld", year, month];
+            LOG_D(@"month:%@", key);
             ActivityResultModel *model = dict[key];
             if (model) {
                 return model.steps;
@@ -276,7 +366,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 }
 
 - (void)reloadData {
-    NSDictionary *dailyActs = _isOutdoor ? self.outdoorData : self.indoorData;
+    NSDictionary *dailyActs = outdoorBtn.selected ? self.outdoorData : self.indoorData;
     /*
     if (dailyActs.count > 0) {
         int maxCount = 0;
@@ -335,11 +425,8 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     [self.stepsChartView reloadData];
     [self.distanceChartView reloadData];
     
-    [_stepsChartView reloadData];
-    [_distanceChartView reloadData];
-    
-    [self.stepFooter reload];
-    [self.distanceFooter reload];
+//    [self.stepFooter reload];
+//    [self.distanceFooter reload];
 }
 
 - (void)reloadChartView {
@@ -536,8 +623,11 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
             dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US"];
         }
         NSArray *array = [dateFormatter shortStandaloneMonthSymbols];
+        NSCalendar *cal = [NSCalendar currentCalendar];
+        NSDateComponents *comp = [cal components:NSYearCalendarUnit|NSMonthCalendarUnit fromDate:[NSDate date]];
+        
         LMBarView *v = [LMBarView new];
-        v.dateLabel.text = [array objectAtIndex:index % 12];
+        v.dateLabel.text = [array objectAtIndex:(index + comp.month) % 12];
         view = v;
     }
     else {
