@@ -181,12 +181,14 @@ typedef enum : NSUInteger {
         LOG_D(@"syncDevice error %@", error);
         LOG_D(@"syncDevice activities count %d", (int)activities.count);
         self.activitys = activities;
+        /*
         if (_activitys.count == 0) {
             ActivityModel *model = [ActivityModel new];
             model.macId = [Fun dataToHex:[GlobalCache shareInstance].local.deviceMAC];
 //            [model reset];
             _activitys = [NSMutableArray arrayWithObject:model];
         }
+        */
         [self uploadData];
     }];
 }

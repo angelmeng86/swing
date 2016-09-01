@@ -56,8 +56,10 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) NSMutableArray *activityArray;
 @property (nonatomic, strong) NSMutableDictionary *activityDict;
 @property (nonatomic) long timeStamp;
-@property (nonatomic, strong) NSData *ffa4Data;
+@property (nonatomic, strong) NSData *ffa4Data1;
+@property (nonatomic, strong) NSData *ffa4Data2;
 @property (nonatomic, strong) NSData *macAddress;
+@property (nonatomic, strong) NSMutableIndexSet *timeSet;
 
 @property (nonatomic, strong) NSMutableDictionary *batteryModels;
 @property (nonatomic, strong) NSMutableSet *macAddressList;
@@ -501,7 +503,7 @@ typedef enum : NSUInteger {
             }
             else if ([characteristic.UUID.UUIDString isEqualToString:@"FFA4"]) {
                 if (syncState == SwingSyncData1Readed) {
-                    weakSelf.ffa4Data = characteristic.value;
+                    weakSelf.ffa4Data1 = characteristic.value;
                     syncState = SwingSyncData2Readed;
                     NSLog(@"Read FFA4");
                     CBCharacteristic *character = [characteristic.service findCharacteristic:@"FFA4"];
@@ -512,44 +514,14 @@ typedef enum : NSUInteger {
                     NSLog(@"SwingSyncData2Readed:%d", (int)characteristic.value.length);
                     
                     Byte array[1];
-                    if ([weakSelf.ffa4Data isEqualToData:characteristic.value]) {
+                    if ([weakSelf.ffa4Data1 isEqualToData:characteristic.value]) {
                         //数据有误
                         array[0] = 0x00;
+                        weakSelf.ffa4Data2 = nil;
                     }
                     else {
                         array[0] = 0x01;
-                        static NSDateFormatter *df = nil;
-                        if (df == nil) {
-                            df = [[NSDateFormatter alloc] init];
-                            df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-                            [df setDateFormat:@"yyyy-MM-dd"];
-                        }
-                        NSString *key = [df stringFromDate:[NSDate dateWithTimeIntervalSince1970:weakSelf.timeStamp]];
-                        ActivityModel *model = [ActivityModel new];
-                        model.time = weakSelf.timeStamp;
-                        model.macId = [Fun dataToHex:weakSelf.macAddress];
-                        [model setIndoorData:weakSelf.ffa4Data];
-                        [model setOutdoorData:characteristic.value];
-                        [weakSelf.activityArray addObject:model];
-                        
-                        NSString *local = [GlobalCache shareInstance].local.date;
-                        if (local && [local isEqualToString:key]) {
-                            //累加当天的步数
-                            [GlobalCache shareInstance].local.indoorSteps += model.inData1;
-                            [GlobalCache shareInstance].local.outdoorSteps += model.outData1;
-                            [[GlobalCache shareInstance] saveInfo];
-                        }
-                        /*
-                        if (weakSelf.activityDict[key]) {
-                            ActivityModel *m = weakSelf.activityDict[key];
-                            [m add:model];
-                            [m reload];
-                        }
-                        else {
-                            weakSelf.activityDict[key] = model;
-                        }
-                        */
-                        LOG_D(@"activity: time:%ld indoor:%@ outdoor:%@ date:%@", model.time, model.indoorActivity, model.outdoorActivity, key);
+                        weakSelf.ffa4Data2 = characteristic.value;
                     }
                     NSLog(@"Write FFA5");
                     NSData *data = [NSData dataWithBytes:array length:1];
@@ -604,6 +576,49 @@ typedef enum : NSUInteger {
                 }
             }
             else if ([characteristic.UUID.UUIDString isEqualToString:@"FFA5"]) {
+                if (weakSelf.ffa4Data2) {
+                    //判断是否存在重复数据
+                    if (![weakSelf.timeSet containsIndex:weakSelf.timeStamp]) {
+                        [weakSelf.timeSet addIndex:weakSelf.timeStamp];
+                        //处理Activity数据
+                        static NSDateFormatter *df = nil;
+                        if (df == nil) {
+                            df = [[NSDateFormatter alloc] init];
+                            df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+                            [df setDateFormat:@"yyyy-MM-dd"];
+                        }
+                        NSString *key = [df stringFromDate:[NSDate dateWithTimeIntervalSince1970:weakSelf.timeStamp]];
+                        ActivityModel *model = [ActivityModel new];
+                        model.time = weakSelf.timeStamp;
+                        model.macId = [Fun dataToHex:weakSelf.macAddress];
+                        [model setIndoorData:weakSelf.ffa4Data1];
+                        [model setOutdoorData:weakSelf.ffa4Data2];
+                        [weakSelf.activityArray addObject:model];
+                        
+                        NSString *local = [GlobalCache shareInstance].local.date;
+                        if (local && [local isEqualToString:key]) {
+                            //累加当天的步数
+                            [GlobalCache shareInstance].local.indoorSteps += model.inData1;
+                            [GlobalCache shareInstance].local.outdoorSteps += model.outData1;
+                            [[GlobalCache shareInstance] saveInfo];
+                        }
+                        /*
+                         if (weakSelf.activityDict[key]) {
+                         ActivityModel *m = weakSelf.activityDict[key];
+                         [m add:model];
+                         [m reload];
+                         }
+                         else {
+                         weakSelf.activityDict[key] = model;
+                         }
+                         */
+                        LOG_D(@"activity: time:%ld indoor:%@ outdoor:%@ date:%@", model.time, model.indoorActivity, model.outdoorActivity, key);
+                    }
+                    else {
+                        LOG_D(@"activity: time:%@ is repeat.", [NSDate dateWithTimeIntervalSince1970:weakSelf.timeStamp]);
+                    }
+                }
+                
                 NSLog(@"read FFA9");
                 syncState = SwingSyncHeaderReaded;
                 CBCharacteristic *character = [characteristic.service findCharacteristic:@"FFA9"];
@@ -748,6 +763,10 @@ typedef enum : NSUInteger {
     if (self.blockOnQueryBattery) {
         self.blockOnQueryBattery(_findedModels, error);
         self.blockOnQueryBattery = nil;
+        
+        self.macAddressList = nil;
+        self.batteryModels = nil;
+        self.findedModels = nil;
     }
     [baby cancelScan];
     [baby cancelAllPeripheralsConnection];
@@ -802,6 +821,7 @@ typedef enum : NSUInteger {
     }
     self.activityArray = [NSMutableArray array];
     self.activityDict = [NSMutableDictionary dictionary];
+    self.timeSet = [NSMutableIndexSet new];
     self.blockOnSyncDevice = completion;
     baby.having(peripheral).and.channel(SYNC_DEVIE_CHANEL).then.connectToPeripherals().discoverServices().discoverCharacteristics().begin();
     [self performSelector:@selector(syncDeviceTimeout) withObject:nil afterDelay:30];
@@ -826,6 +846,15 @@ typedef enum : NSUInteger {
 //        self.blockOnSyncDevice([NSMutableArray arrayWithArray:[_activityDict allValues]], error);
         self.blockOnSyncDevice(_activityArray, error);
         self.blockOnSyncDevice = nil;
+        
+        self.eventArray = nil;
+        self.activityArray = nil;
+        self.activityDict = nil;
+        self.timeSet = nil;
+        
+        self.ffa4Data1 = nil;
+        self.ffa4Data2 = nil;
+        self.macAddress = nil;
     }
     [baby cancelScan];
     [baby cancelAllPeripheralsConnection];
