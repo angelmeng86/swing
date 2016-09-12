@@ -52,6 +52,8 @@
         cell.textLabel.textAlignment = NSTextAlignmentLeft;
         //        cell.selectionStyle = UITableViewCellSelectionStyleGray;
         cell.textLabel.font = [UIFont avenirFontOfSize:17];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:LOAD_IMAGE(@"alert_icon")];
+        cell.accessoryView = imageView;
     }
     
     AlertModel *model = _alertArray[indexPath.row];

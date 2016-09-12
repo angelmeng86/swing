@@ -11,6 +11,7 @@
 #import "ChoicesViewController.h"
 #import "CommonDef.h"
 #import "KeyboardManager.h"
+#import "LMArrowView.h"
 
 @interface AddEventViewController2 ()<UITextFieldDelegate>
 {
@@ -37,6 +38,19 @@
 //    datePicker.minuteInterval = 5;
     self.startTF.inputView = datePicker;
     [datePicker addTarget:self action:@selector(startChange:) forControlEvents:UIControlEventValueChanged];
+    
+    UIView *bgView = [UIView new];
+    bgView.frame = CGRectMake(0, 0, 30, 30);
+    LMArrowView *arrow = [[LMArrowView alloc]initWithFrame:CGRectMake(0, 0, 10, 6)];
+    arrow.arrow = LMArrowDown;
+    arrow.color = RGBA(0xfd, 0x73, 0x3e, 1.0f);
+    arrow.isNotFill = YES;
+    [bgView addSubview:arrow];
+    [arrow autoCenterInSuperviewMargins];
+    [arrow autoSetDimensionsToSize:CGSizeMake(10, 6)];
+    self.nameTF.rightView = bgView;
+    self.nameTF.rightViewMode = UITextFieldViewModeAlways;
+    
     
     UIDatePicker *datePicker2 = [[UIDatePicker alloc] init];
     datePicker2.datePickerMode = UIDatePickerModeTime;

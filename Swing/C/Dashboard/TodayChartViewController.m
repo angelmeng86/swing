@@ -29,7 +29,7 @@
     
     LMArrowView *leftView = [LMArrowView new];
     LMArrowView *rightView = [LMArrowView new];
-    rightView.isRight = YES;
+    rightView.arrow = LMArrowRight;
     
     leftView.color = _titleLabel.textColor;
     rightView.color = _titleLabel.textColor;

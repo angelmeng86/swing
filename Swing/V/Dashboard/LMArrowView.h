@@ -8,10 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum : NSUInteger {
+    LMArrowLeft,
+    LMArrowRight,
+    LMArrowUp,
+    LMArrowDown,
+} LMArrow;
+
 @interface LMArrowView : UIControl
 
 @property (nonatomic, strong) UIColor *color;
-@property (nonatomic, assign) BOOL isRight;
+@property (nonatomic, assign) LMArrow arrow;
 
 @property (nonatomic, assign) BOOL isNotFill;
 
