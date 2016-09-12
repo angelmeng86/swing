@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = @"Alert";
+    self.navigationItem.title = @"Select Event";//@"Alert";
     NSString *path = [[NSBundle mainBundle] pathForResource:@"alert" ofType:@"json"];
     self.alertArray = [AlertModel arrayOfModelsFromString:[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil] error:nil];
     self.tableView.tableFooterView = [UIView new];
@@ -49,7 +49,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier"];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"reuseIdentifier"];
-        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+        cell.textLabel.textAlignment = NSTextAlignmentLeft;
         //        cell.selectionStyle = UITableViewCellSelectionStyleGray;
         cell.textLabel.font = [UIFont avenirFontOfSize:17];
     }

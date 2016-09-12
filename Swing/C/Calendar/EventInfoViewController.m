@@ -8,7 +8,7 @@
 
 #import "EventInfoViewController.h"
 #import "EventSelectTableViewCell.h"
-#import "AddEventViewController.h"
+#import "AddEventViewController2.h"
 #import "CommonDef.h"
 
 @interface EventInfoViewController ()
@@ -45,7 +45,7 @@
 
 - (void)editEventAction {
     UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
-    AddEventViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"AddEvent"];
+    AddEventViewController2 *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"AddEvent2"];
     ctl.model = self.model;
     ctl.delegate = self;
     [self.navigationController pushViewController:ctl animated:YES];

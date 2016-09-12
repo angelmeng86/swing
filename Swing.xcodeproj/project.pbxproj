@@ -100,6 +100,7 @@
 		ADF33CB91D5A159400AE8874 /* LMCalendarWeekDayView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF33CB81D5A159400AE8874 /* LMCalendarWeekDayView.m */; };
 		ADF33CBC1D5A323000AE8874 /* TodayChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF33CBB1D5A323000AE8874 /* TodayChartViewController.m */; };
 		ADF33CBF1D5A32DD00AE8874 /* RectProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF33CBE1D5A32DD00AE8874 /* RectProgress.m */; };
+		ADF519AE1D86D0DF00356CD3 /* AddEventViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF519AD1D86D0DF00356CD3 /* AddEventViewController2.m */; };
 		ADF985531D50C4A200B02075 /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF985521D50C4A200B02075 /* AddEventViewController.m */; };
 		ADF985561D50C64A00B02075 /* ToDoListView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF985551D50C64A00B02075 /* ToDoListView.m */; };
 		ADF985591D50CBFC00B02075 /* DoItemLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF985581D50CBFC00B02075 /* DoItemLabel.m */; };
@@ -291,6 +292,8 @@
 		ADF33CBB1D5A323000AE8874 /* TodayChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayChartViewController.m; sourceTree = "<group>"; };
 		ADF33CBD1D5A32DD00AE8874 /* RectProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RectProgress.h; sourceTree = "<group>"; };
 		ADF33CBE1D5A32DD00AE8874 /* RectProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RectProgress.m; sourceTree = "<group>"; };
+		ADF519AC1D86D0DF00356CD3 /* AddEventViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventViewController2.h; sourceTree = "<group>"; };
+		ADF519AD1D86D0DF00356CD3 /* AddEventViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventViewController2.m; sourceTree = "<group>"; };
 		ADF985511D50C4A200B02075 /* AddEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventViewController.h; sourceTree = "<group>"; };
 		ADF985521D50C4A200B02075 /* AddEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventViewController.m; sourceTree = "<group>"; };
 		ADF985541D50C64A00B02075 /* ToDoListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToDoListView.h; sourceTree = "<group>"; };
@@ -557,6 +560,8 @@
 				AD74D4DE1D4FA08E001F3B36 /* EventInfoViewController.m */,
 				ADF985511D50C4A200B02075 /* AddEventViewController.h */,
 				ADF985521D50C4A200B02075 /* AddEventViewController.m */,
+				ADF519AC1D86D0DF00356CD3 /* AddEventViewController2.h */,
+				ADF519AD1D86D0DF00356CD3 /* AddEventViewController2.m */,
 				ADD6555A1D5B886D0054FB24 /* AlertSelectViewController.h */,
 				ADD6555B1D5B886D0054FB24 /* AlertSelectViewController.m */,
 				0FD6B3E51D61B79300C00A45 /* ChoicesViewController.h */,
@@ -879,6 +884,7 @@
 				0F445E0F1D7094A6008A092C /* JSONValueTransformer+NSData.m in Sources */,
 				ADE6ED901D4E3B7D00FFA573 /* DayCalendarViewController.m in Sources */,
 				0FD6B3FE1D6207E000C00A45 /* BabyCallback.m in Sources */,
+				ADF519AE1D86D0DF00356CD3 /* AddEventViewController2.m in Sources */,
 				AD1CEF0A1D5ACB19004FEC24 /* LMBarView.m in Sources */,
 				AD9B0D941D3BB947009FDD95 /* BatteryViewController.m in Sources */,
 				AD7797A31D4D034600472B27 /* ActivityViewController.m in Sources */,
