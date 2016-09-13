@@ -76,15 +76,6 @@
     if (self.model) {
         self.nameTF.text = self.model.eventName;
         
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"alert" ofType:@"json"];
-        NSArray *alertArray = [AlertModel arrayOfModelsFromString:[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil] error:nil];
-        for (AlertModel *m in alertArray) {
-            if ([m.value intValue] == self.model.alert) {
-                self.nameTF.text = m.text;
-                break;
-            }
-        }
-        
         self.startTF.text = [Fun dateToString:self.model.startDate];;
         self.endTF.text = [Fun dateToString:self.model.endDate];
         
@@ -98,7 +89,7 @@
         
         if (self.model.desc.length > 0 ||
             self.model.state.length > 0 ||
-            self.model.city.length ||
+            self.model.city.length > 0 ||
             self.model.todo.count > 0) {
             [self changeAdvance:YES];
         }
@@ -106,15 +97,20 @@
     else {
         self.startTF.text = [Fun dateToString:datePicker.minimumDate];
         self.endTF.text = [Fun dateToString:datePicker2.minimumDate];
+        
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Advance" style:UIBarButtonItemStyleDone target:self action:@selector(changeAction)];
     }
-    
-    
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Test" style:UIBarButtonItemStyleDone target:self action:@selector(testAction)];
 }
 
-- (void)testAction {
+- (void)changeAction {
     BOOL hidden = self.todoCtl.hidden;
-    [self changeAdvance:!hidden];
+    if (hidden) {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Normal" style:UIBarButtonItemStyleDone target:self action:@selector(changeAction)];
+    }
+    else {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Advance" style:UIBarButtonItemStyleDone target:self action:@selector(changeAction)];
+    }
+    [self changeAdvance:hidden];
 }
 
 - (void)changeAdvance:(BOOL)show {
@@ -218,9 +214,7 @@
         [data addEntriesFromDictionary:@{@"eventName":self.nameTF.text , @"startDate":self.startTF.text
                                         , @"endDate":self.endTF.text
                                         , @"color":[Fun stringFromColor:self.colorCtl.selectedColor]}];
-        if (self.descTF.text.length > 0) {
-            [data setObject:self.descTF.text forKey:@"description"];
-        }
+        
         if (self.alert.text.length > 0) {
             NSString *path = [[NSBundle mainBundle] pathForResource:@"alert" ofType:@"json"];
             NSArray *alertArray = [AlertModel arrayOfModelsFromString:[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil] error:nil];
@@ -232,12 +226,19 @@
             }
             
         }
-        if (self.cityTF.text.length > 0) {
-            [data setObject:self.cityTF.text forKey:@"city"];
+        
+        if (!self.todoCtl.hidden) {
+            if (self.descTF.text.length > 0) {
+                [data setObject:self.descTF.text forKey:@"description"];
+            }
+            if (self.cityTF.text.length > 0) {
+                [data setObject:self.cityTF.text forKey:@"city"];
+            }
+            if (self.stateTF.text.length > 0) {
+                [data setObject:self.stateTF.text forKey:@"state"];
+            }
         }
-        if (self.stateTF.text.length > 0) {
-            [data setObject:self.stateTF.text forKey:@"state"];
-        }
+        
         
         if (self.model) {
             [data setObject:[NSNumber numberWithInt:self.model.objId] forKey:@"id"];
@@ -270,7 +271,7 @@
             if (!error) {
                 EventModel *model = event;
                 
-                if (self.todoCtl.itemList.count > 0) {
+                if (!self.todoCtl.hidden && self.todoCtl.itemList.count > 0) {
                     [[SwingClient sharedClient] calendarAddTodo:[NSString stringWithFormat:@"%d", model.objId] todoList:[self.todoCtl.itemList componentsJoinedByString:@"|"] completion:^(id event, NSArray *todoArray, NSError *error) {
                         if (!error) {
                             [[GlobalCache shareInstance] addEvent:event];

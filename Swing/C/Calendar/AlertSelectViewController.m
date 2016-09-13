@@ -9,7 +9,7 @@
 #import "AlertSelectViewController.h"
 #import "CommonDef.h"
 
-@interface AlertSelectViewController ()
+@interface AlertSelectViewController () <UITextFieldDelegate>
 
 @property (nonatomic, strong) NSArray *alertArray;
 
@@ -31,6 +31,20 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if ([_delegate respondsToSelector:@selector(alertSelectViewControllerDidSelected:)]) {
+        AlertModel *m = _alertArray[0];
+        m.text = textField.text;
+        [_delegate alertSelectViewControllerDidSelected:m];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+    return YES;
+}
+
+- (void)alertClickAction:(id)sender {
+    [SVProgressHUD showInfoWithStatus:@"Event Will Have A Sound Alert"];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -45,15 +59,37 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    if (indexPath.row == 0) {
+        UITableViewCell *inputCell = [tableView dequeueReusableCellWithIdentifier:@"inputReuseIdentifier"];
+        if (inputCell == nil) {
+            inputCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"inputReuseIdentifier"];
+            inputCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            UITextField *textField = [UITextField new];
+            textField.font = [UIFont avenirFontOfSize:17];
+            textField.placeholder = @"Customize Your Event";
+            textField.returnKeyType = UIReturnKeyDone;
+            [inputCell.contentView addSubview:textField];
+            [textField autoSetDimension:ALDimensionHeight toSize:30];
+            [textField autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+            [textField autoPinEdgeToSuperviewMargin:ALEdgeLeading];
+            [textField autoPinEdgeToSuperviewMargin:ALEdgeTrailing];
+            textField.delegate = self;
+        }
+        
+        return inputCell;
+    }
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier"];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"reuseIdentifier"];
         cell.textLabel.textAlignment = NSTextAlignmentLeft;
         //        cell.selectionStyle = UITableViewCellSelectionStyleGray;
         cell.textLabel.font = [UIFont avenirFontOfSize:17];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:LOAD_IMAGE(@"alert_icon")];
-        cell.accessoryView = imageView;
+        UIButton *btn = [UIButton new];
+        btn.frame = CGRectMake(0, 0, 40, 40);
+        [btn setImage:LOAD_IMAGE(@"alert_icon") forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(alertClickAction:) forControlEvents:UIControlEventTouchUpInside];
+//        UIImageView *imageView = [[UIImageView alloc] initWithImage:LOAD_IMAGE(@"alert_icon")];
+        cell.accessoryView = btn;
     }
     
     AlertModel *model = _alertArray[indexPath.row];
