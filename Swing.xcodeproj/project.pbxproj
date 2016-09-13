@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F140B711D88432B005B9763 /* alert2.json in Resources */ = {isa = PBXBuildFile; fileRef = 0F140B701D88432B005B9763 /* alert2.json */; };
 		0F445E0F1D7094A6008A092C /* JSONValueTransformer+NSData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F445E0E1D7094A6008A092C /* JSONValueTransformer+NSData.m */; };
 		0F45AB831D6316FA00EF385F /* STextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB821D6316FA00EF385F /* STextField.m */; };
 		0F45AB881D63593400EF385F /* ActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB871D63593400EF385F /* ActivityModel.m */; };
@@ -113,6 +114,7 @@
 
 /* Begin PBXFileReference section */
 		0A892F16F4220A9DEBE01E9D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		0F140B701D88432B005B9763 /* alert2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = alert2.json; sourceTree = "<group>"; };
 		0F445E0D1D7094A6008A092C /* JSONValueTransformer+NSData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSONValueTransformer+NSData.h"; sourceTree = "<group>"; };
 		0F445E0E1D7094A6008A092C /* JSONValueTransformer+NSData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JSONValueTransformer+NSData.m"; sourceTree = "<group>"; };
 		0F45AB811D6316FA00EF385F /* STextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STextField.h; sourceTree = "<group>"; };
@@ -632,6 +634,7 @@
 				ADDCD3EA1D4C54960031DC66 /* font */,
 				ADDCD3ED1D4C54960031DC66 /* storyboard */,
 				ADD6555D1D5B89770054FB24 /* alert.json */,
+				0F140B701D88432B005B9763 /* alert2.json */,
 			);
 			path = Res;
 			sourceTree = "<group>";
@@ -813,6 +816,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADD6555E1D5B8D410054FB24 /* alert.json in Resources */,
+				0F140B711D88432B005B9763 /* alert2.json in Resources */,
 				ADDCD3FB1D4C59F10031DC66 /* Avenir-bold.ttf in Resources */,
 				ADDCD3FC1D4C59F10031DC66 /* Avenir-Book.otf in Resources */,
 				ADDCD3F31D4C54960031DC66 /* LoginFlow.storyboard in Resources */,

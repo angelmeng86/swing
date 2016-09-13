@@ -68,7 +68,7 @@
     
     [label autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:colorsView];
     [colorsView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeTop];
-    colorsViewHeight = [colorsView autoSetDimension:ALDimensionHeight toSize:0];
+    colorsViewHeight = [colorsView autoSetDimension:ALDimensionHeight toSize:30];
     
     NSMutableArray *array = [NSMutableArray array];
     NSArray *colors = [ColorLabel colors];
@@ -121,23 +121,22 @@
 
 - (void)btnAction:(UIButton*)sender {
     if (sender == selectedBtn) {
-        if (colorsViewHeight.constant > 0) {
-            colorsViewHeight.constant = 0.0f;
-        }
-        else {
-            colorsViewHeight.constant = 30.0f;
-        }
-        [UIView animateWithDuration:0.3f animations:^{
-            [self.superview layoutIfNeeded];
-        }];
+//        if (colorsViewHeight.constant > 0) {
+//            colorsViewHeight.constant = 0.0f;
+//        }
+//        else {
+//            colorsViewHeight.constant = 30.0f;
+//        }
+//        [UIView animateWithDuration:0.3f animations:^{
+//            [self.superview layoutIfNeeded];
+//        }];
     }
     else {
         self.selectedColor = sender.backgroundColor;
-//        selectedBtn.backgroundColor = _selectedColor;
-        colorsViewHeight.constant = 0.0f;
-        [UIView animateWithDuration:0.3f animations:^{
-            [self.superview layoutIfNeeded];
-        }];
+//        colorsViewHeight.constant = 0.0f;
+//        [UIView animateWithDuration:0.3f animations:^{
+//            [self.superview layoutIfNeeded];
+//        }];
     }
 }
 

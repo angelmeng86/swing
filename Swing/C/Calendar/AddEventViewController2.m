@@ -73,8 +73,14 @@
     [self addRedTip:self.startTF];
     [self addRedTip:self.endTF];
     [self changeAdvance:NO];
+    self.advanceBtn.hidden = YES;
     if (self.model) {
         self.nameTF.text = self.model.eventName;
+        
+        AlertModel *alert = [AlertModel new];
+        alert.text = self.model.eventName;
+        alert.value = [NSString stringWithFormat:@"%d", self.model.alert];
+        self.alert = alert;
         
         self.startTF.text = [Fun dateToString:self.model.startDate];;
         self.endTF.text = [Fun dateToString:self.model.endDate];
@@ -98,8 +104,21 @@
         self.startTF.text = [Fun dateToString:datePicker.minimumDate];
         self.endTF.text = [Fun dateToString:datePicker2.minimumDate];
         
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Advance" style:UIBarButtonItemStyleDone target:self action:@selector(changeAction)];
+//        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Advance" style:UIBarButtonItemStyleDone target:self action:@selector(changeAction)];
+        self.advanceBtn.hidden = NO;
     }
+}
+
+
+- (IBAction)changeAction:(UIButton*)sender {
+    BOOL hidden = self.todoCtl.hidden;
+    if (hidden) {
+        [sender setTitle:@"Normal" forState:UIControlStateNormal];
+    }
+    else {
+        [sender setTitle:@"Advance" forState:UIControlStateNormal];
+    }
+    [self changeAdvance:hidden];
 }
 
 - (void)changeAction {
@@ -215,16 +234,8 @@
                                         , @"endDate":self.endTF.text
                                         , @"color":[Fun stringFromColor:self.colorCtl.selectedColor]}];
         
-        if (self.alert.text.length > 0) {
-            NSString *path = [[NSBundle mainBundle] pathForResource:@"alert" ofType:@"json"];
-            NSArray *alertArray = [AlertModel arrayOfModelsFromString:[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil] error:nil];
-            for (AlertModel *m in alertArray) {
-                if ([m.text isEqualToString:self.nameTF.text]) {
-                    [data setObject:m.value forKey:@"alert"];
-                    break;
-                }
-            }
-            
+        if (self.alert) {
+            [data setObject:self.alert.value forKey:@"alert"];
         }
         
         if (!self.todoCtl.hidden) {
@@ -305,5 +316,6 @@
         }];
     }
 }
+
 
 @end

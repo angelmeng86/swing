@@ -33,7 +33,9 @@
 @property (weak, nonatomic) id delegate;
 //if exits, edit mode
 @property (strong, nonatomic) EventModel* model;
+@property (weak, nonatomic) IBOutlet UIButton *advanceBtn;
 
 - (IBAction)saveAction:(id)sender;
+- (IBAction)changeAction:(id)sender;
 
 @end

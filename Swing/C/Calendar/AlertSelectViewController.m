@@ -20,10 +20,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = @"Select Event";//@"Alert";
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"alert" ofType:@"json"];
-    self.alertArray = [AlertModel arrayOfModelsFromString:[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil] error:nil];
+    self.navigationItem.title = @"Select Event";
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"alert2" ofType:@"json"];
+    id json = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:kNilOptions error:NULL];
+    if ([json isKindOfClass:[NSArray class]]) {
+        self.alertArray = json;
+    }
+
     self.tableView.tableFooterView = [UIView new];
+    self.tableView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,8 +37,23 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if ([_delegate respondsToSelector:@selector(alertSelectViewControllerDidSelected:)]) {
-        AlertModel *m = _alertArray[0];
+    if (textField.text.length > 0 && [_delegate respondsToSelector:@selector(alertSelectViewControllerDidSelected:)]) {
+        for (NSDictionary *dict in _alertArray) {
+            NSArray *items = dict[@"items"];
+            for (NSDictionary *item in items) {
+                if ([[item[@"text"] lowercaseString] isEqualToString:[textField.text lowercaseString]]) {
+                    AlertModel *m = [[AlertModel alloc] initWithDictionary:item error:NULL];
+                    [_delegate alertSelectViewControllerDidSelected:m];
+                    [self.navigationController popViewControllerAnimated:YES];
+                    return YES;
+                }
+            }
+        }
+        
+        NSDictionary *item = _alertArray[0];
+        NSArray *items = item[@"items"];
+        NSDictionary *model = items[0];
+        AlertModel *m = [[AlertModel alloc] initWithDictionary:model error:NULL];
         m.text = textField.text;
         [_delegate alertSelectViewControllerDidSelected:m];
     }
@@ -49,17 +69,52 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 1;
+    return self.alertArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return _alertArray.count;
+    NSDictionary *item = _alertArray[section];
+    NSArray *items = item[@"items"];
+    return items.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return 0;
+    }
+    return 40;
+}
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return nil;
+    }
+    NSDictionary *item = _alertArray[section];
+    UILabel *label = [UILabel new];
+    label.backgroundColor = [UIColor whiteColor];
+    label.text = item[@"text"];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont boldAvenirFontOfSize:17];
+    label.textColor = COMMON_TITLE_COLOR;
+    
+    UIView *topLine = [UIView new];
+    [label addSubview:topLine];
+    [topLine autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeBottom];
+    [topLine autoSetDimension:ALDimensionHeight toSize:1];
+    topLine.backgroundColor = RGBA(0xc8, 0xc7, 0xcc, 1.0f);
+    
+    UIView *downLine = [UIView new];
+    [label addSubview:downLine];
+    [downLine autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeTop];
+    [downLine autoSetDimension:ALDimensionHeight toSize:1];
+    downLine.backgroundColor = RGBA(0xc8, 0xc7, 0xcc, 1.0f);
+    
+    return label;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
+    if (indexPath.section == 0 && indexPath.row == 0) {
         UITableViewCell *inputCell = [tableView dequeueReusableCellWithIdentifier:@"inputReuseIdentifier"];
         if (inputCell == nil) {
             inputCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"inputReuseIdentifier"];
@@ -78,12 +133,14 @@
         
         return inputCell;
     }
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier"];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"reuseIdentifier"];
         cell.textLabel.textAlignment = NSTextAlignmentLeft;
         //        cell.selectionStyle = UITableViewCellSelectionStyleGray;
         cell.textLabel.font = [UIFont avenirFontOfSize:17];
+        cell.textLabel.textColor = RGBA(0x97, 0x96, 0x97, 1.0f);
         UIButton *btn = [UIButton new];
         btn.frame = CGRectMake(0, 0, 40, 40);
         [btn setImage:LOAD_IMAGE(@"alert_icon") forState:UIControlStateNormal];
@@ -92,15 +149,22 @@
         cell.accessoryView = btn;
     }
     
-    AlertModel *model = _alertArray[indexPath.row];
-    cell.textLabel.text = model.text;
+    NSDictionary *item = _alertArray[indexPath.section];
+    NSArray *items = item[@"items"];
+    NSDictionary *model = items[indexPath.row];
+//    AlertModel *model = _alertArray[indexPath.row];
+    cell.textLabel.text = model[@"text"];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([_delegate respondsToSelector:@selector(alertSelectViewControllerDidSelected:)]) {
-        [_delegate alertSelectViewControllerDidSelected:_alertArray[indexPath.row]];
+        NSDictionary *item = _alertArray[indexPath.section];
+        NSArray *items = item[@"items"];
+        NSDictionary *model = items[indexPath.row];
+        
+        [_delegate alertSelectViewControllerDidSelected:[[AlertModel alloc] initWithDictionary:model error:NULL]];
     }
     [self.navigationController popViewControllerAnimated:YES];
 }

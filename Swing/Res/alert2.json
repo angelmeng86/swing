@@ -1,0 +1,190 @@
+ [
+  {
+  "text"  : "",
+  "items" :
+        [
+            {
+            "value" : 0,
+            "text"  : ""
+            }
+         ]
+  },
+  {
+  "text"  : "Morning Routine",
+  "items" :
+        [
+         {
+         "value" : 34,
+         "text"  : "Good morning"
+         },
+         {
+         "value" : 35,
+         "text"  : "Make bed"
+         },
+         {
+         "value" : 36,
+         "text"  : "Get Dress"
+         },
+         {
+         "value" : 37,
+         "text"  : "Eat breakfast"
+         },
+         {
+         "value" : 38,
+         "text"  : "Brush teeth"
+         },
+         {
+         "value" : 39,
+         "text"  : "Ready for school"
+         }
+         ]
+  },
+  {
+  "text"  : "Bed Time Routine",
+  "items" :
+        [
+         {
+         "value" : 40,
+         "text"  : "Put on pajamas"
+         },
+         {
+         "value" : 41,
+         "text"  : "use potty"
+         },
+         {
+         "value" : 42,
+         "text"  : "Story time"
+         },
+         {
+         "value" : 43,
+         "text"  : "Good night"
+         }
+        ]
+  },
+  {
+  "text"  : "Activities",
+  "items" :
+        [
+         {
+         "value" : 44,
+         "text"  : "Collect toys"
+         },
+         {
+         "value" : 45,
+         "text"  : "Packing for school"
+         },
+         {
+         "value" : 46,
+         "text"  : "Set table"
+         },
+         {
+         "value" : 47,
+         "text"  : "Feed pet"
+         },
+         {
+         "value" : 48,
+         "text"  : "Water plants"
+         },
+         {
+         "value" : 49,
+         "text"  : "Clean table"
+         },
+         {
+         "value" : 50,
+         "text"  : "Clean bedroom"
+         },
+         {
+         "value" : 51,
+         "text"  : "Put shoes away"
+         },
+         {
+         "value" : 52,
+         "text"  : "Help with laundry"
+         },
+         {
+         "value" : 53,
+         "text"  : "Take a bath"
+         },
+         {
+         "value" : 54,
+         "text"  : "Homework time"
+         },
+         {
+         "value" : 55,
+         "text"  : "Grocery shopping"
+         },
+         {
+         "value" : 56,
+         "text"  : "Church"
+         },
+         {
+         "value" : 57,
+         "text"  : "Have some snacks"
+         },
+         {
+         "value" : 58,
+         "text"  : "Take a nap"
+         },
+         {
+         "value" : 59,
+         "text"  : "Outdoor play time"
+         },
+         {
+         "value" : 60,
+         "text"  : "Watch TV"
+         },
+         {
+         "value" : 61,
+         "text"  : "Fun time"
+         },
+         {
+         "value" : 62,
+         "text"  : "Exercise"
+         },
+         {
+         "value" : 63,
+         "text"  : "Practice music"
+         },
+         {
+         "value" : 64,
+         "text"  : "Drawing time"
+         },
+         {
+         "value" : 65,
+         "text"  : "Reading time"
+         },
+         {
+         "value" : 66,
+         "text"  : "Study"
+         },
+         {
+         "value" : 67,
+         "text"  : "Take a bath"
+         },
+         {
+         "value" : 68,
+         "text"  : "Family time"
+         },
+         {
+         "value" : 69,
+         "text"  : "Take a break"
+         },
+         {
+         "value" : 70,
+         "text"  : "Find some shade"
+         },
+         {
+         "value" : 71,
+         "text"  : "Get sunshine"
+         },
+         {
+         "value" : 72,
+         "text"  : "lunch time"
+         },
+         {
+         "value" : 73,
+         "text"  : "dinner time"
+         }
+         ]
+  }
+]
