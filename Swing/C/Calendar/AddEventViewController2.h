@@ -34,6 +34,8 @@
 //if exits, edit mode
 @property (strong, nonatomic) EventModel* model;
 @property (weak, nonatomic) IBOutlet UIButton *advanceBtn;
+@property (weak, nonatomic) IBOutlet UIButton *shortSaveBtn;
+@property (weak, nonatomic) IBOutlet UIButton *longSaveBtn;
 
 - (IBAction)saveAction:(id)sender;
 - (IBAction)changeAction:(id)sender;

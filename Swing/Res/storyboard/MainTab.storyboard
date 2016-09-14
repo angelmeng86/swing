@@ -32,6 +32,7 @@
             <string>ArialRoundedMTBold</string>
             <string>ArialRoundedMTBold</string>
             <string>ArialRoundedMTBold</string>
+            <string>ArialRoundedMTBold</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -1786,17 +1787,34 @@ You can do this!</string>
                                     <action selector="changeAction:" destination="xfy-x1-cgF" eventType="touchUpInside" id="DMO-p7-Cbc"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K69-2C-HJ9" customClass="RoundButton">
+                                <rect key="frame" x="40" y="550" width="520" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="uES-GF-37J"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveAction:" destination="xfy-x1-cgF" eventType="touchUpInside" id="uFR-lk-Tht"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="I2l-ZE-ca3" firstAttribute="leading" secondItem="w10-dJ-yzO" secondAttribute="leading" id="C7H-2l-p2m"/>
                             <constraint firstItem="ZVH-AL-1Pm" firstAttribute="leading" secondItem="w10-dJ-yzO" secondAttribute="leading" constant="40" id="DHT-RQ-NYX"/>
+                            <constraint firstItem="K69-2C-HJ9" firstAttribute="leading" secondItem="w10-dJ-yzO" secondAttribute="leading" constant="40" id="TsC-ez-xJn"/>
+                            <constraint firstAttribute="trailing" secondItem="K69-2C-HJ9" secondAttribute="trailing" constant="40" id="WKs-cb-i9O"/>
                             <constraint firstAttribute="trailing" secondItem="I2l-ZE-ca3" secondAttribute="trailing" id="but-wW-BQc"/>
                             <constraint firstItem="ZVH-AL-1Pm" firstAttribute="top" secondItem="I2l-ZE-ca3" secondAttribute="bottom" constant="10" id="dZr-o8-DBm"/>
                             <constraint firstItem="IzB-G7-K91" firstAttribute="leading" secondItem="ZVH-AL-1Pm" secondAttribute="trailing" constant="20" id="ml7-dp-vMg"/>
                             <constraint firstItem="IzB-G7-K91" firstAttribute="width" secondItem="ZVH-AL-1Pm" secondAttribute="width" id="pDL-xR-h4Q"/>
                             <constraint firstItem="oFK-kf-0Zz" firstAttribute="top" secondItem="ZVH-AL-1Pm" secondAttribute="bottom" constant="20" id="u29-r9-659"/>
                             <constraint firstItem="IzB-G7-K91" firstAttribute="centerY" secondItem="ZVH-AL-1Pm" secondAttribute="centerY" id="uIo-xW-RRU"/>
+                            <constraint firstItem="oFK-kf-0Zz" firstAttribute="top" secondItem="K69-2C-HJ9" secondAttribute="bottom" constant="20" id="vqf-6Y-Pwz"/>
                             <constraint firstAttribute="trailing" secondItem="IzB-G7-K91" secondAttribute="trailing" constant="40" id="xix-pA-IXa"/>
                             <constraint firstItem="I2l-ZE-ca3" firstAttribute="top" secondItem="dZH-TA-Tnj" secondAttribute="bottom" id="yhc-TP-9pv"/>
                         </constraints>
@@ -1807,8 +1825,10 @@ You can do this!</string>
                         <outlet property="colorCtl" destination="nQR-aD-dfx" id="h7D-mn-MAh"/>
                         <outlet property="descTF" destination="z1y-hE-pMm" id="5gw-LW-w8G"/>
                         <outlet property="endTF" destination="4yE-K4-uaw" id="UDB-Mu-bnu"/>
+                        <outlet property="longSaveBtn" destination="K69-2C-HJ9" id="HvU-2z-SfT"/>
                         <outlet property="nameTF" destination="o1L-Bk-lcq" id="uzA-I0-y2J"/>
                         <outlet property="repeatTF" destination="bzM-jh-nXN" id="hfC-ep-cpa"/>
+                        <outlet property="shortSaveBtn" destination="ZVH-AL-1Pm" id="8Yb-th-CPb"/>
                         <outlet property="startTF" destination="PVh-Jy-Otr" id="bc1-Ou-s3c"/>
                         <outlet property="stateTF" destination="qB3-EN-TRq" id="jwF-M5-q1R"/>
                         <outlet property="todoCtl" destination="Ik5-5W-IUa" id="zxl-2x-Z2I"/>

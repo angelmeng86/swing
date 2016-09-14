@@ -73,7 +73,7 @@
     [self addRedTip:self.startTF];
     [self addRedTip:self.endTF];
     [self changeAdvance:NO];
-    self.advanceBtn.hidden = YES;
+    [self hideAdvance:YES];
     if (self.model) {
         self.nameTF.text = self.model.eventName;
         
@@ -105,15 +105,21 @@
         self.endTF.text = [Fun dateToString:datePicker2.minimumDate];
         
 //        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Advance" style:UIBarButtonItemStyleDone target:self action:@selector(changeAction)];
-        self.advanceBtn.hidden = NO;
+        [self hideAdvance:NO];
     }
 }
 
+- (void)hideAdvance:(BOOL)hidden {
+    self.advanceBtn.hidden = hidden;
+    self.shortSaveBtn.hidden = hidden;
+    self.longSaveBtn.hidden = !hidden;
+}
 
 - (IBAction)changeAction:(UIButton*)sender {
     BOOL hidden = self.todoCtl.hidden;
     if (hidden) {
         [sender setTitle:@"Normal" forState:UIControlStateNormal];
+        [self hideAdvance:YES];
     }
     else {
         [sender setTitle:@"Advance" forState:UIControlStateNormal];
