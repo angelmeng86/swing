@@ -114,10 +114,16 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (indexPath.section == 0 && indexPath.row == 0) {
         UITableViewCell *inputCell = [tableView dequeueReusableCellWithIdentifier:@"inputReuseIdentifier"];
         if (inputCell == nil) {
             inputCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"inputReuseIdentifier"];
+            
+            inputCell.textLabel.textAlignment = NSTextAlignmentLeft;
+            inputCell.textLabel.font = [UIFont avenirFontOfSize:17];
+            inputCell.textLabel.textColor = RGBA(0x97, 0x96, 0x97, 1.0f);
+            /*
             inputCell.selectionStyle = UITableViewCellSelectionStyleNone;
             UITextField *textField = [UITextField new];
             textField.font = [UIFont avenirFontOfSize:17];
@@ -129,8 +135,12 @@
             [textField autoPinEdgeToSuperviewMargin:ALEdgeLeading];
             [textField autoPinEdgeToSuperviewMargin:ALEdgeTrailing];
             textField.delegate = self;
+             */
         }
-        
+        NSDictionary *item = _alertArray[indexPath.section];
+        NSArray *items = item[@"items"];
+        NSDictionary *model = items[indexPath.row];
+        inputCell.textLabel.text = model[@"text"];
         return inputCell;
     }
     

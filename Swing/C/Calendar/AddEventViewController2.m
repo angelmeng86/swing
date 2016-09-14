@@ -16,6 +16,9 @@
 @interface AddEventViewController2 ()<UITextFieldDelegate>
 {
     BOOL isAddTip;
+    
+    BOOL isCustom;
+    NSArray *alertArray;
 }
 
 @property (nonatomic, strong) AlertModel* alert;
@@ -31,7 +34,7 @@
     self.repeatTF.enabled = NO;
     self.stateTF.enabled = NO;
     self.cityTF.enabled = NO;
-    
+    isCustom = NO;
     UIDatePicker *datePicker = [[UIDatePicker alloc] init];
     datePicker.datePickerMode = UIDatePickerModeDateAndTime;
     datePicker.minimumDate = [NSDate date];
@@ -39,7 +42,7 @@
     self.startTF.inputView = datePicker;
     [datePicker addTarget:self action:@selector(startChange:) forControlEvents:UIControlEventValueChanged];
     
-    UIView *bgView = [UIView new];
+    UIControl *bgView = [UIControl new];
     bgView.frame = CGRectMake(0, 0, 30, 30);
     LMArrowView *arrow = [[LMArrowView alloc]initWithFrame:CGRectMake(0, 0, 10, 6)];
     arrow.arrow = LMArrowDown;
@@ -48,6 +51,7 @@
     [bgView addSubview:arrow];
     [arrow autoCenterInSuperviewMargins];
     [arrow autoSetDimensionsToSize:CGSizeMake(10, 6)];
+    [bgView addTarget:self action:@selector(dorpdownAction) forControlEvents:UIControlEventTouchUpInside];
     self.nameTF.rightView = bgView;
     self.nameTF.rightViewMode = UITextFieldViewModeAlways;
     
@@ -147,9 +151,46 @@
     self.todoCtl.hidden = hidden;
 }
 
+- (void)dorpdownAction {
+    [[IQKeyboardManager sharedManager] resignFirstResponder];
+    AlertSelectViewController *ctl = [[AlertSelectViewController alloc] initWithStyle:UITableViewStylePlain];
+    ctl.delegate = self;
+    [self.navigationController pushViewController:ctl animated:YES];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    if (textField == self.nameTF && self.nameTF.text.length > 0) {
+        if (alertArray == nil) {
+            NSString *path = [[NSBundle mainBundle] pathForResource:@"alert2" ofType:@"json"];
+            id json = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:kNilOptions error:NULL];
+            if ([json isKindOfClass:[NSArray class]]) {
+                alertArray = json;
+            }
+        }
+        
+        for (NSDictionary *dict in alertArray) {
+            NSArray *items = dict[@"items"];
+            for (NSDictionary *item in items) {
+                if ([[item[@"text"] lowercaseString] isEqualToString:[textField.text lowercaseString]]) {
+                    AlertModel *m = [[AlertModel alloc] initWithDictionary:item error:NULL];
+                    self.alert = m;
+                    self.nameTF.text = m.text;
+                    return;
+                }
+            }
+        }
+        
+        NSDictionary *item = alertArray[0];
+        NSArray *items = item[@"items"];
+        NSDictionary *model = items[0];
+        AlertModel *m = [[AlertModel alloc] initWithDictionary:model error:NULL];
+        m.text = textField.text;
+    }
+}
+
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     
-    if (textField == self.nameTF) {
+    if (textField == self.nameTF && !isCustom) {
         [[IQKeyboardManager sharedManager] resignFirstResponder];
         AlertSelectViewController *ctl = [[AlertSelectViewController alloc] initWithStyle:UITableViewStylePlain];
         ctl.delegate = self;
@@ -169,6 +210,9 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+//    if (textField == self.nameTF) {
+//        isCustom = NO;
+//    }
     [textField resignFirstResponder];
     return YES;
 }
@@ -179,9 +223,17 @@
 }
 
 - (void)alertSelectViewControllerDidSelected:(AlertModel*)alert {
-    self.alert = alert;
-    self.nameTF.text = alert.text;
-    
+    if ([alert.value isEqualToString:@"0"]) {
+        self.alert = nil;
+        isCustom = YES;
+        self.nameTF.text = nil;
+        [self.nameTF becomeFirstResponder];
+    }
+    else {
+        isCustom = NO;
+        self.alert = alert;
+        self.nameTF.text = alert.text;
+    }
 }
 
 - (void)startChange:(UIDatePicker*)datePicker {
@@ -231,6 +283,7 @@
 }
 
 - (IBAction)saveAction:(id)sender {
+    [[IQKeyboardManager sharedManager] resignFirstResponder];
     if ([self validateTextField]) {
         [SVProgressHUD showWithStatus:@"Saving, please wait..."];
         
