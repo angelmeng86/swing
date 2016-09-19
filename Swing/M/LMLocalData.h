@@ -12,8 +12,8 @@
 
 @property (nonatomic) long indoorSteps;
 @property (nonatomic) long outdoorSteps;
-@property (nonatomic, strong) NSString *date;
-@property (nonatomic, strong) NSData *deviceMAC;
+@property (nonatomic, strong) NSString<Optional> *date;
+@property (nonatomic, strong) NSData<Optional> *deviceMAC;
 
 - (void)checkDate;
 
