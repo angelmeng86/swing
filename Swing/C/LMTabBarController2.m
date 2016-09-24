@@ -25,8 +25,11 @@
     }
     
     int i = 0;
+    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
     for (UINavigationController *navCtl in self.viewControllers) {
-        UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
+        if(i == 3) {
+            i++;
+        }
         UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:[NSString stringWithFormat:@"SwingTab%d", i]];
         [navCtl setViewControllers:@[ctl] animated:NO];
         i++;

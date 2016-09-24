@@ -48,10 +48,6 @@
          "text"  : "Put on pajamas"
          },
          {
-         "value" : 41,
-         "text"  : "use potty"
-         },
-         {
          "value" : 42,
          "text"  : "Story time"
          },
@@ -68,10 +64,6 @@
          {
          "value" : 44,
          "text"  : "Collect toys"
-         },
-         {
-         "value" : 45,
-         "text"  : "Packing for school"
          },
          {
          "value" : 46,
@@ -94,32 +86,8 @@
          "text"  : "Clean bedroom"
          },
          {
-         "value" : 51,
-         "text"  : "Put shoes away"
-         },
-         {
-         "value" : 52,
-         "text"  : "Help with laundry"
-         },
-         {
-         "value" : 53,
-         "text"  : "Take a bath"
-         },
-         {
          "value" : 54,
          "text"  : "Homework time"
-         },
-         {
-         "value" : 55,
-         "text"  : "Grocery shopping"
-         },
-         {
-         "value" : 56,
-         "text"  : "Church"
-         },
-         {
-         "value" : 57,
-         "text"  : "Have some snacks"
          },
          {
          "value" : 58,
@@ -128,10 +96,6 @@
          {
          "value" : 59,
          "text"  : "Outdoor play time"
-         },
-         {
-         "value" : 60,
-         "text"  : "Watch TV"
          },
          {
          "value" : 61,
@@ -154,28 +118,12 @@
          "text"  : "Reading time"
          },
          {
-         "value" : 66,
-         "text"  : "Study"
-         },
-         {
          "value" : 67,
-         "text"  : "Take a bath"
+         "text"  : "Bath time"
          },
          {
          "value" : 68,
-         "text"  : "Family time"
-         },
-         {
-         "value" : 69,
-         "text"  : "Take a break"
-         },
-         {
-         "value" : 70,
-         "text"  : "Find some shade"
-         },
-         {
-         "value" : 71,
-         "text"  : "Get sunshine"
+         "text"  : "Family games"
          },
          {
          "value" : 72,
@@ -184,6 +132,18 @@
          {
          "value" : 73,
          "text"  : "dinner time"
+         },
+         {
+         "value" : 74,
+         "text"  : "afternoon snack time"
+         },
+         {
+         "value" : 75,
+         "text"  : "review the backpack"
+         },
+         {
+         "value" : 76,
+         "text"  : "Alarm sound:  cockerel animal sound"
          }
          ]
   }
