@@ -92,14 +92,14 @@ typedef enum : NSUInteger {
     
     //设置扫描到设备的委托
     [baby setBlockOnDiscoverToPeripheralsAtChannel:channel block:^(CBCentralManager *central, CBPeripheral *peripheral, NSDictionary *advertisementData, NSNumber *RSSI) {
-        NSLog(@"搜索到了设备:%@",peripheral.name);
-        //        NSLog(@"peripheral:%@",peripheral);
+        LOG_D(@"搜索到了设备:%@",peripheral.name);
+        //        LOG_D(@"peripheral:%@",peripheral);
     }];
     
     
     //设置查找设备的过滤器
     [baby setFilterOnDiscoverPeripheralsAtChannel:channel filter:^BOOL(NSString *peripheralName, NSDictionary *advertisementData, NSNumber *RSSI) {
-        //        NSLog(@"advertisementData:%@", advertisementData);
+        //        LOG_D(@"advertisementData:%@", advertisementData);
         //最常用的场景是查找某一个前缀开头的设备
 //        if ([peripheralName hasPrefix:@"Swing-D-X"] ) {
 //            return YES;
@@ -108,11 +108,11 @@ typedef enum : NSUInteger {
     }];
     
     [baby setBlockOnCancelAllPeripheralsConnectionBlockAtChannel:channel block:^(CBCentralManager *centralManager) {
-        NSLog(@"setBlockOnCancelAllPeripheralsConnectionBlock");
+        LOG_D(@"setBlockOnCancelAllPeripheralsConnectionBlock");
     }];
     
     [baby setBlockOnCancelScanBlockAtChannel:channel block:^(CBCentralManager *centralManager) {
-        NSLog(@"setBlockOnCancelScanBlock");
+        LOG_D(@"setBlockOnCancelScanBlock");
     }];
     
     //设置设备连接成功的委托,同一个baby对象，使用不同的channel切换委托回调
@@ -122,13 +122,13 @@ typedef enum : NSUInteger {
     
     //设置设备连接失败的委托
     [baby setBlockOnFailToConnectAtChannel:channel block:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
-        NSLog(@"设备：%@--连接失败",peripheral.name);
+        LOG_D(@"设备：%@--连接失败",peripheral.name);
         //        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--连接失败",peripheral.name]];
     }];
     
     //设置设备断开连接的委托
     [baby setBlockOnDisconnectAtChannel:channel block:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
-        NSLog(@"设备：%@--断开连接",peripheral.name);
+        LOG_D(@"设备：%@--断开连接",peripheral.name);
         //        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--断开失败",peripheral.name]];
     }];
     
@@ -138,14 +138,14 @@ typedef enum : NSUInteger {
     }];
     //设置发现设service的Characteristics的委托
     [baby setBlockOnDiscoverCharacteristicsAtChannel:channel block:^(CBPeripheral *peripheral, CBService *service, NSError *error) {
-        NSLog(@"===service name:%@ ,%@,%@",service.UUID, service.UUID.UUIDString, service.UUID.data);
+        LOG_D(@"===service name:%@ ,%@,%@",service.UUID, service.UUID.UUIDString, service.UUID.data);
         if (!error) {
             if ([service.UUID.UUIDString isEqualToString:@"180F"]) {
                 CBCharacteristic *character = [service findCharacteristic:@"2A19"];
                 [peripheral readValueForCharacteristic:character];
             }
             else if ([service.UUID.UUIDString isEqualToString:@"FFA0"]) {
-                NSLog(@"write FFA1");
+                LOG_D(@"write FFA1");
                 CBCharacteristic *character = [service findCharacteristic:@"FFA1"];
                 [peripheral writeValue:[NSData dataWithBytes:"\x01" length:1] forCharacteristic:character type:CBCharacteristicWriteWithResponse];
             }
@@ -154,15 +154,15 @@ typedef enum : NSUInteger {
     }];
     //设置读取characteristics的委托
     [baby setBlockOnReadValueForCharacteristicAtChannel:channel block:^(CBPeripheral *peripheral, CBCharacteristic *characteristic, NSError *error) {
-        NSLog(@"characteristic name:%@ value is:%@",characteristic.UUID,characteristic.value);
+        LOG_D(@"characteristic name:%@ value is:%@",characteristic.UUID,characteristic.value);
         if (!error) {
             if ([characteristic.UUID.UUIDString isEqualToString:@"2A19"]) {
                 const Byte* ptr = characteristic.value.bytes;
-                NSLog(@"Read Battery:%d%%", ptr[0]);
+                LOG_D(@"Read Battery:%d%%", ptr[0]);
                 [weakSelf reportQueryBatteryResult:characteristic.service.peripheral battery:ptr[0] mac:nil error:nil];
             }
             else if ([characteristic.UUID.UUIDString isEqualToString:@"FFA6"]) {
-                NSLog(@"Mac Address:%@", characteristic.value);
+                LOG_D(@"Mac Address:%@", characteristic.value);
                 [weakSelf reportQueryBatteryResult:characteristic.service.peripheral battery:-1 mac:characteristic.value error:nil];
             }
         }
@@ -171,17 +171,17 @@ typedef enum : NSUInteger {
     [baby setBlockOnDidWriteValueForCharacteristicAtChannel:channel block:^(CBCharacteristic *characteristic, NSError *error) {
         if (!error) {
             if ([characteristic.UUID.UUIDString isEqualToString:@"FFA1"]) {
-                NSLog(@"read FFA6");
+                LOG_D(@"read FFA6");
                 CBCharacteristic *character = [characteristic.service findCharacteristic:@"FFA6"];
                 [characteristic.service.peripheral readValueForCharacteristic:character];
                 
 //                CBCharacteristic *character = [characteristic.service findCharacteristic:@"FFA3"];
 //                NSData *time = [Fun longToByteArray:TIME_STAMP];
-//                NSLog(@"write FFA3 %@", time);
+//                LOG_D(@"write FFA3 %@", time);
 //                [characteristic.service.peripheral writeValue:time forCharacteristic:character type:CBCharacteristicWriteWithResponse];
             }
 //            else if ([characteristic.UUID.UUIDString isEqualToString:@"FFA3"]) {
-//                NSLog(@"read FFA6");
+//                LOG_D(@"read FFA6");
 //                CBCharacteristic *character = [characteristic.service findCharacteristic:@"FFA6"];
 //                [characteristic.service.peripheral readValueForCharacteristic:character];
 //            }
@@ -220,14 +220,14 @@ typedef enum : NSUInteger {
     
     //设置设备连接失败的委托
     [baby setBlockOnFailToConnectAtChannel:channel block:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
-        NSLog(@"设备：%@--连接失败",peripheral.name);
+        LOG_D(@"设备：%@--连接失败",peripheral.name);
 //        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--连接失败",peripheral.name]];
         [weakSelf reportInitDeviceResult:nil error:error];
     }];
     
     //设置设备断开连接的委托
     [baby setBlockOnDisconnectAtChannel:channel block:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
-        NSLog(@"设备：%@--断开连接",peripheral.name);
+        LOG_D(@"设备：%@--断开连接",peripheral.name);
        [weakSelf reportInitDeviceResult:nil error:error];
 //        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--断开失败",peripheral.name]];
     }];
@@ -243,7 +243,7 @@ typedef enum : NSUInteger {
     }];
     //设置发现设service的Characteristics的委托
     [baby setBlockOnDiscoverCharacteristicsAtChannel:channel block:^(CBPeripheral *peripheral, CBService *service, NSError *error) {
-        NSLog(@"===service name:%@ ,%@,%@",service.UUID, service.UUID.UUIDString, service.UUID.data);
+        LOG_D(@"===service name:%@ ,%@,%@",service.UUID, service.UUID.UUIDString, service.UUID.data);
         if (error) {
             [weakSelf reportInitDeviceResult:nil error:error];
         }
@@ -253,7 +253,7 @@ typedef enum : NSUInteger {
                 [peripheral readValueForCharacteristic:character];
             }
             else if ([service.UUID.UUIDString isEqualToString:@"FFA0"]) {
-                NSLog(@"write FFA1");
+                LOG_D(@"write FFA1");
                 CBCharacteristic *character = [service findCharacteristic:@"FFA1"];
                 [peripheral writeValue:[NSData dataWithBytes:"\x01" length:1] forCharacteristic:character type:CBCharacteristicWriteWithResponse];
                 [rhythm beats];
@@ -263,16 +263,16 @@ typedef enum : NSUInteger {
     }];
     //设置读取characteristics的委托
     [baby setBlockOnReadValueForCharacteristicAtChannel:channel block:^(CBPeripheral *peripheral, CBCharacteristic *characteristic, NSError *error) {
-        NSLog(@"characteristic name:%@ value is:%@",characteristic.UUID,characteristic.value);
+        LOG_D(@"characteristic name:%@ value is:%@",characteristic.UUID,characteristic.value);
         if (!error) {
             if ([characteristic.UUID.UUIDString isEqualToString:@"2A19"]) {
                 const Byte* ptr = characteristic.value.bytes;
-                NSLog(@"Read Battery:%d%%", ptr[0]);
+                LOG_D(@"Read Battery:%d%%", ptr[0]);
                 [GlobalCache shareInstance].battery = ptr[0];
                 [[NSNotificationCenter defaultCenter] postNotificationName:SWING_WATCH_BATTERY_NOTIFY object:[NSNumber numberWithInt:ptr[0]]];
             }
             else if ([characteristic.UUID.UUIDString isEqualToString:@"FFA6"]) {
-                NSLog(@"Mac Address:%@", characteristic.value);
+                LOG_D(@"Mac Address:%@", characteristic.value);
                 [weakSelf reportInitDeviceResult:characteristic.value error:nil];
                 [rhythm beatsOver];
             }
@@ -292,12 +292,12 @@ typedef enum : NSUInteger {
             if ([characteristic.UUID.UUIDString isEqualToString:@"FFA1"]) {
                 CBCharacteristic *character = [characteristic.service findCharacteristic:@"FFA3"];
                 NSData *time = [Fun longToByteArray:TIME_STAMP];
-                NSLog(@"write FFA3 %@", time);
+                LOG_D(@"write FFA3 %@", time);
                 [characteristic.service.peripheral writeValue:time forCharacteristic:character type:CBCharacteristicWriteWithResponse];
                 [rhythm beats];
             }
             else if ([characteristic.UUID.UUIDString isEqualToString:@"FFA3"]) {
-                NSLog(@"read FFA6");
+                LOG_D(@"read FFA6");
                 CBCharacteristic *character = [characteristic.service findCharacteristic:@"FFA6"];
                 [characteristic.service.peripheral readValueForCharacteristic:character];
                 [rhythm beats];
@@ -307,14 +307,14 @@ typedef enum : NSUInteger {
     
     //设置beats break委托
     [rhythm setBlockOnBeatsBreak:^(BabyRhythm *bry) {
-        NSLog(@"setBlockOnBeatsBreak call");
+        LOG_D(@"setBlockOnBeatsBreak call");
         NSError *err = [NSError errorWithDomain:@"SwingBluetooth" code:-1 userInfo:[NSDictionary dictionaryWithObject:@"Operation timeout." forKey:NSLocalizedDescriptionKey]];
         [weakSelf reportInitDeviceResult:nil error:err];
     }];
     
     //设置beats over委托
     [rhythm setBlockOnBeatsOver:^(BabyRhythm *bry) {
-        NSLog(@"setBlockOnBeatsOver call");
+        LOG_D(@"setBlockOnBeatsOver call");
     }];
     
     //扫描选项->CBCentralManagerScanOptionAllowDuplicatesKey:忽略同一个Peripheral端的多个发现事件被聚合成一个发现事件
@@ -342,7 +342,7 @@ typedef enum : NSUInteger {
     rhythm.beatsInterval = 5;
     
     [baby setBlockOnCentralManagerDidUpdateStateAtChannel:channel block:^(CBCentralManager *central) {
-        NSLog(@"scan state %d", central.state);
+        LOG_D(@"scan state %ld", (long)central.state);
         if (central.state == CBCentralManagerStatePoweredOn) {
             //            [SVProgressHUD showInfoWithStatus:@"设备打开成功，开始扫描设备"];
         }
@@ -350,15 +350,15 @@ typedef enum : NSUInteger {
     
     //设置扫描到设备的委托
     [baby setBlockOnDiscoverToPeripheralsAtChannel:channel block:^(CBCentralManager *central, CBPeripheral *peripheral, NSDictionary *advertisementData, NSNumber *RSSI) {
-        NSLog(@"搜索到了设备:%@",peripheral.name);
-//        NSLog(@"peripheral:%@",peripheral);
+        LOG_D(@"搜索到了设备:%@",peripheral.name);
+//        LOG_D(@"peripheral:%@",peripheral);
         [weakSelf reportScanDeviceResult:peripheral advertisementData:advertisementData error:nil];
     }];
     
     
     //设置查找设备的过滤器
     [baby setFilterOnDiscoverPeripheralsAtChannel:channel filter:^BOOL(NSString *peripheralName, NSDictionary *advertisementData, NSNumber *RSSI) {
-//        NSLog(@"advertisementData:%@", advertisementData);
+//        LOG_D(@"advertisementData:%@", advertisementData);
         //最常用的场景是查找某一个前缀开头的设备
 //        if ([peripheralName hasPrefix:@"Swing-D-X"] ) {
 //            return YES;
@@ -367,11 +367,11 @@ typedef enum : NSUInteger {
     }];
     
     [baby setBlockOnCancelAllPeripheralsConnectionBlockAtChannel:channel block:^(CBCentralManager *centralManager) {
-        NSLog(@"setBlockOnCancelAllPeripheralsConnectionBlock");
+        LOG_D(@"setBlockOnCancelAllPeripheralsConnectionBlock");
     }];
     
     [baby setBlockOnCancelScanBlockAtChannel:channel block:^(CBCentralManager *centralManager) {
-        NSLog(@"setBlockOnCancelScanBlock");
+        LOG_D(@"setBlockOnCancelScanBlock");
     }];
     
     
@@ -410,14 +410,14 @@ typedef enum : NSUInteger {
     
     //设置设备连接失败的委托
     [baby setBlockOnFailToConnectAtChannel:channel block:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
-        NSLog(@"设备：%@--连接失败",peripheral.name);
+        LOG_D(@"设备：%@--连接失败",peripheral.name);
         //        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--连接失败",peripheral.name]];
         [weakSelf reportSyncDeviceResult:error];
     }];
     
     //设置设备断开连接的委托
     [baby setBlockOnDisconnectAtChannel:channel block:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
-        NSLog(@"设备：%@--断开连接",peripheral.name);
+        LOG_D(@"设备：%@--断开连接",peripheral.name);
         [weakSelf reportSyncDeviceResult:error];
         //        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--断开失败",peripheral.name]];
     }];
@@ -433,7 +433,7 @@ typedef enum : NSUInteger {
     }];
     //设置发现设service的Characteristics的委托
     [baby setBlockOnDiscoverCharacteristicsAtChannel:channel block:^(CBPeripheral *peripheral, CBService *service, NSError *error) {
-        NSLog(@"===service name:%@ ,%@,%@",service.UUID, service.UUID.UUIDString, service.UUID.data);
+        LOG_D(@"===service name:%@ ,%@,%@",service.UUID, service.UUID.UUIDString, service.UUID.data);
         if (error) {
             [weakSelf reportSyncDeviceResult:error];
         }
@@ -443,7 +443,7 @@ typedef enum : NSUInteger {
                 [peripheral readValueForCharacteristic:character];
             }
             else if ([service.UUID.UUIDString isEqualToString:@"FFA0"]) {
-                NSLog(@"write FFA1");
+                LOG_D(@"write FFA1");
                 syncState = SwingSyncBegin;
                 CBCharacteristic *character = [service findCharacteristic:@"FFA1"];
                 [peripheral writeValue:[NSData dataWithBytes:"\x01" length:1] forCharacteristic:character type:CBCharacteristicWriteWithResponse];
@@ -454,36 +454,36 @@ typedef enum : NSUInteger {
     }];
     //设置读取characteristics的委托
     [baby setBlockOnReadValueForCharacteristicAtChannel:channel block:^(CBPeripheral *peripheral, CBCharacteristic *characteristic, NSError *error) {
-        NSLog(@"characteristic name:%@ value is:%@",characteristic.UUID,characteristic.value);
+        LOG_D(@"characteristic name:%@ value is:%@",characteristic.UUID,characteristic.value);
         if (!error) {
             if ([characteristic.UUID.UUIDString isEqualToString:@"2A19"]) {
                 const Byte* ptr = characteristic.value.bytes;
-                NSLog(@"Read Battery:%d%%", ptr[0]);
+                LOG_D(@"Read Battery:%d%%", ptr[0]);
                 [GlobalCache shareInstance].battery = ptr[0];
                 [[NSNotificationCenter defaultCenter] postNotificationName:SWING_WATCH_BATTERY_NOTIFY object:[NSNumber numberWithInt:ptr[0]]];
             }
             else if ([characteristic.UUID.UUIDString isEqualToString:@"FFA6"]) {
-                NSLog(@"Mac Address:%@", characteristic.value);
+                LOG_D(@"Mac Address:%@", characteristic.value);
                 weakSelf.macAddress = characteristic.value;
-                NSLog(@"write FFA7");
+                LOG_D(@"write FFA7");
                 [weakSelf writeAlertNumber:characteristic.service];
                 syncState = SwingSyncAlertNumberWrited;
                 [rhythm beats];
             }
             else if ([characteristic.UUID.UUIDString isEqualToString:@"FFA9"]) {
                 const Byte *ptr = characteristic.value.bytes;
-                NSLog(@"HeaderReaded len %d %02x%02x", (int)[characteristic.value length], ptr[0], ptr[1]);
+                LOG_D(@"HeaderReaded len %d %02x%02x", (int)[characteristic.value length], ptr[0], ptr[1]);
                 if (ptr[0] == 0x01 && ptr[1] == 0x00) {
-                    NSLog(@"Have Data!");
+                    LOG_D(@"Have Data!");
                     //FFA3
                     CBCharacteristic *character = [characteristic.service findCharacteristic:@"FFA3"];
                     [characteristic.service.peripheral readValueForCharacteristic:character];
                     [rhythm beats];
-                    NSLog(@"Read FFA3");
+                    LOG_D(@"Read FFA3");
                     syncState = SwingSyncTimeReaded;
                 }
                 else {
-                    NSLog(@"No Data!");
+                    LOG_D(@"No Data!");
                     syncState = SwingSyncNone;
                     //断开连接
                     [rhythm beatsOver];
@@ -493,10 +493,10 @@ typedef enum : NSUInteger {
             else if ([characteristic.UUID.UUIDString isEqualToString:@"FFA3"]) {
                 long value = [Fun byteArrayToLong:characteristic.value];
                 weakSelf.timeStamp = value;
-                NSLog(@"SwingSyncTimeReaded:%@", [NSDate dateWithTimeIntervalSince1970:value]);
+                LOG_D(@"SwingSyncTimeReaded:%@", [NSDate dateWithTimeIntervalSince1970:value]);
                 
                 syncState = SwingSyncData1Readed;
-                NSLog(@"Read FFA4");
+                LOG_D(@"Read FFA4");
                 CBCharacteristic *character = [characteristic.service findCharacteristic:@"FFA4"];
                 [characteristic.service.peripheral readValueForCharacteristic:character];
                 [rhythm beats];
@@ -505,13 +505,13 @@ typedef enum : NSUInteger {
                 if (syncState == SwingSyncData1Readed) {
                     weakSelf.ffa4Data1 = characteristic.value;
                     syncState = SwingSyncData2Readed;
-                    NSLog(@"Read FFA4");
+                    LOG_D(@"Read FFA4");
                     CBCharacteristic *character = [characteristic.service findCharacteristic:@"FFA4"];
                     [characteristic.service.peripheral readValueForCharacteristic:character];
                     
                 }
                 else {
-                    NSLog(@"SwingSyncData2Readed:%d", (int)characteristic.value.length);
+                    LOG_D(@"SwingSyncData2Readed:%d", (int)characteristic.value.length);
                     
                     Byte array[1];
                     if ([weakSelf.ffa4Data1 isEqualToData:characteristic.value]) {
@@ -523,7 +523,7 @@ typedef enum : NSUInteger {
                         array[0] = 0x01;
                         weakSelf.ffa4Data2 = characteristic.value;
                     }
-                    NSLog(@"Write FFA5");
+                    LOG_D(@"Write FFA5");
                     NSData *data = [NSData dataWithBytes:array length:1];
                     CBCharacteristic *character = [characteristic.service findCharacteristic:@"FFA5"];
                     [characteristic.service.peripheral writeValue:data forCharacteristic:character type:CBCharacteristicWriteWithResponse];
@@ -541,9 +541,9 @@ typedef enum : NSUInteger {
     
     [baby setBlockOnDidWriteValueForCharacteristicAtChannel:channel block:^(CBCharacteristic *characteristic, NSError *error) {
         if ([characteristic.UUID.UUIDString isEqualToString:@"FFA8"]) {
-            NSLog(@"FFA8 err:%@", error);
+            LOG_D(@"FFA8 err:%@", error);
             [weakSelf writeAlertNumber:characteristic.service];
-            NSLog(@"write FFA7");
+            LOG_D(@"write FFA7");
             [rhythm beats];
             return;
         }
@@ -554,22 +554,22 @@ typedef enum : NSUInteger {
             if ([characteristic.UUID.UUIDString isEqualToString:@"FFA1"]) {
                 CBCharacteristic *character = [characteristic.service findCharacteristic:@"FFA3"];
                 NSData *time = [Fun longToByteArray:TIME_STAMP];
-                NSLog(@"write FFA3 %@", time);
+                LOG_D(@"write FFA3 %@", time);
                 [characteristic.service.peripheral writeValue:time forCharacteristic:character type:CBCharacteristicWriteWithResponse];
             }
             else if ([characteristic.UUID.UUIDString isEqualToString:@"FFA3"]) {
-                NSLog(@"read FFA6");
+                LOG_D(@"read FFA6");
                 CBCharacteristic *character = [characteristic.service findCharacteristic:@"FFA6"];
                 [characteristic.service.peripheral readValueForCharacteristic:character];
             }
             else if ([characteristic.UUID.UUIDString isEqualToString:@"FFA7"]) {
                 
                 if ([weakSelf writeAlertTimestmp:characteristic.service]) {
-                    NSLog(@"write FFA8");
+                    LOG_D(@"write FFA8");
                     syncState = SwingSyncTimeWrited;
                 }
                 else {
-                    NSLog(@"read FFA9");
+                    LOG_D(@"read FFA9");
                     syncState = SwingSyncHeaderReaded;
                     CBCharacteristic *character = [characteristic.service findCharacteristic:@"FFA9"];
                     [characteristic.service.peripheral readValueForCharacteristic:character];
@@ -619,7 +619,7 @@ typedef enum : NSUInteger {
                     }
                 }
                 
-                NSLog(@"read FFA9");
+                LOG_D(@"read FFA9");
                 syncState = SwingSyncHeaderReaded;
                 CBCharacteristic *character = [characteristic.service findCharacteristic:@"FFA9"];
                 [characteristic.service.peripheral readValueForCharacteristic:character];
@@ -630,14 +630,14 @@ typedef enum : NSUInteger {
     
     //设置beats break委托
     [rhythm setBlockOnBeatsBreak:^(BabyRhythm *bry) {
-        NSLog(@"setBlockOnBeatsBreak call");
+        LOG_D(@"setBlockOnBeatsBreak call");
         NSError *err = [NSError errorWithDomain:@"SwingBluetooth" code:-1 userInfo:[NSDictionary dictionaryWithObject:@"Operation timeout." forKey:NSLocalizedDescriptionKey]];
         [weakSelf reportSyncDeviceResult:err];
     }];
     
     //设置beats over委托
     [rhythm setBlockOnBeatsOver:^(BabyRhythm *bry) {
-        NSLog(@"setBlockOnBeatsOver call");
+        LOG_D(@"setBlockOnBeatsOver call");
     }];
     
     //扫描选项->CBCentralManagerScanOptionAllowDuplicatesKey:忽略同一个Peripheral端的多个发现事件被聚合成一个发现事件
@@ -664,7 +664,7 @@ typedef enum : NSUInteger {
         //往FFA7里面写
         EventModel *model = [_eventArray firstObject];
         array[0] = model.alert;
-        NSLog(@"lwz alert:%d", model.alert);
+        LOG_D(@"lwz alert:%d", model.alert);
     }
     NSData *data = [NSData dataWithBytes:array length:1];
     [service.peripheral writeValue:data forCharacteristic:characteristic type:CBCharacteristicWriteWithResponse];
@@ -678,7 +678,7 @@ typedef enum : NSUInteger {
         [_eventArray removeObjectAtIndex:0];
         long date = [model.startDate timeIntervalSince1970] + TIME_ADJUST;
         NSData *timedata = [Fun longToByteArray:date];
-        NSLog(@"date %@, timestamp:%@", model.startDate, timedata);
+        LOG_D(@"date %@, timestamp:%@", model.startDate, timedata);
         CBCharacteristic *characteristic = [service findCharacteristic:@"FFA8"];
         [service.peripheral writeValue:timedata forCharacteristic:characteristic type:CBCharacteristicWriteWithResponse];
         return YES;
