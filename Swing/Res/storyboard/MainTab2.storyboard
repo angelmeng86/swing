@@ -103,8 +103,8 @@
         <image name="tab_chart_selected" width="20" height="28"/>
         <image name="tab_mail" width="28" height="19"/>
         <image name="tab_mail_selected" width="28" height="19"/>
-        <image name="tab_profile" width="24" height="28"/>
-        <image name="tab_profile_selected" width="24" height="28"/>
+        <image name="tab_profile" width="28" height="28"/>
+        <image name="tab_profile_selected" width="28" height="28"/>
         <image name="tab_watch" width="23" height="28"/>
         <image name="tab_watch_selected" width="23" height="28"/>
     </resources>

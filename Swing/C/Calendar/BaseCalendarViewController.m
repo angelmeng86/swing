@@ -108,7 +108,7 @@
     UILabel *label = [UILabel new];
     label.textColor = COMMON_TITLE_COLOR;
     label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont boldAvenirFontOfSize:18];
+    label.font = [UIFont boldAvenirFontOfSize:20];
     
     UIButton *leftBtn = [[UIButton alloc] init];
     [leftBtn setImage:LOAD_IMAGE(@"arrow_left") forState:UIControlStateNormal];

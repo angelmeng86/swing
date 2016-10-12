@@ -788,7 +788,7 @@
 				TargetAttributes = {
 					ADFC2C271D369949004EDCDF = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = 97SA79U875;
+						DevelopmentTeam = 593UCZCU47;
 					};
 				};
 			};
@@ -1055,7 +1055,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: kuan h chen (BTVW28CTQY)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: kuan h chen (BTVW28CTQY)";
 				INFOPLIST_FILE = Swing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
