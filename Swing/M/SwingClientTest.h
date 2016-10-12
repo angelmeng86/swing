@@ -12,4 +12,6 @@
 
 + (void)testAll:(int)index;
 
++ (void)testBluetooth;
+
 @end

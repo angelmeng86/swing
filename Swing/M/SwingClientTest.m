@@ -9,11 +9,15 @@
 #import "SwingClientTest.h"
 #import "CommonDef.h"
 #import "RCLocationManager.h"
+#import "SwingBluetooth.h"
 
 @interface SwingClientTest ()
 
 @property (nonatomic, strong) KidModel* kid;
 @property (nonatomic, strong) EventModel* event;
+
+@property (nonatomic, strong) CBPeripheral *peripheral;
+@property (nonatomic, strong) SwingBluetooth *client;
 
 @end
 
@@ -344,6 +348,65 @@
         default:
             break;
     }
+}
+
++ (void)testBluetooth {
+    SwingClientTest *test = [[SwingClientTest alloc] init];
+    [test testBLE];
+}
+
+- (void)testBLE {
+    _client = [[SwingBluetooth alloc] init];
+    
+    [_client scanDeviceWithCompletion:^(CBPeripheral *peripheral, NSDictionary *advertisementData, NSError *error) {
+        if (!error) {
+            self.peripheral = peripheral;
+            [_client initDevice:peripheral completion:^(NSData *macAddress, NSError *error) {
+                if (!error) {
+                    [self performSelector:@selector(testBLE2) withObject:nil afterDelay:5];
+                }
+            }];
+        }
+    }];
+}
+
+- (void)testBLE2 {
+    int start = 20;
+    NSMutableArray *array = [NSMutableArray array];
+    EventModel *model = [[EventModel alloc] init];
+    model.alert = 0x34;
+    model.startDate = [[NSDate date] dateByAddingTimeInterval:start];
+    start += 10;
+    [array addObject:model];
+    model = [[EventModel alloc] init];
+    model.alert = 0x35;
+    model.startDate = [[NSDate date] dateByAddingTimeInterval:start];
+    start += 10;
+    [array addObject:model];
+    model = [[EventModel alloc] init];
+    model.alert = 0x36;
+    model.startDate = [[NSDate date] dateByAddingTimeInterval:start];
+    start += 10;
+    [array addObject:model];
+    model = [[EventModel alloc] init];
+    model.alert = 0x37;
+    model.startDate = [[NSDate date] dateByAddingTimeInterval:start];
+    start += 10;
+    [array addObject:model];
+    model = [[EventModel alloc] init];
+    model.alert = 0x38;
+    model.startDate = [[NSDate date] dateByAddingTimeInterval:start];
+    start += 10;
+    [array addObject:model];
+    model = [[EventModel alloc] init];
+    model.alert = 0x39;
+    model.startDate = [[NSDate date] dateByAddingTimeInterval:start];
+    start += 10;
+    [array addObject:model];
+    [_client syncDevice:_peripheral event:array completion:^(NSMutableArray *activities, NSError *error) {
+        LOG_D(@"syncDevice error %@", error);
+        LOG_D(@"syncDevice activities count %d", (int)activities.count);
+    }];
 }
 
 @end

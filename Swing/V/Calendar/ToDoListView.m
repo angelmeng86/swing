@@ -69,6 +69,7 @@
     [addBtn setTitle:@"+" forState:UIControlStateNormal];
     addBtn.titleEdgeInsets = UIEdgeInsetsMake(-1, 0, 1, 0);
     [addBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    addBtn.titleLabel.font = [UIFont systemFontOfSize:20];
     addBtn.backgroundColor = COMMON_TITLE_COLOR;
     addBtn.layer.cornerRadius = 10.f;
     addBtn.layer.masksToBounds = YES;

@@ -40,6 +40,7 @@
     
     [[GlobalCache shareInstance] initConfig];
 //    [SwingClientTest testAll:15];
+//    [SwingClientTest testBluetooth];
     
     // Register for Push Notitications
     if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
