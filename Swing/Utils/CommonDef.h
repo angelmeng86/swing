@@ -32,6 +32,8 @@
 #define ORIGINAL_MAX_WIDTH 640.0f
 #define TAGET_MAX_WIDTH 160.0f
 
+#define REMOTE_NOTIFICATION     @"REMOTE_NOTIFICATION"
+
 //------------------------------------------------------------------
 
 #import "SwingClient.h"

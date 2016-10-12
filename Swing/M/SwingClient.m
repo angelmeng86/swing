@@ -57,6 +57,7 @@
         _sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL
                                         sessionConfiguration:config];
         _sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
+//        _sessionManager.responseSerializer.acceptableContentTypes = [_sessionManager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/plain"];
         self.config = config;
     }
     return _sessionManager;
@@ -118,6 +119,15 @@
                 
                 [self.config setHTTPAdditionalHeaders:@{@"x-auth-token":model.access_token}];
                 [GlobalCache shareInstance].info = model;
+                
+                if ([GlobalCache shareInstance].token) {
+                    [[SwingClient sharedClient] userUpdateIOSRegistrationId:[GlobalCache shareInstance].token completion:^(NSError *error) {
+                        if (error) {
+                            LOG_D(@"userUpdateIOSRegistrationId2 fail: %@", error);
+                        }
+                    }];
+                }
+                
                 completion(nil);
             }
         });
@@ -148,6 +158,27 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             completion(nil, error);
+        });
+    }];
+    
+    return task;
+}
+
+- (NSURLSessionDataTask *)userUpdateIOSRegistrationId:(NSString*)token completion:( void (^)(NSError *error) )completion {
+    NSURLSessionDataTask *task = [self.sessionManager POST:@"/user/updateIOSRegistrationId" parameters:@{@"registrationId":token} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LOG_D(@"login updateIOSRegistrationId:%@", responseObject);
+            NSError *err = [self getErrorMessage:responseObject];
+            if (err) {
+                completion(err);
+            }
+            else {
+                completion(nil);
+            }
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(error);
         });
     }];
     

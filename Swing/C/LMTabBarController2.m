@@ -11,6 +11,8 @@
 
 @interface LMTabBarController2 ()<UITabBarControllerDelegate>
 
+@property (nonatomic, assign) UIViewController *syncDialog;
+
 @end
 
 @implementation LMTabBarController2
@@ -48,6 +50,7 @@
     UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"SyncDevice" bundle:nil];
     UIViewController *ctl = [stroyBoard instantiateInitialViewController];
     [self presentViewController:ctl animated:YES completion:nil];
+    self.syncDialog = ctl;
 }
 
 - (void)viewDidLoad {
@@ -57,6 +60,28 @@
     
     self.delegate = self;
     self.selectedIndex = 2;
+    [self performSelector:@selector(showSyncDialog) withObject:nil afterDelay:0.3];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRemoteInfo:) name:REMOTE_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncDismiss) name:@"SYNC_DISMISS" object:nil];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)syncDismiss {
+    self.syncDialog = nil;
+}
+
+- (void)handleRemoteInfo:(NSNotification*)noti {
+    NSLog(@"lwz oye");
+    self.selectedIndex = 1;
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(showSyncDialog) object:nil];
+    if (self.syncDialog) {
+        [self.syncDialog dismissViewControllerAnimated:YES completion:nil];
+        self.syncDialog = nil;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

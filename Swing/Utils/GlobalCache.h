@@ -58,4 +58,6 @@
 @property (strong, nonatomic) NSMutableDictionary* calendarEventsByMonth;
 @property (strong, nonatomic) NSMutableSet* calendarQueue;
 
+@property (strong, nonatomic) NSString* token;
+
 @end

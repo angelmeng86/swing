@@ -39,8 +39,25 @@
     [[GlobalCache shareInstance] initConfig];
 //    [SwingClientTest testAll:15];
     
+    // Register for Push Notitications
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+                                                        UIUserNotificationTypeBadge |
+                                                        UIUserNotificationTypeSound);
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+                                                                                 categories:nil];
+        [application registerUserNotificationSettings:settings];
+        [application registerForRemoteNotifications];
+    }
+    else {
+        [application registerForRemoteNotificationTypes:
+         UIRemoteNotificationTypeBadge |
+         UIRemoteNotificationTypeAlert |
+         UIRemoteNotificationTypeSound];
+    }
+    
     //设置导航默认标题的颜色及字体大小
-    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName:COMMON_TITLE_COLOR, NSFontAttributeName:[UIFont boldAvenirFontOfSize:18]};
+    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName:COMMON_TITLE_COLOR, NSFontAttributeName:[UIFont boldAvenirFontOfSize:22]};
     [UINavigationBar appearance].tintColor = COMMON_NAV_TINT_COLOR;
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -54,6 +71,17 @@
     UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:name bundle:nil];
     UIViewController *ctl = [stroyBoard instantiateInitialViewController];
     self.window.rootViewController = ctl;
+    
+    NSDictionary *remoteNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    // 如果​remoteNotification不为空，代表有推送发过来，以下类似
+    if (remoteNotification) {
+        // 发通知
+        [self handleRemoteNotification:remoteNotification active:NO];
+    }
+    else {
+        // 把应用右上角的图标​去掉
+        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    }
     
 //    NSArray *locals = [NSLocale availableLocaleIdentifiers];
 //    NSLog(@"locals:%@", locals);
@@ -85,21 +113,72 @@
     return YES;
 }
 
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken {
+    
+    NSString *tokenStr = [Fun dataToHex:deviceToken];
+    NSLog(@"token:%@", tokenStr);
+    // Save the token to server
+    [GlobalCache shareInstance].token = tokenStr;
+    if ([GlobalCache shareInstance].info) {
+        [[SwingClient sharedClient] userUpdateIOSRegistrationId:[GlobalCache shareInstance].token completion:^(NSError *error) {
+            if (error) {
+                NSLog(@"userUpdateIOSRegistrationId1 fail: %@", error);
+            }
+        }];
+    }
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"didFailToRegisterForRemoteNotificationsWithError:%@", error);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    NSLog(@"didReceiveRemoteNotification");
+    if (userInfo) {
+        [self handleRemoteNotification:userInfo active:YES];
+    }
+}
+
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(nullable NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo withResponseInfo:(NSDictionary *)responseInfo completionHandler:(void(^)())completionHandler {
+    completionHandler(UIBackgroundFetchResultNewData);
+    NSLog(@"forRemoteNotification");
+    if (userInfo) {
+        [self handleRemoteNotification:userInfo active:YES];
+    }
+}
+
+- (void)handleRemoteNotification:(NSDictionary*)userInfo active:(BOOL)active {
+    NSLog(@"handleRemoteNotification:%@", userInfo);
+    NSString* alert = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+    // 把应用右上角的图标​去掉
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    if (active && [GlobalCache shareInstance].info) {
+        [Fun showMessageBoxWithTitle:@"Notification" andMessage:alert];
+    }
+    else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:REMOTE_NOTIFICATION object:userInfo];
+    }
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application {
+    NSLog(@"applicationWillResignActive");
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
+    NSLog(@"applicationDidEnterBackground");
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
+    NSLog(@"applicationWillEnterForeground");
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    NSLog(@"applicationDidBecomeActive");
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 

@@ -37,6 +37,10 @@
     self.textLabel.adjustsFontSizeToFitWidth = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(batteryNotify:) name:SWING_WATCH_BATTERY_NOTIFY object:nil];
+    
+//    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 70)];
+//    view.backgroundColor = [UIColor redColor];
+//    [self.navigationController.navigationBar addSubview:view];
 }
 
 - (void)batteryNotify:(NSNotification*)notify {
@@ -51,7 +55,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self bluetoothClientBattery:[GlobalCache shareInstance].battery];
-    
 }
 
 - (void)bluetoothClientBattery:(int)value {

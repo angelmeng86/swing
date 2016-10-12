@@ -51,7 +51,9 @@
 }
 
 - (IBAction)goDashboardAction:(id)sender {
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"SYNC_DISMISS" object:nil];
+    }];
 }
 
 - (IBAction)syncCurrentAction:(id)sender {
