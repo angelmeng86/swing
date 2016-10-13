@@ -17,6 +17,13 @@
     return self;
 }
 
+- (id)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        self.layer.cornerRadius = 5.f;
+    }
+    return self;
+}
+
 - (void)awakeFromNib {
     self.layer.cornerRadius = 5.f;
 }

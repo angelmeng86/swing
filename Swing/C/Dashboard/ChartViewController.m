@@ -89,7 +89,8 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
             self.distanceChartView = [self createLineChartView];
             self.stepChartColor = RGBA(58, 188, 164, 1.0f);
             self.distanceChartColor = RGBA(34, 110, 96, 1.0f);
-            self.view.backgroundColor = RGBA(173, 240, 181, 1.0f);
+//            self.view.backgroundColor = RGBA(173, 240, 181, 1.0f);
+            self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dashboard-bg-activity-2"]];
             self.titleLabel.text = @"This Month";
         }
             break;
@@ -100,7 +101,8 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
             self.distanceChartView = [self createLineChartView];
             self.stepChartColor = RGBA(240, 91, 36, 1.0f);
             self.distanceChartColor = RGBA(208, 0, 23, 1.0f);
-            self.view.backgroundColor = RGBA(254, 245, 171, 1.0f);
+//            self.view.backgroundColor = RGBA(254, 245, 171, 1.0f);
+            self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dashboard-bg-activity-3"]];
             self.titleLabel.text = @"This Year";
         }
             break;
@@ -112,7 +114,8 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
             self.distanceChartView = [self createBarChartView];
             self.stepChartColor = RGBA(98, 91, 180, 1.0f);
             self.distanceChartColor = RGBA(144, 146, 197, 1.0f);
-            self.view.backgroundColor = RGBA(222, 205, 255, 1.0f);
+//            self.view.backgroundColor = RGBA(222, 205, 255, 1.0f);
+            self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dashboard-bg-activity-1"]];
             self.titleLabel.text = @"This Week";
         }
             break;

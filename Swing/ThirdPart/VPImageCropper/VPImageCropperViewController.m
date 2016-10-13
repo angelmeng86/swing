@@ -7,6 +7,8 @@
 //
 
 #import "VPImageCropperViewController.h"
+#import "CommonDef.h"
+#import "RoundButton.h"
 
 #define SCALE_FRAME_Y 100.0f
 #define BOUNDCE_DURATION 0.3f
@@ -96,16 +98,16 @@
     self.ratioView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.ratioView.layer.borderWidth = 1.0f;
     self.ratioView.autoresizingMask = UIViewAutoresizingNone;
+//    self.ratioView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.ratioView];
     
     [self overlayClipping];
 }
 
 - (void)initControlBtn {
-    UIButton *cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 50.0f, 100, 50)];
-    cancelBtn.backgroundColor = [UIColor blackColor];
-    cancelBtn.titleLabel.textColor = [UIColor whiteColor];
+    UIButton *cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 20, 100, 50)];
     [cancelBtn setTitle:@"Cancel" forState:UIControlStateNormal];
+    [cancelBtn setTitleColor:COMMON_TITLE_COLOR forState:UIControlStateNormal];
     [cancelBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:18.0f]];
     [cancelBtn.titleLabel setTextAlignment:NSTextAlignmentCenter];
     [cancelBtn.titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
@@ -114,10 +116,10 @@
     [cancelBtn addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:cancelBtn];
     
-    UIButton *confirmBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 100.0f, self.view.frame.size.height - 50.0f, 100, 50)];
-    confirmBtn.backgroundColor = [UIColor blackColor];
-    confirmBtn.titleLabel.textColor = [UIColor whiteColor];
-    [confirmBtn setTitle:@"OK" forState:UIControlStateNormal];
+    UIButton *confirmBtn = [[RoundButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 150.0f) / 2, self.view.frame.size.height - 50.0f, 150, 40)];
+    confirmBtn.backgroundColor = COMMON_TITLE_COLOR;
+    [confirmBtn setTitle:@"Take A Photo" forState:UIControlStateNormal];
+    [confirmBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [confirmBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:18.0f]];
     [confirmBtn.titleLabel setTextAlignment:NSTextAlignmentCenter];
     confirmBtn.titleLabel.textColor = [UIColor whiteColor];
