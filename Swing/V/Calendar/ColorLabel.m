@@ -8,6 +8,7 @@
 
 #import "ColorLabel.h"
 #import "CommonDef.h"
+#import "LFTextField.h"
 
 @interface ColorLabel ()
 {
@@ -52,7 +53,7 @@
     label.font = [UIFont avenirFontOfSize:15];
     [self addSubview:label];
     [label autoPinEdgeToSuperviewEdge:ALEdgeTop];
-    [label autoPinEdgeToSuperviewMargin:ALEdgeLeading];
+    [label autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:TEXTFIELD_EDGE + 10];
     [label autoSetDimension:ALDimensionHeight toSize:30];
     
     _selectedColor = RGBA(240, 93, 37, 1.0f);

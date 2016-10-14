@@ -69,7 +69,7 @@
     self.pageControl.currentPageIndicatorTintColor = RGBA(0x89, 0x87, 0x8b, 1.0f);
     self.pageControl.pageIndicatorTintColor = [UIColor whiteColor];
     
-    [self.pageControl autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(5, 20, 0, 20) excludingEdge:ALEdgeBottom];
+    [self.pageControl autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(10, 20, 0, 20) excludingEdge:ALEdgeBottom];
     [self.pageControl autoSetDimension:ALDimensionHeight toSize:20];
 }
 

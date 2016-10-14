@@ -136,7 +136,7 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    NSLog(@"didReceiveRemoteNotification");
+//    NSLog(@"didReceiveRemoteNotification");
     if (userInfo) {
         [self handleRemoteNotification:userInfo active:YES];
     }
@@ -144,7 +144,7 @@
 
 - (void)application:(UIApplication *)application handleActionWithIdentifier:(nullable NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo withResponseInfo:(NSDictionary *)responseInfo completionHandler:(void(^)())completionHandler {
     completionHandler(UIBackgroundFetchResultNewData);
-    NSLog(@"forRemoteNotification");
+//    NSLog(@"forRemoteNotification");
     if (userInfo) {
         [self handleRemoteNotification:userInfo active:YES];
     }
@@ -176,13 +176,13 @@
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    NSLog(@"applicationWillEnterForeground");
+//    NSLog(@"applicationWillEnterForeground");
     _isBackground = YES;
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    NSLog(@"applicationDidBecomeActive");
+//    NSLog(@"applicationDidBecomeActive");
     _isBackground = NO;
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }

@@ -36,10 +36,10 @@
     
     [self.view addSubview:leftView];
     [self.view addSubview:rightView];
-    [leftView autoSetDimensionsToSize:CGSizeMake(6, 10)];
+    [leftView autoSetDimensionsToSize:CGSizeMake(10, 20)];
     [leftView autoAlignAxis:ALAxisHorizontal toSameAxisOfView:_titleLabel];
     [leftView autoPinEdge:ALEdgeTrailing toEdge:ALEdgeLeading ofView:_titleLabel];
-    [rightView autoSetDimensionsToSize:CGSizeMake(6, 10)];
+    [rightView autoSetDimensionsToSize:CGSizeMake(10, 20)];
     [rightView autoAlignAxis:ALAxisHorizontal toSameAxisOfView:_titleLabel];
     [rightView autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:_titleLabel];
     
@@ -55,7 +55,11 @@
     UIView *line = [UIView new];
     line.backgroundColor = [UIColor redColor];
     [self.view addSubview:line];
-    [line autoSetDimensionsToSize:CGSizeMake(3, 200)];
+    
+    [line autoSetDimension:ALDimensionWidth toSize:3];
+    [line autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:_stepProgress withOffset:-10];
+    [line autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:_flightsProgress withOffset:10];
+    
     self.lineWidth = [line autoPinEdge:ALEdgeTrailing toEdge:ALEdgeTrailing ofView:_distanceProgress withOffset:-50];
     [line autoAlignAxis:ALAxisHorizontal toSameAxisOfView:_distanceProgress];
     

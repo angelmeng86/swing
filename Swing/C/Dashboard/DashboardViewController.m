@@ -115,11 +115,11 @@ typedef enum : NSUInteger {
     _type = type;
 }
 
-- (void)showSyncDialog {
-    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"SyncDevice" bundle:nil];
-    UIViewController *ctl = [stroyBoard instantiateInitialViewController];
-    [self presentViewController:ctl animated:YES completion:nil];
-}
+//- (void)showSyncDialog {
+//    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"SyncDevice" bundle:nil];
+//    UIViewController *ctl = [stroyBoard instantiateInitialViewController];
+//    [self presentViewController:ctl animated:YES completion:nil];
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

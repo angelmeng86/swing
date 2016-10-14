@@ -9,6 +9,7 @@
 #import "ToDoListView.h"
 #import "CommonDef.h"
 #import "DoItemLabel.h"
+#import "LFTextField.h"
 
 #define ITEM_HEIGHT  30
 
@@ -47,7 +48,7 @@
     self.listView.backgroundColor = [UIColor clearColor];
     [self addSubview:_listView];
     
-    self.textField = [UITextField new];
+    self.textField = [LFTextField new];
     [self addSubview:_textField];
     
     [_listView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeBottom];
@@ -104,8 +105,8 @@
         label.textLabel.text = str.text;
         
         [self.listView addSubview:label];
-        [label autoPinEdgeToSuperviewMargin:ALEdgeLeading];
-        [label autoPinEdgeToSuperviewMargin:ALEdgeTrailing];
+        [label autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:TEXTFIELD_EDGE];
+        [label autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:TEXTFIELD_EDGE];
         [label autoSetDimension:ALDimensionHeight toSize:ITEM_HEIGHT];
         label.positionLayoutConstaint = [label autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:(self.listView.subviews.count - 1) * ITEM_HEIGHT];
         listViewHeight.constant += ITEM_HEIGHT;
@@ -132,8 +133,8 @@
     
 //    UIView* view = [self.listView.subviews lastObject];
     [self.listView addSubview:label];
-    [label autoPinEdgeToSuperviewMargin:ALEdgeLeading];
-    [label autoPinEdgeToSuperviewMargin:ALEdgeTrailing];
+    [label autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:TEXTFIELD_EDGE];
+    [label autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:TEXTFIELD_EDGE];
     [label autoSetDimension:ALDimensionHeight toSize:ITEM_HEIGHT];
     label.positionLayoutConstaint = [label autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:(self.listView.subviews.count - 1) * ITEM_HEIGHT];
     

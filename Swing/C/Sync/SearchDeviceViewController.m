@@ -22,7 +22,7 @@ typedef enum : NSUInteger {
     NSUInteger _status;
     
     MDRadialProgressTheme *progressTheme;
-    MDRadialProgressTheme *doneTheme;
+//    MDRadialProgressTheme *doneTheme;
     
     SwingBluetooth *client;
 }
@@ -45,14 +45,14 @@ typedef enum : NSUInteger {
     progressTheme.sliceDividerHidden = YES;
     progressTheme.thickness = 20;
     
-    doneTheme = [[MDRadialProgressTheme alloc] init];
-    doneTheme.completedColor = COMMON_TITLE_COLOR;
-    doneTheme.incompletedColor = [UIColor whiteColor];
-    doneTheme.centerColor = [UIColor clearColor];
-    doneTheme.sliceDividerHidden = NO;
-    doneTheme.thickness = 20;
-    doneTheme.sliceDividerThickness = 4;
-    doneTheme.sliceDividerColor = [UIColor whiteColor];
+//    doneTheme = [[MDRadialProgressTheme alloc] init];
+//    doneTheme.completedColor = COMMON_TITLE_COLOR;
+//    doneTheme.incompletedColor = [UIColor whiteColor];
+//    doneTheme.centerColor = [UIColor clearColor];
+//    doneTheme.sliceDividerHidden = YES;
+//    doneTheme.thickness = 20;
+//    doneTheme.sliceDividerThickness = 4;
+//    doneTheme.sliceDividerColor = [UIColor whiteColor];
     
     self.progressView.label.hidden = YES;
     self.navigationItem.hidesBackButton = YES;
@@ -110,7 +110,7 @@ typedef enum : NSUInteger {
             self.button.hidden = NO;
             
             self.progressView.isIndeterminateProgress = NO;
-            self.progressView.theme = doneTheme;
+//            self.progressView.theme = doneTheme;
             self.progressView.progressTotal = 8;
             self.progressView.progressCounter = 8;
             
@@ -131,9 +131,6 @@ typedef enum : NSUInteger {
             
             self.navigationItem.leftBarButtonItem = nil;
             
-#if TARGET_IPHONE_SIMULATOR
-            [self performSelector:@selector(performStatus:) withObject:[NSNumber numberWithUnsignedInteger:SyncStatusSyncCompleted] afterDelay:3];
-#endif
         }
             break;
         case SyncStatusSyncCompleted:
@@ -142,7 +139,7 @@ typedef enum : NSUInteger {
             [self.button setTitle:@"Go to Dashboard" forState:UIControlStateNormal];
             
             self.progressView.isIndeterminateProgress = NO;
-            self.progressView.theme = doneTheme;
+//            self.progressView.theme = doneTheme;
             self.progressView.progressTotal = 8;
             self.progressView.progressCounter = 8;
             
@@ -167,7 +164,12 @@ typedef enum : NSUInteger {
             else {
                 [SVProgressHUD dismiss];
                 [self changeStatus:SyncStatusSyncing];
+#if TARGET_IPHONE_SIMULATOR
+                [self performSelector:@selector(performStatus:) withObject:[NSNumber numberWithUnsignedInteger:SyncStatusSyncCompleted] afterDelay:3];
+#else
                 [self performSelector:@selector(syncAction:) withObject:eventArray afterDelay:3];
+#endif
+                
             }
         }];
     }
