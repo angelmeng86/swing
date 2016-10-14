@@ -37,6 +37,7 @@ typedef enum : NSUInteger {
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationItem.title = @"Sync";
     
     progressTheme = [[MDRadialProgressTheme alloc] init];
     progressTheme.completedColor = COMMON_TITLE_COLOR;
