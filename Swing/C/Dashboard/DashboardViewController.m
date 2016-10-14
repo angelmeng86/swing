@@ -78,7 +78,8 @@ typedef enum : NSUInteger {
             self.titleLabel.textColor = RGBA(226, 103, 46, 1.0f);
             self.subTitleLabel.textColor = self.titleLabel.textColor;
             self.subTitleLabel.text = @"Excellent!";
-            self.view.backgroundColor = RGBA(249, 211, 186, 1.0f);
+//            self.view.backgroundColor = RGBA(249, 211, 186, 1.0f);
+            self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dashboard-bg-monster-3"]];
             self.imageView.image = LOAD_IMAGE(@"monster-yellow");
             [self.uvBtn setImage:LOAD_IMAGE(@"orange_uv_button") forState:UIControlStateNormal];
             [self.stepBtn setImage:LOAD_IMAGE(@"orange_activity_button") forState:UIControlStateNormal];
@@ -90,7 +91,8 @@ typedef enum : NSUInteger {
             self.titleLabel.textColor = RGBA(56, 181, 155, 1.0f);
             self.subTitleLabel.textColor = self.titleLabel.textColor;
             self.subTitleLabel.text = @"Almost There!";
-            self.view.backgroundColor = RGBA(167, 205, 191, 1.0f);
+//            self.view.backgroundColor = RGBA(167, 205, 191, 1.0f);
+            self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dashboard-bg-monster-2"]];
             self.imageView.image = LOAD_IMAGE(@"monster-bluegreen");
             [self.uvBtn setImage:LOAD_IMAGE(@"blue_uv_button") forState:UIControlStateNormal];
             [self.stepBtn setImage:LOAD_IMAGE(@"blue_activity_button") forState:UIControlStateNormal];
@@ -102,7 +104,8 @@ typedef enum : NSUInteger {
             self.titleLabel.textColor = RGBA(99, 92, 170, 1.0f);
             self.subTitleLabel.textColor = self.titleLabel.textColor;
             self.subTitleLabel.text = @"Below Average!";
-            self.view.backgroundColor = RGBA(218, 193, 247, 1.0f);
+//            self.view.backgroundColor = RGBA(218, 193, 247, 1.0f);
+            self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dashboard-bg-monster-1"]];
             self.imageView.image = LOAD_IMAGE(@"monster-purple");
             [self.uvBtn setImage:LOAD_IMAGE(@"uv_button") forState:UIControlStateNormal];
             [self.stepBtn setImage:LOAD_IMAGE(@"activity_button") forState:UIControlStateNormal];
