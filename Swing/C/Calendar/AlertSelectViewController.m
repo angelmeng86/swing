@@ -164,7 +164,7 @@
     NSDictionary *model = items[indexPath.row];
 //    AlertModel *model = _alertArray[indexPath.row];
     cell.textLabel.text = model[@"text"];
-    cell.accessoryView.hidden = [model[@"value"] intValue] > 73;
+//    cell.accessoryView.hidden = [model[@"value"] intValue] > 73;
     
     return cell;
 }

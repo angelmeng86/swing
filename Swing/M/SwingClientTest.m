@@ -371,38 +371,69 @@
 }
 
 - (void)testBLE2 {
-    int start = 20;
+    int start = 30;
     NSMutableArray *array = [NSMutableArray array];
+    for (int i = 34; i < 77; i++) {
+        EventModel *model = [[EventModel alloc] init];
+        model.alert = i;
+        model.startDate = [[NSDate date] dateByAddingTimeInterval:start];
+        start += 6;
+        [array addObject:model];
+    }
+    /*
     EventModel *model = [[EventModel alloc] init];
-    model.alert = 0x34;
+    model.alert = 34;
     model.startDate = [[NSDate date] dateByAddingTimeInterval:start];
     start += 10;
     [array addObject:model];
     model = [[EventModel alloc] init];
-    model.alert = 0x35;
+    model.alert = 35;
     model.startDate = [[NSDate date] dateByAddingTimeInterval:start];
     start += 10;
     [array addObject:model];
     model = [[EventModel alloc] init];
-    model.alert = 0x36;
+    model.alert = 36;
     model.startDate = [[NSDate date] dateByAddingTimeInterval:start];
     start += 10;
     [array addObject:model];
     model = [[EventModel alloc] init];
-    model.alert = 0x37;
+    model.alert = 37;
     model.startDate = [[NSDate date] dateByAddingTimeInterval:start];
     start += 10;
     [array addObject:model];
     model = [[EventModel alloc] init];
-    model.alert = 0x38;
+    model.alert = 38;
     model.startDate = [[NSDate date] dateByAddingTimeInterval:start];
     start += 10;
     [array addObject:model];
     model = [[EventModel alloc] init];
-    model.alert = 0x39;
+    model.alert = 39;
     model.startDate = [[NSDate date] dateByAddingTimeInterval:start];
     start += 10;
     [array addObject:model];
+    model = [[EventModel alloc] init];
+    model.alert = 40;
+    model.startDate = [[NSDate date] dateByAddingTimeInterval:start];
+    start += 10;
+    [array addObject:model];
+    model = [[EventModel alloc] init];
+    model.alert = 41;
+    model.startDate = [[NSDate date] dateByAddingTimeInterval:start];
+    start += 10;
+    [array addObject:model];
+    
+    model = [[EventModel alloc] init];
+    model.alert = 42;
+    model.startDate = [[NSDate date] dateByAddingTimeInterval:start];
+    start += 10;
+    [array addObject:model];
+    
+    model = [[EventModel alloc] init];
+    model.alert = 43;
+    model.startDate = [[NSDate date] dateByAddingTimeInterval:start];
+    start += 10;
+    [array addObject:model];
+     */
     [_client syncDevice:_peripheral event:array completion:^(NSMutableArray *activities, NSError *error) {
         LOG_D(@"syncDevice error %@", error);
         LOG_D(@"syncDevice activities count %d", (int)activities.count);

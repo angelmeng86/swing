@@ -14,28 +14,28 @@
   "items" :
         [
          {
-         "value" : 34,
+         "value" : 36,
          "text"  : "Good morning"
          },
          {
-         "value" : 35,
+         "value" : 37,
          "text"  : "Make bed"
          },
          {
-         "value" : 36,
+         "value" : 38,
          "text"  : "Get Dress"
          },
          {
-         "value" : 37,
+         "value" : 39,
          "text"  : "Eat breakfast"
          },
          {
-         "value" : 38,
+         "value" : 40,
          "text"  : "Brush teeth"
          },
          {
-         "value" : 39,
-         "text"  : "Ready for school"
+         "value" : 41,
+         "text"  : "Get Ready for school"
          }
          ]
   },
@@ -44,15 +44,15 @@
   "items" :
         [
          {
-         "value" : 40,
+         "value" : 42,
          "text"  : "Put on pajamas"
          },
          {
-         "value" : 42,
+         "value" : 43,
          "text"  : "Story time"
          },
          {
-         "value" : 43,
+         "value" : 44,
          "text"  : "Good night"
          }
         ]
@@ -62,7 +62,7 @@
   "items" :
         [
          {
-         "value" : 44,
+         "value" : 45,
          "text"  : "Collect toys"
          },
          {
@@ -86,64 +86,68 @@
          "text"  : "Clean bedroom"
          },
          {
-         "value" : 54,
+         "value" : 51,
          "text"  : "Homework time"
          },
          {
-         "value" : 58,
+         "value" : 52,
          "text"  : "Take a nap"
          },
          {
-         "value" : 59,
+         "value" : 53,
          "text"  : "Outdoor play time"
          },
          {
-         "value" : 61,
+         "value" : 54,
          "text"  : "Fun time"
          },
          {
-         "value" : 62,
+         "value" : 55,
          "text"  : "Exercise"
          },
          {
-         "value" : 63,
+         "value" : 56,
          "text"  : "Practice music"
          },
          {
-         "value" : 64,
+         "value" : 57,
          "text"  : "Drawing time"
          },
          {
-         "value" : 65,
+         "value" : 58,
          "text"  : "Reading time"
          },
          {
-         "value" : 67,
-         "text"  : "Bath time"
+         "value" : 59,
+         "text"  : "Take a bath"
          },
          {
-         "value" : 68,
-         "text"  : "Family games"
+         "value" : 60,
+         "text"  : "Family time"
          },
          {
-         "value" : 72,
+         "value" : 61,
          "text"  : "lunch time"
          },
          {
-         "value" : 73,
+         "value" : 62,
          "text"  : "dinner time"
          },
          {
-         "value" : 74,
+         "value" : 63,
          "text"  : "afternoon snack time"
          },
          {
-         "value" : 75,
+         "value" : 64,
          "text"  : "review the backpack"
          },
          {
-         "value" : 76,
-         "text"  : "cockerel animal sound"
+         "value" : 65,
+         "text"  : "cockerel morning"
+         },
+         {
+         "value" : 66,
+         "text"  : "MAGIC WAND - sound effect"
          }
          ]
   }
