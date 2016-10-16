@@ -26,12 +26,14 @@
     }
     
     if (self.navigationController.viewControllers.count > 1) {
-        LMArrowView *arrow = [[LMArrowView alloc] initWithFrame:CGRectMake(0, 0, 10, 18)];
-        arrow.backgroundColor = [UIColor clearColor];
-        arrow.color = COMMON_NAV_TINT_COLOR;
-        arrow.isNotFill = YES;
-        [arrow addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:arrow];
+//        LMArrowView *arrow = [[LMArrowView alloc] initWithFrame:CGRectMake(0, 0, 10, 18)];
+//        arrow.backgroundColor = [UIColor clearColor];
+//        arrow.color = COMMON_NAV_TINT_COLOR;
+//        arrow.isNotFill = YES;
+//        [arrow addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+//        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:arrow];
+        
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"navi_back") style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
     }
     
     self.view.backgroundColor = COMMON_BACKGROUND_COLOR;

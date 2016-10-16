@@ -279,6 +279,15 @@
         return NO;
     }
     
+    //判断设置的时间范围是否是每天的6点至24点
+    NSDate *startDate = [Fun dateFromString:self.startTF.text];
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDateComponents *start = [cal components:NSHourCalendarUnit fromDate:startDate];
+    if ([start hour] < 6) {
+        [Fun showMessageBoxWithTitle:@"Error" andMessage:@"Please select a date between 6:00 and 24:00."];
+        return NO;
+    }
+    
     return YES;
 }
 

@@ -20,15 +20,19 @@
     if (!self.navigationController.navigationBarHidden) {
         return;
     }
-    LMArrowView *arrow = [[LMArrowView alloc] initWithFrame:CGRectMake(0, 0, 10, 18)];
-    arrow.backgroundColor = [UIColor clearColor];
-    arrow.color = COMMON_NAV_TINT_COLOR;
-    arrow.isNotFill = YES;
+//    LMArrowView *arrow = [[LMArrowView alloc] initWithFrame:CGRectMake(0, 0, 10, 18)];
+//    arrow.backgroundColor = [UIColor clearColor];
+//    arrow.color = COMMON_NAV_TINT_COLOR;
+//    arrow.isNotFill = YES;
+//    UIButton *btn = [UIButton new];
+//    [btn addSubview:arrow];
+//    [arrow autoCenterInSuperviewMargins];
+//    [arrow autoSetDimensionsToSize:CGSizeMake(10, 18)];
+    
     UIButton *btn = [UIButton new];
+    [btn setImage:LOAD_IMAGE(@"navi_back") forState:UIControlStateNormal];
+    
     [btn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
-    [btn addSubview:arrow];
-    [arrow autoCenterInSuperviewMargins];
-    [arrow autoSetDimensionsToSize:CGSizeMake(10, 18)];
     
     [self.view addSubview:btn];
     [btn autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:20];
@@ -37,12 +41,14 @@
 }
 
 - (void)setCustomBackBarButtonItem {
-    LMArrowView *arrow = [[LMArrowView alloc] initWithFrame:CGRectMake(0, 0, 10, 18)];
-    arrow.backgroundColor = [UIColor clearColor];
-    arrow.color = COMMON_NAV_TINT_COLOR;
-    arrow.isNotFill = YES;
-    [arrow addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:arrow];
+//    LMArrowView *arrow = [[LMArrowView alloc] initWithFrame:CGRectMake(0, 0, 10, 18)];
+//    arrow.backgroundColor = [UIColor clearColor];
+//    arrow.color = COMMON_NAV_TINT_COLOR;
+//    arrow.isNotFill = YES;
+//    [arrow addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:arrow];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"navi_back") style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
 }
 
 - (void)viewDidLoad

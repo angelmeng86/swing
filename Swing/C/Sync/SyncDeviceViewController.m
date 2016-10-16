@@ -22,7 +22,7 @@
     // Do any additional setup after loading the view.
     self.imageView.layer.cornerRadius = 60.f;
     self.imageView.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.imageView.layer.borderWidth = 2.f;
+    self.imageView.layer.borderWidth = 3.f;
     self.imageView.layer.masksToBounds = YES;
     
     self.label1.adjustsFontSizeToFitWidth = YES;
@@ -37,6 +37,13 @@
         self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", [GlobalCache shareInstance].user.firstName, [GlobalCache shareInstance].user.lastName];
     }
     
+    [self setCustomBackBarButtonItem];
+}
+
+- (void)backAction {
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"SYNC_DISMISS" object:nil];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

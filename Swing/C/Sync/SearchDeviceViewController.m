@@ -71,6 +71,14 @@ typedef enum : NSUInteger {
     [self changeStatus:[status unsignedIntegerValue]];
 }
 
+- (void)backAction {
+#if TARGET_IPHONE_SIMULATOR
+#else
+    [client cannelAll];
+#endif
+    [super backAction];
+}
+
 - (void)changeStatus:(SyncStatus)status {
     if (_status == status) {
         return;
@@ -86,7 +94,8 @@ typedef enum : NSUInteger {
             self.progressView.progressCounter = 1;
             self.progressView.isIndeterminateProgress = YES;
             
-            self.navigationItem.leftBarButtonItem = nil;
+//            self.navigationItem.leftBarButtonItem = nil;
+            [self setCustomBackBarButtonItem];
             
 #if TARGET_IPHONE_SIMULATOR
             [self performSelector:@selector(performStatus:) withObject:[NSNumber numberWithUnsignedInteger:SyncStatusFound] afterDelay:3];
@@ -144,7 +153,7 @@ typedef enum : NSUInteger {
             self.progressView.progressTotal = 8;
             self.progressView.progressCounter = 8;
             
-            
+            self.navigationItem.leftBarButtonItem = nil;
             self.button.hidden = NO;
         }
             break;

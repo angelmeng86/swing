@@ -86,7 +86,7 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     [contentView autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:self.scrollView];
     
     NSMutableArray *array = [NSMutableArray array];
-    for (int i = 0; i <= 12; i++) {
+    for (int i = 6; i <= 12; i++) {
         TimeLineView *view = [[TimeLineView alloc] init];
         view.textLabel.text = [NSString stringWithFormat:@"%d AM", i];
         [contentView addSubview:view];
@@ -210,7 +210,7 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *start = [cal components:NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:model.startDate];
-    TimeLineView *startLine = [self.hourLines objectAtIndex:[start hour]];
+    TimeLineView *startLine = [self.hourLines objectAtIndex:[start hour] - 6];
     float startH = [start minute] * 40 / 60;
     
     

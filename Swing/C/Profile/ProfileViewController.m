@@ -25,10 +25,12 @@
     
     self.headerBtn.layer.cornerRadius = 60.f;
     self.headerBtn.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.headerBtn.layer.borderWidth = 2.f;
+    self.headerBtn.layer.borderWidth = 3.f;
     self.headerBtn.layer.masksToBounds = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userProfileLoaded:) name:USER_PROFILE_LOAD_NOTI object:nil];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"navi_edit") style:UIBarButtonItemStylePlain target:self action:@selector(editProfileAction:)];
 }
 
 - (void)userProfileLoaded:(NSNotification*)notification {
@@ -48,12 +50,13 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    self.navigationItem.leftBarButtonItem = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editProfileAction:)];
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editProfileAction:)];
+    
+    
     if ([GlobalCache shareInstance].info.profileImage) {
         [self.headerBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[@"http://avatar.childrenlab.com/" stringByAppendingString:[GlobalCache shareInstance].info.profileImage]] forState:UIControlStateNormal];
     }

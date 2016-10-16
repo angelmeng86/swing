@@ -32,12 +32,13 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(eventLoaded:) name:EVENT_LIST_UPDATE_NOTI object:nil];
 //    [[GlobalCache shareInstance] queryMonthEvents:_dateSelected];
     
-    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    btn.titleLabel.font = [UIFont systemFontOfSize:28];
-    [btn setTitle:@"+" forState:UIControlStateNormal];
-    [btn setTitleColor:COMMON_NAV_TINT_COLOR forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(addAction:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+//    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+//    btn.titleLabel.font = [UIFont systemFontOfSize:35];
+//    [btn setTitle:@"+" forState:UIControlStateNormal];
+//    [btn setTitleColor:COMMON_NAV_TINT_COLOR forState:UIControlStateNormal];
+//    [btn addTarget:self action:@selector(addAction:) forControlEvents:UIControlEventTouchUpInside];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"navi_add") style:UIBarButtonItemStylePlain target:self action:@selector(addAction:)];
 }
 
 - (void)addAction:(id)sender {
@@ -110,13 +111,30 @@
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont boldAvenirFontOfSize:20];
     
+    LMArrowView *leftView = [LMArrowView new];
+    LMArrowView *rightView = [LMArrowView new];
+    rightView.arrow = LMArrowRight;
+    
+    leftView.color = RGBA(0x89, 0x85, 0x87, 1.0f);
+    rightView.color = RGBA(0x89, 0x85, 0x87, 1.0f);
+    
+    leftView.userInteractionEnabled = NO;
+    rightView.userInteractionEnabled = NO;
+    
     UIButton *leftBtn = [[UIButton alloc] init];
-    [leftBtn setImage:LOAD_IMAGE(@"arrow_left") forState:UIControlStateNormal];
+//    [leftBtn setImage:LOAD_IMAGE(@"arrow_left") forState:UIControlStateNormal];
+    [leftBtn addSubview:leftView];
     [leftBtn addTarget:self action:@selector(leftAction:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *rightBtn = [[UIButton alloc] init];
-    [rightBtn setImage:LOAD_IMAGE(@"arrow_right") forState:UIControlStateNormal];
+//    [rightBtn setImage:LOAD_IMAGE(@"arrow_right") forState:UIControlStateNormal];
+    [rightBtn addSubview:rightView];
     [rightBtn addTarget:self action:@selector(rightAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [leftView autoSetDimensionsToSize:CGSizeMake(10, 18)];
+    [leftView autoCenterInSuperviewMargins];
+    [rightView autoSetDimensionsToSize:CGSizeMake(10, 18)];
+    [rightView autoCenterInSuperviewMargins];
     
     [label addSubview:leftBtn];
     [label addSubview:rightBtn];
