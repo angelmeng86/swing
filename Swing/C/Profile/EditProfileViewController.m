@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     self.notLoadBackgroudImage = YES;
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+//    self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view.
     
     self.imageBtn.layer.cornerRadius = 60.f;
