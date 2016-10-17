@@ -8,12 +8,12 @@
 
 #import "EventLabel.h"
 
-#define EDGE_VALUE  20
+#define EDGE_VALUE  10
 
 @implementation EventLabel
 
 - (void)drawTextInRect:(CGRect)rect {
-    UIEdgeInsets insets = UIEdgeInsetsMake(0, EDGE_VALUE, 0, EDGE_VALUE);
+    UIEdgeInsets insets = UIEdgeInsetsMake(0, EDGE_VALUE, 0, 0);
     [super drawTextInRect:UIEdgeInsetsInsetRect(rect, insets)];
 }
 

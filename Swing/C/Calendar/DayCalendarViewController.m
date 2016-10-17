@@ -140,7 +140,7 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     NSDateComponents *start = [cal components:NSHourCalendarUnit fromDate:[NSDate date]];
     for (int i = (int)_hourLines.count; --i >= 0;) {
         TimeLineView *view = _hourLines[i];
-        if (i == [start hour]) {
+        if (i == [start hour] - 6) {
             view.lineColor = COMMON_TITLE_COLOR;
         }
         else {
@@ -197,13 +197,40 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
         return [obj1.startDate compare:obj2.startDate];
     }];
     
+    NSMutableArray *colArray = [NSMutableArray array];
     for (EventModel *model in self.eventData) {
-        [self addEvent:model color:model.color];
+        if (colArray.count > 0) {
+            EventModel *m = [colArray lastObject];
+            if (NSOrderedDescending != [m.endDate compare:model.startDate]) {
+                if (colArray.count == 1) {
+                    [self addEvent:m];
+                }
+                else {
+                    [self addEvents:colArray];
+                }
+                [colArray removeAllObjects];
+            }
+        }
+        [colArray addObject:model];
     }
+    
+    if (colArray.count == 1) {
+        EventModel *m = [colArray lastObject];
+        [self addEvent:m];
+    }
+    else {
+        [self addEvents:colArray];
+    }
+    
+    
+//    for (EventModel *model in self.eventData) {
+//        [self addEvent:model];
+//    }
     
 }
 
-- (void)addEvent:(EventModel*)model color:(UIColor*)color {
+- (EventLabel*)createEvent:(EventModel*)model {
+    UIColor *color = model.color;
     if (color == nil) {
         color = [[ColorLabel colors] firstObject];
     }
@@ -223,15 +250,15 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     label.font = [UIFont boldAvenirFontOfSize:20];
     label.text = model.eventName;
     label.backgroundColor = color;
-    label.adjustsFontSizeToFitWidth = YES;
+//    label.adjustsFontSizeToFitWidth = YES;
     label.model = model;
     
     [self.contentView addSubview:label];
     [self.eventLabels addObject:label];
-    label.positionLayoutConstaint = [label autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:startLine withOffset:40];
+//    label.positionLayoutConstaint = [label autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:startLine withOffset:40];
     [label autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:startLine withOffset:kDayCalendarViewControllerTimePading / 2 + startH];
     [label autoSetDimension:ALDimensionHeight toSize:height];
-    [label autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:startLine withOffset:-40];
+//    [label autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:startLine withOffset:-40];
     
     label.userInteractionEnabled = YES;
     UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeToDelete:)];
@@ -240,6 +267,24 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
     [label addGestureRecognizer:tapGesture];
+    
+    return label;
+}
+
+- (void)addEvents:(NSArray*)array {
+    float width = (kDeviceWidth - 40) / array.count;
+    for (int i = 0; i < array.count; i++) {
+        EventModel *model = array[i];
+        EventLabel *label = [self createEvent:model];
+        [label autoSetDimension:ALDimensionWidth toSize:width];
+        label.positionLayoutConstaint = [label autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:40 + i * width];
+    }
+}
+
+- (void)addEvent:(EventModel*)model {
+    EventLabel *label = [self createEvent:model];
+    label.positionLayoutConstaint = [label autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:40];
+    [label autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:label.superview withOffset:-40];
 }
 
 - (void)tapAction:(UITapGestureRecognizer*)recognizer {

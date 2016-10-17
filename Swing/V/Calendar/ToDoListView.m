@@ -59,7 +59,7 @@
     [_textField autoPinEdgeToSuperviewMargin:ALEdgeLeading];
     [_textField autoPinEdgeToSuperviewMargin:ALEdgeTrailing];
     [_textField autoPinEdgeToSuperviewEdge:ALEdgeBottom];
-    [_textField autoSetDimension:ALDimensionHeight toSize:30];
+    [_textField autoSetDimension:ALDimensionHeight toSize:35];
     
     _textField.placeholder = @"To Do List";
     _textField.font = [UIFont avenirFontOfSize:15];

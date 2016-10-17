@@ -54,7 +54,7 @@
     [self addSubview:label];
     [label autoPinEdgeToSuperviewEdge:ALEdgeTop];
     [label autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:TEXTFIELD_EDGE + 10];
-    [label autoSetDimension:ALDimensionHeight toSize:30];
+    [label autoSetDimension:ALDimensionHeight toSize:35];
     
     _selectedColor = RGBA(240, 93, 37, 1.0f);
     selectedBtn = [self createDotBtn:_selectedColor superView:self];
