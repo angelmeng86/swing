@@ -726,7 +726,7 @@ typedef enum : NSUInteger {
     self.batteryModels = [NSMutableDictionary dictionary];
     self.findedModels = [NSMutableArray array];
     self.blockOnQueryBattery = completion;
-    [self performSelector:@selector(queryBatteryTimeout) withObject:nil afterDelay:30];
+    [self performSelector:@selector(queryBatteryTimeout) withObject:nil afterDelay:60];
     baby.channel(READ_BATTERY_CHANEL).scanForPeripherals().then.connectToPeripherals().discoverServices().discoverCharacteristics().begin();
 }
 

@@ -194,6 +194,23 @@ typedef enum : NSUInteger {
         LOG_D(@"syncDevice activities count %d", (int)activities.count);
         self.activitys = activities;
         /*
+        long time = [[NSDate date] timeIntervalSince1970];
+        NSMutableData *data = [NSMutableData data];
+        [data appendData:[Fun longToByteArray:time]];
+        char *ptr = "\x00\x76\x01\x00\x00\x76\x01\x00\x00\x76\x01\x00\x00\x76\x01\x00\x00";
+        [data appendBytes:ptr length:17];
+        NSMutableData *data2 = [NSMutableData data];
+        [data2 appendData:[Fun longToByteArray:time]];
+        char *ptr2 = "\x01\x76\x01\x00\x00\x76\x01\x00\x00\x76\x01\x00\x00\x76\x01\x00\x00";
+        [data2 appendBytes:ptr2 length:17];
+        ActivityModel *m = [ActivityModel new];
+        m.time = time;
+        [m setIndoorData:data];
+        [m setOutdoorData:data2];
+        m.macId = [Fun dataToHex:[GlobalCache shareInstance].local.deviceMAC];
+        [activities addObject:m];
+         */
+        /*
         if (_activitys.count == 0) {
             ActivityModel *model = [ActivityModel new];
             model.macId = [Fun dataToHex:[GlobalCache shareInstance].local.deviceMAC];
