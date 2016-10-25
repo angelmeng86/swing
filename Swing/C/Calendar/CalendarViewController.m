@@ -37,8 +37,15 @@
     
     self.timeLabel.adjustsFontSizeToFitWidth = YES;
     self.descLabel.adjustsFontSizeToFitWidth = YES;
-    self.timeLabel.text = @"No Event";
-    self.descLabel.text = nil;
+    [self setTimeDesc:@"No Event" desc:nil];
+}
+
+- (void)setTimeDesc:(NSString*)time desc:(NSString*)desc {
+    self.timeLabel.text = time;
+    self.descLabel.text = desc;
+    
+    self.descLabel.hidden = desc.length > 0 ? NO : YES;
+    self.timeHeightConstraint.constant = desc.length > 0 ? 50 : 100;
 }
 
 - (void)loadEventView {
@@ -56,8 +63,8 @@
                     dateFormatter = [NSDateFormatter new];
                     dateFormatter.dateFormat = @"HH:mm";
                 }
-                self.timeLabel.text = [dateFormatter stringFromDate:event.startDate];
-                self.descLabel.text = event.eventName;
+                
+                [self setTimeDesc:[dateFormatter stringFromDate:event.startDate] desc:event.eventName];
                 
                 NSCalendar *cal = [NSCalendar currentCalendar];
                 NSDateComponents *start = [cal components:NSHourCalendarUnit fromDate:event.startDate];
@@ -75,8 +82,7 @@
         }
         
     }
-    self.timeLabel.text = @"No Event";
-    self.descLabel.text = nil;
+    [self setTimeDesc:@"No Event" desc:nil];
     self.progressView.progressCounter = 0;
 }
 

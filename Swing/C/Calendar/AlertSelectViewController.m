@@ -144,6 +144,28 @@
         return inputCell;
     }
     
+    if (indexPath.section == 1) {
+        UITableViewCell *alarmcell = [tableView dequeueReusableCellWithIdentifier:@"alarmreuseIdentifier"];
+        if (alarmcell == nil) {
+            alarmcell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"alarmreuseIdentifier"];
+            alarmcell.textLabel.textAlignment = NSTextAlignmentLeft;
+            //        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+            alarmcell.textLabel.font = [UIFont avenirFontOfSize:17];
+            alarmcell.textLabel.textColor = RGBA(0x97, 0x96, 0x97, 1.0f);
+            UIButton *btn = [UIButton new];
+            btn.frame = CGRectMake(0, 0, 40, 40);
+            [btn setImage:LOAD_IMAGE(@"clock_icon") forState:UIControlStateNormal];
+//            [btn addTarget:self action:@selector(alertClickAction:) forControlEvents:UIControlEventTouchUpInside];
+            //        UIImageView *imageView = [[UIImageView alloc] initWithImage:LOAD_IMAGE(@"alert_icon")];
+            alarmcell.accessoryView = btn;
+        }
+        NSDictionary *item = _alertArray[indexPath.section];
+        NSArray *items = item[@"items"];
+        NSDictionary *model = items[indexPath.row];
+        alarmcell.textLabel.text = model[@"text"];
+        return alarmcell;
+    }
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier"];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"reuseIdentifier"];

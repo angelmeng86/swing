@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
 @property (weak, nonatomic) IBOutlet MDRadialProgressView *progressView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *timeHeightConstraint;
 
 - (IBAction)todayAction:(id)sender;
 - (IBAction)monthlyAction:(id)sender;

@@ -31,7 +31,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.repeatTF.enabled = NO;
+//    self.repeatTF.enabled = NO;
     self.stateTF.enabled = NO;
     self.cityTF.enabled = NO;
     isCustom = NO;
@@ -49,11 +49,37 @@
     arrow.color = RGBA(0xfd, 0x73, 0x3e, 1.0f);
     arrow.isNotFill = YES;
     [bgView addSubview:arrow];
-    [arrow autoCenterInSuperviewMargins];
+    [arrow autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+    [arrow autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:5];
+    arrow.userInteractionEnabled = NO;
     [arrow autoSetDimensionsToSize:CGSizeMake(10, 6)];
     [bgView addTarget:self action:@selector(dorpdownAction) forControlEvents:UIControlEventTouchUpInside];
     self.nameTF.rightView = bgView;
     self.nameTF.rightViewMode = UITextFieldViewModeAlways;
+    
+    bgView = [UIControl new];
+    bgView.frame = CGRectMake(0, 0, 110, 30);
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
+    label.textAlignment = NSTextAlignmentRight;
+    label.tag = 2016;
+    label.font = self.repeatTF.font;
+    label.textColor = RGBA(187, 186, 194, 1.0f);
+    [bgView addSubview:label];
+    
+    arrow = [[LMArrowView alloc]initWithFrame:CGRectMake(0, 0, 10, 6)];
+    arrow.arrow = LMArrowDown;
+    arrow.color = RGBA(0xfd, 0x73, 0x3e, 1.0f);
+    arrow.isNotFill = YES;
+    [bgView addSubview:arrow];
+    [arrow autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+    [arrow autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:15];
+    [arrow autoSetDimensionsToSize:CGSizeMake(10, 6)];
+    arrow.userInteractionEnabled = NO;
+    [bgView addTarget:self action:@selector(repeatAction) forControlEvents:UIControlEventTouchUpInside];
+    self.repeatTF.rightView = bgView;
+    self.repeatTF.rightViewMode = UITextFieldViewModeAlways;
+//    self.repeatTF.text = @"Never";
     
     
     UIDatePicker *datePicker2 = [[UIDatePicker alloc] init];
@@ -158,6 +184,15 @@
     [self.navigationController pushViewController:ctl animated:YES];
 }
 
+- (void)repeatAction {
+    [[IQKeyboardManager sharedManager] resignFirstResponder];
+    ChoicesViewController *ctl = [[ChoicesViewController alloc] initWithStyle:UITableViewStylePlain];
+    ctl.delegate = self;
+    ctl.navigationItem.title = self.repeatTF.placeholder;
+    ctl.textArray = @[@"Never", @"Every Day", @"Every Week"];
+    [self.navigationController pushViewController:ctl animated:YES];
+}
+
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     if (textField == self.nameTF && self.nameTF.text.length > 0) {
         if (alertArray == nil) {
@@ -198,12 +233,7 @@
         return NO;
     }
     else if (textField == self.repeatTF) {
-        [[IQKeyboardManager sharedManager] resignFirstResponder];
-        ChoicesViewController *ctl = [[ChoicesViewController alloc] initWithStyle:UITableViewStylePlain];
-        ctl.delegate = self;
-        ctl.navigationItem.title = self.repeatTF.placeholder;
-        ctl.textArray = @[@"", @"Daily repeat", @"Weekly repeat", @"Monthly repeat"];
-        [self.navigationController pushViewController:ctl animated:YES];
+        [self repeatAction];
         return NO;
     }
     return YES;
@@ -218,7 +248,9 @@
 }
 
 - (void)choicesViewControllerDidSelected:(NSString*)text {
-    self.repeatTF.text = text;
+//    self.repeatTF.text = text;
+    UILabel *label = (UILabel*)[self.repeatTF.rightView viewWithTag:2016];
+    label.text = text;
     [[IQKeyboardManager sharedManager] resignFirstResponder];
 }
 

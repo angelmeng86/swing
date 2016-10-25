@@ -57,7 +57,7 @@
     [_textField autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:_listView];
     
     [_textField autoPinEdgeToSuperviewMargin:ALEdgeLeading];
-    [_textField autoPinEdgeToSuperviewMargin:ALEdgeTrailing];
+    [_textField autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:10];
     [_textField autoPinEdgeToSuperviewEdge:ALEdgeBottom];
     [_textField autoSetDimension:ALDimensionHeight toSize:35];
     

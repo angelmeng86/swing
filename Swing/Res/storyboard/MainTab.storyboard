@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="J63-vw-OfT">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="J63-vw-OfT">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -8,6 +8,7 @@
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Avenir-bold.ttf">
+            <string>ArialRoundedMTBold</string>
             <string>ArialRoundedMTBold</string>
             <string>ArialRoundedMTBold</string>
             <string>ArialRoundedMTBold</string>
@@ -80,17 +81,17 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZLs-hh-xJ3">
-                                <rect key="frame" x="210" y="264" width="180" height="60"/>
+                                <rect key="frame" x="210" y="264" width="180" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="NNv-S8-Sz5"/>
-                                    <constraint firstAttribute="height" constant="60" id="igb-uQ-GsV"/>
+                                    <constraint firstAttribute="height" constant="50" id="igb-uQ-GsV"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="50"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="42"/>
                                 <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swimming with Coach Brian" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8iF-kL-N4Q">
-                                <rect key="frame" x="210" y="324" width="180" height="60"/>
+                                <rect key="frame" x="210" y="314" width="180" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="JBl-CB-PKl"/>
                                     <constraint firstAttribute="width" constant="180" id="Nnu-mv-YnP"/>
@@ -176,6 +177,7 @@
                         <outlet property="descLabel" destination="8iF-kL-N4Q" id="LT0-08-x3x"/>
                         <outlet property="monthBtn" destination="1FD-iw-Etv" id="yLh-Ms-9GA"/>
                         <outlet property="progressView" destination="LH6-Bz-oxy" id="I2J-Xb-lKu"/>
+                        <outlet property="timeHeightConstraint" destination="igb-uQ-GsV" id="DII-F9-t9G"/>
                         <outlet property="timeLabel" destination="ZLs-hh-xJ3" id="mnX-2d-9hV"/>
                         <outlet property="todayBtn" destination="nnY-FK-G2i" id="cpM-9N-rND"/>
                     </connections>
@@ -752,32 +754,14 @@ You can do this!</string>
                                     <color key="titleColor" red="0.21960784310000001" green="0.71764705880000002" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+1 9117 667 3399" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYk-7e-37m">
-                                <rect key="frame" x="60" y="250" width="480" height="21"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                <color key="textColor" red="0.60392156862745094" green="0.70588235294117641" blue="0.74901960784313726" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4731 39th Place" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BcC-Ks-IRB">
-                                <rect key="frame" x="60" y="302" width="480" height="21"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                <color key="textColor" red="0.60392156862745094" green="0.70588235294117641" blue="0.74901960784313726" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunnyside, NY 11104" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BOL-Be-MZl">
-                                <rect key="frame" x="60" y="328" width="480" height="21"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                <color key="textColor" red="0.60392156862745094" green="0.70588235294117641" blue="0.74901960784313726" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lenayujung.lin@gmail.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8e-YE-BjS">
-                                <rect key="frame" x="60" y="276" width="480" height="21"/>
+                                <rect key="frame" x="60" y="259" width="480" height="30"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                 <color key="textColor" red="0.60392156862745094" green="0.70588235294117641" blue="0.74901960784313726" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LdG-Au-u84">
-                                <rect key="frame" x="0.0" y="411" width="600" height="90"/>
+                                <rect key="frame" x="0.0" y="371" width="600" height="90"/>
                                 <color key="backgroundColor" red="0.96862745098039216" green="0.792156862745098" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="1GB-uA-rSZ"/>
@@ -842,16 +826,16 @@ You can do this!</string>
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lena Lin" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tjr-st-s0S">
-                                <rect key="frame" x="60" y="224" width="480" height="21"/>
+                                <rect key="frame" x="60" y="224" width="480" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="tSg-Wq-X1h"/>
+                                    <constraint firstAttribute="height" constant="30" id="tSg-Wq-X1h"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="28"/>
                                 <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7D-GG-PY0" customClass="RoundButton">
-                                <rect key="frame" x="80" y="511" width="440" height="30"/>
+                                <rect key="frame" x="100" y="491" width="400" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="0EA-Wd-eZm"/>
@@ -867,35 +851,23 @@ You can do this!</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="bYk-7e-37m" firstAttribute="height" secondItem="Tjr-st-s0S" secondAttribute="height" id="1LE-uI-9Dl"/>
-                            <constraint firstItem="BOL-Be-MZl" firstAttribute="height" secondItem="Tjr-st-s0S" secondAttribute="height" id="3gf-iz-3Ji"/>
-                            <constraint firstItem="BcC-Ks-IRB" firstAttribute="centerX" secondItem="Gd7-Wq-P2W" secondAttribute="centerX" id="6gj-Zr-8xG"/>
-                            <constraint firstItem="bYk-7e-37m" firstAttribute="width" secondItem="Tjr-st-s0S" secondAttribute="width" id="Aha-L8-uzC"/>
-                            <constraint firstItem="c8e-YE-BjS" firstAttribute="top" secondItem="bYk-7e-37m" secondAttribute="bottom" constant="5" id="Bdw-hm-T7Q"/>
                             <constraint firstItem="Tjr-st-s0S" firstAttribute="leading" secondItem="Gd7-Wq-P2W" secondAttribute="leadingMargin" constant="40" id="Blf-KV-02X"/>
-                            <constraint firstItem="BOL-Be-MZl" firstAttribute="top" secondItem="BcC-Ks-IRB" secondAttribute="bottom" constant="5" id="C3b-iT-8mX"/>
                             <constraint firstItem="34x-S9-7Qt" firstAttribute="top" secondItem="LdG-Au-u84" secondAttribute="bottom" id="DgY-Hs-ebs"/>
-                            <constraint firstItem="BcC-Ks-IRB" firstAttribute="width" secondItem="Tjr-st-s0S" secondAttribute="width" id="FBI-M7-Xkm"/>
-                            <constraint firstItem="34x-S9-7Qt" firstAttribute="top" secondItem="Q7D-GG-PY0" secondAttribute="bottom" constant="10" id="Jin-pV-k5h"/>
-                            <constraint firstItem="bYk-7e-37m" firstAttribute="top" secondItem="Tjr-st-s0S" secondAttribute="bottom" constant="5" id="MGQ-uK-kSh"/>
-                            <constraint firstItem="BcC-Ks-IRB" firstAttribute="top" secondItem="c8e-YE-BjS" secondAttribute="bottom" constant="5" id="ONw-3A-cdd"/>
-                            <constraint firstItem="BcC-Ks-IRB" firstAttribute="height" secondItem="Tjr-st-s0S" secondAttribute="height" id="Q9L-Cv-vsX"/>
+                            <constraint firstItem="34x-S9-7Qt" firstAttribute="top" secondItem="Q7D-GG-PY0" secondAttribute="bottom" constant="30" id="Jin-pV-k5h"/>
                             <constraint firstItem="dKh-7F-FU5" firstAttribute="centerX" secondItem="Gd7-Wq-P2W" secondAttribute="centerX" id="Smd-yx-KbY"/>
                             <constraint firstItem="c8e-YE-BjS" firstAttribute="height" secondItem="Tjr-st-s0S" secondAttribute="height" id="WeG-WT-6xl"/>
-                            <constraint firstAttribute="trailing" secondItem="Q7D-GG-PY0" secondAttribute="trailing" constant="80" id="XqI-ai-C2o"/>
+                            <constraint firstAttribute="trailing" secondItem="Q7D-GG-PY0" secondAttribute="trailing" constant="100" id="XqI-ai-C2o"/>
                             <constraint firstAttribute="trailing" secondItem="LdG-Au-u84" secondAttribute="trailing" id="aTs-Fi-7B2"/>
                             <constraint firstItem="LdG-Au-u84" firstAttribute="leading" secondItem="Gd7-Wq-P2W" secondAttribute="leading" id="as6-qZ-1bw"/>
-                            <constraint firstItem="Q7D-GG-PY0" firstAttribute="leading" secondItem="Gd7-Wq-P2W" secondAttribute="leading" constant="80" id="b88-e1-H0i"/>
-                            <constraint firstItem="Q7D-GG-PY0" firstAttribute="top" secondItem="LdG-Au-u84" secondAttribute="bottom" constant="10" id="bFQ-R4-5WV"/>
+                            <constraint firstItem="Q7D-GG-PY0" firstAttribute="leading" secondItem="Gd7-Wq-P2W" secondAttribute="leading" constant="100" id="b88-e1-H0i"/>
+                            <constraint firstItem="Q7D-GG-PY0" firstAttribute="top" secondItem="LdG-Au-u84" secondAttribute="bottom" constant="30" id="bFQ-R4-5WV"/>
                             <constraint firstItem="dKh-7F-FU5" firstAttribute="top" secondItem="RQQ-aW-ceG" secondAttribute="bottom" constant="30" id="fea-2o-Gcx"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Tjr-st-s0S" secondAttribute="trailing" constant="40" id="h8u-Af-4fE"/>
-                            <constraint firstItem="bYk-7e-37m" firstAttribute="centerX" secondItem="Gd7-Wq-P2W" secondAttribute="centerX" id="jm7-ba-ecw"/>
-                            <constraint firstItem="BOL-Be-MZl" firstAttribute="centerX" secondItem="Gd7-Wq-P2W" secondAttribute="centerX" id="oEi-hY-hFj"/>
+                            <constraint firstItem="c8e-YE-BjS" firstAttribute="top" secondItem="Tjr-st-s0S" secondAttribute="bottom" constant="5" id="qfm-EU-5kb"/>
                             <constraint firstItem="Tjr-st-s0S" firstAttribute="top" secondItem="dKh-7F-FU5" secondAttribute="bottom" constant="10" id="rGi-wV-Gfg"/>
                             <constraint firstItem="c8e-YE-BjS" firstAttribute="width" secondItem="Tjr-st-s0S" secondAttribute="width" id="uW1-aG-8yN"/>
                             <constraint firstItem="c8e-YE-BjS" firstAttribute="centerX" secondItem="Gd7-Wq-P2W" secondAttribute="centerX" id="vFk-hJ-zbk"/>
                             <constraint firstItem="LdG-Au-u84" firstAttribute="top" secondItem="Q7D-GG-PY0" secondAttribute="bottom" constant="10" id="vda-61-zcR"/>
-                            <constraint firstItem="BOL-Be-MZl" firstAttribute="width" secondItem="Tjr-st-s0S" secondAttribute="width" id="x8E-ve-HWZ"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -906,13 +878,10 @@ You can do this!</string>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="tab_profile" selectedImage="tab_profile_selected" id="ywc-Q9-8xN"/>
                     <connections>
-                        <outlet property="addressLabel" destination="BcC-Ks-IRB" id="hZY-WS-IGN"/>
-                        <outlet property="addressLabel2" destination="BOL-Be-MZl" id="wFQ-Ol-Udl"/>
                         <outlet property="deviceConllectionView" destination="LdG-Au-u84" id="Ahe-gk-9Ps"/>
                         <outlet property="emailLabel" destination="c8e-YE-BjS" id="z7Q-dw-fy2"/>
                         <outlet property="headerBtn" destination="dKh-7F-FU5" id="kQ3-3e-nrX"/>
                         <outlet property="nameLabel" destination="Tjr-st-s0S" id="OQq-WI-BzR"/>
-                        <outlet property="phoneLabel" destination="bYk-7e-37m" id="4Vg-EE-ozd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rbV-qr-ZgI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1224,7 +1193,7 @@ You can do this!</string>
                                     <constraint firstAttribute="width" constant="200" id="V29-Ni-5ln"/>
                                     <constraint firstAttribute="height" constant="50" id="ovm-P4-wvn"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="30"/>
                                 <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2004,6 +1973,7 @@ You can do this!</string>
                                                     <constraint firstAttribute="width" constant="120" id="fY0-kr-Hh9"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="60"/>
+                                                <inset key="titleEdgeInsets" minX="0.0" minY="-5" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="+">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>

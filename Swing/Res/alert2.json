@@ -1,22 +1,28 @@
  [
   {
-  "text"  : "",
+  "text"  : "Agenda",
   "items" :
         [
             {
             "value" : 0,
-            "text"  : "Customize Your Event"
+            "text"  : "Agenda reminders(only for the App)"
             }
          ]
+  },
+  {
+  "text"  : "Alarm Clock",
+  "items" :
+        [
+            {
+                "value" : 36,
+                "text"  : "Good morning"
+            }
+        ]
   },
   {
   "text"  : "Morning Routine",
   "items" :
         [
-         {
-         "value" : 36,
-         "text"  : "Good morning"
-         },
          {
          "value" : 37,
          "text"  : "Make bed"
