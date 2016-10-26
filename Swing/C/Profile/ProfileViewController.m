@@ -81,6 +81,12 @@
     return [GlobalCache shareInstance].kidsList.count;
 }
 
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    CGFloat left = (collectionView.frame.size.width - (55 * [GlobalCache shareInstance].kidsList.count - 5)) / 2;
+    return UIEdgeInsetsMake(10, left > 10 ? left : 10, 0, 10);
+}
+
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 
 {

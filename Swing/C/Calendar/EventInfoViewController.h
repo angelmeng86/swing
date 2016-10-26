@@ -20,5 +20,6 @@
 @property (strong, nonatomic) EventModel *model;
 
 - (IBAction)saveAction:(id)sender;
+- (IBAction)delAction:(id)sender;
 
 @end
