@@ -315,7 +315,9 @@
     NSDate *startDate = [Fun dateFromString:self.startTF.text];
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *start = [cal components:NSHourCalendarUnit fromDate:startDate];
-    if ([start hour] < 6) {
+    NSDate *endDate = [Fun dateFromString:self.endTF.text];
+    NSDateComponents *end = [cal components:NSHourCalendarUnit fromDate:endDate];
+    if ([start hour] < 6 || [end hour] < 6) {
         [Fun showMessageBoxWithTitle:@"Error" andMessage:@"Please select a date between 6:00 and 24:00."];
         return NO;
     }
