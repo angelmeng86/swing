@@ -794,6 +794,11 @@
 					ADFC2C271D369949004EDCDF = {
 						CreatedOnToolsVersion = 7.0.1;
 						DevelopmentTeam = 97SA79U875;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1012,7 +1017,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "fff66e86-b40b-458f-9a76-e2233ccbf5ed";
+				PROVISIONING_PROFILE = "2b75ccdc-a8a3-4aca-a6ba-f79619706ced";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1034,7 +1039,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: kuan h chen (97SA79U875)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1049,7 +1055,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "fff66e86-b40b-458f-9a76-e2233ccbf5ed";
+				PROVISIONING_PROFILE = "2b75ccdc-a8a3-4aca-a6ba-f79619706ced";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
