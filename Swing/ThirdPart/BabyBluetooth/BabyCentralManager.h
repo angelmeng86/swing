@@ -53,6 +53,9 @@
     NSMutableArray *discoverPeripherals;
     //需要自动重连的外设
     NSMutableArray *reConnectPeripherals;
+    
+    //正在连接的设备
+    NSMutableArray *connectingPeripherals;
 }
 
 

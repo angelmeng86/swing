@@ -49,6 +49,7 @@
         connectedPeripherals = [[NSMutableArray alloc]init];
         discoverPeripherals = [[NSMutableArray alloc]init];
         reConnectPeripherals = [[NSMutableArray alloc]init];
+        connectingPeripherals = [[NSMutableArray alloc]init];
     }
     return  self;
     
@@ -77,6 +78,9 @@
 - (void)cancelAllPeripheralsConnection {
     for (int i=0;i<connectedPeripherals.count;i++) {
         [centralManager cancelPeripheralConnection:connectedPeripherals[i]];
+    }
+    for (int i=0;i<connectingPeripherals.count;i++) {
+        [centralManager cancelPeripheralConnection:connectingPeripherals[i]];
     }
 }
 
@@ -153,6 +157,7 @@
     if (needConnectPeripheral) {
         if ([currChannel filterOnconnectToPeripherals](peripheral.name,advertisementData,RSSI)) {
             BabyLog(@"filterOnconnectToPeripherals %@", peripheral);
+            [self addConnectingPeripheral:peripheral];
             [centralManager connectPeripheral:peripheral options:[currChannel babyOptions].connectPeripheralWithOptions];
 //            [centralManager connectPeripheral:peripheral options:nil];
             //开一个定时器监控连接超时的情况
@@ -201,6 +206,7 @@
 
 //连接到Peripherals-失败
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
+    [self deleteConnectingPeripheral:peripheral];
     //发出通知
     [[NSNotificationCenter defaultCenter]postNotificationName:BabyNotificationAtDidFailToConnectPeripheral
                                                        object:@{@"central":central,@"peripheral":peripheral,@"error":error?error:@""}];
@@ -464,9 +470,22 @@
 }
 
 - (void)addPeripheral:(CBPeripheral *)peripheral {
+    [self deleteConnectingPeripheral:peripheral];
     if (![connectedPeripherals containsObject:peripheral]) {
         [connectedPeripherals addObject:peripheral];
     }
+}
+
+- (void)addConnectingPeripheral:(CBPeripheral *)peripheral {
+    BabyLog(@"addConnectingPeripheral %@", peripheral);
+    if (![connectingPeripherals containsObject:peripheral]) {
+        [connectingPeripherals addObject:peripheral];
+    }
+}
+
+- (void)deleteConnectingPeripheral:(CBPeripheral *)peripheral{
+    BabyLog(@"deleteConnectingPeripheral %@", peripheral);
+    [connectingPeripherals removeObject:peripheral];
 }
 
 - (void)deletePeripheral:(CBPeripheral *)peripheral{
