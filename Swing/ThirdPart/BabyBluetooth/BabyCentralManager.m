@@ -134,7 +134,7 @@
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
     
     //日志
-    //BabyLog(@"当扫描到设备:%@",peripheral.name);
+//    BabyLog(@"当扫描到设备:%@",peripheral.name);
     [self addDiscoverPeripheral:peripheral];
     
     //发出通知
@@ -152,16 +152,23 @@
     //处理连接设备
     if (needConnectPeripheral) {
         if ([currChannel filterOnconnectToPeripherals](peripheral.name,advertisementData,RSSI)) {
+            BabyLog(@"filterOnconnectToPeripherals %@", peripheral);
             [centralManager connectPeripheral:peripheral options:[currChannel babyOptions].connectPeripheralWithOptions];
+//            [centralManager connectPeripheral:peripheral options:nil];
             //开一个定时器监控连接超时的情况
-            connectTimer = [NSTimer scheduledTimerWithTimeInterval:5.0f target:self selector:@selector(disconnect:) userInfo:peripheral repeats:NO];
+//            connectTimer = [NSTimer scheduledTimerWithTimeInterval:10.0f target:self selector:@selector(disconnect:) userInfo:peripheral repeats:NO];
         }
     }
 }
 
 //停止扫描
-- (void)disconnect:(id)sender {
-    [centralManager stopScan];
+- (void)disconnect:(NSTimer*)sender {
+//    CBPeripheral *peripheral = sender.userInfo;
+//    NSLog(@"oye %@", peripheral);
+//    if (peripheral.state != CBPeripheralStateConnecting) {
+//        [centralManager connectPeripheral:peripheral options:[currChannel babyOptions].connectPeripheralWithOptions];
+//    }
+//    [centralManager stopScan];
 }
 
 //连接到Peripherals-成功
@@ -198,7 +205,7 @@
     [[NSNotificationCenter defaultCenter]postNotificationName:BabyNotificationAtDidFailToConnectPeripheral
                                                        object:@{@"central":central,@"peripheral":peripheral,@"error":error?error:@""}];
  
-    //    BabyLog(@">>>连接到名称为（%@）的设备-失败,原因:%@",[peripheral name],[error localizedDescription]);
+//        BabyLog(@">>>连接到名称为（%@）的设备-失败,原因:%@",[peripheral name],[error localizedDescription]);
     if ([currChannel blockOnFailToConnect]) {
         [currChannel blockOnFailToConnect](central,peripheral,error);
     }

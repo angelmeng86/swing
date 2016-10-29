@@ -12,12 +12,16 @@
 //  
 
 #import <Foundation/Foundation.h>
-
+#import "SimpleLogger.h"
 
 # pragma mark - baby 行为定义
 
 //Baby if show log 是否打印日志，默认1：打印 ，0：不打印
+#ifdef MAPPLE_DEBUG
 #define KBABY_IS_SHOW_LOG 1
+#else
+#define KBABY_IS_SHOW_LOG 0
+#endif
 
 //CBcentralManager等待设备打开次数
 # define KBABY_CENTRAL_MANAGER_INIT_WAIT_TIMES 5

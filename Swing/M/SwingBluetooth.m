@@ -73,6 +73,7 @@ typedef enum : NSUInteger {
     if (self = [super init]) {
         //初始化BabyBluetooth 蓝牙库
         baby = [BabyBluetooth shareBabyBluetooth];
+//        baby = [[BabyBluetooth alloc]init];
         //设置蓝牙委托
         
         [self batteryDelegate];
@@ -101,10 +102,11 @@ typedef enum : NSUInteger {
     [baby setFilterOnDiscoverPeripheralsAtChannel:channel filter:^BOOL(NSString *peripheralName, NSDictionary *advertisementData, NSNumber *RSSI) {
         //        LOG_D(@"advertisementData:%@", advertisementData);
         //最常用的场景是查找某一个前缀开头的设备
-//        if ([peripheralName hasPrefix:@"Swing-D-X"] ) {
-//            return YES;
-//        }
-        return YES;
+        if ([peripheralName hasPrefix:@"Swing"] ) {
+            LOG_D(@"advertisementData:%@", advertisementData);
+            return YES;
+        }
+        return NO;
     }];
     
     [baby setBlockOnCancelAllPeripheralsConnectionBlockAtChannel:channel block:^(CBCentralManager *centralManager) {
@@ -118,6 +120,7 @@ typedef enum : NSUInteger {
     //设置设备连接成功的委托,同一个baby对象，使用不同的channel切换委托回调
     [baby setBlockOnConnectedAtChannel:channel block:^(CBCentralManager *central, CBPeripheral *peripheral) {
         //        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--连接成功",peripheral.name]];
+        LOG_D(@"设备：%@--连接成功", peripheral.name);
     }];
     
     //设置设备连接失败的委托
@@ -134,7 +137,7 @@ typedef enum : NSUInteger {
     
     //设置发现设备的Services的委托
     [baby setBlockOnDiscoverServicesAtChannel:channel block:^(CBPeripheral *peripheral, NSError *error) {
-
+        LOG_D(@"setBlockOnDiscoverServicesAtChannel");
     }];
     //设置发现设service的Characteristics的委托
     [baby setBlockOnDiscoverCharacteristicsAtChannel:channel block:^(CBPeripheral *peripheral, CBService *service, NSError *error) {
@@ -189,20 +192,20 @@ typedef enum : NSUInteger {
     }];
     
     //扫描选项->CBCentralManagerScanOptionAllowDuplicatesKey:忽略同一个Peripheral端的多个发现事件被聚合成一个发现事件
-    NSDictionary *scanForPeripheralsWithOptions = @{CBCentralManagerScanOptionAllowDuplicatesKey:@YES};
+    //NSDictionary *scanForPeripheralsWithOptions = @{CBCentralManagerScanOptionAllowDuplicatesKey:@YES};
     /*连接选项->
      CBConnectPeripheralOptionNotifyOnConnectionKey :当应用挂起时，如果有一个连接成功时，如果我们想要系统为指定的peripheral显示一个提示时，就使用这个key值。
      CBConnectPeripheralOptionNotifyOnDisconnectionKey :当应用挂起时，如果连接断开时，如果我们想要系统为指定的peripheral显示一个断开连接的提示时，就使用这个key值。
      CBConnectPeripheralOptionNotifyOnNotificationKey:
      当应用挂起时，使用该key值表示只要接收到给定peripheral端的通知就显示一个提
      */
-    NSDictionary *connectOptions = @{CBConnectPeripheralOptionNotifyOnConnectionKey:@YES,
-                                     CBConnectPeripheralOptionNotifyOnDisconnectionKey:@YES,
-                                     CBConnectPeripheralOptionNotifyOnNotificationKey:@YES};
+//    NSDictionary *connectOptions = @{CBConnectPeripheralOptionNotifyOnConnectionKey:@YES,
+//                                     CBConnectPeripheralOptionNotifyOnDisconnectionKey:@YES,
+//                                     CBConnectPeripheralOptionNotifyOnNotificationKey:@YES};
     
     NSArray *services = @[[CBUUID UUIDWithString:@"FFA0"], [CBUUID UUIDWithString:@"180F"]];
     NSArray *characters = @[[CBUUID UUIDWithString:@"FFA1"], [CBUUID UUIDWithString:@"FFA3"], [CBUUID UUIDWithString:@"FFA6"], [CBUUID UUIDWithString:@"2A19"]];
-    [baby setBabyOptionsAtChannel:INIT_DEVIE_CHANEL scanForPeripheralsWithOptions:scanForPeripheralsWithOptions connectPeripheralWithOptions:connectOptions scanForPeripheralsWithServices:nil discoverWithServices:services discoverWithCharacteristics:characters];
+    [baby setBabyOptionsAtChannel:channel scanForPeripheralsWithOptions:nil connectPeripheralWithOptions:nil scanForPeripheralsWithServices:nil discoverWithServices:services discoverWithCharacteristics:characters];
 }
 
 - (void)deviceInitDelegate {
@@ -325,13 +328,13 @@ typedef enum : NSUInteger {
      CBConnectPeripheralOptionNotifyOnNotificationKey:
      当应用挂起时，使用该key值表示只要接收到给定peripheral端的通知就显示一个提
      */
-    NSDictionary *connectOptions = @{CBConnectPeripheralOptionNotifyOnConnectionKey:@YES,
-                                     CBConnectPeripheralOptionNotifyOnDisconnectionKey:@YES,
-                                     CBConnectPeripheralOptionNotifyOnNotificationKey:@YES};
+//    NSDictionary *connectOptions = @{CBConnectPeripheralOptionNotifyOnConnectionKey:@YES,
+//                                     CBConnectPeripheralOptionNotifyOnDisconnectionKey:@YES,
+//                                     CBConnectPeripheralOptionNotifyOnNotificationKey:@YES};
     
     NSArray *services = @[[CBUUID UUIDWithString:@"FFA0"], [CBUUID UUIDWithString:@"180F"]];
     NSArray *characters = @[[CBUUID UUIDWithString:@"FFA1"], [CBUUID UUIDWithString:@"FFA3"], [CBUUID UUIDWithString:@"FFA6"], [CBUUID UUIDWithString:@"2A19"]];
-    [baby setBabyOptionsAtChannel:INIT_DEVIE_CHANEL scanForPeripheralsWithOptions:nil connectPeripheralWithOptions:connectOptions scanForPeripheralsWithServices:nil discoverWithServices:services discoverWithCharacteristics:characters];
+    [baby setBabyOptionsAtChannel:channel scanForPeripheralsWithOptions:nil connectPeripheralWithOptions:nil scanForPeripheralsWithServices:nil discoverWithServices:services discoverWithCharacteristics:characters];
 }
 
 - (void)scanDelegate {
@@ -648,12 +651,12 @@ typedef enum : NSUInteger {
      CBConnectPeripheralOptionNotifyOnNotificationKey:
      当应用挂起时，使用该key值表示只要接收到给定peripheral端的通知就显示一个提
      */
-    NSDictionary *connectOptions = @{CBConnectPeripheralOptionNotifyOnConnectionKey:@YES,
-                                     CBConnectPeripheralOptionNotifyOnDisconnectionKey:@YES,
-                                     CBConnectPeripheralOptionNotifyOnNotificationKey:@YES};
+//    NSDictionary *connectOptions = @{CBConnectPeripheralOptionNotifyOnConnectionKey:@YES,
+//                                     CBConnectPeripheralOptionNotifyOnDisconnectionKey:@YES,
+//                                     CBConnectPeripheralOptionNotifyOnNotificationKey:@YES};
     
     NSArray *services = @[[CBUUID UUIDWithString:@"FFA0"], [CBUUID UUIDWithString:@"180F"]];
-    [baby setBabyOptionsAtChannel:INIT_DEVIE_CHANEL scanForPeripheralsWithOptions:nil connectPeripheralWithOptions:connectOptions scanForPeripheralsWithServices:nil discoverWithServices:services discoverWithCharacteristics:nil];
+    [baby setBabyOptionsAtChannel:channel scanForPeripheralsWithOptions:nil connectPeripheralWithOptions:nil scanForPeripheralsWithServices:nil discoverWithServices:services discoverWithCharacteristics:nil];
 }
 
 - (BOOL)writeAlertNumber:(CBService*)service {
@@ -726,7 +729,7 @@ typedef enum : NSUInteger {
     self.batteryModels = [NSMutableDictionary dictionary];
     self.findedModels = [NSMutableArray array];
     self.blockOnQueryBattery = completion;
-    [self performSelector:@selector(queryBatteryTimeout) withObject:nil afterDelay:60];
+    [self performSelector:@selector(queryBatteryTimeout) withObject:nil afterDelay:40];
     baby.channel(READ_BATTERY_CHANEL).scanForPeripherals().then.connectToPeripherals().discoverServices().discoverCharacteristics().begin();
 }
 
@@ -796,7 +799,6 @@ typedef enum : NSUInteger {
 }
 
 - (void)searchDevice:(NSData*)macAddress completion:(SwingBluetoothSearchDeviceBlock)completion {
-    [self cannelAll];
     [self queryBattery:@[macAddress] completion:^(NSArray *batteryDevices, NSError *error) {
         BatteryModel *m = [batteryDevices firstObject];
         if (m == nil) {
