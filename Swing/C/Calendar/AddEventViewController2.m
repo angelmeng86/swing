@@ -334,7 +334,8 @@
         NSMutableDictionary *data = [NSMutableDictionary dictionary];
         [data addEntriesFromDictionary:@{@"eventName":self.nameTF.text , @"startDate":self.startTF.text
                                         , @"endDate":self.endTF.text
-                                        , @"color":[Fun stringFromColor:self.colorCtl.selectedColor]}];
+                                        , @"color":[Fun stringFromColor:self.colorCtl.selectedColor]
+                                         , @"timezoneOffset" : @([NSTimeZone localTimeZone].secondsFromGMT)}];
         
         if (self.alert) {
             [data setObject:self.alert.value forKey:@"alert"];
