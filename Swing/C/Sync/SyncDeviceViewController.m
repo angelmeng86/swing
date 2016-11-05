@@ -38,6 +38,23 @@
     }
     
     [self setCustomBackBarButtonItem];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userProfileLoaded:) name:USER_PROFILE_LOAD_NOTI object:nil];
+    
+    if (![GlobalCache shareInstance].local.deviceMAC) {
+        //当前用户没有绑定设备，执行查询
+        [[GlobalCache shareInstance] queryProfile];
+    }
+}
+
+- (void)userProfileLoaded:(NSNotification*)notification {
+    if (![GlobalCache shareInstance].local.deviceMAC) {
+        //确认当前用户没有绑定设备
+        self.label1.text = @"You have not bind";
+        self.label2.text = @"device yet.";
+        [self.button1 setTitle:@"Search a watch" forState:UIControlStateNormal];
+        [self.button2 setTitle:@"Go to dashboard" forState:UIControlStateNormal];
+    }
 }
 
 - (void)backAction {
@@ -63,14 +80,18 @@
     }];
 }
 
-- (IBAction)syncCurrentAction:(id)sender {
+- (IBAction)syncCurrentAction:(UIButton*)sender {
+    if ([[sender titleForState:UIControlStateNormal] isEqualToString:@"Search a watch"]) {
+        [self syncAnotherAction:sender];
+        return;
+    }
     if ([GlobalCache shareInstance].local.deviceMAC) {
         UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"SyncDevice" bundle:nil];
         UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"Syncing"];
         [self.navigationController pushViewController:ctl animated:YES];
     }
     else {
-        [SVProgressHUD showErrorWithStatus:@"you have not bind device yet, please sync another watch."];
+        [SVProgressHUD showErrorWithStatus:@"you have not bind device yet, please sync a watch."];
     }
     
     

@@ -11,6 +11,7 @@
 
 @interface SearchWatchViewController : LMBaseViewController
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topLayout;
 @property (weak, nonatomic) IBOutlet UILabel *label;
 @property (weak, nonatomic) IBOutlet MDRadialProgressView *progressView;
 

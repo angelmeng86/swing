@@ -64,9 +64,15 @@
         [[GlobalCache shareInstance] saveInfo];
     }
     for (UIViewController *ctl in self.navigationController.viewControllers) {
-        if ([ctl isKindOfClass:[EditProfileViewController class]] || [ctl isKindOfClass:[SyncDeviceViewController class]]) {
+        if ([ctl isKindOfClass:[EditProfileViewController class]]) {
             //EditProfile add device flow
             [self.navigationController popToViewController:ctl animated:YES];
+            return;
+        }
+        if ([ctl isKindOfClass:[SyncDeviceViewController class]]) {
+            [self.navigationController dismissViewControllerAnimated:YES completion:^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"SYNC_DISMISS" object:nil];
+            }];
             return;
         }
     }

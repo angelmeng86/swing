@@ -27,6 +27,10 @@
     self.progressView.theme.sliceDividerHidden = YES;
     self.progressView.label.hidden = YES;
     [self.progressView setIsIndeterminateProgress:YES];
+    
+    if (!self.navigationController.navigationBar.hidden) {
+        self.topLayout.constant = 80;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

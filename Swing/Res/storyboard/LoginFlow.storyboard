@@ -403,20 +403,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SEARCHING" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DzD-A9-bys">
-                                <rect key="frame" x="60" y="278" width="480" height="45"/>
+                                <rect key="frame" x="202.5" y="164" width="195" height="195"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="KLL-iY-oB8"/>
+                                    <constraint firstAttribute="width" constant="195" id="H4y-g2-N9l"/>
+                                    <constraint firstAttribute="height" constant="195" id="KLL-iY-oB8"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="30"/>
                                 <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Evs-Aa-9Up" customClass="MDRadialProgressView">
-                                <rect key="frame" x="180" y="180" width="240" height="240"/>
+                                <rect key="frame" x="185" y="146.5" width="230" height="230"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="Ie7-FN-dLN"/>
-                                    <constraint firstAttribute="width" constant="240" id="ufo-Hi-4aJ"/>
+                                    <constraint firstAttribute="height" constant="230" id="Ie7-FN-dLN"/>
+                                    <constraint firstAttribute="width" constant="230" id="ufo-Hi-4aJ"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -426,14 +427,27 @@
                             <constraint firstItem="DzD-A9-bys" firstAttribute="centerY" secondItem="eWw-Tw-RM5" secondAttribute="centerY" id="JMu-G9-1NJ"/>
                             <constraint firstItem="DzD-A9-bys" firstAttribute="leading" secondItem="eWw-Tw-RM5" secondAttribute="leadingMargin" constant="40" id="KXh-04-2lR"/>
                             <constraint firstItem="DzD-A9-bys" firstAttribute="centerX" secondItem="eWw-Tw-RM5" secondAttribute="centerX" id="Q9V-0T-bhW"/>
+                            <constraint firstItem="Evs-Aa-9Up" firstAttribute="centerY" secondItem="DzD-A9-bys" secondAttribute="centerY" id="S68-fT-lm0"/>
                             <constraint firstItem="Evs-Aa-9Up" firstAttribute="centerX" secondItem="eWw-Tw-RM5" secondAttribute="centerX" id="cUf-Jg-2dj"/>
+                            <constraint firstItem="DzD-A9-bys" firstAttribute="top" secondItem="g1J-Nv-dta" secondAttribute="bottom" constant="144" id="jgc-on-iLw"/>
+                            <constraint firstItem="Evs-Aa-9Up" firstAttribute="centerX" secondItem="DzD-A9-bys" secondAttribute="centerX" id="miQ-KP-Aye"/>
                             <constraint firstItem="Evs-Aa-9Up" firstAttribute="centerY" secondItem="eWw-Tw-RM5" secondAttribute="centerY" id="pl4-lg-hqQ"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="B4a-09-1rG"/>
+                                <exclude reference="JMu-G9-1NJ"/>
+                                <exclude reference="KXh-04-2lR"/>
+                                <exclude reference="cUf-Jg-2dj"/>
+                                <exclude reference="pl4-lg-hqQ"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="VJu-dC-d89"/>
                     <connections>
                         <outlet property="label" destination="DzD-A9-bys" id="yOV-Ca-ksh"/>
                         <outlet property="progressView" destination="Evs-Aa-9Up" id="fYa-UH-Az8"/>
+                        <outlet property="topLayout" destination="jgc-on-iLw" id="JGh-pM-857"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dS7-eW-3GI" userLabel="First Responder" sceneMemberID="firstResponder"/>

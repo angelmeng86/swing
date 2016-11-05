@@ -146,6 +146,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="ffM-ei-bHN"/>
                     <connections>
+                        <outlet property="button1" destination="OSR-GF-do6" id="mcS-N2-7fJ"/>
+                        <outlet property="button2" destination="vKm-Tb-kJn" id="OKP-zR-aGu"/>
                         <outlet property="imageView" destination="r2M-W1-s24" id="og1-0B-JdU"/>
                         <outlet property="label1" destination="6XM-8S-BwJ" id="enO-Qa-8gV"/>
                         <outlet property="label2" destination="tKq-hb-Bey" id="ZE9-By-ndN"/>
