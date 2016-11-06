@@ -45,7 +45,7 @@ macId:           tester1
     if (_outdoorActivity.length == 0) {
         _outdoorActivity = [NSString stringWithFormat:@"%ld,1,%ld,%ld,%ld,%ld",
                             _time == 0 ? (long)[[NSDate date] timeIntervalSince1970] : _time,
-                            _outData1, _outData1, _outData1, _outData1];
+                            _outData1, _outData2, _outData3, _outData4];
     }
     return _outdoorActivity;
 }
@@ -136,7 +136,7 @@ macId:           tester1
                        _inData1, _inData2, _inData3, _inData4];
     _outdoorActivity = [NSString stringWithFormat:@"%ld,1,%ld,%ld,%ld,%ld",
                         _time == 0 ? (long)[[NSDate date] timeIntervalSince1970] : _time,
-                        _outData1, _outData1, _outData1, _outData1];
+                        _outData1, _outData2, _outData3, _outData4];
 }
 
 @end
