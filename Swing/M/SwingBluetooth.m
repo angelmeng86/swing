@@ -64,8 +64,10 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) NSMutableDictionary *batteryModels;
 @property (nonatomic, strong) NSMutableSet *macAddressList;
 @property (nonatomic, strong) NSMutableArray *findedModels;
+
 @property (nonatomic) BOOL deviceConnecting;
 @property (nonatomic) BOOL isRetry;
+@property (nonatomic, strong) NSMutableDictionary *reTryArray;
 
 @end
 
@@ -87,6 +89,61 @@ typedef enum : NSUInteger {
 }
 
 #pragma mark -蓝牙配置和操作
+
+- (void)invalidTimers {
+    NSArray *allValues = [self.reTryArray allValues];
+    for (NSTimer *timer in allValues) {
+        [timer invalidate];
+    }
+    self.reTryArray = nil;
+}
+
+- (void)tryWriteFFA3:(NSArray*)userInfo {
+    if (userInfo.count == 3) {
+        CBCharacteristic *character = [userInfo objectAtIndex:0];
+        CBPeripheral *peripheral = [userInfo objectAtIndex:1];
+        NSNumber *times = [userInfo objectAtIndex:2];
+        NSTimer *timer = [self.reTryArray objectForKey:peripheral];
+        [timer invalidate];
+        int count = [times intValue];
+        if (count == 0) {
+            LOG_D(@"retry write FFA3 outline.");
+            [self.reTryArray removeObjectForKey:peripheral];
+            return;
+        }
+        
+        timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(tryWriteFFA3:) userInfo:@[character, peripheral, [NSNumber numberWithInt:[times intValue] - 1]] repeats:NO];
+        [self.reTryArray setObject:timer forKey:peripheral];
+        NSData *time = [Fun longToByteArray:TIME_STAMP];
+        LOG_D(@"retry write FFA3 %@, times:%@", time, times);
+        [peripheral writeValue:time forCharacteristic:character type:CBCharacteristicWriteWithResponse];
+        
+//        [self performSelector:@selector(tryWriteFFA3:) withObject:@[character, peripheral, [NSNumber numberWithInt:[times intValue] - 1]] afterDelay:3];
+    }
+}
+
+- (void)tryReadFFA6:(NSArray*)userInfo {
+    if (userInfo.count == 3) {
+        CBCharacteristic *character = [userInfo objectAtIndex:0];
+        CBPeripheral *peripheral = [userInfo objectAtIndex:1];
+        NSNumber *times = [userInfo objectAtIndex:2];
+        NSTimer *timer = [self.reTryArray objectForKey:peripheral];
+        [timer invalidate];
+        int count = [times intValue];
+        if (count == 0) {
+            LOG_D(@"retry read FFA6 outline.");
+            [self.reTryArray removeObjectForKey:peripheral];
+            return;
+        }
+        
+        timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(tryReadFFA6:) userInfo:@[character, peripheral, [NSNumber numberWithInt:[times intValue] - 1]] repeats:NO];
+        [self.reTryArray setObject:timer forKey:peripheral];
+        
+        LOG_D(@"retry read FFA6, times:%@", times);
+        [peripheral readValueForCharacteristic:character];
+//        [self performSelector:@selector(tryReadFFA6:) withObject:@[character, [NSNumber numberWithInt:[times intValue] - 1]] afterDelay:3];
+    }
+}
 
 - (void)batteryDelegate {
     
@@ -122,29 +179,29 @@ typedef enum : NSUInteger {
     
     //设置设备连接成功的委托,同一个baby对象，使用不同的channel切换委托回调
     [baby setBlockOnConnectedAtChannel:channel block:^(CBCentralManager *central, CBPeripheral *peripheral) {
-        //        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--连接成功",peripheral.name]];
         LOG_D(@"设备：%@--连接成功", peripheral.name);
     }];
     
     //设置设备连接失败的委托
     [baby setBlockOnFailToConnectAtChannel:channel block:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
-        LOG_D(@"设备：%@--连接失败",peripheral.name);
-        //        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--连接失败",peripheral.name]];
+        LOG_D(@"设备：%@--连接失败, err:%@",peripheral.name, error);
     }];
     
     //设置设备断开连接的委托
     [baby setBlockOnDisconnectAtChannel:channel block:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
-        LOG_D(@"设备：%@--断开连接",peripheral.name);
-        //        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--断开失败",peripheral.name]];
+        LOG_D(@"设备：%@--断开连接, err:%@",peripheral.name, error);
+        NSTimer *timer = [weakSelf.reTryArray objectForKey:peripheral];
+        [timer invalidate];
+        [weakSelf.reTryArray removeObjectForKey:peripheral];
     }];
     
     //设置发现设备的Services的委托
     [baby setBlockOnDiscoverServicesAtChannel:channel block:^(CBPeripheral *peripheral, NSError *error) {
-        LOG_D(@"setBlockOnDiscoverServicesAtChannel");
+        LOG_D(@"setBlockOnDiscoverServicesAtChannel, err:%@", error);
     }];
     //设置发现设service的Characteristics的委托
     [baby setBlockOnDiscoverCharacteristicsAtChannel:channel block:^(CBPeripheral *peripheral, CBService *service, NSError *error) {
-        LOG_D(@"===service name:%@ ,%@,%@",service.UUID, service.UUID.UUIDString, service.UUID.data);
+        LOG_D(@"===service name:%@, %@, %@, err:%@",service.UUID, service.UUID.UUIDString, service.UUID.data, error);
         if (!error) {
             if ([service.UUID.UUIDString isEqualToString:@"180F"]) {
 //                CBCharacteristic *character = [service findCharacteristic:@"2A19"];
@@ -160,7 +217,7 @@ typedef enum : NSUInteger {
     }];
     //设置读取characteristics的委托
     [baby setBlockOnReadValueForCharacteristicAtChannel:channel block:^(CBPeripheral *peripheral, CBCharacteristic *characteristic, NSError *error) {
-        LOG_D(@"characteristic name:%@ value is:%@",characteristic.UUID,characteristic.value);
+        LOG_D(@"characteristic name:%@ value is:%@, err:%@",characteristic.UUID,characteristic.value, error);
         if (!error) {
             if ([characteristic.UUID.UUIDString isEqualToString:@"2A19"]) {
                 const Byte* ptr = characteristic.value.bytes;
@@ -168,6 +225,10 @@ typedef enum : NSUInteger {
                 [weakSelf reportQueryBatteryResult:characteristic.service.peripheral battery:ptr[0] mac:nil error:nil];
             }
             else if ([characteristic.UUID.UUIDString isEqualToString:@"FFA6"]) {
+//                [NSObject cancelPreviousPerformRequestsWithTarget:weakSelf selector:@selector(tryReadFFA6:) object:nil];
+                NSTimer *timer = [weakSelf.reTryArray objectForKey:characteristic.service.peripheral];
+                [timer invalidate];
+                [weakSelf.reTryArray removeObjectForKey:characteristic.service.peripheral];
                 LOG_D(@"Mac Address:%@", characteristic.value);
                 [weakSelf reportQueryBatteryResult:characteristic.service.peripheral battery:-1 mac:characteristic.value error:nil];
             }
@@ -175,6 +236,7 @@ typedef enum : NSUInteger {
     }];
     
     [baby setBlockOnDidWriteValueForCharacteristicAtChannel:channel block:^(CBCharacteristic *characteristic, NSError *error) {
+        LOG_D(@"DidWriteValueForCharacteristicAtChannel name:%@, err:%@",characteristic.UUID, error);
         if (!error) {
             if ([characteristic.UUID.UUIDString isEqualToString:@"FFA1"]) {
 //                LOG_D(@"read FFA6");
@@ -185,26 +247,25 @@ typedef enum : NSUInteger {
                 NSData *time = [Fun longToByteArray:TIME_STAMP];
                 LOG_D(@"write FFA3 %@", time);
                 [characteristic.service.peripheral writeValue:time forCharacteristic:character type:CBCharacteristicWriteWithResponse];
+                NSTimer *timer = [weakSelf.reTryArray objectForKey:character.service.peripheral];
+                if (timer) {
+                    [timer invalidate];
+                }
+                timer = [NSTimer scheduledTimerWithTimeInterval:3 target:weakSelf selector:@selector(tryWriteFFA3:) userInfo:@[character, character.service.peripheral, @3] repeats:NO];
+                [weakSelf.reTryArray setObject:timer forKey:character.service.peripheral];
+//                [weakSelf performSelector:@selector(tryWriteFFA3:) withObject:@[character, @3] afterDelay:3];
             }
             else if ([characteristic.UUID.UUIDString isEqualToString:@"FFA3"]) {
+//                [NSObject cancelPreviousPerformRequestsWithTarget:weakSelf selector:@selector(tryWriteFFA3:) object:nil];
+                NSTimer *timer = [weakSelf.reTryArray objectForKey:characteristic.service.peripheral];
+                [timer invalidate];
+                [weakSelf.reTryArray removeObjectForKey:characteristic.service.peripheral];
                 LOG_D(@"read FFA6");
                 CBCharacteristic *character = [characteristic.service findCharacteristic:@"FFA6"];
                 [characteristic.service.peripheral readValueForCharacteristic:character];
             }
         }
     }];
-    
-    //扫描选项->CBCentralManagerScanOptionAllowDuplicatesKey:忽略同一个Peripheral端的多个发现事件被聚合成一个发现事件
-    //NSDictionary *scanForPeripheralsWithOptions = @{CBCentralManagerScanOptionAllowDuplicatesKey:@YES};
-    /*连接选项->
-     CBConnectPeripheralOptionNotifyOnConnectionKey :当应用挂起时，如果有一个连接成功时，如果我们想要系统为指定的peripheral显示一个提示时，就使用这个key值。
-     CBConnectPeripheralOptionNotifyOnDisconnectionKey :当应用挂起时，如果连接断开时，如果我们想要系统为指定的peripheral显示一个断开连接的提示时，就使用这个key值。
-     CBConnectPeripheralOptionNotifyOnNotificationKey:
-     当应用挂起时，使用该key值表示只要接收到给定peripheral端的通知就显示一个提
-     */
-//    NSDictionary *connectOptions = @{CBConnectPeripheralOptionNotifyOnConnectionKey:@YES,
-//                                     CBConnectPeripheralOptionNotifyOnDisconnectionKey:@YES,
-//                                     CBConnectPeripheralOptionNotifyOnNotificationKey:@YES};
     
 //    NSArray *services = @[[CBUUID UUIDWithString:@"FFA0"], [CBUUID UUIDWithString:@"180F"]];
 //    NSArray *characters = @[[CBUUID UUIDWithString:@"FFA1"], [CBUUID UUIDWithString:@"FFA3"], [CBUUID UUIDWithString:@"FFA6"], [CBUUID UUIDWithString:@"2A19"]];
@@ -224,14 +285,12 @@ typedef enum : NSUInteger {
     
     //设置设备连接成功的委托,同一个baby对象，使用不同的channel切换委托回调
     [baby setBlockOnConnectedAtChannel:channel block:^(CBCentralManager *central, CBPeripheral *peripheral) {
-//        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--连接成功",peripheral.name]];
         [rhythm beats];
     }];
     
     //设置设备连接失败的委托
     [baby setBlockOnFailToConnectAtChannel:channel block:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
         LOG_D(@"设备：%@--连接失败",peripheral.name);
-//        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--连接失败",peripheral.name]];
         [weakSelf reportInitDeviceResult:nil error:error];
     }];
     
@@ -239,7 +298,6 @@ typedef enum : NSUInteger {
     [baby setBlockOnDisconnectAtChannel:channel block:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
         LOG_D(@"设备：%@--断开连接",peripheral.name);
        [weakSelf reportInitDeviceResult:nil error:error];
-//        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--断开失败",peripheral.name]];
     }];
     
     //设置发现设备的Services的委托
@@ -354,7 +412,7 @@ typedef enum : NSUInteger {
     [baby setBlockOnCentralManagerDidUpdateStateAtChannel:channel block:^(CBCentralManager *central) {
         LOG_D(@"scan state %ld", (long)central.state);
         if (central.state == CBCentralManagerStatePoweredOn) {
-            //            [SVProgressHUD showInfoWithStatus:@"设备打开成功，开始扫描设备"];
+
         }
     }];
     
@@ -413,7 +471,6 @@ typedef enum : NSUInteger {
     
     //设置设备连接成功的委托,同一个baby对象，使用不同的channel切换委托回调
     [baby setBlockOnConnectedAtChannel:channel block:^(CBCentralManager *central, CBPeripheral *peripheral) {
-        //        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--连接成功",peripheral.name]];
         [NSObject cancelPreviousPerformRequestsWithTarget:weakSelf selector:@selector(syncDeviceTimeout) object:nil];
         [rhythm beats];
     }];
@@ -421,7 +478,6 @@ typedef enum : NSUInteger {
     //设置设备连接失败的委托
     [baby setBlockOnFailToConnectAtChannel:channel block:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
         LOG_D(@"设备：%@--连接失败",peripheral.name);
-        //        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--连接失败",peripheral.name]];
         [weakSelf reportSyncDeviceResult:error];
     }];
     
@@ -429,7 +485,6 @@ typedef enum : NSUInteger {
     [baby setBlockOnDisconnectAtChannel:channel block:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
         LOG_D(@"设备：%@--断开连接",peripheral.name);
         [weakSelf reportSyncDeviceResult:error];
-        //        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"设备：%@--断开失败",peripheral.name]];
     }];
     
     //设置发现设备的Services的委托
@@ -723,7 +778,7 @@ typedef enum : NSUInteger {
     self.blockOnScanDevice = nil;
     self.blockOnQueryBattery = nil;
     self.blockOnSyncDevice = nil;
-    
+    [self invalidTimers];
     [baby cancelScan];
     [baby cancelAllPeripheralsConnection];
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
@@ -735,9 +790,10 @@ typedef enum : NSUInteger {
     self.deviceConnecting = NO;
     self.macAddressList = [NSMutableSet setWithArray:macAddressList];
     self.batteryModels = [NSMutableDictionary dictionary];
+    self.reTryArray = [NSMutableDictionary dictionary];
     self.findedModels = [NSMutableArray array];
     self.blockOnQueryBattery = completion;
-    [self performSelector:@selector(queryBatteryTimeout) withObject:nil afterDelay:40];
+    [self performSelector:@selector(queryBatteryTimeout) withObject:nil afterDelay:30];
     baby.channel(READ_BATTERY_CHANEL).scanForPeripherals().then.connectToPeripherals().discoverServices().discoverCharacteristics().begin();
 }
 
@@ -778,11 +834,13 @@ typedef enum : NSUInteger {
         self.macAddressList = nil;
         self.batteryModels = nil;
         self.findedModels = nil;
+        [self invalidTimers];
 //        self.deviceConnecting = NO;
     }
     [baby cancelScan];
     [baby cancelAllPeripheralsConnection];
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(queryBatteryTimeout) object:nil];
+//    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(queryBatteryTimeout) object:nil];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
 }
 
 - (void)queryBatteryTimeout {
@@ -816,13 +874,13 @@ typedef enum : NSUInteger {
     [self queryBattery:@[macAddress] completion:^(NSArray *batteryDevices, NSError *error) {
         BatteryModel *m = [batteryDevices firstObject];
         if (m == nil) {
-            if (self.deviceConnecting && !self.isRetry) {
-                //再进行一次超时连接
-                LOG_D(@"首次连接设备超时，再进行一次");
-                self.isRetry = YES;
-                [self searchDevice2:macAddress completion:completion];
-                return;
-            }
+//            if (self.deviceConnecting && !self.isRetry) {
+//                //再进行一次超时连接
+//                LOG_D(@"首次连接设备超时，再进行一次");
+//                self.isRetry = YES;
+//                [self searchDevice2:macAddress completion:completion];
+//                return;
+//            }
             if (!error) {
                 error = [NSError errorWithDomain:@"SwingBluetooth" code:-2 userInfo:[NSDictionary dictionaryWithObject:@"can not find device." forKey:NSLocalizedDescriptionKey]];
             }
