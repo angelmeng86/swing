@@ -64,6 +64,8 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) NSMutableDictionary *batteryModels;
 @property (nonatomic, strong) NSMutableSet *macAddressList;
 @property (nonatomic, strong) NSMutableArray *findedModels;
+@property (nonatomic) BOOL deviceConnecting;
+@property (nonatomic) BOOL isRetry;
 
 @end
 
@@ -104,6 +106,7 @@ typedef enum : NSUInteger {
         //最常用的场景是查找某一个前缀开头的设备
         if ([peripheralName hasPrefix:@"Swing"] ) {
             LOG_D(@"advertisementData:%@", advertisementData);
+            weakSelf.deviceConnecting = YES;
             return YES;
         }
         return NO;
@@ -174,20 +177,20 @@ typedef enum : NSUInteger {
     [baby setBlockOnDidWriteValueForCharacteristicAtChannel:channel block:^(CBCharacteristic *characteristic, NSError *error) {
         if (!error) {
             if ([characteristic.UUID.UUIDString isEqualToString:@"FFA1"]) {
-                LOG_D(@"read FFA6");
-                CBCharacteristic *character = [characteristic.service findCharacteristic:@"FFA6"];
-                [characteristic.service.peripheral readValueForCharacteristic:character];
-                
-//                CBCharacteristic *character = [characteristic.service findCharacteristic:@"FFA3"];
-//                NSData *time = [Fun longToByteArray:TIME_STAMP];
-//                LOG_D(@"write FFA3 %@", time);
-//                [characteristic.service.peripheral writeValue:time forCharacteristic:character type:CBCharacteristicWriteWithResponse];
-            }
-//            else if ([characteristic.UUID.UUIDString isEqualToString:@"FFA3"]) {
 //                LOG_D(@"read FFA6");
 //                CBCharacteristic *character = [characteristic.service findCharacteristic:@"FFA6"];
 //                [characteristic.service.peripheral readValueForCharacteristic:character];
-//            }
+                
+                CBCharacteristic *character = [characteristic.service findCharacteristic:@"FFA3"];
+                NSData *time = [Fun longToByteArray:TIME_STAMP];
+                LOG_D(@"write FFA3 %@", time);
+                [characteristic.service.peripheral writeValue:time forCharacteristic:character type:CBCharacteristicWriteWithResponse];
+            }
+            else if ([characteristic.UUID.UUIDString isEqualToString:@"FFA3"]) {
+                LOG_D(@"read FFA6");
+                CBCharacteristic *character = [characteristic.service findCharacteristic:@"FFA6"];
+                [characteristic.service.peripheral readValueForCharacteristic:character];
+            }
         }
     }];
     
@@ -729,11 +732,12 @@ typedef enum : NSUInteger {
 - (void)queryBattery:(NSArray*)macAddressList completion:(SwingBluetoothQueryBatteryBlock)completion {
     [self cannelAll];
 //    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(queryBatteryTimeout) object:nil];
+    self.deviceConnecting = NO;
     self.macAddressList = [NSMutableSet setWithArray:macAddressList];
     self.batteryModels = [NSMutableDictionary dictionary];
     self.findedModels = [NSMutableArray array];
     self.blockOnQueryBattery = completion;
-    [self performSelector:@selector(queryBatteryTimeout) withObject:nil afterDelay:50];
+    [self performSelector:@selector(queryBatteryTimeout) withObject:nil afterDelay:40];
     baby.channel(READ_BATTERY_CHANEL).scanForPeripherals().then.connectToPeripherals().discoverServices().discoverCharacteristics().begin();
 }
 
@@ -774,6 +778,7 @@ typedef enum : NSUInteger {
         self.macAddressList = nil;
         self.batteryModels = nil;
         self.findedModels = nil;
+//        self.deviceConnecting = NO;
     }
     [baby cancelScan];
     [baby cancelAllPeripheralsConnection];
@@ -781,7 +786,7 @@ typedef enum : NSUInteger {
 }
 
 - (void)queryBatteryTimeout {
-    NSError *err = [NSError errorWithDomain:@"SwingBluetooth" code:-1 userInfo:[NSDictionary dictionaryWithObject:@"Operation timeout." forKey:NSLocalizedDescriptionKey]];
+    NSError *err = [NSError errorWithDomain:@"SwingBluetooth" code:-1 userInfo:[NSDictionary dictionaryWithObject:@"Can not find device, operation timeout." forKey:NSLocalizedDescriptionKey]];
     [self reportQueryBatteryResult:nil battery:-1 mac:nil error:err];
 }
 
@@ -803,17 +808,32 @@ typedef enum : NSUInteger {
 }
 
 - (void)searchDevice:(NSData*)macAddress completion:(SwingBluetoothSearchDeviceBlock)completion {
+    self.isRetry = NO;
+    [self searchDevice2:macAddress completion:completion];
+}
+
+- (void)searchDevice2:(NSData*)macAddress completion:(SwingBluetoothSearchDeviceBlock)completion {
     [self queryBattery:@[macAddress] completion:^(NSArray *batteryDevices, NSError *error) {
         BatteryModel *m = [batteryDevices firstObject];
         if (m == nil) {
-            NSError *err = [NSError errorWithDomain:@"SwingBluetooth" code:-2 userInfo:[NSDictionary dictionaryWithObject:@"can not find device." forKey:NSLocalizedDescriptionKey]];
-            completion(nil, err);
+            if (self.deviceConnecting && !self.isRetry) {
+                //再进行一次超时连接
+                LOG_D(@"首次连接设备超时，再进行一次");
+                self.isRetry = YES;
+                [self searchDevice2:macAddress completion:completion];
+                return;
+            }
+            if (!error) {
+                error = [NSError errorWithDomain:@"SwingBluetooth" code:-2 userInfo:[NSDictionary dictionaryWithObject:@"can not find device." forKey:NSLocalizedDescriptionKey]];
+            }
+            completion(nil, error);
         }
         else {
             completion(m.peripheral, nil);
         }
     }];
 }
+
 
 - (void)syncDevice:(CBPeripheral*)peripheral event:(NSArray*)events completion:(SwingBluetoothSyncDeviceBlock)completion {
     [self cannelAll];
