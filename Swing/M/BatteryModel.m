@@ -18,7 +18,7 @@
 }
 
 - (BOOL)ready {
-    return (_macAddress && _peripheral && _batteryValue >= 0);
+    return (_macAddress && _peripheral /*&& _batteryValue >= 0*/);
 }
 
 - (NSString*)description {

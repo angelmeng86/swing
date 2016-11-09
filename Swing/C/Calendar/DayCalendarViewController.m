@@ -237,6 +237,13 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *start = [cal components:NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:model.startDate];
+    
+    NSInteger hour = [start hour] - 6;
+    if (hour < 0) {
+        LOG_D(@"hour < 0");
+        return nil;
+    }
+    
     TimeLineView *startLine = [self.hourLines objectAtIndex:[start hour] - 6];
     float startH = [start minute] * 40 / 60;
     
@@ -276,15 +283,19 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     for (int i = 0; i < array.count; i++) {
         EventModel *model = array[i];
         EventLabel *label = [self createEvent:model];
-        [label autoSetDimension:ALDimensionWidth toSize:width];
-        label.positionLayoutConstaint = [label autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:40 + i * width];
+        if (label) {
+            [label autoSetDimension:ALDimensionWidth toSize:width];
+            label.positionLayoutConstaint = [label autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:40 + i * width];
+        }
     }
 }
 
 - (void)addEvent:(EventModel*)model {
     EventLabel *label = [self createEvent:model];
-    label.positionLayoutConstaint = [label autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:40];
-    [label autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:label.superview withOffset:-40];
+    if (label) {
+        label.positionLayoutConstaint = [label autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:40];
+        [label autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:label.superview withOffset:-40];
+    }
 }
 
 - (void)tapAction:(UITapGestureRecognizer*)recognizer {

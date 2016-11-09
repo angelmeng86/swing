@@ -189,7 +189,7 @@
     ChoicesViewController *ctl = [[ChoicesViewController alloc] initWithStyle:UITableViewStylePlain];
     ctl.delegate = self;
     ctl.navigationItem.title = self.repeatTF.placeholder;
-    ctl.textArray = @[@"Never", @"Every Day", @"Every Week"];
+    ctl.textArray = @[@"Never", @"Every Day", @"Every Week", @"Every Month"];
     [self.navigationController pushViewController:ctl animated:YES];
 }
 

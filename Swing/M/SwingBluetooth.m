@@ -93,7 +93,7 @@ typedef enum : NSUInteger {
     
     //设置扫描到设备的委托
     [baby setBlockOnDiscoverToPeripheralsAtChannel:channel block:^(CBCentralManager *central, CBPeripheral *peripheral, NSDictionary *advertisementData, NSNumber *RSSI) {
-        LOG_D(@"搜索到了设备:%@",peripheral.name);
+        LOG_D(@"搜索到了设备:%@ advertisementData:%@",peripheral.name, advertisementData);
         //        LOG_D(@"peripheral:%@",peripheral);
     }];
     
@@ -144,8 +144,8 @@ typedef enum : NSUInteger {
         LOG_D(@"===service name:%@ ,%@,%@",service.UUID, service.UUID.UUIDString, service.UUID.data);
         if (!error) {
             if ([service.UUID.UUIDString isEqualToString:@"180F"]) {
-                CBCharacteristic *character = [service findCharacteristic:@"2A19"];
-                [peripheral readValueForCharacteristic:character];
+//                CBCharacteristic *character = [service findCharacteristic:@"2A19"];
+//                [peripheral readValueForCharacteristic:character];
             }
             else if ([service.UUID.UUIDString isEqualToString:@"FFA0"]) {
                 LOG_D(@"write FFA1");
@@ -203,8 +203,12 @@ typedef enum : NSUInteger {
 //                                     CBConnectPeripheralOptionNotifyOnDisconnectionKey:@YES,
 //                                     CBConnectPeripheralOptionNotifyOnNotificationKey:@YES};
     
-    NSArray *services = @[[CBUUID UUIDWithString:@"FFA0"], [CBUUID UUIDWithString:@"180F"]];
-    NSArray *characters = @[[CBUUID UUIDWithString:@"FFA1"], [CBUUID UUIDWithString:@"FFA3"], [CBUUID UUIDWithString:@"FFA6"], [CBUUID UUIDWithString:@"2A19"]];
+//    NSArray *services = @[[CBUUID UUIDWithString:@"FFA0"], [CBUUID UUIDWithString:@"180F"]];
+//    NSArray *characters = @[[CBUUID UUIDWithString:@"FFA1"], [CBUUID UUIDWithString:@"FFA3"], [CBUUID UUIDWithString:@"FFA6"], [CBUUID UUIDWithString:@"2A19"]];
+    
+    NSArray *services = @[[CBUUID UUIDWithString:@"FFA0"]];
+    NSArray *characters = @[[CBUUID UUIDWithString:@"FFA1"], [CBUUID UUIDWithString:@"FFA3"], [CBUUID UUIDWithString:@"FFA6"]];
+    
     [baby setBabyOptionsAtChannel:channel scanForPeripheralsWithOptions:nil connectPeripheralWithOptions:nil scanForPeripheralsWithServices:nil discoverWithServices:services discoverWithCharacteristics:characters];
 }
 
