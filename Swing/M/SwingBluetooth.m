@@ -861,14 +861,28 @@ typedef enum : NSUInteger {
 
 - (void)initDevice:(CBPeripheral*)peripheral completion:(SwingBluetoothInitDeviceBlock)completion {
     [self cannelAll];
+    LOG_BEG(@"initDevice peripheral:%@", peripheral);
     self.blockOnInitDevice = completion;
     baby.having(peripheral).and.channel(INIT_DEVIE_CHANEL).then.connectToPeripherals().discoverServices().discoverCharacteristics().begin();
+    [self performSelector:@selector(initDeviceTimeout) withObject:nil afterDelay:30];
+}
+
+- (void)initDeviceTimeout {
+    NSError *err = [NSError errorWithDomain:@"SwingBluetooth" code:-1 userInfo:[NSDictionary dictionaryWithObject:@"connectPeripheral timeout." forKey:NSLocalizedDescriptionKey]];
+    [self reportInitDeviceResult:nil error:err];
 }
 
 - (void)reportInitDeviceResult:(NSData*)data error:(NSError*)error {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(initDeviceTimeout) object:nil];
     if (self.blockOnInitDevice) {
         self.blockOnInitDevice(data, error);
         self.blockOnInitDevice = nil;
+        if (error) {
+            LOG_END(@"initDevice error:%@", error);
+        }
+        else {
+            ENTER(@"initDevice end");
+        }
     }
 //    if (error) {
         [baby cancelScan];
