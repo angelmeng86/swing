@@ -795,6 +795,9 @@
 					ADFC2C271D369949004EDCDF = {
 						CreatedOnToolsVersion = 7.0.1;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};

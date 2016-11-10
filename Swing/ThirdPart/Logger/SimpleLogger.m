@@ -87,7 +87,7 @@
      inLine:(int)lineNr
 {
 #ifdef UPLOAD_DEBUG
-    [self.logCache appendFormat:@"{%@:%d}[%@]%@\n", fileName, lineNr,
+    [self.logCache appendFormat:@"[%@]{%@:%d}[%@]%@\n", [NSDate date], fileName, lineNr,
      [SimpleLogger levelName:level], msg];
     [self checkLogSize:NO];
 #endif
