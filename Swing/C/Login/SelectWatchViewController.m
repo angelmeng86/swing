@@ -39,7 +39,7 @@
 }
 
 - (void)backAction {
-    int count = self.navigationController.viewControllers.count;
+    NSUInteger count = self.navigationController.viewControllers.count;
     if(count > 2) {
         [self.navigationController popToViewController:self.navigationController.viewControllers[count - 3] animated:YES];
     }

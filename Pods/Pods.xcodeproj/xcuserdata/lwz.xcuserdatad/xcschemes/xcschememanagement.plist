@@ -9,6 +9,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>AVOSCloud.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>AVOSCloudCrashReporting.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>CHCircleGaugeView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -39,7 +49,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods.xcscheme</key>
+		<key>Pods-Swing.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -67,62 +77,72 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0FE871B9561330BB6D280DC377560DAE</key>
+		<key>0659B71386995AC7EE2A305F0A360EB1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1978A6C5C42B4B5F7E341DAE5D344D70</key>
+		<key>0BE4A16FFDEF8D8F814E3AE6A2577F6C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1BAA5F05ACF74D72B63C8F04882F38CC</key>
+		<key>28AFBC0E511B8F40FE4F8AB64E3F6F22</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2BCBFE454BC26D07A84C8952D8FF52DF</key>
+		<key>4E92652DE423014495CA55C12C85A3DB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3FC1A75782DC8DCB250B79BA33545FEB</key>
+		<key>51AAC4D475A5F76596D8D773B5C4E8EA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7CF857C3F7EEFDF0F7822A2733D7FAFD</key>
+		<key>53E7E9D15B3EFBCB998E237DE5EA8695</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>831BC36132C03CA0AD45658C2264C8C3</key>
+		<key>5E7D1EAD81D96BE7773D3D5AC71C3094</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9AED2385CDFE40563D007D989E3F0170</key>
+		<key>71CAC8D6C1DA45B205635F3B60D20433</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D5EFB26E66481889FEE35FB8C53835DB</key>
+		<key>82CA472C54474A3DCD2B0B62A702AB79</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D670846A1DFE75CA94601FD0AD703CE0</key>
+		<key>84529BADE553EF5F876A9D589BEA5B9D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EC511E28905FE2C20E23DA0E564D2673</key>
+		<key>9E033EDB5EC0819481B0546434FA577B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EF13DBC293DB6B2C6760711CB28CD40C</key>
+		<key>B8E62FCC75997B7661EDBECDD387712E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D9F38DFF06F0F847B80F35B1320D6109</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EA52757BBF1B96FFFFB86DE5210E22A6</key>
 		<dict>
 			<key>primary</key>
 			<true/>

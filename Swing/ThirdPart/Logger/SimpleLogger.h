@@ -12,6 +12,8 @@
 
 //#define MAPPLE_DEBUG
 
+#define UPLOAD_DEBUG
+
 #ifndef __SELF_DEFING_CLOSELOGGER__
 
 #define LOG(level, format, ...) [[SimpleLogger getLogger] log:[NSString stringWithFormat:(format), ##__VA_ARGS__] \
@@ -37,15 +39,26 @@
                                                     inFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] \
                                                     inLine:__LINE__]
 
+#define LOG_BEG(format, ...) [[SimpleLogger getLogger] begin:[NSString stringWithFormat:(format), ##__VA_ARGS__] \
+inFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] \
+inLine:__LINE__]
+
+#define LOG_END(format, ...) [[SimpleLogger getLogger] end:[NSString stringWithFormat:(format), ##__VA_ARGS__] \
+inFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] \
+inLine:__LINE__]
+
 #else
 
-#define LOG(level, format, ...) 
-#define ENTER(format, ...) 
+#define LOG(level, format, ...)
+#define ENTER(format, ...)
 #define RETURN(format, ...)
-#define LOG_I(format, ...) 
+#define LOG_I(format, ...)
 #define LOG_D(format, ...) 
 #define LOG_W(format, ...) 
 #define LOG_E(format, ...)
+
+#define LOG_BEG(format, ...)
+#define LOG_END(format, ...)
 
 #endif
 
@@ -54,6 +67,8 @@ typedef enum {
 	SLL_DETAIL  = 20,
 	SLL_ENTER   = 30,
 	SLL_RETURN  = 31,
+    SLL_BEGIN   = 32,
+    SLL_END     = 33,
 	SLL_INFO    = 40,
 	SLL_DEBUG   = 50,
 	SLL_WARNING = 60,
@@ -74,6 +89,7 @@ typedef enum {
 }
 
 @property (nonatomic, assign) SimpleLoggerLevelSetting logLevelSetting;
+@property (nonatomic, strong) NSMutableString* logCache;
 
 - (id)initWithLogLevel:(SimpleLoggerLevelSetting)levelSetting;
 - (void)log:(NSString *)msg 
@@ -81,6 +97,12 @@ typedef enum {
 	 inFile:(NSString *)fileName 
      inLine:(int)lineNr;
 
+- (void)begin:(NSString *)msg
+       inFile:(NSString *)fileName
+       inLine:(int)lineNr;
+- (void)end:(NSString *)msg
+       inFile:(NSString *)fileName
+       inLine:(int)lineNr;
 - (void)enter:(NSString *)msg 
 	   inFile:(NSString *)fileName 
 	   inLine:(int)lineNr;

@@ -10,6 +10,8 @@
 #import "KeyboardManager.h"
 #import "AppDelegate.h"
 
+#import <AVOSCloud/AVOSCloud.h>
+
 @implementation GlobalCache
 
 + (GlobalCache*)shareInstance
@@ -32,6 +34,11 @@
 }
 
 - (void)initConfig {
+    [AVOSCloud setAllLogsEnabled:NO];
+    [AVOSCloud setVerbosePolicy:kAVVerboseNone];
+    [AVOSCloud setApplicationId:@"zBJwrWLoydY2zVeSkxENhDL4-gzGzoHsz" clientKey:@"JPosFv55xiaCsCp6wNmfuejs"];
+    
+    
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     [self setKeyboradManager];
     

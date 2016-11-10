@@ -162,7 +162,16 @@ typedef enum : NSUInteger {
         //        LOG_D(@"advertisementData:%@", advertisementData);
         //最常用的场景是查找某一个前缀开头的设备
         if ([peripheralName hasPrefix:@"Swing"] ) {
-            LOG_D(@"advertisementData:%@", advertisementData);
+            LOG_D(@"scan filter peripheralName %@", peripheralName);
+            return YES;
+        }
+        return NO;
+    }];
+    
+    //设置连接的过滤规则
+    [baby setFilterOnConnectToPeripheralsAtChannel:channel filter:^BOOL(NSString *peripheralName, NSDictionary *advertisementData, NSNumber *RSSI) {
+        if ([peripheralName hasPrefix:@"Swing"] ) {
+            LOG_D(@"connect filter peripheralName %@", peripheralName);
             weakSelf.deviceConnecting = YES;
             return YES;
         }
@@ -871,6 +880,7 @@ typedef enum : NSUInteger {
 }
 
 - (void)searchDevice2:(NSData*)macAddress completion:(SwingBluetoothSearchDeviceBlock)completion {
+    LOG_BEG(@"searchDevice2 macAddress:%@", macAddress);
     [self queryBattery:@[macAddress] completion:^(NSArray *batteryDevices, NSError *error) {
         BatteryModel *m = [batteryDevices firstObject];
         if (m == nil) {
@@ -885,9 +895,11 @@ typedef enum : NSUInteger {
                 error = [NSError errorWithDomain:@"SwingBluetooth" code:-2 userInfo:[NSDictionary dictionaryWithObject:@"can not find device." forKey:NSLocalizedDescriptionKey]];
             }
             completion(nil, error);
+            LOG_END(@"searchDevice2 error:%@", error);
         }
         else {
             completion(m.peripheral, nil);
+            ENTER(@"searchDevice2 peripheral:%@", m.peripheral);
         }
     }];
 }

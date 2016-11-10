@@ -1,4 +1,6 @@
 #import "SimpleLogger.h"
+#import "GlobalCache.h"
+#import <AVOSCloud/AVOSCloud.h>
 
 @implementation SimpleLogger
 
@@ -22,6 +24,8 @@
 		case SLL_DETAIL:  return @"DETAIL";break;
 		case SLL_ENTER:   return @"ENTER";break;
 		case SLL_RETURN:  return @"RETURN";break;
+        case SLL_BEGIN:   return @"BEGIN";break;
+        case SLL_END:     return @"END";break;
 		case SLL_INFO:    return @"INFO";break;
 		case SLL_DEBUG:   return @"DEBUG";break;
 		case SLL_WARNING: return @"WARN";break;
@@ -55,11 +59,38 @@
 #pragma mark -
 #pragma mark Method
 
+- (void)checkLogSize:(BOOL)upload
+{
+    if (!upload && self.logCache.length < 16 * 1024) {
+        //日志如果需要上传或者长度超过16KB则进行上传，并停止记录
+        return;
+    }
+#ifdef UPLOAD_DEBUG
+    AVObject *logObject = [AVObject objectWithClassName:@"SwingLog"];
+    if ([GlobalCache shareInstance].user.email) {
+        [logObject setObject:[GlobalCache shareInstance].user.email forKey:@"userName"];
+    }
+    [logObject setObject:self.logCache forKey:@"log"];
+    [logObject saveEventually];
+#endif
+//    if (upload) {
+        self.logCache = nil;
+//    }
+//    else {
+//        self.logCache = [NSMutableString stringWithCapacity:1024];
+//    }
+}
+
 - (void)log:(NSString *)msg 
   withLevel:(SimpleLoggerLevel)level
 	 inFile:(NSString *)fileName 
      inLine:(int)lineNr
 {
+#ifdef UPLOAD_DEBUG
+    [self.logCache appendFormat:@"{%@:%d}[%@]%@\n", fileName, lineNr,
+     [SimpleLogger levelName:level], msg];
+    [self checkLogSize:NO];
+#endif
 	if (level > logLevelSetting)
 	{
 		NSLog(@"{%@:%d}[%@]%@", fileName, lineNr,
@@ -67,18 +98,35 @@
 	}
 }
 
-- (void)enter:(NSString *)msg 
-	   inFile:(NSString *)fileName 
-	   inLine:(int)lineNr
+- (void)enter:(NSString *)msg
+       inFile:(NSString *)fileName
+       inLine:(int)lineNr
 {
-	[self log:msg withLevel:SLL_ENTER inFile:fileName inLine:lineNr];
+    self.logCache = nil;
+    [self log:msg withLevel:SLL_ENTER inFile:fileName inLine:lineNr];
 }
 
-- (void)retrn:(NSString *)msg 
+- (void)retrn:(NSString *)msg
+       inFile:(NSString *)fileName
+       inLine:(int)lineNr
+{
+    [self log:msg withLevel:SLL_RETURN inFile:fileName inLine:lineNr];
+}
+
+- (void)begin:(NSString *)msg
 	   inFile:(NSString *)fileName 
 	   inLine:(int)lineNr
 {
-	[self log:msg withLevel:SLL_RETURN inFile:fileName inLine:lineNr];
+    self.logCache = [NSMutableString stringWithCapacity:1024];
+	[self log:msg withLevel:SLL_BEGIN inFile:fileName inLine:lineNr];
+}
+
+- (void)end:(NSString *)msg
+	   inFile:(NSString *)fileName 
+	   inLine:(int)lineNr
+{
+	[self log:msg withLevel:SLL_END inFile:fileName inLine:lineNr];
+    [self checkLogSize:YES];
 }
 
 - (void)info:(NSString *)msg 

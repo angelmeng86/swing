@@ -2,12 +2,10 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "tab_chart.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "tab_chart@2x.png",
       "scale" : "2x"
     },
     {
