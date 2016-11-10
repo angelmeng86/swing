@@ -289,8 +289,20 @@ typedef enum : NSUInteger {
     __weak typeof(self)weakSelf = self;
     NSString *channel = INIT_DEVIE_CHANEL;
     
-    BabyRhythm *rhythm = [[BabyRhythm alloc]init];
+    BabyRhythm *rhythm = [[BabyRhythm alloc] init];
     rhythm.beatsInterval = 5;
+    
+    //设置beats break委托
+    [rhythm setBlockOnBeatsBreak:^(BabyRhythm *bry) {
+        LOG_D(@"setBlockOnBeatsBreak call");
+        NSError *err = [NSError errorWithDomain:@"SwingBluetooth" code:-1 userInfo:[NSDictionary dictionaryWithObject:@"Operation timeout." forKey:NSLocalizedDescriptionKey]];
+        [weakSelf reportInitDeviceResult:nil error:err];
+    }];
+    
+    //设置beats over委托
+    [rhythm setBlockOnBeatsOver:^(BabyRhythm *bry) {
+        LOG_D(@"setBlockOnBeatsOver call");
+    }];
     
     //设置设备连接成功的委托,同一个baby对象，使用不同的channel切换委托回调
     [baby setBlockOnConnectedAtChannel:channel block:^(CBCentralManager *central, CBPeripheral *peripheral) {
@@ -382,17 +394,7 @@ typedef enum : NSUInteger {
         }
     }];
     
-    //设置beats break委托
-    [rhythm setBlockOnBeatsBreak:^(BabyRhythm *bry) {
-        LOG_D(@"setBlockOnBeatsBreak call");
-        NSError *err = [NSError errorWithDomain:@"SwingBluetooth" code:-1 userInfo:[NSDictionary dictionaryWithObject:@"Operation timeout." forKey:NSLocalizedDescriptionKey]];
-        [weakSelf reportInitDeviceResult:nil error:err];
-    }];
     
-    //设置beats over委托
-    [rhythm setBlockOnBeatsOver:^(BabyRhythm *bry) {
-        LOG_D(@"setBlockOnBeatsOver call");
-    }];
     
     //扫描选项->CBCentralManagerScanOptionAllowDuplicatesKey:忽略同一个Peripheral端的多个发现事件被聚合成一个发现事件
 //    NSDictionary *scanForPeripheralsWithOptions = @{CBCentralManagerScanOptionAllowDuplicatesKey:@YES};
@@ -437,9 +439,9 @@ typedef enum : NSUInteger {
     [baby setFilterOnDiscoverPeripheralsAtChannel:channel filter:^BOOL(NSString *peripheralName, NSDictionary *advertisementData, NSNumber *RSSI) {
 //        LOG_D(@"advertisementData:%@", advertisementData);
         //最常用的场景是查找某一个前缀开头的设备
-//        if ([peripheralName hasPrefix:@"Swing-D-X"] ) {
-//            return YES;
-//        }
+        if ([peripheralName hasPrefix:@"Swing"] ) {
+            return YES;
+        }
         return YES;
     }];
     
@@ -848,8 +850,8 @@ typedef enum : NSUInteger {
     }
     [baby cancelScan];
     [baby cancelAllPeripheralsConnection];
-//    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(queryBatteryTimeout) object:nil];
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(queryBatteryTimeout) object:nil];
+//    [NSObject cancelPreviousPerformRequestsWithTarget:self];
 }
 
 - (void)queryBatteryTimeout {

@@ -56,7 +56,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[GlobalCache shareInstance] queryWeather];
+//    [[GlobalCache shareInstance] queryWeather];
     
     self.delegate = self;
     self.selectedIndex = 2;
@@ -75,7 +75,6 @@
 }
 
 - (void)handleRemoteInfo:(NSNotification*)noti {
-    NSLog(@"lwz oye");
     self.selectedIndex = 1;
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(showSyncDialog) object:nil];
     if (self.syncDialog) {
