@@ -91,47 +91,60 @@
     else if (textField == self.lastNameTF) {
         
         if ([self validateTextField]) {
-            [SVProgressHUD showWithStatus:@"Add kid info, please wait..."];
-            
-            NSMutableDictionary *data = [NSMutableDictionary dictionaryWithDictionary:@{@"firstName":self.firstNameTF.text, @"lastName":self.lastNameTF.text}];
-            if (self.macAddress) {
-                NSString *mac = [Fun dataToHex:self.macAddress];
-                [data setObject:mac forKey:@"note"];
-            }
-            
-            [[SwingClient sharedClient] kidsAdd:data completion:^(id kid, NSError *error) {
-                if (error) {
-                    LOG_D(@"kidsAdd fail: %@", error);
-                    [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-                }
-                else {
-                    KidModel *model = kid;
-                    if ([GlobalCache shareInstance].kidsList) {
-                        [[GlobalCache shareInstance].kidsList arrayByAddingObject:model];
+            //查询后台数据是否已存在绑定的Mac
+            [SVProgressHUD showWithStatus:@"Check kid info, please wait..."];
+            [[SwingClient sharedClient] userRetrieveProfileWithCompletion:^(id user, NSArray *kids, NSError *error) {
+                if (!error) {
+                    if ([GlobalCache shareInstance].local.deviceMAC) {
+                        [SVProgressHUD showErrorWithStatus:@"You had been bind a watch!"];
+                        return;
                     }
-                    else {
-                        [GlobalCache shareInstance].kidsList = @[model];
+                    [SVProgressHUD showWithStatus:@"Add kid info, please wait..."];
+                    
+                    NSMutableDictionary *data = [NSMutableDictionary dictionaryWithDictionary:@{@"firstName":self.firstNameTF.text, @"lastName":self.lastNameTF.text}];
+                    if (self.macAddress) {
+                        NSString *mac = [Fun dataToHex:self.macAddress];
+                        [data setObject:mac forKey:@"note"];
                     }
-                    if (image && model) {
-                        [SVProgressHUD showWithStatus:@"UploadImage, please wait..."];
-                        [[SwingClient sharedClient] kidsUploadKidsProfileImage:image kidId:[NSString stringWithFormat:@"%d", model.objId] completion:^(NSString *profileImage, NSError *error) {
-                            if (error) {
-                                LOG_D(@"uploadProfileImage fail: %@", error);
+                    
+                    [[SwingClient sharedClient] kidsAdd:data completion:^(id kid, NSError *error) {
+                        if (error) {
+                            LOG_D(@"kidsAdd fail: %@", error);
+                            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                        }
+                        else {
+                            KidModel *model = kid;
+                            if ([GlobalCache shareInstance].kidsList) {
+                                [GlobalCache shareInstance].kidsList = [[GlobalCache shareInstance].kidsList arrayByAddingObject:model];
                             }
                             else {
-                                model.profile = profileImage;
+                                [GlobalCache shareInstance].kidsList = @[model];
                             }
-                            [SVProgressHUD dismiss];
-                            [self goNext];
-                        }];
-                    }
-                    else {
-                        [SVProgressHUD dismiss];
-                        [self goNext];
-                    }
+                            if (image && model) {
+                                [SVProgressHUD showWithStatus:@"UploadImage, please wait..."];
+                                [[SwingClient sharedClient] kidsUploadKidsProfileImage:image kidId:[NSString stringWithFormat:@"%d", model.objId] completion:^(NSString *profileImage, NSError *error) {
+                                    if (error) {
+                                        LOG_D(@"uploadProfileImage fail: %@", error);
+                                    }
+                                    else {
+                                        model.profile = profileImage;
+                                    }
+                                    [SVProgressHUD dismiss];
+                                    [self goNext];
+                                }];
+                            }
+                            else {
+                                [SVProgressHUD dismiss];
+                                [self goNext];
+                            }
+                        }
+                    }];
+                }
+                else {
+                    LOG_D(@"retrieveProfile fail: %@", error);
+                    [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
                 }
             }];
-            
             
         }
         
