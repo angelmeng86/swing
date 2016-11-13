@@ -161,7 +161,7 @@ typedef enum : NSUInteger {
     [baby setFilterOnDiscoverPeripheralsAtChannel:channel filter:^BOOL(NSString *peripheralName, NSDictionary *advertisementData, NSNumber *RSSI) {
         //        LOG_D(@"advertisementData:%@", advertisementData);
         //最常用的场景是查找某一个前缀开头的设备
-        if ([peripheralName hasPrefix:@"Swing"] ) {
+        if ([peripheralName.uppercaseString hasPrefix:@"SWING"] ) {
             LOG_D(@"scan filter peripheralName %@", peripheralName);
             return YES;
         }
@@ -170,7 +170,7 @@ typedef enum : NSUInteger {
     
     //设置连接的过滤规则
     [baby setFilterOnConnectToPeripheralsAtChannel:channel filter:^BOOL(NSString *peripheralName, NSDictionary *advertisementData, NSNumber *RSSI) {
-        if ([peripheralName hasPrefix:@"Swing"] ) {
+        if ([peripheralName.uppercaseString hasPrefix:@"SWING"] ) {
             LOG_D(@"connect filter peripheralName %@", peripheralName);
             weakSelf.deviceConnecting = YES;
             return YES;
@@ -193,12 +193,12 @@ typedef enum : NSUInteger {
     
     //设置设备连接失败的委托
     [baby setBlockOnFailToConnectAtChannel:channel block:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
-        LOG_D(@"设备：%@--连接失败, err:%@",peripheral.name, error);
+        LOG_D(@"设备：%@--连接失败, err:%@",peripheral, error);
     }];
     
     //设置设备断开连接的委托
     [baby setBlockOnDisconnectAtChannel:channel block:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
-        LOG_D(@"设备：%@--断开连接, err:%@",peripheral.name, error);
+        LOG_D(@"设备：%@--断开连接, err:%@",peripheral, error);
         NSTimer *timer = [weakSelf.reTryArray objectForKey:peripheral];
         [timer invalidate];
         [weakSelf.reTryArray removeObjectForKey:peripheral];
@@ -311,13 +311,13 @@ typedef enum : NSUInteger {
     
     //设置设备连接失败的委托
     [baby setBlockOnFailToConnectAtChannel:channel block:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
-        LOG_D(@"设备：%@--连接失败",peripheral.name);
+        LOG_D(@"设备：%@--连接失败",peripheral);
         [weakSelf reportInitDeviceResult:nil error:error];
     }];
     
     //设置设备断开连接的委托
     [baby setBlockOnDisconnectAtChannel:channel block:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
-        LOG_D(@"设备：%@--断开连接",peripheral.name);
+        LOG_D(@"设备：%@--断开连接",peripheral);
        [weakSelf reportInitDeviceResult:nil error:error];
     }];
     
@@ -439,7 +439,7 @@ typedef enum : NSUInteger {
     [baby setFilterOnDiscoverPeripheralsAtChannel:channel filter:^BOOL(NSString *peripheralName, NSDictionary *advertisementData, NSNumber *RSSI) {
 //        LOG_D(@"advertisementData:%@", advertisementData);
         //最常用的场景是查找某一个前缀开头的设备
-        if ([peripheralName hasPrefix:@"Swing"] ) {
+        if ([peripheralName.uppercaseString hasPrefix:@"SWING"] ) {
             return YES;
         }
         return YES;
@@ -488,13 +488,13 @@ typedef enum : NSUInteger {
     
     //设置设备连接失败的委托
     [baby setBlockOnFailToConnectAtChannel:channel block:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
-        LOG_D(@"设备：%@--连接失败",peripheral.name);
+        LOG_D(@"设备：%@--连接失败",peripheral);
         [weakSelf reportSyncDeviceResult:error];
     }];
     
     //设置设备断开连接的委托
     [baby setBlockOnDisconnectAtChannel:channel block:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
-        LOG_D(@"设备：%@--断开连接",peripheral.name);
+        LOG_D(@"设备：%@--断开连接",peripheral);
         [weakSelf reportSyncDeviceResult:error];
     }];
     
