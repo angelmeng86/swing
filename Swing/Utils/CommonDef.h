@@ -34,6 +34,11 @@
 
 #define REMOTE_NOTIFICATION     @"REMOTE_NOTIFICATION"
 
+#define SWING_WATCH_BATTERY_NOTIFY  @"SWING_WATCH_BATTERY_NOTIFY"
+
+#define  TIME_ADJUST        [NSTimeZone localTimeZone].secondsFromGMT
+#define  TIME_STAMP         [[NSDate date] timeIntervalSince1970] + TIME_ADJUST
+
 //------------------------------------------------------------------
 
 #import "SwingClient.h"

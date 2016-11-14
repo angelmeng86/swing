@@ -13,6 +13,11 @@
 		0F45AB831D6316FA00EF385F /* STextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB821D6316FA00EF385F /* STextField.m */; };
 		0F45AB881D63593400EF385F /* ActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB871D63593400EF385F /* ActivityModel.m */; };
 		0F45AB8B1D63614800EF385F /* ActivityResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB8A1D63614800EF385F /* ActivityResultModel.m */; };
+		0F927FD51DDA02680011EF90 /* BLEClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F927FCC1DDA02680011EF90 /* BLEClient.m */; };
+		0F927FD61DDA02680011EF90 /* BLEInitDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F927FCE1DDA02680011EF90 /* BLEInitDevice.m */; };
+		0F927FD71DDA02680011EF90 /* BLEScanDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F927FD01DDA02680011EF90 /* BLEScanDevice.m */; };
+		0F927FD81DDA02680011EF90 /* BLESearchDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F927FD21DDA02680011EF90 /* BLESearchDevice.m */; };
+		0F927FD91DDA02680011EF90 /* BLESyncDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F927FD41DDA02680011EF90 /* BLESyncDevice.m */; };
 		0FD6B3E71D61B79300C00A45 /* ChoicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6B3E61D61B79300C00A45 /* ChoicesViewController.m */; };
 		0FD6B3FD1D6207E000C00A45 /* BabyBluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6B3EC1D6207E000C00A45 /* BabyBluetooth.m */; };
 		0FD6B3FE1D6207E000C00A45 /* BabyCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6B3EE1D6207E000C00A45 /* BabyCallback.m */; };
@@ -123,6 +128,16 @@
 		0F45AB871D63593400EF385F /* ActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityModel.m; sourceTree = "<group>"; };
 		0F45AB891D63614800EF385F /* ActivityResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityResultModel.h; sourceTree = "<group>"; };
 		0F45AB8A1D63614800EF385F /* ActivityResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityResultModel.m; sourceTree = "<group>"; };
+		0F927FCB1DDA02680011EF90 /* BLEClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEClient.h; sourceTree = "<group>"; };
+		0F927FCC1DDA02680011EF90 /* BLEClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEClient.m; sourceTree = "<group>"; };
+		0F927FCD1DDA02680011EF90 /* BLEInitDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEInitDevice.h; sourceTree = "<group>"; };
+		0F927FCE1DDA02680011EF90 /* BLEInitDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEInitDevice.m; sourceTree = "<group>"; };
+		0F927FCF1DDA02680011EF90 /* BLEScanDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEScanDevice.h; sourceTree = "<group>"; };
+		0F927FD01DDA02680011EF90 /* BLEScanDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEScanDevice.m; sourceTree = "<group>"; };
+		0F927FD11DDA02680011EF90 /* BLESearchDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLESearchDevice.h; sourceTree = "<group>"; };
+		0F927FD21DDA02680011EF90 /* BLESearchDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLESearchDevice.m; sourceTree = "<group>"; };
+		0F927FD31DDA02680011EF90 /* BLESyncDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLESyncDevice.h; sourceTree = "<group>"; };
+		0F927FD41DDA02680011EF90 /* BLESyncDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLESyncDevice.m; sourceTree = "<group>"; };
 		0FD6B3E51D61B79300C00A45 /* ChoicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoicesViewController.h; sourceTree = "<group>"; };
 		0FD6B3E61D61B79300C00A45 /* ChoicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoicesViewController.m; sourceTree = "<group>"; };
 		0FD6B3EB1D6207E000C00A45 /* BabyBluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BabyBluetooth.h; sourceTree = "<group>"; };
@@ -329,6 +344,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F927FCA1DDA02680011EF90 /* BLE */ = {
+			isa = PBXGroup;
+			children = (
+				0F927FCB1DDA02680011EF90 /* BLEClient.h */,
+				0F927FCC1DDA02680011EF90 /* BLEClient.m */,
+				0F927FCD1DDA02680011EF90 /* BLEInitDevice.h */,
+				0F927FCE1DDA02680011EF90 /* BLEInitDevice.m */,
+				0F927FCF1DDA02680011EF90 /* BLEScanDevice.h */,
+				0F927FD01DDA02680011EF90 /* BLEScanDevice.m */,
+				0F927FD11DDA02680011EF90 /* BLESearchDevice.h */,
+				0F927FD21DDA02680011EF90 /* BLESearchDevice.m */,
+				0F927FD31DDA02680011EF90 /* BLESyncDevice.h */,
+				0F927FD41DDA02680011EF90 /* BLESyncDevice.m */,
+			);
+			path = BLE;
+			sourceTree = "<group>";
+		};
 		0FD6B3EA1D6207E000C00A45 /* BabyBluetooth */ = {
 			isa = PBXGroup;
 			children = (
@@ -392,6 +424,7 @@
 		AD0B81071D37EF7400F43E72 /* M */ = {
 			isa = PBXGroup;
 			children = (
+				0F927FCA1DDA02680011EF90 /* BLE */,
 				0FEC58441D69D91700201EBD /* BatteryModel.h */,
 				0FEC58451D69D91700201EBD /* BatteryModel.m */,
 				0FEC58461D69D91800201EBD /* CBService+LMMethod.h */,
@@ -794,6 +827,7 @@
 				TargetAttributes = {
 					ADFC2C271D369949004EDCDF = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = 97SA79U875;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -896,6 +930,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F927FD51DDA02680011EF90 /* BLEClient.m in Sources */,
 				ADCED9E41D3D2BAC002E3F78 /* LoginedModel.m in Sources */,
 				0FD6B4031D6207E000C00A45 /* BabyRhythm.m in Sources */,
 				0FD6B4081D6212B500C00A45 /* PeripheralInfo.m in Sources */,
@@ -957,10 +992,12 @@
 				AD9B0D971D3BB954009FDD95 /* CalendarViewController.m in Sources */,
 				ADDCD3E81D4C4DA90031DC66 /* UVIndexViewController.m in Sources */,
 				AD347D1B1D3FDE1A00E91DDD /* DeviceTableViewCell.m in Sources */,
+				0F927FD91DDA02680011EF90 /* BLESyncDevice.m in Sources */,
 				ADCED9E71D3D3C8B002E3F78 /* RegisterViewController.m in Sources */,
 				ADEF31D61D47B04200BB6A9B /* VPImageCropperViewController.m in Sources */,
 				AD95A51B1D5243390047A0A2 /* SwingClientTest.m in Sources */,
 				ADF33CBC1D5A323000AE8874 /* TodayChartViewController.m in Sources */,
+				0F927FD81DDA02680011EF90 /* BLESearchDevice.m in Sources */,
 				ADE6ED8D1D4E355300FFA573 /* BaseCalendarViewController.m in Sources */,
 				ADF9855C1D50D27400B02075 /* ColorLabel.m in Sources */,
 				0FD6B3FD1D6207E000C00A45 /* BabyBluetooth.m in Sources */,
@@ -977,6 +1014,7 @@
 				AD7797931D4C8D0600472B27 /* ProfileDeviceCell.m in Sources */,
 				ADF985531D50C4A200B02075 /* AddEventViewController.m in Sources */,
 				AD790F531DAF9D9B002FE2F1 /* LFTextField.m in Sources */,
+				0F927FD71DDA02680011EF90 /* BLEScanDevice.m in Sources */,
 				AD978D0C1D585EF000E59D2B /* MessageViewController.m in Sources */,
 				0FD6B3E71D61B79300C00A45 /* ChoicesViewController.m in Sources */,
 				AD347D1E1D3FDEEC00E91DDD /* SelectWatchViewController.m in Sources */,
@@ -985,6 +1023,7 @@
 				AD289A5E1D3FD0E800898F92 /* AskStepViewController.m in Sources */,
 				0FD6B4041D6207E000C00A45 /* BabySpeaker.m in Sources */,
 				ADDCD3F81D4C557E0031DC66 /* UIFont+AvenirFont.m in Sources */,
+				0F927FD61DDA02680011EF90 /* BLEInitDevice.m in Sources */,
 				ADEF31D21D478E9900BB6A9B /* RoundButton.m in Sources */,
 				AD0B81191D37EF7400F43E72 /* GlobalCache.m in Sources */,
 				AD74D4E21D4FA750001F3B36 /* EventSelectTableViewCell.m in Sources */,
@@ -1087,6 +1126,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 97SA79U875;
 				INFOPLIST_FILE = Swing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1104,6 +1144,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 97SA79U875;
 				INFOPLIST_FILE = Swing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

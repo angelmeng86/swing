@@ -7,7 +7,6 @@
 //
 
 #import "BatteryViewController.h"
-#import "SwingBluetooth.h"
 
 @interface BatteryViewController ()
 

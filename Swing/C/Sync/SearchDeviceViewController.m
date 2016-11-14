@@ -7,7 +7,7 @@
 //
 
 #import "SearchDeviceViewController.h"
-#import "SwingBluetooth.h"
+#import "BLEClient.h"
 
 typedef enum : NSUInteger {
     SyncStatusNone,
@@ -24,7 +24,7 @@ typedef enum : NSUInteger {
     MDRadialProgressTheme *progressTheme;
 //    MDRadialProgressTheme *doneTheme;
     
-    SwingBluetooth *client;
+    BLEClient *client;
 }
 
 @property (nonatomic, strong) NSMutableArray *activitys;
@@ -57,7 +57,7 @@ typedef enum : NSUInteger {
     
     self.progressView.label.hidden = YES;
     self.navigationItem.hidesBackButton = YES;
-    client = [[SwingBluetooth alloc] init];
+    client = [[BLEClient alloc] init];
     [self changeStatus:SyncStatusSearching];
 }
 

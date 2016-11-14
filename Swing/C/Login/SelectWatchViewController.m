@@ -9,12 +9,12 @@
 #import "SelectWatchViewController.h"
 #import "DeviceTableViewCell.h"
 #import "CommonDef.h"
-#import "SwingBluetooth.h"
+#import "BLEClient.h"
 #import "KidBindViewController.h"
 
 @interface SelectWatchViewController ()<DeviceTableViewCellDelegate>
 {
-    SwingBluetooth *client;
+    BLEClient *client;
 }
 
 @property (strong, nonatomic) NSMutableArray *peripherals;
@@ -53,7 +53,7 @@
 #if TARGET_IPHONE_SIMULATOR
     
 #else
-    client = [[SwingBluetooth alloc] init];
+    client = [[BLEClient alloc] init];
     [client scanDeviceWithCompletion:^(CBPeripheral *peripheral, NSDictionary *advertisementData, NSError *error) {
         if (![_peripherals containsObject:peripheral]) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_peripherals.count inSection:0];
