@@ -38,9 +38,13 @@
     if ([peripheral.name.uppercaseString hasPrefix:@"SWING"]) {
         if (![self.connectingDevices containsObject:peripheral]) {
             [self.connectingDevices addObject:peripheral];
+            
+            LOG_D(@"connectPeripheral:%@", peripheral);
+            [central connectPeripheral:peripheral options:nil];
         }
-        LOG_D(@"connectPeripheral:%@", peripheral);
-        [central connectPeripheral:peripheral options:nil];
+        
+//        LOG_D(@"connectPeripheral:%@", peripheral);
+//        [central connectPeripheral:peripheral options:nil];
 //        if (peripheral.state != CBPeripheralStateConnecting &&
 //            peripheral.state != CBPeripheralStateConnected) {
 //            LOG_D(@"connectPeripheral:%@", peripheral);
@@ -151,7 +155,8 @@
 
 - (void)fire {
     [self performSelector:@selector(operationTimeout) withObject:nil afterDelay:30];
-    [self.manager scanForPeripheralsWithServices:nil options:nil];
+//    [self.manager scanForPeripheralsWithServices:nil options:nil];
+    [self.manager scanForPeripheralsWithServices:nil options:@{CBCentralManagerScanOptionAllowDuplicatesKey:@YES}];
 }
 
 - (void)operationTimeout {
