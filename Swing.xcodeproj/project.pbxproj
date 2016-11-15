@@ -54,6 +54,7 @@
 		AD347D171D3FD8DD00E91DDD /* SearchWatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD347D161D3FD8DD00E91DDD /* SearchWatchViewController.m */; };
 		AD347D1B1D3FDE1A00E91DDD /* DeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD347D1A1D3FDE1A00E91DDD /* DeviceTableViewCell.m */; };
 		AD347D1E1D3FDEEC00E91DDD /* SelectWatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD347D1D1D3FDEEC00E91DDD /* SelectWatchViewController.m */; };
+		AD65905E1DDA8B8A006DD43D /* BLEWaitDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = AD65905D1DDA8B8A006DD43D /* BLEWaitDevice.m */; };
 		AD6654541D490C110056632C /* SyncDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6654531D490C110056632C /* SyncDeviceViewController.m */; };
 		AD6654571D490EC20056632C /* SearchDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6654561D490EC20056632C /* SearchDeviceViewController.m */; };
 		AD7438231D4DD47100F5F9D2 /* JBChartTooltipTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7438201D4DD47100F5F9D2 /* JBChartTooltipTipView.m */; };
@@ -212,6 +213,8 @@
 		AD347D1A1D3FDE1A00E91DDD /* DeviceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DeviceTableViewCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AD347D1C1D3FDEEC00E91DDD /* SelectWatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectWatchViewController.h; sourceTree = "<group>"; };
 		AD347D1D1D3FDEEC00E91DDD /* SelectWatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectWatchViewController.m; sourceTree = "<group>"; };
+		AD65905C1DDA8B8A006DD43D /* BLEWaitDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEWaitDevice.h; sourceTree = "<group>"; };
+		AD65905D1DDA8B8A006DD43D /* BLEWaitDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEWaitDevice.m; sourceTree = "<group>"; };
 		AD6654521D490C110056632C /* SyncDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncDeviceViewController.h; sourceTree = "<group>"; };
 		AD6654531D490C110056632C /* SyncDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncDeviceViewController.m; sourceTree = "<group>"; };
 		AD6654551D490EC20056632C /* SearchDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDeviceViewController.h; sourceTree = "<group>"; };
@@ -357,6 +360,8 @@
 				0F927FD21DDA02680011EF90 /* BLESearchDevice.m */,
 				0F927FD31DDA02680011EF90 /* BLESyncDevice.h */,
 				0F927FD41DDA02680011EF90 /* BLESyncDevice.m */,
+				AD65905C1DDA8B8A006DD43D /* BLEWaitDevice.h */,
+				AD65905D1DDA8B8A006DD43D /* BLEWaitDevice.m */,
 			);
 			path = BLE;
 			sourceTree = "<group>";
@@ -830,7 +835,7 @@
 						DevelopmentTeam = 97SA79U875;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.Push = {
 								enabled = 1;
@@ -981,6 +986,7 @@
 				ADEF31CF1D478D2B00BB6A9B /* BindReadyViewController.m in Sources */,
 				ADE6ED971D4E538B00FFA573 /* EventModel.m in Sources */,
 				AD0B811B1D37EF7400F43E72 /* LMBaseTableViewController2.m in Sources */,
+				AD65905E1DDA8B8A006DD43D /* BLEWaitDevice.m in Sources */,
 				0FDBDA951D708725004F7AAF /* LMLocalData.m in Sources */,
 				ADBC9BD31D578403007E4A2C /* JSONValueTransformer+UIColor.m in Sources */,
 				AD74382D1D4DE08000F5F9D2 /* WeatherContentViewController.m in Sources */,

@@ -44,10 +44,6 @@
 		<string>Avenir-bold.ttf</string>
 		<string>Avenir-Book.otf</string>
 	</array>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>bluetooth-central</string>
-	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

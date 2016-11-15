@@ -39,7 +39,6 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) NSMutableIndexSet *timeSet;
 
 @property (nonatomic, strong) CBPeripheral *peripheral;
-@property (nonatomic, weak) CBCentralManager *manager;
 
 @end
 
@@ -333,14 +332,18 @@ typedef enum : NSUInteger {
     
     self.peripheral = peripheral;
     self.manager = central;
-    if (central.state == CBManagerStatePoweredOn) {
-        [self performSelector:@selector(operationTimeout) withObject:nil afterDelay:30];
-        LOG_D(@"syncDevice:%@", peripheral);
-        [central connectPeripheral:peripheral options:nil];
-    }
-    else {
-        [self reportSyncDeviceResult:[NSError errorWithDomain:@"SwingBluetooth" code:-2 userInfo:[NSDictionary dictionaryWithObject:@"蓝牙开关未打开" forKey:NSLocalizedDescriptionKey]]];
-    }
+    
+    LOG_D(@"syncDevice:%@", peripheral);
+    [self checkBleStatus];
+}
+
+- (void)bleTimeout {
+    [self reportSyncDeviceResult:[NSError errorWithDomain:@"SwingBluetooth" code:-2 userInfo:[NSDictionary dictionaryWithObject:@"蓝牙开关未打开" forKey:NSLocalizedDescriptionKey]]];
+}
+
+- (void)fire {
+    [self performSelector:@selector(operationTimeout) withObject:nil afterDelay:30];
+    [self.manager connectPeripheral:self.peripheral options:nil];
 }
 
 - (void)operationTimeout {
@@ -349,6 +352,7 @@ typedef enum : NSUInteger {
 }
 
 - (void)cannel {
+    [super cannel];
     self.eventArray = nil;
     self.activityArray = nil;
     self.activityDict = nil;
@@ -361,8 +365,8 @@ typedef enum : NSUInteger {
 
 - (void)reportSyncDeviceResult:(NSError*)error {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(operationTimeout) object:nil];
-    if ([_delegate respondsToSelector:@selector(reportSyncDeviceResult:error:)]) {
-        [_delegate reportSyncDeviceResult:_activityArray error:error];
+    if ([self.delegate respondsToSelector:@selector(reportSyncDeviceResult:error:)]) {
+        [self.delegate reportSyncDeviceResult:_activityArray error:error];
     }
     [self cannel];
 }

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
+#import "BLEWaitDevice.h"
 
 @protocol BLESyncDeviceDelegate <NSObject>
 
@@ -15,12 +16,8 @@
 
 @end
 
-@interface BLESyncDevice : NSObject<CBCentralManagerDelegate, CBPeripheralDelegate>
-
-@property (nonatomic, weak) id delegate;
+@interface BLESyncDevice : BLEWaitDevice
 
 - (void)syncDevice:(CBPeripheral*)peripheral centralManager:(CBCentralManager *)central event:(NSArray*)events;
-
-- (void)cannel;
 
 @end

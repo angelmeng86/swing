@@ -14,7 +14,7 @@
 #import "CommonDef.h"
 
 
-@interface BLEClient ()<CBCentralManagerDelegate>
+@interface BLEClient ()
 {
     BLESearchDevice *searchDevice;
     BLEInitDevice *initDevice;
@@ -37,7 +37,7 @@
     if (self = [super init]) {
         static CBCentralManager *manager = nil;
         if (manager == nil) {
-            manager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+            manager = [[CBCentralManager alloc] init];
         }
         self.manager = manager;
         searchDevice = [[BLESearchDevice alloc] init];
@@ -51,19 +51,6 @@
         syncDevice.delegate = self;
     }
     return self;
-}
-
-- (void)centralManagerDidUpdateState:(CBCentralManager *)central {
-    switch (central.state) {
-        case CBManagerStatePoweredOn:
-            LOG_D(@"蓝牙已打开,请扫描外设");
-            break;
-        case CBManagerStatePoweredOff:
-            LOG_D(@"蓝牙没有打开,请先打开蓝牙");
-            break;
-        default:
-            break;
-    }
 }
 
 - (void)scanDeviceWithCompletion:(SwingBluetoothScanDeviceBlock)completion {

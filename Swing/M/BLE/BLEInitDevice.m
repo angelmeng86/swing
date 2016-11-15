@@ -12,30 +12,17 @@
 @interface BLEInitDevice ()
 
 @property (nonatomic, strong) CBPeripheral *peripheral;
-@property (nonatomic, weak) CBCentralManager *manager;
 
 @end
 
 @implementation BLEInitDevice
 
 - (void)cannel {
+    [super cannel];
     if (_peripheral) {
-        [_manager cancelPeripheralConnection:_peripheral];
+        [self.manager cancelPeripheralConnection:_peripheral];
     }
     self.peripheral = nil;
-}
-
-- (void)centralManagerDidUpdateState:(CBCentralManager *)central {
-    switch (central.state) {
-        case CBManagerStatePoweredOn:
-            LOG_D(@"蓝牙已打开,请扫描外设");
-            break;
-        case CBManagerStatePoweredOff:
-            LOG_D(@"蓝牙没有打开,请先打开蓝牙");
-            break;
-        default:
-            break;
-    }
 }
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral{
@@ -142,14 +129,17 @@
 - (void)initDevice:(CBPeripheral*)peripheral centralManager:(CBCentralManager *)central {
     self.peripheral = peripheral;
     self.manager = central;
-    if (central.state == CBManagerStatePoweredOn) {
-        [self performSelector:@selector(operationTimeout) withObject:nil afterDelay:30];
-        LOG_D(@"initDevice:%@", peripheral);
-        [central connectPeripheral:peripheral options:nil];
-    }
-    else {
-        [self reportInitDeviceResult:nil error:[NSError errorWithDomain:@"SwingBluetooth" code:-2 userInfo:[NSDictionary dictionaryWithObject:@"蓝牙开关未打开" forKey:NSLocalizedDescriptionKey]]];
-    }
+    LOG_D(@"initDevice:%@", self.peripheral);
+    [self checkBleStatus];
+}
+
+- (void)bleTimeout {
+    [self reportInitDeviceResult:nil error:[NSError errorWithDomain:@"SwingBluetooth" code:-2 userInfo:[NSDictionary dictionaryWithObject:@"蓝牙开关未打开" forKey:NSLocalizedDescriptionKey]]];
+}
+
+- (void)fire {
+    [self performSelector:@selector(operationTimeout) withObject:nil afterDelay:30];
+    [self.manager connectPeripheral:self.peripheral options:nil];
 }
 
 - (void)operationTimeout {
@@ -159,8 +149,8 @@
 
 - (void)reportInitDeviceResult:(NSData*)data error:(NSError*)error {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(operationTimeout) object:nil];
-    if ([_delegate respondsToSelector:@selector(reportInitDeviceResult:error:)]) {
-        [_delegate reportInitDeviceResult:data error:error];
+    if ([self.delegate respondsToSelector:@selector(reportInitDeviceResult:error:)]) {
+        [self.delegate reportInitDeviceResult:data error:error];
     }
     [self cannel];
 }
