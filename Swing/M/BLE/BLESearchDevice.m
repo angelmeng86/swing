@@ -39,11 +39,13 @@
         if (![self.connectingDevices containsObject:peripheral]) {
             [self.connectingDevices addObject:peripheral];
         }
-        if (peripheral.state != CBPeripheralStateConnecting &&
-            peripheral.state != CBPeripheralStateConnected) {
-            LOG_D(@"connectPeripheral:%@", peripheral);
-            [central connectPeripheral:peripheral options:nil];
-        }
+        LOG_D(@"connectPeripheral:%@", peripheral);
+        [central connectPeripheral:peripheral options:nil];
+//        if (peripheral.state != CBPeripheralStateConnecting &&
+//            peripheral.state != CBPeripheralStateConnected) {
+//            LOG_D(@"connectPeripheral:%@", peripheral);
+//            [central connectPeripheral:peripheral options:nil];
+//        }
         
     }
 }
@@ -62,6 +64,11 @@
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(nullable NSError *)error {
     LOG_D(@"didDisconnectPeripheral:%@ error:%@", peripheral, error);
+    if (error) {
+        LOG_D(@"reconnectPeripheral:%@", peripheral);
+        [central connectPeripheral:peripheral options:nil];
+        return;
+    }
     [self.connectingDevices removeObject:peripheral];
 }
 

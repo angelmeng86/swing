@@ -33,14 +33,14 @@
 }
 
 - (void)cannel {
-    if (!waitTimer) {
+    if (waitTimer) {
         [waitTimer invalidate];
         waitTimer = nil;
     }
 }
 
 - (void)checkBleStatus {
-    if (!waitTimer) {
+    if (waitTimer) {
         [waitTimer invalidate];
         waitTimer = nil;
     }
@@ -55,6 +55,7 @@
 }
 
 - (void)timeTick:(NSTimer*)timer {
+    LOG_D(@"等待蓝牙启动");
     if (_manager.state == CBManagerStatePoweredOn) {
         [self cannel];
         [self fire];
@@ -62,9 +63,6 @@
     else if (--waitTimes <= 0) {
         [self cannel];
         [self bleTimeout];
-    }
-    else {
-        LOG_D(@"等待蓝牙启动");
     }
 }
 

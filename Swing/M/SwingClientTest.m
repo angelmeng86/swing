@@ -9,7 +9,7 @@
 #import "SwingClientTest.h"
 #import "CommonDef.h"
 #import "RCLocationManager.h"
-#import "SwingBluetooth.h"
+#import "BLEClient.h"
 
 @interface SwingClientTest ()
 
@@ -17,7 +17,7 @@
 @property (nonatomic, strong) EventModel* event;
 
 @property (nonatomic, strong) CBPeripheral *peripheral;
-@property (nonatomic, strong) SwingBluetooth *client;
+@property (nonatomic, strong) BLEClient *client;
 
 @end
 
@@ -356,7 +356,7 @@
 }
 
 - (void)testBLE {
-    _client = [[SwingBluetooth alloc] init];
+    _client = [[BLEClient alloc] init];
     
     [_client scanDeviceWithCompletion:^(CBPeripheral *peripheral, NSDictionary *advertisementData, NSError *error) {
         if (!error) {
