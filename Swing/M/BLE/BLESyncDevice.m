@@ -353,6 +353,12 @@ typedef enum : NSUInteger {
 
 - (void)cannel {
     [super cannel];
+    
+    if (_peripheral) {
+        [self.manager cancelPeripheralConnection:_peripheral];
+    }
+    self.peripheral = nil;
+    
     self.eventArray = nil;
     self.activityArray = nil;
     self.activityDict = nil;

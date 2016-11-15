@@ -33,6 +33,7 @@
 		AD0B811C1D37EF7400F43E72 /* LMBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B81151D37EF7400F43E72 /* LMBaseViewController.m */; };
 		AD0B811F1D37EFEA00F43E72 /* LMTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B811E1D37EFEA00F43E72 /* LMTabBarController.m */; };
 		AD0B81281D37F09900F43E72 /* SimpleLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B81231D37F09900F43E72 /* SimpleLogger.m */; };
+		AD1C61971DDB2AEF00331474 /* ActivityCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1C61961DDB2AEF00331474 /* ActivityCache.m */; };
 		AD1CEF0A1D5ACB19004FEC24 /* LMBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1CEF091D5ACB19004FEC24 /* LMBarView.m */; };
 		AD1CEF0D1D5ADA90004FEC24 /* LMArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1CEF0C1D5ADA90004FEC24 /* LMArrowView.m */; };
 		AD1CEF101D5AE7F5004FEC24 /* LMTabBarController2.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1CEF0F1D5AE7F5004FEC24 /* LMTabBarController2.m */; };
@@ -172,6 +173,8 @@
 		AD0B811E1D37EFEA00F43E72 /* LMTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMTabBarController.m; sourceTree = "<group>"; };
 		AD0B81221D37F09900F43E72 /* SimpleLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleLogger.h; sourceTree = "<group>"; };
 		AD0B81231D37F09900F43E72 /* SimpleLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleLogger.m; sourceTree = "<group>"; };
+		AD1C61951DDB2AEF00331474 /* ActivityCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityCache.h; sourceTree = "<group>"; };
+		AD1C61961DDB2AEF00331474 /* ActivityCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityCache.m; sourceTree = "<group>"; };
 		AD1CEF081D5ACB19004FEC24 /* LMBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMBarView.h; sourceTree = "<group>"; };
 		AD1CEF091D5ACB19004FEC24 /* LMBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMBarView.m; sourceTree = "<group>"; };
 		AD1CEF0B1D5ADA90004FEC24 /* LMArrowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMArrowView.h; sourceTree = "<group>"; };
@@ -441,6 +444,8 @@
 				0FDBDA941D708725004F7AAF /* LMLocalData.m */,
 				0F445E0D1D7094A6008A092C /* JSONValueTransformer+NSData.h */,
 				0F445E0E1D7094A6008A092C /* JSONValueTransformer+NSData.m */,
+				AD1C61951DDB2AEF00331474 /* ActivityCache.h */,
+				AD1C61961DDB2AEF00331474 /* ActivityCache.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -974,6 +979,7 @@
 				AD6590791DDAB055006DD43D /* BabyCentralManager.m in Sources */,
 				AD6654541D490C110056632C /* SyncDeviceViewController.m in Sources */,
 				AD7797A01D4CF9C400472B27 /* ChartFooterView.m in Sources */,
+				AD1C61971DDB2AEF00331474 /* ActivityCache.m in Sources */,
 				AD0B81181D37EF7400F43E72 /* Fun.m in Sources */,
 				AD6590801DDAB055006DD43D /* PeripheralInfo.m in Sources */,
 				AD7797A61D4D085600472B27 /* ChartViewController.m in Sources */,

@@ -23,6 +23,9 @@
 
 - (void)saveInfo;
 
+- (void)cacheActivity;
+- (void)clearActivity;
+
 - (void)queryProfile;
 //- (void)queryKids;
 - (void)queryWeather;
@@ -59,5 +62,7 @@
 @property (strong, nonatomic) NSMutableSet* calendarQueue;
 
 @property (strong, nonatomic) NSString* token;
+
+@property (nonatomic, strong) NSMutableArray *activitys;
 
 @end

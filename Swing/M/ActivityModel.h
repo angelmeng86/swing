@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "JSONModel.h"
+@protocol ActivityModel @end
 
 @interface ActivityModel : JSONModel
 

@@ -104,6 +104,7 @@
 - (void)syncDevice:(CBPeripheral*)peripheral event:(NSArray*)events completion:(SwingBluetoothSyncDeviceBlock)completion {
     self.blockOnSyncDevice = completion;
     _manager.delegate = syncDevice;
+    LOG_BEG(@"syncDevice BEGIN");
     [syncDevice syncDevice:peripheral centralManager:_manager event:events];
 }
 
@@ -111,6 +112,12 @@
     if (self.blockOnSyncDevice) {
         self.blockOnSyncDevice(activities, error);
         self.blockOnSyncDevice = nil;
+        if (error) {
+            LOG_END(@"reportSyncDeviceResult error:%@", error);
+        }
+        else {
+            ENTER(@"reportSyncDeviceResult done");
+        }
     }
 }
 
@@ -118,6 +125,8 @@
     [_manager stopScan];
     [initDevice cannel];
     [searchDevice cannel];
+    [syncDevice cannel];
+    [scanDevice cannel];
 }
 
 @end

@@ -9,6 +9,7 @@
 #import "GlobalCache.h"
 #import "KeyboardManager.h"
 #import "AppDelegate.h"
+#import "ActivityCache.h"
 
 #import <AVOSCloud/AVOSCloud.h>
 
@@ -50,6 +51,10 @@
     
     NSDictionary *dict = [[NSUserDefaults standardUserDefaults] objectForKey:@"localData"];
     _local = [[LMLocalData alloc] initWithDictionary:dict error:nil];
+    
+    json = [[NSUserDefaults standardUserDefaults] objectForKey:@"activitys"];
+    ActivityCache *cache = [[ActivityCache alloc] initWithString:json error:nil];
+    self.activitys = [NSMutableArray arrayWithArray:cache.array];
 }
 
 - (void)setInfo:(LoginedModel *)info {
@@ -82,6 +87,19 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+- (void)cacheActivity {
+    ActivityCache *cache = [ActivityCache new];
+    cache.array = (NSArray<ActivityModel>*)_activitys;
+    [[NSUserDefaults standardUserDefaults] setObject:[cache toJSONString] forKey:@"activitys"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)clearActivity {
+    self.activitys = nil;
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"activitys"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 //- (void)setKidsList:(NSArray *)kidsList {
 //    _kidsList = kidsList;
 //}
@@ -91,6 +109,7 @@
     self.user = nil;
     self.kidsList = nil;
     self.local = nil;
+    self.activitys = nil;
     [self.calendarEventsByMonth removeAllObjects];
     [self.calendarQueue removeAllObjects];
     
@@ -98,6 +117,7 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"localData"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"token"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"activitys"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     [[SwingClient sharedClient] logout];
