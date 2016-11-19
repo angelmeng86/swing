@@ -345,7 +345,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
                 month += 12;
                 year--;
             }
-            NSString *key = [NSString stringWithFormat:@"%ld-%02ld", year, month];
+            NSString *key = [NSString stringWithFormat:@"%ld-%02ld", (long)year, month];
             LOG_D(@"month:%@", key);
             ActivityResultModel *model = dict[key];
             if (model) {

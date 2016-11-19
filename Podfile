@@ -15,4 +15,5 @@ pod 'CHCircleGaugeView'
 pod 'MDRadialProgress'
 pod 'AVOSCloud'
 pod 'AVOSCloudCrashReporting'
+pod 'MagicalRecord'
 end

@@ -194,7 +194,7 @@ typedef enum : NSUInteger {
         LOG_D(@"syncDevice activities count %d", (int)activities.count);
         
         LOG_BEG(@"Upload Activity BEGIN");
-        LOG_D(@"PreActivity count %d", [GlobalCache shareInstance].activitys.count);
+        LOG_D(@"PreActivity count %lu", (unsigned long)[GlobalCache shareInstance].activitys.count);
         if ([GlobalCache shareInstance].activitys) {
             [[GlobalCache shareInstance].activitys addObjectsFromArray:activities];
 //            [[GlobalCache shareInstance] cacheActivity];//Test
@@ -272,7 +272,7 @@ typedef enum : NSUInteger {
             else {
                 
                 LOG_D(@"deviceUploadRawData fail: %@", error);
-                LOG_END(@"Upload Activity END, ret count:%d", [GlobalCache shareInstance].activitys.count);
+                LOG_END(@"Upload Activity END, ret count:%lu", (unsigned long)[GlobalCache shareInstance].activitys.count);
                 [[GlobalCache shareInstance] cacheActivity];
                 [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
                 [self changeStatus:SyncStatusSyncCompleted];

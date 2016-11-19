@@ -76,5 +76,6 @@
 #import "MDRadialProgressTheme.h"
 
 #import "UIFont+AvenirFont.h"
+#import <MagicalRecord/MagicalRecord.h>
 
 #endif

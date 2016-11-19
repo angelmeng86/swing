@@ -11,6 +11,7 @@
 @implementation DeviceTableViewCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     // Initialization code
     self.btn.layer.cornerRadius = 5.f;
 //    self.contentView.backgroundColor = [UIColor clearColor];

@@ -11,6 +11,7 @@
 @implementation EventSelectTableViewCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     // Initialization code
     self.checkBtn.layer.cornerRadius = 10.f;
     self.checkBtn.layer.borderColor = [UIColor whiteColor].CGColor;

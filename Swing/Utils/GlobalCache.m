@@ -39,6 +39,7 @@
     [AVOSCloud setVerbosePolicy:kAVVerboseNone];
     [AVOSCloud setApplicationId:@"zBJwrWLoydY2zVeSkxENhDL4-gzGzoHsz" clientKey:@"JPosFv55xiaCsCp6wNmfuejs"];
     
+    [MagicalRecord setupCoreDataStackWithStoreNamed:@"Swing.sqlite"];
     
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     [self setKeyboradManager];
