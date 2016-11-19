@@ -189,7 +189,7 @@
     ChoicesViewController *ctl = [[ChoicesViewController alloc] initWithStyle:UITableViewStylePlain];
     ctl.delegate = self;
     ctl.navigationItem.title = self.repeatTF.placeholder;
-    ctl.textArray = @[@"Never", @"Every Day", @"Every Week", @"Every Month"];
+    ctl.textArray = @[@"Never", @"Every Day", @"Every Week"/*, @"Every Month"*/];
     [self.navigationController pushViewController:ctl animated:YES];
 }
 
@@ -331,11 +331,20 @@
         [SVProgressHUD showWithStatus:@"Saving, please wait..."];
         
         //eventName, startDate, endDate, color, status, description, alert, city, state
+        UILabel *label = (UILabel*)[self.repeatTF.rightView viewWithTag:2016];
+        NSString *repeat = @"";
+        if ([label.text isEqualToString:@"Every Day"]) {
+            repeat = @"DAILY";
+        }
+        else if ([label.text isEqualToString:@"Every Weekly"]) {
+            repeat = @"WEEKLY";
+        }
         NSMutableDictionary *data = [NSMutableDictionary dictionary];
         [data addEntriesFromDictionary:@{@"eventName":self.nameTF.text , @"startDate":self.startTF.text
                                         , @"endDate":self.endTF.text
                                         , @"color":[Fun stringFromColor:self.colorCtl.selectedColor]
-                                         , @"timezoneOffset" : @([NSTimeZone localTimeZone].secondsFromGMT)}];
+                                         , @"timezoneOffset" : @([NSTimeZone localTimeZone].secondsFromGMT),
+                                         @"repeat":repeat}];
         
         if (self.alert) {
             [data setObject:self.alert.value forKey:@"alert"];

@@ -38,10 +38,10 @@
     if ([peripheral.name.uppercaseString hasPrefix:@"SWING"]) {
         if (![self.connectingDevices containsObject:peripheral]) {
             [self.connectingDevices addObject:peripheral];
-            
-            LOG_D(@"connectPeripheral:%@", peripheral);
-            [central connectPeripheral:peripheral options:nil];
         }
+        
+        LOG_D(@"connectPeripheral:%@", peripheral);
+        [central connectPeripheral:peripheral options:nil];
         
 //        LOG_D(@"connectPeripheral:%@", peripheral);
 //        [central connectPeripheral:peripheral options:nil];

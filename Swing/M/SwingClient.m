@@ -68,12 +68,23 @@
     _sessionManager = nil;
 }
 
-- (void)filterTokenInvalid:(NSURLSessionDataTask*)task {
+- (NSError*)filterTokenInvalid:(NSURLSessionDataTask*)task err:(NSError*)error {
     NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
     if(response.statusCode == 403) {
         [[GlobalCache shareInstance] logout];
         [SVProgressHUD showInfoWithStatus:@"Token invalid, please login again."];
     }
+    else if(response.statusCode == 400) {
+        NSData *data = [error.userInfo objectForKey:@"com.alamofire.serialization.response.error.data"];
+        NSDictionary *obj = [NSJSONSerialization JSONObjectWithData:data
+                                                 options:kNilOptions
+                                                   error:nil];
+        LOG_D(@"HTTP:%@", obj);
+        if ([obj objectForKey:@"message"]) {
+            return [NSError errorWithDomain:@"SwingDomain" code:-2 userInfo:[NSDictionary dictionaryWithObject:[obj objectForKey:@"message"] forKey:NSLocalizedDescriptionKey]];
+        }
+    }
+    return error;
 }
 
 - (NSError*)getErrorMessage:(NSDictionary*)response {
@@ -213,8 +224,9 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            completion(nil, nil, error);
-            [self filterTokenInvalid:task];
+            NSError *err = [self filterTokenInvalid:task err:error];
+            completion(nil, nil, err);
+            
         });
     }];
     
@@ -240,8 +252,8 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            completion(nil, error);
-            [self filterTokenInvalid:task];
+            NSError *err = [self filterTokenInvalid:task err:error];
+            completion(nil, err);
         });
     }];
     
@@ -265,8 +277,8 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            completion(nil, error);
-            [self filterTokenInvalid:task];
+            NSError *err = [self filterTokenInvalid:task err:error];
+            completion(nil, err);
         });
     }];
     
@@ -288,8 +300,8 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            completion(nil, error);
-            [self filterTokenInvalid:task];
+            NSError *err = [self filterTokenInvalid:task err:error];
+            completion(nil, err);
         });
     }];
     
@@ -310,8 +322,8 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            completion(error);
-            [self filterTokenInvalid:task];
+            NSError *err = [self filterTokenInvalid:task err:error];
+            completion(err);
         });
     }];
     
@@ -335,8 +347,8 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            completion(nil, error);
-            [self filterTokenInvalid:task];
+            NSError *err = [self filterTokenInvalid:task err:error];
+            completion(nil, err);
         });
     }];
     
@@ -358,8 +370,8 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            completion(nil, error);
-            [self filterTokenInvalid:task];
+            NSError *err = [self filterTokenInvalid:task err:error];
+            completion(nil, err);
         });
     }];
     
@@ -381,8 +393,8 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            completion(nil, error);
-            [self filterTokenInvalid:task];
+            NSError *err = [self filterTokenInvalid:task err:error];
+            completion(nil, err);
         });
     }];
     
@@ -405,8 +417,8 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-           completion(nil, error);
-            [self filterTokenInvalid:task];
+            NSError *err = [self filterTokenInvalid:task err:error];
+           completion(nil, err);
         });
     }];
     
@@ -430,8 +442,8 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            completion(nil, nil, error);
-            [self filterTokenInvalid:task];
+            NSError *err = [self filterTokenInvalid:task err:error];
+            completion(nil, nil, err);
         });
     }];
     
@@ -452,8 +464,8 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            completion(error);
-            [self filterTokenInvalid:task];
+            NSError *err = [self filterTokenInvalid:task err:error];
+            completion(err);
         });
     }];
     
@@ -474,8 +486,8 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            completion(error);
-            [self filterTokenInvalid:task];
+            NSError *err = [self filterTokenInvalid:task err:error];
+            completion(err);
         });
     }];
     
@@ -503,8 +515,8 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            completion(nil, error);
-            [self filterTokenInvalid:task];
+            NSError *err = [self filterTokenInvalid:task err:error];
+            completion(nil, err);
         });
     }];
     
@@ -525,8 +537,8 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            completion(error);
-            [self filterTokenInvalid:task];
+            NSError *err = [self filterTokenInvalid:task err:error];
+            completion(err);
         });
     }];
     
@@ -549,8 +561,8 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            completion(error);
-            [self filterTokenInvalid:task];
+            NSError *err = [self filterTokenInvalid:task err:error];
+            completion(err);
         });
     }];
     
@@ -588,8 +600,8 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            completion(nil ,error);
-            [self filterTokenInvalid:task];
+            NSError *err = [self filterTokenInvalid:task err:error];
+            completion(nil ,err);
         });
     }];
     
