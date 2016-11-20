@@ -388,6 +388,7 @@
             }
             else {
                 EventModel *event = [[EventModel alloc] initWithDictionary:responseObject[@"newEvent"] error:&err];
+                [DBHelper addEvent:event];
                 completion(event, nil);
             }
         });
@@ -436,6 +437,7 @@
             }
             else {
                 EventModel *event = [[EventModel alloc] initWithDictionary:responseObject[@"event"] error:nil];
+                [DBHelper addEvent:event];
                 NSArray *todoList = [ToDoModel arrayOfModelsFromDictionaries:responseObject[@"todo"] error:nil];
                 completion(event, todoList, nil);
             }
@@ -510,6 +512,9 @@
             }
             else {
                 NSArray *list = [EventModel arrayOfModelsFromDictionaries:responseObject[@"events"] error:nil];
+                
+                [DBHelper addEvents:list];
+                
                 completion(list, nil);
             }
         });
@@ -532,6 +537,7 @@
                 completion(err);
             }
             else {
+                [DBHelper delEvent:[eventId intValue]];
                 completion(nil);
             }
         });

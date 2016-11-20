@@ -8,8 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		015468D213152E4DB0DEFF15 /* libPods-Swing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C19A6FBE22DAA79A59B1FD3 /* libPods-Swing.a */; };
+		0F1376131DE04A5D00DB6C33 /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1376121DE04A5D00DB6C33 /* DBHelper.m */; };
+		0F13761E1DE04FE000DB6C33 /* Todo+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1376191DE04FE000DB6C33 /* Todo+CoreDataClass.m */; };
+		0F13761F1DE04FE000DB6C33 /* Todo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F13761B1DE04FE000DB6C33 /* Todo+CoreDataProperties.m */; };
+		0F1376301DE058D400DB6C33 /* Event+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F13762D1DE058D400DB6C33 /* Event+CoreDataClass.m */; };
+		0F1376311DE058D400DB6C33 /* Event+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F13762F1DE058D400DB6C33 /* Event+CoreDataProperties.m */; };
+		0F1376341DE0593600DB6C33 /* ColorTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1376331DE0593600DB6C33 /* ColorTransformer.m */; };
 		0F140B711D88432B005B9763 /* alert2.json in Resources */ = {isa = PBXBuildFile; fileRef = 0F140B701D88432B005B9763 /* alert2.json */; };
-		0F17B2621DDCA0B70061D233 /* Swing.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0F17B2601DDCA0B70061D233 /* Swing.xcdatamodeld */; };
 		0F445E0F1D7094A6008A092C /* JSONValueTransformer+NSData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F445E0E1D7094A6008A092C /* JSONValueTransformer+NSData.m */; };
 		0F45AB831D6316FA00EF385F /* STextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB821D6316FA00EF385F /* STextField.m */; };
 		0F45AB881D63593400EF385F /* ActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB871D63593400EF385F /* ActivityModel.m */; };
@@ -122,12 +127,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F1376111DE04A5D00DB6C33 /* DBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBHelper.h; sourceTree = "<group>"; };
+		0F1376121DE04A5D00DB6C33 /* DBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBHelper.m; sourceTree = "<group>"; };
+		0F1376181DE04FE000DB6C33 /* Todo+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Todo+CoreDataClass.h"; sourceTree = "<group>"; };
+		0F1376191DE04FE000DB6C33 /* Todo+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Todo+CoreDataClass.m"; sourceTree = "<group>"; };
+		0F13761A1DE04FE000DB6C33 /* Todo+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Todo+CoreDataProperties.h"; sourceTree = "<group>"; };
+		0F13761B1DE04FE000DB6C33 /* Todo+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Todo+CoreDataProperties.m"; sourceTree = "<group>"; };
+		0F13762A1DE0524900DB6C33 /* Swing.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Swing.xcdatamodel; sourceTree = "<group>"; };
+		0F13762C1DE058D400DB6C33 /* Event+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Event+CoreDataClass.h"; sourceTree = "<group>"; };
+		0F13762D1DE058D400DB6C33 /* Event+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Event+CoreDataClass.m"; sourceTree = "<group>"; };
+		0F13762E1DE058D400DB6C33 /* Event+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Event+CoreDataProperties.h"; sourceTree = "<group>"; };
+		0F13762F1DE058D400DB6C33 /* Event+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Event+CoreDataProperties.m"; sourceTree = "<group>"; };
+		0F1376321DE0593600DB6C33 /* ColorTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorTransformer.h; sourceTree = "<group>"; };
+		0F1376331DE0593600DB6C33 /* ColorTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorTransformer.m; sourceTree = "<group>"; };
 		0F140B701D88432B005B9763 /* alert2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = alert2.json; sourceTree = "<group>"; };
-		0F17B2611DDCA0B70061D233 /* Swing.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Swing.xcdatamodel; sourceTree = "<group>"; };
-		0F17B28F1DDCAED70061D233 /* Event+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Event+CoreDataClass.h"; sourceTree = "<group>"; };
-		0F17B2911DDCAED70061D233 /* Event+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Event+CoreDataProperties.h"; sourceTree = "<group>"; };
-		0F17B2931DDCAED70061D233 /* Todo+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Todo+CoreDataClass.h"; sourceTree = "<group>"; };
-		0F17B2951DDCAED70061D233 /* Todo+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Todo+CoreDataProperties.h"; sourceTree = "<group>"; };
 		0F445E0D1D7094A6008A092C /* JSONValueTransformer+NSData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSONValueTransformer+NSData.h"; sourceTree = "<group>"; };
 		0F445E0E1D7094A6008A092C /* JSONValueTransformer+NSData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JSONValueTransformer+NSData.m"; sourceTree = "<group>"; };
 		0F45AB811D6316FA00EF385F /* STextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STextField.h; sourceTree = "<group>"; };
@@ -359,10 +372,19 @@
 		0F17B28E1DDCAED70061D233 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				0F17B28F1DDCAED70061D233 /* Event+CoreDataClass.h */,
-				0F17B2911DDCAED70061D233 /* Event+CoreDataProperties.h */,
-				0F17B2931DDCAED70061D233 /* Todo+CoreDataClass.h */,
-				0F17B2951DDCAED70061D233 /* Todo+CoreDataProperties.h */,
+				0F13762C1DE058D400DB6C33 /* Event+CoreDataClass.h */,
+				0F13762D1DE058D400DB6C33 /* Event+CoreDataClass.m */,
+				0F13762E1DE058D400DB6C33 /* Event+CoreDataProperties.h */,
+				0F13762F1DE058D400DB6C33 /* Event+CoreDataProperties.m */,
+				0F1376291DE0524900DB6C33 /* Swing.xcdatamodeld */,
+				0F1376181DE04FE000DB6C33 /* Todo+CoreDataClass.h */,
+				0F1376191DE04FE000DB6C33 /* Todo+CoreDataClass.m */,
+				0F13761A1DE04FE000DB6C33 /* Todo+CoreDataProperties.h */,
+				0F13761B1DE04FE000DB6C33 /* Todo+CoreDataProperties.m */,
+				0F1376111DE04A5D00DB6C33 /* DBHelper.h */,
+				0F1376121DE04A5D00DB6C33 /* DBHelper.m */,
+				0F1376321DE0593600DB6C33 /* ColorTransformer.h */,
+				0F1376331DE0593600DB6C33 /* ColorTransformer.m */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -464,7 +486,6 @@
 				0F445E0E1D7094A6008A092C /* JSONValueTransformer+NSData.m */,
 				AD1C61951DDB2AEF00331474 /* ActivityCache.h */,
 				AD1C61961DDB2AEF00331474 /* ActivityCache.m */,
-				0F17B2601DDCA0B70061D233 /* Swing.xcdatamodeld */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -982,6 +1003,7 @@
 				ADF519AE1D86D0DF00356CD3 /* AddEventViewController2.m in Sources */,
 				AD1CEF0A1D5ACB19004FEC24 /* LMBarView.m in Sources */,
 				AD9B0D941D3BB947009FDD95 /* BatteryViewController.m in Sources */,
+				0F13761F1DE04FE000DB6C33 /* Todo+CoreDataProperties.m in Sources */,
 				AD7797A31D4D034600472B27 /* ActivityViewController.m in Sources */,
 				AD0B811F1D37EFEA00F43E72 /* LMTabBarController.m in Sources */,
 				ADE820731D54C26200E12768 /* JSONValueTransformer+NSDate.m in Sources */,
@@ -989,6 +1011,7 @@
 				AD77979C1D4CE11B00472B27 /* CameraUtility.m in Sources */,
 				ADF985561D50C64A00B02075 /* ToDoListView.m in Sources */,
 				ADF33CBF1D5A32DD00AE8874 /* RectProgress.m in Sources */,
+				0F1376301DE058D400DB6C33 /* Event+CoreDataClass.m in Sources */,
 				AD6590781DDAB055006DD43D /* BabyCallback.m in Sources */,
 				ADF33CB91D5A159400AE8874 /* LMCalendarWeekDayView.m in Sources */,
 				AD65907C1DDAB055006DD43D /* BabyPeripheralManager.m in Sources */,
@@ -1017,6 +1040,7 @@
 				ADBC9BD31D578403007E4A2C /* JSONValueTransformer+UIColor.m in Sources */,
 				AD74382D1D4DE08000F5F9D2 /* WeatherContentViewController.m in Sources */,
 				AD7438271D4DD50C00F5F9D2 /* JBBaseChartViewController.m in Sources */,
+				0F1376311DE058D400DB6C33 /* Event+CoreDataProperties.m in Sources */,
 				AD2D33901D538418005D9298 /* ToDoModel.m in Sources */,
 				AD65907B1DDAB055006DD43D /* BabyOptions.m in Sources */,
 				ADE820761D54C62D00E12768 /* UserModel.m in Sources */,
@@ -1025,6 +1049,7 @@
 				AD65907E1DDAB055006DD43D /* BabySpeaker.m in Sources */,
 				AD9B0D971D3BB954009FDD95 /* CalendarViewController.m in Sources */,
 				ADDCD3E81D4C4DA90031DC66 /* UVIndexViewController.m in Sources */,
+				0F1376131DE04A5D00DB6C33 /* DBHelper.m in Sources */,
 				AD347D1B1D3FDE1A00E91DDD /* DeviceTableViewCell.m in Sources */,
 				0F927FD91DDA02680011EF90 /* BLESyncDevice.m in Sources */,
 				ADCED9E71D3D3C8B002E3F78 /* RegisterViewController.m in Sources */,
@@ -1039,7 +1064,9 @@
 				0FEC584B1D69D91800201EBD /* CBService+LMMethod.m in Sources */,
 				AD7797991D4CCFD200472B27 /* UnderlineTextField.m in Sources */,
 				AD347D171D3FD8DD00E91DDD /* SearchWatchViewController.m in Sources */,
+				0F1376341DE0593600DB6C33 /* ColorTransformer.m in Sources */,
 				AD05B5BD1D3BCAA4007BCF7C /* LoginViewController.m in Sources */,
+				0F13761E1DE04FE000DB6C33 /* Todo+CoreDataClass.m in Sources */,
 				ADEF31CC1D47856200BB6A9B /* KidBindViewController.m in Sources */,
 				0F45AB831D6316FA00EF385F /* STextField.m in Sources */,
 				AD7438241D4DD47100F5F9D2 /* JBChartTooltipView.m in Sources */,
@@ -1059,7 +1086,6 @@
 				ADEF31D21D478E9900BB6A9B /* RoundButton.m in Sources */,
 				AD0B81191D37EF7400F43E72 /* GlobalCache.m in Sources */,
 				AD74D4E21D4FA750001F3B36 /* EventSelectTableViewCell.m in Sources */,
-				0F17B2621DDCA0B70061D233 /* Swing.xcdatamodeld in Sources */,
 				ADE6ED941D4E415900FFA573 /* TimeLineView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1216,12 +1242,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		0F17B2601DDCA0B70061D233 /* Swing.xcdatamodeld */ = {
+		0F1376291DE0524900DB6C33 /* Swing.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				0F17B2611DDCA0B70061D233 /* Swing.xcdatamodel */,
+				0F13762A1DE0524900DB6C33 /* Swing.xcdatamodel */,
 			);
-			currentVersion = 0F17B2611DDCA0B70061D233 /* Swing.xcdatamodel */;
+			currentVersion = 0F13762A1DE0524900DB6C33 /* Swing.xcdatamodel */;
 			path = Swing.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -336,7 +336,7 @@
         if ([label.text isEqualToString:@"Every Day"]) {
             repeat = @"DAILY";
         }
-        else if ([label.text isEqualToString:@"Every Weekly"]) {
+        else if ([label.text isEqualToString:@"Every Week"]) {
             repeat = @"WEEKLY";
         }
         NSMutableDictionary *data = [NSMutableDictionary dictionary];

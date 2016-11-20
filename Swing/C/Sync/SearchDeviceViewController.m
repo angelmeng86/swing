@@ -165,6 +165,23 @@ typedef enum : NSUInteger {
 
 - (IBAction)btnAction:(id)sender {
     if (_status == SyncStatusFound) {
+        
+        NSArray *eventArray = [DBHelper queryNearAlertEventModel:200];
+        LOG_D(@"queryNearEventModel count %lu", (unsigned long)eventArray.count);
+        [self changeStatus:SyncStatusSyncing];
+#if TARGET_IPHONE_SIMULATOR
+        [self performSelector:@selector(performStatus:) withObject:[NSNumber numberWithUnsignedInteger:SyncStatusSyncCompleted] afterDelay:3];
+#else
+        [self performSelector:@selector(syncAction:) withObject:eventArray afterDelay:3];
+#endif
+    }
+    else if (_status == SyncStatusSyncCompleted) {
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+/*
+- (IBAction)btnAction:(id)sender {
+    if (_status == SyncStatusFound) {
         [SVProgressHUD showWithStatus:@"Get event, please wait..."];
         [[SwingClient sharedClient] calendarGetEvents:[NSDate date] type:GetEventTypeMonth completion:^(NSArray *eventArray, NSError *error) {
             if (error) {
@@ -187,7 +204,7 @@ typedef enum : NSUInteger {
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }
 }
-
+*/
 - (void)syncAction:(NSArray*)eventArray {
     [client syncDevice:_peripheral event:eventArray completion:^(NSMutableArray *activities, NSError *error) {
         LOG_D(@"syncDevice error %@", error);

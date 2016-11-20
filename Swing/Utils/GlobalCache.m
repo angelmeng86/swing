@@ -39,7 +39,8 @@
     [AVOSCloud setVerbosePolicy:kAVVerboseNone];
     [AVOSCloud setApplicationId:@"zBJwrWLoydY2zVeSkxENhDL4-gzGzoHsz" clientKey:@"JPosFv55xiaCsCp6wNmfuejs"];
     
-    [MagicalRecord setupCoreDataStackWithStoreNamed:@"Swing.sqlite"];
+    [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"Swing.sqlite"];
+    [MagicalRecord setLoggingLevel:MagicalRecordLoggingLevelOff];
     
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     [self setKeyboradManager];
@@ -111,7 +112,7 @@
     self.kidsList = nil;
     self.local = nil;
     self.activitys = nil;
-    [self.calendarEventsByMonth removeAllObjects];
+//    [self.calendarEventsByMonth removeAllObjects];
     [self.calendarQueue removeAllObjects];
     
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"kids"];
@@ -120,6 +121,8 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"activitys"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [DBHelper clearDatabase];
     
     [[SwingClient sharedClient] logout];
     
@@ -161,12 +164,12 @@
 //    return _calendarEventsByDate;
 //}
 
-- (NSMutableDictionary*)calendarEventsByMonth {
-    if (_calendarEventsByMonth == nil) {
-        _calendarEventsByMonth = [[NSMutableDictionary alloc] init];
-    }
-    return _calendarEventsByMonth;
-}
+//- (NSMutableDictionary*)calendarEventsByMonth {
+//    if (_calendarEventsByMonth == nil) {
+//        _calendarEventsByMonth = [[NSMutableDictionary alloc] init];
+//    }
+//    return _calendarEventsByMonth;
+//}
 
 - (NSMutableSet*)calendarQueue {
     if (_calendarQueue == nil) {
@@ -194,28 +197,29 @@
 }
 
 - (NSArray*)searchEventsByDay:(NSDate*)date {
-    NSString *month = [GlobalCache dateToMonthString:date];
-    if (self.calendarEventsByMonth[month]) {
-        NSString *key = [GlobalCache dateToDayString:date];
-        return self.calendarEventsByMonth[month][key];
-    }
-    return nil;
+    return [DBHelper queryEventModelByDay:date];
+//    NSString *month = [GlobalCache dateToMonthString:date];
+//    if (self.calendarEventsByMonth[month]) {
+//        NSString *key = [GlobalCache dateToDayString:date];
+//        return self.calendarEventsByMonth[month][key];
+//    }
+//    return nil;
 }
 
-- (NSMutableArray*)searchWeeklyEventsByDay:(NSDate*)date {
-    NSString *month = [GlobalCache dateToMonthString:date];
-    if (self.calendarEventsByMonth[month]) {
-        NSMutableArray *array = [NSMutableArray array];
-        for (int i = 0; i < 7; i++) {
-            NSString *key = [GlobalCache dateToDayString:[date dateByAddingTimeInterval:i * 24 * 60 * 60]];
-            if (self.calendarEventsByMonth[month][key]) {
-                [array addObjectsFromArray:self.calendarEventsByMonth[month][key]];
-            }
-        }
-        return array;
-    }
-    return nil;
-}
+//- (NSMutableArray*)searchWeeklyEventsByDay:(NSDate*)date {
+//    NSString *month = [GlobalCache dateToMonthString:date];
+//    if (self.calendarEventsByMonth[month]) {
+//        NSMutableArray *array = [NSMutableArray array];
+//        for (int i = 0; i < 7; i++) {
+//            NSString *key = [GlobalCache dateToDayString:[date dateByAddingTimeInterval:i * 24 * 60 * 60]];
+//            if (self.calendarEventsByMonth[month][key]) {
+//                [array addObjectsFromArray:self.calendarEventsByMonth[month][key]];
+//            }
+//        }
+//        return array;
+//    }
+//    return nil;
+//}
 
 - (void)queryMonthEvents:(NSDate*)date {
     NSString *month = [GlobalCache dateToMonthString:date];
@@ -230,17 +234,17 @@
             LOG_D(@"calendarGetEvents fail: %@", error);
         }
         else {
-            NSMutableDictionary *dict = [NSMutableDictionary new];
-            self.calendarEventsByMonth[month] = dict;
-            
-            for (EventModel *model in eventArray) {
-                NSString *key = [GlobalCache dateToDayString:model.startDate];
-                if(!dict[key]){
-                    dict[key] = [NSMutableArray new];
-                }
-                
-                [dict[key] addObject:model];
-            }
+//            NSMutableDictionary *dict = [NSMutableDictionary new];
+//            self.calendarEventsByMonth[month] = dict;
+//            
+//            for (EventModel *model in eventArray) {
+//                NSString *key = [GlobalCache dateToDayString:model.startDate];
+//                if(!dict[key]){
+//                    dict[key] = [NSMutableArray new];
+//                }
+//                
+//                [dict[key] addObject:model];
+//            }
             [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_LIST_UPDATE_NOTI object:month];
         }
         [self.calendarQueue removeObject:month];
@@ -249,54 +253,55 @@
 
 - (void)addEvent:(EventModel*)model {
     NSString *month = [GlobalCache dateToMonthString:model.startDate];
-    NSMutableDictionary *dict = self.calendarEventsByMonth[month];
-    if (!dict) {
-        dict = [NSMutableDictionary new];
-        self.calendarEventsByMonth[month] = dict;
-    }
-    NSString *key = [GlobalCache dateToDayString:model.startDate];
-    if(!dict[key]){
-        dict[key] = [NSMutableArray new];
-    }
-    [dict[key] addObject:model];
+//    NSMutableDictionary *dict = self.calendarEventsByMonth[month];
+//    if (!dict) {
+//        dict = [NSMutableDictionary new];
+//        self.calendarEventsByMonth[month] = dict;
+//    }
+//    NSString *key = [GlobalCache dateToDayString:model.startDate];
+//    if(!dict[key]){
+//        dict[key] = [NSMutableArray new];
+//    }
+//    [dict[key] addObject:model];
     
+//    [DBHelper addEvent:model];
     [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_LIST_UPDATE_NOTI object:month];
 }
 
 - (void)deleteEvent:(EventModel*)model {
     NSString *month = [GlobalCache dateToMonthString:model.startDate];
-    NSString *key = [GlobalCache dateToDayString:model.startDate];
-    NSMutableArray *array = self.calendarEventsByMonth[month][key];
-    for (int i = (int)array.count; --i >= 0;) {
-        EventModel* m = array[i];
-        if (model.objId == m.objId) {
-            [array removeObjectAtIndex:i];
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_LIST_UPDATE_NOTI object:month];
-            return;
-        }
-    }
+//    NSString *key = [GlobalCache dateToDayString:model.startDate];
+//    NSMutableArray *array = self.calendarEventsByMonth[month][key];
+//    for (int i = (int)array.count; --i >= 0;) {
+//        EventModel* m = array[i];
+//        if (model.objId == m.objId) {
+//            [array removeObjectAtIndex:i];
+//            
+//            [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_LIST_UPDATE_NOTI object:month];
+//            return;
+//        }
+//    }
+    
+//    [DBHelper delEvent:model];
+    [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_LIST_UPDATE_NOTI object:month];
 }
 
-- (BOOL)haveEventForDay:(NSDate *)date
-{
-    NSString *month = [GlobalCache dateToMonthString:date];
-    NSString *key = [GlobalCache dateToDayString:date];
-        
-    if(self.calendarEventsByMonth[month][key] && [self.calendarEventsByMonth[month][key] count] > 0){
-        return YES;
-    }
-    
-    return NO;
-}
+//- (BOOL)haveEventForDay:(NSDate *)date
+//{
+//    NSString *month = [GlobalCache dateToMonthString:date];
+//    NSString *key = [GlobalCache dateToDayString:date];
+//        
+//    if(self.calendarEventsByMonth[month][key] && [self.calendarEventsByMonth[month][key] count] > 0){
+//        return YES;
+//    }
+//    
+//    return NO;
+//}
 
 - (NSArray*)queryEventColorForDay:(NSDate *)date
 {
-    NSString *month = [GlobalCache dateToMonthString:date];
-    NSString *key = [GlobalCache dateToDayString:date];
-    
-    if(self.calendarEventsByMonth[month][key] && [self.calendarEventsByMonth[month][key] count] > 0){
-        NSArray* events = self.calendarEventsByMonth[month][key];
+    NSArray* events = [DBHelper queryEventModelByDay:date];
+    if (events.count > 0) {
         NSMutableArray *array = [NSMutableArray new];
         int i = 0;
         for (EventModel *event in events) {
@@ -307,6 +312,22 @@
         }
         return array;
     }
+    
+//    NSString *month = [GlobalCache dateToMonthString:date];
+//    NSString *key = [GlobalCache dateToDayString:date];
+//    
+//    if(self.calendarEventsByMonth[month][key] && [self.calendarEventsByMonth[month][key] count] > 0){
+//        NSArray* events = self.calendarEventsByMonth[month][key];
+//        NSMutableArray *array = [NSMutableArray new];
+//        int i = 0;
+//        for (EventModel *event in events) {
+//            [array addObject:event.color == nil ? [UIColor redColor] : event.color];
+//            if (++i >= 4) {
+//                break;
+//            }
+//        }
+//        return array;
+//    }
     
     return nil;
 }

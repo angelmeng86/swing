@@ -58,7 +58,7 @@
         if ([self validateTextField]) {
             [SVProgressHUD showWithStatus:@"Please wait..."];
             [[SwingClient sharedClient] userIsEmailRegistered:self.emailTextField.text completion:^(NSNumber *result, NSError *error) {
-                if (!error) {
+                if (![self isError:error tag:@"isEmailRegistered"]) {
                     LOG_D(@"isEmailRegistered success: %@", result);
                     if (![result boolValue]) {
                         [SVProgressHUD showSuccessWithStatus:@"The email is not registered"];
@@ -73,37 +73,56 @@
                     else {
                         [SVProgressHUD showWithStatus:@"Login, please wait..."];
                         [[SwingClient sharedClient] userLogin:self.emailTextField.text password:self.pwdTextField.text completion:^(NSError *error) {
-                            if (!error) {
+                            if (![self isError:error tag:@"Login"]) {
                                 //Login success
                                 [[SwingClient sharedClient] userRetrieveProfileWithCompletion:^(id user, NSArray *kids, NSError *error) {
-                                    if (!error) {
-                                        [SVProgressHUD dismiss];
-                                        UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab2" bundle:nil];
-                                        UIViewController *ctl = [stroyBoard instantiateInitialViewController];
-                                        AppDelegate *ad = (AppDelegate*)[UIApplication sharedApplication].delegate;
-                                        ad.window.rootViewController = ctl;
-                                    }
-                                    else {
-                                        LOG_D(@"retrieveProfile fail: %@", error);
-                                        [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                                    if (![self isError:error tag:@"retrieveProfile"]) {
+//                                        [SVProgressHUD dismiss];
+//                                        [self goToMain];
+                                        [SVProgressHUD showWithStatus:@"Loading data, please wait..."];
+                                        //继续获取当月和下月Event进行本地缓存
+                                        [[SwingClient sharedClient] calendarGetEvents:[NSDate date] type:GetEventTypeMonth completion:^(NSArray *eventArray, NSError *error) {
+                                            if (![self isError:error tag:@"calendarGetEvents"]) {
+                                                NSDateComponents* comps = [[DBHelper calendar] components:NSYearCalendarUnit|NSMonthCalendarUnit | NSDayCalendarUnit fromDate:[NSDate date]];
+                                                comps.month += 1;
+                                                comps.day = 1;
+                                                NSDate *nextMonth = [[DBHelper calendar] dateFromComponents:comps];
+                                                [[SwingClient sharedClient] calendarGetEvents:nextMonth type:GetEventTypeMonth completion:^(NSArray *eventArray, NSError *error) {
+                                                    if (![self isError:error tag:@"calendarGetEvents2"]) {
+                                                        [SVProgressHUD dismiss];
+                                                        [self goToMain];
+                                                    }
+                                                }];
+                                                
+                                            }
+                                        }];
+                                        
                                     }
                                 }];
                             }
-                            else {
-                                LOG_D(@"login fail: %@", error);
-                                [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-                            }
                         }];
                     }
-                }
-                else {
-                    LOG_D(@"isEmailRegistered fail: %@", error);
-                    [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
                 }
             }];
         }
     }
     return YES;
+}
+
+- (BOOL)isError:(NSError*)error tag:(NSString*)tag {
+    if (error) {
+        LOG_D(@"%@ fail: %@", tag, error);
+        [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+        return YES;
+    }
+    return NO;
+}
+
+- (void)goToMain {
+    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab2" bundle:nil];
+    UIViewController *ctl = [stroyBoard instantiateInitialViewController];
+    AppDelegate *ad = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    ad.window.rootViewController = ctl;
 }
 
 - (void)doneAction {

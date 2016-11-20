@@ -7,6 +7,8 @@
 //
 
 #import "JSONModel.h"
+#import "Todo+CoreDataClass.h"
+
 @protocol ToDoModel @end
 
 @interface ToDoModel : JSONModel
@@ -14,5 +16,8 @@
 @property (nonatomic) int objId;
 @property (strong, nonatomic) NSString* text;
 @property (strong, nonatomic) NSString* status;
+
+- (void)updateTo:(Todo*)todo;
+- (void)updateFrom:(Todo*)todo;
 
 @end

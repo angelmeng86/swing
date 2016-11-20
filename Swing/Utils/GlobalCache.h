@@ -36,7 +36,7 @@
 + (NSString*)dateToDayString:(NSDate*)date;
 
 - (NSArray*)searchEventsByDay:(NSDate*)date;
-- (NSMutableArray*)searchWeeklyEventsByDay:(NSDate*)date;
+//- (NSMutableArray*)searchWeeklyEventsByDay:(NSDate*)date;
 
 - (void)queryMonthEvents:(NSDate*)date;
 
@@ -58,7 +58,7 @@
 
 @property (strong, nonatomic) NSArray* kidsList;
 
-@property (strong, nonatomic) NSMutableDictionary* calendarEventsByMonth;
+//@property (strong, nonatomic) NSMutableDictionary* calendarEventsByMonth;
 @property (strong, nonatomic) NSMutableSet* calendarQueue;
 
 @property (strong, nonatomic) NSString* token;

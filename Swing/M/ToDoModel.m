@@ -17,4 +17,16 @@
                                                        }];
 }
 
+- (void)updateTo:(Todo*)todo {
+    todo.objId = _objId;
+    todo.status = _status;
+    todo.text = _text;
+}
+
+- (void)updateFrom:(Todo*)todo {
+    self.objId = todo.objId;
+    self.status = todo.status;
+    self.text = todo.text;
+}
+
 @end

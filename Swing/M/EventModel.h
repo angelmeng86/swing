@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "JSONModel.h"
 #import "ToDoModel.h"
+#import "Event+CoreDataClass.h"
 
 @class UIColor;
 @interface EventModel : JSONModel
@@ -29,5 +30,8 @@
 @property (nonatomic, strong) NSString<Optional> *state;
 
 @property (nonatomic, strong) NSArray<ToDoModel, Optional> *todo;
+
+- (void)updateTo:(Event*)event;
+- (void)updateFrom:(Event*)event;
 
 @end

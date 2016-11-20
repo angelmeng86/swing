@@ -319,17 +319,17 @@ typedef enum : NSUInteger {
 
 - (void)syncDevice:(CBPeripheral*)peripheral centralManager:(CBCentralManager *)central event:(NSArray*)events {
     syncState = SwingSyncNone;
-    NSDate *date = [NSDate date];
     self.eventArray = [NSMutableArray arrayWithArray:events];
-    for (int i = (int)_eventArray.count; --i >= 0;) {
-        EventModel *obj = _eventArray[i];
-        if (obj.alert < 34) {
-            [_eventArray removeObjectAtIndex:i];
-        }
-        else if(NSOrderedDescending != [obj.startDate compare:date]) {
-            [_eventArray removeObjectAtIndex:i];
-        }
-    }
+//    NSDate *date = [NSDate date];
+//    for (int i = (int)_eventArray.count; --i >= 0;) {
+//        EventModel *obj = _eventArray[i];
+//        if (obj.alert < 34) {
+//            [_eventArray removeObjectAtIndex:i];
+//        }
+//        else if(NSOrderedDescending != [obj.startDate compare:date]) {
+//            [_eventArray removeObjectAtIndex:i];
+//        }
+//    }
     self.activityArray = [NSMutableArray array];
     self.activityDict = [NSMutableDictionary dictionary];
     self.timeSet = [NSMutableIndexSet new];

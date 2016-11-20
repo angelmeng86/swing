@@ -18,29 +18,62 @@
 
 @implementation AppDelegate
 
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+- (void)test {
 //    char *ptr = "\x76\x01\x00\x00\x01\x76\x01\x00\x00\x76\x01\x00\x00\x76\x01\x00\x00\x76\x01\x00\x00";
-////    long data = [Fun byteArrayToLong:[NSData dataWithBytes:ptr length:4] length:4];
+//    //    long data = [Fun byteArrayToLong:[NSData dataWithBytes:ptr length:4] length:4];
 //    ActivityModel *m = [ActivityModel new];
 //    [m setIndoorData:[NSData dataWithBytes:ptr length:21]];
 //    NSLog(@"data:%@", m.indoorActivity);
-    
+//    
 //    static NSDateFormatter *df = nil;
 //    if (df == nil) {
 //        df = [[NSDateFormatter alloc] init];
 //        df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-////        [df setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+//        //        [df setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
 //        [df setTimeStyle:NSDateFormatterFullStyle];
 //        [df setDateStyle:NSDateFormatterFullStyle];
 //    }
 //    NSDate *date = [NSDate dateWithTimeIntervalSince1970:1472164242];
 //    NSLog(@"date:%@ df:%@", date, [df stringFromDate:date]);
+
+    //    [SwingClientTest testAll:15];
+    //    [SwingClientTest testBluetooth];
+    
+    LOG_D(@"home:%@", NSHomeDirectory());
+    
+        NSDate * date  = [NSDate date];
+        NSCalendar * calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar]; // 指定日历的算法 NSCalendarIdentifierGregorian,NSGregorianCalendar
+        // NSDateComponent 可以获得日期的详细信息，即日期的组成
+        NSDateComponents *comps = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit|NSSecondCalendarUnit|NSWeekCalendarUnit|NSWeekdayCalendarUnit fromDate:date];
+        
+        NSLog(@"年 = year = %ld",comps.year);
+        NSLog(@"月 = month = %ld",comps.month);
+        NSLog(@"日 = day = %ld",comps.day);
+        NSLog(@"时 = hour = %ld",comps.hour);
+        NSLog(@"分 = minute = %ld",comps.minute);
+        NSLog(@"秒 = second = %ld",comps.second);
+        NSLog(@"星期 =weekDay = %ld ",comps.weekday);
+    
+//    [DBHelper queryEventModelByDay:date];
+    
+    comps = [[DBHelper calendar] components:NSYearCalendarUnit|NSMonthCalendarUnit | NSDayCalendarUnit fromDate:date];
+    comps.month += 1;
+    comps.day = 1;
+    NSDate *oneDay = [[DBHelper calendar] dateFromComponents:comps];
+    NSLog(@"day:%@", oneDay);
+//    oneDay = [oneDay dateByAddingTimeInterval:-1];
+    
+    [[SwingClient sharedClient] calendarGetEvents:oneDay type:GetEventTypeMonth completion:^(NSArray *eventArray, NSError *error) {
+        
+    }];
+}
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // Override point for customization after application launch.
     
     [[GlobalCache shareInstance] initConfig];
-//    [SwingClientTest testAll:15];
-//    [SwingClientTest testBluetooth];
+//    [self test];
+
     
     // Register for Push Notitications
     if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {

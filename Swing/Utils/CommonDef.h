@@ -78,4 +78,8 @@
 #import "UIFont+AvenirFont.h"
 #import <MagicalRecord/MagicalRecord.h>
 
+#import "Event+CoreDataClass.h"
+#import "Todo+CoreDataClass.h"
+#import "DBHelper.h"
+
 #endif

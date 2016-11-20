@@ -129,6 +129,7 @@
     [[SwingClient sharedClient] calendarTodoDone:[NSString stringWithFormat:@"%d", model.objId] completion:^(NSError *error) {
         if (!error) {
             model.status = @"DONE";
+            [DBHelper addTodo:model];
             [self.selected removeObject:model];
             if (![self uploadDoneInfo]) {
                 [SVProgressHUD dismiss];

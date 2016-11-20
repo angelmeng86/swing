@@ -2,7 +2,7 @@
 //  Event+CoreDataProperties.m
 //  Swing
 //
-//  Created by Mapple on 2016/11/16.
+//  Created by Mapple on 2016/11/19.
 //  Copyright © 2016年 zzteam. All rights reserved.
 //  This file was automatically generated and should not be edited.
 //
@@ -15,17 +15,17 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"Event"];
 }
 
-@dynamic objId;
-@dynamic eventName;
-@dynamic startDate;
-@dynamic endDate;
-@dynamic timezoneOffset;
-@dynamic color;
-@dynamic status;
-@dynamic desc;
 @dynamic alert;
 @dynamic city;
+@dynamic color;
+@dynamic desc;
+@dynamic endDate;
+@dynamic eventName;
+@dynamic objId;
+@dynamic startDate;
 @dynamic state;
+@dynamic status;
+@dynamic timezoneOffset;
 @dynamic todoList;
 
 @end
