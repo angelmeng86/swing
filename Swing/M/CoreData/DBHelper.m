@@ -14,7 +14,7 @@
 + (NSCalendar*)calendar {
     static NSCalendar *cal = nil;
     if (cal == nil) {
-        cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     }
     return cal;
 }
@@ -81,7 +81,7 @@
 }
 
 + (NSArray*)queryEventModelByDay:(NSDate*)date {
-    NSDateComponents *comps = [[DBHelper calendar] components:NSYearCalendarUnit|NSMonthCalendarUnit | NSDayCalendarUnit fromDate:date];
+    NSDateComponents *comps = [[DBHelper calendar] components:NSCalendarUnitYear|NSCalendarUnitMonth | NSCalendarUnitDay fromDate:date];
     NSDate *oneDay = [[DBHelper calendar] dateFromComponents:comps];
     NSDate *nextDay = [oneDay dateByAddingTimeInterval:24*60*60];
     

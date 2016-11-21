@@ -137,7 +137,7 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     [super viewWillAppear:animated];
     
     NSCalendar *cal = [NSCalendar currentCalendar];
-    NSDateComponents *start = [cal components:NSHourCalendarUnit fromDate:[NSDate date]];
+    NSDateComponents *start = [cal components:NSCalendarUnitHour fromDate:[NSDate date]];
     for (int i = (int)_hourLines.count; --i >= 0;) {
         TimeLineView *view = _hourLines[i];
         if (i == [start hour] - 6) {
@@ -236,7 +236,7 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     }
     
     NSCalendar *cal = [NSCalendar currentCalendar];
-    NSDateComponents *start = [cal components:NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:model.startDate];
+    NSDateComponents *start = [cal components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:model.startDate];
     
     NSInteger hour = [start hour] - 6;
     if (hour < 0) {
@@ -248,7 +248,7 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     float startH = [start minute] * 40 / 60;
     
     
-    NSDateComponents *end = [cal components:NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:model.endDate];
+    NSDateComponents *end = [cal components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:model.endDate];
     float height = (([end hour] - [start hour]) * 60 + [end minute] - [start minute]) * 40 / 60;
     
     EventLabel *label = [EventLabel new];

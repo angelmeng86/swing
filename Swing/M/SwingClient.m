@@ -499,7 +499,7 @@
 - (NSURLSessionDataTask *)calendarGetEvents:(NSDate*)date type:(GetEventType)type completion:( void (^)(NSArray* eventArray, NSError *error) )completion {
     
     NSCalendar *cal = [NSCalendar currentCalendar];
-    NSDateComponents *component = [cal components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date];
+    NSDateComponents *component = [cal components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:date];
     
     NSDictionary *data = @{@"query":type == GetEventTypeMonth ? @"month" : @"day", @"month":[NSString stringWithFormat:@"%ld",(long)[component month]], @"year":[NSString stringWithFormat:@"%ld",(long)[component year]], @"day":[NSString stringWithFormat:@"%ld",(long)[component day]]};
     

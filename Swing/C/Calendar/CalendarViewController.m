@@ -67,7 +67,7 @@
                 [self setTimeDesc:[dateFormatter stringFromDate:event.startDate] desc:event.eventName];
                 
                 NSCalendar *cal = [NSCalendar currentCalendar];
-                NSDateComponents *start = [cal components:NSHourCalendarUnit fromDate:event.startDate];
+                NSDateComponents *start = [cal components:NSCalendarUnitHour fromDate:event.startDate];
                 
                 self.progressView.progressCounter = 1;
                 if([start hour] % 12 == 0) {

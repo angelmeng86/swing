@@ -83,7 +83,7 @@
                                         //继续获取当月和下月Event进行本地缓存
                                         [[SwingClient sharedClient] calendarGetEvents:[NSDate date] type:GetEventTypeMonth completion:^(NSArray *eventArray, NSError *error) {
                                             if (![self isError:error tag:@"calendarGetEvents"]) {
-                                                NSDateComponents* comps = [[DBHelper calendar] components:NSYearCalendarUnit|NSMonthCalendarUnit | NSDayCalendarUnit fromDate:[NSDate date]];
+                                                NSDateComponents* comps = [[DBHelper calendar] components:NSCalendarUnitYear|NSCalendarUnitMonth | NSCalendarUnitDay fromDate:[NSDate date]];
                                                 comps.month += 1;
                                                 comps.day = 1;
                                                 NSDate *nextMonth = [[DBHelper calendar] dateFromComponents:comps];
