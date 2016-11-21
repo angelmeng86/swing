@@ -99,6 +99,7 @@
 		ADDCD3F81D4C557E0031DC66 /* UIFont+AvenirFont.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDCD3F71D4C557E0031DC66 /* UIFont+AvenirFont.m */; };
 		ADDCD3FB1D4C59F10031DC66 /* Avenir-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADDCD3F91D4C59E10031DC66 /* Avenir-bold.ttf */; };
 		ADDCD3FC1D4C59F10031DC66 /* Avenir-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = ADDCD3FA1D4C59E10031DC66 /* Avenir-Book.otf */; };
+		ADDEAE101DE299FB00AD478A /* Swing.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 0F1376291DE0524900DB6C33 /* Swing.xcdatamodeld */; };
 		ADE0BE731D59933400E70109 /* LMCalendarDayView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE0BE721D59933400E70109 /* LMCalendarDayView.m */; };
 		ADE6ED8A1D4E229D00FFA573 /* MonthCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE6ED891D4E229D00FFA573 /* MonthCalendarViewController.m */; };
 		ADE6ED8D1D4E355300FFA573 /* BaseCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE6ED8C1D4E355300FFA573 /* BaseCalendarViewController.m */; };
@@ -913,6 +914,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADDEAE101DE299FB00AD478A /* Swing.xcdatamodeld in Resources */,
 				ADD6555E1D5B8D410054FB24 /* alert.json in Resources */,
 				0F140B711D88432B005B9763 /* alert2.json in Resources */,
 				ADDCD3FB1D4C59F10031DC66 /* Avenir-bold.ttf in Resources */,

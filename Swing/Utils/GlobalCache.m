@@ -40,6 +40,7 @@
     [AVOSCloud setApplicationId:@"zBJwrWLoydY2zVeSkxENhDL4-gzGzoHsz" clientKey:@"JPosFv55xiaCsCp6wNmfuejs"];
     
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"Swing.sqlite"];
+//    [MagicalRecord setupCoreDataStackWithStoreNamed:@"Swing.sqlite"];
     [MagicalRecord setLoggingLevel:MagicalRecordLoggingLevelOff];
     
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];

@@ -39,7 +39,7 @@
     //    [SwingClientTest testAll:15];
     //    [SwingClientTest testBluetooth];
     
-    LOG_D(@"home:%@", NSHomeDirectory());
+    
     
         NSDate * date  = [NSDate date];
         NSCalendar * calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar]; // 指定日历的算法 NSCalendarIdentifierGregorian,NSGregorianCalendar
@@ -70,7 +70,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
+    LOG_D(@"home:%@", NSHomeDirectory());
     [[GlobalCache shareInstance] initConfig];
 //    [self test];
 
