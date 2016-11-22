@@ -31,6 +31,7 @@
     event.alert = _alert;
     event.city = _city;
     event.state = _state;
+    event.repeat = _repeat;
     
     for (Todo *t in event.todoList) {
         LOG_D(@"del todo:%d", t.objId);
@@ -58,6 +59,7 @@
     self.alert = event.alert;
     self.city = event.city;
     self.state = event.state;
+    self.repeat = event.repeat;
     
     if (event.todoList) {
         NSMutableArray *array = [NSMutableArray array];

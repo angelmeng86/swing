@@ -7,12 +7,11 @@
 //
 
 #import "ColorTransformer.h"
-#import "JSONValueTransformer+UIColor.h"
 
 @implementation ColorTransformer
 
 + (Class)transformedValueClass {
-    return [NSString class];
+    return [NSData class];
 }
 
 + (BOOL)allowsReverseTransformation {
@@ -21,11 +20,12 @@
 
 - (nullable id)transformedValue:(nullable id)value {
     UIColor *color = (UIColor*)value;
-    return [NSString stringWithFormat:@"#%02X%02X%02X", (int)((CGColorGetComponents(color.CGColor))[0]*255.0), (int)((CGColorGetComponents(color.CGColor))[1]*255.0), (int)((CGColorGetComponents(color.CGColor))[2]*255.0)];
+    NSString *s = [NSString stringWithFormat:@"#%02X%02X%02X", (int)((CGColorGetComponents(color.CGColor))[0]*255.0), (int)((CGColorGetComponents(color.CGColor))[1]*255.0), (int)((CGColorGetComponents(color.CGColor))[2]*255.0)];
+    return [s dataUsingEncoding:NSUTF8StringEncoding];
 }
 
 - (nullable id)reverseTransformedValue:(nullable id)value {
-    NSString *string = (NSString*)value;
+    NSString *string = [[NSString alloc] initWithData:value encoding:NSUTF8StringEncoding];
     NSString *noHashString = [string stringByReplacingOccurrencesOfString:@"#" withString:@""]; // remove the #
     NSScanner *scanner = [NSScanner scannerWithString:noHashString];
     [scanner setCharactersToBeSkipped:[NSCharacterSet symbolCharacterSet]]; // remove + and $

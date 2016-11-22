@@ -31,6 +31,8 @@
 
 @property (nonatomic, strong) NSArray<ToDoModel, Optional> *todo;
 
+@property (strong, nonatomic) NSString<Optional>* repeat;
+
 - (void)updateTo:(Event*)event;
 - (void)updateFrom:(Event*)event;
 

@@ -2,9 +2,8 @@
 //  Event+CoreDataProperties.h
 //  Swing
 //
-//  Created by Mapple on 2016/11/19.
+//  Created by Mapple on 2016/11/22.
 //  Copyright © 2016年 zzteam. All rights reserved.
-//  This file was automatically generated and should not be edited.
 //
 
 #import "Event+CoreDataClass.h"
@@ -18,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) int32_t alert;
 @property (nullable, nonatomic, copy) NSString *city;
-@property (nullable, nonatomic, retain) id color;
+@property (nullable, nonatomic, retain) UIColor *color;
 @property (nullable, nonatomic, copy) NSString *desc;
 @property (nullable, nonatomic, copy) NSDate *endDate;
 @property (nullable, nonatomic, copy) NSString *eventName;
@@ -27,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *state;
 @property (nullable, nonatomic, copy) NSString *status;
 @property (nonatomic) int32_t timezoneOffset;
+@property (nullable, nonatomic, copy) NSString *repeat;
 @property (nullable, nonatomic, retain) NSSet<Todo *> *todoList;
 
 @end
