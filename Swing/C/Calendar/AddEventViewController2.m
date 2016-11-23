@@ -79,7 +79,7 @@
     [bgView addTarget:self action:@selector(repeatAction) forControlEvents:UIControlEventTouchUpInside];
     self.repeatTF.rightView = bgView;
     self.repeatTF.rightViewMode = UITextFieldViewModeAlways;
-//    self.repeatTF.text = @"Never";
+    self.repeatTF.enabled = NO;
     
     
     UIDatePicker *datePicker2 = [[UIDatePicker alloc] init];
