@@ -22,6 +22,7 @@
 + (void)clearDatabase {
     [Event MR_truncateAll];
     [Todo MR_truncateAll];
+    [Activity MR_truncateAll];
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
 }
 
@@ -130,6 +131,46 @@
         return list;
     }
     return nil;
+}
+
++ (NSMutableArray*)queryActivityModel {
+    NSArray *array = [Activity MR_findAllSortedBy:@"time" ascending:YES];
+    if(array.count > 0) {
+        NSMutableArray *list = [NSMutableArray array];
+        for (Activity *e in array) {
+            ActivityModel *model = [ActivityModel new];
+            [model updateFrom:e];
+            model.objId = e.objectID;
+            [list addObject:model];
+        }
+        return list;
+    }
+    return nil;
+}
+
++ (BOOL)addActivity:(ActivityModel*)model {
+    if (!model.objId) {
+        return NO;
+    }
+    Activity *m = [Activity MR_createEntity];
+    [model updateTo:m];
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    model.objId = m.objectID;
+    LOG_D(@"create Activity %@", model.objId);
+    return YES;
+}
+
++ (BOOL)delActivity:(NSManagedObjectID*)objId {
+    if (objId) {
+        NSManagedObject *obj = [[NSManagedObjectContext MR_defaultContext] objectRegisteredForID:objId];
+        if (obj) {
+            [obj MR_deleteEntity];
+            LOG_D(@"del Activity %@", objId);
+            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+            return YES;
+        }
+    }
+    return NO;
 }
 
 @end

@@ -27,7 +27,7 @@ typedef enum : NSUInteger {
     BLEClient *client;
 }
 
-//@property (nonatomic, strong) NSMutableArray *activitys;
+@property (nonatomic, strong) NSMutableArray *activitys;
 @property (nonatomic, strong) CBPeripheral *peripheral;
 
 @end
@@ -208,9 +208,11 @@ typedef enum : NSUInteger {
 - (void)syncAction:(NSArray*)eventArray {
     [client syncDevice:_peripheral event:eventArray completion:^(NSMutableArray *activities, NSError *error) {
         LOG_D(@"syncDevice error %@", error);
-        LOG_D(@"syncDevice activities count %d", (int)activities.count);
         
         LOG_BEG(@"Upload Activity BEGIN");
+        self.activitys = [DBHelper queryActivityModel];
+        LOG_D(@"TotalActivity count %d, cur count %d", (int)self.activitys.count, (int)activities.count);
+        /*
         LOG_D(@"PreActivity count %lu", (unsigned long)[GlobalCache shareInstance].activitys.count);
         if ([GlobalCache shareInstance].activitys) {
             [[GlobalCache shareInstance].activitys addObjectsFromArray:activities];
@@ -219,6 +221,8 @@ typedef enum : NSUInteger {
         else {
             [GlobalCache shareInstance].activitys = activities;
         }
+         */
+         
         /*
         long time = [[NSDate date] timeIntervalSince1970];
         NSMutableData *data = [NSMutableData data];
@@ -279,18 +283,19 @@ typedef enum : NSUInteger {
 //}
 
 - (void)uploadData {
-    ActivityModel *model = [[GlobalCache shareInstance].activitys firstObject];
+    ActivityModel *model = [self.activitys firstObject];
     if (model) {
         [[SwingClient sharedClient] deviceUploadRawData:model completion:^(NSError *error) {
             if (!error) {
-                [[GlobalCache shareInstance].activitys removeObject:model];
+                [DBHelper delActivity:model.objId];
+                [self.activitys removeObject:model];
                 [self uploadData];
             }
             else {
                 
                 LOG_D(@"deviceUploadRawData fail: %@", error);
-                LOG_END(@"Upload Activity END, ret count:%lu", (unsigned long)[GlobalCache shareInstance].activitys.count);
-                [[GlobalCache shareInstance] cacheActivity];
+                LOG_END(@"Upload Activity END, ret count:%d", (int)self.activitys.count);
+//                [[GlobalCache shareInstance] cacheActivity];
                 [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
                 [self changeStatus:SyncStatusSyncCompleted];
             }
@@ -299,7 +304,7 @@ typedef enum : NSUInteger {
     }
     else {
         ENTER(@"Upload Activity Done");
-        [[GlobalCache shareInstance] clearActivity];
+//        [[GlobalCache shareInstance] clearActivity];
         [self changeStatus:SyncStatusSyncCompleted];
     }
 }

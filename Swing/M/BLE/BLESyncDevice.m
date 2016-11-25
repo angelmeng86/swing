@@ -203,6 +203,7 @@ typedef enum : NSUInteger {
                 [model setIndoorData:self.ffa4Data1];
                 [model setOutdoorData:self.ffa4Data2];
                 [self.activityArray addObject:model];
+                [DBHelper addActivity:model];
                 
                 NSString *local = [GlobalCache shareInstance].local.date;
                 if (local && [local isEqualToString:key]) {
@@ -252,7 +253,8 @@ typedef enum : NSUInteger {
     else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:@"2A19"]]) {
         const Byte* ptr = characteristic.value.bytes;
         LOG_D(@"Read Battery:%d%%", ptr[0]);
-        [GlobalCache shareInstance].battery = ptr[0];
+        [GlobalCache shareInstance].local.battery = ptr[0];
+        [[GlobalCache shareInstance] saveInfo];
         [[NSNotificationCenter defaultCenter] postNotificationName:SWING_WATCH_BATTERY_NOTIFY object:[NSNumber numberWithInt:ptr[0]]];
     }
     else if ([characteristic.UUID.UUIDString isEqualToString:@"FFA9"]) {
@@ -303,12 +305,13 @@ typedef enum : NSUInteger {
                 //数据有误
                 array[0] = 0x00;
                 self.ffa4Data2 = nil;
+                LOG_D(@"FFA4DATA1 isEqualto FFA4DATA2!");
             }
             else {
                 array[0] = 0x01;
                 self.ffa4Data2 = characteristic.value;
             }
-            LOG_D(@"Write FFA5");
+            LOG_D(@"Write FFA5 %d", array[0]);
             NSData *data = [NSData dataWithBytes:array length:1];
             CBCharacteristic *character = [characteristic.service findCharacteristic:@"FFA5"];
             [characteristic.service.peripheral writeValue:data forCharacteristic:character type:CBCharacteristicWriteWithResponse];

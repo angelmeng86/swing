@@ -155,18 +155,17 @@
 }
 
 - (IBAction)delAction:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-//    [SVProgressHUD showWithStatus:@"Removing, please wait..."];
+    [SVProgressHUD showWithStatus:@"Removing, please wait..."];
     [[SwingClient sharedClient] calendarDeleteEvent:[NSString stringWithFormat:@"%d", self.model.objId] completion:^(NSError *error) {
         if (!error) {
             LOG_D(@"calendarDeleteEvent sucess.");
             [[GlobalCache shareInstance] deleteEvent:self.model];
-//            [SVProgressHUD dismiss];
-            
+            [SVProgressHUD dismiss];
+            [self.navigationController popViewControllerAnimated:YES];
         }
         else {
             LOG_D(@"calendarDeleteEvent fail: %@", error);
-//            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
         }
     }];
 }

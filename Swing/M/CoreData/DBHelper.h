@@ -26,4 +26,9 @@
 
 + (NSArray*)queryNearAlertEventModel:(int)limit;
 
++ (NSMutableArray*)queryActivityModel;
+
++ (BOOL)addActivity:(ActivityModel*)model;
++ (BOOL)delActivity:(NSManagedObjectID*)objId;
+
 @end

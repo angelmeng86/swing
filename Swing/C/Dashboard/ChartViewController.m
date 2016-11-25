@@ -337,7 +337,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
         case ChartTypeYear:
         {
             NSCalendar *cal = [NSCalendar currentCalendar];
-            NSDateComponents *comp = [cal components:NSYearCalendarUnit|NSMonthCalendarUnit fromDate:date];
+            NSDateComponents *comp = [cal components:NSCalendarUnitYear|NSCalendarUnitMonth fromDate:date];
 //            LOG_D(@"month:%ld", (long)comp.month);
             NSInteger month = comp.month - 11 + (int)index;
             NSInteger year = comp.year;
@@ -627,7 +627,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
         }
         NSArray *array = [dateFormatter shortStandaloneMonthSymbols];
         NSCalendar *cal = [NSCalendar currentCalendar];
-        NSDateComponents *comp = [cal components:NSYearCalendarUnit|NSMonthCalendarUnit fromDate:[NSDate date]];
+        NSDateComponents *comp = [cal components:NSCalendarUnitYear|NSCalendarUnitMonth fromDate:[NSDate date]];
         
         LMBarView *v = [LMBarView new];
         v.dateLabel.text = [array objectAtIndex:(index + comp.month) % 12];

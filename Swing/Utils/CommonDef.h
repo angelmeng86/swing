@@ -80,6 +80,7 @@
 
 #import "Event+CoreDataClass.h"
 #import "Todo+CoreDataClass.h"
+#import "Activity+CoreDataClass.h"
 #import "DBHelper.h"
 
 #endif

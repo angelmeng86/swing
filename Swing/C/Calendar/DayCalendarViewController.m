@@ -268,9 +268,10 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
 //    [label autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:startLine withOffset:-40];
     
     label.userInteractionEnabled = YES;
-    UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeToDelete:)];
-    [swipeGesture setDirection:UISwipeGestureRecognizerDirectionRight];
-    [label addGestureRecognizer:swipeGesture];
+    //注释滑动删除功能
+//    UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeToDelete:)];
+//    [swipeGesture setDirection:UISwipeGestureRecognizerDirectionRight];
+//    [label addGestureRecognizer:swipeGesture];
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
     [label addGestureRecognizer:tapGesture];

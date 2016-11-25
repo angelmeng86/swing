@@ -14,6 +14,7 @@
 @property (nonatomic) long outdoorSteps;
 @property (nonatomic, strong) NSString<Optional> *date;
 @property (nonatomic, strong) NSData<Optional> *deviceMAC;
+@property (nonatomic) int battery;
 
 - (void)checkDate;
 

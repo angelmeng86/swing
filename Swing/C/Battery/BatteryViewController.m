@@ -43,7 +43,7 @@
 }
 
 - (void)batteryNotify:(NSNotification*)notify {
-    [self bluetoothClientBattery:[GlobalCache shareInstance].battery];
+    [self bluetoothClientBattery:[GlobalCache shareInstance].local.battery];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,7 +53,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self bluetoothClientBattery:[GlobalCache shareInstance].battery];
+    [self bluetoothClientBattery:[GlobalCache shareInstance].local.battery];
 }
 
 - (void)bluetoothClientBattery:(int)value {

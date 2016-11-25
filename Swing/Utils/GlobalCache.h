@@ -23,8 +23,8 @@
 
 - (void)saveInfo;
 
-- (void)cacheActivity;
-- (void)clearActivity;
+//- (void)cacheActivity;
+//- (void)clearActivity;
 
 - (void)queryProfile;
 //- (void)queryKids;
@@ -51,8 +51,6 @@
 @property (strong, nonatomic) UserModel* user;
 @property (strong, nonatomic) LMLocalData* local;
 
-@property (nonatomic) int battery;
-
 @property (strong, nonatomic) WeatherModel* wearther;
 @property (nonatomic) BOOL weartherRunning;
 
@@ -63,6 +61,6 @@
 
 @property (strong, nonatomic) NSString* token;
 
-@property (nonatomic, strong) NSMutableArray *activitys;
+//@property (nonatomic, strong) NSMutableArray *activitys;
 
 @end

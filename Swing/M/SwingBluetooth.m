@@ -357,7 +357,7 @@ typedef enum : NSUInteger {
             if ([characteristic.UUID.UUIDString isEqualToString:@"2A19"]) {
                 const Byte* ptr = characteristic.value.bytes;
                 LOG_D(@"Read Battery:%d%%", ptr[0]);
-                [GlobalCache shareInstance].battery = ptr[0];
+                [GlobalCache shareInstance].local.battery = ptr[0];
                 [[NSNotificationCenter defaultCenter] postNotificationName:SWING_WATCH_BATTERY_NOTIFY object:[NSNumber numberWithInt:ptr[0]]];
             }
             else if ([characteristic.UUID.UUIDString isEqualToString:@"FFA6"]) {
@@ -535,7 +535,7 @@ typedef enum : NSUInteger {
             if ([characteristic.UUID.UUIDString isEqualToString:@"2A19"]) {
                 const Byte* ptr = characteristic.value.bytes;
                 LOG_D(@"Read Battery:%d%%", ptr[0]);
-                [GlobalCache shareInstance].battery = ptr[0];
+                [GlobalCache shareInstance].local.battery = ptr[0];
                 [[NSNotificationCenter defaultCenter] postNotificationName:SWING_WATCH_BATTERY_NOTIFY object:[NSNumber numberWithInt:ptr[0]]];
             }
             else if ([characteristic.UUID.UUIDString isEqualToString:@"FFA6"]) {

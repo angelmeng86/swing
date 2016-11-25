@@ -139,4 +139,18 @@ macId:           tester1
                         _outData1, _outData2, _outData3, _outData4];
 }
 
+- (void)updateTo:(Activity*)model {
+    model.time = _time;
+    model.macId = _macId;
+    model.indoorActivity = self.indoorActivity;
+    model.outdoorActivity = self.outdoorActivity;
+}
+
+- (void)updateFrom:(Activity*)model {
+    self.time = model.time;
+    self.macId = model.macId;
+    self.indoorActivity = model.indoorActivity;
+    self.outdoorActivity = model.outdoorActivity;
+}
+
 @end

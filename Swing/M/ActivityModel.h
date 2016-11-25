@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "JSONModel.h"
+#import "Activity+CoreDataProperties.h"
+
 @protocol ActivityModel @end
 
 @interface ActivityModel : JSONModel
@@ -27,6 +29,8 @@
 @property (nonatomic) long outData3;
 @property (nonatomic) long outData4;
 
+@property (nonatomic, strong) NSManagedObjectID<Ignore> *objId;
+
 - (void)setIndoorData:(NSData*)data;
 - (void)setOutdoorData:(NSData*)data;
 
@@ -34,5 +38,8 @@
 
 - (void)reload;
 //- (void)reset;
+
+- (void)updateTo:(Activity*)model;
+- (void)updateFrom:(Activity*)model;
 
 @end
