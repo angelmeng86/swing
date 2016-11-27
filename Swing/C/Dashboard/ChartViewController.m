@@ -309,9 +309,9 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if (self.indoorData == nil) {
+//    if (self.indoorData == nil) {
         [self requestData];
-    }
+//    }
 }
 
 //- (void)setIsOutdoor:(BOOL)isOutdoor {
