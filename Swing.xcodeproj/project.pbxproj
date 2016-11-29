@@ -15,6 +15,7 @@
 		0F176EC01DE48FB70014F079 /* Todo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F176EBA1DE48FB70014F079 /* Todo+CoreDataProperties.m */; };
 		0F176EC11DE48FB70014F079 /* Event+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F176EBC1DE48FB70014F079 /* Event+CoreDataClass.m */; };
 		0F176EC21DE48FB70014F079 /* Event+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F176EBE1DE48FB70014F079 /* Event+CoreDataProperties.m */; };
+		0F1D939D1DEDD90F000444B9 /* BLEDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1D939C1DEDD90F000444B9 /* BLEDelegate.m */; };
 		0F445E0F1D7094A6008A092C /* JSONValueTransformer+NSData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F445E0E1D7094A6008A092C /* JSONValueTransformer+NSData.m */; };
 		0F45AB831D6316FA00EF385F /* STextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB821D6316FA00EF385F /* STextField.m */; };
 		0F45AB881D63593400EF385F /* ActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB871D63593400EF385F /* ActivityModel.m */; };
@@ -133,6 +134,8 @@
 		0F176EBC1DE48FB70014F079 /* Event+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Event+CoreDataClass.m"; sourceTree = "<group>"; };
 		0F176EBD1DE48FB70014F079 /* Event+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Event+CoreDataProperties.h"; sourceTree = "<group>"; };
 		0F176EBE1DE48FB70014F079 /* Event+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Event+CoreDataProperties.m"; sourceTree = "<group>"; };
+		0F1D939B1DEDD90F000444B9 /* BLEDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEDelegate.h; sourceTree = "<group>"; };
+		0F1D939C1DEDD90F000444B9 /* BLEDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEDelegate.m; sourceTree = "<group>"; };
 		0F445E0D1D7094A6008A092C /* JSONValueTransformer+NSData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSONValueTransformer+NSData.h"; sourceTree = "<group>"; };
 		0F445E0E1D7094A6008A092C /* JSONValueTransformer+NSData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JSONValueTransformer+NSData.m"; sourceTree = "<group>"; };
 		0F45AB811D6316FA00EF385F /* STextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STextField.h; sourceTree = "<group>"; };
@@ -382,6 +385,8 @@
 				0F927FD41DDA02680011EF90 /* BLESyncDevice.m */,
 				AD65905C1DDA8B8A006DD43D /* BLEWaitDevice.h */,
 				AD65905D1DDA8B8A006DD43D /* BLEWaitDevice.m */,
+				0F1D939B1DEDD90F000444B9 /* BLEDelegate.h */,
+				0F1D939C1DEDD90F000444B9 /* BLEDelegate.m */,
 			);
 			path = BLE;
 			sourceTree = "<group>";
@@ -827,9 +832,10 @@
 						CreatedOnToolsVersion = 7.0.1;
 						DevelopmentTeam = 97SA79U875;
 						LastSwiftMigration = 0810;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
-								enabled = 0;
+								enabled = 1;
 							};
 							com.apple.Push = {
 								enabled = 1;
@@ -942,6 +948,7 @@
 				AD74D4DF1D4FA08E001F3B36 /* EventInfoViewController.m in Sources */,
 				ADE6ED8A1D4E229D00FFA573 /* MonthCalendarViewController.m in Sources */,
 				AD0B811C1D37EF7400F43E72 /* LMBaseViewController.m in Sources */,
+				0F1D939D1DEDD90F000444B9 /* BLEDelegate.m in Sources */,
 				AD6654571D490EC20056632C /* SearchDeviceViewController.m in Sources */,
 				AD9B0D911D3BB935009FDD95 /* DashboardViewController.m in Sources */,
 				ADFC2C301D369949004EDCDF /* AppDelegate.m in Sources */,

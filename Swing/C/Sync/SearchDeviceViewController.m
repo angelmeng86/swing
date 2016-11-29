@@ -59,6 +59,10 @@ typedef enum : NSUInteger {
     self.navigationItem.hidesBackButton = YES;
     client = [[BLEClient alloc] init];
     [self changeStatus:SyncStatusSearching];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didBecomeActive:)
+                                                 name:UIApplicationDidBecomeActiveNotification object:nil];
 }
 
 
@@ -77,6 +81,17 @@ typedef enum : NSUInteger {
     [client cannelAll];
 #endif
     [super backAction];
+}
+
+- (void)didBecomeActive:(NSNotification*)notification {
+    LOG_D(@"LWZ OYEYE");
+    if (_status == SyncStatusSearching || _status == SyncStatusSyncing) {
+        self.progressView.isIndeterminateProgress = YES;
+    }
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)changeStatus:(SyncStatus)status {

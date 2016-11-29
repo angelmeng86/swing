@@ -37,6 +37,26 @@
     if (self = [super init]) {
         static CBCentralManager *manager = nil;
         if (manager == nil) {
+#if  __IPHONE_OS_VERSION_MIN_REQUIRED > __IPHONE_6_0
+            NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                                     //蓝牙power没打开时alert提示框
+                                     [NSNumber numberWithBool:YES],CBCentralManagerOptionShowPowerAlertKey,
+                                     //重设centralManager恢复的IdentifierKey
+                                     @"babyBluetoothRestore",CBCentralManagerOptionRestoreIdentifierKey,
+                                     nil];
+            
+#else
+            NSDictionary *options = nil;
+#endif
+            NSArray *backgroundModes = [[[NSBundle mainBundle] infoDictionary]objectForKey:@"UIBackgroundModes"];
+            if ([backgroundModes containsObject:@"bluetooth-central"]) {
+                //后台模式
+                manager = [[CBCentralManager alloc]initWithDelegate:self queue:nil options:options];
+            }
+            else {
+                //非后台模式
+                manager = [[CBCentralManager alloc]initWithDelegate:self queue:nil];
+            }
             manager = [[CBCentralManager alloc] init];
         }
         self.manager = manager;

@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
+#import "BLEDelegate.h"
 
-@interface BLEWaitDevice : NSObject<CBCentralManagerDelegate, CBPeripheralDelegate>
+@interface BLEWaitDevice : BLEDelegate
 
 @property (nonatomic, weak) id delegate;
 
