@@ -149,7 +149,7 @@
 }
 
 + (BOOL)addActivity:(ActivityModel*)model {
-    if (!model.objId) {
+    if (model.objId) {
         return NO;
     }
     Activity *m = [Activity MR_createEntity];

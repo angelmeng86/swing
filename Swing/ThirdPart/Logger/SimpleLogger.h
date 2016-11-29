@@ -12,7 +12,7 @@
 
 //#define MAPPLE_DEBUG
 
-#define UPLOAD_DEBUG
+//#define UPLOAD_DEBUG
 
 #ifndef __SELF_DEFING_CLOSELOGGER__
 
@@ -89,8 +89,9 @@ typedef enum {
 }
 
 @property (nonatomic, assign) SimpleLoggerLevelSetting logLevelSetting;
+#ifdef UPLOAD_DEBUG
 @property (nonatomic, strong) NSMutableString* logCache;
-
+#endif
 - (id)initWithLogLevel:(SimpleLoggerLevelSetting)levelSetting;
 - (void)log:(NSString *)msg 
   withLevel:(SimpleLoggerLevel)level

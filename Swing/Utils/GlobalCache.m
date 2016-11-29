@@ -35,10 +35,11 @@
 }
 
 - (void)initConfig {
+#ifdef UPLOAD_DEBUG
     [AVOSCloud setAllLogsEnabled:NO];
     [AVOSCloud setVerbosePolicy:kAVVerboseNone];
     [AVOSCloud setApplicationId:@"zBJwrWLoydY2zVeSkxENhDL4-gzGzoHsz" clientKey:@"JPosFv55xiaCsCp6wNmfuejs"];
-    
+#endif
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"Swing.sqlite"];
 //    [MagicalRecord setupCoreDataStackWithStoreNamed:@"Swing.sqlite"];
     [MagicalRecord setLoggingLevel:MagicalRecordLoggingLevelOff];
@@ -55,7 +56,7 @@
     NSDictionary *dict = [[NSUserDefaults standardUserDefaults] objectForKey:@"localData"];
     _local = [[LMLocalData alloc] initWithDictionary:dict error:nil];
     
-    json = [[NSUserDefaults standardUserDefaults] objectForKey:@"activitys"];
+//    json = [[NSUserDefaults standardUserDefaults] objectForKey:@"activitys"];
 //    ActivityCache *cache = [[ActivityCache alloc] initWithString:json error:nil];
 //    self.activitys = [NSMutableArray arrayWithArray:cache.array];
 }

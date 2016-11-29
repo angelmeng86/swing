@@ -58,21 +58,21 @@
 
 #pragma mark -
 #pragma mark Method
-
+#ifdef UPLOAD_DEBUG
 - (void)checkLogSize:(BOOL)upload
 {
     if (!upload && self.logCache.length < 16 * 1024) {
         //日志如果需要上传或者长度超过16KB则进行上传，并停止记录
         return;
     }
-#ifdef UPLOAD_DEBUG
+
     AVObject *logObject = [AVObject objectWithClassName:@"SwingLog"];
     if ([GlobalCache shareInstance].user.email) {
         [logObject setObject:[GlobalCache shareInstance].user.email forKey:@"userName"];
     }
     [logObject setObject:self.logCache forKey:@"log"];
     [logObject saveEventually];
-#endif
+
 //    if (upload) {
         self.logCache = nil;
 //    }
@@ -80,7 +80,7 @@
 //        self.logCache = [NSMutableString stringWithCapacity:1024];
 //    }
 }
-
+#endif
 - (void)log:(NSString *)msg 
   withLevel:(SimpleLoggerLevel)level
 	 inFile:(NSString *)fileName 
@@ -102,7 +102,9 @@
        inFile:(NSString *)fileName
        inLine:(int)lineNr
 {
+#ifdef UPLOAD_DEBUG
     self.logCache = nil;
+#endif
     [self log:msg withLevel:SLL_ENTER inFile:fileName inLine:lineNr];
 }
 
@@ -117,7 +119,9 @@
 	   inFile:(NSString *)fileName 
 	   inLine:(int)lineNr
 {
+#ifdef UPLOAD_DEBUG
     self.logCache = [NSMutableString stringWithCapacity:1024];
+#endif
 	[self log:msg withLevel:SLL_BEGIN inFile:fileName inLine:lineNr];
 }
 
@@ -126,7 +130,9 @@
 	   inLine:(int)lineNr
 {
 	[self log:msg withLevel:SLL_END inFile:fileName inLine:lineNr];
+#ifdef UPLOAD_DEBUG
     [self checkLogSize:YES];
+#endif
 }
 
 - (void)info:(NSString *)msg 
