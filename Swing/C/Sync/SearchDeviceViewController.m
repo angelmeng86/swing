@@ -20,6 +20,7 @@ typedef enum : NSUInteger {
 @interface SearchDeviceViewController ()
 {
     NSUInteger _status;
+    BOOL isBecomeActive;
     
     MDRadialProgressTheme *progressTheme;
 //    MDRadialProgressTheme *doneTheme;
@@ -59,7 +60,7 @@ typedef enum : NSUInteger {
     self.navigationItem.hidesBackButton = YES;
     client = [[BLEClient alloc] init];
     [self changeStatus:SyncStatusSearching];
-    
+    isBecomeActive = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didBecomeActive:)
                                                  name:UIApplicationDidBecomeActiveNotification object:nil];
@@ -84,9 +85,11 @@ typedef enum : NSUInteger {
 }
 
 - (void)didBecomeActive:(NSNotification*)notification {
-    LOG_D(@"LWZ OYEYE");
     if (_status == SyncStatusSearching || _status == SyncStatusSyncing) {
         self.progressView.isIndeterminateProgress = YES;
+    }
+    if (_status == SyncStatusSyncing) {
+        isBecomeActive = YES;
     }
 }
 
@@ -309,6 +312,13 @@ typedef enum : NSUInteger {
             else {
                 
                 LOG_D(@"deviceUploadRawData fail: %@", error);
+                if (isBecomeActive) {
+                    //如果Sync过程中出现APP被切入后台，再回到前台时将提供一次机会进行网络重试。
+                    isBecomeActive = NO;
+                    [self uploadData];
+                    return;
+                }
+                
                 LOG_END(@"Upload Activity END, ret count:%d", (int)self.activitys.count);
 //                [[GlobalCache shareInstance] cacheActivity];
                 [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
