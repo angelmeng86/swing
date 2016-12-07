@@ -137,6 +137,7 @@
         LOG_D(@"FFA6 Value:%@", characteristic.value);
         
         if (self.macAddress == nil || [self.macAddress isEqual:characteristic.value]) {
+            [GlobalCache shareInstance].peripheral = peripheral;
             [self reportSearchDeviceResult:peripheral error:nil];
         }
     }
@@ -157,6 +158,13 @@
     [self performSelector:@selector(operationTimeout) withObject:nil afterDelay:30];
 //    [self.manager scanForPeripheralsWithServices:nil options:nil];
     [self.manager scanForPeripheralsWithServices:nil options:@{CBCentralManagerScanOptionAllowDuplicatesKey:@YES}];
+    if ([GlobalCache shareInstance].peripheral) {
+        if (![self.connectingDevices containsObject:[GlobalCache shareInstance].peripheral]) {
+            [self.connectingDevices addObject:[GlobalCache shareInstance].peripheral];
+        }
+        LOG_D(@"connect Cache Peripheral:%@", [GlobalCache shareInstance].peripheral);
+        [self.manager connectPeripheral:[GlobalCache shareInstance].peripheral options:nil];
+    }
 }
 
 - (void)operationTimeout {
