@@ -305,7 +305,7 @@ typedef enum : NSUInteger {
     if (model) {
         [[SwingClient sharedClient] deviceUploadRawData:model completion:^(NSError *error) {
             if (!error) {
-                [DBHelper delActivity:model.objId];
+                [DBHelper delObject:model.obj];
                 [self.activitys removeObject:model];
                 [self uploadData];
             }

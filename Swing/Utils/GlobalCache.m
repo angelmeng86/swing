@@ -113,6 +113,7 @@
     self.user = nil;
     self.kidsList = nil;
     self.local = nil;
+    self.peripheral=nil;
 //    self.activitys = nil;
 //    [self.calendarEventsByMonth removeAllObjects];
     [self.calendarQueue removeAllObjects];

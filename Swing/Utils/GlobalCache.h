@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreBluetooth/CoreBluetooth.h>
 #import "CommonDef.h"
 #import "JSONModel.h"
 
@@ -62,5 +63,8 @@
 @property (strong, nonatomic) NSString* token;
 
 //@property (nonatomic, strong) NSMutableArray *activitys;
+
+//缓存已经同步的对象，缩短查找设备的时间
+@property (strong, nonatomic) CBPeripheral *peripheral;
 
 @end

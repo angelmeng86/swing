@@ -29,7 +29,7 @@
 @property (nonatomic) long outData3;
 @property (nonatomic) long outData4;
 
-@property (nonatomic, strong) NSManagedObjectID<Ignore> *objId;
+@property (nonatomic, strong) NSManagedObject<Ignore> *obj;
 
 - (void)setIndoorData:(NSData*)data;
 - (void)setOutdoorData:(NSData*)data;

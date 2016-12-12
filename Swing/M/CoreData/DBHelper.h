@@ -29,6 +29,6 @@
 + (NSMutableArray*)queryActivityModel;
 
 + (BOOL)addActivity:(ActivityModel*)model;
-+ (BOOL)delActivity:(NSManagedObjectID*)objId;
++ (BOOL)delObject:(NSManagedObject*)obj;
 
 @end

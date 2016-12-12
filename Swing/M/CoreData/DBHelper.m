@@ -140,7 +140,7 @@
         for (Activity *e in array) {
             ActivityModel *model = [ActivityModel new];
             [model updateFrom:e];
-            model.objId = e.objectID;
+            model.obj = e;
             [list addObject:model];
         }
         return list;
@@ -149,26 +149,23 @@
 }
 
 + (BOOL)addActivity:(ActivityModel*)model {
-    if (model.objId) {
+    if (model.obj) {
         return NO;
     }
     Activity *m = [Activity MR_createEntity];
     [model updateTo:m];
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-    model.objId = m.objectID;
-    LOG_D(@"create Activity %@", model.objId);
+    model.obj = m;
+    LOG_D(@"create Activity %@", m.objectID);
     return YES;
 }
 
-+ (BOOL)delActivity:(NSManagedObjectID*)objId {
-    if (objId) {
-        NSManagedObject *obj = [[NSManagedObjectContext MR_defaultContext] objectRegisteredForID:objId];
-        if (obj) {
-            [obj MR_deleteEntity];
-            LOG_D(@"del Activity %@", objId);
-            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-            return YES;
-        }
++ (BOOL)delObject:(NSManagedObject*)obj {
+    if (obj) {
+        LOG_D(@"del Object %@", obj.objectID);
+        [obj MR_deleteEntity];
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+        return YES;
     }
     return NO;
 }
