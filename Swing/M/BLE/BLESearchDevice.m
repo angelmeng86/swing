@@ -27,6 +27,7 @@
 
 - (void)cannel {
     [super cannel];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(operationTimeout) object:nil];
     for (CBPeripheral *peripheral in _connectingDevices) {
         [self.manager cancelPeripheralConnection:peripheral];
     }
@@ -165,7 +166,6 @@
 }
 
 - (void)reportSearchDeviceResult:(CBPeripheral*)peripheral error:(NSError*)error {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(operationTimeout) object:nil];
     if ([self.delegate respondsToSelector:@selector(reportSearchDeviceResult:error:)]) {
         [self.delegate reportSearchDeviceResult:peripheral error:error];
     }

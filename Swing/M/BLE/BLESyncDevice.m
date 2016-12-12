@@ -360,7 +360,7 @@ typedef enum : NSUInteger {
 
 - (void)cannel {
     [super cannel];
-    
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(operationTimeout) object:nil];
     if (_peripheral) {
         [self.manager cancelPeripheralConnection:_peripheral];
     }
@@ -377,7 +377,6 @@ typedef enum : NSUInteger {
 }
 
 - (void)reportSyncDeviceResult:(NSError*)error {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(operationTimeout) object:nil];
     if ([self.delegate respondsToSelector:@selector(reportSyncDeviceResult:error:)]) {
         [self.delegate reportSyncDeviceResult:_activityArray error:error];
     }
