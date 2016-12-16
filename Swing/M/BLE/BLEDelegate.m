@@ -14,10 +14,10 @@
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central {
     switch (central.state) {
         case CBManagerStatePoweredOn:
-            LOG_D(@"蓝牙已打开,请扫描外设");
+            LOG_D(@"Bluetooth power on.");
             break;
         case CBManagerStatePoweredOff:
-            LOG_D(@"蓝牙没有打开,请先打开蓝牙");
+            LOG_D(@"Bluetooth pwoer off.");
             break;
         default:
             break;

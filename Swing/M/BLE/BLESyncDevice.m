@@ -77,10 +77,10 @@ typedef enum : NSUInteger {
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central {
     switch (central.state) {
         case CBManagerStatePoweredOn:
-            LOG_D(@"蓝牙已打开,请扫描外设");
+            LOG_D(@"Bluetooth power on.");
             break;
         case CBManagerStatePoweredOff:
-            LOG_D(@"蓝牙没有打开,请先打开蓝牙");
+            LOG_D(@"Bluetooth pwoer off.");
             break;
         default:
             break;
@@ -196,6 +196,13 @@ typedef enum : NSUInteger {
                     df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
                     [df setDateFormat:@"yyyy-MM-dd"];
                 }
+                
+//                NSDateFormatter *df1 = [[NSDateFormatter alloc] init];
+//                df1.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+//                [df1 setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+//                NSDateFormatter *df2 = [[NSDateFormatter alloc] init];
+//                [df2 setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+//                LOG_D(@"time1:%@, now:%@, %@, %@", [NSDate dateWithTimeIntervalSince1970:self.timeStamp], [NSDate date], [df1 stringFromDate:[NSDate dateWithTimeIntervalSince1970:self.timeStamp]], [df2 stringFromDate:[NSDate date]]);
                 NSString *key = [df stringFromDate:[NSDate dateWithTimeIntervalSince1970:self.timeStamp]];
                 ActivityModel *model = [ActivityModel new];
                 model.time = self.timeStamp;
@@ -345,7 +352,7 @@ typedef enum : NSUInteger {
 }
 
 - (void)bleTimeout {
-    [self reportSyncDeviceResult:[NSError errorWithDomain:@"SwingBluetooth" code:-2 userInfo:[NSDictionary dictionaryWithObject:@"蓝牙开关未打开" forKey:NSLocalizedDescriptionKey]]];
+    [self reportSyncDeviceResult:[NSError errorWithDomain:@"SwingBluetooth" code:-2 userInfo:[NSDictionary dictionaryWithObject:@"The bluetooth switch is closed." forKey:NSLocalizedDescriptionKey]]];
 }
 
 - (void)fire {
