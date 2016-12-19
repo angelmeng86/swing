@@ -25,7 +25,7 @@
 }
 
 - (void)bleTimeout {
-    [self reportScanDeviceResult:nil advertisementData:nil error:[NSError errorWithDomain:@"SwingBluetooth" code:-2 userInfo:[NSDictionary dictionaryWithObject:@"蓝牙开关未打开" forKey:NSLocalizedDescriptionKey]]];
+    [self reportScanDeviceResult:nil advertisementData:nil error:[NSError errorWithDomain:@"SwingBluetooth" code:-2 userInfo:[NSDictionary dictionaryWithObject:@"The bluetooth switch is closed." forKey:NSLocalizedDescriptionKey]]];
 }
 
 - (void)fire {

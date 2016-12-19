@@ -58,7 +58,7 @@
     
     
     if ([GlobalCache shareInstance].info.profileImage) {
-        [self.headerBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[@"http://avatar.childrenlab.com/" stringByAppendingString:[GlobalCache shareInstance].info.profileImage]] forState:UIControlStateNormal];
+        [self.headerBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:[GlobalCache shareInstance].info.profileImage]] forState:UIControlStateNormal];
     }
     [self loadProfile];
     [[GlobalCache shareInstance] queryProfile];
@@ -104,7 +104,7 @@
     ProfileDeviceCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DeviceCell" forIndexPath:indexPath];
     KidModel *model = [[GlobalCache shareInstance].kidsList objectAtIndex:indexPath.row];
     if (model.profile) {
-        [cell.imageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[@"http://avatar.childrenlab.com/" stringByAppendingString:model.profile]] forState:UIControlStateNormal];
+        [cell.imageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:model.profile]] forState:UIControlStateNormal];
     }
     else {
         [cell.imageBtn setBackgroundImage:nil forState:UIControlStateNormal];

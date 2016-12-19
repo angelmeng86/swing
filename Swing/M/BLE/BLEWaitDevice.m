@@ -42,7 +42,7 @@
 }
 
 - (void)timeTick:(NSTimer*)timer {
-    LOG_D(@"等待蓝牙启动");
+    LOG_D(@"wait for bluetooth up.");
     if (_manager.state == CBManagerStatePoweredOn) {
         [self cannel];
         [self fire];

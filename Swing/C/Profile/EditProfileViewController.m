@@ -36,7 +36,7 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"navi_save") style:UIBarButtonItemStylePlain target:self action:@selector(doneAction:)];
     
     if ([GlobalCache shareInstance].info.profileImage) {
-        [self.imageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[@"http://avatar.childrenlab.com/" stringByAppendingString:[GlobalCache shareInstance].info.profileImage]] forState:UIControlStateNormal];
+        [self.imageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:[GlobalCache shareInstance].info.profileImage]] forState:UIControlStateNormal];
     }
     
     if ([GlobalCache shareInstance].user) {
@@ -153,7 +153,7 @@
     
     KidModel *model = [[GlobalCache shareInstance].kidsList objectAtIndex:indexPath.row];
     if (model.profile) {
-        [cell.imageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[@"http://avatar.childrenlab.com/" stringByAppendingString:model.profile]] forState:UIControlStateNormal];
+        [cell.imageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:model.profile]] forState:UIControlStateNormal];
     }
     else {
         [cell.imageBtn setBackgroundImage:nil forState:UIControlStateNormal];

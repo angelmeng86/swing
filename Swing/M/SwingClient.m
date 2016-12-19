@@ -237,7 +237,7 @@
     NSData *imageData = UIImagePNGRepresentation(image);
     NSString *content = [imageData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
 //    NSLog(@"image:%@", content);
-    NSURLSessionDataTask *task = [self.sessionManager POST:@"/avatar/uploadProfileImage" parameters:@{@"encodedImage":[@"data:image/png;base64," stringByAppendingString:content]} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSURLSessionDataTask *task = [self.sessionManager POST:@"/avatar/uploadProfileImageToS3" parameters:@{@"encodedImage":[@"data:image/png;base64," stringByAppendingString:content]} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"uploadProfileImage info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
@@ -502,7 +502,7 @@
     NSDateComponents *component = [cal components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:date];
     
     NSDictionary *data = @{@"query":type == GetEventTypeMonth ? @"month" : @"day", @"month":[NSString stringWithFormat:@"%ld",(long)[component month]], @"year":[NSString stringWithFormat:@"%ld",(long)[component year]], @"day":[NSString stringWithFormat:@"%ld",(long)[component day]]};
-    
+    LOG_D(@"calendarGetEvents data:%@", data);
     NSURLSessionDataTask *task = [self.sessionManager POST:@"/calendarEvent/getEventsByUser" parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"getEventsByUser info:%@", responseObject);
