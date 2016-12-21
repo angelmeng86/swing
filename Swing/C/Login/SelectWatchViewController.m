@@ -31,7 +31,8 @@
     self.tableView.backgroundView = bgView;
     
     self.label1.adjustsFontSizeToFitWidth = YES;
-    self.label2.adjustsFontSizeToFitWidth = YES;
+    
+    self.label1.text = LOC_STR(@"Please select your Swing Watch");
 
     self.peripherals = [NSMutableArray array];
     

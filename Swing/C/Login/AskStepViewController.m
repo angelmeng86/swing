@@ -25,7 +25,10 @@
     isAsked = NO;
     
     self.label1.adjustsFontSizeToFitWidth = YES;
-    self.label2.adjustsFontSizeToFitWidth = YES;
+    
+    self.label1.text = LOC_STR(@"Do you have a Swing Watch?");
+    [self.btn1 setTitle:LOC_STR(@"Yes") forState:UIControlStateNormal];
+    [self.btn2 setTitle:LOC_STR(@"No") forState:UIControlStateNormal];
     
     [self setCustomBackButton];
 }
@@ -60,10 +63,10 @@
         //Ask to purchase
         isAsked = YES;
         
-        self.label1.text = @"WOULD YOU LIKE";
-        self.label2.text = @"TO PURCHASE ONE?";
-        [self.btn1 setTitle:@"Yes, please" forState:UIControlStateNormal];
-        [self.btn2 setTitle:@"Continue as a guest user" forState:UIControlStateNormal];
+        self.label1.text = LOC_STR(@"Would you like to purchase one?");
+
+        [self.btn1 setTitle:LOC_STR(@"Yes, please") forState:UIControlStateNormal];
+        [self.btn2 setTitle:LOC_STR(@"Continue as a guest") forState:UIControlStateNormal];
     }
     else {
         //Continue as a guest user

@@ -31,6 +31,10 @@
     [self.lastNameTF setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     [self.birthdayTF setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     
+    self.firstNameTF.placeholder=LOC_STR(@"Kid's name");
+    self.lastNameTF.placeholder=LOC_STR(@"Kid's name");
+    self.birthdayTF.placeholder=LOC_STR(@"Kid's birthday");
+    
     self.firstNameTF.delegate = self;
     self.lastNameTF.delegate = self;
     self.birthdayTF.delegate = self;

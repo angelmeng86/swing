@@ -22,6 +22,9 @@
     // Do any additional setup after loading the view.
     [self.emailTextField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     [self.pwdTextField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+    
+    self.emailTextField.placeholder=LOC_STR(@"Email");
+    self.pwdTextField.placeholder=LOC_STR(@"Password");
 
     self.emailTextField.delegate = self;
     self.pwdTextField.delegate = self;

@@ -40,6 +40,8 @@
 //    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 70)];
 //    view.backgroundColor = [UIColor redColor];
 //    [self.navigationController.navigationBar addSubview:view];
+    self.navigationItem.title = LOC_STR(@"My Watch");
+    self.titleLabel.text = LOC_STR(@"Battery");
 }
 
 - (void)batteryNotify:(NSNotification*)notify {

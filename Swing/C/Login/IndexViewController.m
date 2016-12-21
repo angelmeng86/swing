@@ -7,6 +7,7 @@
 //
 
 #import "IndexViewController.h"
+#import "CommonDef.h"
 
 @interface IndexViewController ()
 
@@ -17,6 +18,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.signLoginBtn setTitle:LOC_STR(@"Sign up/ login") forState:UIControlStateNormal];
+    [self.googleLogin setTitle:LOC_STR(@"Login with Google") forState:UIControlStateNormal];
+    [self.facebookLogin setTitle:LOC_STR(@"Login with Facebook") forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {

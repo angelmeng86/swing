@@ -12,6 +12,8 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+    @property (weak, nonatomic) IBOutlet UIButton *goDashBtn;
+    @property (weak, nonatomic) IBOutlet UIButton *addWatchBtn;
 
 @property (strong, nonatomic) UIImage* image;
 @property (strong, nonatomic) NSString* name;

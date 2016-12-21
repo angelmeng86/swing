@@ -9,5 +9,8 @@
 #import "LMBaseViewController.h"
 
 @interface IndexViewController : LMBaseViewController
+    @property (weak, nonatomic) IBOutlet UIButton *signLoginBtn;
+    @property (weak, nonatomic) IBOutlet UIButton *googleLogin;
+    @property (weak, nonatomic) IBOutlet UIButton *facebookLogin;
 
 @end

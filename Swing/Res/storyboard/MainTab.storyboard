@@ -1,48 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="J63-vw-OfT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="J63-vw-OfT">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Avenir-bold.ttf">
+        <array key="Avenir-bold.ttf">
             <string>ArialRoundedMTBold</string>
-            <string>ArialRoundedMTBold</string>
-            <string>ArialRoundedMTBold</string>
-            <string>ArialRoundedMTBold</string>
-            <string>ArialRoundedMTBold</string>
-            <string>ArialRoundedMTBold</string>
-            <string>ArialRoundedMTBold</string>
-            <string>ArialRoundedMTBold</string>
-            <string>ArialRoundedMTBold</string>
-            <string>ArialRoundedMTBold</string>
-            <string>ArialRoundedMTBold</string>
-            <string>ArialRoundedMTBold</string>
-            <string>ArialRoundedMTBold</string>
-            <string>ArialRoundedMTBold</string>
-            <string>ArialRoundedMTBold</string>
-            <string>ArialRoundedMTBold</string>
-            <string>ArialRoundedMTBold</string>
-            <string>ArialRoundedMTBold</string>
-            <string>ArialRoundedMTBold</string>
-            <string>ArialRoundedMTBold</string>
-            <string>ArialRoundedMTBold</string>
-            <string>ArialRoundedMTBold</string>
-            <string>ArialRoundedMTBold</string>
-            <string>ArialRoundedMTBold</string>
-            <string>ArialRoundedMTBold</string>
-            <string>ArialRoundedMTBold</string>
-            <string>ArialRoundedMTBold</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="AZA-2Z-giU">
             <objects>
                 <navigationController id="J63-vw-OfT" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8LF-pz-0QP">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="8LF-pz-0QP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -63,81 +41,81 @@
                         <viewControllerLayoutGuide type="bottom" id="vCY-RI-Lga"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="svF-ri-E3e">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BQ8-qt-y4x" customClass="JTCalendarMenuView">
-                                <rect key="frame" x="0.0" y="74" width="600" height="50"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="74" width="414" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="xs3-Rx-fCW"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fkd-6t-2XK" customClass="JTHorizontalCalendarView">
-                                <rect key="frame" x="0.0" y="124" width="600" height="60"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="124" width="414" height="60"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="8ah-5h-6zO"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZLs-hh-xJ3">
-                                <rect key="frame" x="210" y="264" width="180" height="50"/>
+                                <rect key="frame" x="117" y="264" width="180" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="NNv-S8-Sz5"/>
                                     <constraint firstAttribute="height" constant="50" id="igb-uQ-GsV"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="42"/>
-                                <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swimming with Coach Brian" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8iF-kL-N4Q">
-                                <rect key="frame" x="210" y="314" width="180" height="60"/>
+                                <rect key="frame" x="117" y="314" width="180" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="JBl-CB-PKl"/>
                                     <constraint firstAttribute="width" constant="180" id="Nnu-mv-YnP"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
-                                <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nnY-FK-G2i" customClass="RoundButton">
-                                <rect key="frame" x="80" y="454" width="440" height="30"/>
-                                <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="80" y="454" width="254" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="1jc-Cs-MMY"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                 <state key="normal" title="Today’s Schedule">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="todayAction:" destination="4vA-Cq-YDg" eventType="touchUpInside" id="epG-5c-Yl2"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1FD-iw-Etv" customClass="RoundButton">
-                                <rect key="frame" x="80" y="494" width="440" height="30"/>
-                                <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="80" y="494" width="254" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="aDo-7k-abc"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                 <state key="normal" title="Monthly Schedule">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="WxS-KM-iCW" kind="push" id="SsR-gr-1hb"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LH6-Bz-oxy" customClass="MDRadialProgressView">
-                                <rect key="frame" x="190" y="204" width="220" height="220"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="97" y="204" width="220" height="220"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="220" id="SNZ-Z1-dIf"/>
                                     <constraint firstAttribute="width" constant="220" id="oJP-0e-0ZD"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="BQ8-qt-y4x" firstAttribute="leading" secondItem="svF-ri-E3e" secondAttribute="leading" id="13U-kT-UJO"/>
                             <constraint firstItem="1FD-iw-Etv" firstAttribute="width" secondItem="nnY-FK-G2i" secondAttribute="width" id="4cj-ia-bt9"/>
@@ -195,28 +173,28 @@
                         <viewControllerLayoutGuide type="bottom" id="Xm9-4E-4ef"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Nx8-iE-Z9V">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4b2-a5-lqD" customClass="JTCalendarMenuView">
-                                <rect key="frame" x="0.0" y="30" width="600" height="50"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="30" width="414" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="muu-D5-5Jn"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kfu-tD-1l2" customClass="JTHorizontalCalendarView">
-                                <rect key="frame" x="0.0" y="80" width="600" height="60"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="80" width="414" height="60"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="BK5-85-eWR"/>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xO8-Vm-NYg">
-                                <rect key="frame" x="0.0" y="160" width="600" height="440"/>
+                                <rect key="frame" x="0.0" y="160" width="414" height="576"/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="4b2-a5-lqD" firstAttribute="top" secondItem="nRy-V3-7av" secondAttribute="bottom" constant="10" id="0Gt-Mp-fpg"/>
                             <constraint firstItem="4b2-a5-lqD" firstAttribute="leading" secondItem="Nx8-iE-Z9V" secondAttribute="leading" id="8tJ-fO-h3Q"/>
@@ -250,25 +228,25 @@
                         <viewControllerLayoutGuide type="bottom" id="5MH-bh-TG8"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="rin-hj-UHl">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oQa-Nr-wu7" customClass="JTCalendarMenuView">
-                                <rect key="frame" x="0.0" y="74" width="600" height="50"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="74" width="414" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="gYR-UZ-NFN"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ewy-05-8JU" customClass="JTHorizontalCalendarView">
-                                <rect key="frame" x="0.0" y="124" width="600" height="300"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="124" width="414" height="300"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="4PD-pt-JyE"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Ewy-05-8JU" secondAttribute="trailing" id="R7q-Gj-kpn"/>
                             <constraint firstItem="Ewy-05-8JU" firstAttribute="top" secondItem="oQa-Nr-wu7" secondAttribute="bottom" id="Xii-c9-GpA"/>
@@ -297,12 +275,12 @@
                         <viewControllerLayoutGuide type="bottom" id="ixT-zX-1fi"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="86Z-xz-evu">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lel-WX-fVP">
-                                <rect key="frame" x="260" y="441" width="80" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="167" y="577" width="80" height="80"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="gp3-lA-MBB"/>
                                     <constraint firstAttribute="height" constant="80" id="hgU-GA-nTg"/>
@@ -313,49 +291,49 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wrh-Sa-nRP">
-                                <rect key="frame" x="160" y="441" width="80" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="67" y="577" width="80" height="80"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="orange_uv_button"/>
                                 <connections>
                                     <segue destination="5YS-lB-Xbh" kind="push" id="4hp-n7-YAA"/>
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="09g-2d-e7H">
-                                <rect key="frame" x="360" y="441" width="80" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="267" y="577" width="80" height="80"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="orange_weather_button"/>
                                 <connections>
                                     <segue destination="3Jt-FM-DM4" kind="push" id="KB6-Qw-8zb"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="monster-yellow" translatesAutoresizingMaskIntoConstraints="NO" id="qgY-OH-Trk">
-                                <rect key="frame" x="212" y="184" width="176" height="176"/>
+                                <rect key="frame" x="119" y="184" width="176" height="176"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="qgY-OH-Trk" secondAttribute="height" multiplier="1:1" id="G1M-eI-gBb"/>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="176" id="xOI-lz-Zdv"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOv-Mr-cMn">
-                                <rect key="frame" x="30" y="390" width="540" height="40"/>
+                                <rect key="frame" x="30" y="390" width="354" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="OdK-0Q-xDR"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="26"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How Are You Doing Today?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLT-Qw-x0i">
-                                <rect key="frame" x="160" y="84" width="280" height="80"/>
+                                <rect key="frame" x="67" y="84" width="280" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="HKg-vc-ASb"/>
                                     <constraint firstAttribute="width" constant="280" id="oN8-sw-OTN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="30"/>
-                                <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="cOv-Mr-cMn" firstAttribute="leading" secondItem="86Z-xz-evu" secondAttribute="leadingMargin" constant="10" id="1eL-0a-iki"/>
                             <constraint firstItem="09g-2d-e7H" firstAttribute="width" secondItem="Wrh-Sa-nRP" secondAttribute="width" id="3jL-pu-nOm"/>
@@ -406,49 +384,49 @@
                         <viewControllerLayoutGuide type="bottom" id="WdF-mI-lIE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="K3N-IJ-kbB">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UV Index" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BlI-sR-ZR9">
-                                <rect key="frame" x="20" y="84" width="560" height="40"/>
+                                <rect key="frame" x="20" y="84" width="374" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="nHu-Fs-71S"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="30"/>
-                                <color key="textColor" red="0.29019607843137252" green="0.62352941176470589" blue="0.043137254901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.29019607843137252" green="0.62352941176470589" blue="0.043137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chicago, lllinois" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hac-oQ-GRq">
-                                <rect key="frame" x="20" y="134" width="560" height="30"/>
+                                <rect key="frame" x="20" y="134" width="374" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="bGy-Pe-QZZ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="20"/>
-                                <color key="textColor" red="0.54509803921568623" green="0.61960784313725492" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.54509803921568623" green="0.61960784313725492" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Och-J1-KEt">
-                                <rect key="frame" x="250" y="184" width="100" height="100"/>
+                                <rect key="frame" x="157" y="184" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="7Ho-V6-e6b"/>
                                     <constraint firstAttribute="width" constant="100" id="ihx-QF-lar"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="60"/>
                                 <state key="normal" title="1">
-                                    <color key="titleColor" red="0.25882352941176467" green="0.6705882352941176" blue="0.047058823529411764" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.25882352941176467" green="0.6705882352941176" blue="0.047058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seek shade during midday hours! Slip on a shirt, slop on sunscreen and slap on hat!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMx-fb-bUH">
-                                <rect key="frame" x="40" y="294" width="520" height="150"/>
+                                <rect key="frame" x="40" y="294" width="334" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="YlW-51-gjR"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="26"/>
-                                <color key="textColor" red="0.25882352939999997" green="0.6705882353" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.25882352939999997" green="0.6705882353" blue="0.047058823530000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="hac-oQ-GRq" firstAttribute="width" secondItem="BlI-sR-ZR9" secondAttribute="width" id="3xp-BN-eqy"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CMx-fb-bUH" secondAttribute="trailing" constant="20" id="AlF-bM-f11"/>
@@ -484,9 +462,9 @@
                         <viewControllerLayoutGuide type="bottom" id="8Bg-Vy-Q4O"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="cJd-6k-tH3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Weather" id="bhV-VE-IrU"/>
                 </viewController>
@@ -503,21 +481,21 @@
                         <viewControllerLayoutGuide type="bottom" id="kh8-Xi-zCK"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="WeB-wB-XVE">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gE-1z-Qcu">
-                                <rect key="frame" x="210" y="60" width="180" height="30"/>
+                                <rect key="frame" x="117" y="60" width="180" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="92M-Dv-hnR"/>
                                     <constraint firstAttribute="height" constant="30" id="fuZ-Cy-wfg"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
-                                <color key="textColor" red="0.4039215686" green="0.36078431370000003" blue="0.65490196079999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.4039215686" green="0.36078431370000003" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKa-mp-Kxl">
-                                <rect key="frame" x="160" y="100" width="280" height="80"/>
+                                <rect key="frame" x="67" y="100" width="280" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="NVz-tx-Dhw"/>
                                     <constraint firstAttribute="width" constant="280" id="Sde-Sj-Xc8"/>
@@ -525,64 +503,64 @@
                                 <string key="text">Don’t give up!
 You can do this!</string>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="28"/>
-                                <color key="textColor" red="0.40392156862745099" green="0.36078431372549019" blue="0.65490196078431373" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.40392156862745099" green="0.36078431372549019" blue="0.65490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 95" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50o-Su-OqH" customClass="RectProgress">
-                                <rect key="frame" x="20" y="210" width="560" height="40"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="20" y="210" width="374" height="40"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="IH4-gd-HLt"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="20"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance 73" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EVU-q2-uhZ" customClass="RectProgress">
-                                <rect key="frame" x="20" y="260" width="560" height="40"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="20" y="260" width="374" height="40"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="20"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flights 82" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AbD-OE-7Za" customClass="RectProgress">
-                                <rect key="frame" x="20" y="310" width="560" height="40"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="20" y="310" width="374" height="40"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="20"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FEo-ce-J8T" customClass="RoundButton">
-                                <rect key="frame" x="310" y="550" width="100" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="217" y="686" width="100" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <state key="normal" title="Outdoor">
-                                    <color key="titleColor" red="0.4039215686" green="0.36078431370000003" blue="0.65490196079999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.4039215686" green="0.36078431370000003" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Q5-kj-K27">
-                                <rect key="frame" x="290" y="550" width="20" height="30"/>
+                                <rect key="frame" x="197" y="686" width="20" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="OeK-mq-3re"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FgC-PN-Dfn" customClass="RoundButton">
-                                <rect key="frame" x="190" y="550" width="100" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="97" y="686" width="100" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="2rC-NC-TDV"/>
                                     <constraint firstAttribute="width" constant="100" id="HpS-FH-mSF"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <state key="normal" title="Indoor">
-                                    <color key="titleColor" red="0.4039215686" green="0.36078431370000003" blue="0.65490196079999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.4039215686" green="0.36078431370000003" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="EVU-q2-uhZ" firstAttribute="top" secondItem="50o-Su-OqH" secondAttribute="bottom" constant="10" id="0Mn-iW-8FC"/>
                             <constraint firstItem="50o-Su-OqH" firstAttribute="top" secondItem="NKa-mp-Kxl" secondAttribute="bottom" constant="30" id="16E-ds-ZyZ"/>
@@ -632,57 +610,57 @@ You can do this!</string>
                         <viewControllerLayoutGuide type="bottom" id="vMn-PX-v5E"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gLB-P0-1A8">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miami, Florida" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLu-Hq-Hjh">
-                                <rect key="frame" x="60" y="50" width="480" height="25"/>
+                                <rect key="frame" x="60" y="50" width="294" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="INT-Wu-DQ2"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                <color key="textColor" red="0.57647058823529407" green="0.55294117647058827" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.57647058823529407" green="0.55294117647058827" blue="0.50980392156862742" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLF-Fq-Sgy">
-                                <rect key="frame" x="215" y="145" width="170" height="30"/>
+                                <rect key="frame" x="122" y="145" width="170" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="3CW-mh-asU"/>
                                     <constraint firstAttribute="width" constant="170" id="mb3-z2-Wnn"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="26"/>
-                                <color key="textColor" red="0.94509803921568625" green="0.396078431372549" blue="0.15294117647058825" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.94509803921568625" green="0.396078431372549" blue="0.15294117647058825" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="88°F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bsL-bP-gVB">
-                                <rect key="frame" x="215" y="175" width="170" height="80"/>
+                                <rect key="frame" x="122" y="175" width="170" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="170" id="Yof-em-bJd"/>
                                     <constraint firstAttribute="height" constant="80" id="tn3-66-iXU"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="55"/>
-                                <color key="textColor" red="0.94509803921568625" green="0.396078431372549" blue="0.15294117647058825" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.94509803921568625" green="0.396078431372549" blue="0.15294117647058825" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beware of heat stroke" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V0d-mx-0mJ">
-                                <rect key="frame" x="60" y="325" width="480" height="30"/>
+                                <rect key="frame" x="60" y="325" width="294" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="H6R-YB-lMe"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
-                                <color key="textColor" red="0.94509803920000002" green="0.39607843139999999" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.94509803920000002" green="0.39607843139999999" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VZM-9a-aJK" customClass="MDRadialProgressView">
-                                <rect key="frame" x="190" y="85" width="220" height="220"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="97" y="85" width="220" height="220"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="220" id="Drm-cD-2vG"/>
                                     <constraint firstAttribute="width" constant="220" id="zOf-0x-Cc5"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="bsL-bP-gVB" firstAttribute="top" secondItem="eLF-Fq-Sgy" secondAttribute="bottom" id="0Xl-h3-2ef"/>
                             <constraint firstItem="bsL-bP-gVB" firstAttribute="centerX" secondItem="gLB-P0-1A8" secondAttribute="centerX" id="2Ph-C1-K7s"/>
@@ -719,9 +697,9 @@ You can do this!</string>
                         <viewControllerLayoutGuide type="bottom" id="xE2-qE-hO3"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="9da-g2-xyv">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Activity" id="ugg-Ga-cGz">
                         <barButtonItem key="backBarButtonItem" title=" " id="vME-Ee-i8P"/>
@@ -740,29 +718,29 @@ You can do this!</string>
                         <viewControllerLayoutGuide type="bottom" id="34x-S9-7Qt"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Gd7-Wq-P2W">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dKh-7F-FU5">
-                                <rect key="frame" x="240" y="94" width="120" height="120"/>
+                                <rect key="frame" x="147" y="94" width="120" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="5zw-91-IxM"/>
                                     <constraint firstAttribute="width" constant="120" id="caB-N5-48N"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <state key="normal">
-                                    <color key="titleColor" red="0.21960784310000001" green="0.71764705880000002" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.21960784310000001" green="0.71764705880000002" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lenayujung.lin@gmail.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8e-YE-BjS">
-                                <rect key="frame" x="60" y="259" width="480" height="30"/>
+                                <rect key="frame" x="60" y="259" width="294" height="30"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                <color key="textColor" red="0.60392156862745094" green="0.70588235294117641" blue="0.74901960784313726" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.60392156862745094" green="0.70588235294117641" blue="0.74901960784313726" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LdG-Au-u84">
-                                <rect key="frame" x="0.0" y="371" width="600" height="90"/>
-                                <color key="backgroundColor" red="0.96862745098039216" green="0.792156862745098" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="0.0" y="507" width="414" height="90"/>
+                                <color key="backgroundColor" red="0.96862745098039216" green="0.792156862745098" blue="0.19215686274509802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="1GB-uA-rSZ"/>
                                 </constraints>
@@ -782,14 +760,13 @@ You can do this!</string>
                                             <subviews>
                                                 <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i8w-40-5di">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="+"/>
                                                     <connections>
                                                         <action selector="btnAction:" destination="bLu-Mv-rJ6" eventType="touchUpInside" id="WJS-Nd-j66"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="i8w-40-5di" secondAttribute="bottom" id="NpW-o8-9wh"/>
@@ -803,13 +780,13 @@ You can do this!</string>
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderView" id="ict-bP-tkK">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="24"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="24"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Device" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XzN-wv-rZc">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="24"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="24"/>
                                             <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -826,30 +803,30 @@ You can do this!</string>
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lena Lin" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tjr-st-s0S">
-                                <rect key="frame" x="60" y="224" width="480" height="30"/>
+                                <rect key="frame" x="60" y="224" width="294" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="tSg-Wq-X1h"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="28"/>
-                                <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7D-GG-PY0" customClass="RoundButton">
-                                <rect key="frame" x="100" y="491" width="400" height="30"/>
-                                <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="100" y="627" width="214" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="0EA-Wd-eZm"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                 <state key="normal" title="Logout">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="logoutAction:" destination="eYA-pI-eh2" eventType="touchUpInside" id="sut-yI-t7U"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Tjr-st-s0S" firstAttribute="leading" secondItem="Gd7-Wq-P2W" secondAttribute="leadingMargin" constant="40" id="Blf-KV-02X"/>
                             <constraint firstItem="34x-S9-7Qt" firstAttribute="top" secondItem="LdG-Au-u84" secondAttribute="bottom" id="DgY-Hs-ebs"/>
@@ -897,12 +874,12 @@ You can do this!</string>
                         <viewControllerLayoutGuide type="bottom" id="F5J-YZ-ZYF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ad6-qY-gTr">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dLq-f0-PCA">
-                                <rect key="frame" x="0.0" y="510" width="600" height="90"/>
-                                <color key="backgroundColor" red="0.96862745100000003" green="0.79215686269999996" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="0.0" y="646" width="414" height="90"/>
+                                <color key="backgroundColor" red="0.96862745100000003" green="0.79215686269999996" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="7ml-yH-99T"/>
                                 </constraints>
@@ -922,14 +899,13 @@ You can do this!</string>
                                             <subviews>
                                                 <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b4c-9S-w6A">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="+"/>
                                                     <connections>
                                                         <action selector="btnAction:" destination="Wn5-ic-3e6" eventType="touchUpInside" id="zxI-L1-X6E"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="b4c-9S-w6A" secondAttribute="bottom" id="4OY-Wi-Q8b"/>
@@ -943,13 +919,13 @@ You can do this!</string>
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderView2" id="oUc-BF-Ga7">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="24"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="24"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Device" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBF-xC-uXE">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="24"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="24"/>
                                             <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -966,28 +942,28 @@ You can do this!</string>
                                 </connections>
                             </collectionView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rdx-og-gNh">
-                                <rect key="frame" x="0.0" y="20" width="600" height="490"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="626"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PGE-L7-MHM">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="358"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="358"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6cN-xo-ZdG">
-                                                <rect key="frame" x="452" y="38" width="120" height="120"/>
-                                                <color key="backgroundColor" red="0.47450980392156861" green="0.47450980392156861" blue="0.47450980392156861" alpha="1" colorSpace="calibratedRGB"/>
+                                                <rect key="frame" x="266" y="38" width="120" height="120"/>
+                                                <color key="backgroundColor" red="0.47450980392156861" green="0.47450980392156861" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="120" id="Fmf-WH-C5H"/>
                                                     <constraint firstAttribute="width" constant="120" id="Z0C-Hp-47I"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="60"/>
                                                 <state key="normal" title="+">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="imageBtnAction:" destination="GqD-oA-Ih8" eventType="touchUpInside" id="oEK-QX-CLX"/>
                                                 </connections>
                                             </button>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NiD-7a-WAV" customClass="UnderlineTextField">
-                                                <rect key="frame" x="40" y="38" width="392" height="30"/>
+                                                <rect key="frame" x="40" y="38" width="206" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="gWH-dL-38f"/>
                                                 </constraints>
@@ -995,7 +971,7 @@ You can do this!</string>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="khT-On-8hS" customClass="UnderlineTextField">
-                                                <rect key="frame" x="40" y="83" width="392" height="30"/>
+                                                <rect key="frame" x="40" y="83" width="206" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="zBf-fh-O2D"/>
                                                 </constraints>
@@ -1003,7 +979,7 @@ You can do this!</string>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g3i-wL-zYl" customClass="UnderlineTextField">
-                                                <rect key="frame" x="40" y="128" width="392" height="30"/>
+                                                <rect key="frame" x="40" y="128" width="206" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="LTN-ZR-rOt"/>
                                                 </constraints>
@@ -1011,7 +987,7 @@ You can do this!</string>
                                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fE5-Nq-t2H" customClass="UnderlineTextField">
-                                                <rect key="frame" x="40" y="173" width="532" height="30"/>
+                                                <rect key="frame" x="40" y="173" width="346" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="btb-Ei-CD3"/>
                                                 </constraints>
@@ -1019,7 +995,7 @@ You can do this!</string>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Street" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O3M-4e-7WG" customClass="UnderlineTextField">
-                                                <rect key="frame" x="40" y="218" width="532" height="30"/>
+                                                <rect key="frame" x="40" y="218" width="346" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="nb5-LU-t6s"/>
                                                 </constraints>
@@ -1027,7 +1003,7 @@ You can do this!</string>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6aj-lM-x3q" customClass="UnderlineTextField">
-                                                <rect key="frame" x="40" y="263" width="532" height="30"/>
+                                                <rect key="frame" x="40" y="263" width="346" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="sKC-Jx-ksL"/>
                                                 </constraints>
@@ -1035,7 +1011,7 @@ You can do this!</string>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gNw-ZX-9Sa" customClass="UnderlineTextField">
-                                                <rect key="frame" x="40" y="308" width="259" height="30"/>
+                                                <rect key="frame" x="40" y="308" width="165.66666666666666" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="X4R-eL-HiG"/>
                                                 </constraints>
@@ -1043,7 +1019,7 @@ You can do this!</string>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ZipCode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v7G-hH-adW" customClass="UnderlineTextField">
-                                                <rect key="frame" x="314" y="308" width="258" height="30"/>
+                                                <rect key="frame" x="220.66666666666663" y="308" width="165.33333333333337" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="tOw-gb-54u"/>
                                                 </constraints>
@@ -1103,7 +1079,7 @@ You can do this!</string>
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="F5J-YZ-ZYF" firstAttribute="top" secondItem="dLq-f0-PCA" secondAttribute="bottom" id="3Ud-6Z-iC4"/>
                             <constraint firstItem="Rdx-og-gNh" firstAttribute="leading" secondItem="Ad6-qY-gTr" secondAttribute="leading" id="Bs0-7f-3Se"/>
@@ -1152,18 +1128,18 @@ You can do this!</string>
                         <viewControllerLayoutGuide type="bottom" id="z50-kU-aya"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="lea-ho-qYb">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comingSoon" translatesAutoresizingMaskIntoConstraints="NO" id="bjA-Q0-oWo">
-                                <rect key="frame" x="150" y="147" width="300" height="306"/>
+                                <rect key="frame" x="57" y="215" width="300" height="306"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="306" id="w5G-kt-X2N"/>
                                     <constraint firstAttribute="width" constant="300" id="xnu-ua-5Q1"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="bjA-Q0-oWo" firstAttribute="centerY" secondItem="lea-ho-qYb" secondAttribute="centerY" id="Gsn-n5-Sat"/>
                             <constraint firstItem="bjA-Q0-oWo" firstAttribute="centerX" secondItem="lea-ho-qYb" secondAttribute="centerX" id="MAe-4X-ldz"/>
@@ -1184,46 +1160,46 @@ You can do this!</string>
                         <viewControllerLayoutGuide type="bottom" id="EgL-K6-P0f"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="jjM-IL-Vzh">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Battery" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gCm-qd-3iw">
-                                <rect key="frame" x="200" y="84" width="200" height="50"/>
+                                <rect key="frame" x="67" y="84" width="280" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="V29-Ni-5ln"/>
+                                    <constraint firstAttribute="width" constant="280" id="V29-Ni-5ln"/>
                                     <constraint firstAttribute="height" constant="50" id="ovm-P4-wvn"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="30"/>
-                                <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="battery_icon" translatesAutoresizingMaskIntoConstraints="NO" id="8IO-bw-M4n">
-                                <rect key="frame" x="253" y="329" width="94" height="65"/>
+                                <rect key="frame" x="160" y="329" width="94" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="BLr-dU-Bed"/>
                                     <constraint firstAttribute="width" constant="94" id="XUX-qF-gqJ"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N4o-Me-Rr7" customClass="MDRadialProgressView">
-                                <rect key="frame" x="180" y="164" width="240" height="240"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="87" y="164" width="240" height="240"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="Bgb-c9-woS"/>
                                     <constraint firstAttribute="height" constant="240" id="EUC-bu-hFd"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="75%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vAa-cX-sNY">
-                                <rect key="frame" x="235" y="204" width="130" height="130"/>
+                                <rect key="frame" x="142" y="204" width="130" height="130"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="Sse-0C-tZ1"/>
                                     <constraint firstAttribute="width" constant="130" id="opp-5u-ucw"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="45"/>
-                                <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="vAa-cX-sNY" firstAttribute="top" secondItem="N4o-Me-Rr7" secondAttribute="top" constant="40" id="0JL-d8-hPV"/>
                             <constraint firstItem="gCm-qd-3iw" firstAttribute="centerX" secondItem="jjM-IL-Vzh" secondAttribute="centerX" id="7sl-fa-a30"/>
@@ -1239,6 +1215,7 @@ You can do this!</string>
                     <connections>
                         <outlet property="progressView" destination="N4o-Me-Rr7" id="XOx-Is-z8l"/>
                         <outlet property="textLabel" destination="vAa-cX-sNY" id="HbS-ib-1s1"/>
+                        <outlet property="titleLabel" destination="gCm-qd-3iw" id="tHr-Nu-Fc9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GsW-Ob-XWh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1253,7 +1230,7 @@ You can do this!</string>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="4dp-sc-v0l">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="9Rg-RL-Jhf" kind="relationship" relationship="viewControllers" id="QbS-cH-0xE"/>
@@ -1276,67 +1253,67 @@ You can do this!</string>
                         <viewControllerLayoutGuide type="bottom" id="Wkj-76-ifL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="4Aq-ix-a5f">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vRY-NS-owW" customClass="JTCalendarMenuView">
-                                <rect key="frame" x="0.0" y="30" width="600" height="50"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="30" width="414" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="jFB-nu-8xi"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o3W-0O-iA6" customClass="JTHorizontalCalendarView">
-                                <rect key="frame" x="0.0" y="80" width="600" height="60"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="80" width="414" height="60"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="IH4-AF-RoJ"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gAb-00-kAs">
-                                <rect key="frame" x="0.0" y="160" width="600" height="440"/>
+                                <rect key="frame" x="0.0" y="160" width="414" height="576"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9:00-10:00 Swimming" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J55-Zi-9Gm">
-                                        <rect key="frame" x="20" y="20" width="560" height="25"/>
+                                        <rect key="frame" x="20" y="20" width="374" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="7sN-DF-Tes"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="20"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem opossum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cXs-qF-emW">
-                                        <rect key="frame" x="20" y="55" width="560" height="41"/>
+                                        <rect key="frame" x="20" y="55" width="374" height="61.666666666666686"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="TsR-9N-Lvh"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gu7-eP-TUa" customClass="RoundButton">
-                                        <rect key="frame" x="60" y="370" width="400" height="30"/>
-                                        <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <rect key="frame" x="60" y="506" width="214" height="30"/>
+                                        <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="Xjb-MP-O0o"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                         <state key="normal" title="Save">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="saveAction:" destination="Snl-Uv-aL1" eventType="touchUpInside" id="iJH-Ph-6l2"/>
                                         </connections>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="30" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kEQ-SW-hNY">
-                                        <rect key="frame" x="20" y="106" width="560" height="254"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <rect key="frame" x="20" y="126.66666666666671" width="374" height="369.33333333333326"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="EventCell" id="BPn-FW-1gm" customClass="EventSelectTableViewCell">
-                                                <rect key="frame" x="0.0" y="28" width="560" height="30"/>
+                                                <rect key="frame" x="0.0" y="28" width="374" height="30"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BPn-FW-1gm" id="c80-VG-LiS">
-                                                    <rect key="frame" x="0.0" y="0.0" width="560" height="30"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UfI-Fv-hbd">
@@ -1347,16 +1324,16 @@ You can do this!</string>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <state key="normal" title="●">
-                                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem opossum dolor sit amet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QkP-8R-swf">
-                                                            <rect key="frame" x="48" y="4" width="494" height="21"/>
+                                                            <rect key="frame" x="48" y="4" width="308" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="CgU-YB-Hz6"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -1368,7 +1345,7 @@ You can do this!</string>
                                                         <constraint firstAttribute="trailingMargin" secondItem="QkP-8R-swf" secondAttribute="trailing" constant="10" id="S8e-Hc-DGt"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <outlet property="checkBtn" destination="UfI-Fv-hbd" id="K6z-7e-rl6"/>
                                                     <outlet property="contentLabel" destination="QkP-8R-swf" id="SnP-Dy-vNp"/>
@@ -1381,7 +1358,7 @@ You can do this!</string>
                                         </connections>
                                     </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2d-lw-BWp">
-                                        <rect key="frame" x="480" y="370" width="60" height="30"/>
+                                        <rect key="frame" x="294" y="506" width="60" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="ADQ-4O-3vj"/>
                                             <constraint firstAttribute="width" constant="60" id="KsW-jq-DLF"/>
@@ -1392,7 +1369,7 @@ You can do this!</string>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.38039215686274508" green="0.35686274509803922" blue="0.70980392156862748" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.38039215686274508" green="0.35686274509803922" blue="0.70980392156862748" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="gu7-eP-TUa" secondAttribute="bottom" constant="40" id="3bF-Q2-wFx"/>
                                     <constraint firstItem="J55-Zi-9Gm" firstAttribute="top" secondItem="gAb-00-kAs" secondAttribute="top" constant="20" id="C3x-2M-GIB"/>
@@ -1418,7 +1395,7 @@ You can do this!</string>
                                 </variation>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="vRY-NS-owW" firstAttribute="top" secondItem="pE6-4v-n56" secondAttribute="bottom" constant="10" id="AqJ-b5-xv8"/>
                             <constraint firstAttribute="trailing" secondItem="gAb-00-kAs" secondAttribute="trailing" id="DlV-IO-byr"/>
@@ -1453,17 +1430,17 @@ You can do this!</string>
                         <viewControllerLayoutGuide type="bottom" id="vIO-jo-WQc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="SA8-rQ-VZg">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qxI-8w-w5V">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qxI-8w-w5V">
                                 <rect key="frame" x="0.0" y="20" width="600" height="520"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xbU-1G-KIb">
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xbU-1G-KIb">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="380"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Event Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YB9-n2-TXn">
-                                                <rect key="frame" x="20" y="20" width="560" height="30"/>
+                                                <rect key="frame" x="20" y="20" width="374" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="NjG-hC-lXs"/>
                                                 </constraints>
@@ -1471,7 +1448,7 @@ You can do this!</string>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Las-xa-pTI">
-                                                <rect key="frame" x="20" y="60" width="560" height="30"/>
+                                                <rect key="frame" x="20" y="60" width="374" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="26l-Og-gqN"/>
                                                 </constraints>
@@ -1479,7 +1456,7 @@ You can do this!</string>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Start" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qY0-G9-EEa">
-                                                <rect key="frame" x="20" y="140" width="560" height="30"/>
+                                                <rect key="frame" x="20" y="140" width="374" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="9te-e5-DH5"/>
                                                 </constraints>
@@ -1487,7 +1464,7 @@ You can do this!</string>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="End" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rMe-ub-Dse">
-                                                <rect key="frame" x="20" y="180" width="560" height="30"/>
+                                                <rect key="frame" x="20" y="180" width="374" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="nUq-tv-Qcf"/>
                                                 </constraints>
@@ -1495,14 +1472,14 @@ You can do this!</string>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Repeat" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WPE-Xt-642">
-                                                <rect key="frame" x="20" y="220" width="560" height="30"/>
+                                                <rect key="frame" x="20" y="220" width="374" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="tnY-I1-UVb"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Alert" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="olO-Q3-tdC">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Alert" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="olO-Q3-tdC">
                                                 <rect key="frame" x="20" y="300" width="560" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="SuM-tR-CKC"/>
@@ -1511,7 +1488,7 @@ You can do this!</string>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BEC-Kj-RpK">
-                                                <rect key="frame" x="20" y="100" width="275" height="30"/>
+                                                <rect key="frame" x="20" y="100" width="182" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="UOJ-2L-1xK"/>
                                                 </constraints>
@@ -1519,29 +1496,29 @@ You can do this!</string>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zNN-TP-nFZ">
-                                                <rect key="frame" x="305" y="100" width="275" height="30"/>
+                                                <rect key="frame" x="212" y="100" width="182" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="TP9-nL-2Js"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             </textField>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jn0-h9-dD5" customClass="ColorLabel">
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jn0-h9-dD5" customClass="ColorLabel">
                                                 <rect key="frame" x="20" y="260" width="560" height="30"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="CnU-4b-xrs"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BY1-4C-vmx" customClass="ToDoListView">
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BY1-4C-vmx" customClass="ToDoListView">
                                                 <rect key="frame" x="20" y="340" width="560" height="30"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="hUZ-Ks-nHV"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="rMe-ub-Dse" firstAttribute="top" secondItem="qY0-G9-EEa" secondAttribute="bottom" constant="10" id="15Y-UW-YoS"/>
                                             <constraint firstItem="BY1-4C-vmx" firstAttribute="leading" secondItem="YB9-n2-TXn" secondAttribute="leading" id="3PN-uZ-Aa6"/>
@@ -1586,21 +1563,21 @@ You can do this!</string>
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vWK-bl-KcF" customClass="RoundButton">
-                                <rect key="frame" x="80" y="550" width="440" height="30"/>
-                                <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="80" y="686" width="254" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="LUE-55-plR"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                 <state key="normal" title="Save">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="saveAction:" destination="6eH-KP-pi1" eventType="touchUpInside" id="WGA-Kt-5iR"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="vWK-bl-KcF" firstAttribute="top" secondItem="qxI-8w-w5V" secondAttribute="bottom" constant="10" id="37O-Q9-7lb"/>
                             <constraint firstAttribute="trailing" secondItem="vWK-bl-KcF" secondAttribute="trailing" constant="80" id="39p-CG-d5X"/>
@@ -1637,24 +1614,24 @@ You can do this!</string>
                         <viewControllerLayoutGuide type="bottom" id="oFK-kf-0Zz"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="w10-dJ-yzO">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I2l-ZE-ca3">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I2l-ZE-ca3">
                                 <rect key="frame" x="0.0" y="20" width="600" height="490"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YLJ-1F-Jsa">
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YLJ-1F-Jsa">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="390"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Event" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o1L-Bk-lcq" customClass="LFTextField">
-                                                <rect key="frame" x="20" y="30" width="560" height="35"/>
+                                                <rect key="frame" x="20" y="30" width="374" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="iqb-zr-KgP"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z1y-hE-pMm" customClass="LFTextField">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z1y-hE-pMm" customClass="LFTextField">
                                                 <rect key="frame" x="20" y="300" width="560" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="u6u-YP-v6s"/>
@@ -1663,7 +1640,7 @@ You can do this!</string>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Start" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PVh-Jy-Otr" customClass="LFTextField">
-                                                <rect key="frame" x="20" y="75" width="560" height="35"/>
+                                                <rect key="frame" x="20" y="75" width="374" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="guc-NF-gv5"/>
                                                 </constraints>
@@ -1671,14 +1648,14 @@ You can do this!</string>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="End" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4yE-K4-uaw" customClass="LFTextField">
-                                                <rect key="frame" x="20" y="120" width="560" height="35"/>
+                                                <rect key="frame" x="20" y="120" width="374" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="7bK-vX-xIb"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XGw-Kr-jXN" customClass="LFTextField">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XGw-Kr-jXN" customClass="LFTextField">
                                                 <rect key="frame" x="20" y="210" width="275" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="Xvn-sX-JfX"/>
@@ -1686,7 +1663,7 @@ You can do this!</string>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qB3-EN-TRq" customClass="LFTextField">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qB3-EN-TRq" customClass="LFTextField">
                                                 <rect key="frame" x="305" y="210" width="275" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="BDD-XG-MRb"/>
@@ -1694,14 +1671,14 @@ You can do this!</string>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             </textField>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ik5-5W-IUa" customClass="ToDoListView">
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ik5-5W-IUa" customClass="ToDoListView">
                                                 <rect key="frame" x="20" y="345" width="560" height="35"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="XjA-z0-wAb"/>
                                                 </constraints>
                                             </view>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Repeat" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bzM-jh-nXN" customClass="LFTextField">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Repeat" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bzM-jh-nXN" customClass="LFTextField">
                                                 <rect key="frame" x="20" y="255" width="560" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="nYS-JX-W6d"/>
@@ -1709,15 +1686,15 @@ You can do this!</string>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nQR-aD-dfx" customClass="ColorLabel">
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nQR-aD-dfx" customClass="ColorLabel">
                                                 <rect key="frame" x="20" y="165" width="560" height="35"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="RTA-wN-EdM"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="bzM-jh-nXN" firstAttribute="leading" secondItem="o1L-Bk-lcq" secondAttribute="leading" id="0G7-Q9-Olz"/>
                                             <constraint firstItem="nQR-aD-dfx" firstAttribute="leading" secondItem="o1L-Bk-lcq" secondAttribute="leading" id="0d6-Ef-uFx"/>
@@ -1759,49 +1736,49 @@ You can do this!</string>
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZVH-AL-1Pm" customClass="RoundButton">
-                                <rect key="frame" x="40" y="520" width="250" height="30"/>
-                                <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="40" y="656" width="157" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="lmC-Tj-mzq"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                 <state key="normal" title="Save">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="saveAction:" destination="xfy-x1-cgF" eventType="touchUpInside" id="jad-g2-Hq9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IzB-G7-K91" customClass="RoundButton">
-                                <rect key="frame" x="310" y="520" width="250" height="30"/>
-                                <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="217" y="656" width="157" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="ugz-ju-0Hb"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                 <state key="normal" title="Advance">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="changeAction:" destination="xfy-x1-cgF" eventType="touchUpInside" id="DMO-p7-Cbc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K69-2C-HJ9" customClass="RoundButton">
-                                <rect key="frame" x="40" y="520" width="520" height="30"/>
-                                <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="40" y="656" width="334" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="uES-GF-37J"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                 <state key="normal" title="Save">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="saveAction:" destination="xfy-x1-cgF" eventType="touchUpInside" id="uFR-lk-Tht"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="I2l-ZE-ca3" firstAttribute="leading" secondItem="w10-dJ-yzO" secondAttribute="leading" id="C7H-2l-p2m"/>
                             <constraint firstItem="ZVH-AL-1Pm" firstAttribute="leading" secondItem="w10-dJ-yzO" secondAttribute="leading" constant="40" id="DHT-RQ-NYX"/>
@@ -1846,12 +1823,12 @@ You can do this!</string>
                         <viewControllerLayoutGuide type="bottom" id="qhh-ua-KUo"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="R87-OK-Ruu">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jcy-ga-1ae">
-                                <rect key="frame" x="0.0" y="600" width="600" height="0.0"/>
-                                <color key="backgroundColor" red="0.96862745100000003" green="0.79215686269999996" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="0.0" y="736" width="414" height="0.0"/>
+                                <color key="backgroundColor" red="0.96862745100000003" green="0.79215686269999996" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="zQJ-mR-wac"/>
                                 </constraints>
@@ -1871,14 +1848,13 @@ You can do this!</string>
                                             <subviews>
                                                 <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XQq-WC-Tau">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="+"/>
                                                     <connections>
                                                         <action selector="btnAction:" destination="Ka3-cL-gNO" eventType="touchUpInside" id="k93-1c-FZ8"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="XQq-WC-Tau" secondAttribute="bottom" id="b6T-HN-oKc"/>
@@ -1898,7 +1874,7 @@ You can do this!</string>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Device" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNW-hy-SRR">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="24"/>
                                             <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -1915,13 +1891,13 @@ You can do this!</string>
                                 </connections>
                             </collectionView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yky-1g-1Ti">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="716"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M8W-Nh-Doq">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="503"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="503"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LUs-rg-FkQ" customClass="LFTextField">
-                                                <rect key="frame" x="40" y="178" width="520" height="35"/>
+                                                <rect key="frame" x="40" y="178" width="334" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="6tf-1a-yge"/>
                                                 </constraints>
@@ -1929,7 +1905,7 @@ You can do this!</string>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kIX-zf-mxr" customClass="LFTextField">
-                                                <rect key="frame" x="40" y="223" width="520" height="35"/>
+                                                <rect key="frame" x="40" y="223" width="334" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="wU0-l5-liE"/>
                                                 </constraints>
@@ -1937,7 +1913,7 @@ You can do this!</string>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aRg-ER-9os" customClass="LFTextField">
-                                                <rect key="frame" x="40" y="268" width="520" height="35"/>
+                                                <rect key="frame" x="40" y="268" width="334" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="2Uo-pR-ErI"/>
                                                 </constraints>
@@ -1945,7 +1921,7 @@ You can do this!</string>
                                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AAG-lg-0DG" customClass="LFTextField">
-                                                <rect key="frame" x="40" y="313" width="520" height="35"/>
+                                                <rect key="frame" x="40" y="313" width="334" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="kdn-9Z-VFD"/>
                                                 </constraints>
@@ -1953,7 +1929,7 @@ You can do this!</string>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Street" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pHO-Kd-bM9" customClass="LFTextField">
-                                                <rect key="frame" x="40" y="358" width="520" height="35"/>
+                                                <rect key="frame" x="40" y="358" width="334" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="Ub2-qD-LFB"/>
                                                 </constraints>
@@ -1961,7 +1937,7 @@ You can do this!</string>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EOa-Of-sCp" customClass="LFTextField">
-                                                <rect key="frame" x="40" y="403" width="520" height="35"/>
+                                                <rect key="frame" x="40" y="403" width="334" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="uL6-e4-4en"/>
                                                 </constraints>
@@ -1969,7 +1945,7 @@ You can do this!</string>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5a7-1d-kcn" customClass="LFTextField">
-                                                <rect key="frame" x="40" y="448" width="252.5" height="35"/>
+                                                <rect key="frame" x="40" y="448" width="159.66666666666666" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="xA8-5P-jnf"/>
                                                 </constraints>
@@ -1977,7 +1953,7 @@ You can do this!</string>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ZipCode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LX1-KV-uRr" customClass="LFTextField">
-                                                <rect key="frame" x="307" y="448" width="252.5" height="35"/>
+                                                <rect key="frame" x="214.00000000000003" y="448" width="159.66666666666671" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="XQ1-yv-ZCA"/>
                                                 </constraints>
@@ -1985,8 +1961,8 @@ You can do this!</string>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KK5-8Y-uO8">
-                                                <rect key="frame" x="240" y="38" width="120" height="120"/>
-                                                <color key="backgroundColor" red="0.47450980390000003" green="0.47450980390000003" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <rect key="frame" x="147" y="38" width="120" height="120"/>
+                                                <color key="backgroundColor" red="0.47450980390000003" green="0.47450980390000003" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="120" id="Tl4-CZ-KRz"/>
                                                     <constraint firstAttribute="width" constant="120" id="fY0-kr-Hh9"/>
@@ -1994,7 +1970,7 @@ You can do this!</string>
                                                 <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="60"/>
                                                 <inset key="titleEdgeInsets" minX="0.0" minY="-5" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="+">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="imageBtnAction:" destination="Swd-Kn-SI3" eventType="touchUpInside" id="F0R-d5-LLN"/>
@@ -2067,7 +2043,7 @@ You can do this!</string>
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Yky-1g-1Ti" secondAttribute="trailing" id="1GT-7v-PId"/>
                             <constraint firstItem="qhh-ua-KUo" firstAttribute="top" secondItem="jcy-ga-1ae" secondAttribute="bottom" id="59H-dz-Ma9"/>
@@ -2116,10 +2092,10 @@ You can do this!</string>
         <image name="orange_activity_button" width="80" height="80"/>
         <image name="orange_uv_button" width="80" height="80"/>
         <image name="orange_weather_button" width="80" height="80"/>
-        <image name="tab_calendar" width="28" height="25"/>
-        <image name="tab_calendar_selected" width="28" height="25"/>
-        <image name="tab_chart" width="20" height="28"/>
-        <image name="tab_chart_selected" width="20" height="28"/>
+        <image name="tab_calendar" width="28" height="23"/>
+        <image name="tab_calendar_selected" width="28" height="23"/>
+        <image name="tab_chart" width="28" height="28"/>
+        <image name="tab_chart_selected" width="28" height="28"/>
         <image name="tab_mail" width="28" height="19"/>
         <image name="tab_mail_selected" width="28" height="19"/>
         <image name="tab_map" width="23" height="28"/>

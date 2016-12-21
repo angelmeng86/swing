@@ -31,6 +31,8 @@
     if (!self.navigationController.navigationBar.hidden) {
         self.topLayout.constant = 80;
     }
+    
+    self.label.text = LOC_STR(@"searching");
 }
 
 - (void)didReceiveMemoryWarning {

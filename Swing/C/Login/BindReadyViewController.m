@@ -24,6 +24,9 @@
     self.imageView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.imageView.layer.borderWidth = 4.f;
     self.imageView.layer.masksToBounds = YES;
+    
+    [self.goDashBtn setTitle:LOC_STR(@"Go to dashboard") forState:UIControlStateNormal];
+    [self.addWatchBtn setTitle:LOC_STR(@"Add another watch") forState:UIControlStateNormal];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

@@ -30,6 +30,11 @@
     [self.phoneTF setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     [self.zipCodeTF setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     
+    self.firstNameTF.placeholder=LOC_STR(@"First name");
+    self.lastNameTF.placeholder=LOC_STR(@"Last name");
+    self.phoneTF.placeholder=LOC_STR(@"Phone number");
+    self.zipCodeTF.placeholder=LOC_STR(@"Zip code");
+    
     self.firstNameTF.delegate = self;
     self.lastNameTF.delegate = self;
     self.phoneTF.delegate = self;

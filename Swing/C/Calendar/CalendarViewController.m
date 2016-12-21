@@ -38,6 +38,8 @@
     self.timeLabel.adjustsFontSizeToFitWidth = YES;
     self.descLabel.adjustsFontSizeToFitWidth = YES;
     [self setTimeDesc:@"No Event" desc:nil];
+    
+    [self.todayBtn setTitle:LOC_STR(@"Today's Schedule") forState:UIControlStateNormal];
 }
 
 - (void)setTimeDesc:(NSString*)time desc:(NSString*)desc {
