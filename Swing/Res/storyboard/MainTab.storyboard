@@ -594,6 +594,7 @@ You can do this!</string>
                         <outlet property="indoorBtn" destination="FgC-PN-Dfn" id="fIl-SQ-VLv"/>
                         <outlet property="outdoorBtn" destination="FEo-ce-J8T" id="XKb-3h-3rI"/>
                         <outlet property="stepProgress" destination="50o-Su-OqH" id="Dbz-lm-QYX"/>
+                        <outlet property="subTitle" destination="NKa-mp-Kxl" id="pII-JJ-zkY"/>
                         <outlet property="titleLabel" destination="8gE-1z-Qcu" id="tnh-4V-I81"/>
                     </connections>
                 </viewController>
@@ -783,7 +784,7 @@ You can do this!</string>
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="24"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Device" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XzN-wv-rZc">
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2016" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Device" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XzN-wv-rZc">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="24"/>
                                             <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -858,6 +859,7 @@ You can do this!</string>
                         <outlet property="deviceConllectionView" destination="LdG-Au-u84" id="Ahe-gk-9Ps"/>
                         <outlet property="emailLabel" destination="c8e-YE-BjS" id="z7Q-dw-fy2"/>
                         <outlet property="headerBtn" destination="dKh-7F-FU5" id="kQ3-3e-nrX"/>
+                        <outlet property="logoutBtn" destination="Q7D-GG-PY0" id="em2-Xt-9Ay"/>
                         <outlet property="nameLabel" destination="Tjr-st-s0S" id="OQq-WI-BzR"/>
                     </connections>
                 </viewController>
@@ -1413,6 +1415,7 @@ You can do this!</string>
                         <outlet property="calendarContentView" destination="o3W-0O-iA6" id="Vxg-SD-lCq"/>
                         <outlet property="calendarMenuView" destination="vRY-NS-owW" id="F6D-gV-qs3"/>
                         <outlet property="descLabel" destination="cXs-qF-emW" id="bb7-Xs-Z4Q"/>
+                        <outlet property="saveBtn" destination="gu7-eP-TUa" id="3LD-dg-4Qx"/>
                         <outlet property="selectTableView" destination="kEQ-SW-hNY" id="TNQ-p9-P1G"/>
                         <outlet property="titleLabel" destination="J55-Zi-9Gm" id="Fn3-eb-8zV"/>
                     </connections>
@@ -2020,10 +2023,10 @@ You can do this!</string>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="Zd9-Wt-faN"/>
-                                                <exclude reference="PNx-iC-H7i"/>
                                                 <exclude reference="I0R-yo-qBX"/>
                                                 <exclude reference="Vx1-Rn-Qha"/>
                                                 <exclude reference="jbl-Im-nBF"/>
+                                                <exclude reference="PNx-iC-H7i"/>
                                                 <exclude reference="9CR-KY-QRy"/>
                                                 <exclude reference="Ugt-Vn-k0U"/>
                                                 <exclude reference="oOm-x1-vey"/>

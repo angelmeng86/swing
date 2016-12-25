@@ -33,6 +33,7 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"edit_btn") style:UIBarButtonItemStylePlain target:self action:@selector(editEventAction)];
     [self reloadData];
 //    self.navigationItem.rightBarButtonItem = nil;
+    [self.saveBtn setTitle:LOC_STR(@"Save") forState:UIControlStateNormal];
 }
 
 - (void)reloadData {

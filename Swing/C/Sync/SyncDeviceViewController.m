@@ -26,9 +26,11 @@
     self.imageView.layer.masksToBounds = YES;
     
     self.label1.adjustsFontSizeToFitWidth = YES;
-    self.label2.adjustsFontSizeToFitWidth = YES;
     
-    self.navigationItem.title = @"Sync";
+    self.navigationItem.title = LOC_STR(@"Sync");
+    
+    [self.button1 setTitle:LOC_STR(@"Yes, please") forState:UIControlStateNormal];
+    [self.button2 setTitle:LOC_STR(@"No, go to dashboard") forState:UIControlStateNormal];
     
     if ([GlobalCache shareInstance].info.profileImage) {
         [self.imageView sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:[GlobalCache shareInstance].info.profileImage]]];
@@ -50,10 +52,9 @@
 - (void)userProfileLoaded:(NSNotification*)notification {
     if (![GlobalCache shareInstance].local.deviceMAC) {
         //确认当前用户没有绑定设备
-        self.label1.text = @"You have not bind";
-        self.label2.text = @"device yet.";
-        [self.button1 setTitle:@"Search a watch" forState:UIControlStateNormal];
-        [self.button2 setTitle:@"Go to dashboard" forState:UIControlStateNormal];
+        self.label1.text = LOC_STR(@"You have not bind device yet.");
+        [self.button1 setTitle:LOC_STR(@"Search a watch") forState:UIControlStateNormal];
+        [self.button2 setTitle:LOC_STR(@"Go to dashboard") forState:UIControlStateNormal];
     }
 }
 

@@ -31,6 +31,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userProfileLoaded:) name:USER_PROFILE_LOAD_NOTI object:nil];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"navi_edit") style:UIBarButtonItemStylePlain target:self action:@selector(editProfileAction:)];
+    
+    self.navigationItem.title = LOC_STR(@"Profile");
+    [self.logoutBtn setTitle:LOC_STR(@"logout") forState:UIControlStateNormal];
 }
 
 - (void)userProfileLoaded:(NSNotification*)notification {
@@ -93,6 +96,8 @@
     UICollectionReusableView *reusableview = nil;
     if (kind == UICollectionElementKindSectionHeader){
         reusableview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
+        UILabel *label = (UILabel*)[reusableview viewWithTag:2016];
+        label.text = LOC_STR(@"My hosting device");
     }
     
     return reusableview;

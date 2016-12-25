@@ -35,7 +35,7 @@
     self.label1.text = LOC_STR(@"Please select your Swing Watch");
 
     self.peripherals = [NSMutableArray array];
-    
+    self.navigationItem.title = nil;
     [self setCustomBackButton];
 }
 

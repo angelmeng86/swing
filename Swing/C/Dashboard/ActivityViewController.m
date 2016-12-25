@@ -55,6 +55,8 @@
     NSArray *viewControllers = @[todayCtl];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
+    self.navigationItem.title = LOC_STR(@"Activity");
+    
     // Change the size of page view controller
 //    self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     

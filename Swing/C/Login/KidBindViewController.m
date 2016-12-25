@@ -165,7 +165,7 @@
                                                              delegate:self
                                                     cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:NSLocalizedString(@"Camera", nil), NSLocalizedString(@"Album", nil), nil];
+                                                    otherButtonTitles:NSLocalizedString(@"Take a picture", nil), NSLocalizedString(@"Choose from library", nil), nil];
     [choiceSheet showInView:self.view];
 }
 

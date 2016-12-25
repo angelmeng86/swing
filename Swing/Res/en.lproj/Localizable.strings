@@ -57,7 +57,7 @@
 "Add Your To Do List"="Add Your To Do List";
 
 "Never"="Never";
-"Everyday"="Everyday";
+"Every Day"="Every Day";
 "Every Week"="Every Week";
 
 "Dashboard"="Dashboard";
@@ -66,8 +66,8 @@
 "Go to profile"="Go to profile";
 "Request pending. Awaiting Responses"="Request pending. Awaiting Responses";
 "How are you doing today?"="How are you doing today?";
-"Below Average"="Below Average";
-"Almost there"="Almost there";
+"Below Average!"="Below Average!";
+"Almost There!"="Almost there!";
 "Excellent!"="Excellent!";
 "Today"="Today";
 "Don't give up. You can do this!"="Don't give up. You can do this!";
@@ -78,9 +78,9 @@
 "Outdoor"="Outdoor";
 "One more time. You are almost there"="One more time. You are almost there";
 "Woohoo! You've reached your goal!"="Woohoo! You've reached your goal!";
-"This week"="This week";
-"This month"="This month";
-"This year"="This year";
+"This Week"="This Week";
+"This Month"="This Month";
+"This Year"="This Year";
 
 "Sync"="Sync";
 "Would you like to sync now?"="Would you like to sync now?";
@@ -88,9 +88,9 @@
 "No, go to dashboard"="No, go to dashboard";
 "Sync another watch"="Sync another watch";
 "Select Watch to Sync"="Select Watch to Sync";
-"Searching for your device"="Searching for your device";
+"Searching for your device!"="Searching for your device!";
 "Found your device!"="Found your device!";
-"Sync now"="Sync now";
+"Sync Now"="Sync Now";
 "Syncing"="Syncing";
 "Sync Completed"="Sync Completed";
 "Go to dashboard"="Go to dashboard";
@@ -121,13 +121,13 @@
 "Phone number"="Phone number";
 "Zip code"="Zip code";
 
-"Do you have a Swing Watch?"="DO YOU HAVE A SWING WATCH?”;
+"Do you have a Swing Watch?"="DO YOU HAVE A SWING WATCH?";
 "Yes"="Yes";
 "No"="No";
 "Would you like to purchase one?"="WOULD YOU LIKE TO PURCHASE ONE?";
 "Continue as a guest"="Continue as a guest";
-"searching”=“SEARCHING”;
-"Please select your Swing Watch"="PLEASE SELECT YOUR SWING WATCH”;
+"searching"="SEARCHING";
+"Please select your Swing Watch"="PLEASE SELECT YOUR SWING WATCH";
 "Added"="Added";
 "We've successfully added your Swing Watch"="We've successfully added your Swing Watch";
 "Setup your profile"="Setup your profile";
@@ -138,8 +138,8 @@
 "Kid's name"="Kid's name";
 "Add profile picture"="Add profile picture";
 "Import from Facebook"="Import from Facebook";
-"Camera"="Take a picture";
-"Album"="Choose from library";
+"Take a picture"="Take a picture";
+"Choose from library"="Choose from library";
 "Cancel"="Cancel";
 "Take a photo"="Take a photo";
 "Add another watch"="Add another watch";

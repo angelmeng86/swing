@@ -5,4 +5,143 @@
   Created by Mapple on 2016/12/20.
   Copyright © 2016年 zzteam. All rights reserved.
 */
+"Calendar"="Календарь";
 "Today's Schedule"="Календарь на сегодня";
+"Monthly Schedule"="Календарь на месяц";
+
+"January"="Январь";
+"February"="Февраль";
+"March"="Март";
+"April"="Апрель";
+"May"="Май";
+"June"="Июнь";
+"July"="Июль";
+"August"="Август";
+"Spetember"="Сентябрь";
+"October"="Октябрь";
+"November"="Ноябрь";
+"December"="Декабрь";
+
+"JAN"="ЯНВ.";
+"FEB"="ФЕВР.";
+"MAR"="МАРТ";
+"APR"="АПР.";
+"MAY"="МАЙ";
+"JUN"="ИЮНЬ";
+"JUL"="ИЮЛЬ";
+"AUG"="АВГ.";
+"SEP"="СЕНТ.";
+"OCT"="ОКТ.";
+"NOV"="НОЯБ.";
+"DEC"="ДЕК.";
+
+"MON"="П";
+"TUE"="В";
+"WED"="С";
+"THU"="Ч";
+"FRI"="П";
+"SAT"="С";
+"SUN"="В";
+
+"Save"="Сохранить";
+"Select Event"="Выбрать событие";
+"Start"="Начинается";
+"End"="Заканчивается";
+"Color Label"="Цветная этикетка";
+"Advance"="Продвинутый уровень";
+"City"="Город";
+"State"="Страна";
+"Repeat"="Повторить";
+"Description"="Описание";
+"To Do List"="Список задач";
+"Add Your To Do List"="Добавить список задач";
+
+"Never"="Никогда";
+"Every Day"="Все дни";
+"Every Week"="Все недели";
+
+"Dashboard"="Начало";
+"You Don't Have any Data yet"="У тебя пока нет записей";
+"Request access"="Разрешить доступ";
+"Go to profile"="Перейти к профилю";
+"Request pending. Awaiting Responses"="Невыполненный запрос. В ожидании ответов";
+"How are you doing today?"="Как дела у тебя сегодня?";
+"Below Average!"="Ниже среднего";
+"Almost There!"="Почти на среднем уровне";
+"Excellent!"="Замечательно!";
+"Today"="Сегодня";
+"Don't give up. You can do this!"="Не сдавайся! Ты можешь сделать это!";
+"Steps"="Шаги";
+"Distance"="Расстояние";
+"Flights"="Ступени";
+"Indoor"="Внутри";
+"Outdoor"="Снаружи";
+"One more time. You are almost there"="Еще раз! Ты почти у цели!";
+"Woohoo! You've reached your goal!"="Браво! У тебя получилось!";
+"This Week"="Эта неделя";
+"This Month"="Этот месяц";
+"This Year"="Этот год";
+
+"Sync"="Синхронизация";
+"Would you like to sync now?"="Провести синхронизацию сейчас?";
+"Yes, please"="Да, пожалуйста";
+"No, go to dashboard"="Нет, вернуться к началу";
+"Sync another watch"="Синхронизировать другие часы";
+"Select Watch to Sync"="Выбрать часы для синхронизации";
+"Searching for your device!"="Идет поиск часов";
+"Found your device!"="Часы найдены";
+"Sync Now"="Синхронизировать сейчас";
+"Syncing"="Идет синхронизация";
+"Sync Completed"="Синхронизация завершена";
+"Go to dashboard"="Вернуться к началу";
+"We can't find your device!"="Часы не найдены";
+"Try Again"="Попытайся еще раз";
+"Go to last synced data"="Вернуться к последней синхронизации";
+
+"My Watch"="Мои часы";
+"Battery"="Батарея";
+
+"Profile"="Профиль";
+"Edit"="Редактировать";
+"Parent"="Мать/отец";
+"My hosting device"="Мои часы";
+"Device shared with me"="Часы для совместного использования";
+"logout"="Завершить сеанс";
+
+"Please select your language"="Пожалуйста, выбери язык";
+"Select"="Выбрать";
+"Sign up/ login"="Начать сеанс";
+"or"="или";
+"Login with Facebook"="Начать через Facebook";
+"Login with Google"="Начать через Google";
+"Email"="Электронная почта";
+"Password"="Код";
+"First name"="Имя";
+"Last name"="Фамилия";
+"Phone number"="Номер телефона";
+"Zip code"="Почтовый индекс";
+
+"Do you have a Swing Watch?"="У тебя есть часы?";
+"Yes"="Да";
+"No"="Нет";
+"Would you like to purchase one?"="Ты хочешь купить их?";
+"Continue as a guest"="Продолжить в качестве гостя";
+"searching"="Идет поиск";
+"Please select your Swing Watch"="Пожалуйста, выбери часы";
+"Added"="Готово!";
+"We've successfully added your Swing Watch"="Мы добавили твои часы";
+"Setup your profile"="Дополнить профиль";
+"Contact us!"="Свяжись с нами";
+"Sorry!"="Как жаль!";
+"We couldn’t find your Swing Watch. Please make sure your watch is fully charged"="Нам не удалось найти твои часы. Пожалуйста, убедись в том, что они загружены";
+"Search Again"="Повторить поиск";
+"Kid's name"="Имя ребенка";
+"Add profile picture"="Добавить фотографию в профиль";
+"Import from Facebook"="Импортировать из Facebook";
+"Take a picture"="Сделать фотографию";
+"Choose from library"="Выбрать фотографию";
+"Cancel"="Отменить";
+"Take a photo"="Сделать фотографию";
+"Add another watch"="Добавить другие часы";
+
+

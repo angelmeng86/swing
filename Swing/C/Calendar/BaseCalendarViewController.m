@@ -23,6 +23,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.navigationItem.title = LOC_STR(@"Calendar");
+    
     if (_dateSelected == nil) {
         _dateSelected = [NSDate date];
     }

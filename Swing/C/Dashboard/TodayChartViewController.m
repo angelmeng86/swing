@@ -89,6 +89,13 @@
     self.outdoor = [ActivityResultModel new];
     self.indoor.steps = [GlobalCache shareInstance].local.indoorSteps;
     self.outdoor.steps = [GlobalCache shareInstance].local.outdoorSteps;
+    
+    self.titleLabel.text = LOC_STR(@"Today");
+    [self.indoorBtn setTitle:LOC_STR(@"Indoor") forState:UIControlStateNormal];
+    [self.outdoorBtn setTitle:LOC_STR(@"Outdoor") forState:UIControlStateNormal];
+    self.subTitle.adjustsFontSizeToFitWidth = YES;
+    self.subTitle.text = LOC_STR(@"Don't give up. You can do this!");
+    
     [self reloadData];
 }
 
@@ -117,12 +124,12 @@
     if (self.indoorBtn.selected) {
         self.stepProgress.progressTotal = self.indoor.steps * 2;
         self.stepProgress.progressCounter = self.indoor.steps;
-        self.stepProgress.text = [NSString stringWithFormat:@"Step %ld", self.indoor.steps];
+        self.stepProgress.text = [NSString stringWithFormat:@"%@ %ld", LOC_STR(@"Steps"), self.indoor.steps];
     }
     else {
         self.stepProgress.progressTotal = self.outdoor.steps * 2;
         self.stepProgress.progressCounter = self.outdoor.steps;
-        self.stepProgress.text = [NSString stringWithFormat:@"Step %ld", self.outdoor.steps];
+        self.stepProgress.text = [NSString stringWithFormat:@"%@ %ld", LOC_STR(@"Steps"), self.outdoor.steps];
     }
 //    [self.stepProgress setNeedsLayout];
     [self.stepProgress setNeedsDisplay];

@@ -18,5 +18,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel2;
 
+@property (weak, nonatomic) IBOutlet UIButton *logoutBtn;
 - (IBAction)logoutAction:(id)sender;
 @end

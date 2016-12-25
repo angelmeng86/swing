@@ -61,7 +61,7 @@
     [_textField autoPinEdgeToSuperviewEdge:ALEdgeBottom];
     [_textField autoSetDimension:ALDimensionHeight toSize:35];
     
-    _textField.placeholder = @"To Do List";
+    _textField.placeholder = LOC_STR(@"To Do List");
     _textField.font = [UIFont avenirFontOfSize:15];
     _textField.delegate = self;
     _textField.returnKeyType = UIReturnKeyDone;

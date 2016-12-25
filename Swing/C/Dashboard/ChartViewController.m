@@ -91,7 +91,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
             self.distanceChartColor = RGBA(34, 110, 96, 1.0f);
 //            self.view.backgroundColor = RGBA(173, 240, 181, 1.0f);
             self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dashboard-bg-activity-2"]];
-            self.titleLabel.text = @"This Month";
+            self.titleLabel.text = LOC_STR(@"This Month");
         }
             break;
         case ChartTypeYear:
@@ -103,7 +103,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
             self.distanceChartColor = RGBA(208, 0, 23, 1.0f);
 //            self.view.backgroundColor = RGBA(254, 245, 171, 1.0f);
             self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dashboard-bg-activity-3"]];
-            self.titleLabel.text = @"This Year";
+            self.titleLabel.text = LOC_STR(@"This Year");
         }
             break;
 //        case ChartTypeWeek:
@@ -116,7 +116,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
             self.distanceChartColor = RGBA(144, 146, 197, 1.0f);
 //            self.view.backgroundColor = RGBA(222, 205, 255, 1.0f);
             self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dashboard-bg-activity-1"]];
-            self.titleLabel.text = @"This Week";
+            self.titleLabel.text = LOC_STR(@"This Week");
         }
             break;
     }
@@ -187,7 +187,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     [outdoorBtn autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:middleView];
     [outdoorBtn autoAlignAxis:ALAxisHorizontal toSameAxisOfView:middleView];
     
-    [indoorBtn setTitle:@"Indoor" forState:UIControlStateNormal];
+    [indoorBtn setTitle:LOC_STR(@"Indoor") forState:UIControlStateNormal];
     indoorBtn.backgroundColor = [UIColor whiteColor];
     indoorBtn.layer.borderWidth = 2;
     indoorBtn.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -200,7 +200,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     [indoorBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
     indoorBtn.selected = YES;
     
-    [outdoorBtn setTitle:@"Outdoor" forState:UIControlStateNormal];
+    [outdoorBtn setTitle:LOC_STR(@"Outdoor") forState:UIControlStateNormal];
     outdoorBtn.backgroundColor = [UIColor whiteColor];
     outdoorBtn.layer.borderWidth = 2;
     outdoorBtn.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -439,11 +439,11 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     self.isLoadData = YES;
     
     ChartFooterView *stepFooter = [[ChartFooterView alloc] initWithFrame:CGRectMake(0, 0, 0, 40)];
-    stepFooter.titleLabel.text = @"Steps";
+    stepFooter.titleLabel.text = LOC_STR(@"Steps");
     
     
     ChartFooterView *distanceFooter = [[ChartFooterView alloc] initWithFrame:CGRectMake(0, 0, 0, 40)];
-    distanceFooter.titleLabel.text = @"Distance";
+    distanceFooter.titleLabel.text = LOC_STR(@"Distance");
     
     stepFooter.lineColor = self.stepChartColor;
     distanceFooter.lineColor = self.distanceChartColor;

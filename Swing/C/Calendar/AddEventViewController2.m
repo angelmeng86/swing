@@ -19,6 +19,7 @@
     
     BOOL isCustom;
     NSArray *alertArray;
+    int repeatIndex;
 }
 
 @property (nonatomic, strong) AlertModel* alert;
@@ -81,6 +82,19 @@
     self.repeatTF.rightViewMode = UITextFieldViewModeAlways;
     self.repeatTF.enabled = NO;
     
+    self.navigationItem.title = LOC_STR(@"Calendar");
+    [self.shortSaveBtn setTitle:LOC_STR(@"Save") forState:UIControlStateNormal];
+    [self.longSaveBtn setTitle:LOC_STR(@"Save") forState:UIControlStateNormal];
+    [self.advanceBtn setTitle:LOC_STR(@"Advance") forState:UIControlStateNormal];
+    self.advanceBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
+    
+    self.nameTF.placeholder = LOC_STR(@"Select Event");
+    self.startTF.placeholder = LOC_STR(@"Start");
+    self.endTF.placeholder = LOC_STR(@"End");
+    self.cityTF.placeholder = LOC_STR(@"City");
+    self.stateTF.placeholder = LOC_STR(@"State");
+    self.repeatTF.placeholder = LOC_STR(@"Repeat");
+    self.descTF.placeholder = LOC_STR(@"Description");
     
     UIDatePicker *datePicker2 = [[UIDatePicker alloc] init];
     datePicker2.datePickerMode = UIDatePickerModeTime;
@@ -148,11 +162,11 @@
 - (IBAction)changeAction:(UIButton*)sender {
     BOOL hidden = self.todoCtl.hidden;
     if (hidden) {
-        [sender setTitle:@"Normal" forState:UIControlStateNormal];
+        [sender setTitle:LOC_STR(@"Normal") forState:UIControlStateNormal];
         [self hideAdvance:YES];
     }
     else {
-        [sender setTitle:@"Advance" forState:UIControlStateNormal];
+        [sender setTitle:LOC_STR(@"Advance") forState:UIControlStateNormal];
     }
     [self changeAdvance:hidden];
 }
@@ -189,7 +203,7 @@
     ChoicesViewController *ctl = [[ChoicesViewController alloc] initWithStyle:UITableViewStylePlain];
     ctl.delegate = self;
     ctl.navigationItem.title = self.repeatTF.placeholder;
-    ctl.textArray = @[@"Never", @"Every Day", @"Every Week"/*, @"Every Month"*/];
+    ctl.textArray = @[LOC_STR(@"Never"), LOC_STR(@"Every Day"), LOC_STR(@"Every Week")/*, @"Every Month"*/];
     [self.navigationController pushViewController:ctl animated:YES];
 }
 
@@ -331,14 +345,14 @@
         [SVProgressHUD showWithStatus:@"Saving, please wait..."];
         
         //eventName, startDate, endDate, color, status, description, alert, city, state
-        UILabel *label = (UILabel*)[self.repeatTF.rightView viewWithTag:2016];
+//        UILabel *label = (UILabel*)[self.repeatTF.rightView viewWithTag:2016];
         NSString *repeat = @"";
-        if ([label.text isEqualToString:@"Every Day"]) {
-            repeat = @"DAILY";
-        }
-        else if ([label.text isEqualToString:@"Every Week"]) {
-            repeat = @"WEEKLY";
-        }
+//        if ([label.text isEqualToString:@"Every Day"]) {
+//            repeat = @"DAILY";
+//        }
+//        else if ([label.text isEqualToString:@"Every Week"]) {
+//            repeat = @"WEEKLY";
+//        }
         NSMutableDictionary *data = [NSMutableDictionary dictionary];
         [data addEntriesFromDictionary:@{@"eventName":self.nameTF.text , @"startDate":self.startTF.text
                                         , @"endDate":self.endTF.text

@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *selectTableView;
 
 @property (strong, nonatomic) EventModel *model;
+@property (weak, nonatomic) IBOutlet UIButton *saveBtn;
 
 - (IBAction)saveAction:(id)sender;
 - (IBAction)delAction:(id)sender;

@@ -32,6 +32,7 @@
     image = nil;
     
 //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(doneAction:)];
+    self.navigationItem.title = LOC_STR(@"Edit");
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"navi_save") style:UIBarButtonItemStylePlain target:self action:@selector(doneAction:)];
     
@@ -51,6 +52,15 @@
         self.zipCodeTF.text = [GlobalCache shareInstance].user.zipCode;
     }
     self.emailTF.userInteractionEnabled = NO;
+    
+    self.firstNameTF.placeholder = LOC_STR(@"First name");
+    self.lastNameTF.placeholder = LOC_STR(@"Last name");
+    self.phoneTF.placeholder = LOC_STR(@"Phone number");
+    self.zipCodeTF.placeholder = LOC_STR(@"Zip code");
+    self.emailTF.placeholder = LOC_STR(@"Email");
+//    self.streetTF.placeholder = LOC_STR(@"");
+    self.cityTF.placeholder = LOC_STR(@"City");
+    self.stateTF.placeholder = LOC_STR(@"State");
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userProfileLoaded:) name:USER_PROFILE_LOAD_NOTI object:nil];
     
@@ -263,7 +273,7 @@
                                                              delegate:self
                                                     cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:NSLocalizedString(@"Camera", nil), NSLocalizedString(@"Album", nil), nil];
+                                                    otherButtonTitles:NSLocalizedString(@"Take a picture", nil), NSLocalizedString(@"Choose from library", nil), nil];
     [choiceSheet showInView:self.view];
 }
 @end

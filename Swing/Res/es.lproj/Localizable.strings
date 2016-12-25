@@ -5,4 +5,143 @@
   Created by Mapple on 2016/12/20.
   Copyright © 2016年 zzteam. All rights reserved.
 */
+"Calendar"="Calendario";
 "Today's Schedule"="Agenda de hoy";
+"Monthly Schedule"="Agenda mensual";
+
+"January"="Enero";
+"February"="Febrero";
+"March"="Marzo";
+"April"="Abril";
+"May"="Mayo";
+"June"="Junio";
+"July"="Julio";
+"August"="Agosto";
+"Spetember"="Septiembre";
+"October"="Octubre";
+"November"="Noviembre";
+"December"="Diciembre";
+
+"JAN"="ENE";
+"FEB"="FEB";
+"MAR"="MAR";
+"APR"="ABR";
+"MAY"="MAY";
+"JUN"="JUN";
+"JUL"="JUL";
+"AUG"="AGO";
+"SEP"="SEP";
+"OCT"="OCT";
+"NOV"="NOV";
+"DEC"="DIC";
+
+"MON"="L";
+"TUE"="M";
+"WED"="X";
+"THU"="J";
+"FRI"="V";
+"SAT"="S";
+"SUN"="D";
+
+"Save"="Guardar";
+"Select Event"="Seleccionar evento";
+"Start"="Empieza";
+"End"="Termina";
+"Color Label"="Etiqueta de color";
+"Advance"="Avanzado";
+"City"="Ciudad";
+"State"="Pais";
+"Repeat"="Repetir";
+"Description"="Descripción";
+"To Do List"="Lista de tareas";
+"Add Your To Do List"="Añadir lista de tareas";
+
+"Never"="Nunca";
+"Every Day"="Todos los días";
+"Every Week"="Todas las semanas";
+
+"Dashboard"="Inicio";
+"You Don't Have any Data yet"="No tienes ningún registro todavía";
+"Request access"="Permitir acceso";
+"Go to profile"="Ir al perfil";
+"Request pending. Awaiting Responses"="Petición pendiente. Esperando respuestas";
+"How are you doing today?"="¿Cómo estás hoy?";
+"Below Average!"="Por debajo de la media";
+"Almost There!"="Casi en la media";
+"Excellent!"="¡Excelente!";
+"Today"="Hoy";
+"Don't give up. You can do this!"="¡No te rindas! ¡Tu puedes!";
+"Steps"="Pasos";
+"Distance"="Distancia";
+"Flights"="Escalones";
+"Indoor"="Interior";
+"Outdoor"="Exterior";
+"One more time. You are almost there"="¡Otra vez! ¡Casi lo tienes!";
+"Woohoo! You've reached your goal!"="¡Bravo! ¡Lo has conseguido!";
+"This Week"="Esta semana";
+"This Month"="Este mes";
+"This Year"="Este año";
+
+"Sync"="Sincronizar";
+"Would you like to sync now?"="¿Quieres sincronizar ahora?";
+"Yes, please"="Sí, por favor";
+"No, go to dashboard"="No, volver al inicio";
+"Sync another watch"="Sincronizar otro reloj";
+"Select Watch to Sync"="Seleccionar reloj para sincronizar";
+"Searching for your device!"="Buscando tu reloj";
+"Found your device!"="Reloj encontrado";
+"Sync Now"="Sincronizar ahora";
+"Syncing"="Sincronizando";
+"Sync Completed"="Sincronización finalizada";
+"Go to dashboard"="Volver al inicio";
+"We can't find your device!"="Reloj no encontrado";
+"Try Again"="Inténtalo de nuevo";
+"Go to last synced data"="Volver a la última sincronización";
+
+"My Watch"="Mi reloj";
+"Battery"="Batería";
+
+"Profile"="Perfil";
+"Edit"="Editar";
+"Parent"="Madre/Padre";
+"My hosting device"="Mis relojes";
+"Device shared with me"="Reloj compartido";
+"logout"="Cerrar sesión";
+
+"Please select your language"="Por favor, selecciona tu idioma";
+"Select"="Seleccionar";
+"Sign up/ login"="Iniciar sesión";
+"or"="o";
+"Login with Facebook"="Iniciar con Facebook";
+"Login with Google"="Iniciar con Google";
+"Email"="Correo electrónico";
+"Password"="Clave";
+"First name"="Nombre";
+"Last name"="Apellido";
+"Phone number"="Número de teléfono";
+"Zip code"="Código Postal";
+
+"Do you have a Swing Watch?"="¿Tienes un reloj?";
+"Yes"="Sí";
+"No"="No";
+"Would you like to purchase one?"="¿Quieres comprar uno?";
+"Continue as a guest"="Continuar como invitado";
+"searching"="Buscando";
+"Please select your Swing Watch"="Por favor, selecciona tu reloj";
+"Added"="¡Completado!";
+"We've successfully added your Swing Watch"="Hemos añadido tu reloj";
+"Setup your profile"="Completar perfil";
+"Contact us!"="Contacta con nosotros";
+"Sorry!"="¡Lo sentimos!";
+"We couldn’t find your Swing Watch. Please make sure your watch is fully charged"="No podemos encontrar tu reloj.  Por favor, asegúrate de que está cargado";
+"Search Again"="Buscar de nuevo";
+"Kid's name"="Nombre del niño";
+"Add profile picture"="Añadir foto al perfil";
+"Import from Facebook"="Importar de Facebook";
+"Take a picture"="Hacer foto";
+"Choose from library"="Seleccionar foto";
+"Cancel"="Cancelar";
+"Take a photo"="Hacer foto";
+"Add another watch"="Añadir otro reloj";
+
+

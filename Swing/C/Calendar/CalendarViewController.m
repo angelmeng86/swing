@@ -37,9 +37,10 @@
     
     self.timeLabel.adjustsFontSizeToFitWidth = YES;
     self.descLabel.adjustsFontSizeToFitWidth = YES;
-    [self setTimeDesc:@"No Event" desc:nil];
+    [self setTimeDesc:LOC_STR(@"No Event") desc:nil];
     
     [self.todayBtn setTitle:LOC_STR(@"Today's Schedule") forState:UIControlStateNormal];
+    [self.monthBtn setTitle:LOC_STR(@"Monthly Schedule") forState:UIControlStateNormal];
 }
 
 - (void)setTimeDesc:(NSString*)time desc:(NSString*)desc {
@@ -84,7 +85,7 @@
         }
         
     }
-    [self setTimeDesc:@"No Event" desc:nil];
+    [self setTimeDesc:LOC_STR(@"No Event") desc:nil];
     self.progressView.progressCounter = 0;
 }
 

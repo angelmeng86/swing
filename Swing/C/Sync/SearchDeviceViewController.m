@@ -104,7 +104,7 @@ typedef enum : NSUInteger {
     switch (status) {
         case SyncStatusSearching:
         {
-            self.statusLabel.text = @"Searching for your device!";
+            self.statusLabel.text = LOC_STR(@"Searching for your device!");
             self.button.hidden = YES;
             
             self.progressView.theme = progressTheme;
@@ -134,7 +134,7 @@ typedef enum : NSUInteger {
             break;
         case SyncStatusFound:
         {
-            self.statusLabel.text = @"Found your device!";
+            self.statusLabel.text = LOC_STR(@"Found your device!");
             self.button.hidden = NO;
             
             self.progressView.isIndeterminateProgress = NO;
@@ -144,12 +144,12 @@ typedef enum : NSUInteger {
             
             [self setCustomBackBarButtonItem];
             
-            [self.button setTitle:@"Sync Now" forState:UIControlStateNormal];
+            [self.button setTitle:LOC_STR(@"Sync Now") forState:UIControlStateNormal];
         }
             break;
         case SyncStatusSyncing:
         {
-            self.statusLabel.text = @"Syncing";
+            self.statusLabel.text = LOC_STR(@"Syncing");
             self.button.hidden = YES;
             
             self.progressView.theme = progressTheme;
@@ -163,8 +163,8 @@ typedef enum : NSUInteger {
             break;
         case SyncStatusSyncCompleted:
         {
-            self.statusLabel.text = @"Sync Completed";
-            [self.button setTitle:@"Go to Dashboard" forState:UIControlStateNormal];
+            self.statusLabel.text = LOC_STR(@"Sync Completed");
+            [self.button setTitle:LOC_STR(@"Go to Dashboard") forState:UIControlStateNormal];
             
             self.progressView.isIndeterminateProgress = NO;
 //            self.progressView.theme = doneTheme;

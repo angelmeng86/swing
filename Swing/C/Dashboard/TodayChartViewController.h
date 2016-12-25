@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet RectProgress *distanceProgress;
 @property (weak, nonatomic) IBOutlet RectProgress *flightsProgress;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *subTitle;
 
 @property (weak, nonatomic) IBOutlet UIButton *indoorBtn;
 @property (weak, nonatomic) IBOutlet UIButton *outdoorBtn;

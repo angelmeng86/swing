@@ -49,7 +49,7 @@
     self.layer.masksToBounds = YES;
     
     UILabel *label = [UILabel new];
-    label.text = @"Color Label";
+    label.text = LOC_STR(@"Color Label");
     label.font = [UIFont avenirFontOfSize:15];
     [self addSubview:label];
     [label autoPinEdgeToSuperviewEdge:ALEdgeTop];
