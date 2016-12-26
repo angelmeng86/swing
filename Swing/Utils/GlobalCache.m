@@ -370,6 +370,33 @@
     }];
 }
 
+- (NSString*)curLanguage
+{
+    static NSString* cacheLang = nil;
+    if (cacheLang) {
+        return cacheLang;
+    }
+    if (self.local.language) {
+        cacheLang = self.local.language;
+    }
+    else {
+        NSString *languageID = [[NSBundle mainBundle] preferredLocalizations].firstObject;
+        if ([languageID isEqualToString:@"es"] || [languageID isEqualToString:@"ru"]) {
+            cacheLang = languageID;
+        }
+        else {
+            cacheLang = @"en";
+        }
+    }
+    return cacheLang;
+}
+
+- (NSString *)showText:(NSString *)key
+{
+    NSString *path = [[NSBundle mainBundle] pathForResource:self.curLanguage ofType:@"lproj"];
+    return [[NSBundle bundleWithPath:path] localizedStringForKey:key value:nil table:@"Localizable"];
+}
+
 - (id)init
 {
     if (self = [super init]) {

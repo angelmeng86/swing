@@ -11,6 +11,7 @@
 @protocol ChoicesViewDelegate <NSObject>
 
 - (void)choicesViewControllerDidSelected:(NSString*)text;
+- (void)choicesViewControllerDidSelectedIndex:(int)index;
 
 @end
 

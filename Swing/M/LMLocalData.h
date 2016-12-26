@@ -16,6 +16,8 @@
 @property (nonatomic, strong) NSData<Optional> *deviceMAC;
 @property (nonatomic) int battery;
 
+@property (nonatomic, strong) NSString<Optional> *language;
+
 - (void)checkDate;
 
 @end

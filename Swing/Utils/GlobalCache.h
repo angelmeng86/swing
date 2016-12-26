@@ -52,6 +52,9 @@
 @property (strong, nonatomic) UserModel* user;
 @property (strong, nonatomic) LMLocalData* local;
 
+- (NSString*)curLanguage;
+- (NSString *)showText:(NSString *)key;
+
 @property (strong, nonatomic) WeatherModel* wearther;
 @property (nonatomic) BOOL weartherRunning;
 

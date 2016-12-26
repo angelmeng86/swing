@@ -73,7 +73,8 @@
     _calendarManager = [JTCalendarManager new];
     _calendarManager.delegate = self;
     _calendarManager.settings.weekModeEnabled = weekModeEnabled;
-    _calendarManager.dateHelper.calendar.locale = [NSLocale localeWithLocaleIdentifier:@"en_US"];
+//    _calendarManager.dateHelper.calendar.locale = [NSLocale localeWithLocaleIdentifier:@"en_US"];
+    _calendarManager.dateHelper.calendar.locale = [NSLocale localeWithLocaleIdentifier:[GlobalCache shareInstance].curLanguage];
     _calendarManager.dateHelper.calendar.firstWeekday = 2;
     [_calendarManager setMenuView:self.calendarMenuView];
     [_calendarManager setContentView:self.calendarContentView];

@@ -11,6 +11,7 @@
 #import <SDWebImage/UIButton+WebCache.h>
 #import "ProfileDeviceCell.h"
 #import "AppDelegate.h"
+#import "ChoicesViewController.h"
 
 @interface ProfileViewController ()
 
@@ -32,8 +33,34 @@
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"navi_edit") style:UIBarButtonItemStylePlain target:self action:@selector(editProfileAction:)];
     
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:LOC_STR(@"language") style: UIBarButtonItemStylePlain target:self action:@selector(languageAction)];
+    
     self.navigationItem.title = LOC_STR(@"Profile");
     [self.logoutBtn setTitle:LOC_STR(@"logout") forState:UIControlStateNormal];
+}
+
+- (void)languageAction {
+    ChoicesViewController *ctl = [[ChoicesViewController alloc] initWithStyle:UITableViewStylePlain];
+    ctl.delegate = self;
+    ctl.navigationItem.title = LOC_STR(@"language");
+    ctl.textArray = @[LOC_STR(@"English"), LOC_STR(@"Spanish"), LOC_STR(@"Russian")];
+    [self.navigationController pushViewController:ctl animated:YES];
+}
+
+- (void)choicesViewControllerDidSelectedIndex:(int)index {
+    NSString *lang = @"en";
+    switch (index) {
+        case 1:
+            lang = @"es";
+            break;
+        case 2:
+            lang = @"ru";
+            break;
+        default:
+            break;
+    }
+    [GlobalCache shareInstance].local.language = lang;
+    [[GlobalCache shareInstance] saveInfo];
 }
 
 - (void)userProfileLoaded:(NSNotification*)notification {

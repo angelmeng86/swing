@@ -57,6 +57,9 @@
     if ([_delegate respondsToSelector:@selector(choicesViewControllerDidSelected:)]) {
         [_delegate choicesViewControllerDidSelected:_textArray[indexPath.row]];
     }
+    else if ([_delegate respondsToSelector:@selector(choicesViewControllerDidSelectedIndex:)]) {
+        [_delegate choicesViewControllerDidSelectedIndex:(int)indexPath.row];
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
