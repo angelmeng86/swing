@@ -143,7 +143,7 @@
         }
         else {
             LOG_D(@"retrieveProfile fail: %@", error);
-            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+//            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
         }
     }];
 }

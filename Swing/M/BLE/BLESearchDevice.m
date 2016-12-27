@@ -169,7 +169,7 @@
 }
 
 - (void)operationTimeout {
-    NSError *err = [NSError errorWithDomain:@"SwingBluetooth" code:-1 userInfo:[NSDictionary dictionaryWithObject:@"Can not find device, operation timeout." forKey:NSLocalizedDescriptionKey]];
+    NSError *err = [NSError errorWithDomain:@"SwingBluetooth" code:-1 userInfo:[NSDictionary dictionaryWithObject:LOC_STR(@"We can't find your device!") forKey:NSLocalizedDescriptionKey]];
     [self reportSearchDeviceResult:nil error:err];
 }
 

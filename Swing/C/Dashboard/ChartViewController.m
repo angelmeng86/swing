@@ -536,7 +536,8 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
         static NSDateFormatter *dateFormatter = nil;
         if (dateFormatter == nil) {
             dateFormatter = [NSDateFormatter new];
-            dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US"];
+//            dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US"];
+            dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:[GlobalCache shareInstance].curLanguage];
         }
         NSArray *array = [dateFormatter shortStandaloneMonthSymbols];
         return [array objectAtIndex:index % 12];
@@ -623,7 +624,8 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
         static NSDateFormatter *dateFormatter = nil;
         if (dateFormatter == nil) {
             dateFormatter = [NSDateFormatter new];
-            dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US"];
+//            dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US"];
+            dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:[GlobalCache shareInstance].curLanguage];
         }
         NSArray *array = [dateFormatter shortStandaloneMonthSymbols];
         NSCalendar *cal = [NSCalendar currentCalendar];

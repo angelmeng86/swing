@@ -29,6 +29,7 @@
     
     self.navigationItem.title = LOC_STR(@"Sync");
     
+    self.label1.text = LOC_STR(@"Would you like to sync now?");
     [self.button1 setTitle:LOC_STR(@"Yes, please") forState:UIControlStateNormal];
     [self.button2 setTitle:LOC_STR(@"No, go to dashboard") forState:UIControlStateNormal];
     
