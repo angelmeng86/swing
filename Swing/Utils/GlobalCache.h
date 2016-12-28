@@ -52,6 +52,7 @@
 @property (strong, nonatomic) UserModel* user;
 @property (strong, nonatomic) LMLocalData* local;
 
+@property (strong, nonatomic) NSString* cacheLang;
 - (NSString*)curLanguage;
 - (NSString *)showText:(NSString *)key;
 
