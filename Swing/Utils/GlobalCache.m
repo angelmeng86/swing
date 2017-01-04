@@ -372,23 +372,23 @@
 
 - (NSString*)curLanguage
 {
-    static NSString* cacheLang = nil;
-    if (cacheLang) {
-        return cacheLang;
+    //static NSString* cacheLang = nil;
+    if (self.cacheLang) {
+        return self.cacheLang;
     }
     if (self.local.language) {
-        cacheLang = self.local.language;
+        self.cacheLang = self.local.language;
     }
     else {
         NSString *languageID = [[NSBundle mainBundle] preferredLocalizations].firstObject;
         if ([languageID isEqualToString:@"es"] || [languageID isEqualToString:@"ru"]) {
-            cacheLang = languageID;
+            self.cacheLang = languageID;
         }
         else {
-            cacheLang = @"en";
+            self.cacheLang = @"en";
         }
     }
-    return cacheLang;
+    return self.cacheLang;
 }
 
 - (NSString *)showText:(NSString *)key
