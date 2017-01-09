@@ -18,4 +18,8 @@
 @property (strong, nonatomic) NSString<Optional>* note;
 @property (strong, nonatomic) NSString<Optional>* profile;
 
+@property (strong, nonatomic) NSString<Optional>* macId;//new api added
+
+- (NSString*)deviceId;
+
 @end

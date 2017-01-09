@@ -19,16 +19,29 @@
 @property (nonatomic, strong) CBPeripheral *peripheral;
 @property (nonatomic, strong) BLEClient *client;
 
+
+
 @end
 
 @implementation SwingClientTest
 
++ (void)test:(int)index times:(int)times {
+    SwingClientTest *test = [[SwingClientTest alloc] init];
+    test.times = times;
+    [test test:index];
+}
+
 + (void)testAll:(int)index {
     SwingClientTest *test = [[SwingClientTest alloc] init];
+    test.times = 100;
     [test test:index];
 }
 
 - (void)test:(int)index {
+    if (--_times < 0) {
+        NSLog(@"test end----------------");
+        return;
+    }
     NSLog(@"test[%d]----------------", index);
     switch (index) {
         case 0:
@@ -46,9 +59,14 @@
         {
             //Params(required) - email, password, phoneNumber, firstName, lastName
             //other Params - birthday, nickName, sex, address, city, zipCode, role(2 type: ROLE_USER, ROLE_NANNY)
-            [[SwingClient sharedClient] userRegister:@{@"email":@"test10@swing.com", @"password":@"111111", @"phoneNumber":@"13838078273", @"firstName":@"Mapple", @"lastName":@"Liu", @"zipCode":@"123456"} completion:^(id user, NSError *error) {
+            [[SwingClient sharedClient] userRegister:@{@"email":@"test10@swing.com", @"password":@"111111", @"phoneNumber":@"13838078273", @"firstName":@"Maple", @"lastName":@"Liu", @"zipCode":@"123456"} completion:^(id user, NSError *error) {
                 if (error) {
                     LOG_D(@"registerUser fail: %@", error);
+                    NSData *data = [error.userInfo objectForKey:@"com.alamofire.serialization.response.error.data"];
+                    if (data) {
+                        LOG_D(@"HTTP:%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+                    }
+                    
                 }
                 else {
                     NSLog(@"user:%@", user);
@@ -62,6 +80,10 @@
             [[SwingClient sharedClient]userLogin:@"test10@swing.com" password:@"111111" completion:^(NSError *error) {
                 if (error) {
                     LOG_D(@"login fail: %@", error);
+                    NSData *data = [error.userInfo objectForKey:@"com.alamofire.serialization.response.error.data"];
+                    if (data) {
+                        LOG_D(@"HTTP:%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+                    }
                 }
                 [self test:index + 1];
             }];

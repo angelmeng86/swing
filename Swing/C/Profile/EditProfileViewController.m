@@ -36,15 +36,15 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"navi_save") style:UIBarButtonItemStylePlain target:self action:@selector(doneAction:)];
     
-    if ([GlobalCache shareInstance].info.profileImage) {
-        [self.imageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:[GlobalCache shareInstance].info.profileImage]] forState:UIControlStateNormal];
+    if ([GlobalCache shareInstance].user.profile) {
+        [self.imageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:[GlobalCache shareInstance].user.profile]] forState:UIControlStateNormal];
     }
     
     if ([GlobalCache shareInstance].user) {
         self.firstNameTF.text = [GlobalCache shareInstance].user.firstName;
         self.lastNameTF.text = [GlobalCache shareInstance].user.lastName;
         self.phoneTF.text = [GlobalCache shareInstance].user.phoneNumber;
-        self.emailTF.text = [GlobalCache shareInstance].info.email;
+        self.emailTF.text = [GlobalCache shareInstance].user.email;
         
         self.streetTF.text = [GlobalCache shareInstance].user.address;
         self.cityTF.text = [GlobalCache shareInstance].user.city;
@@ -98,7 +98,7 @@
     if ([self validateTextField]) {
         [SVProgressHUD showWithStatus:@"Saving, please wait..."];
         //birthday, nickName, address, city, zipCode, state
-        NSDictionary *data = @{@"email":self.emailTF.text, @"phoneNumber":self.phoneTF.text, @"firstName":self.firstNameTF.text, @"lastName":self.lastNameTF.text, @"address":self.streetTF.text, @"city":self.cityTF.text, @"state":self.stateTF.text, @"zipCode":self.zipCodeTF.text};
+        NSDictionary *data = @{/*@"email":self.emailTF.text,*/ @"phoneNumber":self.phoneTF.text, @"firstName":self.firstNameTF.text, @"lastName":self.lastNameTF.text, @"address":self.streetTF.text, @"city":self.cityTF.text, @"state":self.stateTF.text, @"zipCode":self.zipCodeTF.text};
         [[SwingClient sharedClient] userUpdateProfile:data completion:^(id user, NSError *error) {
             if (error) {
                 LOG_D(@"userUpdateProfile fail: %@", error);

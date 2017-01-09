@@ -17,4 +17,8 @@
                                                        }];
 }
 
+- (NSString*)deviceId {
+    return _note ? _note : _macId;
+}
+
 @end

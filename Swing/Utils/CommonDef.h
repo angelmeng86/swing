@@ -40,7 +40,7 @@
 #define  TIME_STAMP         [[NSDate date] timeIntervalSince1970] + TIME_ADJUST
 
 //#define AVATAR_BASE_URL     @"http://avatar.childrenlab.com/"
-#define AVATAR_BASE_URL     @"https://childrenlabqa.s3.amazonaws.com/"
+#define AVATAR_BASE_URL     @"https://childrenlabqa.s3.amazonaws.com/userProfile/"
 //userProfile/
 
 

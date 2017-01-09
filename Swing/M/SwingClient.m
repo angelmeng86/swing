@@ -7,11 +7,16 @@
 //
 
 #import "SwingClient.h"
+#import "SwingURLv1.h"
+
+#define IS_V1       [_URL isKindOfClass:[SwingURLv1 class]]
 
 @interface SwingClient ()
 
 @property (readwrite, nonatomic, strong) NSURLSessionConfiguration *config;
 @property (nonatomic, strong) AFHTTPSessionManager *sessionManager;
+@property (nonatomic, strong) SwingURL *URL;
+
 
 @end
 
@@ -29,14 +34,14 @@
 
 - (id)init {
     if (self = [super init]) {
-        
+        _URL = [[SwingURLv1 alloc] init];
     }
     return self;
 }
 
 - (AFHTTPSessionManager*)sessionManager {
     if (_sessionManager == nil) {
-        NSURL *baseURL = [NSURL URLWithString:@"http://www.childrenLab.com/"];
+        NSURL *baseURL = [NSURL URLWithString:_URL.baseURL];
         
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
         //        [config setHTTPAdditionalHeaders:@{ @"User-Agent" : @"TuneStore iOS 1.0"}];
@@ -56,6 +61,9 @@
         
         _sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL
                                         sessionConfiguration:config];
+        if (IS_V1) {
+            _sessionManager.requestSerializer = [AFJSONRequestSerializer serializer];
+        }
         _sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
 //        _sessionManager.responseSerializer.acceptableContentTypes = [_sessionManager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/plain"];
         self.config = config;
@@ -68,8 +76,8 @@
     _sessionManager = nil;
 }
 
-- (NSError*)filterTokenInvalid:(NSURLSessionDataTask*)task err:(NSError*)error {
-    NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
+- (NSError*)filterTokenInvalid:(NSURLResponse*)urlResponse err:(NSError*)error {
+    NSHTTPURLResponse *response = (NSHTTPURLResponse *)urlResponse;
     if(response.statusCode == 403) {
         [[GlobalCache shareInstance] logout];
         [SVProgressHUD showInfoWithStatus:@"Token invalid, please login again."];
@@ -84,10 +92,24 @@
             return [NSError errorWithDomain:@"SwingDomain" code:-2 userInfo:[NSDictionary dictionaryWithObject:[obj objectForKey:@"message"] forKey:NSLocalizedDescriptionKey]];
         }
     }
+    else if(response.statusCode == 409 || response.statusCode == 500) {//json error
+        NSData *data = [error.userInfo objectForKey:@"com.alamofire.serialization.response.error.data"];
+        NSDictionary *obj = [NSJSONSerialization JSONObjectWithData:data
+                                                            options:kNilOptions
+                                                              error:nil];
+        LOG_D(@"HTTP2:%@", obj);
+        if ([obj objectForKey:@"message"]) {
+            return [NSError errorWithDomain:@"SwingDomain" code:-3 userInfo:[NSDictionary dictionaryWithObject:[obj objectForKey:@"message"] forKey:NSLocalizedDescriptionKey]];
+        }
+    }
     return error;
 }
 
 - (NSError*)getErrorMessage:(NSDictionary*)response {
+    if (IS_V1) {
+        //new api返回状态码200表示成功
+        return nil;
+    }
     if ([response[@"success"] boolValue]) {
         return nil;
     }
@@ -99,7 +121,7 @@
 }
 
 - (NSURLSessionDataTask *)userIsEmailRegistered:(NSString*)email completion:( void (^)(NSNumber *result, NSError *error) )completion {
-    NSURLSessionDataTask *task = [self.sessionManager POST:@"/user/isEmailRegistered" parameters:@{@"email":email} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSURLSessionDataTask *task = [self.sessionManager POST:_URL.isEmailRegistered parameters:@{@"email":email} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"isEmailRegistered info:%@", responseObject);
             completion([responseObject valueForKey:@"registered"], nil);
@@ -114,7 +136,7 @@
 }
 
 - (NSURLSessionDataTask *)userLogin:(NSString*)email password:(NSString*)pwd completion:( void (^)(NSError *error) )completion {
-    NSURLSessionDataTask *task = [self.sessionManager POST:@"/api/login" parameters:@{@"email":email, @"password":pwd} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSURLSessionDataTask *task = [self.sessionManager POST:_URL.userLogin parameters:@{@"email":email, @"password":pwd} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"login info:%@", responseObject);
             NSError *err = nil;
@@ -123,13 +145,20 @@
                 completion(err);
             }
             else {
-                UserModel *user = [[UserModel alloc] initWithDictionary:responseObject[@"user"] error:nil];
-                if (user) {
-                    [GlobalCache shareInstance].user = user;
-                }
-                
                 [self.config setHTTPAdditionalHeaders:@{@"x-auth-token":model.access_token}];
+                [_sessionManager.requestSerializer setValue:model.access_token forHTTPHeaderField:@"x-auth-token"];
+                LOG_D(@"access_token:%@", model.access_token);
                 [GlobalCache shareInstance].info = model;
+
+                if (!IS_V1) {
+                    UserModel *user = [[UserModel alloc] initWithDictionary:responseObject[@"user"] error:nil];
+                    if (user) {
+                        [GlobalCache shareInstance].user = user;
+                    }
+                }
+                else {
+                    [[GlobalCache shareInstance] queryProfile];
+                }
                 
                 if ([GlobalCache shareInstance].token) {
                     [[SwingClient sharedClient] userUpdateIOSRegistrationId:[GlobalCache shareInstance].token completion:^(NSError *error) {
@@ -152,7 +181,7 @@
 }
 
 - (NSURLSessionDataTask *)userRegister:(NSDictionary*)data completion:( void (^)(id user, NSError *error) )completion {
-    NSURLSessionDataTask *task = [self.sessionManager POST:@"/user/register" parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSURLSessionDataTask *task = [self.sessionManager POST:_URL.userRegister parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"registerUser info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
@@ -160,7 +189,7 @@
                 completion(nil, err);
             }
             else {
-                UserModel *model = [[UserModel alloc] initWithDictionary:responseObject[@"user"] error:nil];
+                UserModel *model = [[UserModel alloc] initWithDictionary:(IS_V1 ? data : responseObject[@"user"]) error:nil];
                 [GlobalCache shareInstance].user = model;
                 completion(model, nil);
             }
@@ -168,7 +197,8 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            completion(nil, error);
+            NSError *err = [self filterTokenInvalid:task.response err:error];
+            completion(nil, err);
         });
     }];
     
@@ -176,7 +206,7 @@
 }
 
 - (NSURLSessionDataTask *)userUpdateIOSRegistrationId:(NSString*)token completion:( void (^)(NSError *error) )completion {
-    NSURLSessionDataTask *task = [self.sessionManager POST:@"/user/updateIOSRegistrationId" parameters:@{@"registrationId":token} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSURLSessionDataTask *task = [self.sessionManager POST:_URL.updateIOSRegistrationId parameters:@{@"registrationId":token} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"login updateIOSRegistrationId:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
@@ -197,7 +227,7 @@
 }
 
 - (NSURLSessionDataTask *)userRetrieveProfileWithCompletion:( void (^)(id user, NSArray *kids, NSError *error) )completion {
-    NSURLSessionDataTask *task = [self.sessionManager GET:@"/user/retrieveUserProfile" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSURLSessionDataTask *task = [self.sessionManager GET:_URL.retrieveUserProfile parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"userRetrieveProfile info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
@@ -208,15 +238,14 @@
                 UserModel *model = [[UserModel alloc] initWithDictionary:responseObject[@"user"] error:nil];
                 NSArray *kids = [KidModel arrayOfModelsFromDictionaries:responseObject[@"kids"] error:nil];
                 for (KidModel *kid in kids) {
-                    if (kid.note.length > 0) {
+                    if (kid.deviceId.length > 0) {
                         //默认设置第一个Kid的设备为当前设备
-                        [GlobalCache shareInstance].local.deviceMAC = [Fun hexToData:kid.note];
+                        [GlobalCache shareInstance].local.deviceMAC = [Fun hexToData:kid.deviceId];
                         break;
                     }
                 }
                 [GlobalCache shareInstance].kidsList = kids;
                 [GlobalCache shareInstance].user = model;
-                [[GlobalCache shareInstance] saveInfo];
                 
                 completion(model, kids, nil);
             }
@@ -224,7 +253,7 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSError *err = [self filterTokenInvalid:task err:error];
+            NSError *err = [self filterTokenInvalid:task.response err:error];
             completion(nil, nil, err);
             
         });
@@ -234,10 +263,50 @@
 }
 
 - (NSURLSessionDataTask *)userUploadProfileImage:(UIImage*)image completion:( void (^)(NSString *profileImage, NSError *error) )completion {
-    NSData *imageData = UIImagePNGRepresentation(image);
+    NSData *imageData = UIImageJPEGRepresentation(image, 1.0f);
+    if(IS_V1) {
+        NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:[[NSURL URLWithString:_URL.uploadProfileImage relativeToURL:self.sessionManager.baseURL] absoluteString] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+            [formData appendPartWithFileData:imageData name:@"upload" fileName:@"avatar.jpg" mimeType:@"image/jpg"];
+        } error:nil];
+        NSURLSessionDataTask *task = [self.sessionManager uploadTaskWithStreamedRequest:request progress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (error) {
+                    NSError *err = [self filterTokenInvalid:response err:error];
+                    completion(nil, err);
+                }
+                else {
+                    LOG_D(@"uploadProfileImage info:%@", responseObject);
+                    NSError *err = [self getErrorMessage:responseObject];
+                    if (err) {
+                        completion(nil, err);
+                    }
+                    else {
+                        UserModel *model = [[UserModel alloc] initWithDictionary:responseObject[@"user"] error:nil];
+                        if ([GlobalCache shareInstance].user) {
+                            [GlobalCache shareInstance].user.profile = model.profile;
+                        }
+                        else {
+                            [GlobalCache shareInstance].user = model;
+                        }
+                        
+                        //判断缓存中是否存在同名图片，需要清空该图片缓存保证加载最新
+                        NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:[GlobalCache shareInstance].user.profile]]];
+                        if (key) {
+                            [[SDWebImageManager sharedManager].imageCache removeImageForKey:key];
+                        }
+                        
+                        completion(model.profile, nil);
+                    }
+                }
+            });
+        }];
+        [task resume];
+        return task;
+    }
+    
     NSString *content = [imageData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
 //    NSLog(@"image:%@", content);
-    NSURLSessionDataTask *task = [self.sessionManager POST:@"/avatar/uploadProfileImageToS3" parameters:@{@"encodedImage":[@"data:image/png;base64," stringByAppendingString:content]} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSURLSessionDataTask *task = [self.sessionManager POST:_URL.uploadProfileImage parameters:@{@"encodedImage":[@"data:image/jpg;base64," stringByAppendingString:content]} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"uploadProfileImage info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
@@ -245,14 +314,14 @@
                 completion(nil, err);
             }
             else {
-                [GlobalCache shareInstance].info.profileImage = responseObject[@"profileImage"];
+                [GlobalCache shareInstance].user.profile = responseObject[@"profileImage"];
                 [[GlobalCache shareInstance] saveInfo];
                 completion(responseObject[@"profileImage"], nil);
             }
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSError *err = [self filterTokenInvalid:task err:error];
+            NSError *err = [self filterTokenInvalid:task.response err:error];
             completion(nil, err);
         });
     }];
@@ -261,7 +330,31 @@
 }
 
 - (NSURLSessionDataTask *)userUpdateProfile:(NSDictionary*)data completion:( void (^)(id user, NSError *error) )completion {
-    NSURLSessionDataTask *task = [self.sessionManager POST:@"/user/updateProfile" parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    if (IS_V1) {
+        NSURLSessionDataTask *task = [self.sessionManager PUT:_URL.updateProfile parameters:data success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                LOG_D(@"updateProfile info:%@", responseObject);
+                NSError *err = [self getErrorMessage:responseObject];
+                if (err) {
+                    completion(nil, err);
+                }
+                else {
+                    UserModel *model = [[UserModel alloc] initWithDictionary:responseObject[@"user"] error:nil];
+                    [GlobalCache shareInstance].user = model;
+                    completion(model, nil);
+                }
+                
+            });
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSError *err = [self filterTokenInvalid:task.response err:error];
+                completion(nil, err);
+            });
+        }];
+        
+        return task;
+    }
+    NSURLSessionDataTask *task = [self.sessionManager POST:_URL.updateProfile parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"updateProfile info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
@@ -277,7 +370,7 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSError *err = [self filterTokenInvalid:task err:error];
+            NSError *err = [self filterTokenInvalid:task.response err:error];
             completion(nil, err);
         });
     }];
@@ -286,7 +379,7 @@
 }
 
 - (NSURLSessionDataTask *)kidsAdd:(NSDictionary*)data completion:( void (^)(id kid, NSError *error) )completion {
-    NSURLSessionDataTask *task = [self.sessionManager POST:@"/kids/add" parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSURLSessionDataTask *task = [self.sessionManager POST:_URL.kidsAdd parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"kidsAdd info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
@@ -300,7 +393,7 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSError *err = [self filterTokenInvalid:task err:error];
+            NSError *err = [self filterTokenInvalid:task.response err:error];
             completion(nil, err);
         });
     }];
@@ -309,7 +402,7 @@
 }
 
 - (NSURLSessionDataTask *)kidsRemove:(NSString*)kidid completion:( void (^)(NSError *error) )completion {
-    NSURLSessionDataTask *task = [self.sessionManager POST:@"/kids/remove" parameters:@{@"kidId":kidid} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSURLSessionDataTask *task = [self.sessionManager POST:_URL.kidsRemove parameters:@{@"kidId":kidid} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"kidsRemove info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
@@ -322,7 +415,7 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSError *err = [self filterTokenInvalid:task err:error];
+            NSError *err = [self filterTokenInvalid:task.response err:error];
             completion(err);
         });
     }];
@@ -334,7 +427,7 @@
     NSData *imageData = UIImagePNGRepresentation(image);
     NSString *content = [imageData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
     //    NSLog(@"image:%@", content);
-    NSURLSessionDataTask *task = [self.sessionManager POST:@"/avatar/uploadKidsProfileImage" parameters:@{@"encodedImage":[@"data:image/png;base64," stringByAppendingString:content], @"kidId":kidId} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSURLSessionDataTask *task = [self.sessionManager POST:_URL.uploadKidsProfileImage parameters:@{@"encodedImage":[@"data:image/png;base64," stringByAppendingString:content], @"kidId":kidId} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"uploadKidsProfileImage info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
@@ -347,7 +440,7 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSError *err = [self filterTokenInvalid:task err:error];
+            NSError *err = [self filterTokenInvalid:task.response err:error];
             completion(nil, err);
         });
     }];
@@ -356,7 +449,7 @@
 }
 
 - (NSURLSessionDataTask *)kidsListWithCompletion:( void (^)(NSArray *list, NSError *error) )completion {
-    NSURLSessionDataTask *task = [self.sessionManager POST:@"/kids/list" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSURLSessionDataTask *task = [self.sessionManager POST:_URL.kidsList parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"kidsListWithCompletion info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
@@ -370,7 +463,7 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSError *err = [self filterTokenInvalid:task err:error];
+            NSError *err = [self filterTokenInvalid:task.response err:error];
             completion(nil, err);
         });
     }];
@@ -379,7 +472,7 @@
 }
 
 - (NSURLSessionDataTask *)calendarAddEvent:(NSDictionary*)data completion:( void (^)(id event, NSError *error) )completion{
-    NSURLSessionDataTask *task = [self.sessionManager POST:@"/calendarEvent/addEvent" parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSURLSessionDataTask *task = [self.sessionManager POST:_URL.addEvent parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"calendarAddEvent info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
@@ -394,7 +487,7 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSError *err = [self filterTokenInvalid:task err:error];
+            NSError *err = [self filterTokenInvalid:task.response err:error];
             completion(nil, err);
         });
     }];
@@ -404,7 +497,7 @@
 
 - (NSURLSessionDataTask *)calendarEditEvent:(NSDictionary*)data completion:( void (^)(id event, NSError *error) )completion {
     LOG_D(@"data:%@", data);
-    NSURLSessionDataTask *task = [self.sessionManager POST:@"/calendarEvent/editEventWithTodo" parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSURLSessionDataTask *task = [self.sessionManager POST:_URL.editEventWithTodo parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"calendarEditEvent info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
@@ -418,7 +511,7 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSError *err = [self filterTokenInvalid:task err:error];
+            NSError *err = [self filterTokenInvalid:task.response err:error];
            completion(nil, err);
         });
     }];
@@ -428,7 +521,7 @@
 
 - (NSURLSessionDataTask *)calendarAddTodo:(NSString*)eventId todoList:(NSString*)todoList completion:( void (^)(id event, NSArray* todoArray, NSError *error) )completion {
     LOG_D(@"eventId:%@ todoList:%@", eventId, todoList);
-    NSURLSessionDataTask *task = [self.sessionManager POST:@"/calendarEvent/addTodo" parameters:@{@"eventId":eventId, @"todoList":todoList} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSURLSessionDataTask *task = [self.sessionManager POST:_URL.addTodo parameters:@{@"eventId":eventId, @"todoList":todoList} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"calendarAddTodo info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
@@ -444,7 +537,7 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSError *err = [self filterTokenInvalid:task err:error];
+            NSError *err = [self filterTokenInvalid:task.response err:error];
             completion(nil, nil, err);
         });
     }];
@@ -453,7 +546,7 @@
 }
 
 - (NSURLSessionDataTask *)calendarTodoDone:(NSString*)todoId completion:( void (^)(NSError *error) )completion {
-    NSURLSessionDataTask *task = [self.sessionManager POST:@"/calendarEvent/todoDone" parameters:@{@"todoId":todoId} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSURLSessionDataTask *task = [self.sessionManager POST:_URL.todoDone parameters:@{@"todoId":todoId} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"calendarTodoDone info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
@@ -466,7 +559,7 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSError *err = [self filterTokenInvalid:task err:error];
+            NSError *err = [self filterTokenInvalid:task.response err:error];
             completion(err);
         });
     }];
@@ -475,7 +568,7 @@
 }
 
 - (NSURLSessionDataTask *)calendarTodoDelete:(NSString*)eventId todoId:(NSString*)todoId completion:( void (^)(NSError *error) )completion {
-    NSURLSessionDataTask *task = [self.sessionManager POST:@"/calendarEvent/deleteTodo" parameters:@{@"eventId":todoId, @"todoId":todoId} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSURLSessionDataTask *task = [self.sessionManager POST:_URL.deleteTodo parameters:@{@"eventId":todoId, @"todoId":todoId} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"calendarTodoDelete info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
@@ -488,7 +581,7 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSError *err = [self filterTokenInvalid:task err:error];
+            NSError *err = [self filterTokenInvalid:task.response err:error];
             completion(err);
         });
     }];
@@ -503,7 +596,7 @@
     
     NSDictionary *data = @{@"query":type == GetEventTypeMonth ? @"month" : @"day", @"month":[NSString stringWithFormat:@"%ld",(long)[component month]], @"year":[NSString stringWithFormat:@"%ld",(long)[component year]], @"day":[NSString stringWithFormat:@"%ld",(long)[component day]]};
     LOG_D(@"calendarGetEvents data:%@", data);
-    NSURLSessionDataTask *task = [self.sessionManager POST:@"/calendarEvent/getEventsByUser" parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSURLSessionDataTask *task = [self.sessionManager POST:_URL.getEventsByUser parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"getEventsByUser info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
@@ -520,7 +613,7 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSError *err = [self filterTokenInvalid:task err:error];
+            NSError *err = [self filterTokenInvalid:task.response err:error];
             completion(nil, err);
         });
     }];
@@ -529,7 +622,7 @@
 }
 
 - (NSURLSessionDataTask *)calendarDeleteEvent:(NSString*)eventId completion:( void (^)(NSError *error) )completion {
-    NSURLSessionDataTask *task = [self.sessionManager POST:@"/calendarEvent/deleteEvent" parameters:@{@"id":eventId} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSURLSessionDataTask *task = [self.sessionManager POST:_URL.deleteEvent parameters:@{@"id":eventId} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"calendarDeleteEvent info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
@@ -543,7 +636,7 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSError *err = [self filterTokenInvalid:task err:error];
+            NSError *err = [self filterTokenInvalid:task.response err:error];
             completion(err);
         });
     }];
@@ -554,7 +647,7 @@
 - (NSURLSessionDataTask *)deviceUploadRawData:(ActivityModel*)model completion:( void (^)(NSError *error) )completion {
     NSDictionary *data = [model toDictionaryWithKeys:@[@"indoorActivity",@"outdoorActivity",@"time",@"macId"]];
     LOG_D(@"deviceUploadRawData: %@", data);
-    NSURLSessionDataTask *task = [self.sessionManager POST:@"/device/uploadRawData" parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSURLSessionDataTask *task = [self.sessionManager POST:_URL.uploadRawData parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"deviceUploadRawData info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
@@ -567,7 +660,7 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSError *err = [self filterTokenInvalid:task err:error];
+            NSError *err = [self filterTokenInvalid:task.response err:error];
             completion(err);
         });
     }];
@@ -576,16 +669,16 @@
 }
 
 - (NSURLSessionDataTask *)deviceGetActivity:(NSString*)macId type:(GetActivityType)type completion:( void (^)(id dailyActs ,NSError *error) )completion {
-    NSString *url = @"/device/getDailyActivity";
+    NSString *url = _URL.getDailyActivity;
     switch (type) {
         case GetActivityTypeYear:
-            url = @"/device/getYearlyActivity";
+            url = _URL.getYearlyActivity;
             break;
         case GetActivityTypeMonth:
-            url = @"/device/getMonthlyActivity";
+            url = _URL.getMonthlyActivity;
             break;
         case GetActivityTypeWeekly:
-            url = @"/device/getWeeklyActivity";
+            url = _URL.getWeeklyActivity;
             break;
         default:
             
@@ -606,7 +699,7 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSError *err = [self filterTokenInvalid:task err:error];
+            NSError *err = [self filterTokenInvalid:task.response err:error];
             completion(nil ,err);
         });
     }];

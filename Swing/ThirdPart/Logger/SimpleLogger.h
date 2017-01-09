@@ -10,7 +10,7 @@
 
 #import <Foundation/Foundation.h>
 
-//#define MAPPLE_DEBUG
+#define MAPPLE_DEBUG
 
 //#define UPLOAD_DEBUG
 

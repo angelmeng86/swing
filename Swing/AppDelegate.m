@@ -19,6 +19,8 @@
 @implementation AppDelegate
 
 - (void)test {
+//    [SwingClientTest test:3 times:1];
+    
 //    char *ptr = "\x76\x01\x00\x00\x01\x76\x01\x00\x00\x76\x01\x00\x00\x76\x01\x00\x00\x76\x01\x00\x00";
 //    //    long data = [Fun byteArrayToLong:[NSData dataWithBytes:ptr length:4] length:4];
 //    ActivityModel *m = [ActivityModel new];
@@ -73,10 +75,9 @@
     // Override point for customization after application launch.
 //    NSString *languageID = [[NSBundle mainBundle] preferredLocalizations].firstObject;
 //    NSLog(@"languageID:%@",languageID);
-    
-    LOG_D(@"home:%@", NSHomeDirectory());
+//    LOG_D(@"home:%@", NSHomeDirectory());
     [[GlobalCache shareInstance] initConfig];
-//    [self test];
+    [self test];
 
     
     // Register for Push Notitications
