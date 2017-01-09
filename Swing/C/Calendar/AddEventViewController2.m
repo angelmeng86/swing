@@ -342,106 +342,196 @@
 - (IBAction)saveAction:(id)sender {
     [[IQKeyboardManager sharedManager] resignFirstResponder];
     if ([self validateTextField]) {
-        [SVProgressHUD showWithStatus:@"Saving, please wait..."];
-        
-        //eventName, startDate, endDate, color, status, description, alert, city, state
+        if (IS_SWING_V1) {
+            [self saveEventV1];
+        }
+        else {
+            [self saveEvent];
+        }
+    }
+    
+}
+
+- (void)saveEvent {
+    [SVProgressHUD showWithStatus:@"Saving, please wait..."];
+    
+    //eventName, startDate, endDate, color, status, description, alert, city, state
 //        UILabel *label = (UILabel*)[self.repeatTF.rightView viewWithTag:2016];
-        NSString *repeat = @"";
+    NSString *repeat = @"";
 //        if ([label.text isEqualToString:@"Every Day"]) {
 //            repeat = @"DAILY";
 //        }
 //        else if ([label.text isEqualToString:@"Every Week"]) {
 //            repeat = @"WEEKLY";
 //        }
-        NSMutableDictionary *data = [NSMutableDictionary dictionary];
-        [data addEntriesFromDictionary:@{@"eventName":self.nameTF.text , @"startDate":self.startTF.text
-                                        , @"endDate":self.endTF.text
-                                        , @"color":[Fun stringFromColor:self.colorCtl.selectedColor]
-                                         , @"timezoneOffset" : @([NSTimeZone localTimeZone].secondsFromGMT),
-                                         @"repeat":repeat}];
-        
-        if (self.alert) {
-            [data setObject:self.alert.value forKey:@"alert"];
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    [data addEntriesFromDictionary:@{@"eventName":self.nameTF.text , @"startDate":self.startTF.text
+                                     , @"endDate":self.endTF.text
+                                     , @"color":[Fun stringFromColor:self.colorCtl.selectedColor]
+                                     , @"timezoneOffset" : @([NSTimeZone localTimeZone].secondsFromGMT),
+                                     @"repeat":repeat}];
+    
+    if (self.alert) {
+        [data setObject:self.alert.value forKey:@"alert"];
+    }
+    
+    if (!self.todoCtl.hidden) {
+        if (self.descTF.text.length > 0) {
+            [data setObject:self.descTF.text forKey:@"description"];
         }
-        
-        if (!self.todoCtl.hidden) {
-            if (self.descTF.text.length > 0) {
-                [data setObject:self.descTF.text forKey:@"description"];
-            }
-            if (self.cityTF.text.length > 0) {
-                [data setObject:self.cityTF.text forKey:@"city"];
-            }
-            if (self.stateTF.text.length > 0) {
-                [data setObject:self.stateTF.text forKey:@"state"];
-            }
+        if (self.cityTF.text.length > 0) {
+            [data setObject:self.cityTF.text forKey:@"city"];
         }
-        
-        
-        if (self.model) {
-            [data setObject:[NSNumber numberWithInt:self.model.objId] forKey:@"id"];
-            if (self.todoCtl.itemList.count > 0) {
-                [data setObject:[self.todoCtl.itemList componentsJoinedByString:@"|"] forKey:@"todoList"];
-            }
-            else {
-                 [data setObject:@"" forKey:@"todoList"];
-            }
-            [[SwingClient sharedClient] calendarEditEvent:data completion:^(id event,NSError *error) {
-                if (!error) {
-                    
-                    [self.model mergeFromDictionary:[event toDictionary] useKeyMapping:YES error:nil];
-                    
-                    [SVProgressHUD dismiss];
-                    if ([_delegate respondsToSelector:@selector(eventViewDidAdded:)]) {
-                        [_delegate eventViewDidAdded:_model.startDate];
-                    }
-                    [self.navigationController popViewControllerAnimated:YES];
-                }
-                else {
-                    LOG_D(@"calendarEditEvent fail: %@", error);
-                    [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-                }
-            }];
-            return;
+        if (self.stateTF.text.length > 0) {
+            [data setObject:self.stateTF.text forKey:@"state"];
         }
-        
-        [[SwingClient sharedClient] calendarAddEvent:data completion:^(id event, NSError *error) {
+    }
+    
+    
+    if (self.model) {
+        [data setObject:[NSNumber numberWithInt:self.model.objId] forKey:@"id"];
+        if (self.todoCtl.itemList.count > 0) {
+            [data setObject:[self.todoCtl.itemList componentsJoinedByString:@"|"] forKey:@"todoList"];
+        }
+        else {
+            [data setObject:@"" forKey:@"todoList"];
+        }
+        [[SwingClient sharedClient] calendarEditEvent:data completion:^(id event,NSError *error) {
             if (!error) {
-                EventModel *model = event;
                 
-                if (!self.todoCtl.hidden && self.todoCtl.itemList.count > 0) {
-                    [[SwingClient sharedClient] calendarAddTodo:[NSString stringWithFormat:@"%d", model.objId] todoList:[self.todoCtl.itemList componentsJoinedByString:@"|"] completion:^(id event, NSArray *todoArray, NSError *error) {
-                        if (!error) {
-                            [[GlobalCache shareInstance] addEvent:event];
-                            [SVProgressHUD dismiss];
-                            if ([_delegate respondsToSelector:@selector(eventViewDidAdded:)]) {
-                                UIDatePicker *datePicker = (UIDatePicker*)self.startTF.inputView;
-                                [_delegate eventViewDidAdded:datePicker.date];
-                            }
-                            [self.navigationController popViewControllerAnimated:YES];
-                        }
-                        else {
-                            LOG_D(@"calendarAddTodo fail: %@", error);
-                            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-                        }
-                    }];
+                [self.model mergeFromDictionary:[event toDictionary] useKeyMapping:YES error:nil];
+                
+                [SVProgressHUD dismiss];
+                if ([_delegate respondsToSelector:@selector(eventViewDidAdded:)]) {
+                    [_delegate eventViewDidAdded:_model.startDate];
                 }
-                else {
-                    [[GlobalCache shareInstance] addEvent:event];
-                    [SVProgressHUD dismiss];
-                    if ([_delegate respondsToSelector:@selector(eventViewDidAdded:)]) {
-                        UIDatePicker *datePicker = (UIDatePicker*)self.startTF.inputView;
-                        [_delegate eventViewDidAdded:datePicker.date];
-                    }
-                    [self.navigationController popViewControllerAnimated:YES];
-                }
+                [self.navigationController popViewControllerAnimated:YES];
             }
             else {
-                LOG_D(@"calendarAddEvent fail: %@", error);
+                LOG_D(@"calendarEditEvent fail: %@", error);
                 [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
             }
         }];
+        return;
     }
+    
+    [[SwingClient sharedClient] calendarAddEvent:data completion:^(id event, NSError *error) {
+        if (!error) {
+            EventModel *model = event;
+            
+            if (!self.todoCtl.hidden && self.todoCtl.itemList.count > 0) {
+                [[SwingClient sharedClient] calendarAddTodo:[NSString stringWithFormat:@"%d", model.objId] todoList:[self.todoCtl.itemList componentsJoinedByString:@"|"] completion:^(id event, NSArray *todoArray, NSError *error) {
+                    if (!error) {
+                        [[GlobalCache shareInstance] addEvent:event];
+                        [SVProgressHUD dismiss];
+                        if ([_delegate respondsToSelector:@selector(eventViewDidAdded:)]) {
+                            UIDatePicker *datePicker = (UIDatePicker*)self.startTF.inputView;
+                            [_delegate eventViewDidAdded:datePicker.date];
+                        }
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }
+                    else {
+                        LOG_D(@"calendarAddTodo fail: %@", error);
+                        [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                    }
+                }];
+            }
+            else {
+                [[GlobalCache shareInstance] addEvent:event];
+                [SVProgressHUD dismiss];
+                if ([_delegate respondsToSelector:@selector(eventViewDidAdded:)]) {
+                    UIDatePicker *datePicker = (UIDatePicker*)self.startTF.inputView;
+                    [_delegate eventViewDidAdded:datePicker.date];
+                }
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }
+        else {
+            LOG_D(@"calendarAddEvent fail: %@", error);
+            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+        }
+    }];
 }
+
+- (void)saveEventV1 {
+    [SVProgressHUD showWithStatus:@"Saving, please wait..."];
+    
+//eventName, startDate, endDate, color, status, description, alert, city, state
+//        UILabel *label = (UILabel*)[self.repeatTF.rightView viewWithTag:2016];
+    NSString *repeat = @"";
+//        if ([label.text isEqualToString:@"Every Day"]) {
+//            repeat = @"DAILY";
+//        }
+//        else if ([label.text isEqualToString:@"Every Week"]) {
+//            repeat = @"WEEKLY";
+//        }
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    [data addEntriesFromDictionary:@{@"name":self.nameTF.text , @"startDate":self.startTF.text
+                                     , @"endDate":self.endTF.text
+                                     , @"color":[Fun stringFromColor:self.colorCtl.selectedColor]
+                                     , @"timezoneOffset" : @([NSTimeZone localTimeZone].secondsFromGMT),
+                                     @"repeat":repeat}];
+    
+    if (self.alert) {
+        [data setObject:self.alert.value forKey:@"alert"];
+    }
+    
+    if (!self.todoCtl.hidden) {
+        if (self.descTF.text.length > 0) {
+            [data setObject:self.descTF.text forKey:@"description"];
+        }
+        if (self.cityTF.text.length > 0) {
+            [data setObject:self.cityTF.text forKey:@"city"];
+        }
+        if (self.stateTF.text.length > 0) {
+            [data setObject:self.stateTF.text forKey:@"state"];
+        }
+    }
+    
+    if (self.todoCtl.itemList.count > 0) {
+        [data setObject:self.todoCtl.itemList forKey:@"todo"];
+    }
+    
+    
+    if (self.model) {
+        [data setObject:[NSNumber numberWithInt:self.model.objId] forKey:@"eventId"];
+        
+        [[SwingClient sharedClient] calendarEditEvent:data completion:^(id event,NSError *error) {
+            if (!error) {
+                
+                [self.model mergeFromDictionary:[event toDictionary] useKeyMapping:YES error:nil];
+                
+                [SVProgressHUD dismiss];
+                if ([_delegate respondsToSelector:@selector(eventViewDidAdded:)]) {
+                    [_delegate eventViewDidAdded:_model.startDate];
+                }
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            else {
+                LOG_D(@"calendarEditEvent fail: %@", error);
+                [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+            }
+        }];
+        return;
+    }
+    
+    [[SwingClient sharedClient] calendarAddEvent:data completion:^(id event, NSError *error) {
+        if (!error) {
+            [[GlobalCache shareInstance] addEvent:event];
+            [SVProgressHUD dismiss];
+            if ([_delegate respondsToSelector:@selector(eventViewDidAdded:)]) {
+                UIDatePicker *datePicker = (UIDatePicker*)self.startTF.inputView;
+                [_delegate eventViewDidAdded:datePicker.date];
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else {
+            LOG_D(@"calendarAddEvent fail: %@", error);
+            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+        }
+    }];
+}
+
 
 
 @end

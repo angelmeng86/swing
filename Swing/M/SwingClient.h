@@ -7,7 +7,10 @@
 //
 
 #import "AFHTTPSessionManager.h"
+#import "SwingURLv1.h"
 #import "CommonDef.h"
+
+#define IS_SWING_V1       [[SwingClient sharedClient].URL isKindOfClass:[SwingURLv1 class]]
 
 typedef enum : NSUInteger {
     GetEventTypeMonth,
@@ -23,6 +26,8 @@ typedef enum : NSUInteger {
 
 @class ActivityModel;
 @interface SwingClient : NSObject
+
+@property (nonatomic, strong) SwingURL *URL;
 
 + (SwingClient *)sharedClient;
 
@@ -51,7 +56,7 @@ typedef enum : NSUInteger {
 
 - (NSURLSessionDataTask *)kidsUploadKidsProfileImage:(UIImage*)image kidId:(NSString*)kidId completion:( void (^)(NSString *profileImage, NSError *error) )completion;
 
-- (NSURLSessionDataTask *)kidsListWithCompletion:( void (^)(NSArray *list, NSError *error) )completion;
+//- (NSURLSessionDataTask *)kidsListWithCompletion:( void (^)(NSArray *list, NSError *error) )completion;
 
 
 - (NSURLSessionDataTask *)calendarAddEvent:(NSDictionary*)data completion:( void (^)(id event, NSError *error) )completion;

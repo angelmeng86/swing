@@ -148,17 +148,17 @@
     }];
 }
 
-- (void)queryKids {
-    [[SwingClient sharedClient] kidsListWithCompletion:^(NSArray *list, NSError *error) {
-        if (error) {
-            LOG_D(@"kidsListWithCompletion fail: %@", error);
-        }
-        else {
-            self.kidsList = list;
-            [[NSNotificationCenter defaultCenter] postNotificationName:KIDS_LIST_LOAD_NOTI object:list];
-        }
-    }];
-}
+//- (void)queryKids {
+//    [[SwingClient sharedClient] kidsListWithCompletion:^(NSArray *list, NSError *error) {
+//        if (error) {
+//            LOG_D(@"kidsListWithCompletion fail: %@", error);
+//        }
+//        else {
+//            self.kidsList = list;
+//            [[NSNotificationCenter defaultCenter] postNotificationName:KIDS_LIST_LOAD_NOTI object:list];
+//        }
+//    }];
+//}
 
 //- (NSMutableDictionary*)calendarEventsByDate {
 //    if (_calendarEventsByDate == nil) {

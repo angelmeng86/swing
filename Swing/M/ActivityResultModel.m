@@ -17,4 +17,10 @@
                                                        }];
 }
 
+- (void)transDate {
+    if (_receivedDate.length >= 10 ) {
+        self.date = [_receivedDate substringToIndex:10];
+    }
+}
+
 @end

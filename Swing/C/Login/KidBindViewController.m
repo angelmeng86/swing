@@ -109,6 +109,7 @@
                     if (self.macAddress) {
                         NSString *mac = [Fun dataToHex:self.macAddress];
                         [data setObject:mac forKey:@"note"];
+                        [data setObject:mac forKey:@"macId"];//new api
                     }
                     
                     [[SwingClient sharedClient] kidsAdd:data completion:^(id kid, NSError *error) {

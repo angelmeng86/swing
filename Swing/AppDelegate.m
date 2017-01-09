@@ -19,7 +19,7 @@
 @implementation AppDelegate
 
 - (void)test {
-//    [SwingClientTest test:3 times:1];
+//    [SwingClientTest test:4 times:2];
     
 //    char *ptr = "\x76\x01\x00\x00\x01\x76\x01\x00\x00\x76\x01\x00\x00\x76\x01\x00\x00\x76\x01\x00\x00";
 //    //    long data = [Fun byteArrayToLong:[NSData dataWithBytes:ptr length:4] length:4];
@@ -77,7 +77,7 @@
 //    NSLog(@"languageID:%@",languageID);
 //    LOG_D(@"home:%@", NSHomeDirectory());
     [[GlobalCache shareInstance] initConfig];
-    [self test];
+//    [self test];
 
     
     // Register for Push Notitications

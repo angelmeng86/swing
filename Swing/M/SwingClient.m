@@ -7,7 +7,7 @@
 //
 
 #import "SwingClient.h"
-#import "SwingURLv1.h"
+
 
 #define IS_V1       [_URL isKindOfClass:[SwingURLv1 class]]
 
@@ -15,7 +15,6 @@
 
 @property (readwrite, nonatomic, strong) NSURLSessionConfiguration *config;
 @property (nonatomic, strong) AFHTTPSessionManager *sessionManager;
-@property (nonatomic, strong) SwingURL *URL;
 
 
 @end
@@ -424,10 +423,44 @@
 }
 
 - (NSURLSessionDataTask *)kidsUploadKidsProfileImage:(UIImage*)image kidId:(NSString*)kidId completion:( void (^)(NSString *profileImage, NSError *error) )completion {
-    NSData *imageData = UIImagePNGRepresentation(image);
+    NSData *imageData = UIImageJPEGRepresentation(image, 1.0f);
+    if(IS_V1) {
+        NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:[[NSURL URLWithString:_URL.uploadKidsProfileImage relativeToURL:self.sessionManager.baseURL] absoluteString] parameters:@{@"kidId":kidId} constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+            [formData appendPartWithFileData:imageData name:@"upload" fileName:@"avatar.jpg" mimeType:@"image/jpg"];
+        } error:nil];
+        NSURLSessionDataTask *task = [self.sessionManager uploadTaskWithStreamedRequest:request progress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (error) {
+                    NSError *err = [self filterTokenInvalid:response err:error];
+                    completion(nil, err);
+                }
+                else {
+                    LOG_D(@"uploadKidsProfileImage info:%@", responseObject);
+                    NSError *err = [self getErrorMessage:responseObject];
+                    if (err) {
+                        completion(nil, err);
+                    }
+                    else {
+                        KidModel *model = [[KidModel alloc] initWithDictionary:responseObject[@"kid"] error:nil];
+                        
+                        //判断缓存中是否存在同名图片，需要清空该图片缓存保证加载最新
+                        NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:model.profile]]];
+                        if (key) {
+                            [[SDWebImageManager sharedManager].imageCache removeImageForKey:key];
+                        }
+                        
+                        completion(model.profile, nil);
+                    }
+                }
+            });
+        }];
+        [task resume];
+        return task;
+    }
+
     NSString *content = [imageData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
     //    NSLog(@"image:%@", content);
-    NSURLSessionDataTask *task = [self.sessionManager POST:_URL.uploadKidsProfileImage parameters:@{@"encodedImage":[@"data:image/png;base64," stringByAppendingString:content], @"kidId":kidId} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSURLSessionDataTask *task = [self.sessionManager POST:_URL.uploadKidsProfileImage parameters:@{@"encodedImage":[@"data:image/jpg;base64," stringByAppendingString:content], @"kidId":kidId} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"uploadKidsProfileImage info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
@@ -669,22 +702,53 @@
 }
 
 - (NSURLSessionDataTask *)deviceGetActivity:(NSString*)macId type:(GetActivityType)type completion:( void (^)(id dailyActs ,NSError *error) )completion {
+    NSString *period = @"DAILY";
     NSString *url = _URL.getDailyActivity;
     switch (type) {
         case GetActivityTypeYear:
             url = _URL.getYearlyActivity;
+            period = @"YEARLY";
             break;
         case GetActivityTypeMonth:
             url = _URL.getMonthlyActivity;
+            period = @"MONTHLY";
             break;
         case GetActivityTypeWeekly:
             url = _URL.getWeeklyActivity;
+            period = @"WEEKLY";
             break;
         default:
-            
             break;
     }
     LOG_D(@"macId:%@", macId);
+    if (IS_V1) {
+        //new api macId change to kidId ?
+        NSString *urlEncode = [NSString stringWithFormat:@"%@?kidId=%@&period=%@", _URL.getDailyActivity, macId, period];
+        NSURLSessionDataTask *task = [self.sessionManager GET:urlEncode parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                LOG_D(@"deviceGetActivity info:%@", responseObject);
+                NSError *err = [self getErrorMessage:responseObject];
+                if (err) {
+                    completion(nil ,err);
+                }
+                else {
+                    NSArray *list = [ActivityResultModel arrayOfModelsFromDictionaries:responseObject[@"activity"] error:nil];
+                    if (IS_V1) {
+                        for (ActivityResultModel *m in list) {
+                            [m transDate];
+                        }
+                    }
+                    completion(list, nil);
+                }
+            });
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSError *err = [self filterTokenInvalid:task.response err:error];
+                completion(nil ,err);
+            });
+        }];
+        return task;
+    }
     NSURLSessionDataTask *task = [self.sessionManager POST:url parameters:@{@"macId":macId} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"deviceGetActivity info:%@", responseObject);

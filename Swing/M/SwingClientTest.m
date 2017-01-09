@@ -103,7 +103,7 @@
         {
             //Params(required) - firstName, lastName, birthday(Format must be: "yyyy-MM-dd")
             //Params(not required) - nickName, note
-            [[SwingClient sharedClient] kidsAdd:@{@"firstName":@"Lucy", @"lastName":@"Kid", @"birthday":@"1900-08-04"} completion:^(id kid,NSError *error) {
+            [[SwingClient sharedClient] kidsAdd:@{@"firstName":@"Lucy", @"lastName":@"Kid", @"note":@"19000804", @"macId":@"19000804"} completion:^(id kid,NSError *error) {
                 if (error) {
                     LOG_D(@"kidsAdd fail: %@", error);
                 }
@@ -132,19 +132,19 @@
             }];
         }
             break;
-        case 6:
-        {
-            [[SwingClient sharedClient] kidsListWithCompletion:^(NSArray *list, NSError *error) {
-                if (error) {
-                    LOG_D(@"kidsListWithCompletion fail: %@", error);
-                }
-                else {
-                    NSLog(@"list:%@", list);
-                }
-                [self test:index + 1];
-            }];
-        }
-            break;
+//        case 6:
+//        {
+//            [[SwingClient sharedClient] kidsListWithCompletion:^(NSArray *list, NSError *error) {
+//                if (error) {
+//                    LOG_D(@"kidsListWithCompletion fail: %@", error);
+//                }
+//                else {
+//                    NSLog(@"list:%@", list);
+//                }
+//                [self test:index + 1];
+//            }];
+//        }
+//            break;
         case 7:
         {
             //Params(required) - eventName, startDate, endDate, color, status, description, alert, city, state

@@ -43,15 +43,15 @@
 }
 
 - (NSString*)kidsAdd {
-    return @"/kids/add";
+    return @"/v1/kids/add";
 }
 
 - (NSString*)kidsRemove {
-    return @"/kids/remove";
+    return @"/v1/kids/remove";
 }
 
 - (NSString*)uploadKidsProfileImage {
-    return @"/avatar/uploadKidsProfileImage";
+    return @"/v1/user/avatar/uploadKid";
 }
 
 - (NSString*)kidsList {
@@ -59,11 +59,11 @@
 }
 
 - (NSString*)addEvent {
-    return @"/calendarEvent/addEvent";
+    return @"/v1/event/add";
 }
 
 - (NSString*)editEventWithTodo {
-    return @"/calendarEvent/editEventWithTodo";
+    return @"/v1/event/update";
 }
 
 - (NSString*)addTodo {
@@ -87,23 +87,23 @@
 }
 
 - (NSString*)uploadRawData {
-    return @"/device/uploadRawData";
+    return @"/v1/activity/uploadRawData";
 }
 
 - (NSString*)getDailyActivity {
-    return @"/device/getDailyActivity";
+    return @"/v1/activity/retrieveData";
 }
 
 - (NSString*)getYearlyActivity {
-    return @"/device/getYearlyActivity";
+    return @"/v1/activity/retrieveData";
 }
 
 - (NSString*)getMonthlyActivity {
-    return @"/device/getMonthlyActivity";
+    return @"/v1/activity/retrieveData";
 }
 
 - (NSString*)getWeeklyActivity {
-    return @"/device/getWeeklyActivity";
+    return @"/v1/activity/retrieveData";
 }
 
 @end
