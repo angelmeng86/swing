@@ -132,8 +132,8 @@
             }];
         }
             break;
-//        case 6:
-//        {
+        case 6:
+        {
 //            [[SwingClient sharedClient] kidsListWithCompletion:^(NSArray *list, NSError *error) {
 //                if (error) {
 //                    LOG_D(@"kidsListWithCompletion fail: %@", error);
@@ -143,8 +143,18 @@
 //                }
 //                [self test:index + 1];
 //            }];
-//        }
-//            break;
+            
+            [[SwingClient sharedClient] calendarGetAllEventsWithCompletion:^(NSArray *eventArray, NSError *error) {
+                if (error) {
+                    LOG_D(@"calendarGetAllEventsWithCompletion fail: %@", error);
+                }
+                else {
+                    NSLog(@"eventArray:%@", eventArray);
+                }
+                [self test:index + 1];
+            }];
+        }
+            break;
         case 7:
         {
             //Params(required) - eventName, startDate, endDate, color, status, description, alert, city, state

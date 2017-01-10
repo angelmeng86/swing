@@ -119,7 +119,7 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     self.hourLines = array;
     
     self.calendarManager.date = self.dateSelected;
-    [self reloadEventData];
+//    [self reloadEventData];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didBecomeActive:)
@@ -144,6 +144,7 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"calendar_icon") style:UIBarButtonItemStylePlain target:self action:@selector(modeAction:)];
     [super viewWillAppear:animated];
     [self reloadData];
+    [self reloadEventData];
 }
 
 - (void)didBecomeActive:(NSNotification*)notification {

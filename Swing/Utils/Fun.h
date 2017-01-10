@@ -30,8 +30,8 @@
 
 + (UIImage *)imageByScalingToMaxSize:(UIImage *)sourceImage maxWidth:(CGFloat)maxWidth;
 
-+ (NSDate*)dateFromString:(NSString*)str;
-+ (NSString*)dateToString:(NSDate*)date;
+//+ (NSDate*)dateFromString:(NSString*)str;
+//+ (NSString*)dateToString:(NSDate*)date;
 
 + (UIColor*)colorFromNSString:(NSString *)string;
 + (NSString*)stringFromColor:(UIColor*)color;

@@ -13,7 +13,7 @@
 - (NSString*)baseURL {
     return @"https://childrenlab.com:8111/";
 }
-
+//未实现
 - (NSString*)isEmailRegistered {
     return @"/user/isEmailRegistered";
 }
@@ -25,7 +25,7 @@
 - (NSString*)userRegister {
     return @"/v1/user/register";
 }
-
+//未实现
 - (NSString*)updateIOSRegistrationId {
     return @"/user/updateIOSRegistrationId";
 }
@@ -53,7 +53,7 @@
 - (NSString*)uploadKidsProfileImage {
     return @"/v1/user/avatar/uploadKid";
 }
-
+//废弃
 - (NSString*)kidsList {
     return @"/kids/list";
 }
@@ -65,25 +65,29 @@
 - (NSString*)editEventWithTodo {
     return @"/v1/event/update";
 }
-
+//废弃
 - (NSString*)addTodo {
     return @"/calendarEvent/addTodo";
 }
-
+//未实现
 - (NSString*)todoDone {
     return @"/calendarEvent/todoDone";
 }
-
+//废弃
 - (NSString*)deleteTodo {
     return @"/calendarEvent/deleteTodo";
 }
 
 - (NSString*)getEventsByUser {
-    return @"/calendarEvent/getEventsByUser";
+    return @"/v1/event/retrieveEvents";
 }
 
 - (NSString*)deleteEvent {
-    return @"/calendarEvent/deleteEvent";
+    return @"/v1/event/delete";
+}
+
+- (NSString*)retrieveAllEventsWithTodo {
+    return @"/v1/event/retrieveAllEventsWithTodo";
 }
 
 - (NSString*)uploadRawData {

@@ -7,6 +7,7 @@
 //
 
 #import "JSONValueTransformer+NSDate.h"
+#import "CommonDef.h"
 
 @implementation JSONValueTransformer (NSDate)
 
@@ -17,7 +18,13 @@
     dispatch_once(&onceInput, ^{
         inputDateFormatter = [[NSDateFormatter alloc] init];
 //        [inputDateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
-        [inputDateFormatter setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
+        if (IS_SWING_V1) {
+            [inputDateFormatter setDateFormat:@"yyyy/MM/dd'T'HH:mm:ss'Z'"];
+        }
+        else {
+            [inputDateFormatter setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
+        }
+        
     });
     return inputDateFormatter;
 }

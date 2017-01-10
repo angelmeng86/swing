@@ -28,13 +28,41 @@
 
 @implementation AddEventViewController2
 
+- (NSDate*)dateFromString:(NSString*)str {
+    static NSDateFormatter *df = nil;
+    if (df == nil) {
+        df = [[NSDateFormatter alloc] init];
+        if (IS_SWING_V1) {
+            [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+        }
+        else {
+            [df setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
+        }
+    }
+    return [df dateFromString:str];
+}
+
+- (NSString*)dateToString:(NSDate*)date {
+    static NSDateFormatter *df = nil;
+    if (df == nil) {
+        df = [[NSDateFormatter alloc] init];
+        if (IS_SWING_V1) {
+            [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+        }
+        else {
+            [df setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
+        }
+    }
+    return [df stringFromDate:date];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
 //    self.repeatTF.enabled = NO;
-    self.stateTF.enabled = NO;
-    self.cityTF.enabled = NO;
+//    self.stateTF.enabled = NO;
+//    self.cityTF.enabled = NO;
     isCustom = NO;
     UIDatePicker *datePicker = [[UIDatePicker alloc] init];
     datePicker.datePickerMode = UIDatePickerModeDateAndTime;
@@ -126,8 +154,8 @@
         alert.value = [NSString stringWithFormat:@"%d", self.model.alert];
         self.alert = alert;
         
-        self.startTF.text = [Fun dateToString:self.model.startDate];;
-        self.endTF.text = [Fun dateToString:self.model.endDate];
+        self.startTF.text = [self dateToString:self.model.startDate];;
+        self.endTF.text = [self dateToString:self.model.endDate];
         
         self.colorCtl.selectedColor = self.model.color;
         
@@ -145,8 +173,8 @@
         }
     }
     else {
-        self.startTF.text = [Fun dateToString:datePicker.minimumDate];
-        self.endTF.text = [Fun dateToString:datePicker2.minimumDate];
+        self.startTF.text = [self dateToString:datePicker.minimumDate];
+        self.endTF.text = [self dateToString:datePicker2.minimumDate];
         
 //        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Advance" style:UIBarButtonItemStyleDone target:self action:@selector(changeAction)];
         [self hideAdvance:NO];
@@ -283,18 +311,18 @@
 }
 
 - (void)startChange:(UIDatePicker*)datePicker {
-    self.startTF.text = [Fun dateToString:datePicker.date];
+    self.startTF.text = [self dateToString:datePicker.date];
     UIDatePicker* dp = (UIDatePicker*)self.endTF.inputView;
     dp.minimumDate = [datePicker.date dateByAddingTimeInterval:30 * 60];
     if (NSOrderedDescending == [dp.date compare:datePicker.date]) {
 //        dp.date = datePicker.date;
-        self.endTF.text = [Fun dateToString:dp.minimumDate];
+        self.endTF.text = [self dateToString:dp.minimumDate];
     }
     
 }
 
 - (void)endChange:(UIDatePicker*)datePicker {
-    self.endTF.text = [Fun dateToString:datePicker.date];
+    self.endTF.text = [self dateToString:datePicker.date];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -326,10 +354,10 @@
     }
     
     //判断设置的时间范围是否是每天的6点至24点
-    NSDate *startDate = [Fun dateFromString:self.startTF.text];
+    NSDate *startDate = [self dateFromString:self.startTF.text];
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *start = [cal components:NSCalendarUnitHour fromDate:startDate];
-    NSDate *endDate = [Fun dateFromString:self.endTF.text];
+    NSDate *endDate = [self dateFromString:self.endTF.text];
     NSDateComponents *end = [cal components:NSCalendarUnitHour fromDate:endDate];
     if ([start hour] < 6 || [end hour] < 6) {
         [Fun showMessageBoxWithTitle:@"Error" andMessage:@"Please select a date between 6:00 and 24:00."];
@@ -466,14 +494,17 @@
 //            repeat = @"WEEKLY";
 //        }
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    [data addEntriesFromDictionary:@{@"name":self.nameTF.text , @"startDate":self.startTF.text
+    [data addEntriesFromDictionary:@{@"kidId":@5, @"Name":self.nameTF.text, @"startDate":self.startTF.text
                                      , @"endDate":self.endTF.text
                                      , @"color":[Fun stringFromColor:self.colorCtl.selectedColor]
-                                     , @"timezoneOffset" : @([NSTimeZone localTimeZone].secondsFromGMT),
-                                     @"repeat":repeat}];
+                                     , @"timezoneOffset" : @([NSTimeZone localTimeZone].secondsFromGMT)}];
     
     if (self.alert) {
-        [data setObject:self.alert.value forKey:@"alert"];
+        [data setObject:@(self.alert.value.intValue) forKey:@"alert"];
+    }
+    
+    if (repeat.length > 0) {
+        [data setObject:repeat forKey:@"repeat"];
     }
     
     if (!self.todoCtl.hidden) {

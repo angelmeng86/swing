@@ -15,6 +15,7 @@
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
                                                        @"id": @"objId",
+                                                       @"name": @"eventName",
                                                        @"description": @"desc",
                                                        }];
 }

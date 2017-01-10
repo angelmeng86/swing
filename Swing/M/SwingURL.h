@@ -32,6 +32,7 @@
 @property (nonatomic, readonly, strong) NSString* deleteTodo;
 @property (nonatomic, readonly, strong) NSString* getEventsByUser;
 @property (nonatomic, readonly, strong) NSString* deleteEvent;
+@property (nonatomic, readonly, strong) NSString* retrieveAllEventsWithTodo;
 
 @property (nonatomic, readonly, strong) NSString* uploadRawData;
 @property (nonatomic, readonly, strong) NSString* getDailyActivity;

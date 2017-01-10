@@ -19,8 +19,14 @@
 @implementation AppDelegate
 
 - (void)test {
-//    [SwingClientTest test:4 times:2];
+//    [SwingClientTest test:6 times:1];
     
+//    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+//    [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+//    
+//    NSString *oye = [df stringFromDate:[NSDate date]];
+//    NSDate *oye2 = [df dateFromString:@"2015-08-30T08:20:00"];
+//    NSLog(@"oye:%@, oye2:%@", oye, oye2);
 //    char *ptr = "\x76\x01\x00\x00\x01\x76\x01\x00\x00\x76\x01\x00\x00\x76\x01\x00\x00\x76\x01\x00\x00";
 //    //    long data = [Fun byteArrayToLong:[NSData dataWithBytes:ptr length:4] length:4];
 //    ActivityModel *m = [ActivityModel new];
@@ -77,7 +83,7 @@
 //    NSLog(@"languageID:%@",languageID);
 //    LOG_D(@"home:%@", NSHomeDirectory());
     [[GlobalCache shareInstance] initConfig];
-//    [self test];
+    [self test];
 
     
     // Register for Push Notitications

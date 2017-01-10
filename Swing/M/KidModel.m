@@ -13,12 +13,9 @@
 + (JSONKeyMapper*)keyMapper
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
-                                                       @"id": @"objId"
+                                                       @"id": @"objId",
+                                                       @"note": @"macId"
                                                        }];
-}
-
-- (NSString*)deviceId {
-    return _note ? _note : _macId;
 }
 
 @end

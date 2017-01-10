@@ -47,6 +47,7 @@
         
         if ([GlobalCache shareInstance].info.access_token.length > 0) {
             [config setHTTPAdditionalHeaders:@{@"x-auth-token":[GlobalCache shareInstance].info.access_token}];
+            LOG_D(@"access_token:%@", [GlobalCache shareInstance].info.access_token);
         }
         
         config.timeoutIntervalForRequest = 30;//请求超时时间
@@ -62,6 +63,8 @@
                                         sessionConfiguration:config];
         if (IS_V1) {
             _sessionManager.requestSerializer = [AFJSONRequestSerializer serializer];
+            //去除DELETE，DELETE参数由URI变为BODY
+            _sessionManager.requestSerializer.HTTPMethodsEncodingParametersInURI =[NSSet setWithObjects:@"GET", @"HEAD", /*@"DELETE",*/ nil];
         }
         _sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
 //        _sessionManager.responseSerializer.acceptableContentTypes = [_sessionManager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/plain"];
@@ -237,9 +240,9 @@
                 UserModel *model = [[UserModel alloc] initWithDictionary:responseObject[@"user"] error:nil];
                 NSArray *kids = [KidModel arrayOfModelsFromDictionaries:responseObject[@"kids"] error:nil];
                 for (KidModel *kid in kids) {
-                    if (kid.deviceId.length > 0) {
+                    if (kid.macId.length > 0) {
                         //默认设置第一个Kid的设备为当前设备
-                        [GlobalCache shareInstance].local.deviceMAC = [Fun hexToData:kid.deviceId];
+                        [GlobalCache shareInstance].local.deviceMAC = [Fun hexToData:kid.macId];
                         break;
                     }
                 }
@@ -505,6 +508,7 @@
 }
 
 - (NSURLSessionDataTask *)calendarAddEvent:(NSDictionary*)data completion:( void (^)(id event, NSError *error) )completion{
+    LOG_D(@"calendarAddEvent data:%@", data);
     NSURLSessionDataTask *task = [self.sessionManager POST:_URL.addEvent parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"calendarAddEvent info:%@", responseObject);
@@ -513,13 +517,16 @@
                 completion(nil, err);
             }
             else {
-                EventModel *event = [[EventModel alloc] initWithDictionary:responseObject[@"newEvent"] error:&err];
+                EventModel *event = [[EventModel alloc] initWithDictionary:responseObject[IS_V1 ? @"event" : @"newEvent"] error:&err];
                 [DBHelper addEvent:event];
                 completion(event, nil);
             }
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
+//            NSData *oye = task.originalRequest.HTTPBody;
+//            NSString *oye2 = [[NSString alloc] initWithData:oye encoding:NSUTF8StringEncoding];
+//            LOG_D(@"oye2:%@", oye2);
             NSError *err = [self filterTokenInvalid:task.response err:error];
             completion(nil, err);
         });
@@ -530,6 +537,30 @@
 
 - (NSURLSessionDataTask *)calendarEditEvent:(NSDictionary*)data completion:( void (^)(id event, NSError *error) )completion {
     LOG_D(@"data:%@", data);
+    if (IS_V1) {
+        NSURLSessionDataTask *task = [self.sessionManager PUT:_URL.editEventWithTodo parameters:data success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                LOG_D(@"calendarEditEvent info:%@", responseObject);
+                NSError *err = [self getErrorMessage:responseObject];
+                if (err) {
+                    completion(nil, err);
+                }
+                else {
+                    EventModel *event = [[EventModel alloc] initWithDictionary:responseObject[@"event"] error:&err];
+                    [DBHelper addEvent:event];
+                    completion(event, nil);
+                }
+            });
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSError *err = [self filterTokenInvalid:task.response err:error];
+                completion(nil, err);
+            });
+        }];
+        
+        return task;
+    }
+    
     NSURLSessionDataTask *task = [self.sessionManager POST:_URL.editEventWithTodo parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"calendarEditEvent info:%@", responseObject);
@@ -624,10 +655,44 @@
 
 - (NSURLSessionDataTask *)calendarGetEvents:(NSDate*)date type:(GetEventType)type completion:( void (^)(NSArray* eventArray, NSError *error) )completion {
     
+    if (IS_V1) {
+        static NSDateFormatter *df = nil;
+        if (df == nil) {
+            df = [[NSDateFormatter alloc] init];
+            [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+        }
+        NSDictionary *data = @{@"period":type == GetEventTypeMonth ? @"MONTH" : @"DAY", @"date":[df stringFromDate:date]};
+        LOG_D(@"calendarGetEvents data:%@", data);
+//        NSString *urlEncode = [NSString stringWithFormat:@"%@?period=%@&date=%@", _URL.getEventsByUser, type == GetEventTypeMonth ? @"MONTH" : @"DAY", [df stringFromDate:date]];
+        NSURLSessionDataTask *task = [self.sessionManager GET:_URL.getEventsByUser parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                LOG_D(@"getEventsByUser info:%@", responseObject);
+                NSError *err = [self getErrorMessage:responseObject];
+                if (err) {
+                    completion(nil, err);
+                }
+                else {
+                    NSArray *list = [EventModel arrayOfModelsFromDictionaries:responseObject[@"events"] error:nil];
+                    
+                    [DBHelper addEvents:list];
+                    
+                    completion(list, nil);
+                }
+            });
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSError *err = [self filterTokenInvalid:task.response err:error];
+                completion(nil, err);
+            });
+        }];
+        
+        return task;
+    }
+    
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *component = [cal components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:date];
-    
     NSDictionary *data = @{@"query":type == GetEventTypeMonth ? @"month" : @"day", @"month":[NSString stringWithFormat:@"%ld",(long)[component month]], @"year":[NSString stringWithFormat:@"%ld",(long)[component year]], @"day":[NSString stringWithFormat:@"%ld",(long)[component day]]};
+    
     LOG_D(@"calendarGetEvents data:%@", data);
     NSURLSessionDataTask *task = [self.sessionManager POST:_URL.getEventsByUser parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -654,7 +719,60 @@
     return task;
 }
 
+- (NSURLSessionDataTask *)calendarGetAllEventsWithCompletion:( void (^)(NSArray* eventArray, NSError *error) )completion {
+    if (!IS_V1) {
+        return nil;
+    }
+    NSURLSessionDataTask *task = [self.sessionManager GET:_URL.retrieveAllEventsWithTodo parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LOG_D(@"getAllEvents info:%@", responseObject);
+            NSError *err = [self getErrorMessage:responseObject];
+            if (err) {
+                completion(nil, err);
+            }
+            else {
+                NSArray *list = [EventModel arrayOfModelsFromDictionaries:responseObject[@"events"] error:nil];
+                
+                [DBHelper addEvents:list];
+                
+                completion(list, nil);
+            }
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSError *err = [self filterTokenInvalid:task.response err:error];
+            completion(nil, err);
+        });
+    }];
+    return task;
+}
+
 - (NSURLSessionDataTask *)calendarDeleteEvent:(NSString*)eventId completion:( void (^)(NSError *error) )completion {
+    if (IS_V1) {
+        NSURLSessionDataTask *task = [self.sessionManager DELETE:_URL.deleteEvent parameters:@{@"eventId":@(eventId.intValue)} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                LOG_D(@"calendarDeleteEvent info:%@", responseObject);
+                NSError *err = [self getErrorMessage:responseObject];
+                if (err) {
+                    completion(err);
+                }
+                else {
+                    [DBHelper delEvent:[eventId intValue]];
+                    completion(nil);
+                }
+            });
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSData *oye = task.originalRequest.HTTPBody;
+                NSString *oye2 = [[NSString alloc] initWithData:oye encoding:NSUTF8StringEncoding];
+                LOG_D(@"oye2:%@", oye2);
+                NSError *err = [self filterTokenInvalid:task.response err:error];
+                completion(err);
+            });
+        }];
+        
+        return task;
+    }
     NSURLSessionDataTask *task = [self.sessionManager POST:_URL.deleteEvent parameters:@{@"id":eventId} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"calendarDeleteEvent info:%@", responseObject);

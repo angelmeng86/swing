@@ -87,6 +87,10 @@
     return @"/calendarEvent/deleteEvent";
 }
 
+- (NSString*)retrieveAllEventsWithTodo {
+    return nil;
+}
+
 - (NSString*)uploadRawData {
     return @"/device/uploadRawData";
 }
