@@ -13,7 +13,7 @@
 
 @interface ToDoModel : JSONModel
 
-@property (nonatomic) int objId;
+@property (nonatomic) int64_t objId;
 @property (strong, nonatomic) NSString* text;
 @property (strong, nonatomic) NSString* status;
 

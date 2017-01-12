@@ -33,10 +33,10 @@
 + (BOOL)addTodo:(ToDoModel*)model {
     Todo *todo = [Todo MR_findFirstByAttribute:@"objId" withValue:@(model.objId)];
     if (todo) {
-        LOG_D(@"update Todo %d", todo.objId);
+        LOG_D(@"update Todo %lld", todo.objId);
     }
     else {
-        LOG_D(@"create Todo %d", model.objId);
+        LOG_D(@"create Todo %lld", model.objId);
         todo = [Todo MR_createEntity];
     }
     [model updateTo:todo];
@@ -44,10 +44,10 @@
     return YES;
 }
 
-+ (BOOL)delEvent:(int)objId {
++ (BOOL)delEvent:(int64_t)objId {
     Event *event = [Event MR_findFirstByAttribute:@"objId" withValue:@(objId)];
     if (event) {
-        LOG_D(@"delete Event %d", event.objId);
+        LOG_D(@"delete Event %lld", event.objId);
         [event MR_deleteEntity];
         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     }
@@ -57,10 +57,10 @@
 + (BOOL)addEvent:(EventModel*)model save:(BOOL)save {
     Event *event = [Event MR_findFirstByAttribute:@"objId" withValue:@(model.objId)];
     if (event) {
-        LOG_D(@"update Event %d", event.objId);
+        LOG_D(@"update Event %lld", event.objId);
     }
     else {
-        LOG_D(@"create Event %d", model.objId);
+        LOG_D(@"create Event %lld", model.objId);
         event = [Event MR_createEntity];
     }
     [model updateTo:event];

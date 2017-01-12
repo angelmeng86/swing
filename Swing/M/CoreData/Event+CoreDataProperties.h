@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *desc;
 @property (nullable, nonatomic, copy) NSDate *endDate;
 @property (nullable, nonatomic, copy) NSString *eventName;
-@property (nonatomic) int32_t objId;
+@property (nonatomic) int64_t objId;
 @property (nullable, nonatomic, copy) NSDate *startDate;
 @property (nullable, nonatomic, copy) NSString *state;
 @property (nullable, nonatomic, copy) NSString *status;

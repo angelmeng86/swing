@@ -11,104 +11,103 @@
 @implementation SwingURL
 
 - (NSString*)baseURL {
-    return @"https://childrenlab.com/";//启用https
-//    return @"http://www.childrenLab.com/";
+    return @"https://childrenlab.com:8111/";
 }
 
 - (NSString*)isEmailRegistered {
-    return @"/user/isEmailRegistered";
+    return @"/v1/user/isEmailAvailableToRegister";
 }
 
 - (NSString*)userLogin {
-    return @"/api/login";
+    return @"/v1/user/login";
 }
 
 - (NSString*)userRegister {
-    return @"/user/register";
+    return @"/v1/user/register";
 }
 
 - (NSString*)updateIOSRegistrationId {
-    return @"/user/updateIOSRegistrationId";
+    return @"/v1/user/updateIOSRegistrationId";
 }
 
 - (NSString*)retrieveUserProfile {
-    return @"/user/retrieveUserProfile";
+    return @"/v1/user/retrieveUserProfile";
 }
 
 - (NSString*)uploadProfileImage {
-    return @"/avatar/uploadProfileImageToS3";
+    return @"/v1/user/avatar/upload";
 }
 
 - (NSString*)updateProfile {
-    return @"/user/updateProfile";
+    return @"/v1/user/updateProfile";
 }
 
 - (NSString*)kidsAdd {
-    return @"/kids/add";
+    return @"/v1/kids/add";
 }
 
 - (NSString*)kidsRemove {
-    return @"/kids/remove";
+    return @"/v1/kids/remove";
 }
 
 - (NSString*)uploadKidsProfileImage {
-    return @"/avatar/uploadKidsProfileImage";
+    return @"/v1/user/avatar/uploadKid";
 }
-
+//废弃
 - (NSString*)kidsList {
     return @"/kids/list";
 }
 
 - (NSString*)addEvent {
-    return @"/calendarEvent/addEvent";
+    return @"/v1/event/add";
 }
 
 - (NSString*)editEventWithTodo {
-    return @"/calendarEvent/editEventWithTodo";
+    return @"/v1/event/update";
 }
-
+//废弃
 - (NSString*)addTodo {
     return @"/calendarEvent/addTodo";
 }
-
+//未实现
 - (NSString*)todoDone {
-    return @"/calendarEvent/todoDone";
+    return @"/v1/event/todo/done";
 }
-
+//废弃
 - (NSString*)deleteTodo {
     return @"/calendarEvent/deleteTodo";
 }
 
 - (NSString*)getEventsByUser {
-    return @"/calendarEvent/getEventsByUser";
+    return @"/v1/event/retrieveEvents";
 }
 
 - (NSString*)deleteEvent {
-    return @"/calendarEvent/deleteEvent";
+    return @"/v1/event/delete";
 }
 
 - (NSString*)retrieveAllEventsWithTodo {
-    return nil;
+    return @"/v1/event/retrieveAllEventsWithTodo";
 }
 
 - (NSString*)uploadRawData {
-    return @"/device/uploadRawData";
+    return @"/v1/activity/uploadRawData";
 }
 
 - (NSString*)getDailyActivity {
-    return @"/device/getDailyActivity";
+    return @"/v1/activity/retrieveData";
 }
 
 - (NSString*)getYearlyActivity {
-    return @"/device/getYearlyActivity";
+    return @"/v1/activity/retrieveData";
 }
 
 - (NSString*)getMonthlyActivity {
-    return @"/device/getMonthlyActivity";
+    return @"/v1/activity/retrieveData";
 }
 
 - (NSString*)getWeeklyActivity {
-    return @"/device/getWeeklyActivity";
+    return @"/v1/activity/retrieveData";
 }
 
 @end

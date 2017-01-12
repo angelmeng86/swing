@@ -53,24 +53,6 @@
     return YES;
 }
 
-- (void)cacheEvents {
-    [[SwingClient sharedClient] calendarGetEvents:[NSDate date] type:GetEventTypeMonth completion:^(NSArray *eventArray, NSError *error) {
-        if (![self isError:error tag:@"calendarGetEvents"]) {
-            NSDateComponents* comps = [[DBHelper calendar] components:NSCalendarUnitYear|NSCalendarUnitMonth | NSCalendarUnitDay fromDate:[NSDate date]];
-            comps.month += 1;
-            comps.day = 1;
-            NSDate *nextMonth = [[DBHelper calendar] dateFromComponents:comps];
-            [[SwingClient sharedClient] calendarGetEvents:nextMonth type:GetEventTypeMonth completion:^(NSArray *eventArray, NSError *error) {
-                if (![self isError:error tag:@"calendarGetEvents2"]) {
-                    [SVProgressHUD dismiss];
-                    [self goToMain];
-                }
-            }];
-            
-        }
-    }];
-}
-
 - (void)cacheEventsV1 {
     [[SwingClient sharedClient] calendarGetAllEventsWithCompletion:^(NSArray *eventArray, NSError *error) {
         if (![self isError:error tag:@"calendarGetAllEvents"]) {
@@ -112,14 +94,8 @@
 //                                        [SVProgressHUD dismiss];
 //                                        [self goToMain];
                                         [SVProgressHUD showWithStatus:@"Loading data, please wait..."];
-                                        if (IS_SWING_V1) {
-                                            //继续获取所有Event进行本地缓存
-                                            [self cacheEventsV1];
-                                        }
-                                        else {
-                                            //继续获取当月和下月Event进行本地缓存
-                                            [self cacheEvents];
-                                        }
+                                        //继续获取所有Event进行本地缓存
+                                        [self cacheEventsV1];
                                     }
                                 }];
                             }

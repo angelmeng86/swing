@@ -7,10 +7,10 @@
 //
 
 #import "AFHTTPSessionManager.h"
-#import "SwingURLv1.h"
+#import "SwingURL.h"
 #import "CommonDef.h"
 
-#define IS_SWING_V1       [[SwingClient sharedClient].URL isKindOfClass:[SwingURLv1 class]]
+//#define IS_SWING_V1       YES
 
 typedef enum : NSUInteger {
     GetEventTypeMonth,
@@ -26,8 +26,6 @@ typedef enum : NSUInteger {
 
 @class ActivityModel;
 @interface SwingClient : NSObject
-
-@property (nonatomic, strong) SwingURL *URL;
 
 + (SwingClient *)sharedClient;
 
@@ -53,7 +51,7 @@ typedef enum : NSUInteger {
 
 //- (NSURLSessionDataTask *)kidsRemove:(NSString*)kidid completion:( void (^)(NSError *error) )completion;
 
-- (NSURLSessionDataTask *)kidsUploadKidsProfileImage:(UIImage*)image kidId:(NSString*)kidId completion:( void (^)(NSString *profileImage, NSError *error) )completion;
+- (NSURLSessionDataTask *)kidsUploadKidsProfileImage:(UIImage*)image kidId:(int64_t)kidId completion:( void (^)(NSString *profileImage, NSError *error) )completion;
 
 //- (NSURLSessionDataTask *)kidsListWithCompletion:( void (^)(NSArray *list, NSError *error) )completion;
 
@@ -62,9 +60,9 @@ typedef enum : NSUInteger {
 
 - (NSURLSessionDataTask *)calendarEditEvent:(NSDictionary*)data completion:( void (^)(id event, NSError *error) )completion;
 
-- (NSURLSessionDataTask *)calendarAddTodo:(NSString*)eventId todoList:(NSString*)todoList completion:( void (^)(id event, NSArray* todoArray, NSError *error) )completion;
+- (NSURLSessionDataTask *)calendarAddTodo:(int64_t)eventId todoList:(NSString*)todoList completion:( void (^)(id event, NSArray* todoArray, NSError *error) )completion;
 
-- (NSURLSessionDataTask *)calendarTodoDone:(NSString*)todoId completion:( void (^)(NSError *error) )completion;
+- (NSURLSessionDataTask *)calendarTodoDone:(int64_t)todoId eventId:(int64_t)eventId completion:( void (^)(NSError *error) )completion;
 
 //- (NSURLSessionDataTask *)calendarTodoDelete:(NSString*)eventId todoId:(NSString*)todoId completion:( void (^)(NSError *error) )completion;
 
@@ -73,7 +71,7 @@ typedef enum : NSUInteger {
 //new api added
 - (NSURLSessionDataTask *)calendarGetAllEventsWithCompletion:( void (^)(NSArray* eventArray, NSError *error) )completion;
 
-- (NSURLSessionDataTask *)calendarDeleteEvent:(NSString*)eventId completion:( void (^)(NSError *error) )completion;
+- (NSURLSessionDataTask *)calendarDeleteEvent:(int64_t)eventId completion:( void (^)(NSError *error) )completion;
 
 - (NSURLSessionDataTask *)deviceUploadRawData:(ActivityModel*)model completion:( void (^)(NSError *error) )completion;
 

@@ -229,7 +229,7 @@ typedef enum : NSUInteger {
                  weakSelf.activityDict[key] = model;
                  }
                  */
-                LOG_D(@"activity: time:%ld indoor:%@ outdoor:%@ date:%@", model.time, model.indoorActivity, model.outdoorActivity, key);
+                LOG_D(@"activity: time:%lld indoor:%@ outdoor:%@ date:%@", model.time, model.indoorActivity, model.outdoorActivity, key);
             }
             else {
                 LOG_D(@"activity: time:%@ is repeat.", [NSDate dateWithTimeIntervalSince1970:self.timeStamp]);

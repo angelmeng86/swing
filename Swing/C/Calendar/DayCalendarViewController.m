@@ -333,7 +333,7 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
         [label.superview layoutIfNeeded];
     } completion:^(BOOL finished) {
         [label removeFromSuperview];
-        [[SwingClient sharedClient] calendarDeleteEvent:[NSString stringWithFormat:@"%d", label.model.objId] completion:^(NSError *error) {
+        [[SwingClient sharedClient] calendarDeleteEvent:label.model.objId completion:^(NSError *error) {
             if (!error) {
                 LOG_D(@"calendarDeleteEvent sucess.");
                 [[GlobalCache shareInstance] deleteEvent:label.model];

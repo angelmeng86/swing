@@ -127,7 +127,7 @@
                             }
                             if (image && model) {
                                 [SVProgressHUD showWithStatus:@"UploadImage, please wait..."];
-                                [[SwingClient sharedClient] kidsUploadKidsProfileImage:image kidId:[NSString stringWithFormat:@"%d", model.objId] completion:^(NSString *profileImage, NSError *error) {
+                                [[SwingClient sharedClient] kidsUploadKidsProfileImage:image kidId:model.objId completion:^(NSString *profileImage, NSError *error) {
                                     if (error) {
                                         LOG_D(@"uploadProfileImage fail: %@", error);
                                     }

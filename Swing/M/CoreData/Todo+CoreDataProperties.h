@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<Todo *> *)fetchRequest;
 
-@property (nonatomic) int32_t objId;
+@property (nonatomic) int64_t objId;
 @property (nullable, nonatomic, copy) NSString *status;
 @property (nullable, nonatomic, copy) NSString *text;
 @property (nullable, nonatomic, retain) Event *inEvent;

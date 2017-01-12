@@ -18,13 +18,7 @@
     dispatch_once(&onceInput, ^{
         inputDateFormatter = [[NSDateFormatter alloc] init];
 //        [inputDateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
-        if (IS_SWING_V1) {
-            [inputDateFormatter setDateFormat:@"yyyy/MM/dd'T'HH:mm:ss'Z'"];
-        }
-        else {
-            [inputDateFormatter setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
-        }
-        
+        [inputDateFormatter setDateFormat:@"yyyy/MM/dd'T'HH:mm:ss'Z'"];
     });
     return inputDateFormatter;
 }

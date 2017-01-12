@@ -14,7 +14,7 @@
 @class UIColor;
 @interface EventModel : JSONModel
 
-@property (nonatomic) int objId;
+@property (nonatomic) int64_t objId;
 @property (strong, nonatomic) NSString* eventName;
 @property (strong, nonatomic) NSDate* startDate;
 @property (strong, nonatomic) NSDate* endDate;

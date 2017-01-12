@@ -87,7 +87,8 @@
 
     
     // Register for Push Notitications
-    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+    //推送默认至支持iOS 8以上
+//    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
         UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
                                                         UIUserNotificationTypeBadge |
                                                         UIUserNotificationTypeSound);
@@ -95,13 +96,13 @@
                                                                                  categories:nil];
         [application registerUserNotificationSettings:settings];
         [application registerForRemoteNotifications];
-    }
-    else {
-        [application registerForRemoteNotificationTypes:
-         UIRemoteNotificationTypeBadge |
-         UIRemoteNotificationTypeAlert |
-         UIRemoteNotificationTypeSound];
-    }
+//    }
+//    else {
+//        [application registerForRemoteNotificationTypes:
+//         UIRemoteNotificationTypeBadge |
+//         UIRemoteNotificationTypeAlert |
+//         UIRemoteNotificationTypeSound];
+//    }
     
     //设置导航默认标题的颜色及字体大小
     [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName:COMMON_TITLE_COLOR, NSFontAttributeName:[UIFont boldAvenirFontOfSize:22]};

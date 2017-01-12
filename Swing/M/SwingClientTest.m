@@ -8,7 +8,7 @@
 
 #import "SwingClientTest.h"
 #import "CommonDef.h"
-#import "RCLocationManager.h"
+//#import "RCLocationManager.h"
 #import "BLEClient.h"
 
 @interface SwingClientTest ()
@@ -117,9 +117,9 @@
             break;
         case 5:
         {
-            NSString *objId = @"2";
+            int64_t objId = 2;
             if (self.kid) {
-                objId = [NSString stringWithFormat:@"%d", self.kid.objId];
+                objId = self.kid.objId;
             }
             [[SwingClient sharedClient] kidsUploadKidsProfileImage:LOAD_IMAGE(@"battery_icon") kidId:objId completion:^(NSString *profileImage, NSError *error) {
                 if (error) {
@@ -174,9 +174,9 @@
             break;
         case 8:
         {
-            NSString *objId = @"10";
+            int64_t objId = 10;
             if (self.event) {
-                objId = [NSString stringWithFormat:@"%d", self.event.objId];
+                objId = self.event.objId;
             }
             //Params(required) - eventId, todoList
             [[SwingClient sharedClient] calendarAddTodo:objId todoList:@"hello|world" completion:^(id event, NSArray *todoArray, NSError *error) {
@@ -243,6 +243,7 @@
 //            [[MMLocationManager shareLocation] getLocationCoordinate:^(CLLocationCoordinate2D locationCorrrdinate) {
 //                NSLog(@"latitude:%f longitude:%f", locationCorrrdinate.latitude,locationCorrrdinate.longitude);
 //            }];
+            /*
             [[RCLocationManager sharedManager] requestUserLocationWhenInUseWithBlockOnce:^(CLLocationManager *manager, CLAuthorizationStatus status) {
                 NSLog(@"status:%d", status);
                 [[RCLocationManager sharedManager] retrieveUserLocationWithBlock:^(CLLocationManager *manager, CLLocation *newLocation, CLLocation *oldLocation) {
@@ -265,7 +266,7 @@
                 }];
                 
             }];
-            
+            */
             
         }
             break;

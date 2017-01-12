@@ -32,12 +32,7 @@
     static NSDateFormatter *df = nil;
     if (df == nil) {
         df = [[NSDateFormatter alloc] init];
-        if (IS_SWING_V1) {
-            [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
-        }
-        else {
-            [df setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
-        }
+        [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
     }
     return [df dateFromString:str];
 }
@@ -46,12 +41,7 @@
     static NSDateFormatter *df = nil;
     if (df == nil) {
         df = [[NSDateFormatter alloc] init];
-        if (IS_SWING_V1) {
-            [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
-        }
-        else {
-            [df setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
-        }
+        [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
     }
     return [df stringFromDate:date];
 }
@@ -370,12 +360,7 @@
 - (IBAction)saveAction:(id)sender {
     [[IQKeyboardManager sharedManager] resignFirstResponder];
     if ([self validateTextField]) {
-        if (IS_SWING_V1) {
-            [self saveEventV1];
-        }
-        else {
-            [self saveEvent];
-        }
+        [self saveEventV1];
     }
     
 }
@@ -417,7 +402,7 @@
     
     
     if (self.model) {
-        [data setObject:[NSNumber numberWithInt:self.model.objId] forKey:@"id"];
+        [data setObject:[NSNumber numberWithLongLong:self.model.objId] forKey:@"id"];
         if (self.todoCtl.itemList.count > 0) {
             [data setObject:[self.todoCtl.itemList componentsJoinedByString:@"|"] forKey:@"todoList"];
         }
@@ -448,7 +433,7 @@
             EventModel *model = event;
             
             if (!self.todoCtl.hidden && self.todoCtl.itemList.count > 0) {
-                [[SwingClient sharedClient] calendarAddTodo:[NSString stringWithFormat:@"%d", model.objId] todoList:[self.todoCtl.itemList componentsJoinedByString:@"|"] completion:^(id event, NSArray *todoArray, NSError *error) {
+                [[SwingClient sharedClient] calendarAddTodo:model.objId todoList:[self.todoCtl.itemList componentsJoinedByString:@"|"] completion:^(id event, NSArray *todoArray, NSError *error) {
                     if (!error) {
                         [[GlobalCache shareInstance] addEvent:event];
                         [SVProgressHUD dismiss];
@@ -525,7 +510,7 @@
     
     
     if (self.model) {
-        [data setObject:[NSNumber numberWithInt:self.model.objId] forKey:@"eventId"];
+        [data setObject:[NSNumber numberWithLongLong:self.model.objId] forKey:@"eventId"];
         
         [[SwingClient sharedClient] calendarEditEvent:data completion:^(id event,NSError *error) {
             if (!error) {

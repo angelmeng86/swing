@@ -29,7 +29,7 @@
 
 - (void)queryProfile;
 //- (void)queryKids;
-- (void)queryWeather;
+//- (void)queryWeather;
 
 - (void)logout;
 

@@ -68,7 +68,7 @@
 
 #import "GlobalCache.h"
 #import "SVProgressHUD.h"
-#import "RCLocationManager.h"
+//#import "RCLocationManager.h"
 #import <PureLayout/PureLayout.h>
 
 //#define LOC_STR(key)        NSLocalizedString(key,nil)

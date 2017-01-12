@@ -334,7 +334,7 @@
     
     return nil;
 }
-
+/*
 - (void)queryWeather {
     if (_weartherRunning) {
         return;
@@ -369,7 +369,7 @@
         
     }];
 }
-
+*/
 - (NSString*)curLanguage
 {
     //static NSString* cacheLang = nil;

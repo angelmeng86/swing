@@ -16,7 +16,7 @@
 + (void)clearDatabase;
 
 + (BOOL)addEvent:(EventModel*)model;
-+ (BOOL)delEvent:(int)objId;
++ (BOOL)delEvent:(int64_t)objId;
 
 + (BOOL)addTodo:(ToDoModel*)model;
 

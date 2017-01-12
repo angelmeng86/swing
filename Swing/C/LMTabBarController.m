@@ -27,7 +27,7 @@
     }
     
 //    [[GlobalCache shareInstance] queryProfile];
-    [[GlobalCache shareInstance] queryWeather];
+//    [[GlobalCache shareInstance] queryWeather];
 }
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
