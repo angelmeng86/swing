@@ -160,7 +160,7 @@
     [[SwingClient sharedClient] calendarDeleteEvent:self.model.objId completion:^(NSError *error) {
         if (!error) {
             LOG_D(@"calendarDeleteEvent sucess.");
-            [[GlobalCache shareInstance] deleteEvent:self.model];
+            [[GlobalCache shareInstance] postUpdateNotification:self.model.startDate];
             [SVProgressHUD dismiss];
             [self.navigationController popViewControllerAnimated:YES];
         }

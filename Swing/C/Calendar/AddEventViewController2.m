@@ -13,6 +13,8 @@
 #import "KeyboardManager.h"
 #import "LMArrowView.h"
 
+#define TAG_REPEAT  2017
+
 @interface AddEventViewController2 ()<UITextFieldDelegate>
 {
     BOOL isAddTip;
@@ -20,6 +22,8 @@
     BOOL isCustom;
     NSArray *alertArray;
     int repeatIndex;
+    
+    NSArray *repeatArray;
 }
 
 @property (nonatomic, strong) AlertModel* alert;
@@ -98,7 +102,8 @@
     [bgView addTarget:self action:@selector(repeatAction) forControlEvents:UIControlEventTouchUpInside];
     self.repeatTF.rightView = bgView;
     self.repeatTF.rightViewMode = UITextFieldViewModeAlways;
-    self.repeatTF.enabled = NO;
+//    self.repeatTF.enabled = NO;
+    repeatArray = @[LOC_STR(@"Never"), LOC_STR(@"Every Day"), LOC_STR(@"Every Week")/*, @"Every Month"*/];
     
     self.navigationItem.title = LOC_STR(@"Calendar");
     [self.shortSaveBtn setTitle:LOC_STR(@"Save") forState:UIControlStateNormal];
@@ -153,12 +158,27 @@
         self.stateTF.text = self.model.state;
         self.cityTF.text = self.model.city;
         
+        if (self.model.repeat.length > 0) {
+            UILabel *label = (UILabel*)[self.repeatTF.rightView viewWithTag:2016];
+            if ([self.model.repeat isEqualToString:@"DAILY"]) {
+                label.text = repeatArray[1];
+                self.repeatTF.tag = TAG_REPEAT + 1;
+            }
+            else if ([self.model.repeat isEqualToString:@"WEEKLY"]) {
+                label.text = repeatArray[2];
+                self.repeatTF.tag = TAG_REPEAT + 2;
+            }
+        }
+        
+        
+        
         [self.todoCtl setItemList:self.model.todo];
         
         if (self.model.desc.length > 0 ||
             self.model.state.length > 0 ||
             self.model.city.length > 0 ||
-            self.model.todo.count > 0) {
+            self.model.todo.count > 0 ||
+            self.model.repeat.length > 0) {
             [self changeAdvance:YES];
         }
     }
@@ -169,6 +189,11 @@
 //        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Advance" style:UIBarButtonItemStyleDone target:self action:@selector(changeAction)];
         [self hideAdvance:NO];
     }
+}
+
+- (void)setRepeatText:(NSString*)text {
+    UILabel *label = (UILabel*)[self.repeatTF.rightView viewWithTag:2016];
+    label.text = text;
 }
 
 - (void)hideAdvance:(BOOL)hidden {
@@ -221,7 +246,7 @@
     ChoicesViewController *ctl = [[ChoicesViewController alloc] initWithStyle:UITableViewStylePlain];
     ctl.delegate = self;
     ctl.navigationItem.title = self.repeatTF.placeholder;
-    ctl.textArray = @[LOC_STR(@"Never"), LOC_STR(@"Every Day"), LOC_STR(@"Every Week")/*, @"Every Month"*/];
+    ctl.textArray = repeatArray;
     [self.navigationController pushViewController:ctl animated:YES];
 }
 
@@ -279,10 +304,10 @@
     return YES;
 }
 
-- (void)choicesViewControllerDidSelected:(NSString*)text {
+- (void)choicesViewControllerDidSelectedIndex:(int)index {
 //    self.repeatTF.text = text;
-    UILabel *label = (UILabel*)[self.repeatTF.rightView viewWithTag:2016];
-    label.text = text;
+    [self setRepeatText:repeatArray[index]];
+    self.repeatTF.tag = TAG_REPEAT + index;
     [[IQKeyboardManager sharedManager] resignFirstResponder];
 }
 
@@ -301,11 +326,25 @@
 }
 
 - (void)startChange:(UIDatePicker*)datePicker {
-    self.startTF.text = [self dateToString:datePicker.date];
+    NSDate *sDate = datePicker.date;
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:kCFCalendarUnitYear|kCFCalendarUnitMonth|kCFCalendarUnitDay|NSCalendarUnitHour|NSCalendarUnitMinute fromDate:sDate];
+    if (comps.hour <= 11 && comps.minute <= 30) {
+        self.startTF.text = [self dateToString:sDate];
+    }
+    else {
+        comps.hour = 11;
+        comps.minute = 30;
+        sDate = [datePicker.minimumDate laterDate:[[NSCalendar currentCalendar] dateFromComponents:comps]];
+        [datePicker setDate:sDate animated:YES];
+    }
+    
     UIDatePicker* dp = (UIDatePicker*)self.endTF.inputView;
-    dp.minimumDate = [datePicker.date dateByAddingTimeInterval:30 * 60];
+    dp.minimumDate = [datePicker.date dateByAddingTimeInterval:30 * 60 - 1];
+//    comps.hour = 11;
+//    comps.minute = 59;
+//    comps.second = 59;
+//    dp.maximumDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
     if (NSOrderedDescending == [dp.date compare:datePicker.date]) {
-//        dp.date = datePicker.date;
         self.endTF.text = [self dateToString:dp.minimumDate];
     }
     
@@ -349,6 +388,10 @@
     NSDateComponents *start = [cal components:NSCalendarUnitHour fromDate:startDate];
     NSDate *endDate = [self dateFromString:self.endTF.text];
     NSDateComponents *end = [cal components:NSCalendarUnitHour fromDate:endDate];
+    if (![cal isDate:startDate inSameDayAsDate:endDate]) {
+        [Fun showMessageBoxWithTitle:@"Error" andMessage:@"The date must in the same day."];
+        return NO;
+    }
     if ([start hour] < 6 || [end hour] < 6) {
         [Fun showMessageBoxWithTitle:@"Error" andMessage:@"Please select a date between 6:00 and 24:00."];
         return NO;
@@ -365,121 +408,34 @@
     
 }
 
-- (void)saveEvent {
-    [SVProgressHUD showWithStatus:@"Saving, please wait..."];
-    
-    //eventName, startDate, endDate, color, status, description, alert, city, state
-//        UILabel *label = (UILabel*)[self.repeatTF.rightView viewWithTag:2016];
-    NSString *repeat = @"";
-//        if ([label.text isEqualToString:@"Every Day"]) {
-//            repeat = @"DAILY";
-//        }
-//        else if ([label.text isEqualToString:@"Every Week"]) {
-//            repeat = @"WEEKLY";
-//        }
-    NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    [data addEntriesFromDictionary:@{@"eventName":self.nameTF.text , @"startDate":self.startTF.text
-                                     , @"endDate":self.endTF.text
-                                     , @"color":[Fun stringFromColor:self.colorCtl.selectedColor]
-                                     , @"timezoneOffset" : @([NSTimeZone localTimeZone].secondsFromGMT),
-                                     @"repeat":repeat}];
-    
-    if (self.alert) {
-        [data setObject:self.alert.value forKey:@"alert"];
-    }
-    
-    if (!self.todoCtl.hidden) {
-        if (self.descTF.text.length > 0) {
-            [data setObject:self.descTF.text forKey:@"description"];
-        }
-        if (self.cityTF.text.length > 0) {
-            [data setObject:self.cityTF.text forKey:@"city"];
-        }
-        if (self.stateTF.text.length > 0) {
-            [data setObject:self.stateTF.text forKey:@"state"];
-        }
-    }
-    
-    
-    if (self.model) {
-        [data setObject:[NSNumber numberWithLongLong:self.model.objId] forKey:@"id"];
-        if (self.todoCtl.itemList.count > 0) {
-            [data setObject:[self.todoCtl.itemList componentsJoinedByString:@"|"] forKey:@"todoList"];
-        }
-        else {
-            [data setObject:@"" forKey:@"todoList"];
-        }
-        [[SwingClient sharedClient] calendarEditEvent:data completion:^(id event,NSError *error) {
-            if (!error) {
-                
-                [self.model mergeFromDictionary:[event toDictionary] useKeyMapping:YES error:nil];
-                
-                [SVProgressHUD dismiss];
-                if ([_delegate respondsToSelector:@selector(eventViewDidAdded:)]) {
-                    [_delegate eventViewDidAdded:_model.startDate];
-                }
-                [self.navigationController popViewControllerAnimated:YES];
-            }
-            else {
-                LOG_D(@"calendarEditEvent fail: %@", error);
-                [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-            }
-        }];
-        return;
-    }
-    
-    [[SwingClient sharedClient] calendarAddEvent:data completion:^(id event, NSError *error) {
-        if (!error) {
-            EventModel *model = event;
-            
-            if (!self.todoCtl.hidden && self.todoCtl.itemList.count > 0) {
-                [[SwingClient sharedClient] calendarAddTodo:model.objId todoList:[self.todoCtl.itemList componentsJoinedByString:@"|"] completion:^(id event, NSArray *todoArray, NSError *error) {
-                    if (!error) {
-                        [[GlobalCache shareInstance] addEvent:event];
-                        [SVProgressHUD dismiss];
-                        if ([_delegate respondsToSelector:@selector(eventViewDidAdded:)]) {
-                            UIDatePicker *datePicker = (UIDatePicker*)self.startTF.inputView;
-                            [_delegate eventViewDidAdded:datePicker.date];
-                        }
-                        [self.navigationController popViewControllerAnimated:YES];
-                    }
-                    else {
-                        LOG_D(@"calendarAddTodo fail: %@", error);
-                        [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-                    }
-                }];
-            }
-            else {
-                [[GlobalCache shareInstance] addEvent:event];
-                [SVProgressHUD dismiss];
-                if ([_delegate respondsToSelector:@selector(eventViewDidAdded:)]) {
-                    UIDatePicker *datePicker = (UIDatePicker*)self.startTF.inputView;
-                    [_delegate eventViewDidAdded:datePicker.date];
-                }
-                [self.navigationController popViewControllerAnimated:YES];
-            }
-        }
-        else {
-            LOG_D(@"calendarAddEvent fail: %@", error);
-            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-        }
-    }];
-}
-
 - (void)saveEventV1 {
     [SVProgressHUD showWithStatus:@"Saving, please wait..."];
     
+#warning test kidId
+    int64_t kidId = 3;
+    for (KidModel *kid in [GlobalCache shareInstance].kidsList) {
+        if (kid.macId.length > 0) {
+            kidId = kid.objId;
+        }
+    }
+    
 //eventName, startDate, endDate, color, status, description, alert, city, state
-//        UILabel *label = (UILabel*)[self.repeatTF.rightView viewWithTag:2016];
+    UILabel *label = (UILabel*)[self.repeatTF.rightView viewWithTag:2016];
     NSString *repeat = @"";
-//        if ([label.text isEqualToString:@"Every Day"]) {
-//            repeat = @"DAILY";
-//        }
-//        else if ([label.text isEqualToString:@"Every Week"]) {
-//            repeat = @"WEEKLY";
-//        }
+    if (label.text.length > 0) {
+        switch (self.repeatTF.tag - TAG_REPEAT) {
+            case 1:
+                repeat = @"DAILY";
+                break;
+            case 2:
+                repeat = @"WEEKLY";
+                break;
+            default:
+                break;
+        }
+    }
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    [data addEntriesFromDictionary:@{@"kidId":@3, @"Name":self.nameTF.text, @"startDate":self.startTF.text
+    [data addEntriesFromDictionary:@{@"kidId":@(kidId), @"Name":self.nameTF.text, @"startDate":self.startTF.text
                                      , @"endDate":self.endTF.text
                                      , @"color":[Fun stringFromColor:self.colorCtl.selectedColor]
                                      , @"timezoneOffset" : @([NSTimeZone localTimeZone].secondsFromGMT)}];
@@ -516,6 +472,8 @@
             if (!error) {
                 
                 [self.model mergeFromDictionary:[event toDictionary] useKeyMapping:YES error:nil];
+                EventModel *m = event;
+                self.model.todo = m.todo;
                 
                 [SVProgressHUD dismiss];
                 if ([_delegate respondsToSelector:@selector(eventViewDidAdded:)]) {
@@ -533,7 +491,8 @@
     
     [[SwingClient sharedClient] calendarAddEvent:data completion:^(id event, NSError *error) {
         if (!error) {
-            [[GlobalCache shareInstance] addEvent:event];
+            EventModel *m = event;
+            [[GlobalCache shareInstance] postUpdateNotification:m.startDate];
             [SVProgressHUD dismiss];
             if ([_delegate respondsToSelector:@selector(eventViewDidAdded:)]) {
                 UIDatePicker *datePicker = (UIDatePicker*)self.startTF.inputView;

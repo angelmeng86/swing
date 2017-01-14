@@ -19,16 +19,10 @@
 @interface GlobalCache : NSObject
 
 + (GlobalCache*)shareInstance;
-
 - (void)initConfig;
-
 - (void)saveInfo;
 
-//- (void)cacheActivity;
-//- (void)clearActivity;
-
 - (void)queryProfile;
-//- (void)queryKids;
 //- (void)queryWeather;
 
 - (void)logout;
@@ -36,16 +30,9 @@
 + (NSString*)dateToMonthString:(NSDate*)date;
 + (NSString*)dateToDayString:(NSDate*)date;
 
-- (NSArray*)searchEventsByDay:(NSDate*)date;
-//- (NSMutableArray*)searchWeeklyEventsByDay:(NSDate*)date;
-
 - (void)queryMonthEvents:(NSDate*)date;
+- (void)postUpdateNotification:(NSDate*)date;
 
-- (void)addEvent:(EventModel*)model;
-
-- (void)deleteEvent:(EventModel*)model;
-
-//- (BOOL)haveEventForDay:(NSDate *)date;
 - (NSArray*)queryEventColorForDay:(NSDate *)date;
 
 @property (strong, nonatomic) LoginedModel* info;
@@ -61,12 +48,9 @@
 
 @property (strong, nonatomic) NSArray* kidsList;
 
-//@property (strong, nonatomic) NSMutableDictionary* calendarEventsByMonth;
 @property (strong, nonatomic) NSMutableSet* calendarQueue;
 
 @property (strong, nonatomic) NSString* token;
-
-//@property (nonatomic, strong) NSMutableArray *activitys;
 
 //缓存已经同步的对象，缩短查找设备的时间
 @property (strong, nonatomic) CBPeripheral *peripheral;

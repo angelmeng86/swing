@@ -208,16 +208,16 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     }
     
     self.eventLabels = [NSMutableArray new];
-    self.eventData = [[GlobalCache shareInstance] searchEventsByDay:self.dateSelected];
-    self.eventData = [self.eventData sortedArrayWithOptions:NSSortStable usingComparator:^NSComparisonResult(EventModel *obj1, EventModel * obj2) {
-        return [obj1.startDate compare:obj2.startDate];
-    }];
+    self.eventData = [DBHelper queryEventModelByDay:self.dateSelected];
+//    self.eventData = [self.eventData sortedArrayWithOptions:NSSortStable usingComparator:^NSComparisonResult(EventModel *obj1, EventModel * obj2) {
+//        return [Fun compareTimePart:obj1.startDate andDate:obj2.startDate];
+//    }];
     
     NSMutableArray *colArray = [NSMutableArray array];
     for (EventModel *model in self.eventData) {
         if (colArray.count > 0) {
             EventModel *m = [colArray lastObject];
-            if (NSOrderedDescending != [m.endDate compare:model.startDate]) {
+            if (NSOrderedDescending != [Fun compareTimePart:m.endDate andDate:model.startDate]) {
                 if (colArray.count == 1) {
                     [self addEvent:m];
                 }
@@ -336,7 +336,7 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
         [[SwingClient sharedClient] calendarDeleteEvent:label.model.objId completion:^(NSError *error) {
             if (!error) {
                 LOG_D(@"calendarDeleteEvent sucess.");
-                [[GlobalCache shareInstance] deleteEvent:label.model];
+                [[GlobalCache shareInstance] postUpdateNotification:label.model.startDate];
             }
             else {
                 LOG_D(@"calendarDeleteEvent fail: %@", error);

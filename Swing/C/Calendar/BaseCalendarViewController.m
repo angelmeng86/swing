@@ -33,7 +33,6 @@
 //    [self createRandomEvents];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(eventLoaded:) name:EVENT_LIST_UPDATE_NOTI object:nil];
-//    [[GlobalCache shareInstance] queryMonthEvents:_dateSelected];
     
 //    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
 //    btn.titleLabel.font = [UIFont systemFontOfSize:35];
@@ -51,8 +50,6 @@
     [self.navigationController pushViewController:ctl animated:YES];
 }
 
-
-
 - (void)leftAction:(id)sender {
     [self.calendarContentView loadPreviousPageWithAnimation];
 }
@@ -62,11 +59,10 @@
 }
 
 - (void)eventLoaded:(NSNotification*)notification {
-//    NSLog(@"eventLoaded:%@ month:%@", _calendarManager.date, notification.object);
-    NSString *month = [GlobalCache dateToMonthString:_calendarManager.date];
-    if ([month isEqualToString:notification.object]) {
-        [_calendarManager reload];
-    }
+//    NSString *month = [GlobalCache dateToMonthString:_calendarManager.date];
+//    if (notification.object == nil || [month isEqualToString:notification.object]) {
+//        [_calendarManager reload];
+//    }
 }
 
 - (void)initCalendarManager:(BOOL)weekModeEnabled {
@@ -90,6 +86,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [_calendarManager reload];
     [[GlobalCache shareInstance] queryMonthEvents:_dateSelected];
 }
 

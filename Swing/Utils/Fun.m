@@ -212,6 +212,19 @@
     return [df stringFromDate:date];
 }
 
++ (NSString*)dateToTimeString:(NSDate*)date {
+    static NSDateFormatter *df = nil;
+    if (df == nil) {
+        df = [[NSDateFormatter alloc] init];
+        [df setDateFormat:@"HH:mm:ss"];
+    }
+    return [df stringFromDate:date];
+}
+
++ (NSComparisonResult)compareTimePart:(NSDate*)date1 andDate:(NSDate*)date2 {
+    return [[Fun dateToTimeString:date1] compare:[Fun dateToTimeString:date2]];
+}
+
 + (UIColor*)colorFromNSString:(NSString *)string
 {
     //

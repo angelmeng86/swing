@@ -23,6 +23,7 @@
 + (BOOL)addEvents:(NSArray*)array;
 
 + (NSArray*)queryEventModelByDay:(NSDate*)date;
+//+ (NSArray*)queryEventModelByDay:(NSDate*)date ascending:(BOOL)ascend;
 
 + (NSArray*)queryNearAlertEventModel:(int)limit;
 

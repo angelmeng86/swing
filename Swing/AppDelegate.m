@@ -81,9 +81,9 @@
     // Override point for customization after application launch.
 //    NSString *languageID = [[NSBundle mainBundle] preferredLocalizations].firstObject;
 //    NSLog(@"languageID:%@",languageID);
-//    LOG_D(@"home:%@", NSHomeDirectory());
+    LOG_D(@"home:%@", NSHomeDirectory());
     [[GlobalCache shareInstance] initConfig];
-    [self test];
+//    [self test];
 
     
     // Register for Push Notitications
