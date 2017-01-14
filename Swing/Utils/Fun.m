@@ -110,14 +110,6 @@
 
 + (NSString*)getTimeString:(NSDate*)updatedAt
 {
-    //    NSTimeInterval aTimer = [[NSDate date] timeIntervalSinceDate:updatedAt];
-    //    int days = (int)aTimer/(3600*24);
-    //    int hour = (int)(aTimer/3600);
-    //    int minute = (int)(aTimer - hour*3600)/60;
-    //    if (updatedAt == nil) {
-    //        LOG_D(@"updatedAt is nil");
-    //        updatedAt = [NSDate date];
-    //    }
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute fromDate:updatedAt toDate:[NSDate date] options:NSCalendarWrapComponents];
     if (components.year > 0) {
         return [NSString stringWithFormat:@"%ld year ago", (long)components.year];

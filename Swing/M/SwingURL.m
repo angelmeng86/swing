@@ -45,7 +45,7 @@
 - (NSString*)kidsAdd {
     return @"/v1/kids/add";
 }
-
+//废弃
 - (NSString*)kidsRemove {
     return @"/v1/kids/remove";
 }
@@ -69,7 +69,7 @@
 - (NSString*)addTodo {
     return @"/calendarEvent/addTodo";
 }
-//未实现
+
 - (NSString*)todoDone {
     return @"/v1/event/todo/done";
 }
@@ -89,24 +89,12 @@
 - (NSString*)retrieveAllEventsWithTodo {
     return @"/v1/event/retrieveAllEventsWithTodo";
 }
-
+#warning wait test
 - (NSString*)uploadRawData {
     return @"/v1/activity/uploadRawData";
 }
-
-- (NSString*)getDailyActivity {
-    return @"/v1/activity/retrieveData";
-}
-
-- (NSString*)getYearlyActivity {
-    return @"/v1/activity/retrieveData";
-}
-
-- (NSString*)getMonthlyActivity {
-    return @"/v1/activity/retrieveData";
-}
-
-- (NSString*)getWeeklyActivity {
+#warning wait test
+- (NSString*)getRetrieveActivity {
     return @"/v1/activity/retrieveData";
 }
 

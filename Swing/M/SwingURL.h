@@ -35,10 +35,7 @@
 @property (nonatomic, readonly, strong) NSString* retrieveAllEventsWithTodo;
 
 @property (nonatomic, readonly, strong) NSString* uploadRawData;
-@property (nonatomic, readonly, strong) NSString* getDailyActivity;
-@property (nonatomic, readonly, strong) NSString* getWeeklyActivity;
-@property (nonatomic, readonly, strong) NSString* getMonthlyActivity;
-@property (nonatomic, readonly, strong) NSString* getYearlyActivity;
+@property (nonatomic, readonly, strong) NSString* getRetrieveActivity;
 
 
 

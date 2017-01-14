@@ -59,8 +59,8 @@
     self.zipCodeTF.placeholder = LOC_STR(@"Zip code");
     self.emailTF.placeholder = LOC_STR(@"Email");
 //    self.streetTF.placeholder = LOC_STR(@"");
-    self.cityTF.placeholder = LOC_STR(@"City");
-    self.stateTF.placeholder = LOC_STR(@"State");
+//    self.cityTF.placeholder = LOC_STR(@"City");
+//    self.stateTF.placeholder = LOC_STR(@"State");
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userProfileLoaded:) name:USER_PROFILE_LOAD_NOTI object:nil];
     
@@ -97,8 +97,7 @@
 - (void)doneAction:(id)sender {
     if ([self validateTextField]) {
         [SVProgressHUD showWithStatus:@"Saving, please wait..."];
-        //birthday, nickName, address, city, zipCode, state
-        NSDictionary *data = @{/*@"email":self.emailTF.text,*/ @"phoneNumber":self.phoneTF.text, @"firstName":self.firstNameTF.text, @"lastName":self.lastNameTF.text, @"address":self.streetTF.text, @"city":self.cityTF.text, @"state":self.stateTF.text, @"zipCode":self.zipCodeTF.text};
+        NSDictionary *data = @{ @"phoneNumber":self.phoneTF.text, @"firstName":self.firstNameTF.text, @"lastName":self.lastNameTF.text, @"zipCode":self.zipCodeTF.text};
         [[SwingClient sharedClient] userUpdateProfile:data completion:^(id user, NSError *error) {
             if (error) {
                 LOG_D(@"userUpdateProfile fail: %@", error);
@@ -128,7 +127,7 @@
 }
 
 - (BOOL)validateTextField {
-    if (self.firstNameTF.text.length == 0 || self.lastNameTF.text.length == 0 || self.phoneTF.text.length == 0 || self.emailTF.text.length == 0) {
+    if (self.firstNameTF.text.length == 0 || self.lastNameTF.text.length == 0 || self.phoneTF.text.length == 0) {
         [Fun showMessageBoxWithTitle:@"Error" andMessage:@"Please input info."];
         return NO;
     }

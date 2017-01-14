@@ -10,6 +10,8 @@
 #import "CommonDef.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
+#define TAG_SEARCH_WATCH    2017
+
 @interface SyncDeviceViewController ()
 
 @end
@@ -54,6 +56,7 @@
     if (![GlobalCache shareInstance].local.deviceMAC) {
         //确认当前用户没有绑定设备
         self.label1.text = LOC_STR(@"You have not bind device yet.");
+        self.button1.tag = TAG_SEARCH_WATCH;
         [self.button1 setTitle:LOC_STR(@"Search a watch") forState:UIControlStateNormal];
         [self.button2 setTitle:LOC_STR(@"Go to dashboard") forState:UIControlStateNormal];
     }
@@ -83,7 +86,7 @@
 }
 
 - (IBAction)syncCurrentAction:(UIButton*)sender {
-    if ([[sender titleForState:UIControlStateNormal] isEqualToString:@"Search a watch"]) {
+    if (self.button1.tag == TAG_SEARCH_WATCH) {
         [self syncAnotherAction:sender];
         return;
     }

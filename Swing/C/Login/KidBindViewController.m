@@ -108,7 +108,6 @@
                     NSMutableDictionary *data = [NSMutableDictionary dictionaryWithDictionary:@{@"firstName":self.firstNameTF.text, @"lastName":self.lastNameTF.text}];
                     if (self.macAddress) {
                         NSString *mac = [Fun dataToHex:self.macAddress];
-                        [data setObject:mac forKey:@"note"];
                         [data setObject:mac forKey:@"macId"];//new api
                     }
                     

@@ -479,7 +479,7 @@
 //            repeat = @"WEEKLY";
 //        }
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    [data addEntriesFromDictionary:@{@"kidId":@5, @"Name":self.nameTF.text, @"startDate":self.startTF.text
+    [data addEntriesFromDictionary:@{@"kidId":@3, @"Name":self.nameTF.text, @"startDate":self.startTF.text
                                      , @"endDate":self.endTF.text
                                      , @"color":[Fun stringFromColor:self.colorCtl.selectedColor]
                                      , @"timezoneOffset" : @([NSTimeZone localTimeZone].secondsFromGMT)}];
