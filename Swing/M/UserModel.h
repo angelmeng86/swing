@@ -10,7 +10,7 @@
 
 @interface UserModel : JSONModel
 
-@property (nonatomic) int objId;
+@property (nonatomic) int64_t objId;
 @property (strong, nonatomic) NSString* email;
 @property (strong, nonatomic) NSString* firstName;
 @property (strong, nonatomic) NSString* lastName;

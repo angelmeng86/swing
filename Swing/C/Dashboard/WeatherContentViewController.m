@@ -57,7 +57,7 @@
     [self loadWeather];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(weatherLoaded:) name:WEATHER_UPDATE_NOTI object:nil];
-    [[GlobalCache shareInstance] queryWeather];
+//    [[GlobalCache shareInstance] queryWeather];
 }
 
 - (void)reset {

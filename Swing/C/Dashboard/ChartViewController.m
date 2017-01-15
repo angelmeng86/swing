@@ -235,58 +235,41 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     if (task) {
         return;
     }
-    NSString *macId = [Fun dataToHex:[GlobalCache shareInstance].local.deviceMAC];
-    if (macId.length == 0) {
+    int64_t kidId = [[GlobalCache shareInstance] getKidId];
+    if (kidId == -1) {
         return;
     }
-    task = [[SwingClient sharedClient] deviceGetActivity:macId type:(GetActivityType)_type completion:^(id dailyActs, NSError *error) {
+    task = [[SwingClient sharedClient] deviceGetActivity:kidId type:(GetActivityType)_type completion:^(id dailyActs, NSError *error) {
         task = nil;
         if (!error) {
             LOG_D(@"dailyActs:%@", dailyActs);
             NSMutableDictionary *indoors = [NSMutableDictionary dictionary];
             NSMutableDictionary *outdoors = [NSMutableDictionary dictionary];
             for (ActivityResultModel *m in dailyActs) {
+                NSString *key = nil;
+                if (_type == GetActivityTypeYear) {
+                    key = [GlobalCache dateToMonthString:m.receivedDate];
+                }
+                else {
+                    key = [GlobalCache dateToDayString:m.receivedDate];
+                }
                 if ([m.type isEqualToString:@"INDOOR"]) {
-                    /*if (_type == ChartTypeYear) {
-                     NSString *date = [m.date substringToIndex:7];
-                     if (indoors[date]) {
-                     ActivityResultModel *model = indoors[date];
-                     model.steps += m.steps;
-                     }
-                     else {
-                     indoors[date] = m;
-                     }
-                     }
-                     else {*/
-                    if (indoors[m.date]) {
-                        ActivityResultModel *model = indoors[m.date];
+                    if (indoors[key]) {
+                        ActivityResultModel *model = indoors[key];
                         model.steps += m.steps;
                     }
                     else {
-                        indoors[m.date] = m;
+                        indoors[key] = m;
                     }
-                    /*}*/
                 }
                 else if([m.type isEqualToString:@"OUTDOOR"]) {
-                    /*if (_type == ChartTypeYear) {
-                     NSString *date = [m.date substringToIndex:6];
-                     if (outdoors[date]) {
-                     ActivityResultModel *model = outdoors[date];
-                     model.steps += m.steps;
-                     }
-                     else {
-                     outdoors[date] = m;
-                     }
-                     }
-                     else {*/
-                    if (outdoors[m.date]) {
-                        ActivityResultModel *model = outdoors[m.date];
+                    if (outdoors[key]) {
+                        ActivityResultModel *model = outdoors[key];
                         model.steps += m.steps;
                     }
                     else {
-                        outdoors[m.date] = m;
+                        outdoors[key] = m;
                     }
-                    /*}*/
                 }
             }
             self.indoorData = indoors;
@@ -336,16 +319,20 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     switch (_type) {
         case ChartTypeYear:
         {
+            /*
             NSCalendar *cal = [NSCalendar currentCalendar];
             NSDateComponents *comp = [cal components:NSCalendarUnitYear|NSCalendarUnitMonth fromDate:date];
-//            LOG_D(@"month:%ld", (long)comp.month);
             NSInteger month = comp.month - 11 + (int)index;
             NSInteger year = comp.year;
             if (month < 0) {
                 month += 12;
                 year--;
             }
-            NSString *key = [NSString stringWithFormat:@"%ld-%02ld", (long)year, month];
+            NSString *key = [NSString stringWithFormat:@"%ld-%02ld", (long)year, (long)month];
+             */
+            //从前12个月开始计算
+            NSDate *targetDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitMonth value:index-maxCount+1 toDate:date options:0];
+            NSString *key = [GlobalCache dateToMonthString:targetDate];
             LOG_D(@"month:%@", key);
             ActivityResultModel *model = dict[key];
             if (model) {
@@ -355,9 +342,11 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
             break;
         default:
         {
-            int pos = (int)index;
-            NSDate *preDate = [date dateByAddingTimeInterval: (pos - maxCount + 1) * 24 * 60 * 60];
-            NSString *key = [GlobalCache dateToDayString:preDate];
+//            int pos = (int)index;
+//            NSDate *targetDate = [date dateByAddingTimeInterval: (pos - maxCount + 1) * 24 * 60 * 60];
+            NSDate *targetDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:index-maxCount+1 toDate:date options:0];
+            NSString *key = [GlobalCache dateToDayString:targetDate];
+            
             ActivityResultModel *model = dict[key];
             if (model) {
                 return model.steps;
@@ -370,57 +359,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 
 - (void)reloadData {
     NSDictionary *dailyActs = outdoorBtn.selected ? self.outdoorData : self.indoorData;
-    /*
-    if (dailyActs.count > 0) {
-        int maxCount = 0;
-        NSMutableArray *stepData = [NSMutableArray array];
-        NSMutableArray *distanceData = [NSMutableArray array];
-        switch (_type) {
-            case ChartTypeMonth:
-            {
-                for (int i = (int)dailyActs.count; i < 30; i++) {
-                    [stepData addObject:[NSNumber numberWithLong:0]];
-                    [distanceData addObject:[NSNumber numberWithLong:0]];
-                }
-                maxCount = 30;
-            }
-                break;
-            case ChartTypeYear:
-            {
-                for (int i = (int)dailyActs.count; i < 12; i++) {
-                    [stepData addObject:[NSNumber numberWithLong:0]];
-                    [distanceData addObject:[NSNumber numberWithLong:0]];
-                }
-                maxCount = 12;
-            }
-                break;
-            default:
-            {
-                for (int i = (int)dailyActs.count; i < 7; i++) {
-                    [stepData addObject:[NSNumber numberWithLong:0]];
-                    [distanceData addObject:[NSNumber numberWithLong:2]];
-                }
-                maxCount = 7;
-            }
-                break;
-        }
-        
-        for (ActivityResultModel *m in dailyActs) {
-            [stepData addObject:[NSNumber numberWithLong:m.steps]];
-//            [distanceData addObject:[NSNumber numberWithLong:m.distance]];
-            if (stepData.count == maxCount) {
-                break;
-            }
-        }
-        
-        _stepChartData = [NSArray arrayWithArray:stepData];
-//        _distanceChartData = [NSArray arrayWithArray:distanceData];
-    }
-    else {
-        _stepChartData = nil;
-        _distanceChartData = nil;
-    }
-     */
+
     _stepChartData = dailyActs;
     _distanceChartData = nil;
     

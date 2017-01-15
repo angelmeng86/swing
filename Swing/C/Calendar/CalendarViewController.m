@@ -52,15 +52,10 @@
 }
 
 - (void)loadEventView {
-    NSArray *events = [[GlobalCache shareInstance] searchEventsByDay:self.dateSelected];
+    NSArray *events = [DBHelper queryEventModelByDay:self.dateSelected];
     if (events.count > 0) {
-        if (events.count > 1) {
-            events = [events sortedArrayWithOptions:NSSortStable usingComparator:^NSComparisonResult(EventModel *obj1, EventModel * obj2) {
-                return [obj1.startDate compare:obj2.startDate];
-            }];
-        }
         for (EventModel *event in events) {
-            if (NSOrderedDescending == [event.startDate compare:[NSDate date]]) {
+            if (NSOrderedDescending == [Fun compareTimePart:event.startDate andDate:[NSDate date]]) {
                 static NSDateFormatter *dateFormatter;
                 if(!dateFormatter){
                     dateFormatter = [NSDateFormatter new];

@@ -10,6 +10,10 @@
 
 @interface SwingClientTest : NSObject
 
+@property (nonatomic) int times;
+
++ (void)test:(int)index times:(int)times;
+
 + (void)testAll:(int)index;
 
 + (void)testBluetooth;

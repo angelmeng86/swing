@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="52W-BC-qht">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="52W-BC-qht">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Tab Bar Controller2-->
@@ -12,7 +16,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" id="i0C-0b-z3f">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="HsM-XX-rLL" kind="relationship" relationship="viewControllers" id="afB-3u-zZm"/>
@@ -56,7 +60,7 @@
         <!--Message-->
         <scene sceneID="7KQ-N5-yj5">
             <objects>
-                <navigationController title="Message" id="zcl-as-bEy" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="message" title="Message" id="zcl-as-bEy" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="tab_mail" selectedImage="tab_mail_selected" id="alP-Bh-zNH"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8al-k6-TID">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -97,14 +101,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="tab_calendar" width="28" height="25"/>
-        <image name="tab_calendar_selected" width="28" height="25"/>
+        <image name="tab_calendar" width="28" height="24"/>
+        <image name="tab_calendar_selected" width="28" height="24"/>
         <image name="tab_chart" width="20" height="28"/>
         <image name="tab_chart_selected" width="20" height="28"/>
         <image name="tab_mail" width="28" height="19"/>
         <image name="tab_mail_selected" width="28" height="19"/>
-        <image name="tab_profile" width="28" height="28"/>
-        <image name="tab_profile_selected" width="28" height="28"/>
+        <image name="tab_profile" width="24" height="28"/>
+        <image name="tab_profile_selected" width="24" height="28"/>
         <image name="tab_watch" width="23" height="28"/>
         <image name="tab_watch_selected" width="23" height="28"/>
     </resources>

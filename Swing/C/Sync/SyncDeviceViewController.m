@@ -10,6 +10,8 @@
 #import "CommonDef.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
+#define TAG_SEARCH_WATCH    2017
+
 @interface SyncDeviceViewController ()
 
 @end
@@ -33,11 +35,11 @@
     [self.button1 setTitle:LOC_STR(@"Yes, please") forState:UIControlStateNormal];
     [self.button2 setTitle:LOC_STR(@"No, go to dashboard") forState:UIControlStateNormal];
     
-    if ([GlobalCache shareInstance].info.profileImage) {
-        [self.imageView sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:[GlobalCache shareInstance].info.profileImage]]];
-    }
     if ([GlobalCache shareInstance].user) {
         self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", [GlobalCache shareInstance].user.firstName, [GlobalCache shareInstance].user.lastName];
+        if ([GlobalCache shareInstance].user.profile) {
+            [self.imageView sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:[GlobalCache shareInstance].user.profile]]];
+        }
     }
     
     [self setCustomBackBarButtonItem];
@@ -54,6 +56,7 @@
     if (![GlobalCache shareInstance].local.deviceMAC) {
         //确认当前用户没有绑定设备
         self.label1.text = LOC_STR(@"You have not bind device yet.");
+        self.button1.tag = TAG_SEARCH_WATCH;
         [self.button1 setTitle:LOC_STR(@"Search a watch") forState:UIControlStateNormal];
         [self.button2 setTitle:LOC_STR(@"Go to dashboard") forState:UIControlStateNormal];
     }
@@ -83,7 +86,7 @@
 }
 
 - (IBAction)syncCurrentAction:(UIButton*)sender {
-    if ([[sender titleForState:UIControlStateNormal] isEqualToString:@"Search a watch"]) {
+    if (self.button1.tag == TAG_SEARCH_WATCH) {
         [self syncAnotherAction:sender];
         return;
     }
@@ -93,7 +96,7 @@
         [self.navigationController pushViewController:ctl animated:YES];
     }
     else {
-        [SVProgressHUD showErrorWithStatus:@"you have not bind device yet, please sync a watch."];
+        [SVProgressHUD showErrorWithStatus:LOC_STR(@"you have not bind device yet, please sync a watch.")];
     }
     
     

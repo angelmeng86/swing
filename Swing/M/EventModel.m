@@ -15,6 +15,7 @@
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
                                                        @"id": @"objId",
+                                                       @"name": @"eventName",
                                                        @"description": @"desc",
                                                        }];
 }
@@ -34,7 +35,7 @@
     event.repeat = _repeat;
     
     for (Todo *t in event.todoList) {
-        LOG_D(@"del todo:%d", t.objId);
+        LOG_D(@"del todo:%lld", t.objId);
         [t MR_deleteEntity];
     }
     if (event.todoList) {

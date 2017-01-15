@@ -20,7 +20,7 @@
         <scene sceneID="AZA-2Z-giU">
             <objects>
                 <navigationController id="J63-vw-OfT" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="8LF-pz-0QP">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8LF-pz-0QP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1897,7 +1897,7 @@ You can do this!</string>
                                 <rect key="frame" x="0.0" y="20" width="414" height="716"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M8W-Nh-Doq">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="503"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="413"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LUs-rg-FkQ" customClass="LFTextField">
                                                 <rect key="frame" x="40" y="178" width="334" height="35"/>
@@ -1931,38 +1931,6 @@ You can do this!</string>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Street" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pHO-Kd-bM9" customClass="LFTextField">
-                                                <rect key="frame" x="40" y="358" width="334" height="35"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="35" id="Ub2-qD-LFB"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EOa-Of-sCp" customClass="LFTextField">
-                                                <rect key="frame" x="40" y="403" width="334" height="35"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="35" id="uL6-e4-4en"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5a7-1d-kcn" customClass="LFTextField">
-                                                <rect key="frame" x="40" y="448" width="159.66666666666666" height="35"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="35" id="xA8-5P-jnf"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ZipCode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LX1-KV-uRr" customClass="LFTextField">
-                                                <rect key="frame" x="214.00000000000003" y="448" width="159.66666666666671" height="35"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="35" id="XQ1-yv-ZCA"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                            </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KK5-8Y-uO8">
                                                 <rect key="frame" x="147" y="38" width="120" height="120"/>
                                                 <color key="backgroundColor" red="0.47450980390000003" green="0.47450980390000003" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1979,46 +1947,45 @@ You can do this!</string>
                                                     <action selector="imageBtnAction:" destination="Swd-Kn-SI3" eventType="touchUpInside" id="F0R-d5-LLN"/>
                                                 </connections>
                                             </button>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ZipCode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LX1-KV-uRr" customClass="LFTextField">
+                                                <rect key="frame" x="40" y="358" width="334" height="35"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="XQ1-yv-ZCA"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                            </textField>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="5a7-1d-kcn" secondAttribute="bottom" constant="20" id="17Y-Lv-Nwx"/>
-                                            <constraint firstItem="pHO-Kd-bM9" firstAttribute="width" secondItem="LUs-rg-FkQ" secondAttribute="width" id="1TO-Df-Iyc"/>
-                                            <constraint firstItem="EOa-Of-sCp" firstAttribute="leading" secondItem="LUs-rg-FkQ" secondAttribute="leading" id="4KN-8i-I7y"/>
-                                            <constraint firstItem="EOa-Of-sCp" firstAttribute="top" secondItem="pHO-Kd-bM9" secondAttribute="bottom" constant="10" id="5Zr-ik-mru"/>
-                                            <constraint firstItem="EOa-Of-sCp" firstAttribute="trailing" secondItem="KK5-8Y-uO8" secondAttribute="trailing" id="5cs-qn-n5G"/>
-                                            <constraint firstItem="LX1-KV-uRr" firstAttribute="width" secondItem="5a7-1d-kcn" secondAttribute="width" id="6Iu-do-FPc"/>
                                             <constraint firstItem="aRg-ER-9os" firstAttribute="top" secondItem="kIX-zf-mxr" secondAttribute="bottom" constant="10" id="8D9-DX-dc4"/>
                                             <constraint firstItem="AAG-lg-0DG" firstAttribute="bottom" secondItem="KK5-8Y-uO8" secondAttribute="bottom" id="9CR-KY-QRy"/>
                                             <constraint firstItem="LX1-KV-uRr" firstAttribute="trailing" secondItem="KK5-8Y-uO8" secondAttribute="trailing" id="9g1-Zx-u4g"/>
-                                            <constraint firstItem="LX1-KV-uRr" firstAttribute="leading" secondItem="5a7-1d-kcn" secondAttribute="trailing" constant="15" id="BnE-tb-6Qe"/>
+                                            <constraint firstAttribute="bottom" secondItem="LX1-KV-uRr" secondAttribute="bottom" constant="20" id="EFV-03-Xys"/>
                                             <constraint firstItem="AAG-lg-0DG" firstAttribute="top" secondItem="aRg-ER-9os" secondAttribute="bottom" constant="10" id="G0d-QM-qE3"/>
                                             <constraint firstItem="LX1-KV-uRr" firstAttribute="trailing" secondItem="LUs-rg-FkQ" secondAttribute="trailing" id="HWl-Gt-nUX"/>
-                                            <constraint firstItem="pHO-Kd-bM9" firstAttribute="top" secondItem="AAG-lg-0DG" secondAttribute="bottom" constant="10" id="Hg9-J8-6w8"/>
                                             <constraint firstItem="kIX-zf-mxr" firstAttribute="leading" secondItem="LUs-rg-FkQ" secondAttribute="leading" id="Hso-Wo-w4q"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="KK5-8Y-uO8" secondAttribute="trailing" constant="20" id="I0R-yo-qBX"/>
-                                            <constraint firstItem="pHO-Kd-bM9" firstAttribute="leading" secondItem="LUs-rg-FkQ" secondAttribute="leading" id="I7a-Iy-pZt"/>
-                                            <constraint firstItem="5a7-1d-kcn" firstAttribute="top" secondItem="EOa-Of-sCp" secondAttribute="bottom" constant="10" id="JhV-7W-3Ec"/>
-                                            <constraint firstItem="pHO-Kd-bM9" firstAttribute="trailing" secondItem="KK5-8Y-uO8" secondAttribute="trailing" id="Ktw-NL-z6e"/>
+                                            <constraint firstItem="LX1-KV-uRr" firstAttribute="height" secondItem="LUs-rg-FkQ" secondAttribute="height" id="NaG-8W-P4z"/>
                                             <constraint firstItem="LUs-rg-FkQ" firstAttribute="top" secondItem="KK5-8Y-uO8" secondAttribute="top" id="PNx-iC-H7i"/>
                                             <constraint firstItem="AAG-lg-0DG" firstAttribute="top" secondItem="KK5-8Y-uO8" secondAttribute="top" id="Ugt-Vn-k0U"/>
                                             <constraint firstItem="KK5-8Y-uO8" firstAttribute="leading" secondItem="LUs-rg-FkQ" secondAttribute="trailing" constant="20" id="Vx1-Rn-Qha"/>
-                                            <constraint firstItem="LX1-KV-uRr" firstAttribute="centerY" secondItem="5a7-1d-kcn" secondAttribute="centerY" id="X5h-Rd-0zd"/>
                                             <constraint firstItem="AAG-lg-0DG" firstAttribute="width" secondItem="LUs-rg-FkQ" secondAttribute="width" id="ZUm-3J-OhM"/>
                                             <constraint firstAttribute="height" constant="400" id="Zd9-Wt-faN"/>
                                             <constraint firstItem="AAG-lg-0DG" firstAttribute="leading" secondItem="LUs-rg-FkQ" secondAttribute="leading" id="asU-4y-mQr"/>
-                                            <constraint firstItem="5a7-1d-kcn" firstAttribute="leading" secondItem="LUs-rg-FkQ" secondAttribute="leading" id="crT-zm-0eX"/>
                                             <constraint firstAttribute="trailing" secondItem="LUs-rg-FkQ" secondAttribute="trailing" constant="40" id="cyw-Rc-MRf"/>
+                                            <constraint firstItem="LX1-KV-uRr" firstAttribute="centerX" secondItem="LUs-rg-FkQ" secondAttribute="centerX" id="dP7-mS-8Bu"/>
                                             <constraint firstItem="LUs-rg-FkQ" firstAttribute="leading" secondItem="M8W-Nh-Doq" secondAttribute="leading" constant="40" id="h3t-LK-Uv4"/>
                                             <constraint firstItem="aRg-ER-9os" firstAttribute="width" secondItem="LUs-rg-FkQ" secondAttribute="width" id="ivr-b6-Z54"/>
                                             <constraint firstItem="KK5-8Y-uO8" firstAttribute="leading" secondItem="AAG-lg-0DG" secondAttribute="trailing" constant="-120" id="jbl-Im-nBF"/>
                                             <constraint firstItem="kIX-zf-mxr" firstAttribute="width" secondItem="LUs-rg-FkQ" secondAttribute="width" id="lIs-EX-dGC"/>
                                             <constraint firstItem="KK5-8Y-uO8" firstAttribute="centerX" secondItem="M8W-Nh-Doq" secondAttribute="centerX" id="nwb-dr-DBi"/>
                                             <constraint firstItem="AAG-lg-0DG" firstAttribute="trailing" secondItem="KK5-8Y-uO8" secondAttribute="trailing" id="oOm-x1-vey"/>
-                                            <constraint firstItem="EOa-Of-sCp" firstAttribute="width" secondItem="LUs-rg-FkQ" secondAttribute="width" id="pI1-x5-DQn"/>
                                             <constraint firstItem="kIX-zf-mxr" firstAttribute="top" secondItem="LUs-rg-FkQ" secondAttribute="bottom" constant="10" id="qjC-VY-1nb"/>
                                             <constraint firstItem="aRg-ER-9os" firstAttribute="leading" secondItem="LUs-rg-FkQ" secondAttribute="leading" id="wML-jW-9mh"/>
                                             <constraint firstItem="LUs-rg-FkQ" firstAttribute="top" secondItem="KK5-8Y-uO8" secondAttribute="bottom" constant="20" id="wpa-ON-kpl"/>
                                             <constraint firstItem="KK5-8Y-uO8" firstAttribute="top" secondItem="M8W-Nh-Doq" secondAttribute="topMargin" constant="30" id="xh1-E6-ehk"/>
+                                            <constraint firstItem="LX1-KV-uRr" firstAttribute="top" secondItem="AAG-lg-0DG" secondAttribute="bottom" constant="10" id="ysO-vF-5XK"/>
+                                            <constraint firstItem="LX1-KV-uRr" firstAttribute="width" secondItem="LUs-rg-FkQ" secondAttribute="width" id="zjb-Gk-8rc"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
@@ -2030,8 +1997,6 @@ You can do this!</string>
                                                 <exclude reference="9CR-KY-QRy"/>
                                                 <exclude reference="Ugt-Vn-k0U"/>
                                                 <exclude reference="oOm-x1-vey"/>
-                                                <exclude reference="Ktw-NL-z6e"/>
-                                                <exclude reference="5cs-qn-n5G"/>
                                                 <exclude reference="9g1-Zx-u4g"/>
                                             </mask>
                                         </variation>
@@ -2070,21 +2035,18 @@ You can do this!</string>
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="cityTF" destination="EOa-Of-sCp" id="IdV-CZ-TVL"/>
                         <outlet property="deviceConllectionView" destination="jcy-ga-1ae" id="uCR-1c-ZzA"/>
                         <outlet property="emailTF" destination="AAG-lg-0DG" id="hqh-gy-x7l"/>
                         <outlet property="firstNameTF" destination="LUs-rg-FkQ" id="Z2L-8H-sxQ"/>
                         <outlet property="imageBtn" destination="KK5-8Y-uO8" id="LKe-Fz-Fs9"/>
                         <outlet property="lastNameTF" destination="kIX-zf-mxr" id="6GV-y1-fqh"/>
                         <outlet property="phoneTF" destination="aRg-ER-9os" id="9qX-Id-jP6"/>
-                        <outlet property="stateTF" destination="5a7-1d-kcn" id="d9E-2I-no8"/>
-                        <outlet property="streetTF" destination="pHO-Kd-bM9" id="cax-3Y-JOx"/>
                         <outlet property="zipCodeTF" destination="LX1-KV-uRr" id="trE-jh-Nrx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mbS-wh-Ver" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2170" y="2055"/>
+            <point key="canvasLocation" x="2169.5652173913045" y="2054.3478260869565"/>
         </scene>
     </scenes>
     <resources>

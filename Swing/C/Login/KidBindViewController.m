@@ -108,7 +108,7 @@
                     NSMutableDictionary *data = [NSMutableDictionary dictionaryWithDictionary:@{@"firstName":self.firstNameTF.text, @"lastName":self.lastNameTF.text}];
                     if (self.macAddress) {
                         NSString *mac = [Fun dataToHex:self.macAddress];
-                        [data setObject:mac forKey:@"note"];
+                        [data setObject:mac forKey:@"macId"];//new api
                     }
                     
                     [[SwingClient sharedClient] kidsAdd:data completion:^(id kid, NSError *error) {
@@ -126,7 +126,7 @@
                             }
                             if (image && model) {
                                 [SVProgressHUD showWithStatus:@"UploadImage, please wait..."];
-                                [[SwingClient sharedClient] kidsUploadKidsProfileImage:image kidId:[NSString stringWithFormat:@"%d", model.objId] completion:^(NSString *profileImage, NSError *error) {
+                                [[SwingClient sharedClient] kidsUploadKidsProfileImage:image kidId:model.objId completion:^(NSString *profileImage, NSError *error) {
                                     if (error) {
                                         LOG_D(@"uploadProfileImage fail: %@", error);
                                     }

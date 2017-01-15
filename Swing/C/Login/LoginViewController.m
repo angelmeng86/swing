@@ -29,8 +29,10 @@
     self.emailTextField.delegate = self;
     self.pwdTextField.delegate = self;
     
-//    self.emailTextField.text = @"123@qq.com";
-//    self.pwdTextField.text = @"111111";
+#ifdef MAPPLE_DEBUG
+    self.emailTextField.text = @"test10@swing.com";
+    self.pwdTextField.text = @"111111";
+#endif
     [self setCustomBackButton];
 }
 
@@ -49,6 +51,15 @@
         return NO;
     }
     return YES;
+}
+
+- (void)cacheEventsV1 {
+    [[SwingClient sharedClient] calendarGetAllEventsWithCompletion:^(NSArray *eventArray, NSError *error) {
+        if (![self isError:error tag:@"calendarGetAllEvents"]) {
+            [SVProgressHUD dismiss];
+            [self goToMain];
+        }
+    }];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -83,23 +94,8 @@
 //                                        [SVProgressHUD dismiss];
 //                                        [self goToMain];
                                         [SVProgressHUD showWithStatus:@"Loading data, please wait..."];
-                                        //继续获取当月和下月Event进行本地缓存
-                                        [[SwingClient sharedClient] calendarGetEvents:[NSDate date] type:GetEventTypeMonth completion:^(NSArray *eventArray, NSError *error) {
-                                            if (![self isError:error tag:@"calendarGetEvents"]) {
-                                                NSDateComponents* comps = [[DBHelper calendar] components:NSCalendarUnitYear|NSCalendarUnitMonth | NSCalendarUnitDay fromDate:[NSDate date]];
-                                                comps.month += 1;
-                                                comps.day = 1;
-                                                NSDate *nextMonth = [[DBHelper calendar] dateFromComponents:comps];
-                                                [[SwingClient sharedClient] calendarGetEvents:nextMonth type:GetEventTypeMonth completion:^(NSArray *eventArray, NSError *error) {
-                                                    if (![self isError:error tag:@"calendarGetEvents2"]) {
-                                                        [SVProgressHUD dismiss];
-                                                        [self goToMain];
-                                                    }
-                                                }];
-                                                
-                                            }
-                                        }];
-                                        
+                                        //继续获取所有Event进行本地缓存
+                                        [self cacheEventsV1];
                                     }
                                 }];
                             }

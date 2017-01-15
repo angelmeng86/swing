@@ -16,7 +16,7 @@
 
 @property (nonatomic, strong) NSString *indoorActivity;
 @property (nonatomic, strong) NSString *outdoorActivity;
-@property (nonatomic) long time;
+@property (nonatomic) int64_t time;
 @property (nonatomic, strong) NSString *macId;
 
 @property (nonatomic) long inData1;

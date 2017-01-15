@@ -10,12 +10,13 @@
 
 @interface KidModel : JSONModel
 
-@property (nonatomic) int objId;
+@property (nonatomic) int64_t objId;
 @property (strong, nonatomic) NSString* firstName;
 @property (strong, nonatomic) NSString* lastName;
 @property (strong, nonatomic) NSString<Optional>* nickName;
 @property (strong, nonatomic) NSDate<Optional>* birthday;
-@property (strong, nonatomic) NSString<Optional>* note;
 @property (strong, nonatomic) NSString<Optional>* profile;
+
+@property (strong, nonatomic) NSString<Optional>* macId;//new api added
 
 @end

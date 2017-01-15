@@ -83,8 +83,8 @@
         self.phoneLabel.text = [GlobalCache shareInstance].user.phoneNumber;
         self.addressLabel.text = [GlobalCache shareInstance].user.address;
         self.addressLabel2.text = [[GlobalCache shareInstance].user address2];
+        self.emailLabel.text = [GlobalCache shareInstance].user.email;
     }
-    self.emailLabel.text = [GlobalCache shareInstance].info.email;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -96,8 +96,8 @@
 //    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editProfileAction:)];
     
     
-    if ([GlobalCache shareInstance].info.profileImage) {
-        [self.headerBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:[GlobalCache shareInstance].info.profileImage]] forState:UIControlStateNormal];
+    if ([GlobalCache shareInstance].user.profile) {
+        [self.headerBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:[GlobalCache shareInstance].user.profile]] forState:UIControlStateNormal];
     }
     [self loadProfile];
     [[GlobalCache shareInstance] queryProfile];

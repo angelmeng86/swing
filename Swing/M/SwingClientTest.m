@@ -8,7 +8,7 @@
 
 #import "SwingClientTest.h"
 #import "CommonDef.h"
-#import "RCLocationManager.h"
+//#import "RCLocationManager.h"
 #import "BLEClient.h"
 
 @interface SwingClientTest ()
@@ -19,16 +19,30 @@
 @property (nonatomic, strong) CBPeripheral *peripheral;
 @property (nonatomic, strong) BLEClient *client;
 
+
+
 @end
 
 @implementation SwingClientTest
 
++ (void)test:(int)index times:(int)times {
+    SwingClientTest *test = [[SwingClientTest alloc] init];
+    test.times = times;
+    [test test:index];
+}
+
 + (void)testAll:(int)index {
     SwingClientTest *test = [[SwingClientTest alloc] init];
+    test.times = 100;
     [test test:index];
 }
 
 - (void)test:(int)index {
+    int64_t kidId = 3;
+    if (--_times < 0) {
+        NSLog(@"test end----------------");
+        return;
+    }
     NSLog(@"test[%d]----------------", index);
     switch (index) {
         case 0:
@@ -46,9 +60,14 @@
         {
             //Params(required) - email, password, phoneNumber, firstName, lastName
             //other Params - birthday, nickName, sex, address, city, zipCode, role(2 type: ROLE_USER, ROLE_NANNY)
-            [[SwingClient sharedClient] userRegister:@{@"email":@"test10@swing.com", @"password":@"111111", @"phoneNumber":@"13838078273", @"firstName":@"Mapple", @"lastName":@"Liu", @"zipCode":@"123456"} completion:^(id user, NSError *error) {
+            [[SwingClient sharedClient] userRegister:@{@"email":@"test10@swing.com", @"password":@"111111", @"phoneNumber":@"13838078273", @"firstName":@"Maple", @"lastName":@"Liu", @"zipCode":@"123456"} completion:^(id user, NSError *error) {
                 if (error) {
                     LOG_D(@"registerUser fail: %@", error);
+                    NSData *data = [error.userInfo objectForKey:@"com.alamofire.serialization.response.error.data"];
+                    if (data) {
+                        LOG_D(@"HTTP:%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+                    }
+                    
                 }
                 else {
                     NSLog(@"user:%@", user);
@@ -62,6 +81,10 @@
             [[SwingClient sharedClient]userLogin:@"test10@swing.com" password:@"111111" completion:^(NSError *error) {
                 if (error) {
                     LOG_D(@"login fail: %@", error);
+                    NSData *data = [error.userInfo objectForKey:@"com.alamofire.serialization.response.error.data"];
+                    if (data) {
+                        LOG_D(@"HTTP:%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+                    }
                 }
                 [self test:index + 1];
             }];
@@ -81,7 +104,7 @@
         {
             //Params(required) - firstName, lastName, birthday(Format must be: "yyyy-MM-dd")
             //Params(not required) - nickName, note
-            [[SwingClient sharedClient] kidsAdd:@{@"firstName":@"Lucy", @"lastName":@"Kid", @"birthday":@"1900-08-04"} completion:^(id kid,NSError *error) {
+            [[SwingClient sharedClient] kidsAdd:@{@"firstName":@"Lucy", @"lastName":@"Kid", @"note":@"19000804", @"macId":@"19000804"} completion:^(id kid,NSError *error) {
                 if (error) {
                     LOG_D(@"kidsAdd fail: %@", error);
                 }
@@ -95,9 +118,9 @@
             break;
         case 5:
         {
-            NSString *objId = @"2";
+            int64_t objId = 2;
             if (self.kid) {
-                objId = [NSString stringWithFormat:@"%d", self.kid.objId];
+                objId = self.kid.objId;
             }
             [[SwingClient sharedClient] kidsUploadKidsProfileImage:LOAD_IMAGE(@"battery_icon") kidId:objId completion:^(NSString *profileImage, NSError *error) {
                 if (error) {
@@ -112,12 +135,22 @@
             break;
         case 6:
         {
-            [[SwingClient sharedClient] kidsListWithCompletion:^(NSArray *list, NSError *error) {
+//            [[SwingClient sharedClient] kidsListWithCompletion:^(NSArray *list, NSError *error) {
+//                if (error) {
+//                    LOG_D(@"kidsListWithCompletion fail: %@", error);
+//                }
+//                else {
+//                    NSLog(@"list:%@", list);
+//                }
+//                [self test:index + 1];
+//            }];
+            
+            [[SwingClient sharedClient] calendarGetAllEventsWithCompletion:^(NSArray *eventArray, NSError *error) {
                 if (error) {
-                    LOG_D(@"kidsListWithCompletion fail: %@", error);
+                    LOG_D(@"calendarGetAllEventsWithCompletion fail: %@", error);
                 }
                 else {
-                    NSLog(@"list:%@", list);
+                    NSLog(@"eventArray:%@", eventArray);
                 }
                 [self test:index + 1];
             }];
@@ -142,9 +175,9 @@
             break;
         case 8:
         {
-            NSString *objId = @"10";
+            int64_t objId = 10;
             if (self.event) {
-                objId = [NSString stringWithFormat:@"%d", self.event.objId];
+                objId = self.event.objId;
             }
             //Params(required) - eventId, todoList
             [[SwingClient sharedClient] calendarAddTodo:objId todoList:@"hello|world" completion:^(id event, NSArray *todoArray, NSError *error) {
@@ -211,6 +244,7 @@
 //            [[MMLocationManager shareLocation] getLocationCoordinate:^(CLLocationCoordinate2D locationCorrrdinate) {
 //                NSLog(@"latitude:%f longitude:%f", locationCorrrdinate.latitude,locationCorrrdinate.longitude);
 //            }];
+            /*
             [[RCLocationManager sharedManager] requestUserLocationWhenInUseWithBlockOnce:^(CLLocationManager *manager, CLAuthorizationStatus status) {
                 NSLog(@"status:%d", status);
                 [[RCLocationManager sharedManager] retrieveUserLocationWithBlock:^(CLLocationManager *manager, CLLocation *newLocation, CLLocation *oldLocation) {
@@ -233,7 +267,7 @@
                 }];
                 
             }];
-            
+            */
             
         }
             break;
@@ -295,7 +329,7 @@
             break;
         case 17:
         {
-            [[SwingClient sharedClient] deviceGetActivity:@"maple" type:GetActivityTypeDay completion:^(id dailyActs, NSError *error) {
+            [[SwingClient sharedClient] deviceGetActivity:kidId type:GetActivityTypeDay completion:^(id dailyActs, NSError *error) {
                 if (error) {
                     LOG_D(@"deviceGetActivity fail: %@", error);
                 }
@@ -308,7 +342,7 @@
             break;
         case 18:
         {
-            [[SwingClient sharedClient] deviceGetActivity:@"maple" type:GetActivityTypeWeekly completion:^(id dailyActs, NSError *error) {
+            [[SwingClient sharedClient] deviceGetActivity:kidId type:GetActivityTypeWeekly completion:^(id dailyActs, NSError *error) {
                 if (error) {
                     LOG_D(@"deviceGetActivity fail: %@", error);
                 }
@@ -321,7 +355,7 @@
             break;
         case 19:
         {
-            [[SwingClient sharedClient] deviceGetActivity:@"maple" type:GetActivityTypeMonth completion:^(id dailyActs, NSError *error) {
+            [[SwingClient sharedClient] deviceGetActivity:kidId type:GetActivityTypeMonth completion:^(id dailyActs, NSError *error) {
                 if (error) {
                     LOG_D(@"deviceGetActivity fail: %@", error);
                 }
@@ -334,7 +368,7 @@
             break;
         case 20:
         {
-            [[SwingClient sharedClient] deviceGetActivity:@"maple" type:GetActivityTypeYear completion:^(id dailyActs, NSError *error) {
+            [[SwingClient sharedClient] deviceGetActivity:kidId type:GetActivityTypeYear completion:^(id dailyActs, NSError *error) {
                 if (error) {
                     LOG_D(@"deviceGetActivity fail: %@", error);
                 }

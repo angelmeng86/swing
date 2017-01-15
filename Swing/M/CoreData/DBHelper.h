@@ -16,13 +16,14 @@
 + (void)clearDatabase;
 
 + (BOOL)addEvent:(EventModel*)model;
-+ (BOOL)delEvent:(int)objId;
++ (BOOL)delEvent:(int64_t)objId;
 
 + (BOOL)addTodo:(ToDoModel*)model;
 
 + (BOOL)addEvents:(NSArray*)array;
 
 + (NSArray*)queryEventModelByDay:(NSDate*)date;
+//+ (NSArray*)queryEventModelByDay:(NSDate*)date ascending:(BOOL)ascend;
 
 + (NSArray*)queryNearAlertEventModel:(int)limit;
 

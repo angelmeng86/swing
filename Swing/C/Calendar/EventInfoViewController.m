@@ -127,7 +127,7 @@
     if (model == nil) {
         return NO;
     }
-    [[SwingClient sharedClient] calendarTodoDone:[NSString stringWithFormat:@"%d", model.objId] completion:^(NSError *error) {
+    [[SwingClient sharedClient] calendarTodoDone:model.objId eventId:self.model.objId completion:^(NSError *error) {
         if (!error) {
             model.status = @"DONE";
             [DBHelper addTodo:model];
@@ -157,10 +157,10 @@
 
 - (IBAction)delAction:(id)sender {
     [SVProgressHUD showWithStatus:@"Removing, please wait..."];
-    [[SwingClient sharedClient] calendarDeleteEvent:[NSString stringWithFormat:@"%d", self.model.objId] completion:^(NSError *error) {
+    [[SwingClient sharedClient] calendarDeleteEvent:self.model.objId completion:^(NSError *error) {
         if (!error) {
             LOG_D(@"calendarDeleteEvent sucess.");
-            [[GlobalCache shareInstance] deleteEvent:self.model];
+            [[GlobalCache shareInstance] postUpdateNotification:self.model.startDate];
             [SVProgressHUD dismiss];
             [self.navigationController popViewControllerAnimated:YES];
         }

@@ -13,7 +13,7 @@
         <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="eventName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="objId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" indexed="YES" syncable="YES"/>
+        <attribute name="objId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" indexed="YES" syncable="YES"/>
         <attribute name="repeat" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
@@ -22,7 +22,7 @@
         <relationship name="todoList" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Todo" inverseName="inEvent" inverseEntity="Todo" syncable="YES"/>
     </entity>
     <entity name="Todo" representedClassName="Todo" syncable="YES">
-        <attribute name="objId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="objId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="inEvent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="todoList" inverseEntity="Event" syncable="YES"/>

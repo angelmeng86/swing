@@ -40,7 +40,7 @@
 #define  TIME_STAMP         [[NSDate date] timeIntervalSince1970] + TIME_ADJUST
 
 //#define AVATAR_BASE_URL     @"http://avatar.childrenlab.com/"
-#define AVATAR_BASE_URL     @"https://childrenlabqa.s3.amazonaws.com/"
+#define AVATAR_BASE_URL     @"https://childrenlab.s3.amazonaws.com/userProfile/"
 //userProfile/
 
 
@@ -68,7 +68,7 @@
 
 #import "GlobalCache.h"
 #import "SVProgressHUD.h"
-#import "RCLocationManager.h"
+//#import "RCLocationManager.h"
 #import <PureLayout/PureLayout.h>
 
 //#define LOC_STR(key)        NSLocalizedString(key,nil)

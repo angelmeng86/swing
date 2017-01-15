@@ -19,6 +19,14 @@
 @implementation AppDelegate
 
 - (void)test {
+//    [SwingClientTest test:6 times:1];
+    
+//    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+//    [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+//    
+//    NSString *oye = [df stringFromDate:[NSDate date]];
+//    NSDate *oye2 = [df dateFromString:@"2015-08-30T08:20:00"];
+//    NSLog(@"oye:%@, oye2:%@", oye, oye2);
 //    char *ptr = "\x76\x01\x00\x00\x01\x76\x01\x00\x00\x76\x01\x00\x00\x76\x01\x00\x00\x76\x01\x00\x00";
 //    //    long data = [Fun byteArrayToLong:[NSData dataWithBytes:ptr length:4] length:4];
 //    ActivityModel *m = [ActivityModel new];
@@ -73,14 +81,22 @@
     // Override point for customization after application launch.
 //    NSString *languageID = [[NSBundle mainBundle] preferredLocalizations].firstObject;
 //    NSLog(@"languageID:%@",languageID);
-    
     LOG_D(@"home:%@", NSHomeDirectory());
     [[GlobalCache shareInstance] initConfig];
 //    [self test];
+    
+//    [DBHelper queryNearAlertEventModel:50];
+//    for (int i= 0; i< 12; i++) {
+//        NSDate *targetDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitMonth value:i-11 toDate:[NSDate date] options:0];
+//        NSString *key = [GlobalCache dateToMonthString:targetDate];
+//        LOG_D(@"month:%@", key);
+//    }
+    
 
     
     // Register for Push Notitications
-    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+    //推送默认至支持iOS 8以上
+//    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
         UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
                                                         UIUserNotificationTypeBadge |
                                                         UIUserNotificationTypeSound);
@@ -88,13 +104,13 @@
                                                                                  categories:nil];
         [application registerUserNotificationSettings:settings];
         [application registerForRemoteNotifications];
-    }
-    else {
-        [application registerForRemoteNotificationTypes:
-         UIRemoteNotificationTypeBadge |
-         UIRemoteNotificationTypeAlert |
-         UIRemoteNotificationTypeSound];
-    }
+//    }
+//    else {
+//        [application registerForRemoteNotificationTypes:
+//         UIRemoteNotificationTypeBadge |
+//         UIRemoteNotificationTypeAlert |
+//         UIRemoteNotificationTypeSound];
+//    }
     
     //设置导航默认标题的颜色及字体大小
     [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName:COMMON_TITLE_COLOR, NSFontAttributeName:[UIFont boldAvenirFontOfSize:22]};
