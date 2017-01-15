@@ -118,7 +118,72 @@
         }
         
     }
-    
+}
+
+- (BOOL)hasAlertRepeatEvent {
+    BOOL has = NO;
+    for (int i = (int)_repeatEventModels.count; --i >= 0; ) {
+        EventModel *model = _repeatEventModels[i];
+        if(![repeatTypes containsObject:model.repeat]) {
+            [_repeatEventModels removeObjectAtIndex:i];
+            LOG_D(@"clear normal event %lld", model.objId);
+            continue;
+        }
+        if (model.alert <= 35) {
+            continue;
+        }
+        has = YES;
+    }
+    return has;
+}
+
+- (void)appendOneDayAlertEvents:(NSMutableArray*)array date:(NSDate*)date checkDue:(BOOL)checked {
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:kCFCalendarUnitYear|kCFCalendarUnitMonth|kCFCalendarUnitDay|NSCalendarUnitWeekday fromDate:date];
+    for (int i = (int)_repeatEventModels.count; --i >= 0; ) {
+        EventModel *model = _repeatEventModels[i];
+        NSDateComponents *comps2 = [[NSCalendar currentCalendar] components:kCFCalendarUnitHour|kCFCalendarUnitMinute|kCFCalendarUnitSecond|NSCalendarUnitWeekday fromDate:model.startDate];
+        if ([model.repeat isEqualToString:@"DAILY"]) {
+
+        }
+        else if([model.repeat isEqualToString:@"WEEKLY"]) {
+            if (comps.weekday != comps2.weekday) {
+                continue;
+            }
+            
+        }
+        else {
+            [_repeatEventModels removeObjectAtIndex:i];
+            LOG_D(@"clear normal event %lld", model.objId);
+            continue;
+        }
+        if (model.alert <= 35) {
+            continue;
+        }
+        if (checked && NSOrderedDescending != [Fun compareTimePart:model.startDate andDate:date]) {
+            //检查当天是否过期
+            continue;
+        }
+        EventModel *newModel = [model copy];
+        comps2.year = comps.year;
+        comps2.month = comps.month;
+        comps2.day = comps.day;
+        newModel.startDate = [[NSCalendar currentCalendar] dateFromComponents:comps2];
+        [array addObject:newModel];
+//        LOG_D(@"date1[%@]~date2[%@]", [Fun dateToString:model.startDate], [Fun dateToString:newModel.startDate]);
+    }
+}
+
+- (NSMutableArray*)generateEvents:(int)count {
+    NSMutableArray *array = [NSMutableArray array];
+    if ([self hasAlertRepeatEvent]) {
+        NSDate *date = [NSDate date];
+        [self appendOneDayAlertEvents:array date:date checkDue:YES];
+        while (array.count < count) {
+            date = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:1 toDate:date options:0];
+            [self appendOneDayAlertEvents:array date:date checkDue:NO];
+        }
+    }
+    return array;
 }
 
 + (NSCalendar*)calendar {
@@ -234,9 +299,7 @@
 }
 
 + (NSArray*)queryNearAlertEventModel:(int)limit {
-//    NSDateComponents *comps = [[DBHelper calendar] components:NSYearCalendarUnit|NSMonthCalendarUnit | NSDayCalendarUnit fromDate:[NSDate date]];
-//    NSDate *oneDay = [[DBHelper calendar] dateFromComponents:comps];
-//    NSLog(@"oneDay:%@", oneDay);
+    //根据传入的limit参数来产生同等数量的repeat event作为备用，最后与normal event进行排序，截取前limit个event返回。
     NSPredicate *predicate_date = [NSPredicate predicateWithFormat:@"startDate > %@ AND alert > 35 AND repeat == ''", [NSDate date]];
     
     NSFetchRequest *request = [Event MR_requestAllSortedBy:@"startDate"
@@ -246,17 +309,24 @@
     request.fetchLimit = limit;
     NSArray *array =  [Event MR_executeFetchRequest:request inContext:[NSManagedObjectContext MR_defaultContext]];
 //    NSArray *array = [Event MR_findAllSortedBy:@"startDate" ascending:YES withPredicate:predicate_date];
-    if(array.count > 0) {
-        NSMutableArray *list = [NSMutableArray array];
-        for (Event *e in array) {
-            EventModel *model = [EventModel new];
-            [model updateFrom:e];
-            [list addObject:model];
-            LOG_D(@"model date %@, name %@, alert %d", model.startDate, model.eventName, model.alert);
-        }
-        return list;
+    NSMutableArray *list = [NSMutableArray array];
+    for (Event *e in array) {
+        EventModel *model = [EventModel new];
+        [model updateFrom:e];
+        [list addObject:model];
+        LOG_D(@"model date %@, name %@, alert %d", model.startDate, model.eventName, model.alert);
     }
-    return nil;
+    
+    NSArray *repeatEvents = [[DBHelper privateInstance] generateEvents:limit];
+    [list addObjectsFromArray:repeatEvents];
+    [list sortUsingComparator:^NSComparisonResult(EventModel *obj1, EventModel *obj2) {
+        return [obj1.startDate compare:obj2.startDate];
+    }];
+    
+//    for (EventModel *em in list) {
+//        LOG_D(@"date[%@]", [Fun dateToString:em.startDate]);
+//    }
+    return list;
 }
 
 + (NSMutableArray*)queryActivityModel {

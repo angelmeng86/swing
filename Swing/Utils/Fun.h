@@ -30,8 +30,8 @@
 
 + (UIImage *)imageByScalingToMaxSize:(UIImage *)sourceImage maxWidth:(CGFloat)maxWidth;
 
-//+ (NSDate*)dateFromString:(NSString*)str;
-//+ (NSString*)dateToString:(NSDate*)date;
++ (NSDate*)dateFromString:(NSString*)str;
++ (NSString*)dateToString:(NSDate*)date;
 
 //+ (NSString*)dateToTimeString:(NSDate*)date;
 + (NSComparisonResult)compareTimePart:(NSDate*)date1 andDate:(NSDate*)date2;

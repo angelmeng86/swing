@@ -106,7 +106,7 @@
 #if TARGET_IPHONE_SIMULATOR
     UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
     KidBindViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"KidBind"];
-    ctl.macAddress = [Fun hexToData:@"012345678914"];
+    ctl.macAddress = [Fun hexToData:@"012345678915"];
     [self.navigationController pushViewController:ctl animated:YES];
 #else
     [client stopScan];

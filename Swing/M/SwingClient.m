@@ -347,10 +347,9 @@
                 completion(nil, err);
             }
             else {
-//                KidModel *kid = [[KidModel alloc] initWithDictionary:responseObject[@"kid"] error:&err];
-#warning wait debug
-                NSArray *kids = [KidModel arrayOfModelsFromDictionaries:responseObject[@"kids"] error:&err];
-                completion([kids lastObject], err);
+                KidModel *kid = [[KidModel alloc] initWithDictionary:responseObject error:&err];
+//                NSArray *kids = [KidModel arrayOfModelsFromDictionaries:responseObject[@"kids"] error:&err];
+                completion(kid, err);
             }
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

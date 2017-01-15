@@ -84,6 +84,8 @@
     LOG_D(@"home:%@", NSHomeDirectory());
     [[GlobalCache shareInstance] initConfig];
 //    [self test];
+    
+//    [DBHelper queryNearAlertEventModel:50];
 
     
     // Register for Push Notitications
