@@ -8,9 +8,6 @@
 
 #import "SwingClient.h"
 
-
-#define IS_V1       YES
-
 @interface SwingClient ()
 
 @property (readwrite, nonatomic, strong) NSURLSessionConfiguration *config;
@@ -120,7 +117,7 @@
 }
 
 - (NSError*)getErrorMessage:(NSDictionary*)response {
-    if (IS_V1) {
+    if (/* DISABLES CODE */ (YES)) {
         //new api返回状态码200表示成功
         return nil;
     }
@@ -666,17 +663,23 @@
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSError *err = [self filterTokenInvalid:task.response err:error];
-            completion(err);
+            NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
+            if (response.statusCode == 409) {
+                //Conflict. The data is already exist
+                completion(nil);
+            }
+            else {
+                NSError *err = [self filterTokenInvalid:task.response err:error];
+                completion(err);
+            }
         });
     }];
     
     return task;
 }
 
-- (NSURLSessionDataTask *)deviceGetActivity:(NSString*)macId type:(GetActivityType)type completion:( void (^)(id dailyActs ,NSError *error) )completion {
+- (NSURLSessionDataTask *)deviceGetActivity:(int64_t)kidId type:(GetActivityType)type completion:( void (^)(id dailyActs ,NSError *error) )completion {
     NSString *period = @"DAILY";
-    NSString *url = _URL.getRetrieveActivity;
     switch (type) {
         case GetActivityTypeYear:
             period = @"YEARLY";
@@ -690,36 +693,8 @@
         default:
             break;
     }
-    LOG_D(@"macId:%@", macId);
-    if (IS_V1) {
-        //new api macId change to kidId ?
-        NSString *urlEncode = [NSString stringWithFormat:@"%@?kidId=%@&period=%@", _URL.getRetrieveActivity, macId, period];
-        NSURLSessionDataTask *task = [self.sessionManager GET:urlEncode parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                LOG_D(@"deviceGetActivity info:%@", responseObject);
-                NSError *err = [self getErrorMessage:responseObject];
-                if (err) {
-                    completion(nil ,err);
-                }
-                else {
-                    NSArray *list = [ActivityResultModel arrayOfModelsFromDictionaries:responseObject[@"activity"] error:nil];
-                    if (IS_V1) {
-                        for (ActivityResultModel *m in list) {
-                            [m transDate];
-                        }
-                    }
-                    completion(list, nil);
-                }
-            });
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                NSError *err = [self filterTokenInvalid:task.response err:error];
-                completion(nil ,err);
-            });
-        }];
-        return task;
-    }
-    NSURLSessionDataTask *task = [self.sessionManager POST:url parameters:@{@"macId":macId} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    LOG_D(@"kidId:%lld", kidId);
+    NSURLSessionDataTask *task = [self.sessionManager GET:_URL.getRetrieveActivity parameters:@{@"kidId":@(kidId), @"period":period} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"deviceGetActivity info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
@@ -727,7 +702,7 @@
                 completion(nil ,err);
             }
             else {
-                NSArray *list = [ActivityResultModel arrayOfModelsFromDictionaries:responseObject[@"activity"] error:nil];
+                NSArray *list = [ActivityResultModel arrayOfModelsFromDictionaries:responseObject[@"activities"] error:nil];
                 completion(list, nil);
             }
         });
@@ -737,7 +712,6 @@
             completion(nil ,err);
         });
     }];
-    
     return task;
 }
 

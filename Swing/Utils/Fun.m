@@ -16,7 +16,7 @@
 							  initWithTitle:title
 							  message:msg
 							  delegate:self 
-							  cancelButtonTitle:NSLocalizedString(@"Ok", nil)
+							  cancelButtonTitle:LOC_STR(@"Ok")
 							  otherButtonTitles:nil];
 	[alertView show];
 }
@@ -27,7 +27,7 @@
                                 initWithTitle:title
                                 message:msg
                                 delegate:delegate
-                                cancelButtonTitle:NSLocalizedString(@"Ok", nil)
+                                cancelButtonTitle:LOC_STR(@"Ok")
                                 otherButtonTitles:nil];
 	[alertView show];
 }
@@ -44,7 +44,7 @@
                                   initWithTitle:title
                                   message:content
                                   delegate:nil 
-                                  cancelButtonTitle:NSLocalizedString(@"Ok", nil)
+                                  cancelButtonTitle:LOC_STR(@"Ok")
                                   otherButtonTitles:nil];
         [alertView show];
     }  

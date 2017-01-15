@@ -96,7 +96,7 @@
         [self.navigationController pushViewController:ctl animated:YES];
     }
     else {
-        [SVProgressHUD showErrorWithStatus:@"you have not bind device yet, please sync a watch."];
+        [SVProgressHUD showErrorWithStatus:LOC_STR(@"you have not bind device yet, please sync a watch.")];
     }
     
     

@@ -128,6 +128,15 @@
     }];
 }
 
+- (int64_t)getKidId {
+    for (KidModel *kid in self.kidsList) {
+        if (kid.macId.length > 0) {
+            return kid.objId;
+        }
+    }
+    return -1;
+}
+
 - (NSMutableSet*)calendarQueue {
     if (_calendarQueue == nil) {
         _calendarQueue = [[NSMutableSet alloc] init];

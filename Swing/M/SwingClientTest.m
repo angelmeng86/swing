@@ -38,6 +38,7 @@
 }
 
 - (void)test:(int)index {
+    int64_t kidId = 3;
     if (--_times < 0) {
         NSLog(@"test end----------------");
         return;
@@ -328,7 +329,7 @@
             break;
         case 17:
         {
-            [[SwingClient sharedClient] deviceGetActivity:@"maple" type:GetActivityTypeDay completion:^(id dailyActs, NSError *error) {
+            [[SwingClient sharedClient] deviceGetActivity:kidId type:GetActivityTypeDay completion:^(id dailyActs, NSError *error) {
                 if (error) {
                     LOG_D(@"deviceGetActivity fail: %@", error);
                 }
@@ -341,7 +342,7 @@
             break;
         case 18:
         {
-            [[SwingClient sharedClient] deviceGetActivity:@"maple" type:GetActivityTypeWeekly completion:^(id dailyActs, NSError *error) {
+            [[SwingClient sharedClient] deviceGetActivity:kidId type:GetActivityTypeWeekly completion:^(id dailyActs, NSError *error) {
                 if (error) {
                     LOG_D(@"deviceGetActivity fail: %@", error);
                 }
@@ -354,7 +355,7 @@
             break;
         case 19:
         {
-            [[SwingClient sharedClient] deviceGetActivity:@"maple" type:GetActivityTypeMonth completion:^(id dailyActs, NSError *error) {
+            [[SwingClient sharedClient] deviceGetActivity:kidId type:GetActivityTypeMonth completion:^(id dailyActs, NSError *error) {
                 if (error) {
                     LOG_D(@"deviceGetActivity fail: %@", error);
                 }
@@ -367,7 +368,7 @@
             break;
         case 20:
         {
-            [[SwingClient sharedClient] deviceGetActivity:@"maple" type:GetActivityTypeYear completion:^(id dailyActs, NSError *error) {
+            [[SwingClient sharedClient] deviceGetActivity:kidId type:GetActivityTypeYear completion:^(id dailyActs, NSError *error) {
                 if (error) {
                     LOG_D(@"deviceGetActivity fail: %@", error);
                 }

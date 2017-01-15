@@ -86,6 +86,12 @@
 //    [self test];
     
 //    [DBHelper queryNearAlertEventModel:50];
+//    for (int i= 0; i< 12; i++) {
+//        NSDate *targetDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitMonth value:i-11 toDate:[NSDate date] options:0];
+//        NSString *key = [GlobalCache dateToMonthString:targetDate];
+//        LOG_D(@"month:%@", key);
+//    }
+    
 
     
     // Register for Push Notitications

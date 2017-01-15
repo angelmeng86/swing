@@ -378,7 +378,7 @@
     if (self.nameTF.text.length == 0
          || self.startTF.text.length == 0
          || self.endTF.text.length == 0) {
-        [Fun showMessageBoxWithTitle:@"Error" andMessage:@"Please input info."];
+        [Fun showMessageBoxWithTitle:LOC_STR(@"Error") andMessage:LOC_STR(@"Please input info.")];
         if (!isAddTip) {
             isAddTip = YES;
             [self addRedTip:self.nameTF];
@@ -395,11 +395,11 @@
     NSDate *endDate = [self dateFromString:self.endTF.text];
     NSDateComponents *end = [cal components:NSCalendarUnitHour fromDate:endDate];
     if (![cal isDate:startDate inSameDayAsDate:endDate]) {
-        [Fun showMessageBoxWithTitle:@"Error" andMessage:@"The date must in the same day."];
+        [Fun showMessageBoxWithTitle:LOC_STR(@"Error") andMessage:LOC_STR(@"The date must in the same day.")];
         return NO;
     }
     if ([start hour] < 6 || [end hour] < 6) {
-        [Fun showMessageBoxWithTitle:@"Error" andMessage:@"Please select a date between 6:00 and 24:00."];
+        [Fun showMessageBoxWithTitle:LOC_STR(@"Error") andMessage:LOC_STR(@"Please select a date between 6:00 and 24:00.")];
         return NO;
     }
     
@@ -415,15 +415,13 @@
 }
 
 - (void)saveEventV1 {
-    [SVProgressHUD showWithStatus:@"Saving, please wait..."];
-    
-#warning test kidId
-    int64_t kidId = 3;
-    for (KidModel *kid in [GlobalCache shareInstance].kidsList) {
-        if (kid.macId.length > 0) {
-            kidId = kid.objId;
-        }
+    int64_t kidId = [[GlobalCache shareInstance] getKidId];
+    if (kidId == -1) {
+        [Fun showMessageBoxWithTitle:LOC_STR(@"Error") andMessage:LOC_STR(@"you have not bind device yet, please sync a watch.")];
+        return;
     }
+    
+    [SVProgressHUD showWithStatus:LOC_STR(@"Saving, please wait...")];
     
 //eventName, startDate, endDate, color, status, description, alert, city, state
     UILabel *label = (UILabel*)[self.repeatTF.rightView viewWithTag:2016];
