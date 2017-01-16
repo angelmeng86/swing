@@ -326,6 +326,9 @@
 //    for (EventModel *em in list) {
 //        LOG_D(@"date[%@]", [Fun dateToString:em.startDate]);
 //    }
+    if (list.count > limit) {
+        return [list subarrayWithRange:NSMakeRange(0, limit)];
+    }
     return list;
 }
 
