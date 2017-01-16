@@ -176,11 +176,16 @@
 - (NSMutableArray*)generateEvents:(int)count {
     NSMutableArray *array = [NSMutableArray array];
     if ([self hasAlertRepeatEvent]) {
+        int days = 180;
         NSDate *date = [NSDate date];
         [self appendOneDayAlertEvents:array date:date checkDue:YES];
         while (array.count < count) {
             date = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:1 toDate:date options:0];
             [self appendOneDayAlertEvents:array date:date checkDue:NO];
+            if(--days < 0) {
+                //产生至多days天的repeat event
+                break;
+            }
         }
     }
     return array;
