@@ -10,8 +10,6 @@
 #import "SwingURL.h"
 #import "CommonDef.h"
 
-//#define IS_SWING_V1       YES
-
 typedef enum : NSUInteger {
     GetEventTypeMonth,
     GetEventTypeDay,

@@ -27,6 +27,7 @@ typedef enum : NSUInteger {
 @interface BLESyncDevice ()
 {
     SwingSyncState syncState;
+    int testCount;
 }
 
 @property (nonatomic, strong) NSMutableArray *eventArray;
@@ -52,7 +53,7 @@ typedef enum : NSUInteger {
         //往FFA7里面写
         EventModel *model = [_eventArray firstObject];
         array[0] = model.alert;
-        LOG_D(@"lwz alert:%d", model.alert);
+        LOG_D(@"lwz alert:%d testCount:%d", model.alert, testCount++);
     }
     NSData *data = [NSData dataWithBytes:array length:1];
     [service.peripheral writeValue:data forCharacteristic:characteristic type:CBCharacteristicWriteWithResponse];
@@ -343,7 +344,7 @@ typedef enum : NSUInteger {
     self.activityArray = [NSMutableArray array];
     self.activityDict = [NSMutableDictionary dictionary];
     self.timeSet = [NSMutableIndexSet new];
-    
+    testCount = 0;
     self.peripheral = peripheral;
     self.manager = central;
     

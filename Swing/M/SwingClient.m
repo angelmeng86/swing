@@ -253,6 +253,8 @@
                     if (kid.macId.length > 0) {
                         //默认设置第一个Kid的设备为当前设备
                         [GlobalCache shareInstance].local.deviceMAC = [Fun hexToData:kid.macId];
+                        [GlobalCache shareInstance].local.kidId = kid.objId;
+                        [[GlobalCache shareInstance] saveInfo];
                         break;
                     }
                 }
@@ -693,7 +695,7 @@
         default:
             break;
     }
-    LOG_D(@"kidId:%lld", kidId);
+    LOG_D(@"kidId:%lld period:%@", kidId, period);
     NSURLSessionDataTask *task = [self.sessionManager GET:_URL.getRetrieveActivity parameters:@{@"kidId":@(kidId), @"period":period} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"deviceGetActivity info:%@", responseObject);

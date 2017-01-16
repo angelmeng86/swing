@@ -63,10 +63,6 @@
 }
 
 - (void)goNext {
-    if (_macAddress && [GlobalCache shareInstance].local.deviceMAC == nil) {
-        [GlobalCache shareInstance].local.deviceMAC = _macAddress;
-        [[GlobalCache shareInstance] saveInfo];
-    }
     for (UIViewController *ctl in self.navigationController.viewControllers) {
         if ([ctl isKindOfClass:[EditProfileViewController class]]) {
             //EditProfile add device flow
@@ -118,6 +114,11 @@
                         }
                         else {
                             KidModel *model = kid;
+                            if (self.macAddress && [GlobalCache shareInstance].local.deviceMAC == nil) {
+                                [GlobalCache shareInstance].local.deviceMAC = self.macAddress;
+                                [GlobalCache shareInstance].local.kidId = model.objId;
+                                [[GlobalCache shareInstance] saveInfo];
+                            }
                             if ([GlobalCache shareInstance].kidsList) {
                                 [GlobalCache shareInstance].kidsList = [[GlobalCache shareInstance].kidsList arrayByAddingObject:model];
                             }

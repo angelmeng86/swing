@@ -46,7 +46,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userProfileLoaded:) name:USER_PROFILE_LOAD_NOTI object:nil];
     
-    if (![GlobalCache shareInstance].local.deviceMAC) {
+    if ([[GlobalCache shareInstance] getKidId] == -1) {
         //当前用户没有绑定设备，执行查询
         [[GlobalCache shareInstance] queryProfile];
     }

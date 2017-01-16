@@ -74,6 +74,7 @@
     if(_local == nil) {
         _local = [LMLocalData new];
         _local.date = [GlobalCache dateToDayString:[NSDate date]];
+        _local.kidId = -1;
     }
     else {
         [_local checkDate];
@@ -129,12 +130,13 @@
 }
 
 - (int64_t)getKidId {
-    for (KidModel *kid in self.kidsList) {
-        if (kid.macId.length > 0) {
-            return kid.objId;
-        }
-    }
-    return -1;
+//    for (KidModel *kid in self.kidsList) {
+//        if (kid.macId.length > 0) {
+//            return kid.objId;
+//        }
+//    }
+//    return -1;
+    return self.local.kidId;
 }
 
 - (NSMutableSet*)calendarQueue {
