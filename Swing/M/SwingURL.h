@@ -36,7 +36,7 @@
 
 @property (nonatomic, readonly, strong) NSString* uploadRawData;
 @property (nonatomic, readonly, strong) NSString* getRetrieveActivity;
-
+@property (nonatomic, readonly, strong) NSString* retrieveActivityByTime;
 
 
 

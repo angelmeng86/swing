@@ -717,4 +717,28 @@
     return task;
 }
 
+
+- (NSURLSessionDataTask *)deviceGetActivity:(int64_t)kidId start:(NSDate*)start end:(NSDate*)end completion:( void (^)(id dailyActs ,NSError *error) )completion {
+    LOG_D(@"kidId:%lld start:%@ end:%@", kidId, start, end);
+    NSURLSessionDataTask *task = [self.sessionManager GET:_URL.retrieveActivityByTime parameters:@{@"kidId":@(kidId), @"start":@([start timeIntervalSince1970]), @"end":@([end timeIntervalSince1970])} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LOG_D(@"deviceGetActivityByTime info:%@", responseObject);
+            NSError *err = [self getErrorMessage:responseObject];
+            if (err) {
+                completion(nil ,err);
+            }
+            else {
+                NSArray *list = [ActivityResultModel arrayOfModelsFromDictionaries:responseObject[@"activities"] error:nil];
+                completion(list, nil);
+            }
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSError *err = [self filterTokenInvalid:task.response err:error];
+            completion(nil ,err);
+        });
+    }];
+    return task;
+}
+
 @end

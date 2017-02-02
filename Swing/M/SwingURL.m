@@ -98,4 +98,8 @@
     return @"/v1/activity/retrieveData";
 }
 
+- (NSString*)retrieveActivityByTime {
+    return @"/v1/activity/retrieveDataByTime";
+}
+
 @end

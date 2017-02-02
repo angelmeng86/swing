@@ -173,6 +173,32 @@
         }
     }];
      */
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSCalendarUnitYear|NSCalendarUnitMonth | NSCalendarUnitDay fromDate:[NSDate date]];
+    NSDate *oneDay = [[NSCalendar currentCalendar] dateFromComponents:comps];
+    NSDate *nextDay = [oneDay dateByAddingTimeInterval:24*60*60];
+    int64_t kidId = [[GlobalCache shareInstance] getKidId];
+    if (kidId == -1) {
+        return;
+    }
+    [[SwingClient sharedClient] deviceGetActivity:kidId start:oneDay end:nextDay completion:^(id dailyActs, NSError *error) {
+        if (!error) {
+            LOG_D(@"dailyActs:%@", dailyActs);
+            for (ActivityResultModel *m in dailyActs) {
+//                if ([m.date isEqualToString:date]) {
+                    if ([m.type isEqualToString:@"INDOOR"]) {
+                        self.indoor = m;
+                    }
+                    else if([m.type isEqualToString:@"OUTDOOR"]) {
+                        self.outdoor = m;
+                    }
+//                }
+            }
+            [self reloadData];
+        }
+        else {
+            LOG_D(@"deviceGetActivityByTime fail: %@", error);
+        }
+    }];
 }
 
 /*
