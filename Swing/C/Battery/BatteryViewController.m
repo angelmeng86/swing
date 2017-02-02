@@ -59,7 +59,7 @@
 }
 
 - (void)bluetoothClientBattery:(int)value {
-    NSLog(@"bluetoothClientBattery:%d", value);
+    LOG_D(@"bluetoothClientBattery:%d", value);
     if (value <= 100) {
         self.progressView.progressCounter = value;
         self.textLabel.text = [NSString stringWithFormat:@"%d%%", value];

@@ -11,7 +11,7 @@
 @implementation SwingURL
 
 - (NSString*)baseURL {
-    return @"https://childrenlab.com:8111/";
+    return @"https://childrenlab.com/";
 }
 
 - (NSString*)isEmailRegistered {
@@ -89,11 +89,11 @@
 - (NSString*)retrieveAllEventsWithTodo {
     return @"/v1/event/retrieveAllEventsWithTodo";
 }
-#warning wait test
+
 - (NSString*)uploadRawData {
     return @"/v1/activity/uploadRawData";
 }
-#warning wait test
+
 - (NSString*)getRetrieveActivity {
     return @"/v1/activity/retrieveData";
 }

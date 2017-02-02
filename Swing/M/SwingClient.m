@@ -581,7 +581,7 @@
                 completion(nil, err);
             }
             else {
-                NSArray *list = [EventModel arrayOfModelsFromDictionaries:responseObject[@"events"] error:nil];
+                NSArray *list = [EventModel arrayOfModelsFromDictionaries:responseObject[@"event"] error:nil];
                 
                 [DBHelper addEvents:list];
                 
@@ -607,7 +607,7 @@
                 completion(nil, err);
             }
             else {
-                NSArray *list = [EventModel arrayOfModelsFromDictionaries:responseObject[@"events"] error:nil];
+                NSArray *list = [EventModel arrayOfModelsFromDictionaries:responseObject error:nil];
                 
                 [DBHelper addEvents:list];
                 

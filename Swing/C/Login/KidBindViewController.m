@@ -54,7 +54,7 @@
 }
 
 - (BOOL)validateTextField {
-    if (self.firstNameTF.text.length == 0 || self.lastNameTF.text.length == 0) {
+    if (self.firstNameTF.text.length == 0) {
         [Fun showMessageBoxWithTitle:@"Error" andMessage:@"Please input info."];
         return NO;
     }
@@ -86,9 +86,9 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == self.firstNameTF) {
-        [self.lastNameTF becomeFirstResponder];
-    }
-    else if (textField == self.lastNameTF) {
+//        [self.lastNameTF becomeFirstResponder];
+//    }
+//    else if (textField == self.lastNameTF) {
         
         if ([self validateTextField]) {
             //查询后台数据是否已存在绑定的Mac
@@ -101,7 +101,7 @@
                     }
                     [SVProgressHUD showWithStatus:@"Add kid info, please wait..."];
                     
-                    NSMutableDictionary *data = [NSMutableDictionary dictionaryWithDictionary:@{@"firstName":self.firstNameTF.text, @"lastName":self.lastNameTF.text}];
+                    NSMutableDictionary *data = [NSMutableDictionary dictionaryWithDictionary:@{@"name":self.firstNameTF.text}];
                     if (self.macAddress) {
                         NSString *mac = [Fun dataToHex:self.macAddress];
                         [data setObject:mac forKey:@"macId"];//new api
