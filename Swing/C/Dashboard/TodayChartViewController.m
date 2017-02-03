@@ -162,18 +162,20 @@
             for (ActivityResultModel *m in dailyActs) {
                 if ([m.type isEqualToString:@"INDOOR"]) {
                     self.indoor = m;
+                    [GlobalCache shareInstance].local.indoorSteps = m.steps;
                 }
                 else if([m.type isEqualToString:@"OUTDOOR"]) {
                     self.outdoor = m;
+                    [GlobalCache shareInstance].local.outdoorSteps = m.steps;
                 }
             }
+            [[GlobalCache shareInstance] saveInfo];
             [self reloadData];
         }
         else {
             LOG_D(@"deviceGetActivity fail: %@", error);
         }
     }];
-     
 }
 
 /*

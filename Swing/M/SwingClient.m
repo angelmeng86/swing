@@ -581,7 +581,7 @@
                 completion(nil, err);
             }
             else {
-                NSArray *list = [EventModel arrayOfModelsFromDictionaries:responseObject[@"events"] error:nil];
+                NSArray *list = [EventModel arrayOfModelsFromDictionaries:responseObject[@"event"] error:nil];
                 
                 [DBHelper addEvents:list];
                 
@@ -607,7 +607,7 @@
                 completion(nil, err);
             }
             else {
-                NSArray *list = [EventModel arrayOfModelsFromDictionaries:responseObject[@"events"] error:nil];
+                NSArray *list = [EventModel arrayOfModelsFromDictionaries:responseObject error:nil];
                 
                 [DBHelper addEvents:list];
                 
@@ -719,8 +719,10 @@
 
 - (NSURLSessionDataTask *)deviceGetActivityByTime:(int64_t)kidId beginTimestamp:(NSDate*)beginTime endTimestamp:(NSDate*)endTime completion:( void (^)(id dailyActs ,NSError *error) )completion
 {
+    NSDictionary *data = @{@"kidId":@(kidId), @"start":@([beginTime timeIntervalSince1970]), @"end":@([endTime timeIntervalSince1970])};
     LOG_D(@"kidId:%lld beginTime:%@ endTime:%@", kidId, beginTime, endTime);
-    NSURLSessionDataTask *task = [self.sessionManager GET:_URL.getTimeActivity parameters:@{@"kidId":@(kidId), @"start":@([beginTime timeIntervalSince1970]), @"end":@([endTime timeIntervalSince1970])} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    LOG_D(@"data:%@", data);
+    NSURLSessionDataTask *task = [self.sessionManager GET:_URL.retrieveActivityByTime parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"deviceGetActivityByTime info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];

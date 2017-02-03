@@ -30,7 +30,7 @@
     self.pwdTextField.delegate = self;
     
 #ifdef MAPPLE_DEBUG
-    self.emailTextField.text = @"test10@swing.com";
+    self.emailTextField.text = @"test11@swing.com";
     self.pwdTextField.text = @"111111";
 #endif
     [self setCustomBackButton];

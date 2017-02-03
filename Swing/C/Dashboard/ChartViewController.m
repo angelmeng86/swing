@@ -333,7 +333,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
             //从前12个月开始计算
             NSDate *targetDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitMonth value:index-maxCount+1 toDate:date options:0];
             NSString *key = [GlobalCache dateToMonthString:targetDate];
-            LOG_D(@"month:%@", key);
+//            LOG_D(@"month:%@", key);
             ActivityResultModel *model = dict[key];
             if (model) {
                 return model.steps;
