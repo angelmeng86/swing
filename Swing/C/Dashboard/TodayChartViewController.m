@@ -147,23 +147,24 @@
 //    }
 //    [self.stepProgress setNeedsLayout];
     
-    /*
-    NSString *macId = [Fun dataToHex:[GlobalCache shareInstance].local.deviceMAC];
-    if (macId.length == 0) {
+    
+    int64_t kidId = [[GlobalCache shareInstance] getKidId];
+    if (kidId == -1) {
         return;
     }
-    [[SwingClient sharedClient] deviceGetActivity:macId type:GetActivityTypeDay completion:^(id dailyActs, NSError *error) {
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:kCFCalendarUnitYear|kCFCalendarUnitMonth|kCFCalendarUnitDay|NSCalendarUnitWeekday fromDate:[NSDate date]];
+    NSDate *startDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
+    NSDate *endDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:1 toDate:startDate options:0];
+    
+    [[SwingClient sharedClient] deviceGetActivityByTime:kidId beginTimestamp:startDate endTimestamp:endDate completion:^(id dailyActs, NSError *error) {
         if (!error) {
-            LOG_D(@"dailyActs:%@", dailyActs);
-            NSString *date = [GlobalCache dateToDayString:[NSDate date]];
+            LOG_D(@"today dailyActs:%@", dailyActs);
             for (ActivityResultModel *m in dailyActs) {
-                if ([m.date isEqualToString:date]) {
-                    if ([m.type isEqualToString:@"INDOOR"]) {
-                        self.indoor = m;
-                    }
-                    else if([m.type isEqualToString:@"OUTDOOR"]) {
-                        self.outdoor = m;
-                    }
+                if ([m.type isEqualToString:@"INDOOR"]) {
+                    self.indoor = m;
+                }
+                else if([m.type isEqualToString:@"OUTDOOR"]) {
+                    self.outdoor = m;
                 }
             }
             [self reloadData];
@@ -172,7 +173,7 @@
             LOG_D(@"deviceGetActivity fail: %@", error);
         }
     }];
-     */
+     
 }
 
 /*

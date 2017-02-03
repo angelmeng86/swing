@@ -89,13 +89,17 @@
 - (NSString*)retrieveAllEventsWithTodo {
     return @"/v1/event/retrieveAllEventsWithTodo";
 }
-#warning wait test
+
 - (NSString*)uploadRawData {
     return @"/v1/activity/uploadRawData";
 }
-#warning wait test
+
 - (NSString*)getRetrieveActivity {
     return @"/v1/activity/retrieveData";
+}
+
+- (NSString*)getTimeActivity {
+    return @"/v1/activity/retrieveDataByTime";
 }
 
 @end

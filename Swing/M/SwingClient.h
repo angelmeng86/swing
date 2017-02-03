@@ -75,4 +75,6 @@ typedef enum : NSUInteger {
 
 - (NSURLSessionDataTask *)deviceGetActivity:(int64_t)kidId type:(GetActivityType)type completion:( void (^)(id dailyActs ,NSError *error) )completion;
 
+- (NSURLSessionDataTask *)deviceGetActivityByTime:(int64_t)kidId beginTimestamp:(NSDate*)beginTime endTimestamp:(NSDate*)endTime completion:( void (^)(id dailyActs ,NSError *error) )completion;
+
 @end

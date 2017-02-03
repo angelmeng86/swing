@@ -60,8 +60,6 @@
 		AD7438231D4DD47100F5F9D2 /* JBChartTooltipTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7438201D4DD47100F5F9D2 /* JBChartTooltipTipView.m */; };
 		AD7438241D4DD47100F5F9D2 /* JBChartTooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7438221D4DD47100F5F9D2 /* JBChartTooltipView.m */; };
 		AD7438271D4DD50C00F5F9D2 /* JBBaseChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7438261D4DD50C00F5F9D2 /* JBBaseChartViewController.m */; };
-		AD74382A1D4DDD3600F5F9D2 /* WeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7438291D4DDD3600F5F9D2 /* WeatherViewController.m */; };
-		AD74382D1D4DE08000F5F9D2 /* WeatherContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD74382C1D4DE08000F5F9D2 /* WeatherContentViewController.m */; };
 		AD74D4DC1D4F90B5001F3B36 /* EventLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD74D4DB1D4F90B5001F3B36 /* EventLabel.m */; };
 		AD74D4DF1D4FA08E001F3B36 /* EventInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD74D4DE1D4FA08E001F3B36 /* EventInfoViewController.m */; };
 		AD74D4E21D4FA750001F3B36 /* EventSelectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD74D4E11D4FA750001F3B36 /* EventSelectTableViewCell.m */; };
@@ -86,7 +84,6 @@
 		ADD6555C1D5B886D0054FB24 /* AlertSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD6555B1D5B886D0054FB24 /* AlertSelectViewController.m */; };
 		ADD6555E1D5B8D410054FB24 /* alert.json in Resources */ = {isa = PBXBuildFile; fileRef = ADD6555D1D5B89770054FB24 /* alert.json */; };
 		ADD655611D5B8DAC0054FB24 /* AlertModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD655601D5B8DAC0054FB24 /* AlertModel.m */; };
-		ADDCD3E81D4C4DA90031DC66 /* UVIndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDCD3E71D4C4DA90031DC66 /* UVIndexViewController.m */; };
 		ADDCD3F31D4C54960031DC66 /* LoginFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADDCD3EE1D4C54960031DC66 /* LoginFlow.storyboard */; };
 		ADDCD3F41D4C54960031DC66 /* MainTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADDCD3EF1D4C54960031DC66 /* MainTab.storyboard */; };
 		ADDCD3F51D4C54960031DC66 /* SyncDevice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADDCD3F01D4C54960031DC66 /* SyncDevice.storyboard */; };
@@ -227,10 +224,6 @@
 		AD7438221D4DD47100F5F9D2 /* JBChartTooltipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBChartTooltipView.m; sourceTree = "<group>"; };
 		AD7438251D4DD50C00F5F9D2 /* JBBaseChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBaseChartViewController.h; sourceTree = "<group>"; };
 		AD7438261D4DD50C00F5F9D2 /* JBBaseChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBBaseChartViewController.m; sourceTree = "<group>"; };
-		AD7438281D4DDD3600F5F9D2 /* WeatherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherViewController.h; sourceTree = "<group>"; };
-		AD7438291D4DDD3600F5F9D2 /* WeatherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherViewController.m; sourceTree = "<group>"; };
-		AD74382B1D4DE08000F5F9D2 /* WeatherContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherContentViewController.h; sourceTree = "<group>"; };
-		AD74382C1D4DE08000F5F9D2 /* WeatherContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherContentViewController.m; sourceTree = "<group>"; };
 		AD74D4DA1D4F90B5001F3B36 /* EventLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventLabel.h; sourceTree = "<group>"; };
 		AD74D4DB1D4F90B5001F3B36 /* EventLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventLabel.m; sourceTree = "<group>"; };
 		AD74D4DD1D4FA08E001F3B36 /* EventInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventInfoViewController.h; sourceTree = "<group>"; };
@@ -278,8 +271,6 @@
 		ADD6555D1D5B89770054FB24 /* alert.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = alert.json; sourceTree = "<group>"; };
 		ADD6555F1D5B8DAC0054FB24 /* AlertModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertModel.h; sourceTree = "<group>"; };
 		ADD655601D5B8DAC0054FB24 /* AlertModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertModel.m; sourceTree = "<group>"; };
-		ADDCD3E61D4C4DA90031DC66 /* UVIndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVIndexViewController.h; sourceTree = "<group>"; };
-		ADDCD3E71D4C4DA90031DC66 /* UVIndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UVIndexViewController.m; sourceTree = "<group>"; };
 		ADDCD3EE1D4C54960031DC66 /* LoginFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginFlow.storyboard; sourceTree = "<group>"; };
 		ADDCD3EF1D4C54960031DC66 /* MainTab.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainTab.storyboard; sourceTree = "<group>"; };
 		ADDCD3F01D4C54960031DC66 /* SyncDevice.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SyncDevice.storyboard; sourceTree = "<group>"; };
@@ -627,16 +618,10 @@
 				AD7438261D4DD50C00F5F9D2 /* JBBaseChartViewController.m */,
 				AD9B0D8F1D3BB935009FDD95 /* DashboardViewController.h */,
 				AD9B0D901D3BB935009FDD95 /* DashboardViewController.m */,
-				ADDCD3E61D4C4DA90031DC66 /* UVIndexViewController.h */,
-				ADDCD3E71D4C4DA90031DC66 /* UVIndexViewController.m */,
 				AD7797A11D4D034600472B27 /* ActivityViewController.h */,
 				AD7797A21D4D034600472B27 /* ActivityViewController.m */,
 				AD7797A41D4D085600472B27 /* ChartViewController.h */,
 				AD7797A51D4D085600472B27 /* ChartViewController.m */,
-				AD7438281D4DDD3600F5F9D2 /* WeatherViewController.h */,
-				AD7438291D4DDD3600F5F9D2 /* WeatherViewController.m */,
-				AD74382B1D4DE08000F5F9D2 /* WeatherContentViewController.h */,
-				AD74382C1D4DE08000F5F9D2 /* WeatherContentViewController.m */,
 				ADF33CBA1D5A323000AE8874 /* TodayChartViewController.h */,
 				ADF33CBB1D5A323000AE8874 /* TodayChartViewController.m */,
 			);
@@ -959,7 +944,6 @@
 				ADF985561D50C64A00B02075 /* ToDoListView.m in Sources */,
 				ADF33CBF1D5A32DD00AE8874 /* RectProgress.m in Sources */,
 				ADF33CB91D5A159400AE8874 /* LMCalendarWeekDayView.m in Sources */,
-				AD74382A1D4DDD3600F5F9D2 /* WeatherViewController.m in Sources */,
 				ADD655611D5B8DAC0054FB24 /* AlertModel.m in Sources */,
 				AD7438231D4DD47100F5F9D2 /* JBChartTooltipTipView.m in Sources */,
 				AD05B5C01D3BD187007BCF7C /* SwingClient.m in Sources */,
@@ -981,14 +965,12 @@
 				AD65905E1DDA8B8A006DD43D /* BLEWaitDevice.m in Sources */,
 				0FDBDA951D708725004F7AAF /* LMLocalData.m in Sources */,
 				ADBC9BD31D578403007E4A2C /* JSONValueTransformer+UIColor.m in Sources */,
-				AD74382D1D4DE08000F5F9D2 /* WeatherContentViewController.m in Sources */,
 				AD7438271D4DD50C00F5F9D2 /* JBBaseChartViewController.m in Sources */,
 				AD2D33901D538418005D9298 /* ToDoModel.m in Sources */,
 				ADE820761D54C62D00E12768 /* UserModel.m in Sources */,
 				0FEC584A1D69D91800201EBD /* BatteryModel.m in Sources */,
 				AD2D338D1D5378AD005D9298 /* KidModel.m in Sources */,
 				AD9B0D971D3BB954009FDD95 /* CalendarViewController.m in Sources */,
-				ADDCD3E81D4C4DA90031DC66 /* UVIndexViewController.m in Sources */,
 				0F1376131DE04A5D00DB6C33 /* DBHelper.m in Sources */,
 				AD347D1B1D3FDE1A00E91DDD /* DeviceTableViewCell.m in Sources */,
 				0F927FD91DDA02680011EF90 /* BLESyncDevice.m in Sources */,

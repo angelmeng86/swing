@@ -184,7 +184,7 @@ typedef enum : NSUInteger {
 - (IBAction)btnAction:(id)sender {
     if (_status == SyncStatusFound) {
         
-        NSArray *eventArray = [DBHelper queryNearAlertEventModel:100];
+        NSArray *eventArray = [DBHelper queryNearAlertEventModel:200];
         LOG_D(@"queryNearEventModel count %lu", (unsigned long)eventArray.count);
         [self changeStatus:SyncStatusSyncing];
 #if TARGET_IPHONE_SIMULATOR

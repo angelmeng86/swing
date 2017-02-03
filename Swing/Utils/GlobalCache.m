@@ -282,7 +282,7 @@
 - (id)init
 {
     if (self = [super init]) {
-        _weartherRunning = NO;
+//        _weartherRunning = NO;
     }
     return self;
 }

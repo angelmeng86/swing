@@ -43,8 +43,8 @@
 - (NSString*)curLanguage;
 - (NSString *)showText:(NSString *)key;
 
-@property (strong, nonatomic) WeatherModel* wearther;
-@property (nonatomic) BOOL weartherRunning;
+//@property (strong, nonatomic) WeatherModel* wearther;
+//@property (nonatomic) BOOL weartherRunning;
 
 @property (strong, nonatomic) NSArray* kidsList;
 - (int64_t)getKidId;//获取第一个有效KidId
