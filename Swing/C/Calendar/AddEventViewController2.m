@@ -439,7 +439,7 @@
         }
     }
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    [data addEntriesFromDictionary:@{@"kidId":@(kidId), @"Name":self.nameTF.text, @"startDate":self.startTF.text
+    [data addEntriesFromDictionary:@{@"kidId":@(kidId), @"name":self.nameTF.text, @"startDate":self.startTF.text
                                      , @"endDate":self.endTF.text
                                      , @"color":[Fun stringFromColor:self.colorCtl.selectedColor]
                                      , @"timezoneOffset" : @([NSTimeZone localTimeZone].secondsFromGMT)}];
