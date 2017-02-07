@@ -247,6 +247,8 @@
                 completion(nil, nil, err);
             }
             else {
+                
+                BOOL isFinded = NO;
                 UserModel *model = [[UserModel alloc] initWithDictionary:responseObject[@"user"] error:nil];
                 NSArray *kids = [KidModel arrayOfModelsFromDictionaries:responseObject[@"kids"] error:&err];
                 for (KidModel *kid in kids) {
@@ -255,8 +257,14 @@
                         [GlobalCache shareInstance].local.deviceMAC = [Fun hexToData:kid.macId];
                         [GlobalCache shareInstance].local.kidId = kid.objId;
                         [[GlobalCache shareInstance] saveInfo];
+                        isFinded = YES;
                         break;
                     }
+                }
+                if (!isFinded) {
+                    [GlobalCache shareInstance].local.deviceMAC = nil;
+                    [GlobalCache shareInstance].local.kidId = -1;
+                    [[GlobalCache shareInstance] saveInfo];
                 }
                 [GlobalCache shareInstance].kidsList = kids;
                 [GlobalCache shareInstance].user = model;

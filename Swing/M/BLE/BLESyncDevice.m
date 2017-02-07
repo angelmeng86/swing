@@ -206,7 +206,7 @@ typedef enum : NSUInteger {
 //                LOG_D(@"time1:%@, now:%@, %@, %@", [NSDate dateWithTimeIntervalSince1970:self.timeStamp], [NSDate date], [df1 stringFromDate:[NSDate dateWithTimeIntervalSince1970:self.timeStamp]], [df2 stringFromDate:[NSDate date]]);
                 NSString *key = [df stringFromDate:[NSDate dateWithTimeIntervalSince1970:self.timeStamp]];
                 ActivityModel *model = [ActivityModel new];
-                model.time = self.timeStamp;
+                model.time = self.timeStamp - TIME_ADJUST;
                 model.macId = [Fun dataToHex:self.macAddress];
                 [model setIndoorData:self.ffa4Data1];
                 [model setOutdoorData:self.ffa4Data2];
