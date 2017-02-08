@@ -29,11 +29,11 @@
     self.emailTextField.delegate = self;
     self.pwdTextField.delegate = self;
     
-#ifdef MAPPLE_DEBUG
-    self.emailTextField.text = @"lwz1@swing.com";
+//#ifdef MAPPLE_DEBUG
+//    self.emailTextField.text = @"lwz1@swing.com";
 //    self.emailTextField.text = @"test11@swing.com";
-    self.pwdTextField.text = @"1";
-#endif
+//    self.pwdTextField.text = @"1";
+//#endif
     [self setCustomBackButton];
 }
 
@@ -69,7 +69,12 @@
     }
     else if (textField == self.pwdTextField) {
         [textField resignFirstResponder];
-        
+        [self login];
+    }
+    return YES;
+}
+
+- (void)login {
         if ([self validateTextField]) {
             [SVProgressHUD showWithStatus:@"Please wait..."];
             [[SwingClient sharedClient] userIsEmailRegistered:self.emailTextField.text completion:^(NSNumber *result, NSError *error) {
@@ -92,8 +97,6 @@
                                 //Login success
                                 [[SwingClient sharedClient] userRetrieveProfileWithCompletion:^(id user, NSArray *kids, NSError *error) {
                                     if (![self isError:error tag:@"retrieveProfile"]) {
-//                                        [SVProgressHUD dismiss];
-//                                        [self goToMain];
                                         [SVProgressHUD showWithStatus:@"Loading data, please wait..."];
                                         //继续获取所有Event进行本地缓存
                                         [self cacheEventsV1];
@@ -105,8 +108,6 @@
                 }
             }];
         }
-    }
-    return YES;
 }
 
 - (BOOL)isError:(NSError*)error tag:(NSString*)tag {
@@ -139,4 +140,7 @@
 }
 */
 
+- (IBAction)loginAction:(id)sender {
+    [self login];
+}
 @end

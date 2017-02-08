@@ -44,7 +44,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e8F-nf-rHL">
-                                <rect key="frame" x="60" y="170" width="294" height="35"/>
+                                <rect key="frame" x="60" y="120" width="294" height="35"/>
                                 <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="03g-NA-czV"/>
@@ -54,22 +54,39 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Po-Ah-Mkw">
-                                <rect key="frame" x="60" y="225" width="294" height="35"/>
+                                <rect key="frame" x="60" y="170" width="294" height="35"/>
                                 <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" secureTextEntry="YES"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N92-Dp-3AF" customClass="RoundButton">
+                                <rect key="frame" x="60" y="220" width="294" height="35"/>
+                                <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="Qk7-Vj-Ft6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginAction:" destination="j7W-Of-rKh" eventType="touchUpInside" id="J9l-d3-vT0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="e8F-nf-rHL" firstAttribute="top" secondItem="zwa-xS-716" secondAttribute="bottom" constant="150" id="0Ya-i8-geB"/>
+                            <constraint firstItem="e8F-nf-rHL" firstAttribute="top" secondItem="zwa-xS-716" secondAttribute="bottom" constant="100" id="0Ya-i8-geB"/>
+                            <constraint firstItem="N92-Dp-3AF" firstAttribute="top" secondItem="2Po-Ah-Mkw" secondAttribute="bottom" constant="15" id="4C5-Re-RxV"/>
                             <constraint firstItem="2Po-Ah-Mkw" firstAttribute="height" secondItem="e8F-nf-rHL" secondAttribute="height" id="CeH-iS-h1x"/>
                             <constraint firstItem="e8F-nf-rHL" firstAttribute="leading" secondItem="DuV-3t-sWW" secondAttribute="leadingMargin" constant="40" id="GxG-h1-jsE"/>
                             <constraint firstItem="2Po-Ah-Mkw" firstAttribute="width" secondItem="e8F-nf-rHL" secondAttribute="width" id="IoM-Ai-gx4"/>
+                            <constraint firstItem="N92-Dp-3AF" firstAttribute="width" secondItem="e8F-nf-rHL" secondAttribute="width" id="U8t-gi-cth"/>
+                            <constraint firstItem="N92-Dp-3AF" firstAttribute="centerX" secondItem="e8F-nf-rHL" secondAttribute="centerX" id="VR2-ZB-DbJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="e8F-nf-rHL" secondAttribute="trailing" constant="40" id="XYz-r9-WzC"/>
                             <constraint firstItem="2Po-Ah-Mkw" firstAttribute="centerX" secondItem="e8F-nf-rHL" secondAttribute="centerX" id="sms-zg-Xzl"/>
-                            <constraint firstItem="2Po-Ah-Mkw" firstAttribute="top" secondItem="e8F-nf-rHL" secondAttribute="bottom" constant="20" id="tMI-lj-UIn"/>
+                            <constraint firstItem="2Po-Ah-Mkw" firstAttribute="top" secondItem="e8F-nf-rHL" secondAttribute="bottom" constant="15" id="tMI-lj-UIn"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Login" id="Axq-Mu-f5y"/>
