@@ -164,31 +164,6 @@
     return [df stringFromDate:date];
 }
 
-
-- (void)queryMonthEvents:(NSDate*)date {
-    if (/* DISABLES CODE */ (YES)) {
-        //增加本地缓存后不需要每次进行查询
-        return;
-    }
-    
-    NSString *month = [GlobalCache dateToMonthString:date];
-    if ([self.calendarQueue containsObject:month]) {
-        LOG_D(@"containsObject date: %@", month);
-        return;
-    }
-    
-    [self.calendarQueue addObject:month];
-    [[SwingClient sharedClient] calendarGetEvents:date type:GetEventTypeMonth completion:^(NSArray *eventArray, NSError *error) {
-        if (error) {
-            LOG_D(@"calendarGetEvents fail: %@", error);
-        }
-        else {
-            [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_LIST_UPDATE_NOTI object:month];
-        }
-        [self.calendarQueue removeObject:month];
-    }];
-}
-
 - (void)postUpdateNotification:(NSDate*)date {
     if (date) {
         NSString *month = [GlobalCache dateToMonthString:date];

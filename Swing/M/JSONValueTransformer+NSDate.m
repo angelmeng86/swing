@@ -17,6 +17,7 @@
     static NSDateFormatter* inputDateFormatter;
     dispatch_once(&onceInput, ^{
         inputDateFormatter = [[NSDateFormatter alloc] init];
+//        [inputDateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
 //        [inputDateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
         [inputDateFormatter setDateFormat:@"yyyy/MM/dd'T'HH:mm:ss'Z'"];
     });

@@ -30,7 +30,6 @@
 + (NSString*)dateToMonthString:(NSDate*)date;
 + (NSString*)dateToDayString:(NSDate*)date;
 
-- (void)queryMonthEvents:(NSDate*)date;
 - (void)postUpdateNotification:(NSDate*)date;
 
 - (NSArray*)queryEventColorForDay:(NSDate *)date;

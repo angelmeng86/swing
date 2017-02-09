@@ -87,7 +87,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [_calendarManager reload];
-    [[GlobalCache shareInstance] queryMonthEvents:_dateSelected];
 }
 
 /*!
@@ -95,7 +94,6 @@
  */
 - (void)calendarDidLoadPreviousPage:(JTCalendarManager *)calendar {
 //    NSLog(@"calendarDidLoadPreviousPage:%@", calendar.date);
-    [[GlobalCache shareInstance] queryMonthEvents:calendar.date];
 }
 
 /*!
@@ -103,7 +101,6 @@
  */
 - (void)calendarDidLoadNextPage:(JTCalendarManager *)calendar {
 //    NSLog(@"calendarDidLoadNextPage:%@", calendar.date);
-    [[GlobalCache shareInstance] queryMonthEvents:calendar.date];
 }
 
 - (UIView *)calendarBuildMenuItemView:(JTCalendarManager *)calendar
