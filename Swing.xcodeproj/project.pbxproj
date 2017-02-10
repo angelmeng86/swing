@@ -191,6 +191,7 @@
 		AD0B81151D37EF7400F43E72 /* LMBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMBaseViewController.m; sourceTree = "<group>"; };
 		AD0B81221D37F09900F43E72 /* SimpleLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleLogger.h; sourceTree = "<group>"; };
 		AD0B81231D37F09900F43E72 /* SimpleLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleLogger.m; sourceTree = "<group>"; };
+		AD1502D71E4D50F300B6D000 /* Swing.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Swing.entitlements; sourceTree = "<group>"; };
 		AD1C61951DDB2AEF00331474 /* ActivityCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityCache.h; sourceTree = "<group>"; };
 		AD1C61961DDB2AEF00331474 /* ActivityCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityCache.m; sourceTree = "<group>"; };
 		AD1CEF081D5ACB19004FEC24 /* LMBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMBarView.h; sourceTree = "<group>"; };
@@ -750,6 +751,7 @@
 		ADFC2C2A1D369949004EDCDF /* Swing */ = {
 			isa = PBXGroup;
 			children = (
+				AD1502D71E4D50F300B6D000 /* Swing.entitlements */,
 				AD0B81061D37EF7400F43E72 /* C */,
 				AD0B81071D37EF7400F43E72 /* M */,
 				AD0B81201D37F09900F43E72 /* ThirdPart */,
@@ -1122,6 +1124,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Swing/Swing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = WA4RYXHUS9;
@@ -1144,6 +1147,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Swing/Swing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = WA4RYXHUS9;
