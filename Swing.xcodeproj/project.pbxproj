@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		015468D213152E4DB0DEFF15 /* libPods-Swing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C19A6FBE22DAA79A59B1FD3 /* libPods-Swing.a */; };
+		0F12C33F1E507B1E0055DBB0 /* EditKidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F12C33E1E507B1E0055DBB0 /* EditKidViewController.m */; };
 		0F1376131DE04A5D00DB6C33 /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1376121DE04A5D00DB6C33 /* DBHelper.m */; };
 		0F1376341DE0593600DB6C33 /* ColorTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1376331DE0593600DB6C33 /* ColorTransformer.m */; };
 		0F140B711D88432B005B9763 /* alert2.json in Resources */ = {isa = PBXBuildFile; fileRef = 0F140B701D88432B005B9763 /* alert2.json */; };
@@ -16,6 +17,7 @@
 		0F176EC01DE48FB70014F079 /* Todo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F176EBA1DE48FB70014F079 /* Todo+CoreDataProperties.m */; };
 		0F176EC11DE48FB70014F079 /* Event+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F176EBC1DE48FB70014F079 /* Event+CoreDataClass.m */; };
 		0F176EC21DE48FB70014F079 /* Event+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F176EBE1DE48FB70014F079 /* Event+CoreDataProperties.m */; };
+		0F1B77FC1E4EAC4600FD2421 /* OptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B77FB1E4EAC4600FD2421 /* OptionViewController.m */; };
 		0F1D939D1DEDD90F000444B9 /* BLEDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1D939C1DEDD90F000444B9 /* BLEDelegate.m */; };
 		0F37056E1E096A6700E87BF0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0F3705701E096A6700E87BF0 /* Localizable.strings */; };
 		0F445E0F1D7094A6008A092C /* JSONValueTransformer+NSData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F445E0E1D7094A6008A092C /* JSONValueTransformer+NSData.m */; };
@@ -117,6 +119,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F12C33D1E507B1E0055DBB0 /* EditKidViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditKidViewController.h; sourceTree = "<group>"; };
+		0F12C33E1E507B1E0055DBB0 /* EditKidViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditKidViewController.m; sourceTree = "<group>"; };
 		0F1376111DE04A5D00DB6C33 /* DBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBHelper.h; sourceTree = "<group>"; };
 		0F1376121DE04A5D00DB6C33 /* DBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBHelper.m; sourceTree = "<group>"; };
 		0F13762A1DE0524900DB6C33 /* Swing.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Swing.xcdatamodel; sourceTree = "<group>"; };
@@ -133,6 +137,8 @@
 		0F176EBC1DE48FB70014F079 /* Event+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Event+CoreDataClass.m"; sourceTree = "<group>"; };
 		0F176EBD1DE48FB70014F079 /* Event+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Event+CoreDataProperties.h"; sourceTree = "<group>"; };
 		0F176EBE1DE48FB70014F079 /* Event+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Event+CoreDataProperties.m"; sourceTree = "<group>"; };
+		0F1B77FA1E4EAC4600FD2421 /* OptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionViewController.h; sourceTree = "<group>"; };
+		0F1B77FB1E4EAC4600FD2421 /* OptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionViewController.m; sourceTree = "<group>"; };
 		0F1D939B1DEDD90F000444B9 /* BLEDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEDelegate.h; sourceTree = "<group>"; };
 		0F1D939C1DEDD90F000444B9 /* BLEDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEDelegate.m; sourceTree = "<group>"; };
 		0F37056F1E096A6700E87BF0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -632,10 +638,14 @@
 		AD9B0D8E1D3BB89E009FDD95 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				0F12C33D1E507B1E0055DBB0 /* EditKidViewController.h */,
+				0F12C33E1E507B1E0055DBB0 /* EditKidViewController.m */,
 				AD9B0D981D3BB964009FDD95 /* ProfileViewController.h */,
 				AD9B0D991D3BB964009FDD95 /* ProfileViewController.m */,
 				AD7797941D4C9B5200472B27 /* EditProfileViewController.h */,
 				AD7797951D4C9B5200472B27 /* EditProfileViewController.m */,
+				0F1B77FA1E4EAC4600FD2421 /* OptionViewController.h */,
+				0F1B77FB1E4EAC4600FD2421 /* OptionViewController.m */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -997,6 +1007,8 @@
 				AD7438241D4DD47100F5F9D2 /* JBChartTooltipView.m in Sources */,
 				ADA1F82A1E234D4B0066CD35 /* SwingURL.m in Sources */,
 				AD7797931D4C8D0600472B27 /* ProfileDeviceCell.m in Sources */,
+				0F12C33F1E507B1E0055DBB0 /* EditKidViewController.m in Sources */,
+				0F1B77FC1E4EAC4600FD2421 /* OptionViewController.m in Sources */,
 				AD790F531DAF9D9B002FE2F1 /* LFTextField.m in Sources */,
 				0F927FD71DDA02680011EF90 /* BLEScanDevice.m in Sources */,
 				0F68BEEF1DE87F8D002FDFB2 /* Activity+CoreDataProperties.m in Sources */,

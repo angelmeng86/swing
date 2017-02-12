@@ -46,14 +46,14 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userProfileLoaded:) name:USER_PROFILE_LOAD_NOTI object:nil];
     
-    if ([[GlobalCache shareInstance] getKidId] == -1) {
+    if (![GlobalCache shareInstance].kid) {
         //当前用户没有绑定设备，执行查询
         [[GlobalCache shareInstance] queryProfile];
     }
 }
 
 - (void)userProfileLoaded:(NSNotification*)notification {
-    if (![GlobalCache shareInstance].local.deviceMAC) {
+    if (![GlobalCache shareInstance].kid) {
         //确认当前用户没有绑定设备
         self.label1.text = LOC_STR(@"You have not bind device yet.");
         self.button1.tag = TAG_SEARCH_WATCH;
@@ -90,7 +90,7 @@
         [self syncAnotherAction:sender];
         return;
     }
-    if ([GlobalCache shareInstance].local.deviceMAC) {
+    if ([GlobalCache shareInstance].kid) {
         UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"SyncDevice" bundle:nil];
         UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"Syncing"];
         [self.navigationController pushViewController:ctl animated:YES];

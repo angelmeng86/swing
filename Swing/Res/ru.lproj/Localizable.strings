@@ -106,8 +106,8 @@
 "Parent"="Мать/отец";
 "My hosting device"="Мои часы";
 "Device shared with me"="Часы для совместного использования";
-"logout"="Завершить сеанс";
-"language"="язык";
+"Logout"="Завершить сеанс";
+"Language"="язык";
 
 "Please select your language"="Пожалуйста, выбери язык";
 "Select"="Выбрать";
@@ -133,6 +133,7 @@
 "We've successfully added your Swing Watch"="Мы добавили твои часы";
 "Setup your profile"="Дополнить профиль";
 "Contact us!"="Свяжись с нами";
+"Contact Us"="Свяжись с нами";
 "Sorry!"="Как жаль!";
 "We couldn’t find your Swing Watch. Please make sure your watch is fully charged"="Нам не удалось найти твои часы. Пожалуйста, убедись в том, что они загружены";
 "Search Again"="Повторить поиск";

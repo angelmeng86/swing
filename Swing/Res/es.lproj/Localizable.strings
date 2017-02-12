@@ -106,8 +106,8 @@
 "Parent"="Madre/Padre";
 "My hosting device"="Mis relojes";
 "Device shared with me"="Reloj compartido";
-"logout"="Cerrar sesión";
-"language"="idioma";
+"Logout"="Cerrar sesión";
+"Language"="idioma";
 
 "Please select your language"="Por favor, selecciona tu idioma";
 "Select"="Seleccionar";
@@ -133,6 +133,7 @@
 "We've successfully added your Swing Watch"="Hemos añadido tu reloj";
 "Setup your profile"="Completar perfil";
 "Contact us!"="Contacta con nosotros";
+"Contact Us"="Contacta con nosotros";
 "Sorry!"="¡Lo sentimos!";
 "We couldn’t find your Swing Watch. Please make sure your watch is fully charged"="No podemos encontrar tu reloj.  Por favor, asegúrate de que está cargado";
 "Search Again"="Buscar de nuevo";

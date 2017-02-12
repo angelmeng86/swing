@@ -15,7 +15,4 @@
 @property (strong, nonatomic) NSString* access_token;
 //@property (strong, nonatomic) NSString<Optional>* profileImage;
 @property (strong, nonatomic) NSArray<Optional>* rule;
-
-@property (strong, nonatomic) NSString<Optional>* test;
-
 @end

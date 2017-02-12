@@ -21,7 +21,7 @@
 + (GlobalCache*)shareInstance;
 - (void)initConfig;
 - (void)saveInfo;
-
+- (void)clearInfo:(NSString*)key;
 - (void)queryProfile;
 //- (void)queryWeather;
 
@@ -34,8 +34,8 @@
 
 - (NSArray*)queryEventColorForDay:(NSDate *)date;
 
-@property (strong, nonatomic) LoginedModel* info;
 @property (strong, nonatomic) UserModel* user;
+@property (strong, nonatomic) KidModel* kid;
 @property (strong, nonatomic) LMLocalData* local;
 
 @property (strong, nonatomic) NSString* cacheLang;

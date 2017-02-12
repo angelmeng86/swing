@@ -39,8 +39,8 @@
 - (AFHTTPRequestSerializer*)httpSerializer {
     if (_httpSerializer == nil) {
         _httpSerializer = [AFHTTPRequestSerializer serializer];
-        if ([GlobalCache shareInstance].info.access_token.length > 0) {
-            [_httpSerializer setValue:[GlobalCache shareInstance].info.access_token forHTTPHeaderField:@"x-auth-token"];
+        if ([GlobalCache shareInstance].local.access_token.length > 0) {
+            [_httpSerializer setValue:[GlobalCache shareInstance].local.access_token forHTTPHeaderField:@"x-auth-token"];
         }
 
     }
@@ -54,9 +54,9 @@
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
         //        [config setHTTPAdditionalHeaders:@{ @"User-Agent" : @"TuneStore iOS 1.0"}];
         
-        if ([GlobalCache shareInstance].info.access_token.length > 0) {
-            [config setHTTPAdditionalHeaders:@{@"x-auth-token":[GlobalCache shareInstance].info.access_token}];
-            LOG_D(@"access_token:%@", [GlobalCache shareInstance].info.access_token);
+        if ([GlobalCache shareInstance].local.access_token.length > 0) {
+            [config setHTTPAdditionalHeaders:@{@"x-auth-token":[GlobalCache shareInstance].local.access_token}];
+            LOG_D(@"access_token:%@", [GlobalCache shareInstance].local.access_token);
         }
         
         config.timeoutIntervalForRequest = 30;//请求超时时间
@@ -165,7 +165,8 @@
                 [self.config setHTTPAdditionalHeaders:@{@"x-auth-token":model.access_token}];
                 [_sessionManager.requestSerializer setValue:model.access_token forHTTPHeaderField:@"x-auth-token"];
                 LOG_D(@"access_token:%@", model.access_token);
-                [GlobalCache shareInstance].info = model;
+                [GlobalCache shareInstance].local.access_token = model.access_token;
+                [[GlobalCache shareInstance] saveInfo];
 
                 [[GlobalCache shareInstance] queryProfile];
 
@@ -260,17 +261,14 @@
                 for (KidModel *kid in kids) {
                     if (kid.macId.length > 0) {
                         //默认设置第一个Kid的设备为当前设备
-                        [GlobalCache shareInstance].local.deviceMAC = [Fun hexToData:kid.macId];
-                        [GlobalCache shareInstance].local.kidId = kid.objId;
-                        [[GlobalCache shareInstance] saveInfo];
+                        [GlobalCache shareInstance].kid = kid;
                         isFinded = YES;
                         break;
                     }
                 }
                 if (!isFinded) {
-                    [GlobalCache shareInstance].local.deviceMAC = nil;
-                    [GlobalCache shareInstance].local.kidId = -1;
-                    [[GlobalCache shareInstance] saveInfo];
+                    [GlobalCache shareInstance].kid = nil;
+                    [[GlobalCache shareInstance] clearInfo:@"kid"];
                 }
                 [GlobalCache shareInstance].kidsList = kids;
                 [GlobalCache shareInstance].user = model;
@@ -362,6 +360,29 @@
             else {
                 KidModel *kid = [[KidModel alloc] initWithDictionary:responseObject error:&err];
 //                NSArray *kids = [KidModel arrayOfModelsFromDictionaries:responseObject[@"kids"] error:&err];
+                completion(kid, err);
+            }
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSError *err = [self filterTokenInvalid:task.response err:error];
+            completion(nil, err);
+        });
+    }];
+    
+    return task;
+}
+
+- (NSURLSessionDataTask *)kidsUpdate:(NSDictionary*)data completion:( void (^)(id kid, NSError *error) )completion {
+    NSURLSessionDataTask *task = [self.sessionManager PUT:_URL.kidsUpdate parameters:data success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LOG_D(@"kidsUpdate info:%@", responseObject);
+            NSError *err = [self getErrorMessage:responseObject];
+            if (err) {
+                completion(nil, err);
+            }
+            else {
+                KidModel *kid = [[KidModel alloc] initWithDictionary:responseObject error:&err];
                 completion(kid, err);
             }
         });

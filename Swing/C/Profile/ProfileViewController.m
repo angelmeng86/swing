@@ -12,6 +12,7 @@
 #import "ProfileDeviceCell.h"
 #import "AppDelegate.h"
 #import "ChoicesViewController.h"
+#import "OptionViewController.h"
 
 @interface ProfileViewController ()
 
@@ -33,16 +34,23 @@
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"navi_edit") style:UIBarButtonItemStylePlain target:self action:@selector(editProfileAction:)];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:LOC_STR(@"language") style: UIBarButtonItemStylePlain target:self action:@selector(languageAction)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"navi_option") style:UIBarButtonItemStylePlain target:self action:@selector(optionAction)];
+    
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:LOC_STR(@"Language") style: UIBarButtonItemStylePlain target:self action:@selector(languageAction)];
     
     self.navigationItem.title = LOC_STR(@"Profile");
-    [self.logoutBtn setTitle:LOC_STR(@"logout") forState:UIControlStateNormal];
+    [self.logoutBtn setTitle:LOC_STR(@"Logout") forState:UIControlStateNormal];
+}
+
+- (void)optionAction {
+    OptionViewController *ctl = [[OptionViewController alloc] initWithStyle:UITableViewStylePlain];
+    [self.navigationController pushViewController:ctl animated:YES];
 }
 
 - (void)languageAction {
     ChoicesViewController *ctl = [[ChoicesViewController alloc] initWithStyle:UITableViewStylePlain];
     ctl.delegate = self;
-    ctl.navigationItem.title = LOC_STR(@"language");
+    ctl.navigationItem.title = LOC_STR(@"Language");
     ctl.textArray = @[LOC_STR(@"English"), LOC_STR(@"Spanish"), LOC_STR(@"Russian")];
     [self.navigationController pushViewController:ctl animated:YES];
 }
@@ -115,15 +123,28 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    if (collectionView == self.deviceConllectionView) {
+        return 1;
+    }
+    return 0;
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [GlobalCache shareInstance].kidsList.count;
+    if (collectionView == self.deviceConllectionView) {
+        return [GlobalCache shareInstance].kidsList.count;
+    }
+    return 0;
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    CGFloat left = (collectionView.frame.size.width - (55 * [GlobalCache shareInstance].kidsList.count - 5)) / 2;
-    return UIEdgeInsetsMake(10, left > 10 ? left : 10, 0, 10);
+    if (collectionView == self.deviceConllectionView) {
+        CGFloat left = (collectionView.frame.size.width - (55 * [GlobalCache shareInstance].kidsList.count - 5)) / 2;
+        return UIEdgeInsetsMake(10, left > 10 ? left : 10, 0, 10);
+    }
+    return UIEdgeInsetsZero;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
@@ -131,9 +152,11 @@
 {
     UICollectionReusableView *reusableview = nil;
     if (kind == UICollectionElementKindSectionHeader){
-        reusableview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
-        UILabel *label = (UILabel*)[reusableview viewWithTag:2016];
-        label.text = LOC_STR(@"My hosting device");
+        if (collectionView == self.deviceConllectionView) {
+            reusableview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
+            UILabel *label = (UILabel*)[reusableview viewWithTag:2016];
+            label.text = LOC_STR(@"My hosting device");
+        }
     }
     
     return reusableview;
@@ -141,23 +164,27 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    ProfileDeviceCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DeviceCell" forIndexPath:indexPath];
-    KidModel *model = [[GlobalCache shareInstance].kidsList objectAtIndex:indexPath.row];
-    if (model.profile) {
-        [cell.imageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:model.profile]] forState:UIControlStateNormal];
+    UICollectionViewCell *cell = nil;
+    if (collectionView == self.deviceConllectionView) {
+        ProfileDeviceCell *deviceCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DeviceCell" forIndexPath:indexPath];
+        KidModel *model = [[GlobalCache shareInstance].kidsList objectAtIndex:indexPath.row];
+        if (model.profile) {
+            [deviceCell.imageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:model.profile]] forState:UIControlStateNormal];
+        }
+        else {
+            [deviceCell.imageBtn setBackgroundImage:nil forState:UIControlStateNormal];
+        }
+        [deviceCell.imageBtn setTitle:nil forState:UIControlStateNormal];
+        cell = deviceCell;
     }
-    else {
-        [cell.imageBtn setBackgroundImage:nil forState:UIControlStateNormal];
-    }
-    [cell.imageBtn setTitle:nil forState:UIControlStateNormal];
-    
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if (collectionView == self.deviceConllectionView) {
+        
+    }
 }
 
 - (IBAction)logoutAction:(id)sender {

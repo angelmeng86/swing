@@ -45,6 +45,11 @@
 - (NSString*)kidsAdd {
     return @"/v1/kids/add";
 }
+
+- (NSString*)kidsUpdate {
+    return @"/v1/kids/update";
+}
+
 //废弃
 - (NSString*)kidsRemove {
     return @"/v1/kids/remove";

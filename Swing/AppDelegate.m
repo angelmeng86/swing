@@ -122,7 +122,7 @@
     [self.window makeKeyAndVisible];
     
     
-    NSString *name = [GlobalCache shareInstance].info == nil ? @"LoginFlow" : @"MainTab2";
+    NSString *name = [GlobalCache shareInstance].local.access_token == nil ? @"LoginFlow" : @"MainTab2";
 //    NSString *name = @"MainTab2";
     UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:name bundle:nil];
     UIViewController *ctl = [stroyBoard instantiateInitialViewController];
@@ -175,7 +175,7 @@
     NSLog(@"token:%@", tokenStr);
     // Save the token to server
     [GlobalCache shareInstance].token = tokenStr;
-    if ([GlobalCache shareInstance].info) {
+    if ([GlobalCache shareInstance].local.access_token) {
         [[SwingClient sharedClient] userUpdateIOSRegistrationId:[GlobalCache shareInstance].token completion:^(NSError *error) {
             if (error) {
                 NSLog(@"userUpdateIOSRegistrationId1 fail: %@", error);
@@ -208,7 +208,7 @@
     NSString* alert = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
     // 把应用右上角的图标​去掉
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-    if (active && [GlobalCache shareInstance].info && !_isBackground) {
+    if (active && [GlobalCache shareInstance].local.access_token && !_isBackground) {
         [Fun showMessageBoxWithTitle:@"Notification" andMessage:alert];
     }
     else {

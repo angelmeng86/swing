@@ -6,38 +6,33 @@
 //  Copyright © 2016年 zzteam. All rights reserved.
 //
 
-#import "KidBindViewController.h"
+#import "EditKidViewController.h"
 #import "VPImageCropperViewController.h"
 #import "CommonDef.h"
 #import "BindReadyViewController.h"
 #import "EditProfileViewController.h"
 #import "SyncDeviceViewController.h"
+#import <SDWebImage/UIButton+WebCache.h>
 
-@interface KidBindViewController ()<UITextFieldDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, VPImageCropperDelegate>
+@interface EditKidViewController ()<UITextFieldDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, VPImageCropperDelegate>
 {
     UIImage *image;
 }
 
 @end
 
-@implementation KidBindViewController
+@implementation EditKidViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = self.title;
+    self.navigationItem.title = LOC_STR(@"Edit");;
     
     [self.firstNameTF setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
-    [self.lastNameTF setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
-    [self.birthdayTF setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     
     self.firstNameTF.placeholder=LOC_STR(@"Kid's name");
-    self.lastNameTF.placeholder=LOC_STR(@"Kid's name");
-    self.birthdayTF.placeholder=LOC_STR(@"Kid's birthday");
     
     self.firstNameTF.delegate = self;
-    self.lastNameTF.delegate = self;
-    self.birthdayTF.delegate = self;
     
     self.imageBtn.layer.cornerRadius = 60.f;
     self.imageBtn.layer.borderColor = [self.imageBtn titleColorForState:UIControlStateNormal].CGColor;
@@ -45,7 +40,17 @@
     self.imageBtn.layer.masksToBounds = YES;
     image = nil;
     
-    [self setCustomBackButton];
+    if ([GlobalCache shareInstance].kid) {
+        self.firstNameTF.text = [GlobalCache shareInstance].kid.name;
+        if ([GlobalCache shareInstance].kid.profile) {
+            [self.imageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:[GlobalCache shareInstance].kid.profile]] forState:UIControlStateNormal];
+            self.imageBtn.layer.borderColor = [UIColor whiteColor].CGColor;
+            [self.imageBtn setTitle:nil forState:UIControlStateNormal];
+        }
+        
+    }
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"navi_save") style:UIBarButtonItemStylePlain target:self action:@selector(doneAction)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,103 +67,68 @@
     return YES;
 }
 
-- (void)goNext {
-    for (UIViewController *ctl in self.navigationController.viewControllers) {
-        if ([ctl isKindOfClass:[EditProfileViewController class]]) {
-            //EditProfile add device flow
-            [self.navigationController popToViewController:ctl animated:YES];
-            return;
-        }
-        if ([ctl isKindOfClass:[SyncDeviceViewController class]]) {
-            [self.navigationController dismissViewControllerAnimated:YES completion:^{
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"SYNC_DISMISS" object:nil];
-            }];
-            return;
-        }
-    }
-    
-    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
-    BindReadyViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"BindReady"];
-    ctl.image = image;
-    ctl.name = [NSString stringWithFormat:@"%@ %@", self.firstNameTF.text, self.lastNameTF.text];
-    [self.navigationController pushViewController:ctl animated:YES];
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if (textField == self.firstNameTF) {
-//        [self.lastNameTF becomeFirstResponder];
-//    }
-//    else if (textField == self.lastNameTF) {
-        
+- (void)doneAction {
         if ([self validateTextField]) {
-            //查询后台数据是否已存在绑定的Mac
-            [SVProgressHUD showWithStatus:@"Check kid info, please wait..."];
-            [[SwingClient sharedClient] userRetrieveProfileWithCompletion:^(id user, NSArray *kids, NSError *error) {
-                if (!error) {
-                    if ([GlobalCache shareInstance].kid) {
-                        [SVProgressHUD showErrorWithStatus:@"You had been bind a watch!"];
-                        return;
-                    }
-                    [SVProgressHUD showWithStatus:@"Add kid info, please wait..."];
-                    
-                    NSMutableDictionary *data = [NSMutableDictionary dictionaryWithDictionary:@{@"name":self.firstNameTF.text}];
-                    if (self.macAddress) {
-                        NSString *mac = [Fun dataToHex:self.macAddress];
-                        [data setObject:mac forKey:@"macId"];//new api
-                    }
-                    
-                    [[SwingClient sharedClient] kidsAdd:data completion:^(id kid, NSError *error) {
-                        if (error) {
-                            LOG_D(@"kidsAdd fail: %@", error);
-                            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-                        }
-                        else {
-                            KidModel *model = kid;
-                            if (self.macAddress && [GlobalCache shareInstance].kid == nil) {
-                                [GlobalCache shareInstance].kid = model;
-                            }
-                            if ([GlobalCache shareInstance].kidsList) {
-                                [GlobalCache shareInstance].kidsList = [[GlobalCache shareInstance].kidsList arrayByAddingObject:model];
-                            }
-                            else {
-                                [GlobalCache shareInstance].kidsList = @[model];
-                            }
-                            if (image && model) {
-                                [SVProgressHUD showWithStatus:@"UploadImage, please wait..."];
-                                [[SwingClient sharedClient] kidsUploadKidsProfileImage:image kidId:model.objId completion:^(NSString *profileImage, NSError *error) {
-                                    if (error) {
-                                        LOG_D(@"uploadProfileImage fail: %@", error);
-                                    }
-                                    else {
-                                        model.profile = profileImage;
-                                    }
-                                    [SVProgressHUD dismiss];
-                                    [self goNext];
-                                }];
-                            }
-                            else {
-                                [SVProgressHUD dismiss];
-                                [self goNext];
-                            }
-                        }
-                    }];
-                }
-                else {
-                    LOG_D(@"retrieveProfile fail: %@", error);
+            [SVProgressHUD showWithStatus:@"Edit kid info, please wait..."];
+            
+            NSMutableDictionary *data = [NSMutableDictionary dictionaryWithDictionary:@{@"name":self.firstNameTF.text, @"kidId":@([GlobalCache shareInstance].kid.objId)}];
+            NSString *mac = [GlobalCache shareInstance].kid.macId;
+            if (mac) {
+                [data setObject:mac forKey:@"macId"];
+            }
+            
+            [[SwingClient sharedClient] kidsUpdate:data completion:^(id kid, NSError *error) {
+                if (error) {
+                    LOG_D(@"kidsUpdate fail: %@", error);
                     [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
                 }
+                else {
+                    KidModel *model = kid;
+                    BOOL finded = NO;
+                    [GlobalCache shareInstance].kid = model;
+                    
+                    for (KidModel *m in [GlobalCache shareInstance].kidsList) {
+                        if (m.objId == model.objId) {
+                            m.name = model.name;
+                            m.profile = model.profile;
+                            model = m;
+                            finded = YES;
+                            break;
+                        }
+                    }
+                    if (!finded) {
+                        if ([GlobalCache shareInstance].kidsList) {
+                            [GlobalCache shareInstance].kidsList = [[GlobalCache shareInstance].kidsList arrayByAddingObject:model];
+                        }
+                        else {
+                            [GlobalCache shareInstance].kidsList = @[model];
+                        }
+                    }
+                    if (image && model) {
+                        [SVProgressHUD showWithStatus:@"UploadImage, please wait..."];
+                        [[SwingClient sharedClient] kidsUploadKidsProfileImage:image kidId:model.objId completion:^(NSString *profileImage, NSError *error) {
+                            if (error) {
+                                LOG_D(@"uploadProfileImage fail: %@", error);
+                            }
+                            else {
+                                model.profile = profileImage;
+                                [GlobalCache shareInstance].kid = model;
+                            }
+                            [SVProgressHUD dismiss];
+                            [self.navigationController popViewControllerAnimated:YES];
+                        }];
+                    }
+                    else {
+                        [SVProgressHUD dismiss];
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }
+                }
             }];
-            
         }
-        
-    }
-    return YES;
 }
 
 - (IBAction)imageAction:(id)sender {
     [self.firstNameTF resignFirstResponder];
-    [self.lastNameTF resignFirstResponder];
-    [self.birthdayTF resignFirstResponder];
     
     UIActionSheet *choiceSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                              delegate:self

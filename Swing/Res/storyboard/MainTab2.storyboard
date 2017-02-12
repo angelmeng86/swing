@@ -47,8 +47,8 @@
         <scene sceneID="t6q-PO-SP9">
             <objects>
                 <navigationController title="Profile" id="jjj-cr-VCm" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="tab_profile" selectedImage="tab_profile_selected" id="KLx-hW-79b"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cpc-9T-FNz">
+                    <tabBarItem key="tabBarItem" title="" image="tab_child" selectedImage="tab_child_selected" id="KLx-hW-79b"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="cpc-9T-FNz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -62,7 +62,7 @@
             <objects>
                 <navigationController storyboardIdentifier="message" title="Message" id="zcl-as-bEy" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="tab_mail" selectedImage="tab_mail_selected" id="alP-Bh-zNH"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8al-k6-TID">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="8al-k6-TID">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -76,7 +76,7 @@
             <objects>
                 <navigationController title="My Watch" id="HsM-XX-rLL" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="tab_watch" selectedImage="tab_watch_selected" id="hOu-cB-duq"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="O7p-vs-MxF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="O7p-vs-MxF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -90,7 +90,7 @@
             <objects>
                 <navigationController title="Calendar" id="gUA-i0-GG4" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="tab_calendar" selectedImage="tab_calendar_selected" id="pef-Gm-C3T"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="y9M-qu-8ZT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="y9M-qu-8ZT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -105,10 +105,10 @@
         <image name="tab_calendar_selected" width="28" height="24"/>
         <image name="tab_chart" width="20" height="28"/>
         <image name="tab_chart_selected" width="20" height="28"/>
+        <image name="tab_child" width="20" height="28"/>
+        <image name="tab_child_selected" width="20" height="28"/>
         <image name="tab_mail" width="28" height="19"/>
         <image name="tab_mail_selected" width="28" height="19"/>
-        <image name="tab_profile" width="24" height="28"/>
-        <image name="tab_profile_selected" width="24" height="28"/>
         <image name="tab_watch" width="23" height="28"/>
         <image name="tab_watch_selected" width="23" height="28"/>
     </resources>

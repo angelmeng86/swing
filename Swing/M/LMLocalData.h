@@ -13,8 +13,10 @@
 @property (nonatomic) long indoorSteps;
 @property (nonatomic) long outdoorSteps;
 @property (nonatomic, strong) NSString<Optional> *date;
-@property (nonatomic, strong) NSData<Optional> *deviceMAC;
-@property (nonatomic) int64_t kidId;
+
+@property (strong, nonatomic) NSString* access_token;
+//@property (nonatomic, strong) NSData<Optional> *deviceMAC;
+//@property (nonatomic) int64_t kidId;
 @property (nonatomic) int battery;
 
 @property (nonatomic, strong) NSString<Optional> *language;

@@ -47,8 +47,8 @@
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     [self setKeyboradManager];
     
-    NSString *json = [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
-    _info = [[LoginedModel alloc] initWithString:json error:nil];
+    NSString *json = [[NSUserDefaults standardUserDefaults] objectForKey:@"kid"];
+    _kid = [[KidModel alloc] initWithString:json error:nil];
     
     json = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
     _user = [[UserModel alloc] initWithString:json error:nil];
@@ -58,9 +58,9 @@
     
 }
 
-- (void)setInfo:(LoginedModel *)info {
-    _info = info;
-    [[NSUserDefaults standardUserDefaults] setObject:[_info toJSONString] forKey:@"token"];
+- (void)setKid:(KidModel *)kid {
+    _kid = kid;
+    [[NSUserDefaults standardUserDefaults] setObject:[_kid toJSONString] forKey:@"kid"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -74,7 +74,6 @@
     if(_local == nil) {
         _local = [LMLocalData new];
         _local.date = [GlobalCache dateToDayString:[NSDate date]];
-        _local.kidId = -1;
     }
     else {
         [_local checkDate];
@@ -82,15 +81,20 @@
     return _local;
 }
 
+- (void)clearInfo:(NSString*)key {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 - (void)saveInfo {
     [[NSUserDefaults standardUserDefaults] setObject:[_local toDictionary] forKey:@"localData"];
-    [[NSUserDefaults standardUserDefaults] setObject:[_info toJSONString] forKey:@"token"];
+    [[NSUserDefaults standardUserDefaults] setObject:[_kid toJSONString] forKey:@"kid"];
     [[NSUserDefaults standardUserDefaults] setObject:[_user toJSONString] forKey:@"user"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)logout {
-    self.info = nil;
+    self.kid = nil;
     self.user = nil;
     self.kidsList = nil;
     self.local = nil;
@@ -99,9 +103,8 @@
 //    [self.calendarEventsByMonth removeAllObjects];
     [self.calendarQueue removeAllObjects];
     
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"kids"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"kid"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"localData"];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"token"];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user"];
 //    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"activitys"];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -130,13 +133,10 @@
 }
 
 - (int64_t)getKidId {
-//    for (KidModel *kid in self.kidsList) {
-//        if (kid.macId.length > 0) {
-//            return kid.objId;
-//        }
-//    }
-//    return -1;
-    return self.local.kidId;
+    if (self.kid) {
+        return self.kid.objId;
+    }
+    return -1;
 }
 
 - (NSMutableSet*)calendarQueue {
