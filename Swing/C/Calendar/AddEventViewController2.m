@@ -36,7 +36,8 @@
     static NSDateFormatter *df = nil;
     if (df == nil) {
         df = [[NSDateFormatter alloc] init];
-        [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+        [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+//        [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
     }
     return [df dateFromString:str];
 }
@@ -45,6 +46,17 @@
     static NSDateFormatter *df = nil;
     if (df == nil) {
         df = [[NSDateFormatter alloc] init];
+        [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+//        [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+    }
+    return [df stringFromDate:date];
+}
+
+- (NSString*)dateToString2:(NSDate*)date {
+    static NSDateFormatter *df = nil;
+    if (df == nil) {
+        df = [[NSDateFormatter alloc] init];
+        //[df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
     }
     return [df stringFromDate:date];
@@ -439,8 +451,8 @@
         }
     }
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    [data addEntriesFromDictionary:@{@"kidId":@(kidId), @"name":self.nameTF.text, @"startDate":self.startTF.text
-                                     , @"endDate":self.endTF.text
+    [data addEntriesFromDictionary:@{@"kidId":@[@(kidId)], @"name":self.nameTF.text, @"startDate":[self dateToString2:[self dateFromString:self.startTF.text]]
+                                     , @"endDate":[self dateToString2:[self dateFromString:self.endTF.text]]
                                      , @"color":[Fun stringFromColor:self.colorCtl.selectedColor]
                                      , @"timezoneOffset" : @([NSTimeZone localTimeZone].secondsFromGMT)}];
     

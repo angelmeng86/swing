@@ -33,7 +33,7 @@
 
 @property (strong, nonatomic) NSString<Optional>* repeat;
 
-@property (strong, nonatomic) NSString<Optional>* kidId;//new api add
+//@property (strong, nonatomic) NSString<Optional>* kidId;//new api add
 
 - (void)updateTo:(Event*)event;
 - (void)updateFrom:(Event*)event;
