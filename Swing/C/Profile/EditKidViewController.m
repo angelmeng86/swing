@@ -72,10 +72,10 @@
             [SVProgressHUD showWithStatus:@"Edit kid info, please wait..."];
             
             NSMutableDictionary *data = [NSMutableDictionary dictionaryWithDictionary:@{@"name":self.firstNameTF.text, @"kidId":@([GlobalCache shareInstance].kid.objId)}];
-            NSString *mac = [GlobalCache shareInstance].kid.macId;
-            if (mac) {
-                [data setObject:mac forKey:@"macId"];
-            }
+//            NSString *mac = [GlobalCache shareInstance].kid.macId;
+//            if (mac) {
+//                [data setObject:mac forKey:@"macId"];
+//            }
             
             [[SwingClient sharedClient] kidsUpdate:data completion:^(id kid, NSError *error) {
                 if (error) {

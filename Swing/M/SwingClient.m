@@ -382,7 +382,7 @@
                 completion(nil, err);
             }
             else {
-                KidModel *kid = [[KidModel alloc] initWithDictionary:responseObject error:&err];
+                KidModel *kid = [[KidModel alloc] initWithDictionary:responseObject[@"kid"] error:&err];
                 completion(kid, err);
             }
         });
