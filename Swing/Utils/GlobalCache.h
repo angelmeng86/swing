@@ -26,6 +26,7 @@
 //- (void)queryWeather;
 
 - (void)logout;
+- (void)logout:(BOOL)exit;
 
 + (NSString*)dateToMonthString:(NSDate*)date;
 + (NSString*)dateToDayString:(NSDate*)date;

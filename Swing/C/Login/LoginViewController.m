@@ -112,6 +112,8 @@
 
 - (BOOL)isError:(NSError*)error tag:(NSString*)tag {
     if (error) {
+        //清空登录信息
+        [[GlobalCache shareInstance] logout:NO];
         LOG_D(@"%@ fail: %@", tag, error);
         [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
         return YES;

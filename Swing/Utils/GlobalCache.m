@@ -94,6 +94,10 @@
 }
 
 - (void)logout {
+    [self logout:YES];
+}
+
+- (void)logout:(BOOL)exit {
     self.kid = nil;
     self.user = nil;
     self.kidsList = nil;
@@ -114,10 +118,12 @@
     [[SwingClient sharedClient] logout];
     
 //    [SVProgressHUD dismiss];
-    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
-    UIViewController *ctl = [stroyBoard instantiateInitialViewController];
-    AppDelegate *ad = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    ad.window.rootViewController = ctl;
+    if (exit) {
+        UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
+        UIViewController *ctl = [stroyBoard instantiateInitialViewController];
+        AppDelegate *ad = (AppDelegate*)[UIApplication sharedApplication].delegate;
+        ad.window.rootViewController = ctl;
+    }
 }
 
 - (void)queryProfile {
