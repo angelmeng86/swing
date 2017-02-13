@@ -108,13 +108,13 @@ macId:           tester1
 }
 
 - (void)setIndoorData:(NSData*)data {
-    if (data.length == 21) {
+    if ((data.length - 1) / 4 > 0) {
         [self parseData:data];
     }
 }
 
 - (void)setOutdoorData:(NSData*)data {
-    if (data.length == 21) {
+    if ((data.length - 1) / 4 > 0) {
         [self parseData:data];
     }
 }
