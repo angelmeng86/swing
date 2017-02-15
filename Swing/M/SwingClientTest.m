@@ -379,6 +379,32 @@
             }];
         }
             break;
+        case 21:
+        {
+            static NSDateFormatter *df = nil;
+            if (df == nil) {
+                df = [[NSDateFormatter alloc] init];
+                [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            }
+//            NSDate *date = [df dateFromString:@"2017-02-14 00:01:00"];//[NSDate date]
+            NSDate *date = [df dateFromString:@"2017-02-13 23:59:01"];
+            long time = [date timeIntervalSince1970]; //+ 15 * 24 * 60 * 60;
+            NSLog(@"date GMT:%@", [NSDate dateWithTimeIntervalSince1970:time]);
+            NSLog(@"date LOCAL:%@", [df stringFromDate:[NSDate dateWithTimeIntervalSince1970:time]]);
+            ActivityModel *m = [ActivityModel new];
+            m.macId = @"57FF1ECFE5E0";
+            m.time = time;
+            m.timeZoneOffset = [NSTimeZone localTimeZone].secondsFromGMT / 60;
+            m.inData1 = 25;
+            
+            [[SwingClient sharedClient] deviceUploadRawData:m completion:^(NSError *error) {
+                if (error) {
+                    LOG_D(@"deviceUploadRawData fail: %@", error);
+                }
+                [self test:index + 1];
+            }];
+        }
+            break;
         default:
             break;
     }

@@ -231,6 +231,59 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 //    }
 }
 
+- (void)requestByTimestamp:(int64_t)kidId {
+    
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:kCFCalendarUnitYear|kCFCalendarUnitMonth|kCFCalendarUnitDay|NSCalendarUnitWeekday fromDate:[NSDate date]];
+    NSDate *todayDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
+    
+    NSDate *startDate = nil;
+    if (_type == GetActivityTypeWeekly) {
+        startDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:-6 toDate:todayDate options:0];
+    }
+    else {
+        startDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitMonth value:-1 toDate:todayDate options:0];
+    }
+    
+    NSDate *endDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:1 toDate:todayDate options:0];
+    
+    [[SwingClient sharedClient] deviceGetActivityByTime:kidId beginTimestamp:startDate endTimestamp:endDate completion:^(id dailyActs, NSError *error) {
+        task = nil;
+        if (!error) {
+            LOG_D(@"dailyActs:%@", dailyActs);
+            NSMutableDictionary *indoors = [NSMutableDictionary dictionary];
+            NSMutableDictionary *outdoors = [NSMutableDictionary dictionary];
+            for (ActivityResultModel *m in dailyActs) {
+                NSString *key = [GlobalCache dateToDayString:m.receivedDate];
+
+                if ([m.type isEqualToString:@"INDOOR"]) {
+                    if (indoors[key]) {
+                        ActivityResultModel *model = indoors[key];
+                        model.steps += m.steps;
+                    }
+                    else {
+                        indoors[key] = m;
+                    }
+                }
+                else if([m.type isEqualToString:@"OUTDOOR"]) {
+                    if (outdoors[key]) {
+                        ActivityResultModel *model = outdoors[key];
+                        model.steps += m.steps;
+                    }
+                    else {
+                        outdoors[key] = m;
+                    }
+                }
+            }
+            self.indoorData = indoors;
+            self.outdoorData = outdoors;
+            [self reloadData];
+        }
+        else {
+            LOG_D(@"deviceGetActivity fail: %@", error);
+        }
+    }];
+}
+
 - (void)requestData {
     if (task) {
         return;
@@ -239,6 +292,12 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     if (kidId == -1) {
         return;
     }
+    
+    if (_type == GetActivityTypeWeekly || _type == GetActivityTypeMonth) {
+        [self requestByTimestamp:kidId];
+        return;
+    }
+    
     task = [[SwingClient sharedClient] deviceGetActivity:kidId type:(GetActivityType)_type completion:^(id dailyActs, NSError *error) {
         task = nil;
         if (!error) {

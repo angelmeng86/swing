@@ -18,6 +18,7 @@
 @property (nonatomic, strong) NSString *outdoorActivity;
 @property (nonatomic) int64_t time;
 @property (nonatomic, strong) NSString *macId;
+@property (nonatomic) int64_t timeZoneOffset;
 
 @property (nonatomic) long inData1;
 @property (nonatomic) long inData2;

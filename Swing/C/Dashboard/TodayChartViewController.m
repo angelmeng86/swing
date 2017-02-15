@@ -159,15 +159,34 @@
     [[SwingClient sharedClient] deviceGetActivityByTime:kidId beginTimestamp:startDate endTimestamp:endDate completion:^(id dailyActs, NSError *error) {
         if (!error) {
             LOG_D(@"today dailyActs:%@", dailyActs);
+            ActivityResultModel *indoorModel = nil;
+            ActivityResultModel *outdoorModel = nil;
             for (ActivityResultModel *m in dailyActs) {
                 if ([m.type isEqualToString:@"INDOOR"]) {
-                    self.indoor = m;
-                    [GlobalCache shareInstance].local.indoorSteps = m.steps;
+                    if (indoorModel) {
+                        indoorModel.steps += m.steps;
+                    }
+                    else {
+                        indoorModel = m;
+                    }
+                    
                 }
                 else if([m.type isEqualToString:@"OUTDOOR"]) {
-                    self.outdoor = m;
-                    [GlobalCache shareInstance].local.outdoorSteps = m.steps;
+                    if (outdoorModel) {
+                        outdoorModel.steps += m.steps;
+                    }
+                    else {
+                        outdoorModel = m;
+                    }
                 }
+            }
+            if (self.indoor) {
+                self.indoor = indoorModel;
+                [GlobalCache shareInstance].local.indoorSteps = self.indoor.steps;
+            }
+            if (outdoorModel) {
+                self.outdoor = outdoorModel;
+                [GlobalCache shareInstance].local.outdoorSteps = self.outdoor.steps;
             }
             [[GlobalCache shareInstance] saveInfo];
             [self reloadData];

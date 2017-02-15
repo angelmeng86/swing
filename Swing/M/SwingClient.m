@@ -325,6 +325,7 @@
 }
 
 - (NSURLSessionDataTask *)userUpdateProfile:(NSDictionary*)data completion:( void (^)(id user, NSError *error) )completion {
+    LOG_D(@"updateProfile data:%@", data);
     NSURLSessionDataTask *task = [self.sessionManager PUT:_URL.updateProfile parameters:data success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"updateProfile info:%@", responseObject);
@@ -333,7 +334,7 @@
                 completion(nil, err);
             }
             else {
-                UserModel *model = [[UserModel alloc] initWithDictionary:responseObject[@"user"] error:nil];
+                UserModel *model = [[UserModel alloc] initWithDictionary:responseObject error:nil];
                 [GlobalCache shareInstance].user = model;
                 completion(model, nil);
             }
@@ -359,7 +360,6 @@
             }
             else {
                 KidModel *kid = [[KidModel alloc] initWithDictionary:responseObject error:&err];
-//                NSArray *kids = [KidModel arrayOfModelsFromDictionaries:responseObject[@"kids"] error:&err];
                 completion(kid, err);
             }
         });
@@ -374,6 +374,7 @@
 }
 
 - (NSURLSessionDataTask *)kidsUpdate:(NSDictionary*)data completion:( void (^)(id kid, NSError *error) )completion {
+    LOG_D(@"kidsUpdate data:%@", data);
     NSURLSessionDataTask *task = [self.sessionManager PUT:_URL.kidsUpdate parameters:data success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"kidsUpdate info:%@", responseObject);
@@ -685,7 +686,7 @@
 }
 
 - (NSURLSessionDataTask *)deviceUploadRawData:(ActivityModel*)model completion:( void (^)(NSError *error) )completion {
-    NSDictionary *data = [model toDictionaryWithKeys:@[@"indoorActivity",@"outdoorActivity",@"time",@"macId"]];
+    NSDictionary *data = [model toDictionaryWithKeys:@[@"indoorActivity",@"outdoorActivity",@"time",@"macId", @"timeZoneOffset"]];
     LOG_D(@"deviceUploadRawData: %@", data);
     NSURLSessionDataTask *task = [self.sessionManager POST:_URL.uploadRawData parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -770,10 +771,10 @@
             }
             else {
                 NSArray *list = [ActivityResultModel arrayOfModelsFromDictionaries:responseObject[@"activities"] error:nil];
-                for (ActivityResultModel *m in list) {
-                    //时区运算
-                    m.receivedDate = [m.receivedDate dateByAddingTimeInterval:TIME_ADJUST];
-                }
+//                for (ActivityResultModel *m in list) {
+//                    //时区运算
+//                    m.receivedDate = [m.receivedDate dateByAddingTimeInterval:TIME_ADJUST];
+//                }
                 completion(list, nil);
             }
         });

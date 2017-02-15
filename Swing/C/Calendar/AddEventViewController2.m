@@ -454,7 +454,7 @@
     [data addEntriesFromDictionary:@{@"kidId":@[@(kidId)], @"name":self.nameTF.text, @"startDate":[self dateToString2:[self dateFromString:self.startTF.text]]
                                      , @"endDate":[self dateToString2:[self dateFromString:self.endTF.text]]
                                      , @"color":[Fun stringFromColor:self.colorCtl.selectedColor]
-                                     , @"timezoneOffset" : @([NSTimeZone localTimeZone].secondsFromGMT)}];
+                                     , @"timezoneOffset" : @([NSTimeZone localTimeZone].secondsFromGMT / 60)}];
     
     if (self.alert) {
         [data setObject:@(self.alert.value.intValue) forKey:@"alert"];

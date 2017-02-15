@@ -18,5 +18,6 @@
 @dynamic outdoorActivity;
 @dynamic time;
 @dynamic macId;
+@dynamic timeZoneOffset;
 
 @end

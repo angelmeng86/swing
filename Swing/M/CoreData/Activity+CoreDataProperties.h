@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *outdoorActivity;
 @property (nonatomic) int64_t time;
 @property (nullable, nonatomic, copy) NSString *macId;
+@property (nonatomic) int64_t timeZoneOffset;
 
 @end
 

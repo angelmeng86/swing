@@ -144,6 +144,7 @@ macId:           tester1
     model.macId = _macId;
     model.indoorActivity = self.indoorActivity;
     model.outdoorActivity = self.outdoorActivity;
+    model.timeZoneOffset = _timeZoneOffset;
 }
 
 - (void)updateFrom:(Activity*)model {
@@ -151,6 +152,7 @@ macId:           tester1
     self.macId = model.macId;
     self.indoorActivity = model.indoorActivity;
     self.outdoorActivity = model.outdoorActivity;
+    self.timeZoneOffset = model.timeZoneOffset;
 }
 
 @end

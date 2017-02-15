@@ -19,7 +19,7 @@
 @implementation AppDelegate
 
 - (void)test {
-//    [SwingClientTest test:6 times:1];
+//    [SwingClientTest test:21 times:1];
     
 //    NSDateFormatter *df = [[NSDateFormatter alloc] init];
 //    [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
