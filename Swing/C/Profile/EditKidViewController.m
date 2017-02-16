@@ -113,6 +113,7 @@
                             else {
                                 model.profile = profileImage;
                                 [GlobalCache shareInstance].kid = model;
+                                [[NSNotificationCenter defaultCenter] postNotificationName:KID_AVATAR_NOTIFICATION object:nil];
                             }
                             [SVProgressHUD dismiss];
                             [self.navigationController popViewControllerAnimated:YES];

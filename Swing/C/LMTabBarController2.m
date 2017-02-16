@@ -7,9 +7,13 @@
 //
 
 #import "LMTabBarController2.h"
+#import "UIImage+wiRoundedRectImage.h"
 #import "CommonDef.h"
 
 @interface LMTabBarController2 ()<UITabBarControllerDelegate>
+{
+    id <SDWebImageOperation> runOperation;
+}
 
 @property (nonatomic, assign) UIViewController *syncDialog;
 
@@ -64,6 +68,37 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRemoteInfo:) name:REMOTE_NOTIFICATION object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncDismiss) name:@"SYNC_DISMISS" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadKidPicture) name:KID_AVATAR_NOTIFICATION object:nil];
+    [self loadKidPicture];
+}
+
+- (void)loadKidPicture
+{
+    UITabBarItem *item = [self.tabBar.items lastObject];
+    UIImage *defaultImage = [UIImage createRoundedRectBlank:[UIColor whiteColor] size:CGSizeMake(84, 84) radius:42 scale:3.0f color:COMMON_TITLE_COLOR];
+    item.image = [defaultImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    item.selectedImage = [LOAD_IMAGE(@"tab_profile_selected") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item.selectedImage = item.image;
+    if ([GlobalCache shareInstance].kid.profile) {
+        if (runOperation) {
+            [runOperation cancel];
+        }
+        __weak __typeof(self)wself = self;
+        id <SDWebImageOperation> operation = [SDWebImageManager.sharedManager downloadImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:[GlobalCache shareInstance].kid.profile]] options:0 progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+            if (!wself) return;
+            dispatch_main_sync_safe(^{
+                if (!wself) return;
+                if (image) {
+                    UITabBarItem *item = [wself.tabBar.items lastObject];
+                    UIImage *image2 = [UIImage createRoundedRectImage:image size:CGSizeMake(84, 84) radius:42 scale:3.0f color:COMMON_TITLE_COLOR];
+                    item.image = [image2 imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+                    item.selectedImage = item.image;
+                }
+            });
+        }];
+        runOperation = operation;
+    }
 }
 
 - (void)dealloc {

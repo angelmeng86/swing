@@ -40,6 +40,9 @@
     
     self.navigationItem.title = LOC_STR(@"Profile");
     [self.logoutBtn setTitle:LOC_STR(@"Logout") forState:UIControlStateNormal];
+    if ([GlobalCache shareInstance].kidsList == nil && [GlobalCache shareInstance].kid) {
+        [GlobalCache shareInstance].kidsList = @[[GlobalCache shareInstance].kid];
+    }
 }
 
 - (void)optionAction {

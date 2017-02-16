@@ -73,6 +73,7 @@
 		AD7797A31D4D034600472B27 /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7797A21D4D034600472B27 /* ActivityViewController.m */; };
 		AD7797A61D4D085600472B27 /* ChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7797A51D4D085600472B27 /* ChartViewController.m */; };
 		AD790F531DAF9D9B002FE2F1 /* LFTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = AD790F511DAF9D9B002FE2F1 /* LFTextField.m */; };
+		AD83559D1E55512A000AA668 /* UIImage+wiRoundedRectImage.m in Sources */ = {isa = PBXBuildFile; fileRef = AD83559C1E55512A000AA668 /* UIImage+wiRoundedRectImage.m */; };
 		AD95A51B1D5243390047A0A2 /* SwingClientTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AD95A51A1D5243390047A0A2 /* SwingClientTest.m */; };
 		AD978D0C1D585EF000E59D2B /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD978D0B1D585EF000E59D2B /* MessageViewController.m */; };
 		AD9B0D911D3BB935009FDD95 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D901D3BB935009FDD95 /* DashboardViewController.m */; };
@@ -253,6 +254,8 @@
 		AD7797A51D4D085600472B27 /* ChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartViewController.m; sourceTree = "<group>"; };
 		AD790F511DAF9D9B002FE2F1 /* LFTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFTextField.m; sourceTree = "<group>"; };
 		AD790F521DAF9D9B002FE2F1 /* LFTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFTextField.h; sourceTree = "<group>"; };
+		AD83559B1E55512A000AA668 /* UIImage+wiRoundedRectImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+wiRoundedRectImage.h"; sourceTree = "<group>"; };
+		AD83559C1E55512A000AA668 /* UIImage+wiRoundedRectImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+wiRoundedRectImage.m"; sourceTree = "<group>"; };
 		AD95A5191D5243390047A0A2 /* SwingClientTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwingClientTest.h; sourceTree = "<group>"; };
 		AD95A51A1D5243390047A0A2 /* SwingClientTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwingClientTest.m; sourceTree = "<group>"; };
 		AD978D0A1D585EF000E59D2B /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
@@ -514,6 +517,8 @@
 			children = (
 				ADEF31D31D47B04200BB6A9B /* VPImageCropper */,
 				AD0B81211D37F09900F43E72 /* Logger */,
+				AD83559B1E55512A000AA668 /* UIImage+wiRoundedRectImage.h */,
+				AD83559C1E55512A000AA668 /* UIImage+wiRoundedRectImage.m */,
 			);
 			path = ThirdPart;
 			sourceTree = "<group>";
@@ -947,6 +952,7 @@
 				0F445E0F1D7094A6008A092C /* JSONValueTransformer+NSData.m in Sources */,
 				ADE6ED901D4E3B7D00FFA573 /* DayCalendarViewController.m in Sources */,
 				ADF519AE1D86D0DF00356CD3 /* AddEventViewController2.m in Sources */,
+				AD83559D1E55512A000AA668 /* UIImage+wiRoundedRectImage.m in Sources */,
 				AD1CEF0A1D5ACB19004FEC24 /* LMBarView.m in Sources */,
 				AD9B0D941D3BB947009FDD95 /* BatteryViewController.m in Sources */,
 				AD7797A31D4D034600472B27 /* ActivityViewController.m in Sources */,

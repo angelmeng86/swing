@@ -131,6 +131,7 @@
                                     }
                                     else {
                                         model.profile = profileImage;
+                                        [[NSNotificationCenter defaultCenter] postNotificationName:KID_AVATAR_NOTIFICATION object:nil];
                                     }
                                     [SVProgressHUD dismiss];
                                     [self goNext];
