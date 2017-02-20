@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 #import "ActivityCache.h"
 
-#import <AVOSCloud/AVOSCloud.h>
+//#import <AVOSCloud/AVOSCloud.h>
 
 @implementation GlobalCache
 

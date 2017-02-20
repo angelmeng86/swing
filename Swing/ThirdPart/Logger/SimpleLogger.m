@@ -1,6 +1,6 @@
 #import "SimpleLogger.h"
 #import "GlobalCache.h"
-#import <AVOSCloud/AVOSCloud.h>
+//#import <AVOSCloud/AVOSCloud.h>
 
 @implementation SimpleLogger
 

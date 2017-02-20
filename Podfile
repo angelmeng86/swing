@@ -13,7 +13,5 @@ pod 'JTCalendar', '~> 2.0'
 pod 'IQKeyboardManager'
 pod 'CHCircleGaugeView'
 pod 'MDRadialProgress'
-pod 'AVOSCloud'
-pod 'AVOSCloudCrashReporting'
 pod 'MagicalRecord'
 end

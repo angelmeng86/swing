@@ -14,16 +14,6 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - AVOSCloud (3.6.1)
-  - AVOSCloudCrashReporting (3.6.1):
-    - AVOSCloud (= 3.6.1)
-    - AVOSCloudCrashReporting/_ARC (= 3.6.1)
-    - AVOSCloudCrashReporting/_NOARC (= 3.6.1)
-  - AVOSCloudCrashReporting/_ARC (3.6.1):
-    - AVOSCloud (= 3.6.1)
-    - AVOSCloudCrashReporting/_NOARC (= 3.6.1)
-  - AVOSCloudCrashReporting/_NOARC (3.6.1):
-    - AVOSCloud (= 3.6.1)
   - CHCircleGaugeView (1.1.0)
   - IQKeyboardManager (3.3.7)
   - JBChartView (3.0.12)
@@ -43,8 +33,6 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
-  - AVOSCloud
-  - AVOSCloudCrashReporting
   - CHCircleGaugeView
   - IQKeyboardManager
   - JBChartView
@@ -59,8 +47,6 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  AVOSCloud: cc9b567da2d30f07e3da1e4db682cad9ff56a1b6
-  AVOSCloudCrashReporting: 3caf6fedffb29fe4b1430780cda582cadac221c4
   CHCircleGaugeView: 103f6f7012fd509d64659440e646870dd373528f
   IQKeyboardManager: 249c3946acf61345c18b038eb50863fe2793e3a8
   JBChartView: 08877554448ccf99c12625ad0ebce70588ff8318
@@ -73,6 +59,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c
 
-PODFILE CHECKSUM: 7d1c1524b0194058a3a5b139ef0c2b087284249c
+PODFILE CHECKSUM: d94eeb0704756cdf7e0a81b1d9cd663a4c740364
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.1
