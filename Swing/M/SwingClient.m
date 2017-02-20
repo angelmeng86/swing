@@ -76,6 +76,7 @@
         
         _sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
 //        _sessionManager.responseSerializer.acceptableContentTypes = [_sessionManager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/plain"];
+        _sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/plain", nil];
         self.config = config;
     }
     return _sessionManager;
