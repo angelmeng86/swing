@@ -8,6 +8,7 @@
 
 #import "BLESyncDevice.h"
 #import "CBService+LMMethod.h"
+#import "BLEUpdater.h"
 #import "CommonDef.h"
 
 typedef enum : NSUInteger {
@@ -92,7 +93,7 @@ typedef enum : NSUInteger {
     LOG_D(@"didConnectPeripheral:%@", peripheral);
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(operationTimeout) object:nil];
     [peripheral setDelegate:self];
-    NSArray *services = @[[CBUUID UUIDWithString:@"FFA0"], [CBUUID UUIDWithString:@"180F"]];
+    NSArray *services = @[[CBUUID UUIDWithString:@"FFA0"], [CBUUID UUIDWithString:@"180F"], [CBUUID UUIDWithString:OAD_SERVICE_UUID]];
     [peripheral discoverServices:services];
 }
 
@@ -123,6 +124,9 @@ typedef enum : NSUInteger {
         else if ([s.UUID isEqual:[CBUUID UUIDWithString:@"180F"]]) {
             NSArray *characters = @[[CBUUID UUIDWithString:@"2A19"]];
             [peripheral discoverCharacteristics:characters forService:s];
+        }
+        else if ([s.UUID isEqual:[CBUUID UUIDWithString:OAD_SERVICE_UUID]]) {
+            [peripheral discoverCharacteristics:nil forService:s];
         }
     }
 }

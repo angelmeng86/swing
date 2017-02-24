@@ -9,6 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 
+typedef void (^SwingBluetoothInitDeviceBlock)(NSData *macAddress, NSError *error);
+typedef void (^SwingBluetoothScanDeviceBlock)(CBPeripheral *peripheral, NSDictionary *advertisementData, NSError *error);
+
+typedef void (^SwingBluetoothSearchDeviceBlock)(CBPeripheral *peripheral, NSError *error);
+typedef void (^SwingBluetoothSyncDeviceBlock)(NSMutableArray *activities, NSError *error);
+
+typedef void (^SwingBluetoothUpdateDeviceBlock)(float percent, NSString *remainTime);
+
 @interface BLEDelegate : NSObject<CBCentralManagerDelegate, CBPeripheralDelegate>
 
 @end

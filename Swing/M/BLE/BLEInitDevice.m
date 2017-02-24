@@ -7,11 +7,14 @@
 //
 
 #import "BLEInitDevice.h"
+#import "BLEUpdater.h"
+#import "CBService+LMMethod.h"
 #import "CommonDef.h"
 
 @interface BLEInitDevice ()
 
 @property (nonatomic, strong) CBPeripheral *peripheral;
+@property (nonatomic, strong) BLEUpdater *updater;
 
 @end
 
@@ -28,7 +31,7 @@
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral{
     LOG_D(@"didConnectPeripheral:%@", peripheral);
     [peripheral setDelegate:self];
-    NSArray *services = @[[CBUUID UUIDWithString:@"FFA0"], [CBUUID UUIDWithString:@"180F"]];
+    NSArray *services = @[[CBUUID UUIDWithString:@"FFA0"], [CBUUID UUIDWithString:@"180F"], [CBUUID UUIDWithString:OAD_SERVICE_UUID]];
     [peripheral discoverServices:services];
 }
 
@@ -57,6 +60,9 @@
             NSArray *characters = @[[CBUUID UUIDWithString:@"2A19"]];
             [peripheral discoverCharacteristics:characters forService:s];
         }
+        else  {
+            [self.updater didDiscoverServices:s];
+        }
     }
 }
 
@@ -67,19 +73,16 @@
         return;
     }
     if ([service.UUID isEqual:[CBUUID UUIDWithString:@"FFA0"]]) {
-        for (CBCharacteristic *character in service.characteristics) {
-            if ([character.UUID isEqual:[CBUUID UUIDWithString:@"FFA1"]]) {
-                [peripheral writeValue:[NSData dataWithBytes:"\x01" length:1] forCharacteristic:character type:CBCharacteristicWriteWithResponse];
-                LOG_D(@"Write FFA1");
-            }
-        }
+        CBCharacteristic *character = [service findCharacteristic:@"FFA1"];
+        [peripheral writeValue:[NSData dataWithBytes:"\x01" length:1] forCharacteristic:character type:CBCharacteristicWriteWithResponse];
+        LOG_D(@"Write FFA1");
     }
     else if ([service.UUID isEqual:[CBUUID UUIDWithString:@"180F"]]) {
-        for (CBCharacteristic *character in service.characteristics) {
-            if ([character.UUID isEqual:[CBUUID UUIDWithString:@"2A19"]]) {
-                [peripheral readValueForCharacteristic:character];
-            }
-        }
+        CBCharacteristic *character = [service findCharacteristic:@"2A19"];
+        [peripheral readValueForCharacteristic:character];
+    }
+    else {
+        [self.updater didDiscoverCharacteristicsForService:service];
     }
 }
 
@@ -125,11 +128,19 @@
         [[GlobalCache shareInstance] saveInfo];
         [[NSNotificationCenter defaultCenter] postNotificationName:SWING_WATCH_BATTERY_NOTIFY object:[NSNumber numberWithInt:ptr[0]]];
     }
+    else {
+        [self.updater didUpdateValueForProfile:characteristic];
+    }
 }
 
 - (void)initDevice:(CBPeripheral*)peripheral centralManager:(CBCentralManager *)central {
     self.peripheral = peripheral;
     self.manager = central;
+    if (self.blockOnUpdateDevice) {
+        self.updater = [[BLEUpdater alloc] init];
+        self.updater.peripheral = peripheral;
+        self.updater.delegate = self;
+    }
     LOG_D(@"initDevice:%@", self.peripheral);
     [self checkBleStatus];
 }
@@ -154,6 +165,17 @@
         [self.delegate reportInitDeviceResult:data error:error];
     }
     [self cannel];
+}
+
+- (void)deviceUpdateProgress:(float)percent remainTime:(NSString*)text {
+//    NSString *show = [NSString stringWithFormat:@"%0.1f%%", percent];
+    if (self.blockOnUpdateDevice) {
+        self.blockOnUpdateDevice(percent, text);
+    }
+}
+
+- (void)deviceUpdateResult:(BOOL)success {
+    
 }
 
 @end

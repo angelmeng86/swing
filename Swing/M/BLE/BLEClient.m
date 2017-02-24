@@ -37,6 +37,7 @@
     if (self = [super init]) {
         static CBCentralManager *manager = nil;
         if (manager == nil) {
+            /*
 #if  __IPHONE_OS_VERSION_MIN_REQUIRED > __IPHONE_6_0
             NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
                                      //蓝牙power没打开时alert提示框
@@ -57,6 +58,7 @@
                 //非后台模式
                 manager = [[CBCentralManager alloc]initWithDelegate:self queue:nil];
             }
+             */
             manager = [[CBCentralManager alloc] init];
         }
         self.manager = manager;
@@ -96,6 +98,13 @@
 - (void)initDevice:(CBPeripheral*)peripheral completion:(SwingBluetoothInitDeviceBlock)completion {
     self.blockOnInitDevice = completion;
     _manager.delegate = initDevice;
+    [initDevice initDevice:peripheral centralManager:_manager];
+}
+
+- (void)initDevice:(CBPeripheral*)peripheral completion:(SwingBluetoothInitDeviceBlock)completion update:(SwingBluetoothUpdateDeviceBlock)updateBlock {
+    self.blockOnInitDevice = completion;
+    _manager.delegate = initDevice;
+    initDevice.blockOnUpdateDevice = updateBlock;
     [initDevice initDevice:peripheral centralManager:_manager];
 }
 

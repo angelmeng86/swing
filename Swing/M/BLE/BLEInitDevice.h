@@ -18,6 +18,8 @@
 
 @interface BLEInitDevice : BLEWaitDevice
 
+@property (nonatomic, copy) SwingBluetoothUpdateDeviceBlock blockOnUpdateDevice;
+
 - (void)initDevice:(CBPeripheral*)peripheral  centralManager:(CBCentralManager *)central;
 
 @end

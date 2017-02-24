@@ -35,7 +35,6 @@
 		0FDAF5AA1D6405EF007CD808 /* citystate.json in Resources */ = {isa = PBXBuildFile; fileRef = 0FDAF5A91D6405EF007CD808 /* citystate.json */; };
 		0FDBDA951D708725004F7AAF /* LMLocalData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FDBDA941D708725004F7AAF /* LMLocalData.m */; };
 		0FEC584A1D69D91800201EBD /* BatteryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEC58451D69D91700201EBD /* BatteryModel.m */; };
-		0FEC584B1D69D91800201EBD /* CBService+LMMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEC58471D69D91800201EBD /* CBService+LMMethod.m */; };
 		AD05B5BD1D3BCAA4007BCF7C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD05B5BC1D3BCAA4007BCF7C /* LoginViewController.m */; };
 		AD05B5C01D3BD187007BCF7C /* SwingClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AD05B5BF1D3BD187007BCF7C /* SwingClient.m */; };
 		AD0B81171D37EF7400F43E72 /* ControlFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = AD0B810B1D37EF7400F43E72 /* ControlFactory.m */; };
@@ -50,6 +49,11 @@
 		AD1CEF0D1D5ADA90004FEC24 /* LMArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1CEF0C1D5ADA90004FEC24 /* LMArrowView.m */; };
 		AD1CEF101D5AE7F5004FEC24 /* LMTabBarController2.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1CEF0F1D5AE7F5004FEC24 /* LMTabBarController2.m */; };
 		AD1CEF121D5AE886004FEC24 /* MainTab2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD1CEF111D5AE886004FEC24 /* MainTab2.storyboard */; };
+		AD21A5D61E5FD4B300DA72E3 /* BLEUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = AD21A5D51E5FD4B300DA72E3 /* BLEUpdater.m */; };
+		AD21A5DA1E5FD9E100DA72E3 /* CBService+LMMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = AD21A5D91E5FD9E100DA72E3 /* CBService+LMMethod.m */; };
+		AD21A5DD1E600EF500DA72E3 /* BLEUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = AD21A5DC1E600EF500DA72E3 /* BLEUtility.m */; };
+		AD21A5E41E60310C00DA72E3 /* A-super-MP-OTA-64M-022317.bin in Resources */ = {isa = PBXBuildFile; fileRef = AD21A5E21E60310C00DA72E3 /* A-super-MP-OTA-64M-022317.bin */; };
+		AD21A5E51E60310C00DA72E3 /* B-super-MP-OTA-64M-022317.bin in Resources */ = {isa = PBXBuildFile; fileRef = AD21A5E31E60310C00DA72E3 /* B-super-MP-OTA-64M-022317.bin */; };
 		AD289A5E1D3FD0E800898F92 /* AskStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD289A5D1D3FD0E800898F92 /* AskStepViewController.m */; };
 		AD2D338D1D5378AD005D9298 /* KidModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2D338C1D5378AD005D9298 /* KidModel.m */; };
 		AD2D33901D538418005D9298 /* ToDoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2D338F1D538418005D9298 /* ToDoModel.m */; };
@@ -174,8 +178,6 @@
 		0FDBDA941D708725004F7AAF /* LMLocalData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMLocalData.m; sourceTree = "<group>"; };
 		0FEC58441D69D91700201EBD /* BatteryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BatteryModel.h; sourceTree = "<group>"; };
 		0FEC58451D69D91700201EBD /* BatteryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BatteryModel.m; sourceTree = "<group>"; };
-		0FEC58461D69D91800201EBD /* CBService+LMMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBService+LMMethod.h"; sourceTree = "<group>"; };
-		0FEC58471D69D91800201EBD /* CBService+LMMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBService+LMMethod.m"; sourceTree = "<group>"; };
 		2C19A6FBE22DAA79A59B1FD3 /* libPods-Swing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Swing.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A18820A5BC6E78E5A6B67715 /* Pods-Swing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Swing/Pods-Swing.debug.xcconfig"; sourceTree = "<group>"; };
 		A4B6A28BC80A5450DB08A31B /* Pods-Swing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swing.release.xcconfig"; path = "Pods/Target Support Files/Pods-Swing/Pods-Swing.release.xcconfig"; sourceTree = "<group>"; };
@@ -208,6 +210,15 @@
 		AD1CEF0E1D5AE7F5004FEC24 /* LMTabBarController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMTabBarController2.h; sourceTree = "<group>"; };
 		AD1CEF0F1D5AE7F5004FEC24 /* LMTabBarController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMTabBarController2.m; sourceTree = "<group>"; };
 		AD1CEF111D5AE886004FEC24 /* MainTab2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainTab2.storyboard; sourceTree = "<group>"; };
+		AD21A5D41E5FD4B300DA72E3 /* BLEUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEUpdater.h; sourceTree = "<group>"; };
+		AD21A5D51E5FD4B300DA72E3 /* BLEUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEUpdater.m; sourceTree = "<group>"; };
+		AD21A5D71E5FD69400DA72E3 /* oad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = oad.h; sourceTree = "<group>"; };
+		AD21A5D81E5FD9E100DA72E3 /* CBService+LMMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBService+LMMethod.h"; sourceTree = "<group>"; };
+		AD21A5D91E5FD9E100DA72E3 /* CBService+LMMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBService+LMMethod.m"; sourceTree = "<group>"; };
+		AD21A5DB1E600EF500DA72E3 /* BLEUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEUtility.h; sourceTree = "<group>"; };
+		AD21A5DC1E600EF500DA72E3 /* BLEUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEUtility.m; sourceTree = "<group>"; };
+		AD21A5E21E60310C00DA72E3 /* A-super-MP-OTA-64M-022317.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "A-super-MP-OTA-64M-022317.bin"; sourceTree = "<group>"; };
+		AD21A5E31E60310C00DA72E3 /* B-super-MP-OTA-64M-022317.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "B-super-MP-OTA-64M-022317.bin"; sourceTree = "<group>"; };
 		AD289A5C1D3FD0E800898F92 /* AskStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AskStepViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		AD289A5D1D3FD0E800898F92 /* AskStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AskStepViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AD2D338B1D5378AD005D9298 /* KidModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KidModel.h; sourceTree = "<group>"; };
@@ -375,6 +386,8 @@
 		0F927FCA1DDA02680011EF90 /* BLE */ = {
 			isa = PBXGroup;
 			children = (
+				AD21A5D81E5FD9E100DA72E3 /* CBService+LMMethod.h */,
+				AD21A5D91E5FD9E100DA72E3 /* CBService+LMMethod.m */,
 				0F927FCB1DDA02680011EF90 /* BLEClient.h */,
 				0F927FCC1DDA02680011EF90 /* BLEClient.m */,
 				0F927FCD1DDA02680011EF90 /* BLEInitDevice.h */,
@@ -389,6 +402,11 @@
 				AD65905D1DDA8B8A006DD43D /* BLEWaitDevice.m */,
 				0F1D939B1DEDD90F000444B9 /* BLEDelegate.h */,
 				0F1D939C1DEDD90F000444B9 /* BLEDelegate.m */,
+				AD21A5D71E5FD69400DA72E3 /* oad.h */,
+				AD21A5DB1E600EF500DA72E3 /* BLEUtility.h */,
+				AD21A5DC1E600EF500DA72E3 /* BLEUtility.m */,
+				AD21A5D41E5FD4B300DA72E3 /* BLEUpdater.h */,
+				AD21A5D51E5FD4B300DA72E3 /* BLEUpdater.m */,
 			);
 			path = BLE;
 			sourceTree = "<group>";
@@ -433,8 +451,6 @@
 				0F927FCA1DDA02680011EF90 /* BLE */,
 				0FEC58441D69D91700201EBD /* BatteryModel.h */,
 				0FEC58451D69D91700201EBD /* BatteryModel.m */,
-				0FEC58461D69D91800201EBD /* CBService+LMMethod.h */,
-				0FEC58471D69D91800201EBD /* CBService+LMMethod.m */,
 				ADBC9BD11D578403007E4A2C /* JSONValueTransformer+UIColor.h */,
 				ADBC9BD21D578403007E4A2C /* JSONValueTransformer+UIColor.m */,
 				AD05B5BE1D3BD187007BCF7C /* SwingClient.h */,
@@ -681,6 +697,8 @@
 		ADDCD3E91D4C54960031DC66 /* Res */ = {
 			isa = PBXGroup;
 			children = (
+				AD21A5E21E60310C00DA72E3 /* A-super-MP-OTA-64M-022317.bin */,
+				AD21A5E31E60310C00DA72E3 /* B-super-MP-OTA-64M-022317.bin */,
 				0FDAF5A91D6405EF007CD808 /* citystate.json */,
 				ADDCD3EA1D4C54960031DC66 /* font */,
 				ADDCD3ED1D4C54960031DC66 /* storyboard */,
@@ -870,8 +888,10 @@
 				ADDCD3FB1D4C59F10031DC66 /* Avenir-bold.ttf in Resources */,
 				ADDCD3FC1D4C59F10031DC66 /* Avenir-Book.otf in Resources */,
 				ADDCD3F31D4C54960031DC66 /* LoginFlow.storyboard in Resources */,
+				AD21A5E51E60310C00DA72E3 /* B-super-MP-OTA-64M-022317.bin in Resources */,
 				ADDCD3F51D4C54960031DC66 /* SyncDevice.storyboard in Resources */,
 				AD1CEF121D5AE886004FEC24 /* MainTab2.storyboard in Resources */,
+				AD21A5E41E60310C00DA72E3 /* A-super-MP-OTA-64M-022317.bin in Resources */,
 				ADDCD3F41D4C54960031DC66 /* MainTab.storyboard in Resources */,
 				0FDAF5AA1D6405EF007CD808 /* citystate.json in Resources */,
 				ADFC2C3B1D369949004EDCDF /* Assets.xcassets in Resources */,
@@ -1002,7 +1022,7 @@
 				ADF9855C1D50D27400B02075 /* ColorLabel.m in Sources */,
 				0F15D2A91E0AC48E004F8F69 /* IndexViewController.m in Sources */,
 				ADF985591D50CBFC00B02075 /* DoItemLabel.m in Sources */,
-				0FEC584B1D69D91800201EBD /* CBService+LMMethod.m in Sources */,
+				AD21A5DD1E600EF500DA72E3 /* BLEUtility.m in Sources */,
 				AD7797991D4CCFD200472B27 /* UnderlineTextField.m in Sources */,
 				AD347D171D3FD8DD00E91DDD /* SearchWatchViewController.m in Sources */,
 				0F1376341DE0593600DB6C33 /* ColorTransformer.m in Sources */,
@@ -1024,11 +1044,13 @@
 				AD74D4DC1D4F90B5001F3B36 /* EventLabel.m in Sources */,
 				ADFC2C2D1D369949004EDCDF /* main.m in Sources */,
 				AD289A5E1D3FD0E800898F92 /* AskStepViewController.m in Sources */,
+				AD21A5D61E5FD4B300DA72E3 /* BLEUpdater.m in Sources */,
 				ADDCD3F81D4C557E0031DC66 /* UIFont+AvenirFont.m in Sources */,
 				0F927FD61DDA02680011EF90 /* BLEInitDevice.m in Sources */,
 				ADEF31D21D478E9900BB6A9B /* RoundButton.m in Sources */,
 				AD0B81191D37EF7400F43E72 /* GlobalCache.m in Sources */,
 				AD74D4E21D4FA750001F3B36 /* EventSelectTableViewCell.m in Sources */,
+				AD21A5DA1E5FD9E100DA72E3 /* CBService+LMMethod.m in Sources */,
 				ADE6ED941D4E415900FFA573 /* TimeLineView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
