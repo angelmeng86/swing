@@ -20,6 +20,7 @@
 @implementation BLEWaitDevice
 
 - (void)cannel {
+    self.isCancel = YES;
     if (waitTimer) {
         [waitTimer invalidate];
         waitTimer = nil;
@@ -27,6 +28,7 @@
 }
 
 - (void)checkBleStatus {
+    self.isCancel = NO;
     if (waitTimer) {
         [waitTimer invalidate];
         waitTimer = nil;

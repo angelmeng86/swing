@@ -12,9 +12,14 @@
 #import "CommonDef.h"
 
 @interface BLEInitDevice ()
+{
+    NSTimer *outTimer;
+}
 
 @property (nonatomic, strong) CBPeripheral *peripheral;
 @property (nonatomic, strong) BLEUpdater *updater;
+
+@property (nonatomic, strong) NSData *tmpData;
 
 @end
 
@@ -25,7 +30,12 @@
     if (_peripheral) {
         [self.manager cancelPeripheralConnection:_peripheral];
     }
+    if (outTimer) {
+        [outTimer invalidate];
+        outTimer = nil;
+    }
     self.peripheral = nil;
+    self.tmpData = nil;
 }
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral{
@@ -42,7 +52,17 @@
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(nullable NSError *)error {
     LOG_D(@"didDisconnectPeripheral:%@ error:%@", peripheral, error);
-    [self reportInitDeviceResult:nil error:error];
+    if (self.isCancel) {
+        return;
+    }
+    [self.updater deviceDisconnected:peripheral];
+    if (self.tmpData) {
+        //如果是在等待固件版本时断开连接，则正常进行业务
+        [self deviceUpdateResult:NO];
+    }
+    else {
+        [self reportInitDeviceResult:nil error:error];
+    }
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(nullable NSError *)error {
@@ -52,6 +72,7 @@
         return;
     }
     for (CBService *s in peripheral.services) {
+        LOG_D(@"service UUID %@", s.UUID.UUIDString);
         if ([s.UUID isEqual:[CBUUID UUIDWithString:@"FFA0"]]) {
             NSArray *characters = @[[CBUUID UUIDWithString:@"FFA1"], [CBUUID UUIDWithString:@"FFA3"], [CBUUID UUIDWithString:@"FFA6"]];
             [peripheral discoverCharacteristics:characters forService:s];
@@ -150,17 +171,62 @@
 }
 
 - (void)fire {
-    [self performSelector:@selector(operationTimeout) withObject:nil afterDelay:30];
+    self.tmpData = nil;
+    [outTimer invalidate];
+    outTimer = [NSTimer scheduledTimerWithTimeInterval:30.0f target:self selector:@selector(operationTimeout) userInfo:nil repeats:NO];
     [self.manager connectPeripheral:self.peripheral options:nil];
 }
 
 - (void)operationTimeout {
+    if (self.isCancel) {
+        return;
+    }
     NSError *err = [NSError errorWithDomain:@"SwingBluetooth" code:-1 userInfo:[NSDictionary dictionaryWithObject:@"connectPeripheral timeout." forKey:NSLocalizedDescriptionKey]];
     [self reportInitDeviceResult:nil error:err];
 }
 
+- (void)getVersionTimeout:(NSTimer*)timer {
+    //获取固件版本超时，正常返回
+    LOG_D(@"getVersionTimeout return");
+    //成功并且支持版本更新
+    if (self.updater.curVersion) {
+        if (self.updater.needUpdate) {
+            self.tmpData = timer.userInfo;
+            [outTimer invalidate];
+            outTimer = nil;
+            [self.updater startUpdate];
+            return;
+        }
+        LOG_D(@"Device version is new.");
+    }
+    if ([self.delegate respondsToSelector:@selector(reportInitDeviceResult:error:)]) {
+        [self.delegate reportInitDeviceResult:timer.userInfo error:nil];
+    }
+    [self cannel];
+}
+
 - (void)reportInitDeviceResult:(NSData*)data error:(NSError*)error {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(operationTimeout) object:nil];
+    if (!error && [self.updater supportUpdate]) {
+        self.tmpData = data;
+        //成功并且支持版本更新
+        if (self.updater.curVersion) {
+            if (self.updater.needUpdate) {
+                [outTimer invalidate];
+                outTimer = nil;
+                [self.updater startUpdate];
+                return;
+            }
+            LOG_D(@"Device version is new.");
+        }
+        else {
+            //等待获取固件版本号
+            LOG_D(@"Wait get device version.");
+            [outTimer invalidate];
+            outTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(getVersionTimeout:) userInfo:data repeats:NO];
+            return;
+        }
+        
+    }
     if ([self.delegate respondsToSelector:@selector(reportInitDeviceResult:error:)]) {
         [self.delegate reportInitDeviceResult:data error:error];
     }
@@ -175,7 +241,13 @@
 }
 
 - (void)deviceUpdateResult:(BOOL)success {
+    LOG_D(@"deviceUpdateResult %d", success);
     
+    if ([self.delegate respondsToSelector:@selector(reportInitDeviceResult:error:)]) {
+        [self.delegate reportInitDeviceResult:self.tmpData error:nil];
+    }
+//    self.peripheral = nil;
+    [self cannel];
 }
 
 @end

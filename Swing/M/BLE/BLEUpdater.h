@@ -29,6 +29,7 @@
 - (BOOL)needUpdate;
 - (BOOL)supportUpdate;
 - (void)startUpdate;
+- (NSString*)curVersion;
 //- (void)cancelUpdate;
 
 - (void)didDiscoverServices:(CBService *)service;

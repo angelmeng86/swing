@@ -16,6 +16,8 @@
 
 @property (nonatomic, weak) CBCentralManager *manager;
 
+@property (nonatomic) BOOL isCancel;
+
 - (void)checkBleStatus;
 
 - (void)bleTimeout;

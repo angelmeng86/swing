@@ -33,7 +33,6 @@
     self.label1.adjustsFontSizeToFitWidth = YES;
     
     self.label1.text = LOC_STR(@"Please select your Swing Watch");
-
     self.peripherals = [NSMutableArray array];
     self.navigationItem.title = nil;
     [self setCustomBackButton];
@@ -67,6 +66,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    self.peripherals = [NSMutableArray array];
+    [self.tableView reloadData];
     [client stopScan];
 }
 
@@ -126,6 +127,8 @@
             LOG_D(@"initDevice fail: %@", error);
             [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
         }
+    } update:^(float percent, NSString *remainTime) {
+        [SVProgressHUD showProgress:percent status:[@"Update Device, Time remaining : " stringByAppendingString:remainTime]];
     }];
 #endif
 }

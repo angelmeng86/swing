@@ -21,14 +21,13 @@ typedef enum : NSUInteger {
 } BLEUpdaterState;
 
 @interface BLEUpdater ()
-{
-    NSUInteger state;
-}
 
 @property int nBlocks;
 @property int nBytes;
 @property int iBlocks;
 @property int iBytes;
+
+@property int state;
 
 @property uint16_t imgVersion;
 
@@ -39,7 +38,15 @@ typedef enum : NSUInteger {
 - (id)init
 {
     if (self = [super init]) {
-        state = BLEUpdaterStateNone;
+        static BOOL imageA = NO;
+        imageA = !imageA;
+        self.state = BLEUpdaterStateNone;
+        //固件版本
+        NSMutableString *path= [[NSMutableString  alloc] initWithString: [[NSBundle mainBundle] resourcePath]];
+        [path appendString:@"/"];
+        [path appendString:imageA ? @"A-super-MP-OTA-64M-022317.bin" : @"B-super-MP-OTA-64M-022317.bin"];
+        self.imageData = [NSData dataWithContentsOfFile:path];
+        LOG_D(@"Loaded firmware \"%@\"of size : %ld",path, (unsigned long)self.imageData.length);
     }
     return self;
 }
@@ -53,12 +60,20 @@ typedef enum : NSUInteger {
 
 - (BOOL)supportUpdate
 {
-    return state > BLEUpdaterStateNone;
+    return self.state > BLEUpdaterStateNone;
+}
+
+- (NSString*)curVersion
+{
+    if (self.imgVersion != 0xFFFF) {
+        return [NSString stringWithFormat:@"%04hx", self.imgVersion];
+    }
+    return nil;
 }
 
 - (BOOL)needUpdate
 {
-    if (state == BLEUpdaterStateOk) {
+    if (self.state == BLEUpdaterStateOk) {
         return [self isCorrectImage];
     }
     return NO;
@@ -66,13 +81,13 @@ typedef enum : NSUInteger {
 
 - (void)cancelUpdate
 {
-    state = BLEUpdaterStateNone;
+    self.state = BLEUpdaterStateNone;
 }
 
 - (void)didDiscoverServices:(CBService *)service
 {
     if ([service.UUID isEqual:[CBUUID UUIDWithString:OAD_SERVICE_UUID]]) {
-        state = BLEUpdaterStateDiscover;
+        self.state = BLEUpdaterStateDiscover;
         [self.peripheral discoverCharacteristics:nil forService:service];
     }
 }
@@ -80,7 +95,7 @@ typedef enum : NSUInteger {
 - (void)didDiscoverCharacteristicsForService:(CBService *)service
 {
     if ([service.UUID isEqual:[CBUUID UUIDWithString:OAD_SERVICE_UUID]]) {
-        state = BLEUpdaterStateGetVersion;
+        self.state = BLEUpdaterStateGetVersion;
         [self configureProfile];
     }
 }
@@ -93,7 +108,7 @@ typedef enum : NSUInteger {
             [characteristic.value getBytes:&data length:characteristic.value.length];
             self.imgVersion = ((uint16_t)data[1] << 8 & 0xff00) | ((uint16_t)data[0] & 0xff);
             LOG_D(@"self.imgVersion : %04hx",self.imgVersion);
-            state = BLEUpdaterStateOk;
+            self.state = BLEUpdaterStateOk;
         }
         LOG_D(@"OAD Image notify : %@",characteristic.value);
     }
@@ -102,10 +117,10 @@ typedef enum : NSUInteger {
 - (void)deviceDisconnected:(CBPeripheral *)peripheral
 {
     if ([peripheral isEqual:self.peripheral]) {
-        state = BLEUpdaterStateNone;
-        if ([_delegate respondsToSelector:@selector(deviceUpdateResult:)]) {
-            [_delegate deviceUpdateResult:NO];
-        }
+        self.state = BLEUpdaterStateNone;
+//        if ([_delegate respondsToSelector:@selector(deviceUpdateResult:)]) {
+//            [_delegate deviceUpdateResult:NO];
+//        }
     }
 }
 
@@ -134,11 +149,11 @@ typedef enum : NSUInteger {
         return NO;
     }
     
-    unsigned char imageFileData[self.imageData.length];
-    [self.imageData getBytes:imageFileData length:self.imageData.length];
+//    unsigned char imageFileData[self.imageData.length];
+//    [self.imageData getBytes:imageFileData length:self.imageData.length];
     
     img_hdr_t imgHeader;
-    memcpy(&imgHeader, &imageFileData[0 + OAD_IMG_HDR_OSET], sizeof(img_hdr_t));
+    memcpy(&imgHeader, self.imageData.bytes + OAD_IMG_HDR_OSET, sizeof(img_hdr_t));
     
 //    if ((imgHeader.ver & 0x01) != (self.imgVersion & 0x01)) return YES;
     if (imgHeader.ver != self.imgVersion) return YES;
@@ -146,6 +161,10 @@ typedef enum : NSUInteger {
 }
 
 - (void)imageDetectTimerTick:(NSTimer *)timer {
+    if(self.state == BLEUpdaterStateProgramming) {
+        LOG_D(@"imageDetectTimerTick invalid.");
+        return;
+    }
     //IF we have come here, the image userID is B.
     LOG_D(@"imageDetectTimerTick:");
     CBUUID *sUUID = [CBUUID UUIDWithString:OAD_SERVICE_UUID];
@@ -155,16 +174,17 @@ typedef enum : NSUInteger {
 }
 
 - (void) uploadImage {
-    state = BLEUpdaterStateProgramming;
+    self.state = BLEUpdaterStateProgramming;
 
-    unsigned char imageFileData[self.imageData.length];
-    [self.imageData getBytes:imageFileData length:self.imageData.length];
+//    unsigned char imageFileData[self.imageData.length];
+//    [self.imageData getBytes:imageFileData length:self.imageData.length];
+    const void *pData = self.imageData.bytes;
     uint8_t requestData[OAD_IMG_HDR_SIZE + 2 + 2]; // 12Bytes
     
-    LOG_D(@"image header %@", [Fun dataToHex:[NSData dataWithBytes:imageFileData length:self.imageData.length]]);
+    LOG_D(@"image header %@", [Fun dataToHex:[NSData dataWithBytes:pData length:self.imageData.length > 20 ? 20 : self.imageData.length]]);
     
     img_hdr_t imgHeader;
-    memcpy(&imgHeader, &imageFileData[0 + OAD_IMG_HDR_OSET], sizeof(img_hdr_t));
+    memcpy(&imgHeader, pData + OAD_IMG_HDR_OSET, sizeof(img_hdr_t));
     
     
     
@@ -200,12 +220,13 @@ typedef enum : NSUInteger {
 }
 
 -(void) programmingTimerTick:(NSTimer *)timer {
-    if (state != BLEUpdaterStateProgramming) {
+    if (self.state != BLEUpdaterStateProgramming || self.peripheral.state != CBPeripheralStateConnected) {
         return;
     }
     
-    unsigned char imageFileData[self.imageData.length];
-    [self.imageData getBytes:imageFileData length:self.imageData.length];
+//    unsigned char imageFileData[self.imageData.length];
+//    [self.imageData getBytes:imageFileData length:self.imageData.length];
+    const void *pData = self.imageData.bytes;
     
     //Prepare Block
     uint8_t requestData[2 + OAD_BLOCK_SIZE];
@@ -216,7 +237,7 @@ typedef enum : NSUInteger {
         requestData[0] = LO_UINT16(self.iBlocks);
         requestData[1] = HI_UINT16(self.iBlocks);
         
-        memcpy(&requestData[2] , &imageFileData[self.iBytes], OAD_BLOCK_SIZE);
+        memcpy(&requestData[2] , pData + self.iBytes, OAD_BLOCK_SIZE);
         
         CBUUID *sUUID = [CBUUID UUIDWithString:OAD_SERVICE_UUID];
         CBUUID *cUUID = [CBUUID UUIDWithString:OAD_IMAGE_BLOCK_REQUEST_UUID];
@@ -227,7 +248,7 @@ typedef enum : NSUInteger {
         self.iBytes += OAD_BLOCK_SIZE;
         
         if(self.iBlocks == self.nBlocks) {
-            state = BLEUpdaterStateNone;
+            self.state = BLEUpdaterStateNone;
             if ([_delegate respondsToSelector:@selector(deviceUpdateResult:)]) {
                 [_delegate deviceUpdateResult:YES];
             }

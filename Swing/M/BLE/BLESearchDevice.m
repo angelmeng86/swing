@@ -10,6 +10,9 @@
 #import "CommonDef.h"
 
 @interface BLESearchDevice ()
+{
+    NSTimer *outTimer;
+}
 
 @property (nonatomic, strong) NSMutableArray *connectingDevices;
 @property (nonatomic, strong) NSData *macAddress;
@@ -27,7 +30,10 @@
 
 - (void)cannel {
     [super cannel];
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(operationTimeout) object:nil];
+    if (outTimer) {
+        [outTimer invalidate];
+        outTimer = nil;
+    }
     for (CBPeripheral *peripheral in _connectingDevices) {
         [self.manager cancelPeripheralConnection:peripheral];
     }
@@ -156,7 +162,8 @@
 }
 
 - (void)fire {
-    [self performSelector:@selector(operationTimeout) withObject:nil afterDelay:30];
+    [outTimer invalidate];
+    outTimer = [NSTimer scheduledTimerWithTimeInterval:30.0f target:self selector:@selector(operationTimeout) userInfo:nil repeats:NO];
 //    [self.manager scanForPeripheralsWithServices:nil options:nil];
     [self.manager scanForPeripheralsWithServices:nil options:@{CBCentralManagerScanOptionAllowDuplicatesKey:@YES}];
     if ([GlobalCache shareInstance].peripheral) {
@@ -169,6 +176,9 @@
 }
 
 - (void)operationTimeout {
+    if (self.isCancel) {
+        return;
+    }
     NSError *err = [NSError errorWithDomain:@"SwingBluetooth" code:-1 userInfo:[NSDictionary dictionaryWithObject:LOC_STR(@"We can't find your device!") forKey:NSLocalizedDescriptionKey]];
     [self reportSearchDeviceResult:nil error:err];
 }

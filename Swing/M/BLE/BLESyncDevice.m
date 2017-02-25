@@ -29,6 +29,7 @@ typedef enum : NSUInteger {
 {
     SwingSyncState syncState;
     int testCount;
+    NSTimer *outTimer;
 }
 
 @property (nonatomic, strong) NSMutableArray *eventArray;
@@ -91,7 +92,11 @@ typedef enum : NSUInteger {
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral{
     LOG_D(@"didConnectPeripheral:%@", peripheral);
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(operationTimeout) object:nil];
+    if (outTimer) {
+        [outTimer invalidate];
+        outTimer = nil;
+    }
+
     [peripheral setDelegate:self];
     NSArray *services = @[[CBUUID UUIDWithString:@"FFA0"], [CBUUID UUIDWithString:@"180F"], [CBUUID UUIDWithString:OAD_SERVICE_UUID]];
     [peripheral discoverServices:services];
@@ -362,18 +367,25 @@ typedef enum : NSUInteger {
 }
 
 - (void)fire {
-    [self performSelector:@selector(operationTimeout) withObject:nil afterDelay:30];
+    [outTimer invalidate];
+    outTimer = [NSTimer scheduledTimerWithTimeInterval:30.0f target:self selector:@selector(operationTimeout) userInfo:nil repeats:NO];
     [self.manager connectPeripheral:self.peripheral options:nil];
 }
 
 - (void)operationTimeout {
+    if (self.isCancel) {
+        return;
+    }
     NSError *err = [NSError errorWithDomain:@"SwingBluetooth" code:-1 userInfo:[NSDictionary dictionaryWithObject:@"connectPeripheral timeout." forKey:NSLocalizedDescriptionKey]];
     [self reportSyncDeviceResult:err];
 }
 
 - (void)cannel {
     [super cannel];
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(operationTimeout) object:nil];
+    if (outTimer) {
+        [outTimer invalidate];
+        outTimer = nil;
+    }
     if (_peripheral) {
         [self.manager cancelPeripheralConnection:_peripheral];
     }
