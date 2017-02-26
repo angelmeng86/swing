@@ -41,7 +41,7 @@
         for (NSDictionary *dict in _alertArray) {
             NSArray *items = dict[@"items"];
             for (NSDictionary *item in items) {
-                if ([[item[@"text"] lowercaseString] isEqualToString:[textField.text lowercaseString]]) {
+                if ([[LOC_STR(item[@"text"]) lowercaseString] isEqualToString:[textField.text lowercaseString]]) {
                     AlertModel *m = [[AlertModel alloc] initWithDictionary:item error:NULL];
                     [_delegate alertSelectViewControllerDidSelected:m];
                     [self.navigationController popViewControllerAnimated:YES];
@@ -93,7 +93,7 @@
     NSDictionary *item = _alertArray[section];
     UILabel *label = [UILabel new];
     label.backgroundColor = [UIColor whiteColor];
-    label.text = item[@"text"];
+    label.text = LOC_STR(item[@"text"]);
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont boldAvenirFontOfSize:17];
     label.textColor = COMMON_TITLE_COLOR;
@@ -140,7 +140,7 @@
         NSDictionary *item = _alertArray[indexPath.section];
         NSArray *items = item[@"items"];
         NSDictionary *model = items[indexPath.row];
-        inputCell.textLabel.text = model[@"text"];
+        inputCell.textLabel.text = LOC_STR(model[@"text"]);
         return inputCell;
     }
     
@@ -162,7 +162,7 @@
         NSDictionary *item = _alertArray[indexPath.section];
         NSArray *items = item[@"items"];
         NSDictionary *model = items[indexPath.row];
-        alarmcell.textLabel.text = model[@"text"];
+        alarmcell.textLabel.text = LOC_STR(model[@"text"]);
         return alarmcell;
     }
     
@@ -185,7 +185,7 @@
     NSArray *items = item[@"items"];
     NSDictionary *model = items[indexPath.row];
 //    AlertModel *model = _alertArray[indexPath.row];
-    cell.textLabel.text = model[@"text"];
+    cell.textLabel.text = LOC_STR(model[@"text"]);
 //    cell.accessoryView.hidden = [model[@"value"] intValue] > 73;
     
     return cell;

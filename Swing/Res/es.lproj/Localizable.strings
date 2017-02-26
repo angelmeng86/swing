@@ -111,6 +111,7 @@
 
 "Please select your language"="Por favor, selecciona tu idioma";
 "Select"="Seleccionar";
+"Login"="Iniciar";
 "Sign up/ login"="Iniciar sesión";
 "or"="o";
 "Login with Facebook"="Iniciar con Facebook";
@@ -140,10 +141,39 @@
 "Kid's name"="Nombre del niño";
 "Add profile picture"="Añadir foto al perfil";
 "Import from Facebook"="Importar de Facebook";
-"Take a picture"="Usar foto";
+"Take a picture"="USAR FOTO";
 "Choose from library"="Seleccionar foto";
 "Cancel"="Cancelar";
-"Take a photo"="Usar foto";
+"Take a photo"="USAR FOTO";
 "Add another watch"="Añadir otro reloj";
 
+"Good morning"="Buenos dias";
+"Make bed"="Hacer la cama";
+"Get Dress"="Vestirse";
+"Eat breakfast"="Hora de desayunar";
+"Brush teeth"="Lavarse los dientes";
+"Get Ready for school"="Prepararse para la escuela";
+"Put on pajamas"="Ponerse el pijama";
+"Story time"="Leer cuento";
+"Good night"="Buenas noches";
+"Collect toys"="Recoger los juguetes";
+"Set table"="Poner la mesa ";
+"Feed pet"="Dar de comer a la mascota";
+"Water plants"="Regar las plantas";
+"Clean table"="Limpiar la mesa";
+"Clean bedroom"="Ordenar la habitación ";
+"Homework time"="Hacer deberes";
+"Take a nap"="Dormir la siesta";
+"Outdoor play time"="Hora de Jugar";
+"Fun time"="Hora de Diversión ";
+"Exercise"="Hora de hacer deporte";
+"Practice music"="Practicar música ";
+"Drawing time"="Hora de Pintar";
+"Reading time"="Hora de Leer";
+"Take a bath"="Hora del baño";
+"Family time"="Juegos en familia";
+"lunch time"="Hora de almorzar";
+"dinner time"="Hora de cenar";
+"afternoon snack time"="Hora de la merienda";
+"review the backpack"="Revisar la mochila";
 

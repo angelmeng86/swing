@@ -100,7 +100,7 @@ typedef enum : NSUInteger {
     }
 
     [peripheral setDelegate:self];
-    NSArray *services = @[[CBUUID UUIDWithString:@"FFA0"], [CBUUID UUIDWithString:@"180F"], [CBUUID UUIDWithString:OAD_SERVICE_UUID]];
+    NSArray *services = @[[CBUUID UUIDWithString:@"FFA0"], [CBUUID UUIDWithString:@"180F"], [CBUUID UUIDWithString:OAD_SERVICE_UUID], [CBUUID UUIDWithString:@"180A"]];
     [peripheral discoverServices:services];
 }
 
@@ -420,7 +420,7 @@ typedef enum : NSUInteger {
 - (void)reportSyncDeviceResult:(NSError*)error {
     if ([self.updater supportUpdate]) {
         //成功并且支持版本更新
-        if (self.updater.curVersion) {
+        if (self.updater.readyUpdate) {
             if (self.updater.needUpdate) {
                 [outTimer invalidate];
                 outTimer = nil;
@@ -449,7 +449,7 @@ typedef enum : NSUInteger {
     //获取固件版本超时，正常返回
     LOG_D(@"getVersionTimeout return");
     //成功并且支持版本更新
-    if (self.updater.curVersion) {
+    if (self.updater.readyUpdate) {
         if (self.updater.needUpdate) {
             [outTimer invalidate];
             outTimer = nil;

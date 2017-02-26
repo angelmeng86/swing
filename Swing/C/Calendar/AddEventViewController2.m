@@ -333,7 +333,7 @@
     else {
         isCustom = NO;
         self.alert = alert;
-        self.nameTF.text = alert.text;
+        self.nameTF.text = LOC_STR(alert.text);
     }
 }
 

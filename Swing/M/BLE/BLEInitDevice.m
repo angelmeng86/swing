@@ -190,7 +190,7 @@
     //获取固件版本超时，正常返回
     LOG_D(@"getVersionTimeout return");
     //成功并且支持版本更新
-    if (self.updater.curVersion) {
+    if (self.updater.readyUpdate) {
         if (self.updater.needUpdate) {
             self.tmpData = timer.userInfo;
             [outTimer invalidate];
@@ -210,7 +210,7 @@
     if (!error && [self.updater supportUpdate]) {
         self.tmpData = data;
         //成功并且支持版本更新
-        if (self.updater.curVersion) {
+        if (self.updater.readyUpdate) {
             if (self.updater.needUpdate) {
                 [outTimer invalidate];
                 outTimer = nil;

@@ -25,6 +25,7 @@
     
     self.emailTextField.placeholder=LOC_STR(@"Email");
     self.pwdTextField.placeholder=LOC_STR(@"Password");
+    [self.loginBtn setTitle:LOC_STR(@"Login") forState:UIControlStateNormal];
 
     self.emailTextField.delegate = self;
     self.pwdTextField.delegate = self;

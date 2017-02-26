@@ -111,6 +111,7 @@
 
 "Please select your language"="Пожалуйста, выбери язык";
 "Select"="Выбрать";
+"Login"="Начать";
 "Sign up/ login"="Начать сеанс";
 "or"="или";
 "Login with Facebook"="Начать через Facebook";
@@ -147,3 +148,32 @@
 "Add another watch"="Добавить другие часы";
 
 
+"Good morning"="Доброе утро!";
+"Make bed"="Застелить постель";
+"Get Dress"="Одеться";
+"Eat breakfast"="Время завтракать";
+"Brush teeth"="Чистить зубы";
+"Get Ready for school"="Собраться в школу";
+"Put on pajamas"="Надеть пижаму";
+"Story time"="Почитать книгу";
+"Good night"="Спокойной ночи!";
+"Collect toys"="Убрать игрушки";
+"Set table"="Накрыть на стол";
+"Feed pet"="Покормить домашних животных";
+"Water plants"="Полить цветы";
+"Clean table"="Убрать со стола";
+"Clean bedroom"="Навести порядок в комнате";
+"Homework time"="Сделать уроки";
+"Take a nap"="Отдохнуть в тихий час";
+"Outdoor play time"="Поиграть";
+"Fun time"="Время для развлечений";
+"Exercise"="Время для занятий спортом";
+"Practice music"="Время для занятий музыкой";
+"Drawing time"="Время для рисования";
+"Reading time"="Время для чтения";
+"Take a bath"="Время принять ванну";
+"Family time"="Отдых всей семьей";
+"lunch time"="Время обедать";
+"dinner time"="Время ужинать";
+"afternoon snack time"="Время полдничать";
+"review the backpack"="Подготовить рюкзак";

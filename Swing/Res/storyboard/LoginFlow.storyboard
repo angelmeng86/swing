@@ -92,6 +92,7 @@
                     <navigationItem key="navigationItem" title="Login" id="Axq-Mu-f5y"/>
                     <connections>
                         <outlet property="emailTextField" destination="e8F-nf-rHL" id="WeX-6c-iCy"/>
+                        <outlet property="loginBtn" destination="N92-Dp-3AF" id="EW9-kz-niK"/>
                         <outlet property="pwdTextField" destination="2Po-Ah-Mkw" id="r6H-6V-bGf"/>
                     </connections>
                 </viewController>

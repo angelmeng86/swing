@@ -19,6 +19,8 @@
 		0F176EC21DE48FB70014F079 /* Event+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F176EBE1DE48FB70014F079 /* Event+CoreDataProperties.m */; };
 		0F1B77FC1E4EAC4600FD2421 /* OptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B77FB1E4EAC4600FD2421 /* OptionViewController.m */; };
 		0F1D939D1DEDD90F000444B9 /* BLEDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1D939C1DEDD90F000444B9 /* BLEDelegate.m */; };
+		0F200C0B1E631CF000B12D44 /* A-022317.bin in Resources */ = {isa = PBXBuildFile; fileRef = 0F200C091E631CF000B12D44 /* A-022317.bin */; };
+		0F200C0C1E631CF000B12D44 /* B-022317.bin in Resources */ = {isa = PBXBuildFile; fileRef = 0F200C0A1E631CF000B12D44 /* B-022317.bin */; };
 		0F37056E1E096A6700E87BF0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0F3705701E096A6700E87BF0 /* Localizable.strings */; };
 		0F445E0F1D7094A6008A092C /* JSONValueTransformer+NSData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F445E0E1D7094A6008A092C /* JSONValueTransformer+NSData.m */; };
 		0F45AB831D6316FA00EF385F /* STextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB821D6316FA00EF385F /* STextField.m */; };
@@ -89,7 +91,6 @@
 		ADCED9E41D3D2BAC002E3F78 /* LoginedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCED9E31D3D2BAC002E3F78 /* LoginedModel.m */; };
 		ADCED9E71D3D3C8B002E3F78 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCED9E61D3D3C8B002E3F78 /* RegisterViewController.m */; };
 		ADD6555C1D5B886D0054FB24 /* AlertSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD6555B1D5B886D0054FB24 /* AlertSelectViewController.m */; };
-		ADD6555E1D5B8D410054FB24 /* alert.json in Resources */ = {isa = PBXBuildFile; fileRef = ADD6555D1D5B89770054FB24 /* alert.json */; };
 		ADD655611D5B8DAC0054FB24 /* AlertModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD655601D5B8DAC0054FB24 /* AlertModel.m */; };
 		ADDCD3F31D4C54960031DC66 /* LoginFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADDCD3EE1D4C54960031DC66 /* LoginFlow.storyboard */; };
 		ADDCD3F41D4C54960031DC66 /* MainTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADDCD3EF1D4C54960031DC66 /* MainTab.storyboard */; };
@@ -146,6 +147,8 @@
 		0F1B77FB1E4EAC4600FD2421 /* OptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionViewController.m; sourceTree = "<group>"; };
 		0F1D939B1DEDD90F000444B9 /* BLEDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEDelegate.h; sourceTree = "<group>"; };
 		0F1D939C1DEDD90F000444B9 /* BLEDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEDelegate.m; sourceTree = "<group>"; };
+		0F200C091E631CF000B12D44 /* A-022317.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "A-022317.bin"; sourceTree = "<group>"; };
+		0F200C0A1E631CF000B12D44 /* B-022317.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "B-022317.bin"; sourceTree = "<group>"; };
 		0F37056F1E096A6700E87BF0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0F3705721E096C2F00E87BF0 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0F3705731E096C3800E87BF0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -289,7 +292,6 @@
 		ADCED9E61D3D3C8B002E3F78 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		ADD6555A1D5B886D0054FB24 /* AlertSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertSelectViewController.h; sourceTree = "<group>"; };
 		ADD6555B1D5B886D0054FB24 /* AlertSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertSelectViewController.m; sourceTree = "<group>"; };
-		ADD6555D1D5B89770054FB24 /* alert.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = alert.json; sourceTree = "<group>"; };
 		ADD6555F1D5B8DAC0054FB24 /* AlertModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertModel.h; sourceTree = "<group>"; };
 		ADD655601D5B8DAC0054FB24 /* AlertModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertModel.m; sourceTree = "<group>"; };
 		ADDCD3EE1D4C54960031DC66 /* LoginFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginFlow.storyboard; sourceTree = "<group>"; };
@@ -697,12 +699,13 @@
 		ADDCD3E91D4C54960031DC66 /* Res */ = {
 			isa = PBXGroup;
 			children = (
+				0F200C091E631CF000B12D44 /* A-022317.bin */,
+				0F200C0A1E631CF000B12D44 /* B-022317.bin */,
 				AD21A5E21E60310C00DA72E3 /* A-super-MP-OTA-64M-022317.bin */,
 				AD21A5E31E60310C00DA72E3 /* B-super-MP-OTA-64M-022317.bin */,
 				0FDAF5A91D6405EF007CD808 /* citystate.json */,
 				ADDCD3EA1D4C54960031DC66 /* font */,
 				ADDCD3ED1D4C54960031DC66 /* storyboard */,
-				ADD6555D1D5B89770054FB24 /* alert.json */,
 				0F140B701D88432B005B9763 /* alert2.json */,
 				0F3705701E096A6700E87BF0 /* Localizable.strings */,
 			);
@@ -882,10 +885,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADDEAE101DE299FB00AD478A /* Swing.xcdatamodeld in Resources */,
+				0F200C0C1E631CF000B12D44 /* B-022317.bin in Resources */,
 				0F37056E1E096A6700E87BF0 /* Localizable.strings in Resources */,
-				ADD6555E1D5B8D410054FB24 /* alert.json in Resources */,
 				0F140B711D88432B005B9763 /* alert2.json in Resources */,
 				ADDCD3FB1D4C59F10031DC66 /* Avenir-bold.ttf in Resources */,
+				0F200C0B1E631CF000B12D44 /* A-022317.bin in Resources */,
 				ADDCD3FC1D4C59F10031DC66 /* Avenir-Book.otf in Resources */,
 				ADDCD3F31D4C54960031DC66 /* LoginFlow.storyboard in Resources */,
 				AD21A5E51E60310C00DA72E3 /* B-super-MP-OTA-64M-022317.bin in Resources */,
