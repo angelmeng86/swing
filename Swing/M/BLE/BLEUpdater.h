@@ -30,7 +30,7 @@
 - (BOOL)supportUpdate;
 - (void)startUpdate;
 - (NSString*)curVersion;
-//- (void)cancelUpdate;
+- (void)cancelUpdate;
 
 - (void)didDiscoverServices:(CBService *)service;
 - (void)didDiscoverCharacteristicsForService:(CBService *)service;

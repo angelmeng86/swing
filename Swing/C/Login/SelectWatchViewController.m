@@ -127,9 +127,9 @@
             LOG_D(@"initDevice fail: %@", error);
             [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
         }
-    } update:^(float percent, NSString *remainTime) {
+    }/* update:^(float percent, NSString *remainTime) {
         [SVProgressHUD showProgress:percent status:[@"Update Device, Time remaining : " stringByAppendingString:remainTime]];
-    }];
+    }*/];
 #endif
 }
 

@@ -36,6 +36,7 @@
     }
     self.peripheral = nil;
     self.tmpData = nil;
+    [self.updater cancelUpdate];
 }
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral{

@@ -95,10 +95,9 @@
     [_manager stopScan];
 }
 
-- (void)initDevice:(CBPeripheral*)peripheral completion:(SwingBluetoothInitDeviceBlock)completion {
-    self.blockOnInitDevice = completion;
-    _manager.delegate = initDevice;
-    [initDevice initDevice:peripheral centralManager:_manager];
+- (void)initDevice:(CBPeripheral*)peripheral completion:(SwingBluetoothInitDeviceBlock)completion
+{
+    [self initDevice:peripheral completion:completion update:nil];
 }
 
 - (void)initDevice:(CBPeripheral*)peripheral completion:(SwingBluetoothInitDeviceBlock)completion update:(SwingBluetoothUpdateDeviceBlock)updateBlock {
@@ -131,9 +130,15 @@
 }
 
 - (void)syncDevice:(CBPeripheral*)peripheral event:(NSArray*)events completion:(SwingBluetoothSyncDeviceBlock)completion {
+    [self syncDevice:peripheral event:events completion:completion update:nil];
+}
+
+- (void)syncDevice:(CBPeripheral*)peripheral event:(NSArray*)events completion:(SwingBluetoothSyncDeviceBlock)completion update:(SwingBluetoothUpdateDeviceBlock)updateBlock
+{
     self.blockOnSyncDevice = completion;
     _manager.delegate = syncDevice;
     LOG_BEG(@"syncDevice BEGIN");
+    syncDevice.blockOnUpdateDevice = updateBlock;
     [syncDevice syncDevice:peripheral centralManager:_manager event:events];
 }
 

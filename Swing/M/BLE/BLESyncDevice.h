@@ -18,6 +18,8 @@
 
 @interface BLESyncDevice : BLEWaitDevice
 
+@property (nonatomic, copy) SwingBluetoothUpdateDeviceBlock blockOnUpdateDevice;
+
 - (void)syncDevice:(CBPeripheral*)peripheral centralManager:(CBCentralManager *)central event:(NSArray*)events;
 
 @end

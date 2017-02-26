@@ -147,7 +147,10 @@
 //    }
 //    [self.stepProgress setNeedsLayout];
     
-    
+    if ([GlobalCache shareInstance].local.indoorSteps > 0 || [GlobalCache shareInstance].local.outdoorSteps > 0) {
+        //判断如果本地有缓存数据则不向后台请求，主要解决因数据未上传引起的前后台数据不一致问题
+        return;
+    }
     int64_t kidId = [[GlobalCache shareInstance] getKidId];
     if (kidId == -1) {
         return;

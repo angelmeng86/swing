@@ -26,6 +26,8 @@ typedef enum : NSUInteger {
 //    MDRadialProgressTheme *doneTheme;
     
     BLEClient *client;
+    
+    BOOL updateLoaded;
 }
 
 @property (nonatomic, strong) NSMutableArray *activitys;
@@ -46,6 +48,7 @@ typedef enum : NSUInteger {
     progressTheme.centerColor = [UIColor clearColor];
     progressTheme.sliceDividerHidden = YES;
     progressTheme.thickness = 20;
+    progressTheme.drawIncompleteArcIfNoProgress = YES;
     
 //    doneTheme = [[MDRadialProgressTheme alloc] init];
 //    doneTheme.completedColor = COMMON_TITLE_COLOR;
@@ -64,6 +67,8 @@ typedef enum : NSUInteger {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didBecomeActive:)
                                                  name:UIApplicationDidBecomeActiveNotification object:nil];
+    
+    updateLoaded = NO;
 }
 
 
@@ -225,6 +230,12 @@ typedef enum : NSUInteger {
 */
 - (void)syncAction:(NSArray*)eventArray {
     [client syncDevice:_peripheral event:eventArray completion:^(NSMutableArray *activities, NSError *error) {
+        self.statusLabel.text = LOC_STR(@"Syncing");
+        self.progressView.progressTotal = 12;
+        self.progressView.progressCounter = 1;
+        self.progressView.isIndeterminateProgress = YES;
+        
+        [SVProgressHUD dismiss];
         LOG_D(@"syncDevice error %@", error);
         
         LOG_BEG(@"Upload Activity BEGIN");
@@ -268,37 +279,23 @@ typedef enum : NSUInteger {
         */
         
         [self uploadData];
+    } update:^(float percent, NSString *remainTime) {
+        self.statusLabel.text = [@"Device Updating\f" stringByAppendingString:remainTime];
+        if (!updateLoaded) {
+            updateLoaded = YES;
+            self.progressView.progressTotal = 100;
+            self.progressView.progressCounter = 0;
+            self.progressView.isIndeterminateProgress = NO;
+        }
+        
+        int count = percent * 100;
+        if (self.progressView.progressCounter != count) {
+            self.progressView.progressCounter = count;
+        }
+        
+//        [SVProgressHUD showProgress:percent status:[@"Update Device, Time remaining : " stringByAppendingString:remainTime]];
     }];
 }
-
-//- (void)eventLoaded:(NSNotification*)notification {
-//    //    NSLog(@"eventLoaded:%@ month:%@", _calendarManager.date, notification.object);
-//    NSString *month = [GlobalCache dateToMonthString:[NSDate date]];
-//    if ([month isEqualToString:notification.object]) {
-//        [[NSNotificationCenter defaultCenter] removeObserver:self];
-//        NSMutableArray *event = [[GlobalCache shareInstance] searchWeeklyEventsByDay:[NSDate date]];
-//        for (int i = event.count; --i >= 0; ) {
-//            EventModel *m = event[i];
-//            if (m.alert < 34) {
-//                [event removeObjectAtIndex:i];
-//            }
-//        }
-//        client.alertEvents = event;
-//        
-//        [client syncDevice];
-//        self.activitys = [NSMutableArray array];
-//    }
-//}
-
-//- (void)bluetoothClientSyncFinished {
-//    if (_activitys.count == 0) {
-//        ActivityModel *model = [ActivityModel new];
-//        model.macId = [Fun dataToHex:[GlobalCache shareInstance].deviceMAC];
-////        [model reset];
-//        _activitys = [NSMutableArray arrayWithObject:model];
-//    }
-//    [self uploadData];
-//}
 
 - (void)uploadData {
     ActivityModel *model = [self.activitys firstObject];

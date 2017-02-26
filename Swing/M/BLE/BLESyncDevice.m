@@ -32,6 +32,8 @@ typedef enum : NSUInteger {
     NSTimer *outTimer;
 }
 
+@property (nonatomic, strong) BLEUpdater *updater;
+
 @property (nonatomic, strong) NSMutableArray *eventArray;
 @property (nonatomic, strong) NSMutableArray *activityArray;
 @property (nonatomic, strong) NSMutableDictionary *activityDict;
@@ -111,6 +113,7 @@ typedef enum : NSUInteger {
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(nullable NSError *)error {
     LOG_D(@"didDisconnectPeripheral:%@ error:%@", peripheral, error);
+    [self.updater deviceDisconnected:peripheral];
     if ([peripheral isEqual:_peripheral]) {
         [self reportSyncDeviceResult:error];
     }
@@ -130,8 +133,8 @@ typedef enum : NSUInteger {
             NSArray *characters = @[[CBUUID UUIDWithString:@"2A19"]];
             [peripheral discoverCharacteristics:characters forService:s];
         }
-        else if ([s.UUID isEqual:[CBUUID UUIDWithString:OAD_SERVICE_UUID]]) {
-            [peripheral discoverCharacteristics:nil forService:s];
+        else {
+            [self.updater didDiscoverServices:s];
         }
     }
 }
@@ -154,6 +157,9 @@ typedef enum : NSUInteger {
                 [peripheral readValueForCharacteristic:character];
             }
         }
+    }
+    else {
+        [self.updater didDiscoverCharacteristicsForService:service];
     }
 }
 
@@ -336,6 +342,9 @@ typedef enum : NSUInteger {
             syncState = SwingSyncChecksumWrited;
         }
     }
+    else {
+        [self.updater didUpdateValueForProfile:characteristic];
+    }
 }
 
 - (void)syncDevice:(CBPeripheral*)peripheral centralManager:(CBCentralManager *)central event:(NSArray*)events {
@@ -357,6 +366,12 @@ typedef enum : NSUInteger {
     testCount = 0;
     self.peripheral = peripheral;
     self.manager = central;
+    
+    if (self.blockOnUpdateDevice) {
+        self.updater = [[BLEUpdater alloc] init];
+        self.updater.peripheral = peripheral;
+        self.updater.delegate = self;
+    }
     
     LOG_D(@"syncDevice:%@", peripheral);
     [self checkBleStatus];
@@ -399,14 +414,71 @@ typedef enum : NSUInteger {
     self.ffa4Data1 = nil;
     self.ffa4Data2 = nil;
     self.macAddress = nil;
+     [self.updater cancelUpdate];
 }
 
 - (void)reportSyncDeviceResult:(NSError*)error {
+    if ([self.updater supportUpdate]) {
+        //成功并且支持版本更新
+        if (self.updater.curVersion) {
+            if (self.updater.needUpdate) {
+                [outTimer invalidate];
+                outTimer = nil;
+                [self.updater startUpdate];
+                return;
+            }
+            LOG_D(@"Device version is new.");
+        }
+        else {
+            //等待获取固件版本号
+            LOG_D(@"Wait get device version.");
+            [outTimer invalidate];
+            outTimer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(getVersionTimeout:) userInfo:nil repeats:NO];
+            return;
+        }
+        
+    }
+    
     if ([self.delegate respondsToSelector:@selector(reportSyncDeviceResult:error:)]) {
         [self.delegate reportSyncDeviceResult:_activityArray error:error];
     }
     [self cannel];
 }
 
+- (void)getVersionTimeout:(NSTimer*)timer {
+    //获取固件版本超时，正常返回
+    LOG_D(@"getVersionTimeout return");
+    //成功并且支持版本更新
+    if (self.updater.curVersion) {
+        if (self.updater.needUpdate) {
+            [outTimer invalidate];
+            outTimer = nil;
+            [self.updater startUpdate];
+            return;
+        }
+        LOG_D(@"Device version is new.");
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(reportSyncDeviceResult:error:)]) {
+        [self.delegate reportSyncDeviceResult:_activityArray error:nil];
+    }
+    [self cannel];
+}
+
+- (void)deviceUpdateProgress:(float)percent remainTime:(NSString*)text {
+    //    NSString *show = [NSString stringWithFormat:@"%0.1f%%", percent];
+    if (self.blockOnUpdateDevice) {
+        self.blockOnUpdateDevice(percent, text);
+    }
+}
+
+- (void)deviceUpdateResult:(BOOL)success {
+    LOG_D(@"deviceUpdateResult %d", success);
+    
+    if ([self.delegate respondsToSelector:@selector(reportSyncDeviceResult:error:)]) {
+        [self.delegate reportSyncDeviceResult:_activityArray error:nil];
+    }
+    [self cannel];
+}
 
 @end

@@ -161,7 +161,7 @@ typedef enum : NSUInteger {
 }
 
 - (void)imageDetectTimerTick:(NSTimer *)timer {
-    if(self.state == BLEUpdaterStateProgramming) {
+    if(self.state != BLEUpdaterStateGetVersion) {
         LOG_D(@"imageDetectTimerTick invalid.");
         return;
     }

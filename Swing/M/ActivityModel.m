@@ -108,12 +108,14 @@ macId:           tester1
 }
 
 - (void)setIndoorData:(NSData*)data {
+    _inData1 = _inData2 = _inData3 = _inData4 = 0;
     if ((data.length - 1) / 4 > 0) {
         [self parseData:data];
     }
 }
 
 - (void)setOutdoorData:(NSData*)data {
+    _outData1 = _outData2 = _outData3 = _outData4 = 0;
     if ((data.length - 1) / 4 > 0) {
         [self parseData:data];
     }
