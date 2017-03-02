@@ -35,8 +35,8 @@
     self.firstNameTF.delegate = self;
     
     self.imageBtn.layer.cornerRadius = 60.f;
-    self.imageBtn.layer.borderColor = [self.imageBtn titleColorForState:UIControlStateNormal].CGColor;
-    self.imageBtn.layer.borderWidth = 3.f;
+//    self.imageBtn.layer.borderColor = [self.imageBtn titleColorForState:UIControlStateNormal].CGColor;
+//    self.imageBtn.layer.borderWidth = 3.f;
     self.imageBtn.layer.masksToBounds = YES;
     image = nil;
     
@@ -44,8 +44,8 @@
         self.firstNameTF.text = [GlobalCache shareInstance].kid.name;
         if ([GlobalCache shareInstance].kid.profile) {
             [self.imageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:[GlobalCache shareInstance].kid.profile]] forState:UIControlStateNormal];
-            self.imageBtn.layer.borderColor = [UIColor whiteColor].CGColor;
-            [self.imageBtn setTitle:nil forState:UIControlStateNormal];
+//            self.imageBtn.layer.borderColor = [UIColor whiteColor].CGColor;
+//            [self.imageBtn setTitle:nil forState:UIControlStateNormal];
         }
         
     }
@@ -133,24 +133,24 @@
     
     UIActionSheet *choiceSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                              delegate:self
-                                                    cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                                    cancelButtonTitle:LOC_STR(@"Cancel")
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:NSLocalizedString(@"Take a picture", nil), NSLocalizedString(@"Choose from library", nil), nil];
+                                                    otherButtonTitles:LOC_STR(@"Take a picture"), LOC_STR(@"Choose from library"), nil];
     [choiceSheet showInView:self.view];
 }
 
 - (void)setHeaderImage:(UIImage*)headImage {
     [self.imageBtn setBackgroundImage:headImage forState:UIControlStateNormal];
     
-    self.imageBtn.layer.borderColor = [UIColor whiteColor].CGColor;
-    [self.imageBtn setTitle:nil forState:UIControlStateNormal];
+//    self.imageBtn.layer.borderColor = [UIColor whiteColor].CGColor;
+//    [self.imageBtn setTitle:nil forState:UIControlStateNormal];
 }
 
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0) {
 #if TARGET_IPHONE_SIMULATOR
-        [Fun showMessageBoxWithTitle:NSLocalizedString(@"Prompt", nil) andMessage:@"Simulator does not support camera."];
+        [Fun showMessageBoxWithTitle:LOC_STR(@"Prompt") andMessage:@"Simulator does not support camera."];
 #else
         // 拍照
         if ([CameraUtility isCameraAvailable] && [CameraUtility doesCameraSupportTakingPhotos]) {

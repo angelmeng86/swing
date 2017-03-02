@@ -106,7 +106,7 @@
 
 - (void)initControlBtn {
     UIButton *cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 20, 100, 50)];
-    [cancelBtn setTitle:NSLocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
+    [cancelBtn setTitle:LOC_STR(@"Cancel") forState:UIControlStateNormal];
     [cancelBtn setTitleColor:COMMON_TITLE_COLOR forState:UIControlStateNormal];
     [cancelBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:18.0f]];
     [cancelBtn.titleLabel setTextAlignment:NSTextAlignmentCenter];
@@ -118,7 +118,7 @@
     
     UIButton *confirmBtn = [[RoundButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 150.0f) / 2, self.view.frame.size.height - 50.0f, 150, 40)];
     confirmBtn.backgroundColor = COMMON_TITLE_COLOR;
-    [confirmBtn setTitle:NSLocalizedString(@"Take a photo",nil) forState:UIControlStateNormal];
+    [confirmBtn setTitle:LOC_STR(@"Take a photo") forState:UIControlStateNormal];
     [confirmBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [confirmBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:18.0f]];
     [confirmBtn.titleLabel setTextAlignment:NSTextAlignmentCenter];

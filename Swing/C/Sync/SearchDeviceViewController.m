@@ -279,7 +279,7 @@ typedef enum : NSUInteger {
         */
         
         [self uploadData];
-    } update:^(float percent, NSString *remainTime) {
+    }/* update:^(float percent, NSString *remainTime) {
         self.statusLabel.text = [@"Device Updating\f" stringByAppendingString:remainTime];
         if (!updateLoaded) {
             updateLoaded = YES;
@@ -292,9 +292,7 @@ typedef enum : NSUInteger {
         if (self.progressView.progressCounter != count) {
             self.progressView.progressCounter = count;
         }
-        
-//        [SVProgressHUD showProgress:percent status:[@"Update Device, Time remaining : " stringByAppendingString:remainTime]];
-    }];
+    }*/];
 }
 
 - (void)uploadData {

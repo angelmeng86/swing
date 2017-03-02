@@ -127,7 +127,7 @@
 "Yes"="Sí";
 "No"="No";
 "Would you like to purchase one?"="¿Quieres comprar uno?";
-"Continue as a guest"="Continuar como invitado";
+"Continue as a guest"="Aún no";
 "searching"="Buscando";
 "Please select your Swing Watch"="Por favor, selecciona tu reloj";
 "Added"="¡Completado!";
@@ -141,10 +141,10 @@
 "Kid's name"="Nombre del niño";
 "Add profile picture"="Añadir foto al perfil";
 "Import from Facebook"="Importar de Facebook";
-"Take a picture"="USAR FOTO";
+"Take a picture"="Hacer foto";
 "Choose from library"="Seleccionar foto";
 "Cancel"="Cancelar";
-"Take a photo"="USAR FOTO";
+"Take a photo"="Usar Foto";
 "Add another watch"="Añadir otro reloj";
 
 "Good morning"="Buenos dias";
@@ -177,3 +177,4 @@
 "afternoon snack time"="Hora de la merienda";
 "review the backpack"="Revisar la mochila";
 
+"SupporUrl"="http://www.imaginarium.info";

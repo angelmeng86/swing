@@ -163,9 +163,9 @@
     
     UIActionSheet *choiceSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                              delegate:self
-                                                    cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                                    cancelButtonTitle:LOC_STR(@"Cancel")
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:NSLocalizedString(@"Take a picture", nil), NSLocalizedString(@"Choose from library", nil), nil];
+                                                    otherButtonTitles:LOC_STR(@"Take a picture"), LOC_STR(@"Choose from library"), nil];
     [choiceSheet showInView:self.view];
 }
 
@@ -180,7 +180,7 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0) {
 #if TARGET_IPHONE_SIMULATOR
-        [Fun showMessageBoxWithTitle:NSLocalizedString(@"Prompt", nil) andMessage:@"Simulator does not support camera."];
+        [Fun showMessageBoxWithTitle:LOC_STR(@"Prompt") andMessage:@"Simulator does not support camera."];
 #else
         // 拍照
         if ([CameraUtility isCameraAvailable] && [CameraUtility doesCameraSupportTakingPhotos]) {

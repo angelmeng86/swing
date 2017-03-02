@@ -126,7 +126,7 @@
 "Yes"="Yes";
 "No"="No";
 "Would you like to purchase one?"="WOULD YOU LIKE TO PURCHASE ONE?";
-"Continue as a guest"="Continue as a guest";
+"Continue as a guest"="Not yet";
 "searching"="SEARCHING";
 "Please select your Swing Watch"="PLEASE SELECT YOUR SWING WATCH";
 "Added"="Added";
@@ -142,8 +142,8 @@
 "Take a picture"="Take a picture";
 "Choose from library"="Choose from library";
 "Cancel"="Cancel";
-"Take a photo"="Take a photo";
+"Take a photo"="Use photo";
 "Add another watch"="Add another watch";
 
-
+"SupporUrl"="http://kidsdynamic.com";
 

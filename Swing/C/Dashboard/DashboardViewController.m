@@ -42,6 +42,9 @@ typedef enum : NSUInteger {
     self.navigationItem.title = LOC_STR(@"Dashboard");
     self.titleLabel.text = LOC_STR(@"How are you doing today?");
     
+    self.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.subTitleLabel.adjustsFontSizeToFitWidth = YES;
+    
 //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sync" style:UIBarButtonItemStylePlain target:self action:@selector(showSyncDialog)];
 }
 

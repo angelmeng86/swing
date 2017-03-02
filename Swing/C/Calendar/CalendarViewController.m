@@ -86,7 +86,7 @@
 
 - (void)eventLoaded:(NSNotification*)notification {
     [super eventLoaded:notification];
-    [self loadEventView];
+//    [self loadEventView];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -95,8 +95,9 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"calendar_icon") style:UIBarButtonItemStylePlain target:self action:@selector(modeAction:)];
     [super viewWillAppear:animated];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"calendar_icon") style:UIBarButtonItemStylePlain target:self action:@selector(modeAction:)];
+    [self loadEventView];
 }
 
 - (void)modeAction:(id)sender {

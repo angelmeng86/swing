@@ -186,6 +186,9 @@
         
         [self.todoCtl setItemList:self.model.todo];
         
+        //编辑Event时默认展开所有选项
+        [self changeAdvance:YES];
+        /*
         if (self.model.desc.length > 0 ||
             self.model.state.length > 0 ||
             self.model.city.length > 0 ||
@@ -193,6 +196,8 @@
             self.model.repeat.length > 0) {
             [self changeAdvance:YES];
         }
+         */
+        
     }
     else {
         self.startTF.text = [self dateToString:datePicker.minimumDate];
@@ -241,7 +246,7 @@
     BOOL hidden = !show;
     self.cityTF.hidden = hidden;
     self.stateTF.hidden = hidden;
-    self.repeatTF.hidden = hidden;
+//    self.repeatTF.hidden = hidden;
     self.descTF.hidden = hidden;
     self.todoCtl.hidden = hidden;
 }

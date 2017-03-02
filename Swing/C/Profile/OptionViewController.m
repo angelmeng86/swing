@@ -138,7 +138,7 @@
                     [self languageAction];
                     break;
                 case 1:
-                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://kidsdynamic.com"]];
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:LOC_STR(@"SupporUrl")]];
                     break;
                 case 2:
                     

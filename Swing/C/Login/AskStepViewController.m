@@ -30,7 +30,7 @@
     [self.btn1 setTitle:LOC_STR(@"Yes") forState:UIControlStateNormal];
     [self.btn2 setTitle:LOC_STR(@"No") forState:UIControlStateNormal];
     
-    [self setCustomBackButton];
+//    [self setCustomBackButton];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,7 +54,7 @@
         [self searchWatch];
     }
     else {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://kidsdynamic.com"]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:LOC_STR(@"SupporUrl")]];
     }
 }
 

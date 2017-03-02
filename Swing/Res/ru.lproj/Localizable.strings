@@ -127,7 +127,7 @@
 "Yes"="Да";
 "No"="Нет";
 "Would you like to purchase one?"="Ты хочешь купить их?";
-"Continue as a guest"="Продолжить в качестве гостя";
+"Continue as a guest"="Еще нет";
 "searching"="Идет поиск";
 "Please select your Swing Watch"="Пожалуйста, выбери часы";
 "Added"="Готово!";
@@ -144,7 +144,7 @@
 "Take a picture"="Сделать фотографию";
 "Choose from library"="Выбрать фотографию";
 "Cancel"="Отменить";
-"Take a photo"="Сделать фотографию";
+"Take a photo"="используя фото";
 "Add another watch"="Добавить другие часы";
 
 
@@ -177,3 +177,5 @@
 "dinner time"="Время ужинать";
 "afternoon snack time"="Время полдничать";
 "review the backpack"="Подготовить рюкзак";
+
+"SupporUrl"="http://www.imaginarium.info";
