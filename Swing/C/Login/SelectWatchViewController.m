@@ -55,10 +55,17 @@
 #else
     client = [[BLEClient alloc] init];
     [client scanDeviceWithCompletion:^(CBPeripheral *peripheral, NSDictionary *advertisementData, NSError *error) {
-        if (![_peripherals containsObject:peripheral]) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_peripherals.count inSection:0];
-            [_peripherals addObject:peripheral];
-            [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        if (!error) {
+            if (peripheral && ![_peripherals containsObject:peripheral]) {
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_peripherals.count inSection:0];
+                [_peripherals addObject:peripheral];
+                [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+        }
+        else {
+            LOG_D(@"scanDeviceWithCompletion:%@", error);
+            [self backAction];
+            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
         }
     }];
 #endif

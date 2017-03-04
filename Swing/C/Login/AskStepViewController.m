@@ -54,7 +54,7 @@
         [self searchWatch];
     }
     else {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:LOC_STR(@"SupporUrl")]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[GlobalCache shareInstance].cacheSupportUrl]];
     }
 }
 

@@ -34,12 +34,15 @@
 - (void)postUpdateNotification:(NSDate*)date;
 
 - (NSArray*)queryEventColorForDay:(NSDate *)date;
+- (void)locationCountry;
 
 @property (strong, nonatomic) UserModel* user;
 @property (strong, nonatomic) KidModel* kid;
 @property (strong, nonatomic) LMLocalData* local;
 
 @property (strong, nonatomic) NSString* cacheLang;
+@property (strong, nonatomic) NSString* cacheSupportUrl;
+
 - (NSString*)curLanguage;
 - (NSString *)showText:(NSString *)key;
 

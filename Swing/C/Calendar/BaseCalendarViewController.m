@@ -74,6 +74,8 @@
     _calendarManager.dateHelper.calendar.firstWeekday = 2;
     [_calendarManager setMenuView:self.calendarMenuView];
     [_calendarManager setContentView:self.calendarContentView];
+    
+//    NSDate *date = [_calendarManager.dateHelper firstDayOfMonth:[NSDate date]];
     [_calendarManager setDate:[NSDate date]];
 }
 
@@ -87,20 +89,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [_calendarManager reload];
-}
-
-/*!
- * Indicate the previous page became the current page.
- */
-- (void)calendarDidLoadPreviousPage:(JTCalendarManager *)calendar {
-//    NSLog(@"calendarDidLoadPreviousPage:%@", calendar.date);
-}
-
-/*!
- * Indicate the next page became the current page.
- */
-- (void)calendarDidLoadNextPage:(JTCalendarManager *)calendar {
-//    NSLog(@"calendarDidLoadNextPage:%@", calendar.date);
 }
 
 - (UIView *)calendarBuildMenuItemView:(JTCalendarManager *)calendar
@@ -160,7 +148,21 @@
         dateFormatter.timeZone = _calendarManager.dateHelper.calendar.timeZone;
     }
     
-    menuItemView.text = [dateFormatter stringFromDate:_dateSelected];//[dateFormatter stringFromDate:date];
+    menuItemView.text = [dateFormatter stringFromDate:_dateSelected];
+    //menuItemView.text = [dateFormatter stringFromDate:date];
+    
+    if(calendar.settings.weekModeEnabled) {
+        if (![calendar.dateHelper date:date isTheSameWeekThan:_dateSelected] && ![calendar.dateHelper date:calendar.contentView.date isTheSameWeekThan:[NSDate date]]) {
+            NSDate *first = [calendar.dateHelper firstWeekDayOfWeek:date];
+            menuItemView.text = [dateFormatter stringFromDate:first];
+        }
+    }
+    else {
+        if (![calendar.dateHelper date:date isTheSameMonthThan:_dateSelected] && ![calendar.dateHelper date:calendar.contentView.date isTheSameWeekThan:[NSDate date]]) {
+            NSDate *first = [calendar.dateHelper firstDayOfMonth:date];
+            menuItemView.text = [dateFormatter stringFromDate:first];
+        }
+    }
 }
 
 - (UIView<JTCalendarWeekDay> *)calendarBuildWeekDayView:(JTCalendarManager *)calendar
@@ -185,9 +187,9 @@
 // Used to customize the appearance of dayView
 - (void)calendar:(JTCalendarManager *)calendar prepareDayView:(LMCalendarDayView *)dayView
 {
-    /*
+    
     // Today
-    if([_calendarManager.dateHelper date:[NSDate date] isTheSameDayThan:dayView.date]){
+    if([calendar.dateHelper date:[NSDate date] isTheSameDayThan:dayView.date]){
         dayView.circleView.hidden = NO;
         dayView.circleView.backgroundColor = COMMON_TITLE_COLOR;
 //        dayView.dotView.backgroundColor = [UIColor whiteColor];
@@ -195,23 +197,56 @@
         dayView.dotColors = @[[UIColor blackColor]];
     }
     // Selected date
-    else*/ if(_dateSelected && [_calendarManager.dateHelper date:_dateSelected isTheSameDayThan:dayView.date]){
+    else if(_dateSelected && [calendar.dateHelper date:_dateSelected isTheSameDayThan:dayView.date]){
         dayView.circleView.hidden = NO;
-        dayView.circleView.backgroundColor = COMMON_TITLE_COLOR;//[UIColor blueColor];
+        dayView.circleView.backgroundColor = RGBA(153, 152, 153, 1.0f);//[UIColor blueColor];
 //        dayView.dotView.backgroundColor = [UIColor whiteColor];
         dayView.textLabel.textColor = [UIColor whiteColor];
     }
     // Other month
-    else if(![_calendarManager.dateHelper date:calendar.contentView.date isTheSameMonthThan:dayView.date]){
+    else if(![calendar.dateHelper date:calendar.contentView.date isTheSameMonthThan:dayView.date]){
         dayView.circleView.hidden = YES;
 //        dayView.dotView.backgroundColor = [UIColor redColor];
         dayView.textLabel.textColor = [UIColor lightGrayColor];
+        if(calendar.settings.weekModeEnabled) {
+            if (![calendar.dateHelper date:calendar.contentView.date isTheSameWeekThan:[NSDate date]] && ![calendar.dateHelper date:calendar.contentView.date isTheSameWeekThan:_dateSelected]) {
+                NSDate *first = [calendar.dateHelper firstWeekDayOfWeek:calendar.contentView.date];
+                if ([calendar.dateHelper date:first isTheSameDayThan:dayView.date])
+                {
+                    dayView.circleView.hidden = NO;
+                    dayView.circleView.backgroundColor = RGBA(153, 152, 153, 1.0f);
+                    dayView.textLabel.textColor = [UIColor whiteColor];
+                }
+            }
+        }
     }
     // Another day of the current month
     else{
         dayView.circleView.hidden = YES;
 //        dayView.dotView.backgroundColor = [UIColor redColor];
         dayView.textLabel.textColor = [UIColor blackColor];
+        if(calendar.settings.weekModeEnabled) {
+            if (![calendar.dateHelper date:calendar.contentView.date isTheSameWeekThan:[NSDate date]] && ![calendar.dateHelper date:calendar.contentView.date isTheSameWeekThan:_dateSelected]) {
+                NSDate *first = [calendar.dateHelper firstWeekDayOfWeek:calendar.contentView.date];
+                if ([calendar.dateHelper date:first isTheSameDayThan:dayView.date])
+                {
+                    dayView.circleView.hidden = NO;
+                    dayView.circleView.backgroundColor = RGBA(153, 152, 153, 1.0f);
+                    dayView.textLabel.textColor = [UIColor whiteColor];
+                }
+            }
+        }
+        else {
+            if (![calendar.dateHelper date:calendar.contentView.date isTheSameMonthThan:[NSDate date]] && ![calendar.dateHelper date:calendar.contentView.date isTheSameWeekThan:_dateSelected]) {
+                NSDate *first = [calendar.dateHelper firstDayOfMonth:calendar.contentView.date];
+                if ([calendar.dateHelper date:first isTheSameDayThan:dayView.date])
+                {
+                    dayView.circleView.hidden = NO;
+                    dayView.circleView.backgroundColor = RGBA(153, 152, 153, 1.0f);
+                    dayView.textLabel.textColor = [UIColor whiteColor];
+                }
+            }
+        }
     }
     
     dayView.dotColors = [[GlobalCache shareInstance] queryEventColorForDay:dayView.date];

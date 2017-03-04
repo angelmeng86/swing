@@ -54,8 +54,6 @@
 		AD21A5D61E5FD4B300DA72E3 /* BLEUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = AD21A5D51E5FD4B300DA72E3 /* BLEUpdater.m */; };
 		AD21A5DA1E5FD9E100DA72E3 /* CBService+LMMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = AD21A5D91E5FD9E100DA72E3 /* CBService+LMMethod.m */; };
 		AD21A5DD1E600EF500DA72E3 /* BLEUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = AD21A5DC1E600EF500DA72E3 /* BLEUtility.m */; };
-		AD21A5E41E60310C00DA72E3 /* A-super-MP-OTA-64M-022317.bin in Resources */ = {isa = PBXBuildFile; fileRef = AD21A5E21E60310C00DA72E3 /* A-super-MP-OTA-64M-022317.bin */; };
-		AD21A5E51E60310C00DA72E3 /* B-super-MP-OTA-64M-022317.bin in Resources */ = {isa = PBXBuildFile; fileRef = AD21A5E31E60310C00DA72E3 /* B-super-MP-OTA-64M-022317.bin */; };
 		AD289A5E1D3FD0E800898F92 /* AskStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD289A5D1D3FD0E800898F92 /* AskStepViewController.m */; };
 		AD2D338D1D5378AD005D9298 /* KidModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2D338C1D5378AD005D9298 /* KidModel.m */; };
 		AD2D33901D538418005D9298 /* ToDoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2D338F1D538418005D9298 /* ToDoModel.m */; };
@@ -220,8 +218,6 @@
 		AD21A5D91E5FD9E100DA72E3 /* CBService+LMMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBService+LMMethod.m"; sourceTree = "<group>"; };
 		AD21A5DB1E600EF500DA72E3 /* BLEUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEUtility.h; sourceTree = "<group>"; };
 		AD21A5DC1E600EF500DA72E3 /* BLEUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEUtility.m; sourceTree = "<group>"; };
-		AD21A5E21E60310C00DA72E3 /* A-super-MP-OTA-64M-022317.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "A-super-MP-OTA-64M-022317.bin"; sourceTree = "<group>"; };
-		AD21A5E31E60310C00DA72E3 /* B-super-MP-OTA-64M-022317.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "B-super-MP-OTA-64M-022317.bin"; sourceTree = "<group>"; };
 		AD289A5C1D3FD0E800898F92 /* AskStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AskStepViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		AD289A5D1D3FD0E800898F92 /* AskStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AskStepViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AD2D338B1D5378AD005D9298 /* KidModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KidModel.h; sourceTree = "<group>"; };
@@ -701,8 +697,6 @@
 			children = (
 				0F200C091E631CF000B12D44 /* A-022317.bin */,
 				0F200C0A1E631CF000B12D44 /* B-022317.bin */,
-				AD21A5E21E60310C00DA72E3 /* A-super-MP-OTA-64M-022317.bin */,
-				AD21A5E31E60310C00DA72E3 /* B-super-MP-OTA-64M-022317.bin */,
 				0FDAF5A91D6405EF007CD808 /* citystate.json */,
 				ADDCD3EA1D4C54960031DC66 /* font */,
 				ADDCD3ED1D4C54960031DC66 /* storyboard */,
@@ -892,10 +886,8 @@
 				0F200C0B1E631CF000B12D44 /* A-022317.bin in Resources */,
 				ADDCD3FC1D4C59F10031DC66 /* Avenir-Book.otf in Resources */,
 				ADDCD3F31D4C54960031DC66 /* LoginFlow.storyboard in Resources */,
-				AD21A5E51E60310C00DA72E3 /* B-super-MP-OTA-64M-022317.bin in Resources */,
 				ADDCD3F51D4C54960031DC66 /* SyncDevice.storyboard in Resources */,
 				AD1CEF121D5AE886004FEC24 /* MainTab2.storyboard in Resources */,
-				AD21A5E41E60310C00DA72E3 /* A-super-MP-OTA-64M-022317.bin in Resources */,
 				ADDCD3F41D4C54960031DC66 /* MainTab.storyboard in Resources */,
 				0FDAF5AA1D6405EF007CD808 /* citystate.json in Resources */,
 				ADFC2C3B1D369949004EDCDF /* Assets.xcassets in Resources */,

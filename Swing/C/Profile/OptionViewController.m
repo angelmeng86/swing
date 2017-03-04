@@ -138,7 +138,7 @@
                     [self languageAction];
                     break;
                 case 1:
-                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:LOC_STR(@"SupporUrl")]];
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[GlobalCache shareInstance].cacheSupportUrl]];
                     break;
                 case 2:
                     

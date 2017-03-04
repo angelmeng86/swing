@@ -10,7 +10,7 @@
 #import "KeyboardManager.h"
 #import "AppDelegate.h"
 #import "ActivityCache.h"
-
+#import <INTULocationManager/INTULocationManager.h>
 //#import <AVOSCloud/AVOSCloud.h>
 
 @implementation GlobalCache
@@ -35,11 +35,6 @@
 }
 
 - (void)initConfig {
-#ifdef UPLOAD_DEBUG
-    [AVOSCloud setAllLogsEnabled:NO];
-    [AVOSCloud setVerbosePolicy:kAVVerboseNone];
-    [AVOSCloud setApplicationId:@"zBJwrWLoydY2zVeSkxENhDL4-gzGzoHsz" clientKey:@"JPosFv55xiaCsCp6wNmfuejs"];
-#endif
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"Swing.sqlite"];
 //    [MagicalRecord setupCoreDataStackWithStoreNamed:@"Swing.sqlite"];
     [MagicalRecord setLoggingLevel:MagicalRecordLoggingLevelOff];
@@ -56,6 +51,7 @@
     NSDictionary *dict = [[NSUserDefaults standardUserDefaults] objectForKey:@"localData"];
     _local = [[LMLocalData alloc] initWithDictionary:dict error:nil];
     
+    [self locationCountry];
 }
 
 - (void)setKid:(KidModel *)kid {
@@ -197,6 +193,55 @@
     
     return nil;
 }
+
+- (void)locationCountry {
+    INTULocationManager *locMgr = [INTULocationManager sharedInstance];
+    [locMgr requestLocationWithDesiredAccuracy:INTULocationAccuracyCity
+                                       timeout:10.0
+                          delayUntilAuthorized:YES  // This parameter is optional, defaults to NO if omitted
+                                         block:^(CLLocation *currentLocation, INTULocationAccuracy achievedAccuracy, INTULocationStatus status) {
+                                             if (status == INTULocationStatusSuccess) {
+                                                 // Request succeeded, meaning achievedAccuracy is at least the requested accuracy, and
+                                                 // currentLocation contains the device's current location.
+                                                 LOG_D(@"Location success %@", currentLocation);
+                                                 currentLocation = [[CLLocation alloc] initWithLatitude:41 longitude:-83];
+                                                 LOG_D(@"Location success2 %@", currentLocation);
+                                                 CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+                                                 [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+                                                     if (!error) {
+                                                         LOG_D(@"placemarks count %d", (int)placemarks.count);
+                                                         CLPlacemark *placemark =[placemarks firstObject];
+                                                        LOG_D(@"placemark:%@", placemark.country);
+                                                         if ([placemark.country containsString:@"Spanish"] || [placemark.country containsString:@"Russian"]) {
+                                                             self.cacheSupportUrl = @"http://www.imaginarium.info";
+                                                         }
+                                                     }
+                                                     else {
+                                                         LOG_D(@"reverseGeocodeLocation err:%@", error);
+                                                     }
+                                                 }];
+                                             }
+                                             else if (status == INTULocationStatusTimedOut) {
+                                                 // Wasn't able to locate the user with the requested accuracy within the timeout interval.
+                                                 // However, currentLocation contains the best location available (if any) as of right now,
+                                                 // and achievedAccuracy has info on the accuracy/recency of the location in currentLocation.
+                                                 LOG_D(@"Location timeout.");
+                                             }
+                                             else {
+                                                 // An error occurred, more info is available by looking at the specific status returned.
+                                                 LOG_D(@"Location err:%ld", (long)status);
+                                             }
+                                         }];
+}
+
+- (NSString*)cacheSupportUrl {
+    if (_cacheSupportUrl == nil) {
+        _cacheSupportUrl = @"http://kidsdynamic.com";
+//        _cacheSupportUrl = @"http://www.imaginarium.info";
+    }
+    return _cacheSupportUrl;
+}
+
 /*
 - (void)queryWeather {
     if (_weartherRunning) {
@@ -233,6 +278,7 @@
     }];
 }
 */
+
 - (NSString*)curLanguage
 {
     //static NSString* cacheLang = nil;

@@ -118,7 +118,7 @@
     
     UIButton *confirmBtn = [[RoundButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 150.0f) / 2, self.view.frame.size.height - 50.0f, 150, 40)];
     confirmBtn.backgroundColor = COMMON_TITLE_COLOR;
-    [confirmBtn setTitle:LOC_STR(@"Take a photo") forState:UIControlStateNormal];
+    [confirmBtn setTitle:LOC_STR(@"Use photo") forState:UIControlStateNormal];
     [confirmBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [confirmBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:18.0f]];
     [confirmBtn.titleLabel setTextAlignment:NSTextAlignmentCenter];

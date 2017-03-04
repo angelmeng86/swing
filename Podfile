@@ -14,4 +14,5 @@ pod 'IQKeyboardManager'
 pod 'CHCircleGaugeView'
 pod 'MDRadialProgress'
 pod 'MagicalRecord'
+pod 'INTULocationManager'
 end
