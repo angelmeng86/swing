@@ -10,11 +10,13 @@
 
 #import <Foundation/Foundation.h>
 
-#ifndef MAPPLE_DEBUG
-#   ifdef DEBUG
-#       define MAPPLE_DEBUG
-#   endif /* DEBUG */
-#endif /* MAPPLE_DEBUG */
+//#define MAPPLE_DEBUG
+
+//#ifndef MAPPLE_DEBUG
+//#   ifdef DEBUG
+//#       define MAPPLE_DEBUG
+//#   endif /* DEBUG */
+//#endif /* MAPPLE_DEBUG */
 
 //#define UPLOAD_DEBUG
 
