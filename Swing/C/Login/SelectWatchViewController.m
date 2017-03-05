@@ -121,7 +121,7 @@
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     CBPeripheral *peripheral = [_peripherals objectAtIndex:indexPath.row];
     
-    [SVProgressHUD showWithStatus:@"Syncing..."];
+    [SVProgressHUD showWithStatus:LOC_STR(@"Syncing")];
     [client initDevice:peripheral completion:^(NSData *macAddress, NSError *error) {
         if (!error) {
             [SVProgressHUD dismiss];

@@ -168,7 +168,7 @@
 }
 
 - (void)bleTimeout {
-    [self reportInitDeviceResult:nil error:[NSError errorWithDomain:@"SwingBluetooth" code:-2 userInfo:[NSDictionary dictionaryWithObject:@"The bluetooth switch is closed." forKey:NSLocalizedDescriptionKey]]];
+    [self reportInitDeviceResult:nil error:[NSError errorWithDomain:@"SwingBluetooth" code:-2 userInfo:[NSDictionary dictionaryWithObject:LOC_STR(@"The bluetooth switch is closed.") forKey:NSLocalizedDescriptionKey]]];
 }
 
 - (void)fire {
@@ -182,7 +182,7 @@
     if (self.isCancel) {
         return;
     }
-    NSError *err = [NSError errorWithDomain:@"SwingBluetooth" code:-1 userInfo:[NSDictionary dictionaryWithObject:@"connectPeripheral timeout." forKey:NSLocalizedDescriptionKey]];
+    NSError *err = [NSError errorWithDomain:@"SwingBluetooth" code:-1 userInfo:[NSDictionary dictionaryWithObject:LOC_STR(@"connectPeripheral timeout.") forKey:NSLocalizedDescriptionKey]];
     [self reportInitDeviceResult:nil error:err];
 }
 

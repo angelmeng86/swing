@@ -378,7 +378,7 @@ typedef enum : NSUInteger {
 }
 
 - (void)bleTimeout {
-    [self reportSyncDeviceResult:[NSError errorWithDomain:@"SwingBluetooth" code:-2 userInfo:[NSDictionary dictionaryWithObject:@"The bluetooth switch is closed." forKey:NSLocalizedDescriptionKey]]];
+    [self reportSyncDeviceResult:[NSError errorWithDomain:@"SwingBluetooth" code:-2 userInfo:[NSDictionary dictionaryWithObject:LOC_STR(@"The bluetooth switch is closed.") forKey:NSLocalizedDescriptionKey]]];
 }
 
 - (void)fire {
@@ -391,7 +391,7 @@ typedef enum : NSUInteger {
     if (self.isCancel) {
         return;
     }
-    NSError *err = [NSError errorWithDomain:@"SwingBluetooth" code:-1 userInfo:[NSDictionary dictionaryWithObject:@"connectPeripheral timeout." forKey:NSLocalizedDescriptionKey]];
+    NSError *err = [NSError errorWithDomain:@"SwingBluetooth" code:-1 userInfo:[NSDictionary dictionaryWithObject:LOC_STR(@"connectPeripheral timeout.") forKey:NSLocalizedDescriptionKey]];
     [self reportSyncDeviceResult:err];
 }
 
