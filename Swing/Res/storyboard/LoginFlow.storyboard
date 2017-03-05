@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="byg-xN-paO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="byg-xN-paO">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +18,7 @@
         <scene sceneID="DD9-UR-pLH">
             <objects>
                 <navigationController navigationBarHidden="YES" id="byg-xN-paO" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EqT-DR-zTC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="EqT-DR-zTC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -255,41 +254,47 @@
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zip Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rRK-g5-407">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e2I-Ss-qya" customClass="RoundButton">
                                 <rect key="frame" x="60" y="394" width="294" height="35"/>
                                 <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation" returnKeyType="go"/>
-                            </textField>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="QGp-bZ-Uqm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="doneAction:" destination="XRh-0w-wfB" eventType="touchUpInside" id="Yvq-6C-4yl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="rRK-g5-407" firstAttribute="centerX" secondItem="ZYJ-mQ-jdn" secondAttribute="centerX" id="2UB-yM-YI1"/>
+                            <constraint firstItem="e2I-Ss-qya" firstAttribute="centerX" secondItem="ZYJ-mQ-jdn" secondAttribute="centerX" id="56A-RM-h23"/>
                             <constraint firstItem="2iW-kP-oTj" firstAttribute="top" secondItem="ZYJ-mQ-jdn" secondAttribute="bottom" constant="20" id="64r-yQ-flP"/>
                             <constraint firstItem="Vmj-xD-blG" firstAttribute="top" secondItem="2iW-kP-oTj" secondAttribute="bottom" constant="20" id="6OF-Y2-BWp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZYJ-mQ-jdn" secondAttribute="trailing" constant="40" id="6c1-7v-nl0"/>
                             <constraint firstItem="2iW-kP-oTj" firstAttribute="height" secondItem="ZYJ-mQ-jdn" secondAttribute="height" id="95s-Yd-9S0"/>
-                            <constraint firstItem="rRK-g5-407" firstAttribute="top" secondItem="Vmj-xD-blG" secondAttribute="bottom" constant="20" id="BcF-8f-Qke"/>
                             <constraint firstItem="ZYJ-mQ-jdn" firstAttribute="leading" secondItem="xhV-55-KrC" secondAttribute="leadingMargin" constant="40" id="Bd4-rP-KJn"/>
                             <constraint firstItem="2iW-kP-oTj" firstAttribute="centerX" secondItem="ZYJ-mQ-jdn" secondAttribute="centerX" id="FkZ-d9-Vp9"/>
                             <constraint firstItem="2iW-kP-oTj" firstAttribute="width" secondItem="ZYJ-mQ-jdn" secondAttribute="width" id="HVL-yV-sJ9"/>
                             <constraint firstItem="Vmj-xD-blG" firstAttribute="centerX" secondItem="ZYJ-mQ-jdn" secondAttribute="centerX" id="LNo-45-cY0"/>
                             <constraint firstItem="oFc-fh-Rme" firstAttribute="top" secondItem="Wbg-em-lLK" secondAttribute="bottom" constant="60" id="Mvp-Dd-d9e"/>
                             <constraint firstItem="oFc-fh-Rme" firstAttribute="centerX" secondItem="xhV-55-KrC" secondAttribute="centerX" id="RHx-g9-UUZ"/>
-                            <constraint firstItem="rRK-g5-407" firstAttribute="height" secondItem="ZYJ-mQ-jdn" secondAttribute="height" id="bJL-cX-XJH"/>
                             <constraint firstItem="Vmj-xD-blG" firstAttribute="width" secondItem="ZYJ-mQ-jdn" secondAttribute="width" id="djM-Cd-eqO"/>
                             <constraint firstItem="ZYJ-mQ-jdn" firstAttribute="top" secondItem="oFc-fh-Rme" secondAttribute="bottom" constant="29" id="jtl-wa-HyJ"/>
-                            <constraint firstItem="rRK-g5-407" firstAttribute="width" secondItem="ZYJ-mQ-jdn" secondAttribute="width" id="kIF-62-xWR"/>
+                            <constraint firstItem="e2I-Ss-qya" firstAttribute="width" secondItem="ZYJ-mQ-jdn" secondAttribute="width" id="obO-Ly-Bd1"/>
                             <constraint firstItem="Vmj-xD-blG" firstAttribute="height" secondItem="ZYJ-mQ-jdn" secondAttribute="height" id="sNv-ck-FdW"/>
+                            <constraint firstItem="e2I-Ss-qya" firstAttribute="top" secondItem="Vmj-xD-blG" secondAttribute="bottom" constant="20" id="wZH-BG-tId"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="doneBtn" destination="e2I-Ss-qya" id="BsY-jY-uUt"/>
                         <outlet property="firstNameTF" destination="ZYJ-mQ-jdn" id="GSp-yS-uvy"/>
                         <outlet property="imageBtn" destination="oFc-fh-Rme" id="12n-3j-p3c"/>
                         <outlet property="lastNameTF" destination="2iW-kP-oTj" id="QJU-Ax-IvB"/>
                         <outlet property="phoneTF" destination="Vmj-xD-blG" id="nfP-Ym-qQ1"/>
-                        <outlet property="zipCodeTF" destination="rRK-g5-407" id="v9F-mb-3nz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fcu-vC-yDw" userLabel="First Responder" sceneMemberID="firstResponder"/>

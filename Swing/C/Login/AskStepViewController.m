@@ -66,7 +66,7 @@
         self.label1.text = LOC_STR(@"Would you like to purchase one?");
 
         [self.btn1 setTitle:LOC_STR(@"Yes, please") forState:UIControlStateNormal];
-        [self.btn2 setTitle:LOC_STR(@"Continue as a guest") forState:UIControlStateNormal];
+        [self.btn2 setTitle:LOC_STR(@"Not yet") forState:UIControlStateNormal];
     }
     else {
         //Continue as a guest user

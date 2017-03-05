@@ -34,6 +34,7 @@
     self.lastNameTF.placeholder=LOC_STR(@"Last name");
     self.phoneTF.placeholder=LOC_STR(@"Phone number");
     self.zipCodeTF.placeholder=LOC_STR(@"Zip code");
+    [self.doneBtn setTitle:LOC_STR(@"Done") forState:UIControlStateNormal];
     
     self.firstNameTF.delegate = self;
     self.lastNameTF.delegate = self;
@@ -48,6 +49,9 @@
     
     
     [self setCustomBackButton];
+    
+    [self addRedTip:self.firstNameTF];
+    [self addRedTip:self.lastNameTF];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,6 +68,55 @@
     return YES;
 }
 
+- (void)commit
+{
+    if ([self validateTextField]) {
+        [self.firstNameTF resignFirstResponder];
+        [self.lastNameTF resignFirstResponder];
+        [self.phoneTF resignFirstResponder];
+        [self.zipCodeTF resignFirstResponder];
+        
+        [SVProgressHUD showWithStatus:@"Register, please wait..."];
+        [[SwingClient sharedClient] userRegister:@{@"email":self.email, @"password":self.pwd, @"phoneNumber":self.phoneTF.text, @"firstName":self.firstNameTF.text, @"lastName":self.lastNameTF.text, @"zipCode":self.zipCodeTF.text} completion:^(id user, NSError *error) {
+            if (error) {
+                LOG_D(@"registerUser fail: %@", error);
+                [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+            }
+            else {
+                [SVProgressHUD showWithStatus:@"Login, please wait..."];
+                [[SwingClient sharedClient] userLogin:self.email password:self.pwd completion:^(NSError *error) {
+                    if (!error) {
+                        //Login success
+                        if (image) {
+                            [SVProgressHUD showWithStatus:@"UploadImage, please wait..."];
+                            [[SwingClient sharedClient] userUploadProfileImage:image completion:^(NSString *profileImage, NSError *error) {
+                                if (error) {
+                                    LOG_D(@"uploadProfileImage fail: %@", error);
+                                }
+                                [SVProgressHUD dismiss];
+                                UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
+                                UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"AskStep"];
+                                [self.navigationController pushViewController:ctl animated:YES];
+                            }];
+                        }
+                        else {
+                            [SVProgressHUD dismiss];
+                            UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
+                            UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"AskStep"];
+                            [self.navigationController pushViewController:ctl animated:YES];
+                        }
+                    }
+                    else {
+                        LOG_D(@"login fail: %@", error);
+                        [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                    }
+                }];
+                
+            }
+        }];
+    }
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == self.firstNameTF) {
         [self.lastNameTF becomeFirstResponder];
@@ -72,52 +125,8 @@
         [self.phoneTF becomeFirstResponder];
     }
     else if (textField == self.phoneTF) {
-        [self.zipCodeTF becomeFirstResponder];
-    }
-    else if (textField == self.zipCodeTF) {
-        //Go
-        if ([self validateTextField]) {
-            [textField resignFirstResponder];
-            [SVProgressHUD showWithStatus:@"Register, please wait..."];
-            [[SwingClient sharedClient] userRegister:@{@"email":self.email, @"password":self.pwd, @"phoneNumber":self.phoneTF.text, @"firstName":self.firstNameTF.text, @"lastName":self.lastNameTF.text, @"zipCode":self.zipCodeTF.text} completion:^(id user, NSError *error) {
-                if (error) {
-                    LOG_D(@"registerUser fail: %@", error);
-                    [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-                }
-                else {
-                    [SVProgressHUD showWithStatus:@"Login, please wait..."];
-                    [[SwingClient sharedClient] userLogin:self.email password:self.pwd completion:^(NSError *error) {
-                        if (!error) {
-                            //Login success
-                            if (image) {
-                                [SVProgressHUD showWithStatus:@"UploadImage, please wait..."];
-                                [[SwingClient sharedClient] userUploadProfileImage:image completion:^(NSString *profileImage, NSError *error) {
-                                    if (error) {
-                                        LOG_D(@"uploadProfileImage fail: %@", error);
-                                    }
-                                    [SVProgressHUD dismiss];
-                                    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
-                                    UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"AskStep"];
-                                    [self.navigationController pushViewController:ctl animated:YES];
-                                }];
-                            }
-                            else {
-                                [SVProgressHUD dismiss];
-                                UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
-                                UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"AskStep"];
-                                [self.navigationController pushViewController:ctl animated:YES];
-                            }
-                        }
-                        else {
-                            LOG_D(@"login fail: %@", error);
-                            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-                        }
-                    }];
-                    
-                }
-            }];
-        }
-        
+        [self commit];
+//        [self.zipCodeTF becomeFirstResponder];
     }
     return YES;
 }
@@ -134,6 +143,19 @@
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:LOC_STR(@"Take a picture"), LOC_STR(@"Choose from library"), nil];
     [choiceSheet showInView:self.view];
+}
+
+- (void)addRedTip:(UIView*)view {
+    UILabel *label = [UILabel new];
+    label.text = @"*";
+    label.textColor = [UIColor redColor];
+    [self.view addSubview:label];
+    [label autoPinEdge:ALEdgeTrailing toEdge:ALEdgeLeading ofView:view withOffset:-2];
+    [label autoAlignAxis:ALAxisHorizontal toSameAxisOfView:view];
+}
+
+- (IBAction)doneAction:(id)sender {
+    [self commit];
 }
 
 - (void)setHeaderImage:(UIImage*)headImage {

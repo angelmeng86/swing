@@ -19,4 +19,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *phoneTF;
 @property (weak, nonatomic) IBOutlet UITextField *zipCodeTF;
 - (IBAction)imageAction:(id)sender;
+- (IBAction)doneAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *doneBtn;
 @end

@@ -92,6 +92,20 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     self.navigationItem.leftBarButtonItem = nil;
+    
+    //当被隐藏时恢复原状
+    if (!self.calendarManager.settings.weekModeEnabled) {
+        self.progressView.hidden = NO;
+        self.monthBtn.hidden = NO;
+        self.todayBtn.hidden = NO;
+        self.timeLabel.hidden = NO;
+        self.descLabel.hidden = NO;
+        self.calendarHeight.constant = 70;
+        self.calendarManager.settings.weekModeEnabled = !self.calendarManager.settings.weekModeEnabled;
+        [self.calendarManager reload];
+        [self.view layoutIfNeeded];
+    }
+    [self.calendarManager setDate:[NSDate date]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

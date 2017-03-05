@@ -117,7 +117,9 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="BQ8-qt-y4x" firstAttribute="leading" secondItem="svF-ri-E3e" secondAttribute="leading" id="13U-kT-UJO"/>
+                            <constraint firstItem="nnY-FK-G2i" firstAttribute="top" secondItem="LH6-Bz-oxy" secondAttribute="bottom" priority="750" constant="30" id="1Nk-lb-63g"/>
                             <constraint firstItem="1FD-iw-Etv" firstAttribute="width" secondItem="nnY-FK-G2i" secondAttribute="width" id="4cj-ia-bt9"/>
+                            <constraint firstItem="vCY-RI-Lga" firstAttribute="top" relation="greaterThanOrEqual" secondItem="1FD-iw-Etv" secondAttribute="bottom" constant="10" id="AcI-L0-FOM"/>
                             <constraint firstItem="ZLs-hh-xJ3" firstAttribute="centerX" secondItem="svF-ri-E3e" secondAttribute="centerX" id="BQs-ga-I9C"/>
                             <constraint firstItem="1FD-iw-Etv" firstAttribute="centerX" secondItem="svF-ri-E3e" secondAttribute="centerX" id="BTb-VL-ehE"/>
                             <constraint firstItem="fkd-6t-2XK" firstAttribute="top" secondItem="BQ8-qt-y4x" secondAttribute="bottom" id="E8E-cB-gtH"/>
@@ -131,7 +133,6 @@
                             <constraint firstItem="LH6-Bz-oxy" firstAttribute="top" secondItem="BQ8-qt-y4x" secondAttribute="bottom" constant="50" id="btn-Gz-g9m"/>
                             <constraint firstItem="1FD-iw-Etv" firstAttribute="height" secondItem="nnY-FK-G2i" secondAttribute="height" id="h4w-om-pON"/>
                             <constraint firstItem="fkd-6t-2XK" firstAttribute="leading" secondItem="svF-ri-E3e" secondAttribute="leading" id="hSB-3g-y6L"/>
-                            <constraint firstItem="nnY-FK-G2i" firstAttribute="top" secondItem="LH6-Bz-oxy" secondAttribute="bottom" constant="30" id="ior-Kz-WSA"/>
                             <constraint firstItem="nnY-FK-G2i" firstAttribute="leading" secondItem="svF-ri-E3e" secondAttribute="leadingMargin" constant="60" id="ngO-vG-8RK"/>
                             <constraint firstItem="nnY-FK-G2i" firstAttribute="top" secondItem="8iF-kL-N4Q" secondAttribute="bottom" constant="60" id="sbT-2p-BRn"/>
                             <constraint firstAttribute="trailing" secondItem="BQ8-qt-y4x" secondAttribute="trailing" id="vZc-ux-OCh"/>
