@@ -204,8 +204,8 @@
                                                  // Request succeeded, meaning achievedAccuracy is at least the requested accuracy, and
                                                  // currentLocation contains the device's current location.
                                                  LOG_D(@"Location success %@", currentLocation);
-                                                 currentLocation = [[CLLocation alloc] initWithLatitude:41 longitude:-83];
-                                                 LOG_D(@"Location success2 %@", currentLocation);
+//                                                 currentLocation = [[CLLocation alloc] initWithLatitude:41 longitude:-83];
+//                                                 LOG_D(@"Location success2 %@", currentLocation);
                                                  CLGeocoder *geocoder = [[CLGeocoder alloc] init];
                                                  [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
                                                      if (!error) {
