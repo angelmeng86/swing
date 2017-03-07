@@ -468,6 +468,9 @@
     if (repeat.length > 0) {
         [data setObject:repeat forKey:@"repeat"];
     }
+    else {
+        [data setObject:@"" forKey:@"repeat"];
+    }
     
     if (!self.todoCtl.hidden) {
         if (self.descTF.text.length > 0) {
