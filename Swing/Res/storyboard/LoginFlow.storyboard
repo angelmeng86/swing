@@ -18,7 +18,7 @@
         <scene sceneID="DD9-UR-pLH">
             <objects>
                 <navigationController navigationBarHidden="YES" id="byg-xN-paO" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="EqT-DR-zTC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EqT-DR-zTC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -480,10 +480,10 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QFr-VV-FQK">
-                                <rect key="frame" x="182" y="210" width="50" height="21"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QFr-VV-FQK">
+                                <rect key="frame" x="207" y="210" width="0.0" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="Ar1-vR-qvN"/>
+                                    <constraint firstAttribute="width" id="Ar1-vR-qvN"/>
                                     <constraint firstAttribute="height" constant="21" id="c2c-yv-L1L"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
@@ -491,14 +491,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RRq-jW-W6S">
-                                <rect key="frame" x="80" y="220" width="92" height="1"/>
+                                <rect key="frame" x="80" y="220" width="127" height="1"/>
                                 <color key="backgroundColor" red="0.49019607840000001" green="0.60784313729999995" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="x1W-ce-X0g"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oY1-qB-pJW">
-                                <rect key="frame" x="242" y="220" width="92" height="1"/>
+                                <rect key="frame" x="207" y="220" width="127" height="1"/>
                                 <color key="backgroundColor" red="0.49019607840000001" green="0.60784313729999995" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="XGq-Fi-i3X"/>
@@ -508,11 +508,11 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="QFr-VV-FQK" firstAttribute="centerY" secondItem="RRq-jW-W6S" secondAttribute="centerY" id="0RG-0q-KJD"/>
-                            <constraint firstItem="QFr-VV-FQK" firstAttribute="leading" secondItem="RRq-jW-W6S" secondAttribute="trailing" constant="10" id="6Ds-IG-wLW"/>
+                            <constraint firstItem="QFr-VV-FQK" firstAttribute="leading" secondItem="RRq-jW-W6S" secondAttribute="trailing" id="6Ds-IG-wLW"/>
                             <constraint firstItem="KiV-oZ-mBX" firstAttribute="centerX" secondItem="2qL-MI-OHb" secondAttribute="centerX" id="70V-Re-EGk"/>
                             <constraint firstItem="Dhg-eb-I8g" firstAttribute="top" secondItem="KiV-oZ-mBX" secondAttribute="bottom" constant="20" id="7a0-EW-f7f"/>
                             <constraint firstItem="2qL-MI-OHb" firstAttribute="top" secondItem="qtl-eg-ON2" secondAttribute="bottom" constant="130" id="BBh-Zr-fUG"/>
-                            <constraint firstItem="oY1-qB-pJW" firstAttribute="leading" secondItem="QFr-VV-FQK" secondAttribute="trailing" constant="10" id="Ct0-EF-ItG"/>
+                            <constraint firstItem="oY1-qB-pJW" firstAttribute="leading" secondItem="QFr-VV-FQK" secondAttribute="trailing" id="Ct0-EF-ItG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2qL-MI-OHb" secondAttribute="trailing" constant="40" id="EUD-BQ-bfS"/>
                             <constraint firstItem="KiV-oZ-mBX" firstAttribute="height" secondItem="2qL-MI-OHb" secondAttribute="height" id="G1X-2w-1RF"/>
                             <constraint firstItem="Dhg-eb-I8g" firstAttribute="height" secondItem="2qL-MI-OHb" secondAttribute="height" id="GBE-gm-feO"/>

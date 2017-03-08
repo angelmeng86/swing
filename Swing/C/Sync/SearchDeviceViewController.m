@@ -90,7 +90,7 @@ typedef enum : NSUInteger {
 }
 
 - (void)didBecomeActive:(NSNotification*)notification {
-    if (_status == SyncStatusSearching || _status == SyncStatusSyncing) {
+    if (_status == SyncStatusSearching || (_status == SyncStatusSyncing && !updateLoaded)) {
         self.progressView.isIndeterminateProgress = YES;
     }
     if (_status == SyncStatusSyncing) {

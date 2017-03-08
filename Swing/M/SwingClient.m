@@ -772,10 +772,10 @@
             }
             else {
                 NSArray *list = [ActivityResultModel arrayOfModelsFromDictionaries:responseObject[@"activities"] error:nil];
-//                for (ActivityResultModel *m in list) {
-//                    //时区运算
-//                    m.receivedDate = [m.receivedDate dateByAddingTimeInterval:TIME_ADJUST];
-//                }
+                for (ActivityResultModel *m in list) {
+                    //时区运算
+                    m.receivedDate = [m.receivedDate dateByAddingTimeInterval:TIME_ADJUST];
+                }
                 completion(list, nil);
             }
         });

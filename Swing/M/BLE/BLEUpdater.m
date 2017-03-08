@@ -12,6 +12,9 @@
 #import "CommonDef.h"
 #import "oad.h"
 
+#define OAD_TRANSMIT_INTERVAL           0.09
+#define OAD_ONCE_NUMBER                 3
+
 typedef enum : NSUInteger {
     BLEUpdaterStateNone,
     BLEUpdaterStateCheckImageA,
@@ -255,7 +258,7 @@ typedef enum : NSUInteger {
     uint8_t requestData[2 + OAD_BLOCK_SIZE];
     
     // This block is run 4 times, this is needed to get CoreBluetooth to send consequetive packets in the same connection interval.
-    for (int ii = 0; ii < 4; ii++) {
+    for (int ii = 0; ii < OAD_ONCE_NUMBER; ii++) {
         
         requestData[0] = LO_UINT16(self.iBlocks);
         requestData[1] = HI_UINT16(self.iBlocks);
@@ -278,12 +281,12 @@ typedef enum : NSUInteger {
             return;
         }
         else {
-            if (ii == 3)[NSTimer scheduledTimerWithTimeInterval:0.09 target:self selector:@selector(programmingTimerTick:) userInfo:nil repeats:NO];
+            if (ii == OAD_ONCE_NUMBER - 1)[NSTimer scheduledTimerWithTimeInterval:OAD_TRANSMIT_INTERVAL target:self selector:@selector(programmingTimerTick:) userInfo:nil repeats:NO];
         }
     }
     
     if ([_delegate respondsToSelector:@selector(deviceUpdateProgress:remainTime:)]) {
-        float secondsPerBlock = 0.09 / 4;
+        float secondsPerBlock = OAD_TRANSMIT_INTERVAL / OAD_ONCE_NUMBER;
         float secondsLeft = (float)(self.nBlocks - self.iBlocks) * secondsPerBlock;
         [_delegate deviceUpdateProgress:(float)((float)self.iBlocks / (float)self.nBlocks) remainTime:[NSString stringWithFormat:@"%d:%02d",(int)(secondsLeft / 60),(int)secondsLeft - (int)(secondsLeft / 60) * (int)60]];
     }

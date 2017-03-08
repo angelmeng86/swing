@@ -32,6 +32,22 @@ macId:           tester1
     self.outdoorActivity = [NSString stringWithFormat:@"%ld,1,0,0,0,0", _time];
 }
 */
+
+- (id)init {
+    if (self = [super init]) {
+        _inData1 = 0;
+        _inData2 = 0;
+        _inData3 = 0;
+        _inData4 = 0;
+        
+        _outData1 = 0;
+        _outData2 = 0;
+        _outData3 = 0;
+        _outData4 = 0;
+    }
+    return self;
+}
+
 - (NSString*)indoorActivity {
     if (_indoorActivity.length == 0) {
         _indoorActivity = [NSString stringWithFormat:@"%lld,0,%ld,%ld,%ld,%ld",
@@ -108,14 +124,12 @@ macId:           tester1
 }
 
 - (void)setIndoorData:(NSData*)data {
-    _inData1 = _inData2 = _inData3 = _inData4 = 0;
     if ((data.length - 1) / 4 > 0) {
         [self parseData:data];
     }
 }
 
 - (void)setOutdoorData:(NSData*)data {
-    _outData1 = _outData2 = _outData3 = _outData4 = 0;
     if ((data.length - 1) / 4 > 0) {
         [self parseData:data];
     }
