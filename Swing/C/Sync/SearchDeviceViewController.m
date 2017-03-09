@@ -180,6 +180,11 @@ typedef enum : NSUInteger {
             
             self.navigationItem.leftBarButtonItem = nil;
             self.button.hidden = NO;
+            
+            if (updateLoaded) {
+                self.statusLabel.text = LOC_STR(@"Update Completed!");
+                self.subTitleLabel.text = LOC_STR(@"Please Press \"Start\" Button on Your Watch to restart the program and Sync again.");
+            }
         }
             break;
         default:
@@ -232,10 +237,7 @@ typedef enum : NSUInteger {
 */
 - (void)syncAction:(NSArray*)eventArray {
     [client syncDevice:_peripheral event:eventArray completion:^(NSMutableArray *activities, NSError *error) {
-        self.statusLabel.text = LOC_STR(@"Syncing");
-        self.progressView.progressTotal = 12;
-        self.progressView.progressCounter = 1;
-        self.progressView.isIndeterminateProgress = YES;
+        [self changeStatus:SyncStatusSyncing];
         
         [SVProgressHUD dismiss];
         LOG_D(@"syncDevice error %@", error);
