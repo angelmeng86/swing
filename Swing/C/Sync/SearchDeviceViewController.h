@@ -13,6 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet UIButton *button;
+@property (weak, nonatomic) IBOutlet UILabel *subTitleLabel;
 @property (weak, nonatomic) IBOutlet MDRadialProgressView *progressView;
 - (IBAction)btnAction:(id)sender;
 

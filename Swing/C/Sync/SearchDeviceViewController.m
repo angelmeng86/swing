@@ -40,7 +40,8 @@ typedef enum : NSUInteger {
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = @"Sync";
+    self.navigationItem.title = LOC_STR(@"Sync");
+    self.statusLabel.adjustsFontSizeToFitWidth = YES;
     
     progressTheme = [[MDRadialProgressTheme alloc] init];
     progressTheme.completedColor = COMMON_TITLE_COLOR;
@@ -106,6 +107,7 @@ typedef enum : NSUInteger {
     if (_status == status) {
         return;
     }
+    self.subTitleLabel.text = nil;
     switch (status) {
         case SyncStatusSearching:
         {
@@ -280,12 +282,13 @@ typedef enum : NSUInteger {
         
         [self uploadData];
     } update:^(float percent, NSString *remainTime) {
-        self.statusLabel.text = [@"Device Updating\f" stringByAppendingString:remainTime];
+        self.statusLabel.text = [@"Updating Your Watch!\f" stringByAppendingString:remainTime];
         if (!updateLoaded) {
             updateLoaded = YES;
             self.progressView.progressTotal = 100;
             self.progressView.progressCounter = 0;
             self.progressView.isIndeterminateProgress = NO;
+            self.subTitleLabel.text = LOC_STR(@"Please Have Your Watch Close by.");
         }
         
         int count = percent * 100;

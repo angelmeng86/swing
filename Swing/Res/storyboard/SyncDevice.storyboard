@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NPw-Fs-uf7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NPw-Fs-uf7">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -157,7 +156,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Searching for your device!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGl-ha-vBw">
-                                <rect key="frame" x="109.66666666666669" y="100" width="195" height="195"/>
+                                <rect key="frame" x="110" y="100" width="195" height="195"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="195" id="IVS-rK-awi"/>
                                     <constraint firstAttribute="width" constant="195" id="e1q-EG-AAf"/>
@@ -167,7 +166,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oCJ-Re-lCW" customClass="RoundButton">
-                                <rect key="frame" x="60" y="335" width="294" height="30"/>
+                                <rect key="frame" x="60" y="318" width="294" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="28A-sr-Yhf"/>
@@ -181,19 +180,27 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bux-VL-Gf7" customClass="MDRadialProgressView">
-                                <rect key="frame" x="91.666666666666686" y="83" width="230" height="230"/>
+                                <rect key="frame" x="92" y="83" width="230" height="230"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="230" id="Vy6-Ek-OWo"/>
                                     <constraint firstAttribute="height" constant="230" id="WW3-rR-eEb"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3r4-DE-ZGv">
+                                <rect key="frame" x="20" y="318" width="374" height="0.0"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="20"/>
+                                <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="oCJ-Re-lCW" secondAttribute="trailing" constant="40" id="3bQ-Uu-BhI"/>
+                            <constraint firstItem="3r4-DE-ZGv" firstAttribute="top" secondItem="bux-VL-Gf7" secondAttribute="bottom" constant="5" id="4v2-Cc-Wj3"/>
                             <constraint firstItem="bux-VL-Gf7" firstAttribute="centerX" secondItem="bGl-ha-vBw" secondAttribute="centerX" id="5zq-eN-vUz"/>
-                            <constraint firstItem="oCJ-Re-lCW" firstAttribute="top" secondItem="bGl-ha-vBw" secondAttribute="bottom" constant="40" id="AfW-C7-c08"/>
+                            <constraint firstItem="3r4-DE-ZGv" firstAttribute="leading" secondItem="zz1-3a-css" secondAttribute="leading" constant="20" id="BuB-a7-yoZ"/>
+                            <constraint firstAttribute="trailing" secondItem="3r4-DE-ZGv" secondAttribute="trailing" constant="20" id="DqA-WR-Gj2"/>
                             <constraint firstItem="bGl-ha-vBw" firstAttribute="centerX" secondItem="zz1-3a-css" secondAttribute="centerX" id="JHW-cV-IEx"/>
                             <constraint firstItem="bGl-ha-vBw" firstAttribute="centerX" secondItem="bux-VL-Gf7" secondAttribute="centerX" id="MO4-aq-Jlc"/>
                             <constraint firstItem="oCJ-Re-lCW" firstAttribute="centerX" secondItem="zz1-3a-css" secondAttribute="centerX" id="TUA-Mr-fdb"/>
@@ -201,6 +208,7 @@
                             <constraint firstItem="bGl-ha-vBw" firstAttribute="top" secondItem="D1F-id-ziC" secondAttribute="bottom" constant="80" id="cZs-iB-0Eg"/>
                             <constraint firstItem="bGl-ha-vBw" firstAttribute="top" secondItem="bux-VL-Gf7" secondAttribute="bottom" constant="-173" id="e7U-sx-aEW"/>
                             <constraint firstItem="oCJ-Re-lCW" firstAttribute="leading" secondItem="zz1-3a-css" secondAttribute="leadingMargin" constant="40" id="fh4-Ph-KUt"/>
+                            <constraint firstItem="oCJ-Re-lCW" firstAttribute="top" secondItem="3r4-DE-ZGv" secondAttribute="bottom" id="uxW-ax-7d6"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -214,6 +222,7 @@
                         <outlet property="button" destination="oCJ-Re-lCW" id="trx-Vq-YNW"/>
                         <outlet property="progressView" destination="bux-VL-Gf7" id="8Yd-tb-vhh"/>
                         <outlet property="statusLabel" destination="bGl-ha-vBw" id="MWp-nx-b14"/>
+                        <outlet property="subTitleLabel" destination="3r4-DE-ZGv" id="nq9-to-Zpc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QZN-00-ww6" userLabel="First Responder" sceneMemberID="firstResponder"/>
