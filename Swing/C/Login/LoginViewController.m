@@ -64,6 +64,53 @@
     }];
 }
 
+- (void)cacheTodayActivity {
+    int64_t kidId = [[GlobalCache shareInstance] getKidId];
+    if (kidId == -1) {
+        return;
+    }
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:kCFCalendarUnitYear|kCFCalendarUnitMonth|kCFCalendarUnitDay|NSCalendarUnitWeekday fromDate:[NSDate date]];
+    NSDate *startDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
+    NSDate *endDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:1 toDate:startDate options:0];
+    
+    [[SwingClient sharedClient] deviceGetActivityByTime:kidId beginTimestamp:startDate endTimestamp:endDate completion:^(id dailyActs, NSError *error) {
+        if (!error) {
+            LOG_D(@"today dailyActs:%@", dailyActs);
+            ActivityResultModel *indoorModel = nil;
+            ActivityResultModel *outdoorModel = nil;
+            for (ActivityResultModel *m in dailyActs) {
+                if ([m.type isEqualToString:@"INDOOR"]) {
+                    if (indoorModel) {
+                        indoorModel.steps += m.steps;
+                    }
+                    else {
+                        indoorModel = m;
+                    }
+                    
+                }
+                else if([m.type isEqualToString:@"OUTDOOR"]) {
+                    if (outdoorModel) {
+                        outdoorModel.steps += m.steps;
+                    }
+                    else {
+                        outdoorModel = m;
+                    }
+                }
+            }
+            if (indoorModel) {
+                [GlobalCache shareInstance].local.indoorSteps = indoorModel.steps;
+            }
+            if (outdoorModel) {
+                [GlobalCache shareInstance].local.outdoorSteps = outdoorModel.steps;
+            }
+            [[GlobalCache shareInstance] saveInfo];
+        }
+        else {
+            LOG_D(@"deviceGetActivity fail: %@", error);
+        }
+    }];
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == self.emailTextField) {
         [self.pwdTextField becomeFirstResponder];
@@ -101,6 +148,8 @@
                                         [SVProgressHUD showWithStatus:@"Loading data, please wait..."];
                                         //继续获取所有Event进行本地缓存
                                         [self cacheEventsV1];
+                                        //继续获取当天步数进行本地缓存
+                                        [self cacheTodayActivity];
                                     }
                                 }];
                             }

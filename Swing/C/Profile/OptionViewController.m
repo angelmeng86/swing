@@ -53,7 +53,7 @@
     UIView *view = [UIView new];
     
     UILabel *label = [UILabel new];
-    label.text = section == 0 ? @"Account" : @"About";
+    label.text = section == 0 ? LOC_STR(@"Account") : LOC_STR(@"About");
     label.textAlignment = NSTextAlignmentLeft;
     label.font = [UIFont boldAvenirFontOfSize:17];
     label.textColor = COMMON_TITLE_COLOR;
