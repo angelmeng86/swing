@@ -39,6 +39,7 @@
 - (void)didDiscoverServices:(CBService *)service;
 - (void)didDiscoverCharacteristicsForService:(CBService *)service;
 
+- (void)didWriteValueForCharacteristic:(CBCharacteristic *)characteristic;
 - (void)didUpdateValueForProfile:(CBCharacteristic *)characteristic;
 - (void)deviceDisconnected:(CBPeripheral *)peripheral;
 

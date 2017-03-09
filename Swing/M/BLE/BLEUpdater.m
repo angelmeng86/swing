@@ -12,8 +12,10 @@
 #import "CommonDef.h"
 #import "oad.h"
 
-#define OAD_TRANSMIT_INTERVAL           0.09
-#define OAD_ONCE_NUMBER                 3
+#define OAD_TRANSMIT_INTERVAL           0.03
+#define OAD_ONCE_NUMBER                 1
+
+//#define OAD_EVENT_TRIGGER
 
 typedef enum : NSUInteger {
     BLEUpdaterStateNone,
@@ -87,7 +89,8 @@ typedef enum : NSUInteger {
 - (void)startUpdate
 {
     if ([self isCorrectImage]) {
-        [self uploadImage];
+//        [self uploadImage];
+        [self performSelector:@selector(uploadImage) withObject:nil afterDelay:1];
     }
 }
 
@@ -163,6 +166,16 @@ typedef enum : NSUInteger {
             }
         }
     }
+}
+
+- (void)didWriteValueForCharacteristic:(CBCharacteristic *)characteristic {
+#ifdef OAD_EVENT_TRIGGER
+    if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:OAD_IMAGE_BLOCK_REQUEST_UUID]]) {
+        if(self.iBlocks < self.nBlocks) {
+            [self programmingTimerTick:nil];
+        }
+    }
+#endif
 }
 
 - (void)deviceDisconnected:(CBPeripheral *)peripheral
@@ -243,7 +256,7 @@ typedef enum : NSUInteger {
     self.iBytes = 0;
     
     
-    [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(programmingTimerTick:) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(programmingTimerTick:) userInfo:nil repeats:NO];
     
 }
 
@@ -267,9 +280,11 @@ typedef enum : NSUInteger {
         
         CBUUID *sUUID = [CBUUID UUIDWithString:OAD_SERVICE_UUID];
         CBUUID *cUUID = [CBUUID UUIDWithString:OAD_IMAGE_BLOCK_REQUEST_UUID];
-        
+#ifdef OAD_EVENT_TRIGGER
+        [BLEUtility writeCharacteristic:self.peripheral sCBUUID:sUUID cCBUUID:cUUID data:[NSData dataWithBytes:requestData length:2 + OAD_BLOCK_SIZE]];
+#else
         [BLEUtility writeNoResponseCharacteristic:self.peripheral sCBUUID:sUUID cCBUUID:cUUID data:[NSData dataWithBytes:requestData length:2 + OAD_BLOCK_SIZE]];
-        
+#endif
         self.iBlocks++;
         self.iBytes += OAD_BLOCK_SIZE;
         
@@ -281,7 +296,9 @@ typedef enum : NSUInteger {
             return;
         }
         else {
+#ifndef OAD_EVENT_TRIGGER
             if (ii == OAD_ONCE_NUMBER - 1)[NSTimer scheduledTimerWithTimeInterval:OAD_TRANSMIT_INTERVAL target:self selector:@selector(programmingTimerTick:) userInfo:nil repeats:NO];
+#endif
         }
     }
     

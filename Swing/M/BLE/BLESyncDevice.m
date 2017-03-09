@@ -258,6 +258,9 @@ typedef enum : NSUInteger {
         CBCharacteristic *character = [characteristic.service findCharacteristic:@"FFA9"];
         [characteristic.service.peripheral readValueForCharacteristic:character];
     }
+    else {
+        [self.updater didWriteValueForCharacteristic:characteristic];
+    }
 //    [rhythm beats];
 }
 
@@ -424,7 +427,8 @@ typedef enum : NSUInteger {
             if (self.updater.needUpdate) {
                 [outTimer invalidate];
                 outTimer = nil;
-                [self.updater performSelector:@selector(startUpdate) withObject:nil afterDelay:1];
+                [self.updater startUpdate];
+//                [self.updater performSelector:@selector(startUpdate) withObject:nil afterDelay:1];
                 return;
             }
             LOG_D(@"Device version is new.");
@@ -453,7 +457,8 @@ typedef enum : NSUInteger {
         if (self.updater.needUpdate) {
             [outTimer invalidate];
             outTimer = nil;
-            [self.updater performSelector:@selector(startUpdate) withObject:nil afterDelay:1];
+            [self.updater startUpdate];
+//            [self.updater performSelector:@selector(startUpdate) withObject:nil afterDelay:1];
             return;
         }
         LOG_D(@"Device version is new.");
