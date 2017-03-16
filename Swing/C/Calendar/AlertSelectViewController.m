@@ -123,6 +123,7 @@
             inputCell.textLabel.textAlignment = NSTextAlignmentLeft;
             inputCell.textLabel.font = [UIFont avenirFontOfSize:17];
             inputCell.textLabel.textColor = RGBA(0x97, 0x96, 0x97, 1.0f);
+            inputCell.textLabel.adjustsFontSizeToFitWidth = YES;
             /*
             inputCell.selectionStyle = UITableViewCellSelectionStyleNone;
             UITextField *textField = [UITextField new];
