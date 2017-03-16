@@ -13,9 +13,9 @@
 #import "CommonDef.h"
 
 @interface BaseCalendarViewController ()
-//{
-//    NSMutableDictionary *_eventsByDate;
-//}
+{
+    NSDateFormatter *dateFormatter;
+}
 
 @end
 
@@ -139,7 +139,6 @@
 
 - (void)calendar:(JTCalendarManager *)calendar prepareMenuItemView:(UILabel *)menuItemView date:(NSDate *)date
 {
-    static NSDateFormatter *dateFormatter;
     if(!dateFormatter){
         dateFormatter = [NSDateFormatter new];
         dateFormatter.dateFormat = @"MMM d, yyyy";

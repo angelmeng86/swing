@@ -51,7 +51,7 @@
     NSDictionary *dict = [[NSUserDefaults standardUserDefaults] objectForKey:@"localData"];
     _local = [[LMLocalData alloc] initWithDictionary:dict error:nil];
     
-    [self locationCountry];
+//    [self locationCountry];
 }
 
 - (void)setKid:(KidModel *)kid {
@@ -195,6 +195,10 @@
 }
 
 - (void)locationCountry {
+//    NSTimeZone *tz = [NSTimeZone localTimeZone];
+//    LOG_D(@"Local timezone: %@", tz.name);
+//    NSLocale *countryLocale = [NSLocale currentLocale];
+//    LOG_D(@"countryLocale: %@", countryLocale.countryCode);
     INTULocationManager *locMgr = [INTULocationManager sharedInstance];
     [locMgr requestLocationWithDesiredAccuracy:INTULocationAccuracyCity
                                        timeout:10.0
@@ -209,10 +213,12 @@
                                                  CLGeocoder *geocoder = [[CLGeocoder alloc] init];
                                                  [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
                                                      if (!error) {
-                                                         LOG_D(@"placemarks count %d", (int)placemarks.count);
+//                                                         LOG_D(@"placemarks count %d", (int)placemarks.count);
                                                          CLPlacemark *placemark =[placemarks firstObject];
-                                                        LOG_D(@"placemark:%@", placemark.country);
-                                                         if ([placemark.country containsString:@"Spanish"] || [placemark.country containsString:@"Russian"]) {
+                                                        LOG_D(@"country:%@", placemark.country);
+                                                         LOG_D(@"ISOcountryCode:%@", placemark.ISOcountryCode);
+                                                         if ([placemark.country containsString:@"Spanish"] || [placemark.country containsString:@"Russian"] || [placemark.ISOcountryCode.lowercaseString isEqualToString:@"es"]
+                                                             || [placemark.ISOcountryCode.lowercaseString isEqualToString:@"ru"]) {
                                                              self.cacheSupportUrl = @"http://www.imaginarium.info";
                                                          }
                                                      }
@@ -290,7 +296,7 @@
     }
     else {
         NSString *languageID = [[NSBundle mainBundle] preferredLocalizations].firstObject;
-        if ([languageID isEqualToString:@"es"] || [languageID isEqualToString:@"ru"]) {
+        if ([languageID.lowercaseString isEqualToString:@"es"] || [languageID.lowercaseString isEqualToString:@"ru"]) {
             self.cacheLang = languageID;
         }
         else {

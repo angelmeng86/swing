@@ -27,6 +27,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     NSURLSessionDataTask *task;
     UIButton *indoorBtn;
     UIButton *outdoorBtn;
+    NSDateFormatter *localeDateFormatter;
 }
 
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -531,13 +532,12 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
         return [df stringFromDate:preDate];
     }
     else {
-        static NSDateFormatter *dateFormatter = nil;
-        if (dateFormatter == nil) {
-            dateFormatter = [NSDateFormatter new];
-//            dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US"];
-            dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:[GlobalCache shareInstance].curLanguage];
+        if (localeDateFormatter == nil) {
+            localeDateFormatter = [NSDateFormatter new];
+//            localeDateFormatter = [NSLocale localeWithLocaleIdentifier:@"en_US"];
+            localeDateFormatter.locale = [NSLocale localeWithLocaleIdentifier:[GlobalCache shareInstance].curLanguage];
         }
-        NSArray *array = [dateFormatter shortStandaloneMonthSymbols];
+        NSArray *array = [localeDateFormatter shortStandaloneMonthSymbols];
         return [array objectAtIndex:index % 12];
     }
 }
@@ -619,13 +619,12 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
         view = v;
     }
     else if (_type == ChartTypeYear) {
-        static NSDateFormatter *dateFormatter = nil;
-        if (dateFormatter == nil) {
-            dateFormatter = [NSDateFormatter new];
-//            dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US"];
-            dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:[GlobalCache shareInstance].curLanguage];
+        if (localeDateFormatter == nil) {
+            localeDateFormatter = [NSDateFormatter new];
+//            localeDateFormatter = [NSLocale localeWithLocaleIdentifier:@"en_US"];
+            localeDateFormatter.locale = [NSLocale localeWithLocaleIdentifier:[GlobalCache shareInstance].curLanguage];
         }
-        NSArray *array = [dateFormatter shortStandaloneMonthSymbols];
+        NSArray *array = [localeDateFormatter shortStandaloneMonthSymbols];
         NSCalendar *cal = [NSCalendar currentCalendar];
         NSDateComponents *comp = [cal components:NSCalendarUnitYear|NSCalendarUnitMonth fromDate:[NSDate date]];
         

@@ -147,7 +147,7 @@
 "Use photo"="используя фото";
 "Add another watch"="Добавить другие часы";
 
-
+"Agenda reminders(only for the App)"="Напоминания (только для приложения)";
 "Good morning"="Доброе утро!";
 "Make bed"="Застелить постель";
 "Get Dress"="Одеться";
@@ -196,3 +196,9 @@
 "Bed Time Routine"="Распорядок отхода ко сну";
 "Activities"="Деятельность";
 "Every Month"="Каждый месяц";
+
+"Update Completed!"="Обновление завершено!";
+"Please Press the Button on Your Watch and Sync Again"="Необходимо нажать на кнопку часов и повторить синхронизацию";
+"Updating Your Watch!"="Идет обновление часов";
+"Please Have Your Watch Close by"="Часы должны находиться поблизости";
+

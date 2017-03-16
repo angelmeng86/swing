@@ -147,6 +147,7 @@
 "Use photo"="Usar Foto";
 "Add another watch"="Añadir otro reloj";
 
+"Agenda reminders(only for the App)"="Recordatorios (solamente para la aplicación)";
 "Good morning"="Buenos dias";
 "Make bed"="Hacer la cama";
 "Get Dress"="Vestirse";
@@ -195,3 +196,8 @@
 "Bed Time Routine"="Rutinas antes de dormir";
 "Activities"="Actividades";
 "Every Month"="Todos los meses";
+
+"Update Completed!"="¡Actualización completada!";
+"Please Press the Button on Your Watch and Sync Again"="Por favor presiona el botón del reloj y sincroniza de nuevo";
+"Updating Your Watch!"="Actualizando tu reloj";
+"Please Have Your Watch Close by"="Por favor, ten tu reloj cerca";

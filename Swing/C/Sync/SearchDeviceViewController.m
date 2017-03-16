@@ -42,6 +42,7 @@ typedef enum : NSUInteger {
     // Do any additional setup after loading the view.
     self.navigationItem.title = LOC_STR(@"Sync");
     self.statusLabel.adjustsFontSizeToFitWidth = YES;
+    self.button.titleLabel.adjustsFontSizeToFitWidth = YES;
     
     progressTheme = [[MDRadialProgressTheme alloc] init];
     progressTheme.completedColor = COMMON_TITLE_COLOR;
@@ -171,7 +172,7 @@ typedef enum : NSUInteger {
         case SyncStatusSyncCompleted:
         {
             self.statusLabel.text = LOC_STR(@"Sync Completed");
-            [self.button setTitle:LOC_STR(@"Go to Dashboard") forState:UIControlStateNormal];
+            [self.button setTitle:LOC_STR(@"Go to dashboard") forState:UIControlStateNormal];
             
             self.progressView.isIndeterminateProgress = NO;
 //            self.progressView.theme = doneTheme;
@@ -183,7 +184,7 @@ typedef enum : NSUInteger {
             
             if (updateLoaded) {
                 self.statusLabel.text = LOC_STR(@"Update Completed!");
-                self.subTitleLabel.text = LOC_STR(@"Please Press \"Start\" Button on Your Watch to restart the program and Sync again.");
+                self.subTitleLabel.text = LOC_STR(@"Please Press the Button on Your Watch and Sync Again");
             }
         }
             break;
@@ -284,13 +285,14 @@ typedef enum : NSUInteger {
         
         [self uploadData];
     } update:^(float percent, NSString *remainTime) {
-        self.statusLabel.text = [@"Updating Your Watch!\f" stringByAppendingString:remainTime];
+        NSString *text = [LOC_STR(@"Updating Your Watch!") stringByAppendingString:@"\f"];
+        self.statusLabel.text = [text stringByAppendingString:remainTime];
         if (!updateLoaded) {
             updateLoaded = YES;
             self.progressView.progressTotal = 100;
             self.progressView.progressCounter = 0;
             self.progressView.isIndeterminateProgress = NO;
-            self.subTitleLabel.text = LOC_STR(@"Please Have Your Watch Close by.");
+            self.subTitleLabel.text = LOC_STR(@"Please Have Your Watch Close by");
         }
         
         int count = percent * 100;

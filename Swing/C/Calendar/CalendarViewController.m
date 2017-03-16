@@ -39,6 +39,8 @@
     self.descLabel.adjustsFontSizeToFitWidth = YES;
     [self setTimeDesc:LOC_STR(@"No Event") desc:nil];
     
+    self.todayBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.monthBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
     [self.todayBtn setTitle:LOC_STR(@"Today's Schedule") forState:UIControlStateNormal];
     [self.monthBtn setTitle:LOC_STR(@"Monthly Schedule") forState:UIControlStateNormal];
 }
