@@ -14,6 +14,7 @@
 #import "ColorLabel.h"
 #import "LMCalendarDayView.h"
 #import "MonthCalendarViewController.h"
+#import "AddEventViewController2.h"
 
 CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
 
@@ -128,6 +129,14 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)addAction:(id)sender {
+    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
+    AddEventViewController2 *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"AddEvent2"];
+    ctl.delegate = self;
+    ctl.currentDate = self.dateSelected;
+    [self.navigationController pushViewController:ctl animated:YES];
 }
 
 - (void)eventLoaded:(NSNotification*)notification {

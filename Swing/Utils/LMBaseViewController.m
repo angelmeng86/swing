@@ -70,12 +70,13 @@
     }
     
     if (!self.notLoadBackgroudImage) {
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:LOAD_IMAGE(self.backgroudImageName == nil ? @"main_bg" : self.backgroudImageName)];
+        UIImage *image = LOAD_IMAGE(self.backgroudImageName == nil ? @"main_bg" : self.backgroudImageName);
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
         
         [self.view addSubview:imageView];
         
         [imageView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeTop];
-        [imageView autoSetDimension:ALDimensionHeight toSize:kDeviceWidth / 2];
+        [imageView autoSetDimension:ALDimensionHeight toSize:kDeviceWidth * image.size.height / image.size.width];
         
         
         [self.view sendSubviewToBack:imageView];

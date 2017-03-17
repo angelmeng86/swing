@@ -70,12 +70,6 @@
 //    self.stateTF.enabled = NO;
 //    self.cityTF.enabled = NO;
     isCustom = NO;
-    UIDatePicker *datePicker = [[UIDatePicker alloc] init];
-    datePicker.datePickerMode = UIDatePickerModeDateAndTime;
-    datePicker.minimumDate = [NSDate date];
-//    datePicker.minuteInterval = 5;
-    self.startTF.inputView = datePicker;
-    [datePicker addTarget:self action:@selector(startChange:) forControlEvents:UIControlEventValueChanged];
     
     UIControl *bgView = [UIControl new];
     bgView.frame = CGRectMake(0, 0, 30, 30);
@@ -131,9 +125,16 @@
     self.repeatTF.placeholder = LOC_STR(@"Repeat");
     self.descTF.placeholder = LOC_STR(@"Description");
     
+    UIDatePicker *datePicker = [[UIDatePicker alloc] init];
+    datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+//    datePicker.minimumDate = [NSDate date];
+    //    datePicker.minuteInterval = 5;
+    self.startTF.inputView = datePicker;
+    [datePicker addTarget:self action:@selector(startChange:) forControlEvents:UIControlEventValueChanged];
+    
     UIDatePicker *datePicker2 = [[UIDatePicker alloc] init];
     datePicker2.datePickerMode = UIDatePickerModeTime;
-    datePicker2.minimumDate = [datePicker.date dateByAddingTimeInterval:30 * 60];
+//    datePicker2.minimumDate = [datePicker.date dateByAddingTimeInterval:30 * 60];
 //    datePicker2.minuteInterval = 5;
     self.endTF.inputView = datePicker2;
     [datePicker2 addTarget:self action:@selector(endChange:) forControlEvents:UIControlEventValueChanged];
@@ -163,6 +164,7 @@
         
         self.startTF.text = [self dateToString:self.model.startDate];;
         self.endTF.text = [self dateToString:self.model.endDate];
+        datePicker.date = self.model.startDate;
         
         self.colorCtl.selectedColor = self.model.color;
         
@@ -200,8 +202,17 @@
         
     }
     else {
-        self.startTF.text = [self dateToString:datePicker.minimumDate];
-        self.endTF.text = [self dateToString:datePicker2.minimumDate];
+        if (self.currentDate && ![[NSCalendar currentCalendar] isDate:[NSDate date] inSameDayAsDate:self.currentDate]) {
+            LOG_D(@"currentDate:%@", self.currentDate);
+            //选定添加的开始时间设定在该天的6：00
+            NSDateComponents *comps = [[NSCalendar currentCalendar] components:kCFCalendarUnitYear|kCFCalendarUnitMonth|kCFCalendarUnitDay|NSCalendarUnitHour|NSCalendarUnitMinute fromDate:self.currentDate];
+            comps.hour = 6;
+            comps.minute = 0;
+            datePicker.date = [[NSCalendar currentCalendar] dateFromComponents:comps];
+        }
+        [self startChange:datePicker];
+//        self.startTF.text = [self dateToString:datePicker.minimumDate];
+//        self.endTF.text = [self dateToString:datePicker2.minimumDate];
         
 //        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Advance" style:UIBarButtonItemStyleDone target:self action:@selector(changeAction)];
         [self hideAdvance:NO];
@@ -349,13 +360,13 @@
     if (comps.hour == 23 && comps.minute > 30) {
         comps.hour = 23;
         comps.minute = 30;
-        sDate = [datePicker.minimumDate laterDate:[[NSCalendar currentCalendar] dateFromComponents:comps]];
+        sDate = [sDate earlierDate:[[NSCalendar currentCalendar] dateFromComponents:comps]];
         [datePicker setDate:sDate animated:YES];
     }
     else if (comps.hour < 6) {
         comps.hour = 6;
         comps.minute = 0;
-        sDate = [datePicker.minimumDate laterDate:[[NSCalendar currentCalendar] dateFromComponents:comps]];
+        sDate = [sDate laterDate:[[NSCalendar currentCalendar] dateFromComponents:comps]];
         [datePicker setDate:sDate animated:YES];
     }
     self.startTF.text = [self dateToString:sDate];
@@ -367,10 +378,7 @@
     comps.minute = 59;
     comps.second = 59;
     dp.maximumDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
-    if (NSOrderedDescending == [dp.date compare:datePicker.date]) {
-        self.endTF.text = [self dateToString:dp.minimumDate];
-    }
-    
+    self.endTF.text = [self dateToString:dp.minimumDate];
 }
 
 - (void)endChange:(UIDatePicker*)datePicker {
