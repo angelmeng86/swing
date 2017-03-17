@@ -70,7 +70,7 @@
     }
     
     if (!self.notLoadBackgroudImage) {
-        UIImage *image = LOAD_IMAGE(self.backgroudImageName == nil ? @"main_bg" : self.backgroudImageName);
+        UIImage *image = LOAD_IMAGE(self.backgroudImageName == nil ? @"california_bg" : self.backgroudImageName);
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
         
         [self.view addSubview:imageView];
