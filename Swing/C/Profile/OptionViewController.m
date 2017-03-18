@@ -25,7 +25,7 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = LOC_STR(@"Option");
     
-    items = @[@[LOC_STR(@"Edit Profile"), LOC_STR(@"Edit Your Kid's Profile"), LOC_STR(@"Logout")], @[LOC_STR(@"Language"), LOC_STR(@"Contact Us"), LOC_STR(@"Version")]];
+    items = @[@[LOC_STR(@"Edit Profile"), LOC_STR(@"Edit Your Kid's Profile"), LOC_STR(@"Logout")], @[LOC_STR(@"Language"), LOC_STR(@"Contact Us"), LOC_STR(@"User Guide"), LOC_STR(@"Version")]];
     self.tableView.tableFooterView = [UIView new];
 }
 
@@ -141,6 +141,9 @@
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[GlobalCache shareInstance].cacheSupportUrl]];
                     break;
                 case 2:
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://childrenlab.s3.amazonaws.com/pdf/Swing_User_Guide.pdf"]];
+                    break;
+                case 3:
                     
                     break;
                 default:
