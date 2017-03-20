@@ -303,6 +303,15 @@
     return str;
 }
 
++ (NSData*)dataReversal:(NSData*)data {
+    NSMutableData *str = [NSMutableData data];
+    const Byte* ptr = data.bytes;
+    for (int i = (int)data.length; --i >= 0 ;) {
+        [str appendBytes:&ptr[i] length:1];
+    }
+    return str;
+}
+
 + (NSData *)hexToData:(NSString *)hexString {
     const char *chars = [hexString UTF8String];
     int i = 0;

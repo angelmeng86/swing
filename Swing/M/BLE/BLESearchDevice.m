@@ -41,7 +41,7 @@
 }
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *, id> *)advertisementData RSSI:(NSNumber *)RSSI {
-    LOG_D(@"didDiscoverPeripheral:%@ advertisementData:%@ RSSI:%@", peripheral, advertisementData, RSSI);
+//    LOG_D(@"didDiscoverPeripheral:%@ advertisementData:%@ RSSI:%@", peripheral, advertisementData, RSSI);
     if ([peripheral.name.uppercaseString hasPrefix:@"SWING"]) {
         if (![self.connectingDevices containsObject:peripheral]) {
             [self.connectingDevices addObject:peripheral];
@@ -141,9 +141,11 @@
         return;
     }
     if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:@"FFA6"]]) {
+        NSData *macReal = [Fun dataReversal:characteristic.value];
         LOG_D(@"FFA6 Value:%@", characteristic.value);
-        
-        if (self.macAddress == nil || [self.macAddress isEqual:characteristic.value]) {
+        LOG_D(@"Mac Real:%@", macReal);
+        //兼容原未倒置的MAC地址
+        if (self.macAddress == nil || [self.macAddress isEqual:characteristic.value] || [self.macAddress isEqual:macReal]) {
             [GlobalCache shareInstance].peripheral = peripheral;
             [self reportSearchDeviceResult:peripheral error:nil];
         }

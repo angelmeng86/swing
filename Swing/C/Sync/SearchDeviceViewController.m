@@ -184,7 +184,7 @@ typedef enum : NSUInteger {
             
             if (updateLoaded) {
                 self.statusLabel.text = LOC_STR(@"Update Completed!");
-                self.subTitleLabel.text = LOC_STR(@"Please Press the Button on Your Watch and Sync Again");
+                self.subTitleLabel.text = LOC_STR(@"Please Press the Button on Your Watch and Sync Again. Major update is incomplete, it will restart again during next sync.");
             }
         }
             break;
@@ -292,7 +292,7 @@ typedef enum : NSUInteger {
             self.progressView.progressTotal = 100;
             self.progressView.progressCounter = 0;
             self.progressView.isIndeterminateProgress = NO;
-            self.subTitleLabel.text = LOC_STR(@"Please Have Your Watch Close by");
+            self.subTitleLabel.text = LOC_STR(@"Please Have Your Watch Close by. the watch is locked during sync.");
         }
         
         int count = percent * 100;

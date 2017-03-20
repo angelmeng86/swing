@@ -198,8 +198,8 @@
 "Every Month"="Каждый месяц";
 
 "Update Completed!"="Обновление завершено!";
-"Please Press the Button on Your Watch and Sync Again"="Необходимо нажать на кнопку часов и повторить синхронизацию";
+"Please Press the Button on Your Watch and Sync Again. Major update is incomplete, it will restart again during next sync."="Необходимо нажать на кнопку часов и повторить синхронизацию. Обновление не завершено, оно будет возобновлено при следующей синхронизации";
 "Updating Your Watch!"="Идет обновление часов";
-"Please Have Your Watch Close by"="Часы должны находиться поблизости";
+"Please Have Your Watch Close by. the watch is locked during sync."="Часы должны находиться поблизости. Внимание: во время синхронизации часы заблокированы";
 
 "User Guide"="Руководство пользователя";

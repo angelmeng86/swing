@@ -47,4 +47,6 @@
 + (NSString*)dataToHex:(NSData*)data;
 + (NSData*)hexToData:(NSString*)data;
 
++ (NSData*)dataReversal:(NSData*)data;
+
 @end

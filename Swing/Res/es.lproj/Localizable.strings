@@ -198,8 +198,8 @@
 "Every Month"="Todos los meses";
 
 "Update Completed!"="¡Actualización completada!";
-"Please Press the Button on Your Watch and Sync Again"="Por favor presiona el botón del reloj y sincroniza de nuevo";
+"Please Press the Button on Your Watch and Sync Again. Major update is incomplete, it will restart again during next sync."="Por favor presiona el botón del reloj y sincroniza de nuevo. La actualización está incompleta, se reiniciará de nuevo en la próxima sincronización";
 "Updating Your Watch!"="Actualizando tu reloj";
-"Please Have Your Watch Close by"="Por favor, ten tu reloj cerca";
+"Please Have Your Watch Close by. the watch is locked during sync."="Por favor, ten tu reloj cerca. Atención, el reloj está bloqueado durante el proceso de sincronización";
 
 "User Guide"="Manual de usuario";
