@@ -46,17 +46,12 @@
 - (void)timeTick:(NSTimer*)timer {
     LOG_D(@"wait for bluetooth up.");
     if (_manager.state == CBManagerStatePoweredOn) {
-        if (waitTimer) {
-            [waitTimer invalidate];
-            waitTimer = nil;
-        }
+        [self cannel];
+        self.isCancel = NO;
         [self fire];
     }
     else if (--waitTimes <= 0) {
-        if (waitTimer) {
-            [waitTimer invalidate];
-            waitTimer = nil;
-        }
+        [self cannel];
         [self bleTimeout];
     }
 }
