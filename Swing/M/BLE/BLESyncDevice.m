@@ -223,9 +223,15 @@ typedef enum : NSUInteger {
                 ActivityModel *model = [ActivityModel new];
                 model.timeZoneOffset = TIME_ADJUST / 60;
                 model.time = self.timeStamp - TIME_ADJUST;
-                //Mac 地址进行倒置转换
-                NSData *realMac = [Fun dataReversal:self.macAddress];
-                model.macId = [Fun dataToHex:realMac];
+                if (self.macId) {
+                    //以后台MacId为准
+                    model.macId = self.macId;
+                }
+                else {
+                    //Mac 地址进行倒置转换
+                    NSData *realMac = [Fun dataReversal:self.macAddress];
+                    model.macId = [Fun dataToHex:realMac];
+                }
                 [model setIndoorData:self.ffa4Data1];
                 [model setOutdoorData:self.ffa4Data2];
                 [self.activityArray addObject:model];

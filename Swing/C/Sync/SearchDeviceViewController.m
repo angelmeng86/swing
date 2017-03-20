@@ -237,7 +237,7 @@ typedef enum : NSUInteger {
 }
 */
 - (void)syncAction:(NSArray*)eventArray {
-    [client syncDevice:_peripheral event:eventArray completion:^(NSMutableArray *activities, NSError *error) {
+    [client syncDevice:_peripheral macAddress:[GlobalCache shareInstance].kid.macId event:eventArray completion:^(NSMutableArray *activities, NSError *error) {
         [self changeStatus:SyncStatusSyncing];
         
         [SVProgressHUD dismiss];
