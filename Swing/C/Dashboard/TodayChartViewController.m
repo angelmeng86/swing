@@ -57,11 +57,11 @@
     [self.view addSubview:line];
     
     [line autoSetDimension:ALDimensionWidth toSize:3];
-    [line autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:_stepProgress withOffset:-10];
-    [line autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:_flightsProgress withOffset:10];
+    [line autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:_stepProgress withOffset:-15];
+    [line autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:_stepProgress withOffset:15];
     
-    self.lineWidth = [line autoPinEdge:ALEdgeTrailing toEdge:ALEdgeTrailing ofView:_distanceProgress withOffset:-50];
-    [line autoAlignAxis:ALAxisHorizontal toSameAxisOfView:_distanceProgress];
+    self.lineWidth = [line autoPinEdge:ALEdgeTrailing toEdge:ALEdgeTrailing ofView:_stepProgress withOffset:-50];
+//    [line autoAlignAxis:ALAxisHorizontal toSameAxisOfView:_distanceProgress];
     
     UIImage *image = [ControlFactory imageFromColor:RGBA(0x67, 0x5c, 0xa7, 1.0f) size:CGSizeMake(100, 30)];
 //    UIImage *image = [ControlFactory imageFromColor:[UIColor redColor] size:CGSizeMake(100, 30)];
