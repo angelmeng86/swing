@@ -17,6 +17,8 @@
 #import "LMArrowView.h"
 #import "RoundButton.h"
 
+#define HIDE_distanceChartView
+
 // Numerics
 CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
 NSInteger const kJBBarChartViewControllerMaxBarHeight = 10;
@@ -87,7 +89,9 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
         {
 //            [self initFakeData:30 value:0];
             self.stepsChartView = [self createLineChartView];
+#ifndef HIDE_distanceChartView
             self.distanceChartView = [self createLineChartView];
+#endif
             self.stepChartColor = RGBA(58, 188, 164, 1.0f);
             self.distanceChartColor = RGBA(34, 110, 96, 1.0f);
 //            self.view.backgroundColor = RGBA(173, 240, 181, 1.0f);
@@ -99,7 +103,9 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
         {
 //            [self initFakeData:12 value:0];
             self.stepsChartView = [self createBarChartView];
+#ifndef HIDE_distanceChartView
             self.distanceChartView = [self createLineChartView];
+#endif
             self.stepChartColor = RGBA(240, 91, 36, 1.0f);
             self.distanceChartColor = RGBA(208, 0, 23, 1.0f);
 //            self.view.backgroundColor = RGBA(254, 245, 171, 1.0f);
@@ -112,7 +118,9 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
         {
 //            [self initFakeData:7 value:0];
             self.stepsChartView = [self createBarChartView];
+#ifndef HIDE_distanceChartView
             self.distanceChartView = [self createBarChartView];
+#endif
             self.stepChartColor = RGBA(98, 91, 180, 1.0f);
             self.distanceChartColor = RGBA(144, 146, 197, 1.0f);
 //            self.view.backgroundColor = RGBA(222, 205, 255, 1.0f);
@@ -141,27 +149,34 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     [rightView autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:_titleLabel];
     
     [self.view addSubview:self.stepsChartView];
+#ifndef HIDE_distanceChartView
     [self.view addSubview:self.distanceChartView];
+#endif
     
-    [_stepsChartView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:_titleLabel withOffset:10];
     [_stepsChartView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:20];
     [_stepsChartView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:20];
+#ifndef HIDE_distanceChartView
+    [_stepsChartView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:_titleLabel withOffset:10];
     
     [_distanceChartView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:_stepsChartView withOffset:20];
     [_distanceChartView autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:_stepsChartView];
     [_distanceChartView autoPinEdge:ALEdgeTrailing toEdge:ALEdgeTrailing ofView:_stepsChartView];
 //    [_distanceChartView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:20];
     
+    
     [_stepsChartView autoMatchDimension:ALDimensionHeight toDimension:ALDimensionHeight ofView:_distanceChartView];
     
-    [self createBtn];
-    
+    [self createBtn:_distanceChartView offset:20];
+#else
+    [_stepsChartView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:_titleLabel withOffset:30];
+    [self createBtn:_stepsChartView offset:30];
+#endif
     self.isLoadData = NO;
     task = nil;
 //    [self performSelector:@selector(reloadChartView) withObject:nil afterDelay:1];
 }
 
-- (void)createBtn {
+- (void)createBtn:(UIView*)layoutView offset:(CGFloat)offset {
 //    UIImage *image = [ControlFactory imageFromColor:RGBA(0x67, 0x5c, 0xa7, 1.0f) size:CGSizeMake(100, 30)];
     UIImage *image = [ControlFactory imageFromColor:self.stepChartColor size:CGSizeMake(100, 30)];
     
@@ -213,7 +228,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     [outdoorBtn setBackgroundImage:image forState:UIControlStateSelected];
     [outdoorBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
     
-    [_distanceChartView autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:middleView withOffset:-20];
+    [middleView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:layoutView withOffset:offset];
 }
 
 - (void)btnAction:(id)sender {
