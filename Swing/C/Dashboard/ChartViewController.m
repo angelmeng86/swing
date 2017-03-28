@@ -503,7 +503,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     barChartView.headerPadding = 10.f;
     barChartView.minimumValue = 0.0f;
     barChartView.inverted = NO;
-    barChartView.minimumValue = 0.0f;
+    barChartView.maximumValue = 10000.0f;
     barChartView.clipsToBounds = NO;
     return barChartView;
 }
@@ -514,6 +514,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     lineChartView.dataSource = self;
     lineChartView.headerPadding = 10.f;
     lineChartView.minimumValue = 0.0f;
+    lineChartView.maximumValue = 10000.0f;
     lineChartView.clipsToBounds = NO;
     return lineChartView;
 }
