@@ -494,10 +494,10 @@
     start += 10;
     [array addObject:model];
      */
-    [_client syncDevice:_peripheral event:array completion:^(NSMutableArray *activities, NSError *error) {
-        LOG_D(@"syncDevice error %@", error);
-        LOG_D(@"syncDevice activities count %d", (int)activities.count);
-    }];
+//    [_client syncDevice:_peripheral event:array completion:^(NSMutableArray *activities, NSError *error) {
+//        LOG_D(@"syncDevice error %@", error);
+//        LOG_D(@"syncDevice activities count %d", (int)activities.count);
+//    }];
 }
 
 @end
