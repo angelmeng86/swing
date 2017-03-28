@@ -12,6 +12,13 @@
 #import "ActivityCache.h"
 #import <INTULocationManager/INTULocationManager.h>
 //#import <AVOSCloud/AVOSCloud.h>
+@interface GlobalCache ()
+{
+    CGRect spanishLocalArea;
+    CGRect russianLocalArea;
+}
+
+@end
 
 @implementation GlobalCache
 
@@ -208,8 +215,18 @@
                                                  // Request succeeded, meaning achievedAccuracy is at least the requested accuracy, and
                                                  // currentLocation contains the device's current location.
                                                  LOG_D(@"Location success %@", currentLocation);
-//                                                 currentLocation = [[CLLocation alloc] initWithLatitude:41 longitude:-83];
+//                                                 currentLocation = [[CLLocation alloc] initWithLatitude:40.5 longitude:-3.65];
 //                                                 LOG_D(@"Location success2 %@", currentLocation);
+                                                 CGPoint point = CGPointMake(currentLocation.coordinate.longitude, currentLocation.coordinate.latitude);
+                                                 if (CGRectContainsPoint(spanishLocalArea, point) || CGRectContainsPoint(russianLocalArea, point)) {
+                                                     self.cacheSupportUrl = @"http://www.imaginarium.info";
+                                                 }
+                                                 else
+                                                 {
+                                                     self.cacheSupportUrl = @"http://kidsdynamic.com";
+                                                 }
+                                                 LOG_D(@"Use %@", self.cacheSupportUrl);
+                                                 /*
                                                  CLGeocoder *geocoder = [[CLGeocoder alloc] init];
                                                  [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
                                                      if (!error) {
@@ -221,11 +238,16 @@
                                                              || [placemark.ISOcountryCode.lowercaseString isEqualToString:@"ru"]) {
                                                              self.cacheSupportUrl = @"http://www.imaginarium.info";
                                                          }
+                                                         else
+                                                         {
+                                                             self.cacheSupportUrl = @"http://kidsdynamic.com";
+                                                         }
                                                      }
                                                      else {
                                                          LOG_D(@"reverseGeocodeLocation err:%@", error);
                                                      }
                                                  }];
+                                                  */
                                              }
                                              else if (status == INTULocationStatusTimedOut) {
                                                  // Wasn't able to locate the user with the requested accuracy within the timeout interval.
@@ -242,8 +264,8 @@
 
 - (NSString*)cacheSupportUrl {
     if (_cacheSupportUrl == nil) {
-        _cacheSupportUrl = @"http://kidsdynamic.com";
-//        _cacheSupportUrl = @"http://www.imaginarium.info";
+//        _cacheSupportUrl = @"http://kidsdynamic.com";
+        _cacheSupportUrl = @"http://www.imaginarium.info";
     }
     return _cacheSupportUrl;
 }
@@ -316,6 +338,14 @@
 {
     if (self = [super init]) {
 //        _weartherRunning = NO;
+        //43.4374170000,-10.3827280000
+        //35.5704490000,4.0959440000
+        //纬度y，经度x
+        spanishLocalArea = CGRectMake(-10.382728, 35.570449, 4.095944 + 10.382728, 43.437417 - 35.570449);
+        
+        //76.5577429390,30.9375000000
+        //48.1074311885,-170.6835937500
+        russianLocalArea = CGRectMake(-170.6835937500, 48.1074311885, 30.9375 + 170.6835937500, 76.5577429390 - 48.1074311885);
     }
     return self;
 }

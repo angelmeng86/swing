@@ -138,8 +138,8 @@
                     [self languageAction];
                     break;
                 case 1:
-//                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[GlobalCache shareInstance].cacheSupportUrl]];
-                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.imaginarium.info"]];
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[GlobalCache shareInstance].cacheSupportUrl]];
+//                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.imaginarium.info"]];
                     break;
                 case 2:
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://childrenlab.s3.amazonaws.com/pdf/Swing_User_Guide.pdf"]];
