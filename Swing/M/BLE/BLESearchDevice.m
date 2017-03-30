@@ -69,8 +69,14 @@
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral{
     LOG_D(@"didConnectPeripheral:%@", peripheral);
     [peripheral setDelegate:self];
-    NSArray *services = @[[CBUUID UUIDWithString:@"FFA0"]];
-    [peripheral discoverServices:services];
+    if (self.macAddress) {
+        NSArray *services = @[[CBUUID UUIDWithString:@"FFA0"]];
+        [peripheral discoverServices:services];
+    }
+    else {
+        NSArray *services = @[[CBUUID UUIDWithString:@"180A"]];
+        [peripheral discoverServices:services];
+    }
 }
 
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(nullable NSError *)error{
@@ -94,9 +100,16 @@
         return;
     }
     for (CBService *s in peripheral.services) {
+        //LOG_D(@"service:%@ UUID:%@", s, s.UUID.UUIDString);
         if ([s.UUID isEqual:[CBUUID UUIDWithString:@"FFA0"]]) {
             NSArray *characters = @[[CBUUID UUIDWithString:@"FFA1"], [CBUUID UUIDWithString:@"FFA3"], [CBUUID UUIDWithString:@"FFA6"]];
             [peripheral discoverCharacteristics:characters forService:s];
+            break;
+        }
+        if ([s.UUID isEqual:[CBUUID UUIDWithString:@"180A"]]) {
+            NSArray *characters = @[[CBUUID UUIDWithString:@"2A23"]];
+            [peripheral discoverCharacteristics:characters forService:s];
+            break;
         }
     }
 }
@@ -111,6 +124,14 @@
             if ([character.UUID isEqual:[CBUUID UUIDWithString:@"FFA1"]]) {
                 [peripheral writeValue:[NSData dataWithBytes:"\x01" length:1] forCharacteristic:character type:CBCharacteristicWriteWithResponse];
                 LOG_D(@"Write FFA1");
+            }
+        }
+    }
+    else if ([service.UUID isEqual:[CBUUID UUIDWithString:@"180A"]]) {
+        for (CBCharacteristic *character in service.characteristics) {
+            if ([character.UUID isEqual:[CBUUID UUIDWithString:@"2A23"]]) {
+                [peripheral readValueForCharacteristic:character];
+                LOG_D(@"Read 2A23");
             }
         }
     }
@@ -160,6 +181,25 @@
         else {
             [self reportScanDeviceMacIdResult:peripheral mac:macReal error:nil];
         }
+    }
+    else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:@"2A23"]]) {
+        NSData *macReal = nil;
+        if (characteristic.value.length > 6) {
+            //System ID 去除正中间的两个字节
+            NSMutableData *systemID = [NSMutableData data];
+            [systemID appendData:[characteristic.value subdataWithRange:NSMakeRange(0, 3)]];
+            [systemID appendData:[characteristic.value subdataWithRange:NSMakeRange(characteristic.value.length - 3, 3)]];
+            macReal = [Fun dataReversal:systemID];
+        }
+        else {
+            macReal = [Fun dataReversal:characteristic.value];
+        }
+        
+        self.macAddressDict[peripheral] = macReal;
+        LOG_D(@"2A23 Value:%@", characteristic.value);
+        LOG_D(@"Mac Real:%@", macReal);
+        [self reportScanDeviceMacIdResult:peripheral mac:macReal error:nil];
+        [self.manager cancelPeripheralConnection:peripheral];
     }
 }
 
