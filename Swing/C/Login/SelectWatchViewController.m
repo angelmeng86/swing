@@ -165,7 +165,14 @@
     CBPeripheral *peripheral = [_peripherals objectAtIndex:indexPath.row];
     if (self.macAddressDict[peripheral]) {
         NSString *mac = [Fun dataToHex:self.macAddressDict[peripheral]];
-        cell.titleLabel.text = [peripheral.name stringByAppendingFormat:@" %@", mac];
+        NSMutableString *macShow = [NSMutableString string];
+        for (int i = 0; i < mac.length; i+=2) {
+            [macShow appendString:[mac substringWithRange:NSMakeRange(i, 2)]];
+            if (i + 2 < mac.length) {
+                [macShow appendString:@":"];
+            }
+        }
+        cell.titleLabel.text = [peripheral.name stringByAppendingFormat:@"-%@", macShow];
     }
     else {
         cell.titleLabel.text = peripheral.name;
