@@ -22,6 +22,10 @@
     return @"/v1/user/isEmailAvailableToRegister";
 }
 
+- (NSString*)whoRegisteredMacID {
+    return @"/v1/kids/whoRegisteredMacID";
+}
+
 - (NSString*)userLogin {
     return @"/v1/user/login";
 }

@@ -18,6 +18,10 @@
 
 - (void)stopScan;
 
+- (void)scanDeviceMacAddressWithCompletion:(SwingBluetoothScanDeviceMacAddressBlock)completion;
+
+- (void)stopScanMacAddress;
+
 - (void)initDevice:(CBPeripheral*)peripheral completion:(SwingBluetoothInitDeviceBlock)completion;
 
 - (void)searchDevice:(NSData*)macAddress completion:(SwingBluetoothSearchDeviceBlock)completion;

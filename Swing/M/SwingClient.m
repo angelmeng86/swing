@@ -153,6 +153,29 @@
     return task;
 }
 
+- (NSURLSessionDataTask *)whoRegisteredMacID:(NSString*)macId completion:( void (^)(id  kid, NSError *error) ) completion {
+    NSURLSessionDataTask *task = [self.sessionManager GET:_URL.whoRegisteredMacID parameters:@{@"macId":macId} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSError *err = nil;
+            LOG_D(@"whoRegisteredMacID info:%@", responseObject);
+            KidModel *kid = [[KidModel alloc] initWithDictionary:responseObject[@"kid"] error:&err];
+            completion(kid, err);
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
+            if(response.statusCode == 404) {
+                completion(nil, nil);
+            }
+            else {
+                completion(nil, error);
+            }
+        });
+    }];
+    
+    return task;
+}
+
 - (NSURLSessionDataTask *)userLogin:(NSString*)email password:(NSString*)pwd completion:( void (^)(NSError *error) )completion {
     NSURLSessionDataTask *task = [self.sessionManager POST:_URL.userLogin parameters:@{@"email":email, @"password":pwd} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{

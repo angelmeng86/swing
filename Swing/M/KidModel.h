@@ -7,6 +7,7 @@
 //
 
 #import "JSONModel.h"
+#import "UserModel.h"
 
 @interface KidModel : JSONModel
 
@@ -20,5 +21,7 @@
 
 @property (strong, nonatomic) NSString<Optional>* profile;
 @property (strong, nonatomic) NSString<Optional>* macId;//new api added
+
+@property (nonatomic, strong) UserModel<Optional> *parent;
 
 @end

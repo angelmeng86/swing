@@ -15,6 +15,7 @@
 }
 
 @property (nonatomic, strong) NSMutableArray *connectingDevices;
+@property (nonatomic, strong) NSMutableDictionary *macAddressDict;
 @property (nonatomic, strong) NSData *macAddress;
 
 @end
@@ -24,6 +25,7 @@
 - (id)init {
     if (self = [super init]) {
         self.connectingDevices = [NSMutableArray array];
+        self.macAddressDict = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -46,7 +48,10 @@
         if (![self.connectingDevices containsObject:peripheral]) {
             [self.connectingDevices addObject:peripheral];
         }
-        
+        if (self.macAddressDict[peripheral]) {
+            //该设备已经连接并得到MacAddress
+            return;
+        }
         LOG_D(@"connectPeripheral:%@", peripheral);
         [central connectPeripheral:peripheral options:nil];
         
@@ -142,12 +147,18 @@
     }
     if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:@"FFA6"]]) {
         NSData *macReal = [Fun dataReversal:characteristic.value];
+        self.macAddressDict[peripheral] = macReal;
         LOG_D(@"FFA6 Value:%@", characteristic.value);
         LOG_D(@"Mac Real:%@", macReal);
-        //兼容原未倒置的MAC地址
-        if (self.macAddress == nil || [self.macAddress isEqual:characteristic.value] || [self.macAddress isEqual:macReal]) {
-            [GlobalCache shareInstance].peripheral = peripheral;
-            [self reportSearchDeviceResult:peripheral error:nil];
+        if (self.macAddress) {
+            //兼容原未倒置的MAC地址
+            if ([self.macAddress isEqual:characteristic.value] || [self.macAddress isEqual:macReal]) {
+                [GlobalCache shareInstance].peripheral = peripheral;
+                [self reportSearchDeviceResult:peripheral error:nil];
+            }
+        }
+        else {
+            [self reportScanDeviceMacIdResult:peripheral mac:macReal error:nil];
         }
     }
 }
@@ -159,13 +170,31 @@
     [self checkBleStatus];
 }
 
+- (void)searchDeviceMacIdWithCentralManager:(CBCentralManager *)central {
+    self.manager = central;
+    self.macAddress = nil;
+    LOG_D(@"scanDeviceMacAddress");
+    [self checkBleStatus];
+}
+
 - (void)bleTimeout {
-    [self reportSearchDeviceResult:nil error:[NSError errorWithDomain:@"SwingBluetooth" code:-2 userInfo:[NSDictionary dictionaryWithObject:LOC_STR(@"The bluetooth switch is closed.") forKey:NSLocalizedDescriptionKey]]];
+    NSError *err = [NSError errorWithDomain:@"SwingBluetooth" code:-2 userInfo:[NSDictionary dictionaryWithObject:LOC_STR(@"The bluetooth switch is closed.") forKey:NSLocalizedDescriptionKey]];
+    
+    if (self.macAddress) {
+        [self reportSearchDeviceResult:nil error:err];
+    }
+    else {
+        [self reportScanDeviceMacIdResult:nil mac:nil error:err];
+    }
 }
 
 - (void)fire {
     [outTimer invalidate];
-    outTimer = [NSTimer scheduledTimerWithTimeInterval:30.0f target:self selector:@selector(operationTimeout) userInfo:nil repeats:NO];
+    if (self.macAddress) {
+        //查找指定设备的时候打开超时功能
+        outTimer = [NSTimer scheduledTimerWithTimeInterval:30.0f target:self selector:@selector(operationTimeout) userInfo:nil repeats:NO];
+    }
+    
 //    [self.manager scanForPeripheralsWithServices:nil options:nil];
     [self.manager scanForPeripheralsWithServices:nil options:@{CBCentralManagerScanOptionAllowDuplicatesKey:@YES}];
     if ([GlobalCache shareInstance].peripheral) {
@@ -190,6 +219,15 @@
         [self.delegate reportSearchDeviceResult:peripheral error:error];
     }
     [self cannel];
+}
+
+- (void)reportScanDeviceMacIdResult:(CBPeripheral*)peripheral mac:(NSData*)macId error:(NSError*)error {
+    if ([self.delegate respondsToSelector:@selector(reportSearchDeviceMacId:mac:error:)]) {
+        [self.delegate reportSearchDeviceMacId:peripheral mac:macId error:error];
+    }
+    if (error) {
+        [self cannel];
+    }
 }
 
 @end

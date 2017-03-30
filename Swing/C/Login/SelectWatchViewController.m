@@ -12,12 +12,17 @@
 #import "BLEClient.h"
 #import "KidBindViewController.h"
 
+#define SHOW_MACADDRESS
+
 @interface SelectWatchViewController ()<DeviceTableViewCellDelegate>
 {
     BLEClient *client;
 }
 
 @property (strong, nonatomic) NSMutableArray *peripherals;
+
+@property (strong, nonatomic) NSMutableDictionary *macAddressDict;
+@property (strong, nonatomic) NSMutableArray *tasks;
 
 @end
 
@@ -34,8 +39,17 @@
     
     self.label1.text = LOC_STR(@"Please select your Swing Watch");
     self.peripherals = [NSMutableArray array];
+    self.macAddressDict = [NSMutableDictionary dictionary];
+    self.tasks = [NSMutableArray array];
     self.navigationItem.title = nil;
     [self setCustomBackButton];
+}
+
+- (void)cancelTasks {
+    for (NSURLSessionDataTask *task in _tasks) {
+        [task cancel];
+    }
+    self.tasks = [NSMutableArray array];
 }
 
 - (void)backAction {
@@ -54,6 +68,42 @@
     
 #else
     client = [[BLEClient alloc] init];
+#ifdef SHOW_MACADDRESS
+    [client scanDeviceMacAddressWithCompletion:^(CBPeripheral *peripheral, NSData *macAddress, NSError *error) {
+        if (!error) {
+            if (peripheral && ![_peripherals containsObject:peripheral]) {
+                
+                [[SwingClient sharedClient] whoRegisteredMacID:[Fun dataToHex:macAddress] completion:^(id kid, NSError *error) {
+                    if (!error) {
+                        if (kid) {
+                            LOG_D(@"%@ is registed.", macAddress);
+                        }
+                        else {
+                            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_peripherals.count inSection:0];
+                            [_peripherals addObject:peripheral];
+                            self.macAddressDict[peripheral] = macAddress;
+                            [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                        }
+                    }
+                    else {
+                        LOG_D(@"whoRegisteredMacID error:%@", error);
+                    }
+                }];
+                /*
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_peripherals.count inSection:0];
+                [_peripherals addObject:peripheral];
+                self.macAddressDict[peripheral] = macAddress;
+                [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                 */
+            }
+        }
+        else {
+            LOG_D(@"scanDeviceMacIdWithCompletion:%@", error);
+            [self backAction];
+            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+        }
+    }];
+#else
     [client scanDeviceWithCompletion:^(CBPeripheral *peripheral, NSDictionary *advertisementData, NSError *error) {
         if (!error) {
             if (peripheral && ![_peripherals containsObject:peripheral]) {
@@ -69,13 +119,21 @@
         }
     }];
 #endif
+    
+#endif
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     self.peripherals = [NSMutableArray array];
+    self.macAddressDict = [NSMutableDictionary dictionary];
     [self.tableView reloadData];
+#ifdef SHOW_MACADDRESS
+    [client stopScanMacAddress];
+    [self cancelTasks];
+#else
     [client stopScan];
+#endif
 }
 
 - (void)didReceiveMemoryWarning {
@@ -105,7 +163,13 @@
     }
 #else
     CBPeripheral *peripheral = [_peripherals objectAtIndex:indexPath.row];
-    cell.titleLabel.text = peripheral.name;
+    if (self.macAddressDict[peripheral]) {
+        NSString *mac = [Fun dataToHex:self.macAddressDict[peripheral]];
+        cell.titleLabel.text = [peripheral.name stringByAppendingFormat:@" %@", mac];
+    }
+    else {
+        cell.titleLabel.text = peripheral.name;
+    }
 #endif
     return cell;
 }
@@ -117,10 +181,21 @@
     ctl.macAddress = [Fun hexToData:@"012345678915"];
     [self.navigationController pushViewController:ctl animated:YES];
 #else
-    [client stopScan];
+    
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     CBPeripheral *peripheral = [_peripherals objectAtIndex:indexPath.row];
     
+#ifdef SHOW_MACADDRESS
+    [client stopScanMacAddress];
+    if (self.macAddressDict[peripheral]) {
+        UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
+        KidBindViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"KidBind"];
+        ctl.macAddress = self.macAddressDict[peripheral];
+        [self.navigationController pushViewController:ctl animated:YES];
+    }
+#else
+    
+    [client stopScan];
     [SVProgressHUD showWithStatus:LOC_STR(@"Syncing")];
     [client initDevice:peripheral completion:^(NSData *macAddress, NSError *error) {
         if (!error) {
@@ -137,6 +212,8 @@
     }/* update:^(float percent, NSString *remainTime) {
         [SVProgressHUD showProgress:percent status:[@"Update Device, Time remaining : " stringByAppendingString:remainTime]];
     }*/];
+#endif
+    
 #endif
 }
 

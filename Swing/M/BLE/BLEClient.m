@@ -26,6 +26,7 @@
 
 @property (nonatomic, copy) SwingBluetoothInitDeviceBlock blockOnInitDevice;
 @property (nonatomic, copy) SwingBluetoothScanDeviceBlock blockOnScanDevice;
+@property (nonatomic, copy) SwingBluetoothScanDeviceMacAddressBlock blockOnScanMacId;
 @property (nonatomic, copy) SwingBluetoothSearchDeviceBlock blockOnSearchDevice;
 @property (nonatomic, copy) SwingBluetoothSyncDeviceBlock blockOnSyncDevice;
 
@@ -86,12 +87,39 @@
         self.blockOnScanDevice(peripheral, advertisementData, error);
         if (error) {
             self.blockOnInitDevice = nil;
+            self.manager.delegate = nil;
             [_manager stopScan];
         }
     }
 }
 
 - (void)stopScan {
+    [_manager stopScan];
+}
+
+
+- (void)scanDeviceMacAddressWithCompletion:(SwingBluetoothScanDeviceMacAddressBlock)completion
+{
+    self.blockOnScanMacId = completion;
+    _manager.delegate = searchDevice;
+    [searchDevice searchDeviceMacIdWithCentralManager:_manager];
+}
+
+- (void)reportSearchDeviceMacId:(CBPeripheral*)peripheral mac:(NSData*)macAddress error:(NSError*)error {
+    if (self.blockOnScanMacId) {
+        self.blockOnScanMacId(peripheral, macAddress, error);
+        if (error) {
+            self.blockOnScanMacId = nil;
+            self.manager.delegate = nil;
+            [_manager stopScan];
+        }
+    }
+}
+
+- (void)stopScanMacAddress {
+    [searchDevice cannel];
+    self.blockOnScanMacId = nil;
+    self.manager.delegate = nil;
     [_manager stopScan];
 }
 

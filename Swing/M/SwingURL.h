@@ -13,6 +13,9 @@
 @property (nonatomic, readonly, strong) NSString* baseURL;
 
 @property (nonatomic, readonly, strong) NSString* isEmailRegistered;
+
+@property (nonatomic, readonly, strong) NSString* whoRegisteredMacID;
+
 @property (nonatomic, readonly, strong) NSString* userLogin;
 @property (nonatomic, readonly, strong) NSString* userRegister;
 @property (nonatomic, readonly, strong) NSString* updateIOSRegistrationId;

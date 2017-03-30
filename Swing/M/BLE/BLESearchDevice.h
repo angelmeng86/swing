@@ -14,10 +14,14 @@
 
 - (void)reportSearchDeviceResult:(CBPeripheral*)peripheral error:(NSError*)error;
 
+- (void)reportSearchDeviceMacId:(CBPeripheral*)peripheral mac:(NSData*)macAddress error:(NSError*)error;
+
 @end
 
 @interface BLESearchDevice : BLEWaitDevice
 
 - (void)searchDevice:(NSData*)macAddress centralManager:(CBCentralManager *)central;
+
+- (void)searchDeviceMacIdWithCentralManager:(CBCentralManager *)central;
 
 @end
