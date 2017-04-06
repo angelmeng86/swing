@@ -248,6 +248,22 @@
     return task;
 }
 
+- (NSURLSessionDataTask *)updateLanguageWithCompletion:( void (^)(NSError *error) )completion {
+    NSURLSessionDataTask *task = [self.sessionManager POST:_URL.updateLanguage parameters:@{@"language":[GlobalCache shareInstance].curLanguage} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LOG_D(@"updateLanguage info:%@", responseObject);
+            completion(nil);
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSError *err = [self filterTokenInvalid:task.response err:error];
+            completion(err);
+        });
+    }];
+    
+    return task;
+}
+
 - (NSURLSessionDataTask *)userUpdateIOSRegistrationId:(NSString*)token completion:( void (^)(NSError *error) )completion {
     NSURLSessionDataTask *task = [self.sessionManager PUT:_URL.updateIOSRegistrationId parameters:@{@"registrationId":token} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{

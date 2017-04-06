@@ -77,7 +77,7 @@
         [self.zipCodeTF resignFirstResponder];
         
         [SVProgressHUD showWithStatus:@"Register, please wait..."];
-        [[SwingClient sharedClient] userRegister:@{@"email":self.email, @"password":self.pwd, @"phoneNumber":(self.phoneTF.text == nil ? @"" : self.phoneTF.text), @"firstName":self.firstNameTF.text, @"lastName":self.lastNameTF.text} completion:^(id user, NSError *error) {
+        [[SwingClient sharedClient] userRegister:@{@"email":self.email, @"password":self.pwd, @"phoneNumber":(self.phoneTF.text == nil ? @"" : self.phoneTF.text), @"firstName":self.firstNameTF.text, @"lastName":self.lastNameTF.text, @"language":[GlobalCache shareInstance].curLanguage} completion:^(id user, NSError *error) {
             if (error) {
                 LOG_D(@"registerUser fail: %@", error);
                 [SVProgressHUD showErrorWithStatus:[error localizedDescription]];

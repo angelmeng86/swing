@@ -18,6 +18,7 @@
 
 @property (nonatomic, readonly, strong) NSString* userLogin;
 @property (nonatomic, readonly, strong) NSString* userRegister;
+@property (nonatomic, readonly, strong) NSString* updateLanguage;
 @property (nonatomic, readonly, strong) NSString* updateIOSRegistrationId;
 @property (nonatomic, readonly, strong) NSString* retrieveUserProfile;
 @property (nonatomic, readonly, strong) NSString* uploadProfileImage;
