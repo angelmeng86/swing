@@ -180,12 +180,6 @@
     [GlobalCache shareInstance].local.language = lang;
     [[GlobalCache shareInstance] saveInfo];
     [self performSelector:@selector(goToMain) withObject:nil afterDelay:0.5];
-    
-    [[SwingClient sharedClient] updateLanguageWithCompletion:^(NSError *error) {
-        if (error) {
-            LOG_D(@"update language err:%@", error);
-        }
-    }];
 }
 
 - (void)goToMain {
@@ -194,6 +188,12 @@
     UIViewController *ctl = [stroyBoard instantiateInitialViewController];
     AppDelegate *ad = (AppDelegate*)[UIApplication sharedApplication].delegate;
     ad.window.rootViewController = ctl;
+    
+    [[SwingClient sharedClient] updateLanguageWithCompletion:^(NSError *error) {
+        if (error) {
+            LOG_D(@"update language err:%@", error);
+        }
+    }];
 }
 
 

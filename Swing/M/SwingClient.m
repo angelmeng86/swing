@@ -249,7 +249,9 @@
 }
 
 - (NSURLSessionDataTask *)updateLanguageWithCompletion:( void (^)(NSError *error) )completion {
-    NSURLSessionDataTask *task = [self.sessionManager POST:_URL.updateLanguage parameters:@{@"language":[GlobalCache shareInstance].curLanguage} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSDictionary *data = @{@"language":[GlobalCache shareInstance].curLanguage};
+    LOG_D(@"updateLanguage data:%@", data);
+    NSURLSessionDataTask *task = [self.sessionManager POST:_URL.updateLanguage parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"updateLanguage info:%@", responseObject);
             completion(nil);
