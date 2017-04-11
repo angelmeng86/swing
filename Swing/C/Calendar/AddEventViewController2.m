@@ -356,19 +356,21 @@
 - (void)startChange:(UIDatePicker*)datePicker {
     NSDate *sDate = datePicker.date;
     NSDateComponents *comps = [[NSCalendar currentCalendar] components:kCFCalendarUnitYear|kCFCalendarUnitMonth|kCFCalendarUnitDay|NSCalendarUnitHour|NSCalendarUnitMinute fromDate:sDate];
-    //开始时间只能设定在一天的6：00~23：30
+    //开始时间只能设定在一天的0：00~23：30
     if (comps.hour == 23 && comps.minute > 30) {
         comps.hour = 23;
         comps.minute = 30;
         sDate = [sDate earlierDate:[[NSCalendar currentCalendar] dateFromComponents:comps]];
         [datePicker setDate:sDate animated:YES];
     }
+    /*
     else if (comps.hour < 6) {
         comps.hour = 6;
         comps.minute = 0;
         sDate = [sDate laterDate:[[NSCalendar currentCalendar] dateFromComponents:comps]];
         [datePicker setDate:sDate animated:YES];
     }
+     */
     self.startTF.text = [self dateToString:sDate];
     
     UIDatePicker* dp = (UIDatePicker*)self.endTF.inputView;
@@ -416,18 +418,20 @@
     //判断设置的时间范围是否是每天的6点至24点
     NSDate *startDate = [self dateFromString:self.startTF.text];
     NSCalendar *cal = [NSCalendar currentCalendar];
-    NSDateComponents *start = [cal components:NSCalendarUnitHour fromDate:startDate];
     NSDate *endDate = [self dateFromString:self.endTF.text];
-    NSDateComponents *end = [cal components:NSCalendarUnitHour fromDate:endDate];
+    
     if (![cal isDate:startDate inSameDayAsDate:endDate]) {
         [Fun showMessageBoxWithTitle:LOC_STR(@"Error") andMessage:LOC_STR(@"The date must in the same day.")];
         return NO;
     }
+    /*
+    NSDateComponents *start = [cal components:NSCalendarUnitHour fromDate:startDate];
+    NSDateComponents *end = [cal components:NSCalendarUnitHour fromDate:endDate];
     if ([start hour] < 6 || [end hour] < 6) {
         [Fun showMessageBoxWithTitle:LOC_STR(@"Error") andMessage:LOC_STR(@"Please select a date between 6:00 and 24:00.")];
         return NO;
     }
-    
+    */
     return YES;
 }
 

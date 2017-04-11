@@ -87,7 +87,7 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     [contentView autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:self.scrollView];
     
     NSMutableArray *array = [NSMutableArray array];
-    for (int i = 6; i <= 12; i++) {
+    for (int i = 0; i <= 12; i++) {
         TimeLineView *view = [[TimeLineView alloc] init];
         view.textLabel.text = [NSString stringWithFormat:@"%d AM", i];
         [contentView addSubview:view];
@@ -165,7 +165,7 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     NSDateComponents *start = [cal components:NSCalendarUnitHour fromDate:[NSDate date]];
     for (int i = (int)_hourLines.count; --i >= 0;) {
         TimeLineView *view = _hourLines[i];
-        if (i == [start hour] - 6) {
+        if (i == [start hour]) {
             view.lineColor = COMMON_TITLE_COLOR;
         }
         else {
@@ -263,13 +263,9 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *start = [cal components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:model.startDate];
     
-    NSInteger hour = [start hour] - 6;
-    if (hour < 0) {
-        LOG_D(@"hour < 0");
-        return nil;
-    }
+    NSInteger hour = [start hour];
     
-    TimeLineView *startLine = [self.hourLines objectAtIndex:[start hour] - 6];
+    TimeLineView *startLine = [self.hourLines objectAtIndex:hour];
     float startH = [start minute] * 40 / 60;
     
     
