@@ -88,7 +88,8 @@
 }
 
 - (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewControllers {
-    scrollIndex = (int)[[pendingViewControllers firstObject] performSelector:@selector(pageIndex) withObject:nil];
+    scrollIndex = [self.ctlArray indexOfObject:[pendingViewControllers firstObject]];
+//    scrollIndex = (int)[[pendingViewControllers firstObject] performSelector:@selector(pageIndex) withObject:nil];
 //    self.pageControl.currentPage = ((ChartViewController*) [pendingViewControllers firstObject]).pageIndex;
 }
 
@@ -112,7 +113,7 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
-    NSUInteger index = (NSUInteger)[viewController performSelector:@selector(pageIndex) withObject:nil];
+    NSUInteger index = [self.ctlArray indexOfObject:viewController];
     
     if (index == 0) {
         return nil;
@@ -124,7 +125,7 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
-    NSUInteger index = (NSUInteger)[viewController performSelector:@selector(pageIndex) withObject:nil];
+    NSUInteger index = [self.ctlArray indexOfObject:viewController];
     
     index++;
     if (index == self.ctlArray.count) {

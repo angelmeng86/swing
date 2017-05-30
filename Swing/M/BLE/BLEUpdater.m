@@ -43,7 +43,7 @@ typedef enum : NSUInteger {
 {
     if (self = [super init]) {
         self.state = BLEUpdaterStateNone;
-        self.imageVersion = @"KDV0003-A";
+        self.imageVersion = @"KDV0004-A";
     }
     return self;
 }
@@ -53,7 +53,7 @@ typedef enum : NSUInteger {
     //固件版本
     NSMutableString *path= [[NSMutableString  alloc] initWithString: [[NSBundle mainBundle] resourcePath]];
     [path appendString:@"/"];
-    [path appendString:A ? @"A-022317.bin" : @"B-022317.bin"];
+    [path appendString:A ? @"A-052817.bin" : @"B-052817.bin"];
     //    [path appendString:A ? @"A-super-MP-OTA-64M-022317.bin" : @"B-super-MP-OTA-64M-022317.bin"];
     self.imageData = [NSData dataWithContentsOfFile:path];
     LOG_D(@"Loaded firmware \"%@\"of size : %ld",path, (unsigned long)self.imageData.length);
