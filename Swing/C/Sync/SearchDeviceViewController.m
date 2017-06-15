@@ -237,7 +237,7 @@ typedef enum : NSUInteger {
 }
 */
 - (void)syncAction:(NSArray*)eventArray {
-    [client syncDevice:_peripheral macAddress:[GlobalCache shareInstance].kid.macId event:eventArray completion:^(NSMutableArray *activities, NSError *error) {
+    [client syncDevice:_peripheral macAddress:[GlobalCache shareInstance].kid.macId event:eventArray completion:^(NSMutableArray *activities, NSError *error, int battery) {
         [self changeStatus:SyncStatusSyncing];
         
         [SVProgressHUD dismiss];
@@ -283,7 +283,7 @@ typedef enum : NSUInteger {
         }
         */
         
-        [self uploadData];
+        [self uploadBattery:battery];
     } update:^(float percent, NSString *remainTime) {
         NSString *text = [LOC_STR(@"Updating Your Watch!") stringByAppendingString:@"\f"];
         self.statusLabel.text = [text stringByAppendingString:remainTime];
@@ -300,6 +300,24 @@ typedef enum : NSUInteger {
             self.progressView.progressCounter = count;
         }
     }];
+}
+
+- (void)uploadBattery:(int)battery
+{
+    if (battery < 0) {
+        [self uploadData];
+    }
+    else {
+        [[SwingClient sharedClient] kidsUploadBatteryStatus:battery macId:[GlobalCache shareInstance].kid.macId completion:^(NSError *error) {
+            if (!error) {
+                LOG_D(@"kidsBatteryStatus success.");
+            }
+            else {
+                LOG_D(@"kidsBatteryStatus fail: %@", error);
+            }
+            [self uploadData];
+        }];
+    }
 }
 
 - (void)uploadData {

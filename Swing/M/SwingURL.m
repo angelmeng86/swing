@@ -111,6 +111,10 @@
     return @"/v1/activity/uploadRawData";
 }
 
+- (NSString*)batteryStatus {
+    return @"/v1/kids/batteryStatus";
+}
+
 - (NSString*)getRetrieveActivity {
     return @"/v1/activity/retrieveData";
 }

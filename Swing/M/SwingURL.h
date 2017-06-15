@@ -40,6 +40,7 @@
 @property (nonatomic, readonly, strong) NSString* retrieveAllEventsWithTodo;
 
 @property (nonatomic, readonly, strong) NSString* uploadRawData;
+@property (nonatomic, readonly, strong) NSString* batteryStatus;
 @property (nonatomic, readonly, strong) NSString* getRetrieveActivity;
 
 @property (nonatomic, readonly, strong) NSString* retrieveActivityByTime;

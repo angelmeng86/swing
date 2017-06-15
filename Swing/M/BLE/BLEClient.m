@@ -171,9 +171,9 @@
     [syncDevice syncDevice:peripheral centralManager:_manager event:events];
 }
 
-- (void)reportSyncDeviceResult:(NSMutableArray*)activities error:(NSError*)error {
+- (void)reportSyncDeviceResult:(NSMutableArray*)activities battery:(int)battery error:(NSError*)error {
     if (self.blockOnSyncDevice) {
-        self.blockOnSyncDevice(activities, error);
+        self.blockOnSyncDevice(activities, error, battery);
         self.blockOnSyncDevice = nil;
         if (error) {
             LOG_END(@"reportSyncDeviceResult error:%@", error);

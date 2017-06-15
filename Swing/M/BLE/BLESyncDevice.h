@@ -12,7 +12,7 @@
 
 @protocol BLESyncDeviceDelegate <NSObject>
 
-- (void)reportSyncDeviceResult:(NSMutableArray*)activities error:(NSError*)error;
+- (void)reportSyncDeviceResult:(NSMutableArray*)activities battery:(int)battery error:(NSError*)error;
 
 @end
 

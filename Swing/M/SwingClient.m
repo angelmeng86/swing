@@ -758,6 +758,30 @@
     return task;
 }
 
+- (NSURLSessionDataTask *)kidsUploadBatteryStatus:(int)battery macId:(NSString*)macId completion:( void (^)(NSError *error) )completion {
+    NSDictionary *data = @{@"macId":macId, @"dateReceived":@([[NSDate date] timeIntervalSince1970]), @"battery":@(battery)};
+    LOG_D(@"kidsUploadBatteryStatus: %@", data);
+    NSURLSessionDataTask *task = [self.sessionManager POST:_URL.batteryStatus parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LOG_D(@"kidsUploadBatteryStatus info:%@", responseObject);
+            NSError *err = [self getErrorMessage:responseObject];
+            if (err) {
+                completion(err);
+            }
+            else {
+                completion(nil);
+            }
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSError *err = [self filterTokenInvalid:task.response err:error];
+            completion(err);
+        });
+    }];
+    
+    return task;
+}
+
 - (NSURLSessionDataTask *)deviceGetActivity:(int64_t)kidId type:(GetActivityType)type completion:( void (^)(id dailyActs ,NSError *error) )completion {
     NSString *period = @"DAILY";
     switch (type) {

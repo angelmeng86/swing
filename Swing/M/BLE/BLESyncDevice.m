@@ -30,6 +30,8 @@ typedef enum : NSUInteger {
     SwingSyncState syncState;
     int testCount;
     NSTimer *outTimer;
+    
+    int battery;
 }
 
 @property (nonatomic, strong) BLEUpdater *updater;
@@ -288,6 +290,7 @@ typedef enum : NSUInteger {
     else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:@"2A19"]]) {
         const Byte* ptr = characteristic.value.bytes;
         LOG_D(@"Read Battery:%d%%", ptr[0]);
+        battery = ptr[0];
         [GlobalCache shareInstance].local.battery = ptr[0];
         [[GlobalCache shareInstance] saveInfo];
         [[NSNotificationCenter defaultCenter] postNotificationName:SWING_WATCH_BATTERY_NOTIFY object:[NSNumber numberWithInt:ptr[0]]];
@@ -375,6 +378,7 @@ typedef enum : NSUInteger {
     self.activityDict = [NSMutableDictionary dictionary];
     self.timeSet = [NSMutableIndexSet new];
     testCount = 0;
+    battery = -1;
     self.peripheral = peripheral;
     self.manager = central;
     
@@ -451,8 +455,8 @@ typedef enum : NSUInteger {
         
     }
     
-    if ([self.delegate respondsToSelector:@selector(reportSyncDeviceResult:error:)]) {
-        [self.delegate reportSyncDeviceResult:_activityArray error:error];
+    if ([self.delegate respondsToSelector:@selector(reportSyncDeviceResult:battery:error:)]) {
+        [self.delegate reportSyncDeviceResult:_activityArray battery:battery error:error];
     }
     [self cannel];
 }
@@ -472,8 +476,8 @@ typedef enum : NSUInteger {
         LOG_D(@"Device version is new.");
     }
     
-    if ([self.delegate respondsToSelector:@selector(reportSyncDeviceResult:error:)]) {
-        [self.delegate reportSyncDeviceResult:_activityArray error:nil];
+    if ([self.delegate respondsToSelector:@selector(reportSyncDeviceResult:battery:error:)]) {
+        [self.delegate reportSyncDeviceResult:_activityArray battery:battery error:nil];
     }
     [self cannel];
 }
@@ -488,8 +492,8 @@ typedef enum : NSUInteger {
 - (void)deviceUpdateResult:(BOOL)success {
     LOG_D(@"deviceUpdateResult %d", success);
     
-    if ([self.delegate respondsToSelector:@selector(reportSyncDeviceResult:error:)]) {
-        [self.delegate reportSyncDeviceResult:_activityArray error:nil];
+    if ([self.delegate respondsToSelector:@selector(reportSyncDeviceResult:battery:error:)]) {
+        [self.delegate reportSyncDeviceResult:_activityArray battery:battery error:nil];
     }
     [self cannel];
 }
