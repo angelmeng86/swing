@@ -47,6 +47,7 @@
     [MagicalRecord setLoggingLevel:MagicalRecordLoggingLevelOff];
     
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+    [SVProgressHUD setMinimumDismissTimeInterval:3.0];
     [self setKeyboradManager];
     
     NSString *json = [[NSUserDefaults standardUserDefaults] objectForKey:@"kid"];

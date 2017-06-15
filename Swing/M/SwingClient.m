@@ -759,7 +759,8 @@
 }
 
 - (NSURLSessionDataTask *)kidsUploadBatteryStatus:(int)battery macId:(NSString*)macId completion:( void (^)(NSError *error) )completion {
-    NSDictionary *data = @{@"macId":macId, @"dateReceived":@([[NSDate date] timeIntervalSince1970]), @"battery":@(battery)};
+    int64_t date = [[NSDate date] timeIntervalSince1970];
+    NSDictionary *data = @{@"macId":macId, @"dateReceived":@(date), @"batteryLife":@(battery)};
     LOG_D(@"kidsUploadBatteryStatus: %@", data);
     NSURLSessionDataTask *task = [self.sessionManager POST:_URL.batteryStatus parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
