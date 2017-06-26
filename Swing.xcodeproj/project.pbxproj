@@ -19,8 +19,6 @@
 		0F176EC21DE48FB70014F079 /* Event+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F176EBE1DE48FB70014F079 /* Event+CoreDataProperties.m */; };
 		0F1B77FC1E4EAC4600FD2421 /* OptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B77FB1E4EAC4600FD2421 /* OptionViewController.m */; };
 		0F1D939D1DEDD90F000444B9 /* BLEDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1D939C1DEDD90F000444B9 /* BLEDelegate.m */; };
-		0F200C0B1E631CF000B12D44 /* A-022317.bin in Resources */ = {isa = PBXBuildFile; fileRef = 0F200C091E631CF000B12D44 /* A-022317.bin */; };
-		0F200C0C1E631CF000B12D44 /* B-022317.bin in Resources */ = {isa = PBXBuildFile; fileRef = 0F200C0A1E631CF000B12D44 /* B-022317.bin */; };
 		0F37056E1E096A6700E87BF0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0F3705701E096A6700E87BF0 /* Localizable.strings */; };
 		0F445E0F1D7094A6008A092C /* JSONValueTransformer+NSData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F445E0E1D7094A6008A092C /* JSONValueTransformer+NSData.m */; };
 		0F45AB831D6316FA00EF385F /* STextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB821D6316FA00EF385F /* STextField.m */; };
@@ -36,8 +34,8 @@
 		0FD6B3E71D61B79300C00A45 /* ChoicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6B3E61D61B79300C00A45 /* ChoicesViewController.m */; };
 		0FDAF5AA1D6405EF007CD808 /* citystate.json in Resources */ = {isa = PBXBuildFile; fileRef = 0FDAF5A91D6405EF007CD808 /* citystate.json */; };
 		0FDBDA951D708725004F7AAF /* LMLocalData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FDBDA941D708725004F7AAF /* LMLocalData.m */; };
-		0FEB6D131EDD72AF007507D4 /* A-052817.bin in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB6D111EDD72AF007507D4 /* A-052817.bin */; };
-		0FEB6D141EDD72AF007507D4 /* B-052817.bin in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB6D121EDD72AF007507D4 /* B-052817.bin */; };
+		0FEB6D5F1F014909007507D4 /* A-062617.bin in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB6D5D1F014909007507D4 /* A-062617.bin */; };
+		0FEB6D601F014909007507D4 /* B-062617.bin in Resources */ = {isa = PBXBuildFile; fileRef = 0FEB6D5E1F014909007507D4 /* B-062617.bin */; };
 		0FEC584A1D69D91800201EBD /* BatteryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEC58451D69D91700201EBD /* BatteryModel.m */; };
 		AD05B5BD1D3BCAA4007BCF7C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD05B5BC1D3BCAA4007BCF7C /* LoginViewController.m */; };
 		AD05B5C01D3BD187007BCF7C /* SwingClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AD05B5BF1D3BD187007BCF7C /* SwingClient.m */; };
@@ -147,8 +145,6 @@
 		0F1B77FB1E4EAC4600FD2421 /* OptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionViewController.m; sourceTree = "<group>"; };
 		0F1D939B1DEDD90F000444B9 /* BLEDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEDelegate.h; sourceTree = "<group>"; };
 		0F1D939C1DEDD90F000444B9 /* BLEDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEDelegate.m; sourceTree = "<group>"; };
-		0F200C091E631CF000B12D44 /* A-022317.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "A-022317.bin"; sourceTree = "<group>"; };
-		0F200C0A1E631CF000B12D44 /* B-022317.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "B-022317.bin"; sourceTree = "<group>"; };
 		0F37056F1E096A6700E87BF0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0F3705721E096C2F00E87BF0 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0F3705731E096C3800E87BF0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -179,8 +175,8 @@
 		0FDAF5A91D6405EF007CD808 /* citystate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = citystate.json; sourceTree = "<group>"; };
 		0FDBDA931D708725004F7AAF /* LMLocalData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMLocalData.h; sourceTree = "<group>"; };
 		0FDBDA941D708725004F7AAF /* LMLocalData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMLocalData.m; sourceTree = "<group>"; };
-		0FEB6D111EDD72AF007507D4 /* A-052817.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "A-052817.bin"; sourceTree = "<group>"; };
-		0FEB6D121EDD72AF007507D4 /* B-052817.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "B-052817.bin"; sourceTree = "<group>"; };
+		0FEB6D5D1F014909007507D4 /* A-062617.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "A-062617.bin"; sourceTree = "<group>"; };
+		0FEB6D5E1F014909007507D4 /* B-062617.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "B-062617.bin"; sourceTree = "<group>"; };
 		0FEC58441D69D91700201EBD /* BatteryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BatteryModel.h; sourceTree = "<group>"; };
 		0FEC58451D69D91700201EBD /* BatteryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BatteryModel.m; sourceTree = "<group>"; };
 		2C19A6FBE22DAA79A59B1FD3 /* libPods-Swing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Swing.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -699,10 +695,8 @@
 		ADDCD3E91D4C54960031DC66 /* Res */ = {
 			isa = PBXGroup;
 			children = (
-				0FEB6D111EDD72AF007507D4 /* A-052817.bin */,
-				0FEB6D121EDD72AF007507D4 /* B-052817.bin */,
-				0F200C091E631CF000B12D44 /* A-022317.bin */,
-				0F200C0A1E631CF000B12D44 /* B-022317.bin */,
+				0FEB6D5D1F014909007507D4 /* A-062617.bin */,
+				0FEB6D5E1F014909007507D4 /* B-062617.bin */,
 				0FDAF5A91D6405EF007CD808 /* citystate.json */,
 				ADDCD3EA1D4C54960031DC66 /* font */,
 				ADDCD3ED1D4C54960031DC66 /* storyboard */,
@@ -885,19 +879,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADDEAE101DE299FB00AD478A /* Swing.xcdatamodeld in Resources */,
-				0F200C0C1E631CF000B12D44 /* B-022317.bin in Resources */,
 				0F37056E1E096A6700E87BF0 /* Localizable.strings in Resources */,
 				0F140B711D88432B005B9763 /* alert2.json in Resources */,
 				ADDCD3FB1D4C59F10031DC66 /* Avenir-bold.ttf in Resources */,
-				0F200C0B1E631CF000B12D44 /* A-022317.bin in Resources */,
 				ADDCD3FC1D4C59F10031DC66 /* Avenir-Book.otf in Resources */,
+				0FEB6D601F014909007507D4 /* B-062617.bin in Resources */,
 				ADDCD3F31D4C54960031DC66 /* LoginFlow.storyboard in Resources */,
 				ADDCD3F51D4C54960031DC66 /* SyncDevice.storyboard in Resources */,
+				0FEB6D5F1F014909007507D4 /* A-062617.bin in Resources */,
 				AD1CEF121D5AE886004FEC24 /* MainTab2.storyboard in Resources */,
 				ADDCD3F41D4C54960031DC66 /* MainTab.storyboard in Resources */,
 				0FDAF5AA1D6405EF007CD808 /* citystate.json in Resources */,
-				0FEB6D131EDD72AF007507D4 /* A-052817.bin in Resources */,
-				0FEB6D141EDD72AF007507D4 /* B-052817.bin in Resources */,
 				ADFC2C3B1D369949004EDCDF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

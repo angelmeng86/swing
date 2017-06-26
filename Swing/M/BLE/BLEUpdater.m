@@ -15,6 +15,10 @@
 #define OAD_TRANSMIT_INTERVAL           0.03
 #define OAD_ONCE_NUMBER                 1
 
+#define KD_IMAGE_VERSION            @"KDV0005-A"
+#define KD_IMAGE_A                  @"A-062617.bin"
+#define KD_IMAGE_B                  @"B-062617.bin"
+
 //#define OAD_EVENT_TRIGGER
 
 typedef enum : NSUInteger {
@@ -43,7 +47,7 @@ typedef enum : NSUInteger {
 {
     if (self = [super init]) {
         self.state = BLEUpdaterStateNone;
-        self.imageVersion = @"KDV0004-A";
+        self.imageVersion = KD_IMAGE_VERSION;
     }
     return self;
 }
@@ -53,7 +57,7 @@ typedef enum : NSUInteger {
     //固件版本
     NSMutableString *path= [[NSMutableString  alloc] initWithString: [[NSBundle mainBundle] resourcePath]];
     [path appendString:@"/"];
-    [path appendString:A ? @"A-052817.bin" : @"B-052817.bin"];
+    [path appendString:A ? KD_IMAGE_A : KD_IMAGE_B];
     //    [path appendString:A ? @"A-super-MP-OTA-64M-022317.bin" : @"B-super-MP-OTA-64M-022317.bin"];
     self.imageData = [NSData dataWithContentsOfFile:path];
     LOG_D(@"Loaded firmware \"%@\"of size : %ld",path, (unsigned long)self.imageData.length);
