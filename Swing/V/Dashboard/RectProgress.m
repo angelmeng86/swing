@@ -9,7 +9,7 @@
 #import "RectProgress.h"
 #import "CommonDef.h"
 
-#define EDGE_VALUE  10
+#define EDGE_VALUE  5
 
 @implementation RectProgress
 
@@ -44,7 +44,10 @@
 
 - (void)drawTextInRect:(CGRect)rect {
     UIEdgeInsets insets = UIEdgeInsetsMake(0, EDGE_VALUE, 0, EDGE_VALUE);
-    [super drawTextInRect:UIEdgeInsetsInsetRect(rect, insets)];
+//    [super drawTextInRect:UIEdgeInsetsInsetRect(rect, insets)];
+    
+    CGRect actualRect = CGRectMake(0, 0, CGRectGetWidth(self.frame) / self.progressTotal * self.progressCounter, CGRectGetHeight(self.frame));
+    [super drawTextInRect:UIEdgeInsetsInsetRect(actualRect, insets)];
 }
 
 // Only override drawRect: if you perform custom drawing.
@@ -57,5 +60,9 @@
     [super drawRect:rect];
 }
 
+//- (CGRect)textRectForBounds:(CGRect)bounds limitedToNumberOfLines:(NSInteger)numberOfLines
+//{
+//    return CGRectMake(50, 0, CGRectGetWidth(self.frame) / self.progressTotal * self.progressCounter, CGRectGetHeight(self.frame));
+//}
 
 @end

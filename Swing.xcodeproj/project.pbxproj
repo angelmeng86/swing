@@ -88,6 +88,7 @@
 		ADBC9BD31D578403007E4A2C /* JSONValueTransformer+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBC9BD21D578403007E4A2C /* JSONValueTransformer+UIColor.m */; };
 		ADCED9E41D3D2BAC002E3F78 /* LoginedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCED9E31D3D2BAC002E3F78 /* LoginedModel.m */; };
 		ADCED9E71D3D3C8B002E3F78 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCED9E61D3D3C8B002E3F78 /* RegisterViewController.m */; };
+		ADD267151F0D0453005B18E8 /* alert_jp.json in Resources */ = {isa = PBXBuildFile; fileRef = ADD267141F0D0453005B18E8 /* alert_jp.json */; };
 		ADD6555C1D5B886D0054FB24 /* AlertSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD6555B1D5B886D0054FB24 /* AlertSelectViewController.m */; };
 		ADD655611D5B8DAC0054FB24 /* AlertModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD655601D5B8DAC0054FB24 /* AlertModel.m */; };
 		ADDCD3F31D4C54960031DC66 /* LoginFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADDCD3EE1D4C54960031DC66 /* LoginFlow.storyboard */; };
@@ -286,6 +287,9 @@
 		ADCED9E31D3D2BAC002E3F78 /* LoginedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginedModel.m; sourceTree = "<group>"; };
 		ADCED9E51D3D3C8B002E3F78 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		ADCED9E61D3D3C8B002E3F78 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		ADD267121F0CBE71005B18E8 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		ADD267131F0CDC78005B18E8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		ADD267141F0D0453005B18E8 /* alert_jp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = alert_jp.json; sourceTree = "<group>"; };
 		ADD6555A1D5B886D0054FB24 /* AlertSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertSelectViewController.h; sourceTree = "<group>"; };
 		ADD6555B1D5B886D0054FB24 /* AlertSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertSelectViewController.m; sourceTree = "<group>"; };
 		ADD6555F1D5B8DAC0054FB24 /* AlertModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertModel.h; sourceTree = "<group>"; };
@@ -701,6 +705,7 @@
 				ADDCD3EA1D4C54960031DC66 /* font */,
 				ADDCD3ED1D4C54960031DC66 /* storyboard */,
 				0F140B701D88432B005B9763 /* alert2.json */,
+				ADD267141F0D0453005B18E8 /* alert_jp.json */,
 				0F3705701E096A6700E87BF0 /* Localizable.strings */,
 			);
 			path = Res;
@@ -862,6 +867,8 @@
 				Base,
 				es,
 				ru,
+				ja,
+				"zh-Hant",
 			);
 			mainGroup = ADFC2C1F1D369949004EDCDF;
 			productRefGroup = ADFC2C291D369949004EDCDF /* Products */;
@@ -878,6 +885,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADD267151F0D0453005B18E8 /* alert_jp.json in Resources */,
 				ADDEAE101DE299FB00AD478A /* Swing.xcdatamodeld in Resources */,
 				0F37056E1E096A6700E87BF0 /* Localizable.strings in Resources */,
 				0F140B711D88432B005B9763 /* alert2.json in Resources */,
@@ -1060,6 +1068,8 @@
 				0F37056F1E096A6700E87BF0 /* en */,
 				0F3705721E096C2F00E87BF0 /* es */,
 				0F3705731E096C3800E87BF0 /* ru */,
+				ADD267121F0CBE71005B18E8 /* ja */,
+				ADD267131F0CDC78005B18E8 /* zh-Hant */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

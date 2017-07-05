@@ -1,0 +1,205 @@
+/*
+ Localizable.strings
+ Swing
+ 
+ Created by Mapple on 2016/12/20.
+ Copyright © 2016年 zzteam. All rights reserved.
+ */
+"Calendar"="カレンダー";
+"Today's Schedule"="今日の予定";
+"Monthly Schedule"="今月の予定";
+
+"January"="1月";
+"February"="2月";
+"March"="3月";
+"April"="4月";
+"May"="5月";
+"June"="6月";
+"July"="7月";
+"August"="8月";
+"Spetember"="9月";
+"October"="10月";
+"November"="11月";
+"December"="12月";
+
+"JAN"="睦月";
+"FEB"="如月";
+"MAR"="弥生";
+"APR"="卯月";
+"MAY"="皐月";
+"JUN"="水無月";
+"JUL"="文月";
+"AUG"="葉月";
+"SEP"="長月";
+"OCT"="神無月";
+"NOV"="霜月";
+"DEC"="師走";
+
+"MON"="月";
+"TUE"="火";
+"WED"="水";
+"THU"="木";
+"FRI"="金";
+"SAT"="土";
+"SUN"="日";
+
+"Save"="セーブ";
+"Select Event"="イベントを選ぶ";
+"Start"="開始時間";
+"End"="終了時間";
+"Color Label"="カラーラベル";
+"Advance"="前進";
+"City"="市";
+"State"="県";
+"Repeat"="繰り返す";
+"Description"="説明";
+"To Do List"="リストを作る";
+"Add Your To Do List"="リストに加える";
+
+"Never"="今回だけ";
+"Every Day"="毎日";
+"Every Week"="毎週";
+
+"Dashboard"="運動記録";
+"You Don't Have any Data yet"="データがまだありません";
+"Request access"="アクセスリクエスト";
+"Go to profile"="個人情報";
+"Request pending. Awaiting Responses"="リクエストを保留。返答を待っています。";
+"How are you doing today?"="ご機嫌はいかがですか？";
+"Below Average!"="平均以下です";
+"Almost There!"="もうすぐ目標達成です";
+"Excellent!"="目標を達成しました";
+"Today"="今日";
+"Don't give up. You can do this!"="あきらめないでください。貴方ならできます！";
+"Steps"="歩数";
+"Distance"="距離";
+"Flights"="階段";
+"Indoor"="室内";
+"Outdoor"="室外";
+"One more time. You are almost there"="あと少しです。頑張ってください。";
+"Woohoo! You've reached your goal!"="おめでとうございます！目標を達成しました。";
+"This Week"="今週";
+"This Month"="今月";
+"This Year"="今年";
+
+"Sync"="に接続";
+"Would you like to sync now?"="データをに接続しますか？";
+"Yes, please"="はい";
+"No, go to dashboard"="いいえ。イベント・レコードを開きます。";
+"Sync another watch"="他の時計をに接続する。";
+"Select Watch to Sync"="に接続する時計を選ぶ";
+"Searching for your device!"="貴方の時計を検索しています。";
+"Found your device!"="貴方の時計を見つけました。";
+"Sync Now"="に接続し始めます";
+"Syncing"="に接続しています";
+"Sync Completed"="に接続しました";
+"Go to dashboard"="イベント・レコードを開きます。";
+"We can't find your device!"="あなたの時計が見つかりません";
+"Try Again"="もう一度試してみてください";
+"Go to last synced data"="前回の（ブルートゥース）に接続したデータに移動する。";
+
+"My Watch"="私の時計";
+"Battery"="電池";
+
+"Profile"="個人資料";
+"Edit"="編集";
+"Parent"="両親";
+"My hosting device"="私の時計";
+"Device shared with me"="わたしと共有する時計";
+"Logout"="ログアウト";
+"Language"="言語";
+
+"Please select your language"="使用する言語を選んでください";
+"Select"="選択";
+"Login"="ログイン";
+"Sign up/ login"="サインアップ/ログイン";
+"or"="或いは";
+"Login with Facebook"="フエイスブックでログイン";
+"Login with Google"="グーグルでログイン";
+"Email"="電子メール";
+"Password"="パスワード";
+"First name"="名前";
+"Last name"="苗字";
+"Phone number"="電話番号";
+"Zip code"="郵便番号";
+
+"Do you have a Swing Watch?"="貴方はスイングウォッチを持っていますか？";
+"Yes"="はい";
+"No"="いいえ";
+"Would you like to purchase one?"="購入しますか？";
+"Not yet"="いいえ";
+"searching"="検索中";
+"Please select your Swing Watch"="貴方のスイングウォッチを選んでください";
+"Added"="追加";
+"We've successfully added your Swing Watch"="貴方のスイングウォッチを追加しました";
+"Setup your profile"="貴方の基本情報を設定してください。";
+"Contact us!"="お問い合わせ";
+"Contact Us"="お問い合わせ";
+"Sorry!"="すみません";
+"We couldn’t find your Swing Watch. Please make sure your watch is fully charged"="貴方のスイングウォッチが見つかりません。時計の電池の充電状態を確認してください。";
+"Search Again"="もう一度検索";
+"Kid's name"="お子さんの名前";
+"Add profile picture"="写真を追加";
+"Import from Facebook"="フエスブックから導入";
+"Take a picture"="写真を撮る";
+"Choose from library"="ライブラリーから選択する";
+"Cancel"="キャンセル";
+"Use photo"="写真撮影";
+"Add another watch"="他の時計を追加する";
+
+"Agenda reminders(only for the App)"="アジェンダ・リマインダ（アプリケーションのみ）";
+"Good morning"="おはようございます";
+"Make bed"="ベッドを整えます";
+"Get Dress"="ドレスを着る";
+"Eat breakfast"="朝食を食べる";
+"Brush teeth"="歯を磨く";
+"Get Ready for school"="学校に行く準備をします";
+"Put on pajamas"="Put on pajamas";
+"Story time"="Story time";
+"Good night"="おやすみなさい";
+"Collect toys"="おもちゃを整理する";
+"Set table"="Set table";
+"Feed pet"="ペットを給餌する";
+"Water plants"="Water plants";
+"Clean table"="Clean table";
+"Clean bedroom"="部屋を整理する";
+"Homework time"="宿題の時間";
+"Take a nap"="仮眠を取ります";
+"Outdoor play time"="屋外プレイタイム";
+"Fun time"="楽しい時間";
+"Exercise"="スポーツをする";
+"Practice music"="音楽を練習する";
+"Drawing time"="描画時間";
+"Reading time"="読書の時間";
+"Take a bath"="バスタイム";
+"Family time"="家族の時間";
+"lunch time"="ランチタイム";
+"dinner time"="夕食の時間";
+"afternoon snack time"="午後のスナック時間";
+"review the backpack"="袋を準備する";
+
+"SupporUrl"="http://kidsdynamic.com";
+
+"Activity"="運動した量";
+"Login"="ログイン";
+"Option"="オープション";
+"Account"="アカウント";
+"Edit Profile"="プロファイル編集";
+"Edit Your Kid's Profile"="お子さんのプロフィールを編集する";
+"About"="概要";
+"Version"="バージョン";
+"You have not bind device yet."="デバイスに接続していません";
+"Search a watch"="時計を検索しています";
+"No Event"="イベントはありません";
+"Alarm Clock"="目覚まし時計";
+"Morning Routine"="毎朝の日課";
+"Bed Time Routine"="毎版の日課";
+"Activities"="運動量";
+"Every Month"="毎月";
+
+"Update Completed!"="アップデートに成功しました";
+"Please Press the Button on Your Watch and Sync Again. Major update is incomplete, it will restart again during next sync."="時計のボタンを押してもう一度シンク（同期）してください";
+"Updating Your Watch!"="貴方の時計を更新中です";
+"Please Have Your Watch Close by. the watch is locked during sync."="貴方の時計を携帯電話の近くに寄せてください";
+
+"User Guide"="ユーザーウィザード";

@@ -1,0 +1,205 @@
+/*
+ Localizable.strings
+ Swing
+ 
+ Created by Mapple on 2016/12/20.
+ Copyright © 2016年 zzteam. All rights reserved.
+ */
+"Calendar"="日曆";
+"Today's Schedule"="今日行程";
+"Monthly Schedule"="月份行事曆";
+
+"January"="一月";
+"February"="二月";
+"March"="三月";
+"April"="四月";
+"May"="五月";
+"June"="六月";
+"July"="七月";
+"August"="八月";
+"Spetember"="九月";
+"October"="十月";
+"November"="十一月";
+"December"="十二月";
+
+"JAN"="JAN";
+"FEB"="FEB";
+"MAR"="MAR";
+"APR"="APR";
+"MAY"="MAY";
+"JUN"="JUN";
+"JUL"="JUL";
+"AUG"="AUG";
+"SEP"="SEP";
+"OCT"="OCT";
+"NOV"="NOV";
+"DEC"="DEC";
+
+"MON"="星期一";
+"TUE"="星期二";
+"WED"="星期三";
+"THU"="星期四";
+"FRI"="星期五";
+"SAT"="星期六";
+"SUN"="星期日";
+
+"Save"="儲存";
+"Select Event"="事件選擇";
+"Start"="開始時間";
+"End"="結束時間";
+"Color Label"="顏色標籤";
+"Advance"="進階";
+"City"="城市";
+"State"="州/縣";
+"Repeat"="重覆";
+"Description"="詳細描述";
+"To Do List"="代辦事項列表";
+"Add Your To Do List"="新增代辦事項列表";
+
+"Never"="從不";
+"Every Day"="每天";
+"Every Week"="每週";
+
+"Dashboard"="活動紀錄";
+"You Don't Have any Data yet"="您未有任何資料";
+"Request access"="傳送請求";
+"Go to profile"="個人資訊";
+"Request pending. Awaiting Responses"="請求等待回應";
+"How are you doing today?"="今天如何？";
+"Below Average!"="低於平均";
+"Almost There!"="快達到目標了";
+"Excellent!"="完美達標";
+"Today"="今日";
+"Don't give up. You can do this!"="別放棄.你一定辦得到";
+"Steps"="步數";
+"Distance"="距離";
+"Flights"="爬樓";
+"Indoor"="室內";
+"Outdoor"="室外";
+"One more time. You are almost there"="再多努力，你快達標了";
+"Woohoo! You've reached your goal!"="哇！你已經達標了";
+"This Week"="本週";
+"This Month"="本月";
+"This Year"="今年";
+
+"Sync"="同步";
+"Would you like to sync now?"="立即同步";
+"Yes, please"="是,請同步";
+"No, go to dashboard"="不，開啟活動紀錄";
+"Sync another watch"="同步另一隻手錶";
+"Select Watch to Sync"="選擇手錶同步";
+"Searching for your device!"="搜尋您的手錶";
+"Found your device!"="找到您的手錶";
+"Sync Now"="馬上同步";
+"Syncing"="同步中";
+"Sync Completed"="同步完成";
+"Go to dashboard"="開啟活動紀錄";
+"We can't find your device!"="無法找到您的手錶";
+"Try Again"="再試一次";
+"Go to last synced data"="開啟舊的同步紀錄";
+
+"My Watch"="我的手錶";
+"Battery"="電池";
+
+"Profile"="個人資訊";
+"Edit"="編輯";
+"Parent"="父母";
+"My hosting device"="我的手錶";
+"Device shared with me"="已分享對象";
+"Logout"="登出";
+"Language"="操作語言";
+
+"Please select your language"="請選擇你的操作語言";
+"Select"="選擇";
+"Login"="Iniciar";
+"Sign up/ login"="註冊/登入";
+"or"="或是";
+"Login with Facebook"="經由FaceBook登入";
+"Login with Google"="經由Google登入";
+"Email"="信箱";
+"Password"="密碼";
+"First name"="名字";
+"Last name"="姓氏";
+"Phone number"="手機號碼";
+"Zip code"="郵遞區號";
+
+"Do you have a Swing Watch?"="你有Swing Watch嗎";
+"Yes"="是的";
+"No"="不是";
+"Would you like to purchase one?"="想要購買嗎";
+"Not yet"="不是";
+"searching"="尋找中";
+"Please select your Swing Watch"="請選擇你的Swing Watch";
+"Added"="增加";
+"We've successfully added your Swing Watch"="我們已經成功加入你的Swing Watch";
+"Setup your profile"="設定你的基本資料";
+"Contact us!"="聯絡我們";
+"Contact Us"="聯絡我們";
+"Sorry!"="抱歉！";
+"We couldn’t find your Swing Watch. Please make sure your watch is fully charged"="尋找不到你的Swing Watch. 請確認手錶是充飽電的狀態";
+"Search Again"="再次尋找";
+"Kid's name"="小孩的名字";
+"Add profile picture"="增加照片";
+"Import from Facebook"="從FaceBook導入";
+"Take a picture"="拍照";
+"Choose from library"="從手機圖片資料庫中選擇";
+"Cancel"="取消";
+"Use photo"="拍照";
+"Add another watch"="增加其他的手錶";
+
+"Agenda reminders(only for the App)"="提示事件(僅於手機提示)";
+"Good morning"="早安";
+"Make bed"="整理床鋪";
+"Get Dress"="穿衣服";
+"Eat breakfast"="吃早餐";
+"Brush teeth"="刷牙";
+"Get Ready for school"="準備去上學";
+"Put on pajamas"="穿睡衣";
+"Story time"="說故事時間";
+"Good night"="晚安";
+"Collect toys"="整理玩具";
+"Set table"="整理桌子";
+"Feed pet"="喂寵物";
+"Water plants"="澆花";
+"Clean table"="清理桌子";
+"Clean bedroom"="打掃房間";
+"Homework time"="寫功課";
+"Take a nap"="休息片刻";
+"Outdoor play time"="戶外活動";
+"Fun time"="娛樂時間";
+"Exercise"="運動";
+"Practice music"="練習音樂";
+"Drawing time"="畫畫時間";
+"Reading time"="閱讀時間";
+"Take a bath"="洗澡";
+"Family time"="家庭時間";
+"lunch time"="午餐時間";
+"dinner time"="晚餐時間";
+"afternoon snack time"="下午茶";
+"review the backpack"="檢查背包";
+
+"SupporUrl"="http://kidsdynamic.com";
+
+"Activity"="活動量";
+"Login"="登入";
+"Option"="選項";
+"Account"="帳戶";
+"Edit Profile"="修改基本資料";
+"Edit Your Kid's Profile"="修改小孩的基本資料";
+"About"="關於";
+"Version"="版本";
+"You have not bind device yet."="尚未與其他裝置連結";
+"Search a watch"="尋找手錶";
+"No Event"="無事件";
+"Alarm Clock"="鬧鐘";
+"Morning Routine"="早晨日常";
+"Bed Time Routine"="晚間日常";
+"Activities"="活動量";
+"Every Month"="每月";
+
+"Update Completed!"="上傳成功！";
+"Please Press the Button on Your Watch and Sync Again. Major update is incomplete, it will restart again during next sync."="請按下按鍵並再次同步";
+"Updating Your Watch!"="您的手錶正在更新中";
+"Please Have Your Watch Close by. the watch is locked during sync."="請把手錶靠近手機";
+
+"User Guide"="用戶嚮導";

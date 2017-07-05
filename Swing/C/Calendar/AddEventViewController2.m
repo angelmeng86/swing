@@ -245,10 +245,10 @@
 - (void)changeAction {
     BOOL hidden = self.todoCtl.hidden;
     if (hidden) {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Normal" style:UIBarButtonItemStyleDone target:self action:@selector(changeAction)];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:LOC_STR(@"Normal") style:UIBarButtonItemStyleDone target:self action:@selector(changeAction)];
     }
     else {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Advance" style:UIBarButtonItemStyleDone target:self action:@selector(changeAction)];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:LOC_STR(@"Advance") style:UIBarButtonItemStyleDone target:self action:@selector(changeAction)];
     }
     [self changeAdvance:hidden];
 }
@@ -281,8 +281,7 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     if (textField == self.nameTF && self.nameTF.text.length > 0) {
         if (alertArray == nil) {
-            NSString *path = [[NSBundle mainBundle] pathForResource:@"alert2" ofType:@"json"];
-            id json = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:kNilOptions error:NULL];
+            id json = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[GlobalCache shareInstance].curEventFile] options:kNilOptions error:NULL];
             if ([json isKindOfClass:[NSArray class]]) {
                 alertArray = json;
             }
@@ -450,7 +449,8 @@
         return;
     }
     
-    [SVProgressHUD showWithStatus:LOC_STR(@"Saving, please wait...")];
+    [SVProgressHUD show];
+//    [SVProgressHUD showWithStatus:LOC_STR(@"Saving, please wait...")];
     
 //eventName, startDate, endDate, color, status, description, alert, city, state
     UILabel *label = (UILabel*)[self.repeatTF.rightView viewWithTag:2016];

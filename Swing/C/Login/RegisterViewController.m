@@ -76,19 +76,20 @@
         [self.phoneTF resignFirstResponder];
         [self.zipCodeTF resignFirstResponder];
         
-        [SVProgressHUD showWithStatus:@"Register, please wait..."];
+        [SVProgressHUD show];
+//        [SVProgressHUD showWithStatus:@"Register, please wait..."];
         [[SwingClient sharedClient] userRegister:@{@"email":self.email, @"password":self.pwd, @"phoneNumber":(self.phoneTF.text == nil ? @"" : self.phoneTF.text), @"firstName":self.firstNameTF.text, @"lastName":self.lastNameTF.text, @"language":[GlobalCache shareInstance].curLanguage} completion:^(id user, NSError *error) {
             if (error) {
                 LOG_D(@"registerUser fail: %@", error);
                 [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
             }
             else {
-                [SVProgressHUD showWithStatus:@"Login, please wait..."];
+//                [SVProgressHUD showWithStatus:@"Login, please wait..."];
                 [[SwingClient sharedClient] userLogin:self.email password:self.pwd completion:^(NSError *error) {
                     if (!error) {
                         //Login success
                         if (image) {
-                            [SVProgressHUD showWithStatus:@"UploadImage, please wait..."];
+//                            [SVProgressHUD showWithStatus:@"UploadImage, please wait..."];
                             [[SwingClient sharedClient] userUploadProfileImage:image completion:^(NSString *profileImage, NSError *error) {
                                 if (error) {
                                     LOG_D(@"uploadProfileImage fail: %@", error);

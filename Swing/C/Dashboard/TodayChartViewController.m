@@ -90,6 +90,9 @@
     self.indoor.steps = [GlobalCache shareInstance].local.indoorSteps;
     self.outdoor.steps = [GlobalCache shareInstance].local.outdoorSteps;
     
+    self.stepProgress.adjustsFontSizeToFitWidth = YES;
+//    self.stepProgress.backgroundColor = [UIColor lightGrayColor];
+    
     self.titleLabel.text = LOC_STR(@"Today");
     [self.indoorBtn setTitle:LOC_STR(@"Indoor") forState:UIControlStateNormal];
     [self.outdoorBtn setTitle:LOC_STR(@"Outdoor") forState:UIControlStateNormal];
@@ -125,6 +128,10 @@
         self.stepProgress.progressTotal = self.indoor.steps * 2;
         self.stepProgress.progressCounter = self.indoor.steps;
         self.stepProgress.text = [NSString stringWithFormat:@"%@ %ld", LOC_STR(@"Steps"), self.indoor.steps];
+        
+//        self.stepProgress.progressTotal = 100;
+//        self.stepProgress.progressCounter = 20;
+//        self.stepProgress.text = @"1000";
     }
     else {
         self.stepProgress.progressTotal = self.outdoor.steps * 2;

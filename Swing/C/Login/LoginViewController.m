@@ -124,7 +124,8 @@
 
 - (void)login {
         if ([self validateTextField]) {
-            [SVProgressHUD showWithStatus:@"Please wait..."];
+            [SVProgressHUD show];
+//            [SVProgressHUD showWithStatus:@"Please wait..."];
             [[SwingClient sharedClient] userIsEmailRegistered:self.emailTextField.text completion:^(NSNumber *result, NSError *error) {
                 if (![self isError:error tag:@"isEmailRegistered"]) {
                     LOG_D(@"isEmailRegistered success: %@", result);
@@ -139,13 +140,13 @@
                         [self.navigationController pushViewController:ctl animated:YES];
                     }
                     else {
-                        [SVProgressHUD showWithStatus:@"Login, please wait..."];
+//                        [SVProgressHUD showWithStatus:@"Login, please wait..."];
                         [[SwingClient sharedClient] userLogin:self.emailTextField.text password:self.pwdTextField.text completion:^(NSError *error) {
                             if (![self isError:error tag:@"Login"]) {
                                 //Login success
                                 [[SwingClient sharedClient] userRetrieveProfileWithCompletion:^(id user, NSArray *kids, NSError *error) {
                                     if (![self isError:error tag:@"retrieveProfile"]) {
-                                        [SVProgressHUD showWithStatus:@"Loading data, please wait..."];
+//                                        [SVProgressHUD showWithStatus:@"Loading data, please wait..."];
                                         //继续获取所有Event进行本地缓存
                                         [self cacheEventsV1];
                                         //继续获取当天步数进行本地缓存

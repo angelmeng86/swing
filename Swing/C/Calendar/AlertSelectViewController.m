@@ -21,8 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = LOC_STR(@"Select Event");
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"alert2" ofType:@"json"];
-    id json = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:kNilOptions error:NULL];
+    id json = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[GlobalCache shareInstance].curEventFile] options:kNilOptions error:NULL];
     if ([json isKindOfClass:[NSArray class]]) {
         self.alertArray = json;
     }

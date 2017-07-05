@@ -96,7 +96,8 @@
 
 - (void)doneAction:(id)sender {
     if ([self validateTextField]) {
-        [SVProgressHUD showWithStatus:@"Saving, please wait..."];
+        [SVProgressHUD show];
+//        [SVProgressHUD showWithStatus:@"Saving, please wait..."];
         NSDictionary *data = @{ @"phoneNumber":self.phoneTF.text, @"firstName":self.firstNameTF.text, @"lastName":self.lastNameTF.text, @"zipCode":self.zipCodeTF.text};
         [[SwingClient sharedClient] userUpdateProfile:data completion:^(id user, NSError *error) {
             if (error) {
@@ -105,7 +106,7 @@
             }
             else {
                 if (image) {
-                    [SVProgressHUD showWithStatus:@"UploadImage, please wait..."];
+//                    [SVProgressHUD showWithStatus:@"UploadImage, please wait..."];
                     [[SwingClient sharedClient] userUploadProfileImage:image completion:^(NSString *profileImage, NSError *error) {
                         if (error) {
                             LOG_D(@"uploadProfileImage fail: %@", error);

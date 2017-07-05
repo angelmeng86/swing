@@ -44,6 +44,7 @@
 @property (strong, nonatomic) NSString* cacheSupportUrl;
 
 - (NSString*)curLanguage;
+- (NSString*)curEventFile;
 - (NSString *)showText:(NSString *)key;
 
 //@property (strong, nonatomic) WeatherModel* wearther;

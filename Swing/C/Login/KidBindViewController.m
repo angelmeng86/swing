@@ -92,14 +92,16 @@
         
         if ([self validateTextField]) {
             //查询后台数据是否已存在绑定的Mac
-            [SVProgressHUD showWithStatus:@"Check kid info, please wait..."];
+            [SVProgressHUD show];
+//            [SVProgressHUD showWithStatus:@"Check kid info, please wait..."];
             [[SwingClient sharedClient] userRetrieveProfileWithCompletion:^(id user, NSArray *kids, NSError *error) {
                 if (!error) {
                     if ([GlobalCache shareInstance].kid) {
                         [SVProgressHUD showErrorWithStatus:@"You had been bind a watch!"];
                         return;
                     }
-                    [SVProgressHUD showWithStatus:@"Add kid info, please wait..."];
+                    [SVProgressHUD show];
+//                    [SVProgressHUD showWithStatus:@"Add kid info, please wait..."];
                     
                     NSMutableDictionary *data = [NSMutableDictionary dictionaryWithDictionary:@{@"name":self.firstNameTF.text}];
                     if (self.macAddress) {

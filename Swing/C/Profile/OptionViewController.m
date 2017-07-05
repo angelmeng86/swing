@@ -161,7 +161,7 @@
     ChoicesViewController *ctl = [[ChoicesViewController alloc] initWithStyle:UITableViewStylePlain];
     ctl.delegate = self;
     ctl.navigationItem.title = LOC_STR(@"Language");
-    ctl.textArray = @[LOC_STR(@"English"), LOC_STR(@"Spanish"), LOC_STR(@"Russian")];
+    ctl.textArray = @[LOC_STR(@"English"), LOC_STR(@"Spanish"), LOC_STR(@"Russian"), LOC_STR(@"Japanese"), LOC_STR(@"Chinese Traditional")];
     [self.navigationController pushViewController:ctl animated:YES];
 }
 
@@ -173,6 +173,12 @@
             break;
         case 2:
             lang = @"ru";
+            break;
+        case 3:
+            lang = @"ja";
+            break;
+        case 4:
+            lang = @"zh-Hant";
             break;
         default:
             break;

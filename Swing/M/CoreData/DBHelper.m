@@ -305,7 +305,7 @@
 
 + (NSArray*)queryNearAlertEventModel:(int)limit {
     //根据传入的limit参数来产生同等数量的repeat event作为备用，最后与normal event进行排序，截取前limit个event返回。
-    NSPredicate *predicate_date = [NSPredicate predicateWithFormat:@"startDate > %@ AND alert > 35 AND repeat == ''", [NSDate date]];
+    NSPredicate *predicate_date = [NSPredicate predicateWithFormat:@"startDate > %@ AND alert > 0 AND repeat == ''", [NSDate date]];
     
     NSFetchRequest *request = [Event MR_requestAllSortedBy:@"startDate"
                                                 ascending:YES

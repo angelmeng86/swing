@@ -69,7 +69,8 @@
 
 - (void)doneAction {
         if ([self validateTextField]) {
-            [SVProgressHUD showWithStatus:@"Edit kid info, please wait..."];
+            [SVProgressHUD show];
+//            [SVProgressHUD showWithStatus:@"Edit kid info, please wait..."];
             
             NSMutableDictionary *data = [NSMutableDictionary dictionaryWithDictionary:@{@"name":self.firstNameTF.text, @"kidId":@([GlobalCache shareInstance].kid.objId)}];
 //            NSString *mac = [GlobalCache shareInstance].kid.macId;
@@ -105,7 +106,8 @@
                         }
                     }
                     if (image && model) {
-                        [SVProgressHUD showWithStatus:@"UploadImage, please wait..."];
+                        [SVProgressHUD show];
+//                        [SVProgressHUD showWithStatus:@"UploadImage, please wait..."];
                         [[SwingClient sharedClient] kidsUploadKidsProfileImage:image kidId:model.objId completion:^(NSString *profileImage, NSError *error) {
                             if (error) {
                                 LOG_D(@"uploadProfileImage fail: %@", error);

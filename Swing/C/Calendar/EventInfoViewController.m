@@ -151,12 +151,14 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
     else {
-        [SVProgressHUD showWithStatus:@"Saving, please wait..."];
+        [SVProgressHUD show];
+//        [SVProgressHUD showWithStatus:@"Saving, please wait..."];
     }
 }
 
 - (IBAction)delAction:(id)sender {
-    [SVProgressHUD showWithStatus:@"Removing, please wait..."];
+    [SVProgressHUD show];
+//    [SVProgressHUD showWithStatus:@"Removing, please wait..."];
     [[SwingClient sharedClient] calendarDeleteEvent:self.model.objId completion:^(NSError *error) {
         if (!error) {
             LOG_D(@"calendarDeleteEvent sucess.");

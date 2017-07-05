@@ -319,7 +319,7 @@
     }
     else {
         NSString *languageID = [[NSBundle mainBundle] preferredLocalizations].firstObject;
-        if ([languageID.lowercaseString isEqualToString:@"es"] || [languageID.lowercaseString isEqualToString:@"ru"]) {
+        if ([languageID.lowercaseString isEqualToString:@"es"] || [languageID.lowercaseString isEqualToString:@"ru"] || [languageID.lowercaseString isEqualToString:@"ja"] || [languageID.lowercaseString isEqualToString:@"zh-hant"]/*zh-Hant*/) {
             self.cacheLang = languageID;
         }
         else {
@@ -327,6 +327,14 @@
         }
     }
     return self.cacheLang;
+}
+
+- (NSString*)curEventFile
+{
+    if ([self.curLanguage isEqualToString:@"ja"] || [self.curLanguage hasPrefix:@"zh"]) {
+        return [[NSBundle mainBundle] pathForResource:@"alert_jp" ofType:@"json"];
+    }
+    return [[NSBundle mainBundle] pathForResource:@"alert2" ofType:@"json"];;
 }
 
 - (NSString *)showText:(NSString *)key
