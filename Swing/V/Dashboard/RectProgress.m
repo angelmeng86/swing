@@ -46,8 +46,16 @@
     UIEdgeInsets insets = UIEdgeInsetsMake(0, EDGE_VALUE, 0, EDGE_VALUE);
 //    [super drawTextInRect:UIEdgeInsetsInsetRect(rect, insets)];
     
-    CGRect actualRect = CGRectMake(0, 0, CGRectGetWidth(self.frame) / self.progressTotal * self.progressCounter, CGRectGetHeight(self.frame));
-    [super drawTextInRect:UIEdgeInsetsInsetRect(actualRect, insets)];
+    if(self.progressCounter <= self.progressTotal)
+    {
+        CGRect actualRect = CGRectMake(0, 0, CGRectGetWidth(self.frame) / self.progressTotal * self.progressCounter, CGRectGetHeight(self.frame));
+        [super drawTextInRect:UIEdgeInsetsInsetRect(actualRect, insets)];
+    }
+    else {
+        CGRect actualRect = CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
+        [super drawTextInRect:UIEdgeInsetsInsetRect(actualRect, insets)];
+    }
+    
 }
 
 // Only override drawRect: if you perform custom drawing.
@@ -55,7 +63,13 @@
 - (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, self.color == nil ? RGBA(0x62, 0x5c, 0xb5, 1.0f).CGColor : self.color.CGColor);
-    CGContextFillRect(context, CGRectMake(0, 0, CGRectGetWidth(self.frame) / self.progressTotal * self.progressCounter, CGRectGetHeight(self.frame)));
+    if(self.progressCounter <= self.progressTotal)
+    {
+        CGContextFillRect(context, CGRectMake(0, 0, CGRectGetWidth(self.frame) / self.progressTotal * self.progressCounter, CGRectGetHeight(self.frame)));
+    }
+    else {
+        CGContextFillRect(context, CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame)));
+    }
     // Drawing code
     [super drawRect:rect];
 }

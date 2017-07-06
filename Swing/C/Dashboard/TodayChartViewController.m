@@ -125,17 +125,56 @@
 
 - (void)reloadData {
     if (self.indoorBtn.selected) {
-        self.stepProgress.progressTotal = self.indoor.steps * 2;
-        self.stepProgress.progressCounter = self.indoor.steps;
-        self.stepProgress.text = [NSString stringWithFormat:@"%@ %ld", LOC_STR(@"Steps"), self.indoor.steps];
+//        self.stepProgress.progressTotal = self.indoor.steps * 2;
+//        self.stepProgress.progressCounter = self.indoor.steps;
         
-//        self.stepProgress.progressTotal = 100;
-//        self.stepProgress.progressCounter = 20;
-//        self.stepProgress.text = @"1000";
+        if (self.indoor.steps == 0) {
+            self.stepProgress.progressTotal = 0;
+            self.stepProgress.progressCounter = 0;
+            self.subTitle.text = LOC_STR(@"Don't give up. You can do this!");
+        }
+        else if (self.indoor.steps < STEPS_LEVEL_LOW) {
+            self.stepProgress.progressTotal = 100;
+            self.stepProgress.progressCounter = 40;
+            self.subTitle.text = LOC_STR(@"Don't give up. You can do this!");
+        }
+        else if (self.indoor.steps < STEPS_LEVEL_GOOD) {
+            self.stepProgress.progressTotal = STEPS_LEVEL_HIGH;
+            self.stepProgress.progressCounter = self.indoor.steps;
+            self.subTitle.text = LOC_STR(@"One more time. You are almost there");
+        }
+        else if (self.indoor.steps < STEPS_LEVEL_HIGH) {
+            self.stepProgress.progressTotal = STEPS_LEVEL_HIGH;
+            self.stepProgress.progressCounter = self.indoor.steps;
+            self.subTitle.text = LOC_STR(@"Woohoo! You've reached your goal!");
+        }
+        
+        self.stepProgress.text = [NSString stringWithFormat:@"%@ %ld", LOC_STR(@"Steps"), self.indoor.steps];
     }
     else {
-        self.stepProgress.progressTotal = self.outdoor.steps * 2;
-        self.stepProgress.progressCounter = self.outdoor.steps;
+        if (self.outdoor.steps == 0) {
+            self.stepProgress.progressTotal = 0;
+            self.stepProgress.progressCounter = 0;
+            self.subTitle.text = LOC_STR(@"Don't give up. You can do this!");
+        }
+        else if (self.outdoor.steps < STEPS_LEVEL_LOW) {
+            self.stepProgress.progressTotal = 100;
+            self.stepProgress.progressCounter = 40;
+//            self.subTitle.text = LOC_STR(@"Don't give up. You can do this!");
+        }
+        else if (self.outdoor.steps < STEPS_LEVEL_GOOD) {
+            self.stepProgress.progressTotal = STEPS_LEVEL_HIGH;
+            self.stepProgress.progressCounter = self.outdoor.steps;
+//            self.subTitle.text = LOC_STR(@"One more time. You are almost there");
+        }
+        else if (self.outdoor.steps < STEPS_LEVEL_HIGH) {
+            self.stepProgress.progressTotal = STEPS_LEVEL_HIGH;
+            self.stepProgress.progressCounter = self.outdoor.steps;
+//            self.subTitle.text = LOC_STR(@"Woohoo! You've reached your goal!");
+        }
+        
+//        self.stepProgress.progressTotal = self.outdoor.steps * 2;
+//        self.stepProgress.progressCounter = self.outdoor.steps;
         self.stepProgress.text = [NSString stringWithFormat:@"%@ %ld", LOC_STR(@"Steps"), self.outdoor.steps];
     }
 //    [self.stepProgress setNeedsLayout];

@@ -38,6 +38,9 @@
 #define AVATAR_BASE_URL     @"https://childrenlab.s3.amazonaws.com/userProfile/"
 //userProfile/
 
+#define STEPS_LEVEL_LOW         7000
+#define STEPS_LEVEL_GOOD        10000
+#define STEPS_LEVEL_HIGH        15000
 
 //------------------------------------------------------------------
 
