@@ -1181,10 +1181,10 @@
 				INFOPLIST_FILE = Swing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.daiyuechuan.swingapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kidsdynamic.swing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "eccfb326-c2b4-4fd1-b827-84df45dbaab1";
-				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: com.daiyuechuan.swingapp";
+				PROVISIONING_PROFILE = "54db6baf-f075-48d9-8cf7-769d27a5af7e";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: com.kidsdynamic.swing";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1205,10 +1205,10 @@
 				INFOPLIST_FILE = Swing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.daiyuechuan.swingapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kidsdynamic.swing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "eccfb326-c2b4-4fd1-b827-84df45dbaab1";
-				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: com.daiyuechuan.swingapp";
+				PROVISIONING_PROFILE = "54db6baf-f075-48d9-8cf7-769d27a5af7e";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: com.kidsdynamic.swing";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

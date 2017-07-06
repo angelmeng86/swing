@@ -106,8 +106,9 @@
                     NSMutableDictionary *data = [NSMutableDictionary dictionaryWithDictionary:@{@"name":self.firstNameTF.text}];
                     if (self.macAddress) {
                         //Mac 地址进行倒置转换
-                        NSData *realMac = [Fun dataReversal:self.macAddress];
-                        NSString *mac = [Fun dataToHex:realMac];
+//                        NSData *realMac = [Fun dataReversal:self.macAddress];
+                        //这里的MAC已经倒置过了
+                        NSString *mac = [Fun dataToHex:self.macAddress];
                         [data setObject:mac forKey:@"macId"];//new api
                     }
                     
