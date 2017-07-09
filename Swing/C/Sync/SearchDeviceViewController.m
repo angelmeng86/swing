@@ -237,7 +237,7 @@ typedef enum : NSUInteger {
 }
 */
 - (void)syncAction:(NSArray*)eventArray {
-    [client syncDevice:_peripheral macAddress:[GlobalCache shareInstance].kid.macId event:eventArray completion:^(NSMutableArray *activities, NSError *error, int battery) {
+    [client syncDevice:_peripheral macAddress:nil/*[GlobalCache shareInstance].kid.macId*/ event:eventArray completion:^(NSMutableArray *activities, NSError *error, int battery, NSString *macId) {
         [self changeStatus:SyncStatusSyncing];
         
         [SVProgressHUD dismiss];
@@ -283,7 +283,8 @@ typedef enum : NSUInteger {
         }
         */
         
-        [self uploadBattery:battery];
+//        [self uploadBattery:battery];
+        [self checkMacId:macId battery:battery];
     } update:^(float percent, NSString *remainTime) {
         NSString *text = [LOC_STR(@"Updating Your Watch!") stringByAppendingString:@"\f"];
         self.statusLabel.text = [text stringByAppendingString:remainTime];
@@ -316,6 +317,28 @@ typedef enum : NSUInteger {
                 LOG_D(@"kidsBatteryStatus fail: %@", error);
             }
             [self uploadData];
+        }];
+    }
+}
+
+- (void)checkMacId:(NSString*)realMac battery:(int)battery {
+    if ([[GlobalCache shareInstance].kid.macId isEqualToString:realMac]) {
+        [self uploadBattery:battery];
+    }
+    else {
+        [[SwingClient sharedClient] updateKidRevertMacID:[GlobalCache shareInstance].kid.objId macId:realMac completion:^(NSError *error) {
+            if (!error) {
+                LOG_D(@"updateKidRevertMacID success.");
+                [GlobalCache shareInstance].kid.macId = realMac;
+                [[GlobalCache shareInstance] saveInfo];
+                [self uploadData];
+            }
+            else {
+                LOG_D(@"updateKidRevertMacID fail: %@", error);
+                [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                [self changeStatus:SyncStatusSyncCompleted];
+            }
+            
         }];
     }
 }

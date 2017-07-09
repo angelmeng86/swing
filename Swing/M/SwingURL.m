@@ -62,6 +62,10 @@
     return @"/v1/kids/update";
 }
 
+- (NSString*)updateKidRevertMacID {
+    return @"/v1/kids/updateKidRevertMacID";
+}
+
 //废弃
 - (NSString*)kidsRemove {
     return @"/v1/kids/remove";

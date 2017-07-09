@@ -415,6 +415,30 @@
     return task;
 }
 
+- (NSURLSessionDataTask *)updateKidRevertMacID:(int64_t)kidId macId:(NSString*)macId completion:( void (^)(NSError *error) )completion
+{
+    LOG_D(@"updateKidRevertMacID kidId:%lld macId:%@", kidId, macId);
+    NSURLSessionDataTask *task = [self.sessionManager PUT:_URL.kidsUpdate parameters:@{@"kidId":@(kidId), @"macId":macId} success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LOG_D(@"updateKidRevertMacID info:%@", responseObject);
+            NSError *err = [self getErrorMessage:responseObject];
+            if (err) {
+                completion(err);
+            }
+            else {
+                completion(nil);
+            }
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSError *err = [self filterTokenInvalid:task.response err:error];
+            completion(err);
+        });
+    }];
+    
+    return task;
+}
+
 - (NSURLSessionDataTask *)kidsUpdate:(NSDictionary*)data completion:( void (^)(id kid, NSError *error) )completion {
     LOG_D(@"kidsUpdate data:%@", data);
     NSURLSessionDataTask *task = [self.sessionManager PUT:_URL.kidsUpdate parameters:data success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

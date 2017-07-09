@@ -43,6 +43,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) NSData *ffa4Data1;
 @property (nonatomic, strong) NSData *ffa4Data2;
 @property (nonatomic, strong) NSData *macAddress;
+@property (nonatomic, strong) NSString *realMac;
 @property (nonatomic, strong) NSMutableIndexSet *timeSet;
 
 @property (nonatomic, strong) CBPeripheral *peripheral;
@@ -231,8 +232,7 @@ typedef enum : NSUInteger {
                 }
                 else {
                     //Mac 地址进行倒置转换
-                    NSData *realMac = [Fun dataReversal:self.macAddress];
-                    model.macId = [Fun dataToHex:realMac];
+                    model.macId = self.realMac;
                 }
                 [model setIndoorData:self.ffa4Data1];
                 [model setOutdoorData:self.ffa4Data2];
@@ -283,6 +283,7 @@ typedef enum : NSUInteger {
     if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:@"FFA6"]]) {
         LOG_D(@"FFA6 Value:%@", characteristic.value);
         self.macAddress = characteristic.value;
+        self.realMac = [Fun dataToHex:[Fun dataReversal:self.macAddress]];
         LOG_D(@"write FFA7");
         [self writeAlertNumber:characteristic.service];
         syncState = SwingSyncAlertNumberWrited;
@@ -455,8 +456,8 @@ typedef enum : NSUInteger {
         
     }
     
-    if ([self.delegate respondsToSelector:@selector(reportSyncDeviceResult:battery:error:)]) {
-        [self.delegate reportSyncDeviceResult:_activityArray battery:battery error:error];
+    if ([self.delegate respondsToSelector:@selector(reportSyncDeviceResult:battery:macId:error:)]) {
+        [self.delegate reportSyncDeviceResult:_activityArray battery:battery macId:self.realMac error:error];
     }
     [self cannel];
 }
@@ -476,8 +477,8 @@ typedef enum : NSUInteger {
         LOG_D(@"Device version is new.");
     }
     
-    if ([self.delegate respondsToSelector:@selector(reportSyncDeviceResult:battery:error:)]) {
-        [self.delegate reportSyncDeviceResult:_activityArray battery:battery error:nil];
+    if ([self.delegate respondsToSelector:@selector(reportSyncDeviceResult:battery:macId:error:)]) {
+        [self.delegate reportSyncDeviceResult:_activityArray battery:battery macId:self.realMac error:nil];
     }
     [self cannel];
 }
@@ -492,8 +493,8 @@ typedef enum : NSUInteger {
 - (void)deviceUpdateResult:(BOOL)success {
     LOG_D(@"deviceUpdateResult %d", success);
     
-    if ([self.delegate respondsToSelector:@selector(reportSyncDeviceResult:battery:error:)]) {
-        [self.delegate reportSyncDeviceResult:_activityArray battery:battery error:nil];
+    if ([self.delegate respondsToSelector:@selector(reportSyncDeviceResult:battery:macId:error:)]) {
+        [self.delegate reportSyncDeviceResult:_activityArray battery:battery macId:self.realMac error:nil];
     }
     [self cannel];
 }
