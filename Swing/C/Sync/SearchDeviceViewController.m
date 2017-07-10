@@ -246,45 +246,9 @@ typedef enum : NSUInteger {
         LOG_BEG(@"Upload Activity BEGIN");
         self.activitys = [DBHelper queryActivityModel];
         LOG_D(@"TotalActivity count %d, cur count %d", (int)self.activitys.count, (int)activities.count);
-        /*
-        LOG_D(@"PreActivity count %lu", (unsigned long)[GlobalCache shareInstance].activitys.count);
-        if ([GlobalCache shareInstance].activitys) {
-            [[GlobalCache shareInstance].activitys addObjectsFromArray:activities];
-//            [[GlobalCache shareInstance] cacheActivity];//Test
-        }
-        else {
-            [GlobalCache shareInstance].activitys = activities;
-        }
-         */
-         
-        /*
-        long time = [[NSDate date] timeIntervalSince1970];
-        NSMutableData *data = [NSMutableData data];
-        [data appendData:[Fun longToByteArray:time]];
-        char *ptr = "\x00\x76\x01\x00\x00\x76\x01\x00\x00\x76\x01\x00\x00\x76\x01\x00\x00";
-        [data appendBytes:ptr length:17];
-        NSMutableData *data2 = [NSMutableData data];
-        [data2 appendData:[Fun longToByteArray:time]];
-        char *ptr2 = "\x01\x76\x01\x00\x00\x76\x01\x00\x00\x76\x01\x00\x00\x76\x01\x00\x00";
-        [data2 appendBytes:ptr2 length:17];
-        ActivityModel *m = [ActivityModel new];
-        m.time = time;
-        [m setIndoorData:data];
-        [m setOutdoorData:data2];
-        m.macId = [Fun dataToHex:[GlobalCache shareInstance].local.deviceMAC];
-        [activities addObject:m];
-         */
-        /*
-        if (_activitys.count == 0) {
-            ActivityModel *model = [ActivityModel new];
-            model.macId = [Fun dataToHex:[GlobalCache shareInstance].local.deviceMAC];
-//            [model reset];
-            _activitys = [NSMutableArray arrayWithObject:model];
-        }
-        */
         
-//        [self uploadBattery:battery];
-        [self checkMacId:macId battery:battery];
+        [self uploadBattery:battery];
+//        [self checkMacId:macId battery:battery];
     } update:^(float percent, NSString *remainTime) {
         NSString *text = [LOC_STR(@"Updating Your Watch!") stringByAppendingString:@"\f"];
         self.statusLabel.text = [text stringByAppendingString:remainTime];
@@ -322,10 +286,9 @@ typedef enum : NSUInteger {
 }
 
 - (void)checkMacId:(NSString*)realMac battery:(int)battery {
-    if ([[GlobalCache shareInstance].kid.macId isEqualToString:realMac]) {
-        [self uploadBattery:battery];
-    }
-    else {
+    if (realMac && ![[GlobalCache shareInstance].kid.macId isEqualToString:realMac]) {
+        LOG_D(@"macId is reverse.");
+//        realMac = [Fun dataToHex:[Fun dataReversal:[Fun hexToData:realMac]]];//后台又做了倒置，所以我们还得倒置成反的。。。
         [[SwingClient sharedClient] updateKidRevertMacID:[GlobalCache shareInstance].kid.objId macId:realMac completion:^(NSError *error) {
             if (!error) {
                 LOG_D(@"updateKidRevertMacID success.");
@@ -340,6 +303,9 @@ typedef enum : NSUInteger {
             }
             
         }];
+    }
+    else {
+        [self uploadBattery:battery];
     }
 }
 

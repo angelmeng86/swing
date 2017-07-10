@@ -417,8 +417,11 @@
 
 - (NSURLSessionDataTask *)updateKidRevertMacID:(int64_t)kidId macId:(NSString*)macId completion:( void (^)(NSError *error) )completion
 {
+    //后台使用PUT+URI参数，和其它PUT+json不一致，需要特殊处理。。。
+    NSMutableString *uri = [NSMutableString stringWithString:_URL.updateKidRevertMacID];
+    [uri appendFormat:@"?kidId=%lld&macId=%@", kidId, macId];
     LOG_D(@"updateKidRevertMacID kidId:%lld macId:%@", kidId, macId);
-    NSURLSessionDataTask *task = [self.sessionManager PUT:_URL.kidsUpdate parameters:@{@"kidId":@(kidId), @"macId":macId} success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
+    NSURLSessionDataTask *task = [self.sessionManager PUT:uri parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"updateKidRevertMacID info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
