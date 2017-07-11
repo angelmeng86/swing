@@ -247,8 +247,8 @@ typedef enum : NSUInteger {
         self.activitys = [DBHelper queryActivityModel];
         LOG_D(@"TotalActivity count %d, cur count %d", (int)self.activitys.count, (int)activities.count);
         
-        [self uploadBattery:battery];
-//        [self checkMacId:macId battery:battery];
+//        [self uploadBattery:battery];
+        [self checkMacId:macId battery:battery];
     } update:^(float percent, NSString *remainTime) {
         NSString *text = [LOC_STR(@"Updating Your Watch!") stringByAppendingString:@"\f"];
         self.statusLabel.text = [text stringByAppendingString:remainTime];
