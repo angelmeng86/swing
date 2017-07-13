@@ -73,6 +73,31 @@
                      }];
 }
 
+- (void)showArrow:(CGRect)target
+{
+    UIView *line = [UIView new];
+    line.backgroundColor = [UIColor whiteColor];
+    [self.cover addSubview:line];
+    [line autoSetDimension:ALDimensionWidth toSize:2.0f];
+    [line autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.actionSheet withOffset:20];
+    [line autoAlignAxisToSuperviewAxis:ALAxisVertical];
+    [line autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:SCREEN_HEIGHT - target.origin.y + 15];
+    
+    [[UIApplication sharedApplication].keyWindow addSubview:self];
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+         usingSpringWithDamping:0.9
+          initialSpringVelocity:0.7
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.cover.alpha = 1.0;
+                         
+                     }
+                     completion:^(BOOL finished) {
+                         
+                     }];
+}
+
 - (void)dismiss {
     
     [UIView animateWithDuration:0.5
@@ -101,13 +126,14 @@
     [_actionSheet autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:40];
     [_actionSheet autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:40];
     [_actionSheet autoSetDimension:ALDimensionHeight toSize:240];
-    [_actionSheet autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+    NSLayoutConstraint *lc = [_actionSheet autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+    lc.constant = -80.0f;
     
     [_actionSheet addSubview:({
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
         btn.layer.cornerRadius = 5.0f;
         btn.backgroundColor = COMMON_TITLE_COLOR;
-        btn.titleLabel.font = [UIFont boldAvenirFontOfSize:17];
+        btn.titleLabel.font = [UIFont boldAvenirFontOfSize:15];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btn setTitle:LOC_STR(@"Okay") forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];

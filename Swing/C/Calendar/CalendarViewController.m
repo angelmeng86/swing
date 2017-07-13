@@ -199,13 +199,16 @@
 - (void)eventViewDidAdded:(NSDate*)date
 {
     if (![GlobalCache shareInstance].local.disableSyncTip) {
+        UIWindow * window = [[[UIApplication sharedApplication] delegate] window];
+        CGRect rect = [self.syncBtn convertRect:self.syncBtn.bounds toView:window];
+        
         LFSyncSheet *sheet = [LFSyncSheet actionSheetViewWithBlock:^(LFSyncSheet *actionSheet, BOOL check) {
             if (check) {
                 [GlobalCache shareInstance].local.disableSyncTip = check;
                 [[GlobalCache shareInstance] saveInfo];
             }
         }];
-        [sheet show];
+        [sheet showArrow:rect];
     }
 }
 

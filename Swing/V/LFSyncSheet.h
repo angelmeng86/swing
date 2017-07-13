@@ -17,5 +17,6 @@ typedef void (^LFSyncSheetDidActionBlock)(LFSyncSheet *actionSheet, BOOL check);
 + (instancetype)actionSheetViewWithBlock:(LFSyncSheetDidActionBlock)actionBlock;
 
 - (void)show;
+- (void)showArrow:(CGRect)target;
 
 @end
