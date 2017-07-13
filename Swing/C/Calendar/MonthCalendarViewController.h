@@ -20,5 +20,7 @@
 
 @property (weak, nonatomic) IBOutlet JTCalendarMenuView *calendarMenuView;
 @property (weak, nonatomic) IBOutlet JTHorizontalCalendarView *calendarContentView;
+@property (weak, nonatomic) IBOutlet UIButton *syncBtn;
+- (IBAction)syncAction:(id)sender;
 
 @end

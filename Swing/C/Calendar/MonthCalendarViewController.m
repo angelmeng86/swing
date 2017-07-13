@@ -8,6 +8,7 @@
 
 #import "MonthCalendarViewController.h"
 #import "DayCalendarViewController.h"
+#import "LFSyncSheet.h"
 #import "CommonDef.h"
 
 @interface MonthCalendarViewController ()
@@ -20,6 +21,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self initCalendarManager:NO];
+    
+    [self.syncBtn setTitle:LOC_STR(@"Sync Now") forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -73,6 +76,25 @@
         }
     }
     */
+}
+
+- (IBAction)syncAction:(id)sender {
+    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"SyncDevice" bundle:nil];
+    UIViewController *ctl = [stroyBoard instantiateInitialViewController];
+    [self presentViewController:ctl animated:YES completion:nil];
+}
+
+- (void)eventViewDidAdded:(NSDate*)date
+{
+    if (![GlobalCache shareInstance].local.disableSyncTip) {
+        LFSyncSheet *sheet = [LFSyncSheet actionSheetViewWithBlock:^(LFSyncSheet *actionSheet, BOOL check) {
+            if (check) {
+                [GlobalCache shareInstance].local.disableSyncTip = check;
+                [[GlobalCache shareInstance] saveInfo];
+            }
+        }];
+        [sheet show];
+    }
 }
 
 @end

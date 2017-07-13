@@ -19,6 +19,8 @@
 //@property (nonatomic) int64_t kidId;
 @property (nonatomic) int battery;
 
+@property (nonatomic) BOOL disableSyncTip;
+
 @property (nonatomic, strong) NSString<Optional> *language;
 
 - (void)checkDate;

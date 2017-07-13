@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="J63-vw-OfT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="J63-vw-OfT">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -113,20 +113,38 @@
                                     <constraint firstAttribute="width" constant="220" id="oJP-0e-0ZD"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U2j-Wj-dSy" customClass="RoundButton">
+                                <rect key="frame" x="80.333333333333314" y="534" width="254" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="4Th-OD-TqH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                <state key="normal" title="Sync">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="syncAction:" destination="4vA-Cq-YDg" eventType="touchUpInside" id="L6F-qc-Ovv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="BQ8-qt-y4x" firstAttribute="leading" secondItem="svF-ri-E3e" secondAttribute="leading" id="13U-kT-UJO"/>
                             <constraint firstItem="nnY-FK-G2i" firstAttribute="top" secondItem="LH6-Bz-oxy" secondAttribute="bottom" priority="750" constant="30" id="1Nk-lb-63g"/>
                             <constraint firstItem="1FD-iw-Etv" firstAttribute="width" secondItem="nnY-FK-G2i" secondAttribute="width" id="4cj-ia-bt9"/>
-                            <constraint firstItem="vCY-RI-Lga" firstAttribute="top" relation="greaterThanOrEqual" secondItem="1FD-iw-Etv" secondAttribute="bottom" constant="10" id="AcI-L0-FOM"/>
                             <constraint firstItem="ZLs-hh-xJ3" firstAttribute="centerX" secondItem="svF-ri-E3e" secondAttribute="centerX" id="BQs-ga-I9C"/>
                             <constraint firstItem="1FD-iw-Etv" firstAttribute="centerX" secondItem="svF-ri-E3e" secondAttribute="centerX" id="BTb-VL-ehE"/>
+                            <constraint firstItem="U2j-Wj-dSy" firstAttribute="height" secondItem="1FD-iw-Etv" secondAttribute="height" id="Dhh-nk-ObK"/>
                             <constraint firstItem="fkd-6t-2XK" firstAttribute="top" secondItem="BQ8-qt-y4x" secondAttribute="bottom" id="E8E-cB-gtH"/>
+                            <constraint firstItem="U2j-Wj-dSy" firstAttribute="top" secondItem="1FD-iw-Etv" secondAttribute="bottom" constant="10" id="EvW-tW-dU2"/>
                             <constraint firstItem="1FD-iw-Etv" firstAttribute="top" secondItem="nnY-FK-G2i" secondAttribute="bottom" constant="10" id="Jh6-Ky-wsx"/>
                             <constraint firstItem="LH6-Bz-oxy" firstAttribute="top" secondItem="ZLs-hh-xJ3" secondAttribute="top" constant="-60" id="Nch-4U-unF"/>
                             <constraint firstItem="BQ8-qt-y4x" firstAttribute="top" secondItem="jtU-5O-05c" secondAttribute="bottom" constant="10" id="RM9-g2-Cme"/>
                             <constraint firstAttribute="trailing" secondItem="fkd-6t-2XK" secondAttribute="trailing" id="Sb9-Cw-8nn"/>
+                            <constraint firstItem="U2j-Wj-dSy" firstAttribute="centerX" secondItem="svF-ri-E3e" secondAttribute="centerX" id="TxT-mS-ZXg"/>
+                            <constraint firstItem="vCY-RI-Lga" firstAttribute="top" relation="greaterThanOrEqual" secondItem="U2j-Wj-dSy" secondAttribute="bottom" constant="10" id="UnE-Ad-vLn"/>
+                            <constraint firstItem="U2j-Wj-dSy" firstAttribute="width" secondItem="1FD-iw-Etv" secondAttribute="width" id="VpS-IW-Dau"/>
                             <constraint firstAttribute="trailingMargin" secondItem="nnY-FK-G2i" secondAttribute="trailing" constant="60" id="WB8-KV-hDI"/>
                             <constraint firstItem="LH6-Bz-oxy" firstAttribute="centerX" secondItem="svF-ri-E3e" secondAttribute="centerX" id="X7Z-Uw-kyK"/>
                             <constraint firstItem="ZLs-hh-xJ3" firstAttribute="top" secondItem="fkd-6t-2XK" secondAttribute="bottom" constant="80" id="btd-nj-ZPn"/>
@@ -155,6 +173,7 @@
                         <outlet property="descLabel" destination="8iF-kL-N4Q" id="LT0-08-x3x"/>
                         <outlet property="monthBtn" destination="1FD-iw-Etv" id="yLh-Ms-9GA"/>
                         <outlet property="progressView" destination="LH6-Bz-oxy" id="I2J-Xb-lKu"/>
+                        <outlet property="syncBtn" destination="U2j-Wj-dSy" id="fpL-3v-ecK"/>
                         <outlet property="timeHeightConstraint" destination="igb-uQ-GsV" id="DII-F9-t9G"/>
                         <outlet property="timeLabel" destination="ZLs-hh-xJ3" id="mnX-2d-9hV"/>
                         <outlet property="todayBtn" destination="nnY-FK-G2i" id="cpM-9N-rND"/>
@@ -245,21 +264,40 @@
                                     <constraint firstAttribute="height" constant="300" id="4PD-pt-JyE"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xr9-EB-2MD" customClass="RoundButton">
+                                <rect key="frame" x="60" y="444" width="294" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="2Fn-vY-kZr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                <state key="normal" title="Sync">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="syncAction:" destination="WxS-KM-iCW" eventType="touchUpInside" id="Ge2-hh-F2o"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="xr9-EB-2MD" secondAttribute="trailing" constant="60" id="NB4-3T-tJ0"/>
+                            <constraint firstItem="xr9-EB-2MD" firstAttribute="leading" secondItem="rin-hj-UHl" secondAttribute="leading" constant="60" id="NOk-FP-qab"/>
                             <constraint firstAttribute="trailing" secondItem="Ewy-05-8JU" secondAttribute="trailing" id="R7q-Gj-kpn"/>
                             <constraint firstItem="Ewy-05-8JU" firstAttribute="top" secondItem="oQa-Nr-wu7" secondAttribute="bottom" id="Xii-c9-GpA"/>
                             <constraint firstAttribute="trailing" secondItem="oQa-Nr-wu7" secondAttribute="trailing" id="bQb-wu-ASm"/>
                             <constraint firstItem="oQa-Nr-wu7" firstAttribute="top" secondItem="tZK-Dp-0ja" secondAttribute="bottom" constant="10" id="f3f-wD-NVU"/>
+                            <constraint firstItem="xr9-EB-2MD" firstAttribute="top" secondItem="Ewy-05-8JU" secondAttribute="bottom" constant="20" id="kCb-XH-in8"/>
                             <constraint firstItem="oQa-Nr-wu7" firstAttribute="leading" secondItem="rin-hj-UHl" secondAttribute="leading" id="mjM-Dm-OVt"/>
                             <constraint firstItem="Ewy-05-8JU" firstAttribute="leading" secondItem="rin-hj-UHl" secondAttribute="leading" id="uDc-lK-SPc"/>
+                            <constraint firstItem="5MH-bh-TG8" firstAttribute="top" relation="greaterThanOrEqual" secondItem="xr9-EB-2MD" secondAttribute="bottom" constant="10" id="w77-uU-Ypw"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Calendar" id="Zoi-Hb-6r8"/>
                     <connections>
                         <outlet property="calendarContentView" destination="Ewy-05-8JU" id="8EF-hx-Quc"/>
                         <outlet property="calendarMenuView" destination="oQa-Nr-wu7" id="OJE-Yb-qHQ"/>
+                        <outlet property="syncBtn" destination="xr9-EB-2MD" id="SKw-KG-jCX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4a6-55-8fk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1819,7 +1857,7 @@ You can do this!</string>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I2l-ZE-ca3">
                                 <rect key="frame" x="0.0" y="20" width="414" height="626"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YLJ-1F-Jsa">
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YLJ-1F-Jsa">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="390"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Event" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o1L-Bk-lcq" customClass="LFTextField">
@@ -1830,7 +1868,7 @@ You can do this!</string>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z1y-hE-pMm" customClass="LFTextField">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z1y-hE-pMm" customClass="LFTextField">
                                                 <rect key="frame" x="20" y="300" width="374" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="u6u-YP-v6s"/>
@@ -1854,7 +1892,7 @@ You can do this!</string>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XGw-Kr-jXN" customClass="LFTextField">
+                                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XGw-Kr-jXN" customClass="LFTextField">
                                                 <rect key="frame" x="20" y="210" width="182" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" id="Xvn-sX-JfX"/>
@@ -1862,19 +1900,19 @@ You can do this!</string>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             </textField>
-                                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qB3-EN-TRq" customClass="LFTextField">
+                                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qB3-EN-TRq" customClass="LFTextField">
                                                 <rect key="frame" x="212" y="210" width="182" height="35"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             </textField>
-                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ik5-5W-IUa" customClass="ToDoListView">
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ik5-5W-IUa" customClass="ToDoListView">
                                                 <rect key="frame" x="20" y="345" width="374" height="35"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="XjA-z0-wAb"/>
                                                 </constraints>
                                             </view>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Repeat" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bzM-jh-nXN" customClass="LFTextField">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Repeat" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bzM-jh-nXN" customClass="LFTextField">
                                                 <rect key="frame" x="20" y="255" width="374" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="nYS-JX-W6d"/>

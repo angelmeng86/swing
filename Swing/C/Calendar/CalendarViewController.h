@@ -16,6 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *monthBtn;
 @property (weak, nonatomic) IBOutlet UIButton *todayBtn;
+@property (weak, nonatomic) IBOutlet UIButton *syncBtn;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
 @property (weak, nonatomic) IBOutlet MDRadialProgressView *progressView;
@@ -23,4 +24,5 @@
 
 - (IBAction)todayAction:(id)sender;
 - (IBAction)monthlyAction:(id)sender;
+- (IBAction)syncAction:(id)sender;
 @end

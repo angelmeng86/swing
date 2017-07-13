@@ -112,7 +112,7 @@
 "Please select your language"="使用する言語を選んでください";
 "Select"="選択";
 "Login"="ログイン";
-"Sign up/ login"="サインアップ / ログイン";
+"Sign up/ login"="サインアップ  /  ログイン";
 "or"="或いは";
 "Login with Facebook"="フエイスブックでログイン";
 "Login with Google"="グーグルでログイン";
@@ -206,3 +206,6 @@
 "Error"="エラー";
 "Please input info."="メッセージを入力してください";
 "Token invalid, please login again."="リクエストエラー　通信障害です";
+
+"Please sync after editing events"="イベントを編集すると、時計のシンクロをして下さい。";
+"Hide this reminder"="リマインダーが通知されない";

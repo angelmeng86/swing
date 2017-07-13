@@ -31,6 +31,7 @@
 		0F927FD71DDA02680011EF90 /* BLEScanDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F927FD01DDA02680011EF90 /* BLEScanDevice.m */; };
 		0F927FD81DDA02680011EF90 /* BLESearchDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F927FD21DDA02680011EF90 /* BLESearchDevice.m */; };
 		0F927FD91DDA02680011EF90 /* BLESyncDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F927FD41DDA02680011EF90 /* BLESyncDevice.m */; };
+		0F9734B11F17919900502D8A /* LFSyncSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9734B01F17919900502D8A /* LFSyncSheet.m */; };
 		0FD6B3E71D61B79300C00A45 /* ChoicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6B3E61D61B79300C00A45 /* ChoicesViewController.m */; };
 		0FDAF5AA1D6405EF007CD808 /* citystate.json in Resources */ = {isa = PBXBuildFile; fileRef = 0FDAF5A91D6405EF007CD808 /* citystate.json */; };
 		0FDBDA951D708725004F7AAF /* LMLocalData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FDBDA941D708725004F7AAF /* LMLocalData.m */; };
@@ -171,6 +172,8 @@
 		0F927FD21DDA02680011EF90 /* BLESearchDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLESearchDevice.m; sourceTree = "<group>"; };
 		0F927FD31DDA02680011EF90 /* BLESyncDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLESyncDevice.h; sourceTree = "<group>"; };
 		0F927FD41DDA02680011EF90 /* BLESyncDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLESyncDevice.m; sourceTree = "<group>"; };
+		0F9734AF1F17919900502D8A /* LFSyncSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFSyncSheet.h; sourceTree = "<group>"; };
+		0F9734B01F17919900502D8A /* LFSyncSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFSyncSheet.m; sourceTree = "<group>"; };
 		0FD6B3E51D61B79300C00A45 /* ChoicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoicesViewController.h; sourceTree = "<group>"; };
 		0FD6B3E61D61B79300C00A45 /* ChoicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoicesViewController.m; sourceTree = "<group>"; };
 		0FDAF5A91D6405EF007CD808 /* citystate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = citystate.json; sourceTree = "<group>"; };
@@ -522,6 +525,8 @@
 				AD77979D1D4CF90C00472B27 /* Dashboard */,
 				AD7797901D4C8CF900472B27 /* Profile */,
 				AD347D181D3FDDF700E91DDD /* Login */,
+				0F9734AF1F17919900502D8A /* LFSyncSheet.h */,
+				0F9734B01F17919900502D8A /* LFSyncSheet.m */,
 				AD790F511DAF9D9B002FE2F1 /* LFTextField.m */,
 				AD790F521DAF9D9B002FE2F1 /* LFTextField.h */,
 				ADEF31D01D478E9900BB6A9B /* RoundButton.h */,
@@ -1026,6 +1031,7 @@
 				ADF9855C1D50D27400B02075 /* ColorLabel.m in Sources */,
 				0F15D2A91E0AC48E004F8F69 /* IndexViewController.m in Sources */,
 				ADF985591D50CBFC00B02075 /* DoItemLabel.m in Sources */,
+				0F9734B11F17919900502D8A /* LFSyncSheet.m in Sources */,
 				AD21A5DD1E600EF500DA72E3 /* BLEUtility.m in Sources */,
 				AD7797991D4CCFD200472B27 /* UnderlineTextField.m in Sources */,
 				AD347D171D3FD8DD00E91DDD /* SearchWatchViewController.m in Sources */,

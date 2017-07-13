@@ -12,6 +12,7 @@
 #import "CommonDef.h"
 #import "MDRadialProgressView.h"
 #import "LMCalendarDayView.h"
+#import "LFSyncSheet.h"
 
 @interface CalendarViewController ()
 
@@ -43,6 +44,7 @@
     self.monthBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
     [self.todayBtn setTitle:LOC_STR(@"Today's Schedule") forState:UIControlStateNormal];
     [self.monthBtn setTitle:LOC_STR(@"Monthly Schedule") forState:UIControlStateNormal];
+    [self.syncBtn setTitle:LOC_STR(@"Sync Now") forState:UIControlStateNormal];
 }
 
 - (void)setTimeDesc:(NSString*)time desc:(NSString*)desc {
@@ -185,6 +187,26 @@
 
 - (IBAction)monthlyAction:(id)sender {
     
+}
+
+- (IBAction)syncAction:(id)sender {
+    
+    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"SyncDevice" bundle:nil];
+    UIViewController *ctl = [stroyBoard instantiateInitialViewController];
+    [self presentViewController:ctl animated:YES completion:nil];
+}
+
+- (void)eventViewDidAdded:(NSDate*)date
+{
+    if (![GlobalCache shareInstance].local.disableSyncTip) {
+        LFSyncSheet *sheet = [LFSyncSheet actionSheetViewWithBlock:^(LFSyncSheet *actionSheet, BOOL check) {
+            if (check) {
+                [GlobalCache shareInstance].local.disableSyncTip = check;
+                [[GlobalCache shareInstance] saveInfo];
+            }
+        }];
+        [sheet show];
+    }
 }
 
 @end

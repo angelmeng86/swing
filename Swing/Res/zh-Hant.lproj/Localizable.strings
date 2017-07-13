@@ -206,3 +206,6 @@
 "Error"="錯誤";
 "Please input info."="請輸入信息";
 "Token invalid, please login again."="指令失效";
+
+"Please sync after editing events"="編輯事件後請重新同步手錶";
+"Hide this reminder"="永久不顯示提醒";
