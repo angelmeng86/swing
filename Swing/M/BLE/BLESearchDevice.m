@@ -250,7 +250,7 @@
     if (self.isCancel) {
         return;
     }
-    NSError *err = [NSError errorWithDomain:@"SwingBluetooth" code:-1 userInfo:[NSDictionary dictionaryWithObject:LOC_STR(@"We can't find your device!") forKey:NSLocalizedDescriptionKey]];
+    NSError *err = [NSError errorWithDomain:@"SwingBluetooth" code:-1 userInfo:[NSDictionary dictionaryWithObject:LOC_STR(@"We couldn’t find your Swing Watch. Please make sure your watch is fully charged") forKey:NSLocalizedDescriptionKey]];
     [self reportSearchDeviceResult:nil error:err];
 }
 
