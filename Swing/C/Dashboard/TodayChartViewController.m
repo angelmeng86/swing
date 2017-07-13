@@ -229,7 +229,7 @@
                     }
                 }
             }
-            if (self.indoor) {
+            if (indoorModel) {
                 self.indoor = indoorModel;
                 [GlobalCache shareInstance].local.indoorSteps = self.indoor.steps;
             }

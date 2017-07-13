@@ -48,8 +48,8 @@
 "Start"="開始時間";
 "End"="終了時間";
 "Color Label"="カラーラベル";
-"Advance"="前進";
-"City"="市";
+"Advance"="一歩進め設定";
+"City"="エリア";
 "State"="県";
 "Repeat"="繰り返す";
 "Description"="説明";
@@ -82,21 +82,21 @@
 "This Month"="今月";
 "This Year"="今年";
 
-"Sync"="に接続";
-"Would you like to sync now?"="データをに接続しますか？";
+"Sync"="接続";
+"Would you like to sync now?"="データを接続しますか？";
 "Yes, please"="はい";
 "No, go to dashboard"="いいえ。イベント・レコードを開きます。";
-"Sync another watch"="他の時計をに接続する。";
+"Sync another watch"="他の時計を接続する。";
 "Select Watch to Sync"="に接続する時計を選ぶ";
 "Searching for your device!"="貴方の時計を検索しています。";
-"Found your device!"="貴方の時計を見つけました。";
-"Sync Now"="に接続しを始めます";
-"Syncing"="に接続ています";
-"Sync Completed"="に接続しました";
+"Found your device!"="貴方の時計見つけました。";
+"Sync Now"="接続を始めます";
+"Syncing"="接続ています";
+"Sync Completed"="接続しました";
 "Go to dashboard"="イベント・レコードを開きます。";
 "We can't find your device!"="あなたの時計が見つかりません";
 "Try Again"="もう一度試してみてください";
-"Go to last synced data"="前回の（ブルートゥース）に接続したデータに移動する。";
+"Go to last synced data"="前回の接続したデータに移動する。";
 
 "My Watch"="私の時計";
 "Battery"="電池";
@@ -136,7 +136,7 @@
 "Contact us!"="お問い合わせ";
 "Contact Us"="お問い合わせ";
 "Sorry!"="すみません";
-"We couldn’t find your Swing Watch. Please make sure your watch is fully charged"="貴方のスイングウォッチが見つかりません。時計の電池の充電状態を確認してください。";
+"We couldn’t find your Swing Watch. Please make sure your watch is fully charged"="貴方のスイングウォッチが見つかりません。\f時計の電池の充電状態を確認してください。";
 "Search Again"="もう一度検索";
 "Kid's name"="お子さんの名前";
 "Add profile picture"="写真を追加";
@@ -148,35 +148,35 @@
 "Add another watch"="他の時計を追加する";
 
 "Agenda reminders(only for the App)"="アジェンダ・リマインダ（アプリケーションのみ）";
-"Good morning"="おはようございます";
-"Make bed"="ベッドを整えます";
-"Get Dress"="ドレスを着る";
-"Eat breakfast"="朝食を食べる";
-"Brush teeth"="歯を磨く";
-"Get Ready for school"="学校に行く準備をします";
+"Good morning"="おはよう";
+"Make bed"="ベッドを整えましょう";
+"Get Dress"="服を着ましょう";
+"Eat breakfast"="朝ごはんを食べましょう";
+"Brush teeth"="歯を磨きましょう";
+"Get Ready for school"="学校に行く準備をしましょう";
 "Put on pajamas"="パジャマを着ましょう";
 "Story time"="お話の時間です";
 "Good night"="おやすみなさい";
-"Collect toys"="おもちゃを整理する";
+"Collect toys"="おもちゃを片付けましょう";
 "Set table"="お手伝いをしましょう";
-"Feed pet"="ペットを給餌する";
+"Feed pet"="ペットに餌をやりましょう";
 "Water plants"="植木に水をやりましょう";
 "Clean table"="後片付けをしましょう";
-"Clean bedroom"="部屋を整理する";
-"Homework time"="宿題の時間";
-"Take a nap"="仮眠を取ります";
-"Outdoor play time"="屋外プレイタイム";
-"Fun time"="楽しい時間";
-"Exercise"="スポーツをする";
-"Practice music"="音楽を練習する";
-"Drawing time"="描画時間";
-"Reading time"="読書の時間";
-"Take a bath"="バスタイム";
-"Family time"="家族の時間";
-"lunch time"="ランチタイム";
-"dinner time"="夕食の時間";
-"afternoon snack time"="午後のスナック時間";
-"review the backpack"="袋を準備する";
+"Clean bedroom"="部屋を片付けましょう";
+"Homework time"="宿題の時間です";
+"Take a nap"="お昼寝の時間です";
+"Outdoor play time"="外で遊びましょう";
+"Fun time"="遊びの時間です";
+"Exercise"="スポーツの時間です";
+"Practice music"="音楽の時間です";
+"Drawing time"="お絵かきの時間です";
+"Reading time"="読書の時間です";
+"Take a bath"="お風呂の時間です";
+"Family time"="家族の時間です";
+"lunch time"="お昼ご飯の時間です";
+"dinner time"="夕食の時間です";
+"afternoon snack time"="おやつの時間です";
+"review the backpack"="明日の準備をしましょう";
 
 "SupporUrl"="http://kidsdynamic.com";
 
@@ -203,3 +203,5 @@
 "Please Have Your Watch Close by. the watch is locked during sync."="貴方の時計を携帯電話の近くに寄せてください";
 
 "User Guide"="ユーザーウィザード";
+
+"Token invalid, please login again."="リクエストエラー　通信障害です";

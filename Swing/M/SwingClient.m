@@ -92,7 +92,7 @@
     NSHTTPURLResponse *response = (NSHTTPURLResponse *)urlResponse;
     if(response.statusCode == 403) {
         [[GlobalCache shareInstance] logout];
-        [SVProgressHUD showInfoWithStatus:@"Token invalid, please login again."];
+        [SVProgressHUD showInfoWithStatus:LOC_STR(@"Token invalid, please login again.")];
     }
     else if(response.statusCode == 400) {
         NSData *data = [error.userInfo objectForKey:@"com.alamofire.serialization.response.error.data"];
