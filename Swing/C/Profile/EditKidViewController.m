@@ -60,7 +60,7 @@
 
 - (BOOL)validateTextField {
     if (self.firstNameTF.text.length == 0) {
-        [Fun showMessageBoxWithTitle:@"Error" andMessage:@"Please input info."];
+        [Fun showMessageBoxWithTitle:LOC_STR(@"Error") andMessage:LOC_STR(@"Please input info.")];
         return NO;
     }
     

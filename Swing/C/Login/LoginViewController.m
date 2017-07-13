@@ -45,11 +45,11 @@
 
 - (BOOL)validateTextField {
     if (self.emailTextField.text.length == 0 || self.pwdTextField.text.length == 0) {
-        [Fun showMessageBoxWithTitle:@"Error" andMessage:@"Please input info."];
+        [Fun showMessageBoxWithTitle:LOC_STR(@"Error") andMessage:LOC_STR(@"Please input info.")];
         return NO;
     }
     if (![Fun isValidateEmail:self.emailTextField.text]) {
-        [Fun showMessageBoxWithTitle:@"Error" andMessage:@"Email is invalid."];
+        [Fun showMessageBoxWithTitle:LOC_STR(@"Error") andMessage:LOC_STR(@"Please input info.")];
         return NO;
     }
     return YES;

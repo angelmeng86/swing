@@ -445,7 +445,7 @@
 - (void)saveEventV1 {
     int64_t kidId = [[GlobalCache shareInstance] getKidId];
     if (kidId == -1) {
-        [Fun showMessageBoxWithTitle:LOC_STR(@"Error") andMessage:LOC_STR(@"you have not bind device yet, please sync a watch.")];
+        [Fun showMessageBoxWithTitle:LOC_STR(@"Error") andMessage:LOC_STR(@"You have not bind device yet.")];
         return;
     }
     

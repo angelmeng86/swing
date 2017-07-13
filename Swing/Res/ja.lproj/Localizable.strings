@@ -203,5 +203,6 @@
 "Please Have Your Watch Close by. the watch is locked during sync."="貴方の時計を携帯電話の近くに寄せてください";
 
 "User Guide"="ユーザーウィザード";
-
+"Error"="エラー";
+"Please input info."="メッセージを入力してください";
 "Token invalid, please login again."="リクエストエラー　通信障害です";
