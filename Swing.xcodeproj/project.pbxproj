@@ -86,6 +86,7 @@
 		AD9B0D971D3BB954009FDD95 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D961D3BB954009FDD95 /* CalendarViewController.m */; };
 		AD9B0D9A1D3BB964009FDD95 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9B0D991D3BB964009FDD95 /* ProfileViewController.m */; };
 		ADA1F82A1E234D4B0066CD35 /* SwingURL.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA1F8291E234D4B0066CD35 /* SwingURL.m */; };
+		ADB5A6591F18529F005F8B8B /* FirmwareVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = ADB5A6581F18529F005F8B8B /* FirmwareVersion.m */; };
 		ADBC9BD31D578403007E4A2C /* JSONValueTransformer+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBC9BD21D578403007E4A2C /* JSONValueTransformer+UIColor.m */; };
 		ADCED9E41D3D2BAC002E3F78 /* LoginedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCED9E31D3D2BAC002E3F78 /* LoginedModel.m */; };
 		ADCED9E71D3D3C8B002E3F78 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCED9E61D3D3C8B002E3F78 /* RegisterViewController.m */; };
@@ -284,6 +285,8 @@
 		AD9B0D991D3BB964009FDD95 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		ADA1F8281E234D4B0066CD35 /* SwingURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwingURL.h; sourceTree = "<group>"; };
 		ADA1F8291E234D4B0066CD35 /* SwingURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwingURL.m; sourceTree = "<group>"; };
+		ADB5A6571F18529F005F8B8B /* FirmwareVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirmwareVersion.h; sourceTree = "<group>"; };
+		ADB5A6581F18529F005F8B8B /* FirmwareVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirmwareVersion.m; sourceTree = "<group>"; };
 		ADBC9BD11D578403007E4A2C /* JSONValueTransformer+UIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSONValueTransformer+UIColor.h"; sourceTree = "<group>"; };
 		ADBC9BD21D578403007E4A2C /* JSONValueTransformer+UIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JSONValueTransformer+UIColor.m"; sourceTree = "<group>"; };
 		ADCED9E21D3D2BAC002E3F78 /* LoginedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginedModel.h; sourceTree = "<group>"; };
@@ -490,6 +493,8 @@
 				AD1C61961DDB2AEF00331474 /* ActivityCache.m */,
 				ADA1F8281E234D4B0066CD35 /* SwingURL.h */,
 				ADA1F8291E234D4B0066CD35 /* SwingURL.m */,
+				ADB5A6571F18529F005F8B8B /* FirmwareVersion.h */,
+				ADB5A6581F18529F005F8B8B /* FirmwareVersion.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -851,7 +856,7 @@
 						CreatedOnToolsVersion = 7.0.1;
 						DevelopmentTeam = 97SA79U875;
 						LastSwiftMigration = 0810;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -965,6 +970,7 @@
 				0F927FD51DDA02680011EF90 /* BLEClient.m in Sources */,
 				ADCED9E41D3D2BAC002E3F78 /* LoginedModel.m in Sources */,
 				AD1CEF101D5AE7F5004FEC24 /* LMTabBarController2.m in Sources */,
+				ADB5A6591F18529F005F8B8B /* FirmwareVersion.m in Sources */,
 				0F45AB8B1D63614800EF385F /* ActivityResultModel.m in Sources */,
 				0F68BEEE1DE87F8D002FDFB2 /* Activity+CoreDataClass.m in Sources */,
 				ADE820791D54D99000E12768 /* WeatherModel.m in Sources */,
@@ -1182,15 +1188,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Swing/Swing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 97SA79U875;
 				INFOPLIST_FILE = Swing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kidsdynamic.swing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "54db6baf-f075-48d9-8cf7-769d27a5af7e";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: com.kidsdynamic.swing";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1206,15 +1212,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Swing/Swing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 97SA79U875;
 				INFOPLIST_FILE = Swing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kidsdynamic.swing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "54db6baf-f075-48d9-8cf7-769d27a5af7e";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: com.kidsdynamic.swing";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

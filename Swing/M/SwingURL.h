@@ -46,4 +46,6 @@
 
 @property (nonatomic, readonly, strong) NSString* retrieveActivityByTime;
 
+@property (nonatomic, readonly, strong) NSString* firmwareVersion;
+
 @end

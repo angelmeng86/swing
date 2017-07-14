@@ -127,4 +127,8 @@
     return @"/v1/activity/retrieveDataByTime";
 }
 
+- (NSString*)firmwareVersion {
+    return @"/v1/fw/currentVersion";
+}
+
 @end

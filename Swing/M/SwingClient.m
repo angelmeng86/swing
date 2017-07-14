@@ -882,4 +882,28 @@
     return task;
 }
 
+- (NSURLSessionDataTask *)getFirmwareVersionWithCompletion:( void (^)(id version, NSError *error) )completion
+{
+    NSURLSessionDataTask *task = [self.sessionManager GET:_URL.firmwareVersion parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LOG_D(@"getFirmwareVersion info:%@", responseObject);
+            NSError *err = [self getErrorMessage:responseObject];
+            if (err) {
+                completion(nil, err);
+            }
+            else {
+                FirmwareVersion *m = [[FirmwareVersion alloc] initWithDictionary:responseObject error:&err];
+                
+                completion(m, nil);
+            }
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSError *err = [self filterTokenInvalid:task.response err:error];
+            completion(nil, err);
+        });
+    }];
+    return task;
+}
+
 @end

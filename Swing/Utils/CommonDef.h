@@ -38,6 +38,8 @@
 #define AVATAR_BASE_URL     @"https://childrenlab.s3.amazonaws.com/userProfile/"
 //userProfile/
 
+#define FILE_BASE_URL     @"https://childrenlab.s3.amazonaws.com/"
+
 #define STEPS_LEVEL_LOW         7000
 #define STEPS_LEVEL_GOOD        10000
 #define STEPS_LEVEL_HIGH        15000
@@ -55,6 +57,7 @@
 #import "ActivityModel.h"
 #import "ActivityResultModel.h"
 #import "LMLocalData.h"
+#import "FirmwareVersion.h"
 
 #import "Fun.h"
 #import "CameraUtility.h"

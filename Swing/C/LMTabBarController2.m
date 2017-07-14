@@ -71,6 +71,49 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadKidPicture) name:KID_AVATAR_NOTIFICATION object:nil];
     [self loadKidPicture];
+    /*
+    [[SwingClient sharedClient] getFirmwareVersionWithCompletion:^(FirmwareVersion *version, NSError *error) {
+        if (!error) {
+            NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+            configuration.timeoutIntervalForRequest = 30;
+            AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+            
+            NSURL *URL = [NSURL URLWithString:[FILE_BASE_URL stringByAppendingString:version.fileAUrl]];
+            NSURLRequest *request1 = [NSURLRequest requestWithURL:URL];
+            
+            NSURLSessionDownloadTask *downloadTask1 = [manager downloadTaskWithRequest:request1 progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+                NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
+                return [documentsDirectoryURL URLByAppendingPathComponent:[response suggestedFilename]];
+            } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+                LOG_D(@"FileA response:%@", response);
+                if (!error) {
+                    LOG_D(@"FileA download err: %@", error);
+                }
+                else {
+                    LOG_D(@"FileA downloaded to: %@", filePath);
+                }
+                
+            }];
+            [downloadTask1 resume];
+            
+            URL = [NSURL URLWithString:[FILE_BASE_URL stringByAppendingString:version.fileBUrl]];
+            NSURLRequest *request2 = [NSURLRequest requestWithURL:URL];
+            NSURLSessionDownloadTask *downloadTask2 = [manager downloadTaskWithRequest:request2 progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+                NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
+                return [documentsDirectoryURL URLByAppendingPathComponent:[response suggestedFilename]];
+            } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+                LOG_D(@"FileB response:%@", response);
+                if (!error) {
+                    LOG_D(@"FileB download err: %@", error);
+                }
+                else {
+                    LOG_D(@"FileB downloaded to: %@", filePath);
+                }
+            }];
+            [downloadTask2 resume];
+        }
+    }];
+     */
 }
 
 - (void)loadKidPicture
