@@ -190,7 +190,6 @@
 }
 
 - (IBAction)syncAction:(id)sender {
-    
     UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"SyncDevice" bundle:nil];
     UIViewController *ctl = [stroyBoard instantiateInitialViewController];
     [self presentViewController:ctl animated:YES completion:nil];

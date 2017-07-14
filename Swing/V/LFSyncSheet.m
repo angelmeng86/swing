@@ -75,13 +75,14 @@
 
 - (void)showArrow:(CGRect)target
 {
-    UIView *line = [UIView new];
-    line.backgroundColor = [UIColor whiteColor];
+    UIImage *image = LOAD_IMAGE(@"arrow_line");
+    UIImageView *line = [[UIImageView alloc] initWithImage:[image stretchableImageWithLeftCapWidth:image.size.width / 2 topCapHeight:image.size.height / 2]];
+//    line.backgroundColor = [UIColor whiteColor];
     [self.cover addSubview:line];
-    [line autoSetDimension:ALDimensionWidth toSize:2.0f];
+//    [line autoSetDimension:ALDimensionWidth toSize:2.0f];
     [line autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.actionSheet withOffset:20];
     [line autoAlignAxisToSuperviewAxis:ALAxisVertical];
-    [line autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:SCREEN_HEIGHT - target.origin.y + 15];
+    [line autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:SCREEN_HEIGHT - target.origin.y + 10];
     
     [[UIApplication sharedApplication].keyWindow addSubview:self];
     [UIView animateWithDuration:0.5
