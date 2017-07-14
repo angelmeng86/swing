@@ -88,7 +88,12 @@ typedef enum : NSUInteger {
 #else
     [client cannelAll];
 #endif
-    [super backAction];
+    if (self.navigationController.viewControllers.count == 1) {
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    }
+    else {
+        [super backAction];
+    }
 }
 
 - (void)didBecomeActive:(NSNotification*)notification {
@@ -134,7 +139,7 @@ typedef enum : NSUInteger {
                 else {
                     LOG_D(@"searchDevice error:%@", error);
                     [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-                    [self.navigationController popViewControllerAnimated:YES];
+                    [self backAction];
                 }
             }];
 #endif
@@ -207,7 +212,7 @@ typedef enum : NSUInteger {
 #endif
     }
     else if (_status == SyncStatusSyncCompleted) {
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        [self backAction];
     }
 }
 /*
@@ -232,7 +237,7 @@ typedef enum : NSUInteger {
         }];
     }
     else if (_status == SyncStatusSyncCompleted) {
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        [self backAction];
     }
 }
 */

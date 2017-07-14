@@ -48,7 +48,7 @@
 "Start"="開始時間";
 "End"="終了時間";
 "Color Label"="カラーラベル";
-"Advance"="一歩進め設定";
+"Advance"="前へ進む";
 "City"="エリア";
 "State"="県";
 "Repeat"="繰り返す";
@@ -193,8 +193,8 @@
 "No Event"="イベントはありません";
 "Alarm Clock"="目覚まし時計";
 "Morning Routine"="毎朝の日課";
-"Bed Time Routine"="毎版の日課";
-"Activities"="運動量";
+"Bed Time Routine"="毎晩の日課";
+"Activities"="每日の日課";
 "Every Month"="毎月";
 
 "Update Completed!"="アップデートに成功しました";

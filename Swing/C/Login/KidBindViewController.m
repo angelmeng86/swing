@@ -70,9 +70,7 @@
             return;
         }
         if ([ctl isKindOfClass:[SyncDeviceViewController class]]) {
-            [self.navigationController dismissViewControllerAnimated:YES completion:^{
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"SYNC_DISMISS" object:nil];
-            }];
+            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
             return;
         }
     }

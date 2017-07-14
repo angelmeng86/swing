@@ -65,9 +65,7 @@
 }
 
 - (void)backAction {
-    [self.navigationController dismissViewControllerAnimated:YES completion:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"SYNC_DISMISS" object:nil];
-    }];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -82,9 +80,7 @@
 }
 
 - (IBAction)goDashboardAction:(id)sender {
-    [self.navigationController dismissViewControllerAnimated:YES completion:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"SYNC_DISMISS" object:nil];
-    }];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)syncCurrentAction:(UIButton*)sender {

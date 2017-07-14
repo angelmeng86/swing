@@ -10,6 +10,7 @@
 #import "DayCalendarViewController.h"
 #import "LFSyncSheet.h"
 #import "CommonDef.h"
+#import "SyncNavViewController.h"
 
 @interface MonthCalendarViewController ()
 
@@ -79,9 +80,20 @@
 }
 
 - (IBAction)syncAction:(id)sender {
+    if ([GlobalCache shareInstance].kid) {
+        UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"SyncDevice" bundle:nil];
+        UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"Syncing"];
+        SyncNavViewController *navCtl = [[SyncNavViewController alloc] initWithRootViewController:ctl];
+        [self presentViewController:navCtl animated:YES completion:nil];
+    }
+    else {
+        [SVProgressHUD showErrorWithStatus:LOC_STR(@"you have not bind device yet, please sync a watch.")];
+    }
+    /*
     UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"SyncDevice" bundle:nil];
     UIViewController *ctl = [stroyBoard instantiateInitialViewController];
     [self presentViewController:ctl animated:YES completion:nil];
+     */
 }
 
 - (void)eventViewDidAdded:(NSDate*)date

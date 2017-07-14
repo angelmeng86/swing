@@ -32,6 +32,7 @@
 		0F927FD81DDA02680011EF90 /* BLESearchDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F927FD21DDA02680011EF90 /* BLESearchDevice.m */; };
 		0F927FD91DDA02680011EF90 /* BLESyncDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F927FD41DDA02680011EF90 /* BLESyncDevice.m */; };
 		0F9734B11F17919900502D8A /* LFSyncSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9734B01F17919900502D8A /* LFSyncSheet.m */; };
+		0F9734B41F19162E00502D8A /* SyncNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9734B31F19162E00502D8A /* SyncNavViewController.m */; };
 		0FD6B3E71D61B79300C00A45 /* ChoicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6B3E61D61B79300C00A45 /* ChoicesViewController.m */; };
 		0FDAF5AA1D6405EF007CD808 /* citystate.json in Resources */ = {isa = PBXBuildFile; fileRef = 0FDAF5A91D6405EF007CD808 /* citystate.json */; };
 		0FDBDA951D708725004F7AAF /* LMLocalData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FDBDA941D708725004F7AAF /* LMLocalData.m */; };
@@ -175,6 +176,8 @@
 		0F927FD41DDA02680011EF90 /* BLESyncDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLESyncDevice.m; sourceTree = "<group>"; };
 		0F9734AF1F17919900502D8A /* LFSyncSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFSyncSheet.h; sourceTree = "<group>"; };
 		0F9734B01F17919900502D8A /* LFSyncSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFSyncSheet.m; sourceTree = "<group>"; };
+		0F9734B21F19162E00502D8A /* SyncNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncNavViewController.h; sourceTree = "<group>"; };
+		0F9734B31F19162E00502D8A /* SyncNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncNavViewController.m; sourceTree = "<group>"; };
 		0FD6B3E51D61B79300C00A45 /* ChoicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoicesViewController.h; sourceTree = "<group>"; };
 		0FD6B3E61D61B79300C00A45 /* ChoicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoicesViewController.m; sourceTree = "<group>"; };
 		0FDAF5A91D6405EF007CD808 /* citystate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = citystate.json; sourceTree = "<group>"; };
@@ -576,6 +579,8 @@
 				AD6654531D490C110056632C /* SyncDeviceViewController.m */,
 				AD6654551D490EC20056632C /* SearchDeviceViewController.h */,
 				AD6654561D490EC20056632C /* SearchDeviceViewController.m */,
+				0F9734B21F19162E00502D8A /* SyncNavViewController.h */,
+				0F9734B31F19162E00502D8A /* SyncNavViewController.m */,
 			);
 			path = Sync;
 			sourceTree = "<group>";
@@ -856,7 +861,7 @@
 						CreatedOnToolsVersion = 7.0.1;
 						DevelopmentTeam = 97SA79U875;
 						LastSwiftMigration = 0810;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1026,6 +1031,7 @@
 				AD9B0D971D3BB954009FDD95 /* CalendarViewController.m in Sources */,
 				0F1376131DE04A5D00DB6C33 /* DBHelper.m in Sources */,
 				AD347D1B1D3FDE1A00E91DDD /* DeviceTableViewCell.m in Sources */,
+				0F9734B41F19162E00502D8A /* SyncNavViewController.m in Sources */,
 				0F927FD91DDA02680011EF90 /* BLESyncDevice.m in Sources */,
 				ADCED9E71D3D3C8B002E3F78 /* RegisterViewController.m in Sources */,
 				ADEF31D61D47B04200BB6A9B /* VPImageCropperViewController.m in Sources */,
@@ -1188,15 +1194,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Swing/Swing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = 97SA79U875;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Swing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kidsdynamic.swing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "54db6baf-f075-48d9-8cf7-769d27a5af7e";
-				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: com.kidsdynamic.swing";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1212,15 +1218,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Swing/Swing.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = 97SA79U875;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Swing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kidsdynamic.swing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "54db6baf-f075-48d9-8cf7-769d27a5af7e";
-				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: com.kidsdynamic.swing";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
