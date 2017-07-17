@@ -15,6 +15,7 @@
 #import "LMCalendarDayView.h"
 #import "MonthCalendarViewController.h"
 #import "AddEventViewController2.h"
+#import "CalendarViewController.h"
 
 CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
 
@@ -365,6 +366,17 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     self.dateSelected = date;
     [self.calendarManager setDate:date];
     [self reloadEventData];
+    
+    
+    for (UIViewController *ctl in self.navigationController.viewControllers) {
+        if ([ctl isKindOfClass:[CalendarViewController class]]) {
+            CalendarViewController *calendar = (CalendarViewController*)ctl;
+            [calendar eventViewDidAdded:date];
+            break;
+        }
+    }
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
 }
 
 @end

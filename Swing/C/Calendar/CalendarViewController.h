@@ -10,6 +10,8 @@
 @class MDRadialProgressView;
 @interface CalendarViewController : BaseCalendarViewController
 
+- (void)eventViewDidAdded:(NSDate*)date;
+
 @property (weak, nonatomic) IBOutlet JTCalendarMenuView *calendarMenuView;
 @property (weak, nonatomic) IBOutlet JTHorizontalCalendarView *calendarContentView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *calendarHeight;
