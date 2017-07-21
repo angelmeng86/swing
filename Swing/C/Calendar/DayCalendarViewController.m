@@ -32,48 +32,6 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
 
 @implementation DayCalendarViewController
 
-/*
-- (void)initFakeData
-{
-    static NSDateFormatter *dateFormatter;
-    if(!dateFormatter){
-        dateFormatter = [NSDateFormatter new];
-        dateFormatter.dateFormat = @"HH:mm";
-    }
-    
-    NSMutableArray *mutableData = [NSMutableArray array];
-    
-    EventModel *model = [EventModel new];
-    model.eventName = @"Walk in the park";
-    model.startDate = [dateFormatter dateFromString:@"6:30"];
-    model.endDate = [dateFormatter dateFromString:@"8:00"];
-    model.color = RGBA(247, 202, 49, 1.0f);
-    [mutableData addObject:model];
-    
-    model = [EventModel new];
-    model.eventName = @"Swimming";
-    model.startDate = [dateFormatter dateFromString:@"9:00"];
-    model.endDate = [dateFormatter dateFromString:@"10:00"];
-    model.color = RGBA(99, 90, 185, 1.0f);
-    [mutableData addObject:model];
-    
-    model = [EventModel new];
-    model.eventName = @"Baseball";
-    model.startDate = [dateFormatter dateFromString:@"11:00"];
-    model.endDate = [dateFormatter dateFromString:@"12:00"];
-    model.color = RGBA(58, 187, 166, 1.0f);
-    [mutableData addObject:model];
-    
-    model = [EventModel new];
-    model.eventName = @"Walk in the park";
-    model.startDate = [dateFormatter dateFromString:@"12:00"];
-    model.endDate = [dateFormatter dateFromString:@"13:45"];
-    model.color = RGBA(237, 47, 107, 1.0f);
-    [mutableData addObject:model];
-    
-    _eventData = [NSArray arrayWithArray:mutableData];
-}
-*/
 - (void)viewDidLoad {
     self.notLoadBackgroudImage = YES;
     [super viewDidLoad];
@@ -142,6 +100,7 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
 
 - (void)eventLoaded:(NSNotification*)notification {
     [super eventLoaded:notification];
+    [self reloadData];
     [self reloadEventData];
 }
 
@@ -166,13 +125,13 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     NSDateComponents *start = [cal components:NSCalendarUnitHour fromDate:[NSDate date]];
     for (int i = (int)_hourLines.count; --i >= 0;) {
         TimeLineView *view = _hourLines[i];
-        if (i == [start hour]) {
+        if (i == [start hour] && [cal isDateInToday:self.dateSelected]) {
             view.lineColor = COMMON_TITLE_COLOR;
         }
         else {
             view.lineColor = nil;
         }
-        [view setNeedsLayout];
+        [view setNeedsDisplay];
     }
 }
 
@@ -209,6 +168,7 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
 - (void)monthCalendarDidSelected:(NSDate*)date {
     self.dateSelected = date;
     [self.calendarManager setDate:date];
+    [self reloadData];
     [self reloadEventData];
 }
 
@@ -227,7 +187,8 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     for (EventModel *model in self.eventData) {
         if (colArray.count > 0) {
             EventModel *m = [colArray lastObject];
-            if (NSOrderedDescending != [Fun compareTimePart:m.endDate andDate:model.startDate]) {
+            if (NSOrderedDescending != [Fun compareTimePart:m.minEndDate andDate:model.startDate]) {
+            /*if (NSOrderedDescending != [m.minEndDate compare:model.startDate]) {*/
                 if (colArray.count == 1) {
                     [self addEvent:m];
                 }
@@ -269,9 +230,15 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
     TimeLineView *startLine = [self.hourLines objectAtIndex:hour];
     float startH = [start minute] * 40 / 60;
     
+//    NSTimeInterval ti = [model.minEndDate timeIntervalSinceDate:model.startDate];
+//    float height = (ti / 60) * 40 / 60;
     
     NSDateComponents *end = [cal components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:model.endDate];
     float height = (([end hour] - [start hour]) * 60 + [end minute] - [start minute]) * 40 / 60;
+    if (height < 20) {
+        //最小半格
+        height = 20;
+    }
     
     EventLabel *label = [EventLabel new];
 //    label.textAlignment = NSTextAlignmentCenter;
@@ -359,12 +326,14 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
 - (void)calendar:(JTCalendarManager *)calendar didTouchDayView:(LMCalendarDayView *)dayView
 {
     [super calendar:calendar didTouchDayView:dayView];
+    [self reloadData];
     [self reloadEventData];
 }
 
 - (void)eventViewDidAdded:(NSDate*)date {
     self.dateSelected = date;
     [self.calendarManager setDate:date];
+    [self reloadData];
     [self reloadEventData];
     
     

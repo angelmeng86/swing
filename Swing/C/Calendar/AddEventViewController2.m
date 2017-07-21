@@ -356,9 +356,9 @@
     NSDate *sDate = datePicker.date;
     NSDateComponents *comps = [[NSCalendar currentCalendar] components:kCFCalendarUnitYear|kCFCalendarUnitMonth|kCFCalendarUnitDay|NSCalendarUnitHour|NSCalendarUnitMinute fromDate:sDate];
     //开始时间只能设定在一天的0：00~23：30
-    if (comps.hour == 23 && comps.minute > 30) {
+    if (comps.hour == 23 && comps.minute > 58) {
         comps.hour = 23;
-        comps.minute = 30;
+        comps.minute = 58;
         sDate = [sDate earlierDate:[[NSCalendar currentCalendar] dateFromComponents:comps]];
         [datePicker setDate:sDate animated:YES];
     }
@@ -373,7 +373,8 @@
     self.startTF.text = [self dateToString:sDate];
     
     UIDatePicker* dp = (UIDatePicker*)self.endTF.inputView;
-    dp.minimumDate = [datePicker.date dateByAddingTimeInterval:30 * 60 - 1];
+//    dp.minimumDate = [datePicker.date dateByAddingTimeInterval:30 * 60 - 1];
+    dp.minimumDate = [datePicker.date dateByAddingTimeInterval:60];
     
     comps.hour = 23;
     comps.minute = 59;

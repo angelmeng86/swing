@@ -38,4 +38,6 @@
 - (void)updateTo:(Event*)event;
 - (void)updateFrom:(Event*)event;
 
+- (NSDate*)minEndDate;
+
 @end

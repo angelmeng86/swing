@@ -82,4 +82,26 @@
     }
 }
 
+- (NSDate*)minEndDate
+{
+    NSTimeInterval ti = [self.endDate timeIntervalSinceDate:self.startDate];
+    //判断时间间隔小于30分钟
+    if (ti < 1800) {
+        NSDate *end = [self.startDate dateByAddingTimeInterval:1800];
+        if([[NSCalendar currentCalendar] isDate:self.startDate inSameDayAsDate:end]) {
+            return end;
+        }
+        else {
+            NSDateComponents *comps = [[NSCalendar currentCalendar] components:kCFCalendarUnitYear|kCFCalendarUnitMonth|kCFCalendarUnitDay|NSCalendarUnitHour|NSCalendarUnitMinute fromDate:self.startDate];
+            comps.hour = 23;
+            comps.minute = 59;
+            comps.second = 59;
+            return [[NSCalendar currentCalendar] dateFromComponents:comps];
+        }
+    }
+    else {
+        return self.endDate;
+    }
+}
+
 @end
