@@ -212,7 +212,7 @@ typedef enum : NSUInteger {
 #endif
     }
     else if (_status == SyncStatusSyncCompleted) {
-        [self backAction];
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }
 }
 /*
@@ -237,7 +237,7 @@ typedef enum : NSUInteger {
         }];
     }
     else if (_status == SyncStatusSyncCompleted) {
-        [self backAction];
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }
 }
 */
