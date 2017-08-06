@@ -244,6 +244,7 @@ typedef enum : NSUInteger {
 - (void)syncAction:(NSArray*)eventArray {
     [client syncDevice:_peripheral macAddress:nil/*[GlobalCache shareInstance].kid.macId*/ event:eventArray completion:^(NSMutableArray *activities, NSError *error, int battery, NSString *macId) {
         [self changeStatus:SyncStatusSyncing];
+        self.statusLabel.text = LOC_STR(@"Uploading");
         
         [SVProgressHUD dismiss];
         LOG_D(@"syncDevice error %@", error);
