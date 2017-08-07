@@ -32,6 +32,8 @@ typedef enum : NSUInteger {
     NSTimer *outTimer;
     
     int battery;
+    
+    int repeatTimes;
 }
 
 @property (nonatomic, strong) BLEUpdater *updater;
@@ -260,6 +262,11 @@ typedef enum : NSUInteger {
             }
             else {
                 LOG_D(@"activity: time:%@ is repeat.", [NSDate dateWithTimeIntervalSince1970:self.timeStamp]);
+                if (--repeatTimes < 0) {
+                    LOG_D(@"activity repeat times is max.");
+                    [self reportSyncDeviceResult:nil];
+                    return;
+                }
             }
         }
         
@@ -379,6 +386,7 @@ typedef enum : NSUInteger {
     self.activityDict = [NSMutableDictionary dictionary];
     self.timeSet = [NSMutableIndexSet new];
     testCount = 0;
+    repeatTimes = 5;
     battery = -1;
     self.peripheral = peripheral;
     self.manager = central;
