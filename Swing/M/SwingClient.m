@@ -907,7 +907,7 @@
 }
 
 - (NSURLSessionDataTask *)sendResetPasswordEmailWithCompletion:( void (^)(NSError *error) )completion {
-    NSURLSessionDataTask *task = [self.sessionManager GET:_URL.sendResetPasswordEmail parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSURLSessionDataTask *task = [self.sessionManager POST:_URL.sendResetPasswordEmail parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"sendResetPasswordEmail info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];

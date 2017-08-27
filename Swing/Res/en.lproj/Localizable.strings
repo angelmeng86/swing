@@ -168,3 +168,4 @@
 
 "Reset Password"="Reset Password";
 "Are you sure you want to reset your password?"="Are you sure you want to reset your password?";
+"Please check your email at '%@' for the link to reset your password.This link will expire in 24 hours"="Please check your email at '%@' for the link to reset your password.This link will expire in 24 hours";

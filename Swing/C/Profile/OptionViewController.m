@@ -135,7 +135,8 @@
                         [SVProgressHUD show];
                         [[SwingClient sharedClient] sendResetPasswordEmailWithCompletion:^(NSError *error) {
                             if(!error) {
-                                
+                                [SVProgressHUD dismiss];
+                                [Fun showMessageBox:LOC_STR(@"") andFormat:LOC_STR(@"Please check your email at '%@' for the link to reset your password.This link will expire in 24 hours"), [GlobalCache shareInstance].user.email];
                             }
                             else {
                             LOG_D(@"sendResetPasswordEmailWithCompletion fail: %@", error);
