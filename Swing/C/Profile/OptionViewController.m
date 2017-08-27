@@ -25,7 +25,7 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = LOC_STR(@"Option");
     
-    items = @[@[LOC_STR(@"Edit Profile"), LOC_STR(@"Edit Your Kid's Profile"), LOC_STR(@"Logout")], @[LOC_STR(@"Language"), LOC_STR(@"Contact Us"), LOC_STR(@"User Guide"), LOC_STR(@"Version")]];
+    items = @[@[LOC_STR(@"Edit Profile"), LOC_STR(@"Edit Your Kid's Profile"), LOC_STR(@"Reset Password"), LOC_STR(@"Logout")], @[LOC_STR(@"Language"), LOC_STR(@"Contact Us"), LOC_STR(@"User Guide"), LOC_STR(@"Version")]];
     self.tableView.tableFooterView = [UIView new];
 }
 
@@ -124,6 +124,29 @@
                 }
                     break;
                 case 2:
+                {
+                    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:LOC_STR(@"Reset Password") message:LOC_STR(@"Are you sure you want to reset your password?") preferredStyle:UIAlertControllerStyleAlert];
+                    
+                    [alertController addAction:[UIAlertAction actionWithTitle:LOC_STR(@"Cancel") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                        
+                        
+                    }]];
+                    [alertController addAction:[UIAlertAction actionWithTitle:LOC_STR(@"Ok") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        [SVProgressHUD show];
+                        [[SwingClient sharedClient] sendResetPasswordEmailWithCompletion:^(NSError *error) {
+                            if(!error) {
+                                
+                            }
+                            else {
+                            LOG_D(@"sendResetPasswordEmailWithCompletion fail: %@", error);
+                                [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                            }
+                        }];
+                    }]];
+                    [self presentViewController:alertController animated:YES completion:nil];
+                }
+                    break;
+                case 3:
                     [[GlobalCache shareInstance] logout];
                     break;
                 default:

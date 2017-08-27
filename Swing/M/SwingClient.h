@@ -90,4 +90,7 @@ typedef enum : NSUInteger {
 
 - (NSURLSessionDataTask *)getFirmwareVersionWithCompletion:( void (^)(id version, NSError *error) )completion;
 
+- (NSURLSessionDataTask *)sendResetPasswordEmailWithCompletion:( void (^)(NSError *error) )completion;
+
+
 @end

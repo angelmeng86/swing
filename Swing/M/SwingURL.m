@@ -131,4 +131,8 @@
     return @"/v1/fw/currentVersion";
 }
 
+- (NSString*)sendResetPasswordEmail {
+    return @"/v1/user/sendResetPasswordEmail";
+}
+
 @end

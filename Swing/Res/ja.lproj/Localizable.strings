@@ -209,3 +209,6 @@
 
 "Please sync after editing events"="イベントを編集すると、時計のシンクロをして下さい。";
 "Hide this reminder"="リマインダーが通知されない";
+
+"Reset Password"="パスワードをリセット";
+"Are you sure you want to reset your password?"="パスワードをリセットしますか?";

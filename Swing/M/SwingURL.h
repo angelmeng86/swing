@@ -48,4 +48,6 @@
 
 @property (nonatomic, readonly, strong) NSString* firmwareVersion;
 
+@property (nonatomic, readonly, strong) NSString* sendResetPasswordEmail;
+
 @end
