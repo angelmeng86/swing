@@ -177,9 +177,13 @@
                 [GlobalCache shareInstance].peripheral = peripheral;
                 [self reportSearchDeviceResult:peripheral error:nil];
             }
+            else {
+                [self.manager cancelPeripheralConnection:peripheral];
+            }
         }
         else {
             [self reportScanDeviceMacIdResult:peripheral mac:macReal error:nil];
+            [self.manager cancelPeripheralConnection:peripheral];
         }
     }
     else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:@"2A23"]]) {
