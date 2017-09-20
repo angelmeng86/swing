@@ -884,7 +884,12 @@
 
 - (NSURLSessionDataTask *)getFirmwareVersionWithCompletion:( void (^)(id version, NSError *error) )completion
 {
-    NSURLSessionDataTask *task = [self.sessionManager GET:_URL.firmwareVersion parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSString *macId = [GlobalCache shareInstance].kid.macId;
+    NSString *url = _URL.firmwareVersion;
+    if (macId.length > 0) {
+        url = [NSString stringWithFormat:@"%@/%@", _URL.firmwareVersion, macId];
+    }
+    NSURLSessionDataTask *task = [self.sessionManager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"getFirmwareVersion info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];

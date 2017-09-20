@@ -445,6 +445,17 @@ typedef enum : NSUInteger {
     if ([self.updater supportUpdate]) {
         //成功并且支持版本更新
         if (self.updater.readyUpdate) {
+            //保存kid对应的固件版本至本地
+            [GlobalCache shareInstance].kid.version = self.updater.deviceVersion;
+            [[GlobalCache shareInstance] saveInfo];
+            if ([GlobalCache shareInstance].firmwareVersion.version.length > 0) {
+                //查询到最新固件版本
+                if (![self.updater.deviceVersion isEqualToString:[GlobalCache shareInstance].firmwareVersion.version]) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:SWING_WATCH_NEW_UPDATE_NOTIFY object:nil];
+                }
+            }
+            
+            /*
             if (self.updater.needUpdate) {
                 [outTimer invalidate];
                 outTimer = nil;
@@ -452,6 +463,7 @@ typedef enum : NSUInteger {
 //                [self.updater performSelector:@selector(startUpdate) withObject:nil afterDelay:1];
                 return;
             }
+             */
             LOG_D(@"Device version is new.");
         }
         else {

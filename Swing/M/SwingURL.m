@@ -11,11 +11,11 @@
 @implementation SwingURL
 
 - (NSString*)baseURL {
-#ifdef DEBUG
-    return @"http://dev.childrenlab.com/";
-#else
+//#ifdef DEBUG
+//    return @"http://dev.childrenlab.com/";
+//#else
     return @"https://childrenlab.com/";
-#endif
+//#endif
 }
 
 - (NSString*)isEmailRegistered {

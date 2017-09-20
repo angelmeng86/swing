@@ -31,6 +31,7 @@
     self.headerBtn.layer.masksToBounds = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userProfileLoaded:) name:USER_PROFILE_LOAD_NOTI object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newFirmwareVersion:) name:USER_PROFILE_LOAD_NOTI object:nil];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"navi_edit") style:UIBarButtonItemStylePlain target:self action:@selector(editProfileAction:)];
     
@@ -42,6 +43,15 @@
     [self.logoutBtn setTitle:LOC_STR(@"Logout") forState:UIControlStateNormal];
     if ([GlobalCache shareInstance].kidsList == nil && [GlobalCache shareInstance].kid) {
         [GlobalCache shareInstance].kidsList = @[[GlobalCache shareInstance].kid];
+    }
+}
+
+- (void)newFirmwareVersion:(NSNotification*)notification {
+    if ([GlobalCache shareInstance].firmwareVersion.version.length > 0 && [GlobalCache shareInstance].kid.version.length > 0 && ![[GlobalCache shareInstance].kid.version isEqualToString:[GlobalCache shareInstance].firmwareVersion.version]) {
+        self.tabBarItem.badgeValue = @"1";
+    }
+    else {
+        self.tabBarItem.badgeValue = nil;
     }
 }
 
@@ -111,6 +121,7 @@
         [self.headerBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:[GlobalCache shareInstance].user.profile]] forState:UIControlStateNormal];
     }
     [self loadProfile];
+    [self newFirmwareVersion:nil];
     [[GlobalCache shareInstance] queryProfile];
 }
 

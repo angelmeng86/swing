@@ -131,6 +131,15 @@ typedef enum : NSUInteger {
 #if TARGET_IPHONE_SIMULATOR
             [self performSelector:@selector(performStatus:) withObject:[NSNumber numberWithUnsignedInteger:SyncStatusFound] afterDelay:3];
 #else
+            [[SwingClient sharedClient] getFirmwareVersionWithCompletion:^(FirmwareVersion *version, NSError *error) {
+                if (!error) {
+                    [GlobalCache shareInstance].firmwareVersion = version;
+                }
+                else {
+                    LOG_D(@"getFirmwareVersion err %@", error);
+                }
+            }];
+            
             [client searchDevice:[Fun hexToData:[GlobalCache shareInstance].kid.macId] completion:^(CBPeripheral *peripheral, NSError *error) {
                 if (!error) {
                     self.peripheral = peripheral;

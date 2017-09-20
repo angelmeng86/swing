@@ -44,6 +44,11 @@
     self.titleLabel.text = LOC_STR(@"Battery");
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)batteryNotify:(NSNotification*)notify {
     [self bluetoothClientBattery:[GlobalCache shareInstance].local.battery];
 }

@@ -215,3 +215,4 @@
 "Please check your email at '%@' for the link to reset your password.This link will expire in 24 hours"="ご登録のメールアドレス“%@”宛にパスワード変更用のURLをお送りします。URLの有効期間は24時間ですので、お早めに変更して下さい。";
 
 "SWING_EVENT"="あなたにはイベントがあります:%@";
+"Swing watch update"="Swing watch アップデート";

@@ -25,7 +25,7 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = LOC_STR(@"Option");
     
-    items = @[@[LOC_STR(@"Edit Profile"), LOC_STR(@"Edit Your Kid's Profile"), LOC_STR(@"Reset Password"), LOC_STR(@"Logout")], @[LOC_STR(@"Language"), LOC_STR(@"Contact Us"), LOC_STR(@"User Guide"), LOC_STR(@"Version")]];
+    items = @[@[LOC_STR(@"Edit Profile"), LOC_STR(@"Edit Your Kid's Profile"), LOC_STR(@"Reset Password"), LOC_STR(@"Logout")], @[LOC_STR(@"Language"), LOC_STR(@"Swing watch update"), LOC_STR(@"Contact Us"), LOC_STR(@"User Guide"), LOC_STR(@"Version")]];
     self.tableView.tableFooterView = [UIView new];
 }
 
@@ -88,6 +88,15 @@
         // app版本
         NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
         cell.detailTextLabel.text = app_Version;
+    }
+    else if(indexPath.section == 1 && indexPath.row == 1) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        if ([GlobalCache shareInstance].firmwareVersion.version.length > 0 && [GlobalCache shareInstance].kid.version.length > 0 && ![[GlobalCache shareInstance].kid.version isEqualToString:[GlobalCache shareInstance].firmwareVersion.version]) {
+            cell.detailTextLabel.text = @"1";
+        }
+        else {
+            cell.detailTextLabel.text = nil;
+        }
     }
     else {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -162,13 +171,16 @@
                     [self languageAction];
                     break;
                 case 1:
+                    
+                    break;
+                case 2:
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[GlobalCache shareInstance].cacheSupportUrl]];
 //                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.imaginarium.info"]];
                     break;
-                case 2:
+                case 3:
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://childrenlab.s3.amazonaws.com/pdf/Swing_User_Guide.pdf"]];
                     break;
-                case 3:
+                case 4:
                     
                     break;
                 default:

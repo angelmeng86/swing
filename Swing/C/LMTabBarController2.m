@@ -111,8 +111,11 @@
             }];
             [downloadTask2 resume];
         }
+        else {
+            LOG_D(@"getFirmwareVersion err %@", error);
+        }
     }];
-     */
+    */
 }
 
 - (void)loadKidPicture
