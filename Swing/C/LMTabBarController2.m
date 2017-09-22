@@ -48,6 +48,9 @@
     if (tabBarController.viewControllers[2] == viewController) {
         [self showSyncDialog];
     }
+    else if(tabBarController.viewControllers[3] == viewController) {
+        [self newFirmwareVersion:nil];
+    }
 }
 
 - (void)showSyncDialog {
@@ -55,6 +58,16 @@
     UIViewController *ctl = [stroyBoard instantiateInitialViewController];
     [self presentViewController:ctl animated:YES completion:nil];
     self.syncDialog = ctl;
+}
+
+- (void)newFirmwareVersion:(NSNotification*)notification {
+    UITabBarItem *item = [self.tabBar.items lastObject];
+    if ([GlobalCache shareInstance].firmwareVersion.version.length > 0 && [GlobalCache shareInstance].local.firmwareVer.length > 0 && ![[GlobalCache shareInstance].local.firmwareVer isEqualToString:[GlobalCache shareInstance].firmwareVersion.version]) {
+        item.badgeValue = @"1";
+    }
+    else {
+        item.badgeValue = nil;
+    }
 }
 
 - (void)viewDidLoad {
@@ -67,9 +80,11 @@
     [self performSelector:@selector(showSyncDialog) withObject:nil afterDelay:0.3];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRemoteInfo:) name:REMOTE_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newFirmwareVersion:) name:SWING_WATCH_NEW_UPDATE_NOTIFY object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadKidPicture) name:KID_AVATAR_NOTIFICATION object:nil];
     [self loadKidPicture];
+    [self newFirmwareVersion:nil];
     /*
     [[SwingClient sharedClient] getFirmwareVersionWithCompletion:^(FirmwareVersion *version, NSError *error) {
         if (!error) {

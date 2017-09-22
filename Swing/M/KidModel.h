@@ -24,7 +24,4 @@
 
 @property (nonatomic, strong) UserModel<Optional> *parent;
 
-//设备对应的版本号
-@property (strong, nonatomic) NSString<Optional>* version;
-
 @end

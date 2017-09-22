@@ -81,7 +81,7 @@
     }
     
     NSArray *array = items[indexPath.section];
-    
+    cell.detailTextLabel.textColor = RGBA(0x97, 0x96, 0x97, 1.0f);
     if (indexPath.section == 1 && indexPath.row == array.count - 1) {
         cell.accessoryType = UITableViewCellAccessoryNone;
         NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
@@ -91,8 +91,10 @@
     }
     else if(indexPath.section == 1 && indexPath.row == 1) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        if ([GlobalCache shareInstance].firmwareVersion.version.length > 0 && [GlobalCache shareInstance].kid.version.length > 0 && ![[GlobalCache shareInstance].kid.version isEqualToString:[GlobalCache shareInstance].firmwareVersion.version]) {
+        cell.detailTextLabel.text = nil;
+        if ([GlobalCache shareInstance].firmwareVersion.version.length > 0 && [GlobalCache shareInstance].local.firmwareVer.length > 0 && ![[GlobalCache shareInstance].local.firmwareVer isEqualToString:[GlobalCache shareInstance].firmwareVersion.version]) {
             cell.detailTextLabel.text = @"1";
+            cell.detailTextLabel.textColor = [UIColor redColor];
         }
         else {
             cell.detailTextLabel.text = nil;
@@ -171,7 +173,9 @@
                     [self languageAction];
                     break;
                 case 1:
+                {
                     
+                }
                     break;
                 case 2:
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[GlobalCache shareInstance].cacheSupportUrl]];
