@@ -161,12 +161,13 @@
 //    [self syncDevice:peripheral event:events completion:completion update:nil];
 //}
 
-- (void)syncDevice:(CBPeripheral*)peripheral macAddress:(NSString*)macAddress event:(NSArray*)events completion:(SwingBluetoothSyncDeviceBlock)completion update:(SwingBluetoothUpdateDeviceBlock)updateBlock
+- (void)syncDevice:(CBPeripheral*)peripheral macAddress:(NSString*)macAddress event:(NSArray*)events completion:(SwingBluetoothSyncDeviceBlock)completion update:(SwingBluetoothUpdateDeviceBlock)updateBlock check:(BOOL)checkVerOnly
 {
     self.blockOnSyncDevice = completion;
     _manager.delegate = syncDevice;
     LOG_BEG(@"syncDevice BEGIN");
     syncDevice.macId = macAddress;
+    syncDevice.checkVerOnly = checkVerOnly;
     syncDevice.blockOnUpdateDevice = updateBlock;
     [syncDevice syncDevice:peripheral centralManager:_manager event:events];
 }

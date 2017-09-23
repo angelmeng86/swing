@@ -448,23 +448,26 @@ typedef enum : NSUInteger {
             //保存kid对应的固件版本至本地
             [GlobalCache shareInstance].local.firmwareVer = self.updater.deviceVersion;
             [[GlobalCache shareInstance] saveInfo];
-            if ([GlobalCache shareInstance].firmwareVersion.version.length > 0) {
-                //查询到最新固件版本
-                if (![self.updater.deviceVersion isEqualToString:[GlobalCache shareInstance].firmwareVersion.version]) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:SWING_WATCH_NEW_UPDATE_NOTIFY object:nil];
+            LOG_D(@"Device version %@.", self.updater.deviceVersion);
+            
+            if (self.checkVerOnly) {
+                if ([GlobalCache shareInstance].firmwareVersion.version.length > 0) {
+                    //查询到最新固件版本
+                    if (![self.updater.deviceVersion isEqualToString:[GlobalCache shareInstance].firmwareVersion.version]) {
+                        [[NSNotificationCenter defaultCenter] postNotificationName:SWING_WATCH_NEW_UPDATE_NOTIFY object:nil];
+                    }
                 }
             }
-            
-            /*
-            if (self.updater.needUpdate) {
-                [outTimer invalidate];
-                outTimer = nil;
-                [self.updater startUpdate];
-//                [self.updater performSelector:@selector(startUpdate) withObject:nil afterDelay:1];
-                return;
+            else {
+                if (self.updater.needUpdate) {
+                    [outTimer invalidate];
+                    outTimer = nil;
+                    [self.updater startUpdate];
+                    //                [self.updater performSelector:@selector(startUpdate) withObject:nil afterDelay:1];
+                    return;
+                }
+                LOG_D(@"Device version is new.");
             }
-             */
-            LOG_D(@"Device version is new.");
         }
         else {
             //等待获取固件版本号
@@ -487,14 +490,29 @@ typedef enum : NSUInteger {
     LOG_D(@"getVersionTimeout return");
     //成功并且支持版本更新
     if (self.updater.readyUpdate) {
-        if (self.updater.needUpdate) {
-            [outTimer invalidate];
-            outTimer = nil;
-            [self.updater startUpdate];
-//            [self.updater performSelector:@selector(startUpdate) withObject:nil afterDelay:1];
-            return;
+        //保存kid对应的固件版本至本地
+        [GlobalCache shareInstance].local.firmwareVer = self.updater.deviceVersion;
+        [[GlobalCache shareInstance] saveInfo];
+        LOG_D(@"Device version %@.", self.updater.deviceVersion);
+        if (self.checkVerOnly) {
+            if ([GlobalCache shareInstance].firmwareVersion.version.length > 0) {
+                //查询到最新固件版本
+                if (![self.updater.deviceVersion isEqualToString:[GlobalCache shareInstance].firmwareVersion.version]) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:SWING_WATCH_NEW_UPDATE_NOTIFY object:nil];
+                }
+            }
         }
-        LOG_D(@"Device version is new.");
+        else
+        {
+            if (self.updater.needUpdate) {
+                [outTimer invalidate];
+                outTimer = nil;
+                [self.updater startUpdate];
+                //            [self.updater performSelector:@selector(startUpdate) withObject:nil afterDelay:1];
+                return;
+            }
+            LOG_D(@"Device version is new.");
+        }
     }
     
     if ([self.delegate respondsToSelector:@selector(reportSyncDeviceResult:battery:macId:error:)]) {
@@ -512,6 +530,11 @@ typedef enum : NSUInteger {
 
 - (void)deviceUpdateResult:(BOOL)success {
     LOG_D(@"deviceUpdateResult %d", success);
+    
+    //更新完成后重置当前设备版本
+    [GlobalCache shareInstance].local.firmwareVer = nil;
+    [[GlobalCache shareInstance] saveInfo];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SWING_WATCH_NEW_UPDATE_NOTIFY object:nil];
     
     if ([self.delegate respondsToSelector:@selector(reportSyncDeviceResult:battery:macId:error:)]) {
         [self.delegate reportSyncDeviceResult:_activityArray battery:battery macId:self.realMac error:nil];

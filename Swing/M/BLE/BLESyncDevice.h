@@ -18,7 +18,7 @@
 
 @interface BLESyncDevice : BLEWaitDevice
 
-
+@property (nonatomic) BOOL checkVerOnly;
 @property (nonatomic, strong) NSString* macId;
 @property (nonatomic, copy) SwingBluetoothUpdateDeviceBlock blockOnUpdateDevice;
 

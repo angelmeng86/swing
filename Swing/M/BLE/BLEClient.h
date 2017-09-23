@@ -28,9 +28,9 @@
 
 //- (void)syncDevice:(CBPeripheral*)peripheral event:(NSArray*)events completion:(SwingBluetoothSyncDeviceBlock)completion;
 
-- (void)initDevice:(CBPeripheral*)peripheral completion:(SwingBluetoothInitDeviceBlock)completion update:(SwingBluetoothUpdateDeviceBlock)updateBlock;
+//- (void)initDevice:(CBPeripheral*)peripheral completion:(SwingBluetoothInitDeviceBlock)completion update:(SwingBluetoothUpdateDeviceBlock)updateBlock;
 
-- (void)syncDevice:(CBPeripheral*)peripheral macAddress:(NSString*)macAddress event:(NSArray*)events completion:(SwingBluetoothSyncDeviceBlock)completion update:(SwingBluetoothUpdateDeviceBlock)updateBlock;
+- (void)syncDevice:(CBPeripheral*)peripheral macAddress:(NSString*)macAddress event:(NSArray*)events completion:(SwingBluetoothSyncDeviceBlock)completion update:(SwingBluetoothUpdateDeviceBlock)updateBlock check:(BOOL)checkVerOnly;
 
 - (void)cannelAll;
 

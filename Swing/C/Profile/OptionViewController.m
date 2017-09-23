@@ -10,6 +10,8 @@
 #import "ChoicesViewController.h"
 #import "AppDelegate.h"
 #import "CommonDef.h"
+#import "SyncNavViewController.h"
+#import "SearchDeviceViewController.h"
 
 @interface OptionViewController ()
 {
@@ -27,6 +29,12 @@
     
     items = @[@[LOC_STR(@"Edit Profile"), LOC_STR(@"Edit Your Kid's Profile"), LOC_STR(@"Reset Password"), LOC_STR(@"Logout")], @[LOC_STR(@"Language"), LOC_STR(@"Swing watch update"), LOC_STR(@"Contact Us"), LOC_STR(@"User Guide"), LOC_STR(@"Version")]];
     self.tableView.tableFooterView = [UIView new];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -174,7 +182,13 @@
                     break;
                 case 1:
                 {
-                    
+                    if ([GlobalCache shareInstance].firmwareVersion.version.length > 0 && [GlobalCache shareInstance].local.firmwareVer.length > 0 && ![[GlobalCache shareInstance].local.firmwareVer isEqualToString:[GlobalCache shareInstance].firmwareVersion.version]) {
+                        [self checkFirmwareVerison];
+                    }
+                    else {
+                        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                    }
+                   
                 }
                     break;
                 case 2:
@@ -194,6 +208,87 @@
             break;
         default:
             break;
+    }
+}
+
+- (void)checkFirmwareVerison {
+    [SVProgressHUD show];
+    [[SwingClient sharedClient] getFirmwareVersionWithCompletion:^(FirmwareVersion *version, NSError *error) {
+        if (!error) {
+            [GlobalCache shareInstance].firmwareVersion = version;
+            __block BOOL isDownloaded = NO;
+            NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+            configuration.timeoutIntervalForRequest = 30;
+            AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+            
+            NSURL *URL = [NSURL URLWithString:[FILE_BASE_URL stringByAppendingString:version.fileAUrl]];
+            NSURLRequest *request1 = [NSURLRequest requestWithURL:URL];
+            
+            NSURLSessionDownloadTask *downloadTask1 = [manager downloadTaskWithRequest:request1 progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+                NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
+                return [documentsDirectoryURL URLByAppendingPathComponent:[version.version stringByAppendingString:@"_A.hex"]];
+                //                                return [documentsDirectoryURL URLByAppendingPathComponent:[response suggestedFilename]];
+            } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+                LOG_D(@"FileA response:%@", response);
+                if (!error) {
+                    LOG_D(@"FileA downloaded to: %@", filePath);
+                    if (isDownloaded) {
+                        [self syncAction];
+                    }
+                    else {
+                        isDownloaded = YES;
+                    }
+                }
+                else {
+                    LOG_D(@"FileA download err: %@", error);
+                    [SVProgressHUD showErrorWithStatus:LOC_STR(@"download failed.")];
+                }
+                
+            }];
+            [downloadTask1 resume];
+            
+            URL = [NSURL URLWithString:[FILE_BASE_URL stringByAppendingString:version.fileBUrl]];
+            NSURLRequest *request2 = [NSURLRequest requestWithURL:URL];
+            NSURLSessionDownloadTask *downloadTask2 = [manager downloadTaskWithRequest:request2 progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+                NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
+                return [documentsDirectoryURL URLByAppendingPathComponent:[version.version stringByAppendingString:@"_B.hex"]];
+                //                                return [documentsDirectoryURL URLByAppendingPathComponent:[response suggestedFilename]];
+            } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+                LOG_D(@"FileB response:%@", response);
+                if (!error) {
+                    LOG_D(@"FileB downloaded to: %@", filePath);
+                    if (isDownloaded) {
+                        [self syncAction];
+                    }
+                    else {
+                        isDownloaded = YES;
+                    }
+                }
+                else {
+                    LOG_D(@"FileB download err: %@", error);
+                    [SVProgressHUD showErrorWithStatus:LOC_STR(@"download failed.")];
+                }
+            }];
+            [downloadTask2 resume];
+        }
+        else {
+            LOG_D(@"getFirmwareVersion err %@", error);
+            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+        }
+    }];
+}
+
+- (void)syncAction {
+    if ([GlobalCache shareInstance].kid) {
+        [SVProgressHUD dismiss];
+        UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"SyncDevice" bundle:nil];
+        SearchDeviceViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"Syncing"];
+        ctl.needUpdate = YES;
+        SyncNavViewController *navCtl = [[SyncNavViewController alloc] initWithRootViewController:ctl];
+        [self presentViewController:navCtl animated:YES completion:nil];
+    }
+    else {
+        [SVProgressHUD showErrorWithStatus:LOC_STR(@"you have not bind device yet, please sync a watch.")];
     }
 }
 
