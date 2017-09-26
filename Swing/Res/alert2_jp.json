@@ -1,0 +1,146 @@
+ [
+  {
+  "text"  : "Agenda",
+  "items" :
+        [
+            {
+            "value" : 0,
+            "text"  : "Agenda reminders(only for the App)"
+            }
+         ]
+  },
+  {
+  "text"  : "Morning Routine",
+  "items" :
+        [
+            {
+                "value" : 34,
+                "text"  : "Good morning"
+            },
+         {
+         "value" : 35,
+         "text"  : "Make bed"
+         },
+         {
+         "value" : 36,
+         "text"  : "Get Dress"
+         },
+         {
+         "value" : 37,
+         "text"  : "Eat breakfast"
+         },
+         {
+         "value" : 38,
+         "text"  : "Brush teeth"
+         },
+         {
+         "value" : 39,
+         "text"  : "Get Ready for school"
+         }
+         ]
+  },
+  {
+  "text"  : "Bed Time Routine",
+  "items" :
+        [
+         {
+         "value" : 40,
+         "text"  : "Put on pajamas"
+         },
+         {
+         "value" : 41,
+         "text"  : "Story time"
+         },
+         {
+         "value" : 42,
+         "text"  : "Good night"
+         }
+        ]
+  },
+  {
+  "text"  : "Activities",
+  "items" :
+        [
+         {
+         "value" : 43,
+         "text"  : "Collect toys"
+         },
+         {
+         "value" : 44,
+         "text"  : "Feed pet"
+         },
+         {
+         "value" : 45,
+         "text"  : "Water plants"
+         },
+         {
+         "value" : 46,
+         "text"  : "Clean table"
+         },
+         {
+         "value" : 47,
+         "text"  : "Clean bedroom"
+         },
+         {
+         "value" : 48,
+         "text"  : "Homework time"
+         },
+         {
+         "value" : 49,
+         "text"  : "Take a nap"
+         },
+         {
+         "value" : 50,
+         "text"  : "Lesson time"
+         },
+         {
+         "value" : 51,
+         "text"  : "Fun time"
+         },
+         {
+         "value" : 52,
+         "text"  : "Time to go home"
+         },
+         {
+         "value" : 53,
+         "text"  : "Exercise"
+         },
+         {
+         "value" : 54,
+         "text"  : "Practice music"
+         },
+         {
+         "value" : 55,
+         "text"  : "Drawing time"
+         },
+         {
+         "value" : 56,
+         "text"  : "Reading time"
+         },
+         {
+         "value" : 57,
+         "text"  : "Take a bath"
+         },
+         {
+         "value" : 58,
+         "text"  : "Family time"
+         },
+         {
+         "value" : 59,
+         "text"  : "lunch time"
+         },
+         {
+         "value" : 60,
+         "text"  : "dinner time"
+         },
+         {
+         "value" : 61,
+         "text"  : "afternoon snack time"
+         },
+         {
+         "value" : 62,
+         "text"  : "review the backpack"
+         }
+         ]
+  }
+]
