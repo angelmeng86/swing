@@ -105,9 +105,9 @@
     [searchDevice searchDeviceMacIdWithCentralManager:_manager];
 }
 
-- (void)reportSearchDeviceMacId:(CBPeripheral*)peripheral mac:(NSData*)macAddress error:(NSError*)error {
+- (void)reportSearchDeviceMacId:(CBPeripheral*)peripheral mac:(NSData*)macAddress version:(NSString*)version error:(NSError*)error {
     if (self.blockOnScanMacId) {
-        self.blockOnScanMacId(peripheral, macAddress, error);
+        self.blockOnScanMacId(peripheral, macAddress, version, error);
         if (error) {
             self.blockOnScanMacId = nil;
             self.manager.delegate = nil;
@@ -125,12 +125,13 @@
 
 - (void)initDevice:(CBPeripheral*)peripheral completion:(SwingBluetoothInitDeviceBlock)completion
 {
-    [self initDevice:peripheral completion:completion update:nil];
+    [self initDevice:peripheral completion:completion update:nil check:NO];
 }
 
-- (void)initDevice:(CBPeripheral*)peripheral completion:(SwingBluetoothInitDeviceBlock)completion update:(SwingBluetoothUpdateDeviceBlock)updateBlock {
+- (void)initDevice:(CBPeripheral*)peripheral completion:(SwingBluetoothInitDeviceBlock)completion update:(SwingBluetoothUpdateDeviceBlock)updateBlock check:(BOOL)checkVerOnly {
     self.blockOnInitDevice = completion;
     _manager.delegate = initDevice;
+    initDevice.checkVerOnly = checkVerOnly;
     initDevice.blockOnUpdateDevice = updateBlock;
     [initDevice initDevice:peripheral centralManager:_manager];
 }

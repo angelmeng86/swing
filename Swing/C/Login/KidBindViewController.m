@@ -117,6 +117,10 @@
                         }
                         else {
                             KidModel *model = kid;
+                            //保存kid对应的固件版本至本地
+                            [GlobalCache shareInstance].local.firmwareVer = self.version;
+                            [[GlobalCache shareInstance] saveInfo];
+                            
                             if (self.macAddress && [GlobalCache shareInstance].kid == nil) {
                                 [GlobalCache shareInstance].kid = model;
                             }

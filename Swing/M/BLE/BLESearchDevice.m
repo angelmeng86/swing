@@ -7,6 +7,7 @@
 //
 
 #import "BLESearchDevice.h"
+#import "BLEUtility.h"
 #import "CommonDef.h"
 
 @interface BLESearchDevice ()
@@ -16,6 +17,7 @@
 
 @property (nonatomic, strong) NSMutableArray *connectingDevices;
 @property (nonatomic, strong) NSMutableDictionary *macAddressDict;
+@property (nonatomic, strong) NSMutableDictionary *versionDict;
 @property (nonatomic, strong) NSData *macAddress;
 
 @end
@@ -26,6 +28,7 @@
     if (self = [super init]) {
         self.connectingDevices = [NSMutableArray array];
         self.macAddressDict = [NSMutableDictionary dictionary];
+        self.versionDict = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -107,7 +110,7 @@
             break;
         }
         if ([s.UUID isEqual:[CBUUID UUIDWithString:@"180A"]]) {
-            NSArray *characters = @[[CBUUID UUIDWithString:@"2A23"]];
+            NSArray *characters = @[[CBUUID UUIDWithString:@"2A23"], [CBUUID UUIDWithString:@"2A26"]];
             [peripheral discoverCharacteristics:characters forService:s];
             break;
         }
@@ -129,9 +132,15 @@
     }
     else if ([service.UUID isEqual:[CBUUID UUIDWithString:@"180A"]]) {
         for (CBCharacteristic *character in service.characteristics) {
+            /*
             if ([character.UUID isEqual:[CBUUID UUIDWithString:@"2A23"]]) {
                 [peripheral readValueForCharacteristic:character];
                 LOG_D(@"Read 2A23");
+            }
+            */
+            if ([character.UUID isEqual:[CBUUID UUIDWithString:@"2A26"]]) {
+                [peripheral readValueForCharacteristic:character];
+                LOG_D(@"Read 2A26");
             }
         }
     }
@@ -182,7 +191,7 @@
             }
         }
         else {
-            [self reportScanDeviceMacIdResult:peripheral mac:macReal error:nil];
+            [self reportScanDeviceMacIdResult:peripheral mac:macReal version:self.versionDict[peripheral] ? self.versionDict[peripheral] : @"" error:nil];
             [self.manager cancelPeripheralConnection:peripheral];
         }
     }
@@ -202,9 +211,20 @@
         self.macAddressDict[peripheral] = macReal;
         LOG_D(@"2A23 Value:%@", characteristic.value);
         LOG_D(@"Mac Real:%@", macReal);
-        [self reportScanDeviceMacIdResult:peripheral mac:macReal error:nil];
+        [self reportScanDeviceMacIdResult:peripheral mac:macReal version:self.versionDict[peripheral] ? self.versionDict[peripheral] : @"" error:nil];
         [self.manager cancelPeripheralConnection:peripheral];
     }
+    else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:@"2A26"]])
+    {
+        NSString *deviceVersion = [[NSString alloc] initWithData:characteristic.value encoding:NSUTF8StringEncoding];
+        LOG_D(@"Firmware Version:%@", deviceVersion);
+        if (deviceVersion) {
+            self.versionDict[peripheral] = deviceVersion;
+        }
+        [BLEUtility readCharacteristic:peripheral sUUID:@"180A" cUUID:@"2A23"];
+        LOG_D(@"Read 2A23");
+    }
+
 }
 
 - (void)searchDevice:(NSData*)macAddress centralManager:(CBCentralManager *)central {
@@ -228,7 +248,7 @@
         [self reportSearchDeviceResult:nil error:err];
     }
     else {
-        [self reportScanDeviceMacIdResult:nil mac:nil error:err];
+        [self reportScanDeviceMacIdResult:nil mac:nil version:nil error:err];
     }
 }
 
@@ -265,9 +285,9 @@
     [self cannel];
 }
 
-- (void)reportScanDeviceMacIdResult:(CBPeripheral*)peripheral mac:(NSData*)macId error:(NSError*)error {
-    if ([self.delegate respondsToSelector:@selector(reportSearchDeviceMacId:mac:error:)]) {
-        [self.delegate reportSearchDeviceMacId:peripheral mac:macId error:error];
+- (void)reportScanDeviceMacIdResult:(CBPeripheral*)peripheral mac:(NSData*)macId version:(NSString*)ver error:(NSError*)error {
+    if ([self.delegate respondsToSelector:@selector(reportSearchDeviceMacId:mac:version:error:)]) {
+        [self.delegate reportSearchDeviceMacId:peripheral mac:macId version:ver error:error];
     }
     if (error) {
         [self cannel];

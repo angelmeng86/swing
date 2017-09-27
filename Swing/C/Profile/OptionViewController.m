@@ -12,6 +12,7 @@
 #import "CommonDef.h"
 #import "SyncNavViewController.h"
 #import "SearchDeviceViewController.h"
+#import "LFBadgeLabel.h"
 
 @interface OptionViewController ()
 {
@@ -74,6 +75,48 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSArray *array = items[indexPath.section];
+    if(indexPath.section == 1 && indexPath.row == 1) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UPDATE_CELL"];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UPDATE_CELL"];
+            cell.textLabel.textAlignment = NSTextAlignmentLeft;
+            //        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.textLabel.font = [UIFont avenirFontOfSize:16];
+            cell.textLabel.textColor = RGBA(0x97, 0x96, 0x97, 1.0f);
+            
+            cell.detailTextLabel.font = [UIFont avenirFontOfSize:16];
+            cell.detailTextLabel.textColor = RGBA(0x97, 0x96, 0x97, 1.0f);
+            cell.detailTextLabel.backgroundColor = [UIColor clearColor];
+            
+            LFBadgeLabel *label = [LFBadgeLabel new];
+            label.font = [UIFont systemFontOfSize:12];
+            label.text = @"1";
+            label.textColor = [UIColor whiteColor];
+            label.tag = 2017;
+            [cell.contentView addSubview:label];
+            [label autoPinEdgeToSuperviewEdge:ALEdgeRight];
+            [label autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+            [label autoSetDimensionsToSize:CGSizeMake(18, 18)];
+            label.layer.cornerRadius = 9.0f;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        
+        cell.textLabel.text = array[indexPath.row];
+        if ([GlobalCache shareInstance].firmwareVersion.version.length > 0 && [GlobalCache shareInstance].local.firmwareVer.length > 0 && ![[GlobalCache shareInstance].local.firmwareVer isEqualToString:[GlobalCache shareInstance].firmwareVersion.version]) {
+            UIView *v = [cell.contentView viewWithTag:2017];
+            v.hidden = NO;
+//            cell.detailTextLabel.text = @"1";
+//            cell.detailTextLabel.backgroundColor = [UIColor redColor];
+//            cell.detailTextLabel.textColor = [UIColor yellowColor];
+        }
+        else {
+            UIView *v = [cell.contentView viewWithTag:2017];
+            v.hidden = YES;
+        }
+        return cell;
+    }
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier"];
     if (cell == nil) {
@@ -86,9 +129,9 @@
         
         cell.detailTextLabel.font = [UIFont avenirFontOfSize:16];
         cell.detailTextLabel.textColor = RGBA(0x97, 0x96, 0x97, 1.0f);
+        cell.detailTextLabel.backgroundColor = [UIColor clearColor];
     }
     
-    NSArray *array = items[indexPath.section];
     cell.detailTextLabel.textColor = RGBA(0x97, 0x96, 0x97, 1.0f);
     if (indexPath.section == 1 && indexPath.row == array.count - 1) {
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -102,7 +145,8 @@
         cell.detailTextLabel.text = nil;
         if ([GlobalCache shareInstance].firmwareVersion.version.length > 0 && [GlobalCache shareInstance].local.firmwareVer.length > 0 && ![[GlobalCache shareInstance].local.firmwareVer isEqualToString:[GlobalCache shareInstance].firmwareVersion.version]) {
             cell.detailTextLabel.text = @"1";
-            cell.detailTextLabel.textColor = [UIColor redColor];
+            cell.detailTextLabel.backgroundColor = [UIColor redColor];
+            cell.detailTextLabel.textColor = [UIColor yellowColor];
         }
         else {
             cell.detailTextLabel.text = nil;

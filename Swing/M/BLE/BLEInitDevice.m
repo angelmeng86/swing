@@ -191,15 +191,31 @@
     LOG_D(@"getVersionTimeout return");
     //成功并且支持版本更新
     if (self.updater.readyUpdate) {
-        if (self.updater.needUpdate) {
-            self.tmpData = timer.userInfo;
-            [outTimer invalidate];
-            outTimer = nil;
-            [self.updater startUpdate];
-            return;
+        //保存kid对应的固件版本至本地
+        [GlobalCache shareInstance].local.firmwareVer = self.updater.deviceVersion;
+        [[GlobalCache shareInstance] saveInfo];
+        LOG_D(@"Device version %@.", self.updater.deviceVersion);
+        if (self.checkVerOnly) {
+            if ([GlobalCache shareInstance].firmwareVersion.version.length > 0) {
+                //查询到最新固件版本
+                if (![self.updater.deviceVersion isEqualToString:[GlobalCache shareInstance].firmwareVersion.version]) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:SWING_WATCH_NEW_UPDATE_NOTIFY object:nil];
+                }
+            }
         }
-        LOG_D(@"Device version is new.");
+        else
+        {
+            if (self.updater.needUpdate) {
+                self.tmpData = timer.userInfo;
+                [outTimer invalidate];
+                outTimer = nil;
+                [self.updater startUpdate];
+                return;
+            }
+            LOG_D(@"Device version is new.");
+        }
     }
+    
     if ([self.delegate respondsToSelector:@selector(reportInitDeviceResult:error:)]) {
         [self.delegate reportInitDeviceResult:timer.userInfo error:nil];
     }
@@ -211,13 +227,28 @@
         self.tmpData = data;
         //成功并且支持版本更新
         if (self.updater.readyUpdate) {
-            if (self.updater.needUpdate) {
-                [outTimer invalidate];
-                outTimer = nil;
-                [self.updater startUpdate];
-                return;
+            //保存kid对应的固件版本至本地
+            [GlobalCache shareInstance].local.firmwareVer = self.updater.deviceVersion;
+            [[GlobalCache shareInstance] saveInfo];
+            LOG_D(@"Device version %@.", self.updater.deviceVersion);
+            
+            if (self.checkVerOnly) {
+                if ([GlobalCache shareInstance].firmwareVersion.version.length > 0) {
+                    //查询到最新固件版本
+                    if (![self.updater.deviceVersion isEqualToString:[GlobalCache shareInstance].firmwareVersion.version]) {
+                        [[NSNotificationCenter defaultCenter] postNotificationName:SWING_WATCH_NEW_UPDATE_NOTIFY object:nil];
+                    }
+                }
             }
-            LOG_D(@"Device version is new.");
+            else {
+                if (self.updater.needUpdate) {
+                    [outTimer invalidate];
+                    outTimer = nil;
+                    [self.updater startUpdate];
+                    return;
+                }
+                LOG_D(@"Device version is new.");
+            }
         }
         else {
             //等待获取固件版本号

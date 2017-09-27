@@ -17,7 +17,6 @@
 		0F176EC01DE48FB70014F079 /* Todo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F176EBA1DE48FB70014F079 /* Todo+CoreDataProperties.m */; };
 		0F176EC11DE48FB70014F079 /* Event+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F176EBC1DE48FB70014F079 /* Event+CoreDataClass.m */; };
 		0F176EC21DE48FB70014F079 /* Event+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F176EBE1DE48FB70014F079 /* Event+CoreDataProperties.m */; };
-		0F1B77FC1E4EAC4600FD2421 /* OptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B77FB1E4EAC4600FD2421 /* OptionViewController.m */; };
 		0F1D939D1DEDD90F000444B9 /* BLEDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1D939C1DEDD90F000444B9 /* BLEDelegate.m */; };
 		0F37056E1E096A6700E87BF0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0F3705701E096A6700E87BF0 /* Localizable.strings */; };
 		0F445E0F1D7094A6008A092C /* JSONValueTransformer+NSData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F445E0E1D7094A6008A092C /* JSONValueTransformer+NSData.m */; };
@@ -101,6 +100,8 @@
 		ADDCD3F81D4C557E0031DC66 /* UIFont+AvenirFont.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDCD3F71D4C557E0031DC66 /* UIFont+AvenirFont.m */; };
 		ADDCD3FB1D4C59F10031DC66 /* Avenir-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADDCD3F91D4C59E10031DC66 /* Avenir-bold.ttf */; };
 		ADDCD3FC1D4C59F10031DC66 /* Avenir-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = ADDCD3FA1D4C59E10031DC66 /* Avenir-Book.otf */; };
+		ADDE016E1F7BA4DE0055E6A1 /* LFBadgeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDE016D1F7BA4DE0055E6A1 /* LFBadgeLabel.m */; };
+		ADDE01701F7BA7E30055E6A1 /* OptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADDE016F1F7BA7E30055E6A1 /* OptionViewController.m */; };
 		ADDEAE101DE299FB00AD478A /* Swing.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 0F1376291DE0524900DB6C33 /* Swing.xcdatamodeld */; };
 		ADE0BE731D59933400E70109 /* LMCalendarDayView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE0BE721D59933400E70109 /* LMCalendarDayView.m */; };
 		ADE6ED8A1D4E229D00FFA573 /* MonthCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE6ED891D4E229D00FFA573 /* MonthCalendarViewController.m */; };
@@ -147,7 +148,6 @@
 		0F176EBD1DE48FB70014F079 /* Event+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Event+CoreDataProperties.h"; sourceTree = "<group>"; };
 		0F176EBE1DE48FB70014F079 /* Event+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Event+CoreDataProperties.m"; sourceTree = "<group>"; };
 		0F1B77FA1E4EAC4600FD2421 /* OptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionViewController.h; sourceTree = "<group>"; };
-		0F1B77FB1E4EAC4600FD2421 /* OptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionViewController.m; sourceTree = "<group>"; };
 		0F1D939B1DEDD90F000444B9 /* BLEDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEDelegate.h; sourceTree = "<group>"; };
 		0F1D939C1DEDD90F000444B9 /* BLEDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEDelegate.m; sourceTree = "<group>"; };
 		0F37056F1E096A6700E87BF0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -312,6 +312,9 @@
 		ADDCD3F71D4C557E0031DC66 /* UIFont+AvenirFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+AvenirFont.m"; sourceTree = "<group>"; };
 		ADDCD3F91D4C59E10031DC66 /* Avenir-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir-bold.ttf"; sourceTree = "<group>"; };
 		ADDCD3FA1D4C59E10031DC66 /* Avenir-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir-Book.otf"; sourceTree = "<group>"; };
+		ADDE016C1F7BA4DE0055E6A1 /* LFBadgeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFBadgeLabel.h; sourceTree = "<group>"; };
+		ADDE016D1F7BA4DE0055E6A1 /* LFBadgeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFBadgeLabel.m; sourceTree = "<group>"; };
+		ADDE016F1F7BA7E30055E6A1 /* OptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionViewController.m; sourceTree = "<group>"; };
 		ADE0BE711D59933400E70109 /* LMCalendarDayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMCalendarDayView.h; sourceTree = "<group>"; };
 		ADE0BE721D59933400E70109 /* LMCalendarDayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMCalendarDayView.m; sourceTree = "<group>"; };
 		ADE6ED881D4E229D00FFA573 /* MonthCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthCalendarViewController.h; sourceTree = "<group>"; };
@@ -537,6 +540,8 @@
 				AD347D181D3FDDF700E91DDD /* Login */,
 				0F9734AF1F17919900502D8A /* LFSyncSheet.h */,
 				0F9734B01F17919900502D8A /* LFSyncSheet.m */,
+				ADDE016C1F7BA4DE0055E6A1 /* LFBadgeLabel.h */,
+				ADDE016D1F7BA4DE0055E6A1 /* LFBadgeLabel.m */,
 				AD790F511DAF9D9B002FE2F1 /* LFTextField.m */,
 				AD790F521DAF9D9B002FE2F1 /* LFTextField.h */,
 				ADEF31D01D478E9900BB6A9B /* RoundButton.h */,
@@ -685,7 +690,7 @@
 				AD7797941D4C9B5200472B27 /* EditProfileViewController.h */,
 				AD7797951D4C9B5200472B27 /* EditProfileViewController.m */,
 				0F1B77FA1E4EAC4600FD2421 /* OptionViewController.h */,
-				0F1B77FB1E4EAC4600FD2421 /* OptionViewController.m */,
+				ADDE016F1F7BA7E30055E6A1 /* OptionViewController.m */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1005,6 +1010,7 @@
 				AD77979C1D4CE11B00472B27 /* CameraUtility.m in Sources */,
 				ADF985561D50C64A00B02075 /* ToDoListView.m in Sources */,
 				ADF33CBF1D5A32DD00AE8874 /* RectProgress.m in Sources */,
+				ADDE016E1F7BA4DE0055E6A1 /* LFBadgeLabel.m in Sources */,
 				ADF33CB91D5A159400AE8874 /* LMCalendarWeekDayView.m in Sources */,
 				ADD655611D5B8DAC0054FB24 /* AlertModel.m in Sources */,
 				AD7438231D4DD47100F5F9D2 /* JBChartTooltipTipView.m in Sources */,
@@ -1023,6 +1029,7 @@
 				ADD6555C1D5B886D0054FB24 /* AlertSelectViewController.m in Sources */,
 				ADEF31CF1D478D2B00BB6A9B /* BindReadyViewController.m in Sources */,
 				ADE6ED971D4E538B00FFA573 /* EventModel.m in Sources */,
+				ADDE01701F7BA7E30055E6A1 /* OptionViewController.m in Sources */,
 				AD0B811B1D37EF7400F43E72 /* LMBaseTableViewController2.m in Sources */,
 				AD65905E1DDA8B8A006DD43D /* BLEWaitDevice.m in Sources */,
 				0FDBDA951D708725004F7AAF /* LMLocalData.m in Sources */,
@@ -1060,7 +1067,6 @@
 				ADA1F82A1E234D4B0066CD35 /* SwingURL.m in Sources */,
 				AD7797931D4C8D0600472B27 /* ProfileDeviceCell.m in Sources */,
 				0F12C33F1E507B1E0055DBB0 /* EditKidViewController.m in Sources */,
-				0F1B77FC1E4EAC4600FD2421 /* OptionViewController.m in Sources */,
 				AD790F531DAF9D9B002FE2F1 /* LFTextField.m in Sources */,
 				0F927FD71DDA02680011EF90 /* BLEScanDevice.m in Sources */,
 				0F68BEEF1DE87F8D002FDFB2 /* Activity+CoreDataProperties.m in Sources */,

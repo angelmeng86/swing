@@ -421,11 +421,11 @@
     [_client scanDeviceWithCompletion:^(CBPeripheral *peripheral, NSDictionary *advertisementData, NSError *error) {
         if (!error) {
             self.peripheral = peripheral;
-            [_client initDevice:peripheral completion:^(NSData *macAddress, NSError *error) {
-                if (!error) {
-                    [self performSelector:@selector(testBLE2) withObject:nil afterDelay:5];
-                }
-            }];
+//            [_client initDevice:peripheral completion:^(NSData *macAddress, NSError *error) {
+//                if (!error) {
+//                    [self performSelector:@selector(testBLE2) withObject:nil afterDelay:5];
+//                }
+//            }];
         }
     }];
 }

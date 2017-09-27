@@ -22,6 +22,7 @@
 @property (strong, nonatomic) NSMutableArray *peripherals;
 
 @property (strong, nonatomic) NSMutableDictionary *macAddressDict;
+@property (strong, nonatomic) NSMutableDictionary *versionDict;
 @property (strong, nonatomic) NSMutableArray *tasks;
 
 @end
@@ -40,6 +41,7 @@
     self.label1.text = LOC_STR(@"Please select your Swing Watch");
     self.peripherals = [NSMutableArray array];
     self.macAddressDict = [NSMutableDictionary dictionary];
+    self.versionDict = [NSMutableDictionary dictionary];
     self.tasks = [NSMutableArray array];
     self.navigationItem.title = nil;
     [self setCustomBackButton];
@@ -69,7 +71,7 @@
 #else
     client = [[BLEClient alloc] init];
 #ifdef SHOW_MACADDRESS
-    [client scanDeviceMacAddressWithCompletion:^(CBPeripheral *peripheral, NSData *macAddress, NSError *error) {
+    [client scanDeviceMacAddressWithCompletion:^(CBPeripheral *peripheral, NSData *macAddress, NSString* version, NSError *error) {
         if (!error) {
             if (peripheral && ![_peripherals containsObject:peripheral]) {
                 
@@ -82,6 +84,7 @@
                             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_peripherals.count inSection:0];
                             [_peripherals addObject:peripheral];
                             self.macAddressDict[peripheral] = macAddress;
+                            self.versionDict[peripheral] = version;
                             [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                         }
                     }
@@ -127,6 +130,7 @@
     [super viewWillDisappear:animated];
     self.peripherals = [NSMutableArray array];
     self.macAddressDict = [NSMutableDictionary dictionary];
+    self.versionDict = [NSMutableDictionary dictionary];
     [self.tableView reloadData];
 #ifdef SHOW_MACADDRESS
     [client stopScanMacAddress];
@@ -198,6 +202,7 @@
         UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
         KidBindViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"KidBind"];
         ctl.macAddress = self.macAddressDict[peripheral];
+        ctl.version = self.versionDict[peripheral];
         [self.navigationController pushViewController:ctl animated:YES];
     }
 #else
