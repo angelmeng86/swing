@@ -257,7 +257,7 @@
 
 - (void)checkFirmwareVerison {
     [SVProgressHUD show];
-    [[SwingClient sharedClient] getFirmwareVersionWithCompletion:^(FirmwareVersion *version, NSError *error) {
+    [[SwingClient sharedClient] getFirmwareVersion:[GlobalCache shareInstance].kid.macId completion:^(FirmwareVersion *version, NSError *error) {
         if (!error) {
             [GlobalCache shareInstance].firmwareVersion = version;
             __block BOOL isDownloaded = NO;

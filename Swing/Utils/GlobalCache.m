@@ -354,8 +354,11 @@
      00 -> EN, 05 -> Version
      01 -> JP, 05 -> Version
      */
-    if ([GlobalCache shareInstance].local.firmwareVer.length > 0 &&
-        [[GlobalCache shareInstance].local.firmwareVer hasPrefix:@"KDV01"]) {
+    NSString *version = [GlobalCache shareInstance].local.firmwareVer;
+    if (version == nil) {
+        version = [GlobalCache shareInstance].kid.firmwareVersion;
+    }
+    if (version.length > 0 && [version hasPrefix:@"KDV01"]) {
         return [[NSBundle mainBundle] pathForResource:@"alert2_jp" ofType:@"json"];
     }
 //    if ([self.curLanguage isEqualToString:@"ja"] || [self.curLanguage hasPrefix:@"zh"]) {

@@ -882,13 +882,10 @@
     return task;
 }
 
-- (NSURLSessionDataTask *)getFirmwareVersionWithCompletion:( void (^)(id version, NSError *error) )completion
+- (NSURLSessionDataTask *)getFirmwareVersion:(NSString*)macId completion:( void (^)(id version, NSError *error) )completion
 {
-    NSString *macId = [GlobalCache shareInstance].kid.macId;
-    NSString *url = _URL.firmwareVersion;
-    if (macId.length > 0) {
-        url = [NSString stringWithFormat:@"%@/%@", _URL.firmwareVersion, macId];
-    }
+//    NSString *macId = [GlobalCache shareInstance].kid.macId;
+    NSString *url = [NSString stringWithFormat:@"%@/%@", _URL.currentVersion, macId];
     NSURLSessionDataTask *task = [self.sessionManager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"getFirmwareVersion info:%@", responseObject);
@@ -908,6 +905,30 @@
             completion(nil, err);
         });
     }];
+    return task;
+}
+
+- (NSURLSessionDataTask *)putFirmwareVersion:(NSString*)version macId:(NSString*)macId completion:( void (^)(NSError *error) )completion
+{
+    NSDictionary *data = @{@"macId":macId, @"firmwareVersion":version};
+    LOG_D(@"putFirmwareVersion data:%@", data);
+    NSURLSessionDataTask *task = [self.sessionManager PUT:_URL.putFirmwareVersion parameters:data success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LOG_D(@"putFirmwareVersion:%@", responseObject);
+            NSError *err = [self getErrorMessage:responseObject];
+            if (err) {
+                completion(err);
+            }
+            else {
+                completion(nil);
+            }
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(error);
+        });
+    }];
+    
     return task;
 }
 

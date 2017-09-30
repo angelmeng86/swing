@@ -127,9 +127,14 @@
     return @"/v1/activity/retrieveDataByTime";
 }
 
-- (NSString*)firmwareVersion {
+- (NSString*)currentVersion {
     return @"/v1/fw/currentVersion";
 }
+
+- (NSString*)putFirmwareVersion {
+    return @"/v1/fw/firmwareVersion";
+}
+
 
 - (NSString*)sendResetPasswordEmail {
     return @"/v1/user/sendResetPasswordEmail";

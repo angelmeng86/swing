@@ -451,12 +451,7 @@ typedef enum : NSUInteger {
             LOG_D(@"Device version %@.", self.updater.deviceVersion);
             
             if (self.checkVerOnly) {
-                if ([GlobalCache shareInstance].firmwareVersion.version.length > 0) {
-                    //查询到最新固件版本
-                    if (![self.updater.deviceVersion isEqualToString:[GlobalCache shareInstance].firmwareVersion.version]) {
-                        [[NSNotificationCenter defaultCenter] postNotificationName:SWING_WATCH_NEW_UPDATE_NOTIFY object:nil];
-                    }
-                }
+                [self checkFirmwareVersion];
             }
             else {
                 if (self.updater.needUpdate) {
@@ -485,6 +480,33 @@ typedef enum : NSUInteger {
     [self cannel];
 }
 
+- (void)checkFirmwareVersion
+{
+    if ([GlobalCache shareInstance].kid.macId.length > 0 && self.updater.deviceVersion.length > 0) {
+        [[SwingClient sharedClient] putFirmwareVersion:self.updater.deviceVersion macId:[GlobalCache shareInstance].kid.macId completion:^(NSError *error) {
+            if (!error) {
+                [[SwingClient sharedClient] getFirmwareVersion:[GlobalCache shareInstance].kid.macId completion:^(id version, NSError *error) {
+                    if (!error) {
+                        [GlobalCache shareInstance].firmwareVersion = version;
+                        if ([GlobalCache shareInstance].firmwareVersion.version.length > 0) {
+                            //查询到最新固件版本
+                            if (![[GlobalCache shareInstance].local.firmwareVer isEqualToString:[GlobalCache shareInstance].firmwareVersion.version]) {
+                                [[NSNotificationCenter defaultCenter] postNotificationName:SWING_WATCH_NEW_UPDATE_NOTIFY object:nil];
+                            }
+                        }
+                    }
+                    else {
+                        LOG_D(@"getFirmwareVersion err %@", error);
+                    }
+                }];
+            }
+            else {
+                LOG_D(@"putFirmwareVersion err %@", error);
+            }
+        }];
+    }
+}
+
 - (void)getVersionTimeout:(NSTimer*)timer {
     //获取固件版本超时，正常返回
     LOG_D(@"getVersionTimeout return");
@@ -495,12 +517,7 @@ typedef enum : NSUInteger {
         [[GlobalCache shareInstance] saveInfo];
         LOG_D(@"Device version %@.", self.updater.deviceVersion);
         if (self.checkVerOnly) {
-            if ([GlobalCache shareInstance].firmwareVersion.version.length > 0) {
-                //查询到最新固件版本
-                if (![self.updater.deviceVersion isEqualToString:[GlobalCache shareInstance].firmwareVersion.version]) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:SWING_WATCH_NEW_UPDATE_NOTIFY object:nil];
-                }
-            }
+            [self checkFirmwareVersion];
         }
         else
         {
