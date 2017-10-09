@@ -146,6 +146,8 @@
     self.cityTF.delegate = self;
     self.descTF.delegate = self;
     
+    self.endTF.delegate = self;
+    
 //    isAddTip = NO;
     
     isAddTip = YES;
@@ -319,6 +321,19 @@
     else if (textField == self.repeatTF) {
         [self repeatAction];
         return NO;
+    }
+    else if (textField == self.endTF) {
+        UIDatePicker* datePicker = (UIDatePicker*)self.startTF.inputView;
+        NSDate *sDate = datePicker.date;
+        NSDateComponents *comps = [[NSCalendar currentCalendar] components:kCFCalendarUnitYear|kCFCalendarUnitMonth|kCFCalendarUnitDay|NSCalendarUnitHour|NSCalendarUnitMinute fromDate:sDate];
+        
+        UIDatePicker* dp = (UIDatePicker*)self.endTF.inputView;
+        dp.minimumDate = [sDate dateByAddingTimeInterval:60];
+        
+        comps.hour = 23;
+        comps.minute = 59;
+        comps.second = 59;
+        dp.maximumDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
     }
     return YES;
 }
