@@ -14,7 +14,8 @@ typedef enum : NSUInteger {
     SyncStatusSearching,
     SyncStatusFound,
     SyncStatusSyncing,
-    SyncStatusSyncCompleted
+    SyncStatusSyncCompleted,
+    SyncStatusNotFound,
 } SyncStatus;
 
 @interface SearchDeviceViewController ()
@@ -114,6 +115,7 @@ typedef enum : NSUInteger {
         return;
     }
     self.subTitleLabel.text = nil;
+    self.button2.hidden = YES;
     switch (status) {
         case SyncStatusSearching:
         {
@@ -139,7 +141,8 @@ typedef enum : NSUInteger {
                 else {
                     LOG_D(@"searchDevice error:%@", error);
                     [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-                    [self backAction];
+                    //[self backAction];
+                    [self changeStatus:SyncStatusNotFound];
                 }
             }];
 #endif
@@ -193,6 +196,22 @@ typedef enum : NSUInteger {
             }
         }
             break;
+        case SyncStatusNotFound:
+        {
+            self.statusLabel.text = LOC_STR(@"We can't find your device!");
+            self.button.hidden = NO;
+            self.button2.hidden = NO;
+            
+            self.progressView.isIndeterminateProgress = NO;
+            self.progressView.progressTotal = 8;
+            self.progressView.progressCounter = 0;
+            
+            [self setCustomBackBarButtonItem];
+            
+            [self.button setTitle:LOC_STR(@"Try again") forState:UIControlStateNormal];
+            [self.button2 setTitle:LOC_STR(@"Go to last synced data") forState:UIControlStateNormal];
+        }
+            break;
         default:
             break;
     }
@@ -214,33 +233,16 @@ typedef enum : NSUInteger {
     else if (_status == SyncStatusSyncCompleted) {
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }
-}
-/*
-- (IBAction)btnAction:(id)sender {
-    if (_status == SyncStatusFound) {
-        [SVProgressHUD showWithStatus:@"Get event, please wait..."];
-        [[SwingClient sharedClient] calendarGetEvents:[NSDate date] type:GetEventTypeMonth completion:^(NSArray *eventArray, NSError *error) {
-            if (error) {
-                LOG_D(@"calendarGetEvents fail: %@", error);
-                [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-            }
-            else {
-                [SVProgressHUD dismiss];
-                [self changeStatus:SyncStatusSyncing];
-#if TARGET_IPHONE_SIMULATOR
-                [self performSelector:@selector(performStatus:) withObject:[NSNumber numberWithUnsignedInteger:SyncStatusSyncCompleted] afterDelay:3];
-#else
-                [self performSelector:@selector(syncAction:) withObject:eventArray afterDelay:3];
-#endif
-                
-            }
-        }];
-    }
-    else if (_status == SyncStatusSyncCompleted) {
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    else if (_status == SyncStatusNotFound) {
+        //Try again
+        [self changeStatus:SyncStatusSearching];
     }
 }
-*/
+
+- (IBAction)btn2Action:(id)sender {
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)syncAction:(NSArray*)eventArray {
     [client syncDevice:_peripheral macAddress:nil/*[GlobalCache shareInstance].kid.macId*/ event:eventArray completion:^(NSMutableArray *activities, NSError *error, int battery, NSString *macId) {
         [self changeStatus:SyncStatusSyncing];

@@ -171,3 +171,7 @@
 "Please check your email at '%@' for the link to reset your password.This link will expire in 24 hours"="Please check your email at '%@' for the link to reset your password.This link will expire in 24 hours";
 
 "SWING_EVENT"="Your have an event:%@";
+
+/* 20171011 */
+"Try again"="Try again";
+"Go to last synced data"="Go to last synced data";
