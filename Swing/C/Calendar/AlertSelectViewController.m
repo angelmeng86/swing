@@ -113,7 +113,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    NSDictionary *item = _alertArray[indexPath.section];
     if (indexPath.section == 0 && indexPath.row == 0) {
         UITableViewCell *inputCell = [tableView dequeueReusableCellWithIdentifier:@"inputReuseIdentifier"];
         if (inputCell == nil) {
@@ -137,14 +137,13 @@
             textField.delegate = self;
              */
         }
-        NSDictionary *item = _alertArray[indexPath.section];
         NSArray *items = item[@"items"];
         NSDictionary *model = items[indexPath.row];
         inputCell.textLabel.text = LOC_STR(model[@"text"]);
         return inputCell;
     }
     
-    if (indexPath.section == 1) {
+    if (indexPath.section == 1 && [item[@"text"] isEqualToString:@"Alarm Clock"]) {
         UITableViewCell *alarmcell = [tableView dequeueReusableCellWithIdentifier:@"alarmreuseIdentifier"];
         if (alarmcell == nil) {
             alarmcell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"alarmreuseIdentifier"];
@@ -159,7 +158,6 @@
             //        UIImageView *imageView = [[UIImageView alloc] initWithImage:LOAD_IMAGE(@"alert_icon")];
             alarmcell.accessoryView = btn;
         }
-        NSDictionary *item = _alertArray[indexPath.section];
         NSArray *items = item[@"items"];
         NSDictionary *model = items[indexPath.row];
         alarmcell.textLabel.text = LOC_STR(model[@"text"]);
@@ -181,7 +179,6 @@
         cell.accessoryView = btn;
     }
     
-    NSDictionary *item = _alertArray[indexPath.section];
     NSArray *items = item[@"items"];
     NSDictionary *model = items[indexPath.row];
 //    AlertModel *model = _alertArray[indexPath.row];

@@ -38,6 +38,8 @@ typedef enum : NSUInteger {
 
 @property int state;
 
+@property BOOL useA;
+
 
 @end
 
@@ -46,8 +48,9 @@ typedef enum : NSUInteger {
 - (id)init
 {
     if (self = [super init]) {
+        self.isChecked = NO;
         self.state = BLEUpdaterStateNone;
-        self.imageVersion = KD_IMAGE_VERSION;
+//        self.imageVersion = KD_IMAGE_VERSION;
     }
     return self;
 }
@@ -55,11 +58,20 @@ typedef enum : NSUInteger {
 - (void)useImage:(BOOL)A
 {
     //固件版本
+    /*
     NSMutableString *path= [[NSMutableString  alloc] initWithString: [[NSBundle mainBundle] resourcePath]];
     [path appendString:@"/"];
     [path appendString:A ? KD_IMAGE_A : KD_IMAGE_B];
     //    [path appendString:A ? @"A-super-MP-OTA-64M-022317.bin" : @"B-super-MP-OTA-64M-022317.bin"];
     self.imageData = [NSData dataWithContentsOfFile:path];
+    */
+    if ([GlobalCache shareInstance].firmwareVersion.version.length == 0) {
+        return;
+    }
+    NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
+    NSURL *path = [documentsDirectoryURL URLByAppendingPathComponent:[[GlobalCache shareInstance].firmwareVersion.version stringByAppendingString:A ? @"_A.hex" : @"_B.hex"]];
+    self.imageData = [NSData dataWithContentsOfURL:path];
+    
     LOG_D(@"Loaded firmware \"%@\"of size : %ld",path, (unsigned long)self.imageData.length);
     
     img_hdr_t imgHeader;
@@ -68,9 +80,12 @@ typedef enum : NSUInteger {
 }
 
 - (BOOL)isCorrectImage {
-    if (!self.imageData || !self.imageVersion || !self.deviceVersion ) {
+    [self useImage:self.useA];
+    if (!self.imageData || [GlobalCache shareInstance].firmwareVersion.version.length == 0 || !self.deviceVersion ) {
         return NO;
     }
+    return ![[GlobalCache shareInstance].firmwareVersion.version isEqualToString:self.deviceVersion];
+    
     /*
      img_hdr_t imgHeader;
      memcpy(&imgHeader, self.imageData.bytes + OAD_IMG_HDR_OSET, sizeof(img_hdr_t));
@@ -79,7 +94,7 @@ typedef enum : NSUInteger {
      if (imgHeader.ver != self.imgVersion) return YES;
      return NO;
      */
-    return ![self.imageVersion isEqualToString:self.deviceVersion];
+//    return ![self.imageVersion isEqualToString:self.deviceVersion];
 //    return YES;
 }
 
@@ -136,6 +151,7 @@ typedef enum : NSUInteger {
 {
     if ([service.UUID isEqual:[CBUUID UUIDWithString:OAD_SERVICE_UUID]]) {
         self.imageData = nil;
+        self.isChecked = NO;
         [self configureProfile];
     }
     else if ([service.UUID isEqual:[CBUUID UUIDWithString:@"180A"]]) {
@@ -152,20 +168,21 @@ typedef enum : NSUInteger {
         }
         LOG_D(@"Firmware Version: %@", self.deviceVersion);
         
-        if (self.deviceVersion && self.imageData) {
+        if (self.deviceVersion && self.isChecked) {
             self.state = BLEUpdaterStateOk;
         }
     }
     else if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:OAD_IMAGE_NOTIFY_UUID]]) {
-        if (!self.imageData) {
+        if (!self.isChecked) {
             unsigned char data[characteristic.value.length];
             [characteristic.value getBytes:&data length:characteristic.value.length];
             uint16_t ver = ((uint16_t)data[1] << 8 & 0xff00) | ((uint16_t)data[0] & 0xff);
             LOG_D(@"current bin ver : %04hx", ver);
             LOG_D(@"Use Image %@", self.state == BLEUpdaterStateCheckImageB ? @"A" : @"B");
-            [self useImage:self.state == BLEUpdaterStateCheckImageB];
+            self.useA = (self.state == BLEUpdaterStateCheckImageB);
+            self.isChecked = YES;
             
-            if (self.deviceVersion && self.imageData) {
+            if (self.deviceVersion && self.isChecked) {
                 self.state = BLEUpdaterStateOk;
             }
         }
@@ -207,7 +224,7 @@ typedef enum : NSUInteger {
 
 
 - (void)imageDetectTimerTick:(NSTimer *)timer {
-    if(self.imageData) {
+    if(self.isChecked) {
         LOG_D(@"imageDetectTimerTick invalid.");
         return;
     }

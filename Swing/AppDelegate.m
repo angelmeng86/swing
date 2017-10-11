@@ -172,7 +172,7 @@
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken {
     
     NSString *tokenStr = [Fun dataToHex:deviceToken];
-    NSLog(@"token:%@", tokenStr);
+    NSLog(@"Swing token:%@", tokenStr);
     // Save the token to server
     [GlobalCache shareInstance].token = tokenStr;
     if ([GlobalCache shareInstance].local.access_token) {
@@ -203,13 +203,42 @@
     }
 }
 
+- (id)stringWithFormat:(NSString *)format array:(NSArray *)arguments
+{
+    NSRange range = NSMakeRange(0, [arguments count]);
+    NSMutableData *data = [NSMutableData dataWithLength:sizeof(id) * [arguments count]];
+    [arguments getObjects:(__unsafe_unretained id *)data.mutableBytes range:range];
+    NSString *result = [[NSString alloc] initWithFormat:format arguments:data.mutableBytes];
+    return result;
+}
+
 - (void)handleRemoteNotification:(NSDictionary*)userInfo active:(BOOL)active {
     NSLog(@"handleRemoteNotification:%@", userInfo);
-    NSString* alert = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+    id alert = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+    
     // 把应用右上角的图标​去掉
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     if (active && [GlobalCache shareInstance].local.access_token && !_isBackground) {
-        [Fun showMessageBoxWithTitle:@"Notification" andMessage:alert];
+        if ([alert isKindOfClass:[NSString class]]) {
+            NSString *text = alert;
+            NSUInteger len = [@"You have an event" length];
+            if ([text hasPrefix:@"You have an event"]) {
+                if (text.length > len) {
+                    text = [NSString stringWithFormat:LOC_STR(@"SWING_EVENT"), [text substringFromIndex:[@"You have an event" length] + 1]];
+                }
+                else {
+                    text = LOC_STR(@"SWING_EVENT");
+                }
+            }
+            [Fun showMessageBoxWithTitle:@"" andMessage:text];
+        }
+        else {
+            NSDictionary *dict = alert;
+            NSString *lockey = dict[@"loc-key"];
+            NSArray *locargs = dict[@"loc-args"];
+
+            [Fun showMessageBoxWithTitle:@"" andMessage:[self stringWithFormat:LOC_STR(lockey) array:locargs]];
+        }
     }
     else {
         [[NSNotificationCenter defaultCenter] postNotificationName:REMOTE_NOTIFICATION object:userInfo];

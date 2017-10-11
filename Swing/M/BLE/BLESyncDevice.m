@@ -32,6 +32,8 @@ typedef enum : NSUInteger {
     NSTimer *outTimer;
     
     int battery;
+    
+    int repeatTimes;
 }
 
 @property (nonatomic, strong) BLEUpdater *updater;
@@ -260,6 +262,11 @@ typedef enum : NSUInteger {
             }
             else {
                 LOG_D(@"activity: time:%@ is repeat.", [NSDate dateWithTimeIntervalSince1970:self.timeStamp]);
+                if (--repeatTimes < 0) {
+                    LOG_D(@"activity repeat times is max.");
+                    [self reportSyncDeviceResult:nil];
+                    return;
+                }
             }
         }
         
@@ -379,6 +386,7 @@ typedef enum : NSUInteger {
     self.activityDict = [NSMutableDictionary dictionary];
     self.timeSet = [NSMutableIndexSet new];
     testCount = 0;
+    repeatTimes = 5;
     battery = -1;
     self.peripheral = peripheral;
     self.manager = central;
@@ -437,14 +445,24 @@ typedef enum : NSUInteger {
     if ([self.updater supportUpdate]) {
         //成功并且支持版本更新
         if (self.updater.readyUpdate) {
-            if (self.updater.needUpdate) {
-                [outTimer invalidate];
-                outTimer = nil;
-                [self.updater startUpdate];
-//                [self.updater performSelector:@selector(startUpdate) withObject:nil afterDelay:1];
-                return;
+            //保存kid对应的固件版本至本地
+            [GlobalCache shareInstance].local.firmwareVer = self.updater.deviceVersion;
+            [[GlobalCache shareInstance] saveInfo];
+            LOG_D(@"Device version %@.", self.updater.deviceVersion);
+            
+            if (self.checkVerOnly) {
+                [self checkFirmwareVersion];
             }
-            LOG_D(@"Device version is new.");
+            else {
+                if (self.updater.needUpdate) {
+                    [outTimer invalidate];
+                    outTimer = nil;
+                    [self.updater startUpdate];
+                    //                [self.updater performSelector:@selector(startUpdate) withObject:nil afterDelay:1];
+                    return;
+                }
+                LOG_D(@"Device version is new.");
+            }
         }
         else {
             //等待获取固件版本号
@@ -462,19 +480,56 @@ typedef enum : NSUInteger {
     [self cannel];
 }
 
+- (void)checkFirmwareVersion
+{
+    if ([GlobalCache shareInstance].kid.macId.length > 0 && self.updater.deviceVersion.length > 0) {
+        [[SwingClient sharedClient] putFirmwareVersion:self.updater.deviceVersion macId:[GlobalCache shareInstance].kid.macId completion:^(NSError *error) {
+            if (!error) {
+                [[SwingClient sharedClient] getFirmwareVersion:[GlobalCache shareInstance].kid.macId completion:^(id version, NSError *error) {
+                    if (!error) {
+                        [GlobalCache shareInstance].firmwareVersion = version;
+                        if ([GlobalCache shareInstance].firmwareVersion.version.length > 0) {
+                            //查询到最新固件版本
+                            if (![[GlobalCache shareInstance].local.firmwareVer isEqualToString:[GlobalCache shareInstance].firmwareVersion.version]) {
+                                [[NSNotificationCenter defaultCenter] postNotificationName:SWING_WATCH_NEW_UPDATE_NOTIFY object:nil];
+                            }
+                        }
+                    }
+                    else {
+                        LOG_D(@"getFirmwareVersion err %@", error);
+                    }
+                }];
+            }
+            else {
+                LOG_D(@"putFirmwareVersion err %@", error);
+            }
+        }];
+    }
+}
+
 - (void)getVersionTimeout:(NSTimer*)timer {
     //获取固件版本超时，正常返回
     LOG_D(@"getVersionTimeout return");
     //成功并且支持版本更新
     if (self.updater.readyUpdate) {
-        if (self.updater.needUpdate) {
-            [outTimer invalidate];
-            outTimer = nil;
-            [self.updater startUpdate];
-//            [self.updater performSelector:@selector(startUpdate) withObject:nil afterDelay:1];
-            return;
+        //保存kid对应的固件版本至本地
+        [GlobalCache shareInstance].local.firmwareVer = self.updater.deviceVersion;
+        [[GlobalCache shareInstance] saveInfo];
+        LOG_D(@"Device version %@.", self.updater.deviceVersion);
+        if (self.checkVerOnly) {
+            [self checkFirmwareVersion];
         }
-        LOG_D(@"Device version is new.");
+        else
+        {
+            if (self.updater.needUpdate) {
+                [outTimer invalidate];
+                outTimer = nil;
+                [self.updater startUpdate];
+                //            [self.updater performSelector:@selector(startUpdate) withObject:nil afterDelay:1];
+                return;
+            }
+            LOG_D(@"Device version is new.");
+        }
     }
     
     if ([self.delegate respondsToSelector:@selector(reportSyncDeviceResult:battery:macId:error:)]) {
@@ -492,6 +547,11 @@ typedef enum : NSUInteger {
 
 - (void)deviceUpdateResult:(BOOL)success {
     LOG_D(@"deviceUpdateResult %d", success);
+    
+    //更新完成后重置当前设备版本
+    [GlobalCache shareInstance].local.firmwareVer = nil;
+    [[GlobalCache shareInstance] saveInfo];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SWING_WATCH_NEW_UPDATE_NOTIFY object:nil];
     
     if ([self.delegate respondsToSelector:@selector(reportSyncDeviceResult:battery:macId:error:)]) {
         [self.delegate reportSyncDeviceResult:_activityArray battery:battery macId:self.realMac error:nil];

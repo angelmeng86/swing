@@ -18,6 +18,7 @@
 
 @interface BLEInitDevice : BLEWaitDevice
 
+@property (nonatomic) BOOL checkVerOnly;
 @property (nonatomic, copy) SwingBluetoothUpdateDeviceBlock blockOnUpdateDevice;
 
 - (void)initDevice:(CBPeripheral*)peripheral  centralManager:(CBCentralManager *)central;

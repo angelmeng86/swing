@@ -21,6 +21,7 @@
 
 @property (strong, nonatomic) NSString<Optional>* profile;
 @property (strong, nonatomic) NSString<Optional>* macId;//new api added
+@property (strong, nonatomic) NSString<Optional>* firmwareVersion;
 
 @property (nonatomic, strong) UserModel<Optional> *parent;
 

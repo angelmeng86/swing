@@ -270,7 +270,7 @@ typedef enum : NSUInteger {
         if (self.progressView.progressCounter != count) {
             self.progressView.progressCounter = count;
         }
-    }];
+    }  check:!self.needUpdate];
 }
 
 - (void)uploadBattery:(int)battery

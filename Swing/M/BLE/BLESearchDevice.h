@@ -14,7 +14,7 @@
 
 - (void)reportSearchDeviceResult:(CBPeripheral*)peripheral error:(NSError*)error;
 
-- (void)reportSearchDeviceMacId:(CBPeripheral*)peripheral mac:(NSData*)macAddress error:(NSError*)error;
+- (void)reportSearchDeviceMacId:(CBPeripheral*)peripheral mac:(NSData*)macAddress version:(NSString*)version error:(NSError*)error;
 
 @end
 

@@ -11,6 +11,7 @@
 #import "LFSyncSheet.h"
 #import "CommonDef.h"
 #import "SyncNavViewController.h"
+#import "SearchDeviceViewController.h"
 
 @interface MonthCalendarViewController ()
 

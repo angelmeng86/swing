@@ -12,7 +12,7 @@
 typedef void (^SwingBluetoothInitDeviceBlock)(NSData *macAddress, NSError *error);
 typedef void (^SwingBluetoothScanDeviceBlock)(CBPeripheral *peripheral, NSDictionary *advertisementData, NSError *error);
 
-typedef void (^SwingBluetoothScanDeviceMacAddressBlock)(CBPeripheral *peripheral, NSData *macAddress, NSError *error);
+typedef void (^SwingBluetoothScanDeviceMacAddressBlock)(CBPeripheral *peripheral, NSData *macAddress, NSString *version, NSError *error);
 
 typedef void (^SwingBluetoothSearchDeviceBlock)(CBPeripheral *peripheral, NSError *error);
 typedef void (^SwingBluetoothSyncDeviceBlock)(NSMutableArray *activities, NSError *error, int battery, NSString *realMac);

@@ -48,6 +48,9 @@
     if (tabBarController.viewControllers[2] == viewController) {
         [self showSyncDialog];
     }
+    else if(tabBarController.viewControllers[3] == viewController) {
+        [self newFirmwareVersion:nil];
+    }
 }
 
 - (void)showSyncDialog {
@@ -55,6 +58,16 @@
     UIViewController *ctl = [stroyBoard instantiateInitialViewController];
     [self presentViewController:ctl animated:YES completion:nil];
     self.syncDialog = ctl;
+}
+
+- (void)newFirmwareVersion:(NSNotification*)notification {
+    UITabBarItem *item = [self.tabBar.items lastObject];
+    if ([GlobalCache shareInstance].firmwareVersion.version.length > 0 && [GlobalCache shareInstance].local.firmwareVer.length > 0 && ![[GlobalCache shareInstance].local.firmwareVer isEqualToString:[GlobalCache shareInstance].firmwareVersion.version]) {
+        item.badgeValue = @"1";
+    }
+    else {
+        item.badgeValue = nil;
+    }
 }
 
 - (void)viewDidLoad {
@@ -67,9 +80,53 @@
     [self performSelector:@selector(showSyncDialog) withObject:nil afterDelay:0.3];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRemoteInfo:) name:REMOTE_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newFirmwareVersion:) name:SWING_WATCH_NEW_UPDATE_NOTIFY object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadKidPicture) name:KID_AVATAR_NOTIFICATION object:nil];
     [self loadKidPicture];
+    [self newFirmwareVersion:nil];
+    
+    /*
+    NSString *url = @"https://github.com/angelmeng86/swing/archive/master.zip";
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    configuration.timeoutIntervalForRequest = 30;
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    
+    NSURL *URL = [NSURL URLWithString:url];
+    NSURLRequest *request1 = [NSURLRequest requestWithURL:URL];
+    
+    NSURLSessionDownloadTask *downloadTask1 = [manager downloadTaskWithRequest:request1 progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+        NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
+        return [documentsDirectoryURL URLByAppendingPathComponent:[response suggestedFilename]];
+    } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+        LOG_D(@"FileA response:%@", response);
+        if (!error) {
+            LOG_D(@"FileA download err: %@", error);
+        }
+        else {
+            LOG_D(@"FileA downloaded to: %@", filePath);
+        }
+        
+    }];
+    [downloadTask1 resume];
+    
+    URL = [NSURL URLWithString:url];
+    NSURLRequest *request2 = [NSURLRequest requestWithURL:URL];
+    NSURLSessionDownloadTask *downloadTask2 = [manager downloadTaskWithRequest:request2 progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+        NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
+        return [documentsDirectoryURL URLByAppendingPathComponent:[response suggestedFilename]];
+    } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+        LOG_D(@"FileB response:%@", response);
+        if (!error) {
+            LOG_D(@"FileB download err: %@", error);
+        }
+        else {
+            LOG_D(@"FileB downloaded to: %@", filePath);
+        }
+    }];
+    [downloadTask2 resume];
+    */
     /*
     [[SwingClient sharedClient] getFirmwareVersionWithCompletion:^(FirmwareVersion *version, NSError *error) {
         if (!error) {
@@ -111,8 +168,11 @@
             }];
             [downloadTask2 resume];
         }
+        else {
+            LOG_D(@"getFirmwareVersion err %@", error);
+        }
     }];
-     */
+    */
 }
 
 - (void)loadKidPicture

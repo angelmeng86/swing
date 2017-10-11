@@ -53,6 +53,9 @@
     NSString *json = [[NSUserDefaults standardUserDefaults] objectForKey:@"kid"];
     _kid = [[KidModel alloc] initWithString:json error:nil];
     
+    json = [[NSUserDefaults standardUserDefaults] objectForKey:@"firmware"];
+    _firmwareVersion = [[FirmwareVersion alloc] initWithString:json error:nil];
+    
     json = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
     _user = [[UserModel alloc] initWithString:json error:nil];
     
@@ -60,6 +63,13 @@
     _local = [[LMLocalData alloc] initWithDictionary:dict error:nil];
     
 //    [self locationCountry];
+}
+
+- (void)setFirmwareVersion:(FirmwareVersion *)firmwareVersion
+{
+    _firmwareVersion = firmwareVersion;
+    [[NSUserDefaults standardUserDefaults] setObject:[_firmwareVersion toJSONString] forKey:@"firmware"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)setKid:(KidModel *)kid {
@@ -91,9 +101,16 @@
 }
 
 - (void)saveInfo {
-    [[NSUserDefaults standardUserDefaults] setObject:[_local toDictionary] forKey:@"localData"];
-    [[NSUserDefaults standardUserDefaults] setObject:[_kid toJSONString] forKey:@"kid"];
-    [[NSUserDefaults standardUserDefaults] setObject:[_user toJSONString] forKey:@"user"];
+    [[NSUserDefaults standardUserDefaults] setObject:[self.local toDictionary] forKey:@"localData"];
+    if (_kid) {
+        [[NSUserDefaults standardUserDefaults] setObject:[_kid toJSONString] forKey:@"kid"];
+    }
+    if (_firmwareVersion) {
+        [[NSUserDefaults standardUserDefaults] setObject:[_firmwareVersion toJSONString] forKey:@"firmware"];
+    }
+    if (_user) {
+        [[NSUserDefaults standardUserDefaults] setObject:[_user toJSONString] forKey:@"user"];
+    }
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -331,9 +348,22 @@
 
 - (NSString*)curEventFile
 {
-    if ([self.curLanguage isEqualToString:@"ja"] || [self.curLanguage hasPrefix:@"zh"]) {
-        return [[NSBundle mainBundle] pathForResource:@"alert_jp" ofType:@"json"];
+    /*
+     FW version
+     KDV0005-A, KDV0105-A
+     00 -> EN, 05 -> Version
+     01 -> JP, 05 -> Version
+     */
+    NSString *version = [GlobalCache shareInstance].local.firmwareVer;
+    if (version == nil) {
+        version = [GlobalCache shareInstance].kid.firmwareVersion;
     }
+    if (version.length > 0 && [version hasPrefix:@"KDV01"]) {
+        return [[NSBundle mainBundle] pathForResource:@"alert2_jp" ofType:@"json"];
+    }
+//    if ([self.curLanguage isEqualToString:@"ja"] || [self.curLanguage hasPrefix:@"zh"]) {
+//        return [[NSBundle mainBundle] pathForResource:@"alert_jp" ofType:@"json"];
+//    }
     return [[NSBundle mainBundle] pathForResource:@"alert2" ofType:@"json"];;
 }
 

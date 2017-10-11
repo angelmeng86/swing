@@ -46,6 +46,9 @@
 
 @property (nonatomic, readonly, strong) NSString* retrieveActivityByTime;
 
-@property (nonatomic, readonly, strong) NSString* firmwareVersion;
+@property (nonatomic, readonly, strong) NSString* currentVersion;
+@property (nonatomic, readonly, strong) NSString* putFirmwareVersion;
+
+@property (nonatomic, readonly, strong) NSString* sendResetPasswordEmail;
 
 @end

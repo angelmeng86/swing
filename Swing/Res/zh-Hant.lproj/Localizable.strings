@@ -177,6 +177,8 @@
 "dinner time"="晚餐時間";
 "afternoon snack time"="下午茶";
 "review the backpack"="檢查背包";
+"Lesson time"="課程時間";
+"Time to go home"="回家囉";
 
 "SupporUrl"="http://kidsdynamic.com";
 
@@ -209,3 +211,10 @@
 
 "Please sync after editing events"="編輯事件後請重新同步手錶";
 "Hide this reminder"="永久不顯示提醒";
+
+"Reset Password"="重置密碼";
+"Are you sure you want to reset your password?"="確定要重新設置密碼？";
+"Please check your email at '%@' for the link to reset your password.This link will expire in 24 hours"="請檢查你的電子郵件“%@”，將傳送一個重置密碼連結，此連結24小時後將失效";
+
+"SWING_EVENT"="您有一個行程:%@";
+"Swing watch update"="Swing watch 更新";

@@ -11,11 +11,11 @@
 @implementation SwingURL
 
 - (NSString*)baseURL {
-#ifdef DEBUG
-    return @"http://dev.childrenlab.com/";
-#else
+//#ifdef DEBUG
+//    return @"http://dev.childrenlab.com/";
+//#else
     return @"https://childrenlab.com/";
-#endif
+//#endif
 }
 
 - (NSString*)isEmailRegistered {
@@ -127,8 +127,17 @@
     return @"/v1/activity/retrieveDataByTime";
 }
 
-- (NSString*)firmwareVersion {
+- (NSString*)currentVersion {
     return @"/v1/fw/currentVersion";
+}
+
+- (NSString*)putFirmwareVersion {
+    return @"/v1/fw/firmwareVersion";
+}
+
+
+- (NSString*)sendResetPasswordEmail {
+    return @"/v1/user/sendResetPasswordEmail";
 }
 
 @end

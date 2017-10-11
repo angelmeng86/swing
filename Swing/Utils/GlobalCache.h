@@ -39,6 +39,7 @@
 @property (strong, nonatomic) UserModel* user;
 @property (strong, nonatomic) KidModel* kid;
 @property (strong, nonatomic) LMLocalData* local;
+@property (strong, nonatomic) FirmwareVersion* firmwareVersion;
 
 @property (strong, nonatomic) NSString* cacheLang;
 @property (strong, nonatomic) NSString* cacheSupportUrl;

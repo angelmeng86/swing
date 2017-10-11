@@ -11,6 +11,8 @@
 
 @interface SearchDeviceViewController : LMBaseViewController
 
+@property (nonatomic) BOOL needUpdate;
+
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet UIButton *button;
 @property (weak, nonatomic) IBOutlet UILabel *subTitleLabel;

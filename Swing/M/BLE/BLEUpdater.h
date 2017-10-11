@@ -26,9 +26,11 @@
 @property (nonatomic, retain) CBPeripheral* peripheral;
 
 @property (nonatomic, retain) NSData* imageData;
-@property (nonatomic, retain) NSString* imageVersion;//Swing Version
+//@property (nonatomic, retain) NSString* imageVersion;//Swing Version
 
 @property (nonatomic, strong) NSString *deviceVersion;
+
+@property BOOL isChecked;
 
 - (BOOL)needUpdate;
 - (BOOL)supportUpdate;

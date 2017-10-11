@@ -155,14 +155,14 @@
 "Brush teeth"="歯を磨きましょう";
 "Get Ready for school"="学校に行く準備をしましょう";
 "Put on pajamas"="パジャマを着ましょう";
-"Story time"="お話の時間です";
+"Story time"="絵本の時間です";
 "Good night"="おやすみなさい";
 "Collect toys"="おもちゃを片付けましょう";
 "Set table"="お手伝いをしましょう";
 "Feed pet"="ペットに餌をやりましょう";
-"Water plants"="植木に水をやりましょう";
-"Clean table"="後片付けをしましょう";
-"Clean bedroom"="部屋を片付けましょう";
+"Water plants"="花に水をやりましょう";
+"Clean table"="テーブルを片付けましょう";
+"Clean bedroom"="お片付けをしましょう";
 "Homework time"="宿題の時間です";
 "Take a nap"="お昼寝の時間です";
 "Outdoor play time"="外で遊びましょう";
@@ -177,6 +177,8 @@
 "dinner time"="夕食の時間です";
 "afternoon snack time"="おやつの時間です";
 "review the backpack"="明日の準備をしましょう";
+"Lesson time"="習い事の時間です";
+"Time to go home"="お家に帰る時間です";
 
 "SupporUrl"="http://kidsdynamic.com";
 
@@ -209,3 +211,10 @@
 
 "Please sync after editing events"="イベントを編集すると、時計のシンクロをして下さい。";
 "Hide this reminder"="リマインダーが通知されない";
+
+"Reset Password"="パスワードをリセット";
+"Are you sure you want to reset your password?"="パスワードをリセットしますか?";
+"Please check your email at '%@' for the link to reset your password.This link will expire in 24 hours"="ご登録のメールアドレス“%@”宛にパスワード変更用のURLをお送りします。URLの有効期間は24時間ですので、お早めに変更して下さい。";
+
+"SWING_EVENT"="あなたにはイベントがあります:%@";
+"Swing watch update"="Swing watch アップデート";
