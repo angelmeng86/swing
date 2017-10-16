@@ -20,15 +20,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.emailTextField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
-    [self.pwdTextField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+//    [self.emailTextField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+//    [self.pwdTextField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     
     self.emailTextField.placeholder=LOC_STR(@"Email");
     self.pwdTextField.placeholder=LOC_STR(@"Password");
     [self.loginBtn setTitle:LOC_STR(@"Login") forState:UIControlStateNormal];
+    [self.resetBtn setTitle:LOC_STR(@"Reset Password") forState:UIControlStateNormal];
 
     self.emailTextField.delegate = self;
     self.pwdTextField.delegate = self;
+    self.tipLabel.text = nil;
     
 //#ifdef MAPPLE_DEBUG
 //    self.emailTextField.text = @"lwz1@swing.com";
@@ -123,6 +125,7 @@
 }
 
 - (void)login {
+    self.tipLabel.text = nil;
         if ([self validateTextField]) {
             [SVProgressHUD show];
 //            [SVProgressHUD showWithStatus:@"Please wait..."];
@@ -163,10 +166,19 @@
 
 - (BOOL)isError:(NSError*)error tag:(NSString*)tag {
     if (error) {
-        //清空登录信息
-        [[GlobalCache shareInstance] logout:NO];
-        LOG_D(@"%@ fail: %@", tag, error);
-        [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+        if (error.code == 400 && [tag isEqualToString:@"Login"]) {
+            [SVProgressHUD dismiss];
+            self.tipLabel.text = [error localizedDescription];
+            self.resetBtn.hidden = NO;
+            
+            [self.loginBtn setTitle:LOC_STR(@"Login again") forState:UIControlStateNormal];
+        }
+        else {
+            //清空登录信息
+            [[GlobalCache shareInstance] logout:NO];
+            LOG_D(@"%@ fail: %@", tag, error);
+            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+        }
         return YES;
     }
     return NO;
@@ -195,5 +207,28 @@
 
 - (IBAction)loginAction:(id)sender {
     [self login];
+}
+
+- (IBAction)resetAction:(id)sender {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:LOC_STR(@"Reset Password") message:LOC_STR(@"Are you sure you want to reset your password?") preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:LOC_STR(@"Cancel") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+        
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:LOC_STR(@"Ok") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [SVProgressHUD show];
+        [[SwingClient sharedClient] sendResetPasswordEmailWithCompletion:^(NSError *error) {
+            if(!error) {
+                [SVProgressHUD dismiss];
+                [Fun showMessageBox:LOC_STR(@"") andFormat:LOC_STR(@"Please check your email at '%@' for the link to reset your password.This link will expire in 24 hours"), [GlobalCache shareInstance].user.email];
+            }
+            else {
+                LOG_D(@"sendResetPasswordEmailWithCompletion fail: %@", error);
+                [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+            }
+        }];
+    }]];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 @end

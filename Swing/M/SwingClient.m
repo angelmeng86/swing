@@ -212,7 +212,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
             if(response.statusCode == 400) {
-                completion([NSError errorWithDomain:@"SwingDomain" code:-1 userInfo:[NSDictionary dictionaryWithObject:LOC_STR(@"username or password error.") forKey:NSLocalizedDescriptionKey]]);
+                completion([NSError errorWithDomain:@"SwingDomain" code:response.statusCode userInfo:[NSDictionary dictionaryWithObject:LOC_STR(@"username or password error.") forKey:NSLocalizedDescriptionKey]]);
             }
             else {
                 completion(error);

@@ -188,6 +188,7 @@
                     break;
                 case 2:
                 {
+                    /*
                     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:LOC_STR(@"Reset Password") message:LOC_STR(@"Are you sure you want to reset your password?") preferredStyle:UIAlertControllerStyleAlert];
                     
                     [alertController addAction:[UIAlertAction actionWithTitle:LOC_STR(@"Cancel") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
@@ -208,6 +209,7 @@
                         }];
                     }]];
                     [self presentViewController:alertController animated:YES completion:nil];
+                     */
                 }
                     break;
                 case 3:

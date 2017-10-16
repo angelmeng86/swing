@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *btn;
 - (IBAction)btnAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *iconView;
 
 @property (weak, nonatomic) id delegate;
 

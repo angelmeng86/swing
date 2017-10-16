@@ -23,6 +23,7 @@
 
 @property (strong, nonatomic) NSMutableDictionary *macAddressDict;
 @property (strong, nonatomic) NSMutableDictionary *versionDict;
+@property (strong, nonatomic) NSMutableDictionary *kidDict;
 @property (strong, nonatomic) NSMutableArray *tasks;
 
 @end
@@ -42,6 +43,7 @@
     self.peripherals = [NSMutableArray array];
     self.macAddressDict = [NSMutableDictionary dictionary];
     self.versionDict = [NSMutableDictionary dictionary];
+    self.kidDict = [NSMutableDictionary dictionary];
     self.tasks = [NSMutableArray array];
     self.navigationItem.title = nil;
     [self setCustomBackButton];
@@ -75,23 +77,23 @@
         if (!error) {
             if (peripheral && ![_peripherals containsObject:peripheral]) {
                 
-                [[SwingClient sharedClient] whoRegisteredMacID:[Fun dataToHex:macAddress] completion:^(id kid, NSError *error) {
+                NSURLSessionDataTask *task = [[SwingClient sharedClient] whoRegisteredMacID:[Fun dataToHex:macAddress] completion:^(KidModel *kid, NSError *error) {
                     if (!error) {
                         if (kid) {
                             LOG_D(@"%@ is registed.", macAddress);
+                            self.kidDict[peripheral] = kid;
                         }
-                        else {
-                            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_peripherals.count inSection:0];
-                            [_peripherals addObject:peripheral];
-                            self.macAddressDict[peripheral] = macAddress;
-                            self.versionDict[peripheral] = version;
-                            [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-                        }
+                        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_peripherals.count inSection:0];
+                        [_peripherals addObject:peripheral];
+                        self.macAddressDict[peripheral] = macAddress;
+                        self.versionDict[peripheral] = version;
+                        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                     }
                     else {
                         LOG_D(@"whoRegisteredMacID error:%@", error);
                     }
                 }];
+                [self.tasks addObject:task];
                 /*
                 NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_peripherals.count inSection:0];
                 [_peripherals addObject:peripheral];
@@ -131,6 +133,7 @@
     self.peripherals = [NSMutableArray array];
     self.macAddressDict = [NSMutableDictionary dictionary];
     self.versionDict = [NSMutableDictionary dictionary];
+    self.kidDict = [NSMutableDictionary dictionary];
     [self.tableView reloadData];
 #ifdef SHOW_MACADDRESS
     [client stopScanMacAddress];
@@ -167,7 +170,18 @@
     }
 #else
     CBPeripheral *peripheral = [_peripherals objectAtIndex:indexPath.row];
-    if (self.macAddressDict[peripheral]) {
+    cell.iconView.image = LOAD_IMAGE(@"dev_header_icon");
+    if (self.kidDict[peripheral]) {
+        KidModel *kid = self.kidDict[peripheral];
+        cell.titleLabel.text = kid.name;
+        
+        if (kid.profile) {
+            [cell.iconView sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:kid.profile]] placeholderImage:LOAD_IMAGE(@"dev_header_icon")];
+        }
+        
+        [cell.btn setTitle:@"|" forState:UIControlStateNormal];
+    }
+    else if (self.macAddressDict[peripheral]) {
         NSString *mac = [Fun dataToHex:self.macAddressDict[peripheral]];
         NSMutableString *macShow = [NSMutableString string];
         for (int i = 0; i < mac.length; i+=2) {
@@ -177,6 +191,8 @@
             }
         }
         cell.titleLabel.text = [peripheral.name stringByAppendingFormat:@"-%@", macShow];
+        
+        [cell.btn setTitle:@"+" forState:UIControlStateNormal];
     }
     else {
         cell.titleLabel.text = peripheral.name;
