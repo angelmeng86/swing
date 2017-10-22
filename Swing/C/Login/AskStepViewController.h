@@ -8,7 +8,15 @@
 
 #import "LMBaseViewController.h"
 
+typedef enum : NSUInteger {
+    AskTypeHasWatch,
+    AskTypePurchase,
+    AskTypeWatchRegisted,
+} AskType;
+
 @interface AskStepViewController : LMBaseViewController
+
+@property (nonatomic) AskType type;
 
 @property (weak, nonatomic) IBOutlet UILabel *label1;
 @property (weak, nonatomic) IBOutlet UIButton *btn1;

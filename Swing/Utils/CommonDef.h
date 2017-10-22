@@ -60,6 +60,7 @@
 #import "ActivityResultModel.h"
 #import "LMLocalData.h"
 #import "FirmwareVersion.h"
+#import "SubHostModel.h"
 
 #import "Fun.h"
 #import "CameraUtility.h"

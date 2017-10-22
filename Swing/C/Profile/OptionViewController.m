@@ -371,10 +371,8 @@
 
 - (void)goToMain {
     [GlobalCache shareInstance].cacheLang = nil;
-    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab2" bundle:nil];
-    UIViewController *ctl = [stroyBoard instantiateInitialViewController];
     AppDelegate *ad = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    ad.window.rootViewController = ctl;
+    [ad goToMain];
     
     [[SwingClient sharedClient] updateLanguageWithCompletion:^(NSError *error) {
         if (error) {

@@ -51,4 +51,11 @@
 
 @property (nonatomic, readonly, strong) NSString* sendResetPasswordEmail;
 
+@property (nonatomic, readonly, strong) NSString* subHostAdd;
+@property (nonatomic, readonly, strong) NSString* subHostAccept;
+@property (nonatomic, readonly, strong) NSString* subHostDeny;
+@property (nonatomic, readonly, strong) NSString* subHostList;
+@property (nonatomic, readonly, strong) NSString* subHostRemoveKid;
+@property (nonatomic, readonly, strong) NSString* subHostDelete;
+
 @end

@@ -11,6 +11,7 @@
 #import "CommonDef.h"
 #import "BLEClient.h"
 #import "KidBindViewController.h"
+#import "RequestAccessViewController.h"
 
 #define SHOW_MACADDRESS
 
@@ -214,7 +215,14 @@
     
 #ifdef SHOW_MACADDRESS
     [client stopScanMacAddress];
-    if (self.macAddressDict[peripheral]) {
+    if (self.kidDict[peripheral]) {
+        KidModel *kid = self.kidDict[peripheral];
+        UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
+        RequestAccessViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"Access"];
+        ctl.kid = kid;
+        [self.navigationController pushViewController:ctl animated:YES];
+    }
+    else if (self.macAddressDict[peripheral]) {
         UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
         KidBindViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"KidBind"];
         ctl.macAddress = self.macAddressDict[peripheral];

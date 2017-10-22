@@ -77,6 +77,20 @@
      */
 }
 
+- (void)goToMain
+{
+    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab2" bundle:nil];
+    UIViewController *ctl = [stroyBoard instantiateInitialViewController];
+    self.window.rootViewController = ctl;
+}
+
+- (void)goToLogin
+{
+    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
+    UIViewController *ctl = [stroyBoard instantiateInitialViewController];
+    self.window.rootViewController = ctl;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 //    NSString *languageID = [[NSBundle mainBundle] preferredLocalizations].firstObject;
@@ -121,12 +135,12 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    
-    NSString *name = [GlobalCache shareInstance].local.access_token == nil ? @"LoginFlow" : @"MainTab2";
-//    NSString *name = @"MainTab2";
-    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:name bundle:nil];
-    UIViewController *ctl = [stroyBoard instantiateInitialViewController];
-    self.window.rootViewController = ctl;
+    if ([GlobalCache shareInstance].local.access_token) {
+        [self goToMain];
+    }
+    else {
+        [self goToLogin];
+    }
     
     NSDictionary *remoteNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     // 如果​remoteNotification不为空，代表有推送发过来，以下类似

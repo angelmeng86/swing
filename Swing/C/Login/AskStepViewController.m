@@ -26,11 +26,36 @@
     
     self.label1.adjustsFontSizeToFitWidth = YES;
     
-    self.label1.text = LOC_STR(@"Do you have a Swing Watch?");
-    [self.btn1 setTitle:LOC_STR(@"Yes") forState:UIControlStateNormal];
-    [self.btn2 setTitle:LOC_STR(@"No") forState:UIControlStateNormal];
-    
+    [self changeInfo];
 //    [self setCustomBackButton];
+}
+
+- (void)changeInfo
+{
+    switch (_type) {
+        case AskTypePurchase:
+        {
+            self.label1.text = LOC_STR(@"Would you like to purchase one?");
+            
+            [self.btn1 setTitle:LOC_STR(@"Yes, please") forState:UIControlStateNormal];
+            [self.btn2 setTitle:LOC_STR(@"Not yet") forState:UIControlStateNormal];
+        }
+            break;
+        case AskTypeWatchRegisted:
+        {
+            self.label1.text = LOC_STR(@"This Watch has been resgitered");
+            [self.btn1 setTitle:LOC_STR(@"Request access") forState:UIControlStateNormal];
+            [self.btn2 setTitle:LOC_STR(@"Contact Us") forState:UIControlStateNormal];
+        }
+            break;
+        default:
+        {
+            self.label1.text = LOC_STR(@"Do you have a Swing Watch?");
+            [self.btn1 setTitle:LOC_STR(@"Yes") forState:UIControlStateNormal];
+            [self.btn2 setTitle:LOC_STR(@"No") forState:UIControlStateNormal];
+        }
+            break;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,31 +74,51 @@
 */
 
 - (IBAction)btn1Action:(id)sender {
-    if (!isAsked) {
-        //Go to search watch
-        [self searchWatch];
-    }
-    else {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[GlobalCache shareInstance].cacheSupportUrl]];
+    switch (_type) {
+        case AskTypeHasWatch:
+        {
+            //Go to search watch
+            [self searchWatch];
+        }
+            break;
+        case AskTypePurchase:
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[GlobalCache shareInstance].cacheSupportUrl]];
+        }
+            break;
+        case AskTypeWatchRegisted:
+        {
+            
+        }
+            break;
+        default:
+            break;
     }
 }
 
 - (IBAction)btn2Action:(id)sender {
-    if (!isAsked) {
-        //Ask to purchase
-        isAsked = YES;
-        
-        self.label1.text = LOC_STR(@"Would you like to purchase one?");
-
-        [self.btn1 setTitle:LOC_STR(@"Yes, please") forState:UIControlStateNormal];
-        [self.btn2 setTitle:LOC_STR(@"Not yet") forState:UIControlStateNormal];
-    }
-    else {
-        //Continue as a guest user
-        UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab2" bundle:nil];
-        UIViewController *ctl = [stroyBoard instantiateInitialViewController];
-        AppDelegate *ad = (AppDelegate*)[UIApplication sharedApplication].delegate;
-        ad.window.rootViewController = ctl;
+    switch (_type) {
+        case AskTypeHasWatch:
+        {
+            //Ask to purchase
+            _type = AskTypePurchase;
+            [self changeInfo];
+        }
+            break;
+        case AskTypePurchase:
+        {
+            //Continue as a guest user
+            AppDelegate *ad = (AppDelegate*)[UIApplication sharedApplication].delegate;
+            [ad goToMain];
+        }
+            break;
+        case AskTypeWatchRegisted:
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[GlobalCache shareInstance].cacheSupportUrl]];
+        }
+            break;
+        default:
+            break;
     }
 }
 

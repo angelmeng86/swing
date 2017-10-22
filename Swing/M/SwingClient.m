@@ -953,4 +953,142 @@
     return task;
 }
 
+- (NSURLSessionDataTask *)subHostAdd:(int64_t)kidId completion:( void (^)(id data, NSError *error) )completion
+{
+    NSURLSessionDataTask *task = [self.sessionManager POST:_URL.subHostAdd parameters:@{@"hostId":@(kidId)} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LOG_D(@"subHostAdd info:%@", responseObject);
+            NSError *err = [self getErrorMessage:responseObject];
+            if (err) {
+                completion(nil, err);
+            }
+            else {
+                SubHostModel *m = [[SubHostModel alloc] initWithDictionary:responseObject error:&err];
+                completion(m, nil);
+            }
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSError *err = [self filterTokenInvalid:task.response err:error];
+            completion(nil, err);
+        });
+    }];
+    return task;
+}
+
+- (NSURLSessionDataTask *)subHostAccept:(int64_t)subHostId kidIds:(NSArray*)kidIds completion:( void (^)(id data, NSError *error) )completion
+{
+    NSURLSessionDataTask *task = [self.sessionManager PUT:_URL.subHostAccept parameters:@{@"subHostId":@(subHostId), @"KidId": kidIds} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LOG_D(@"subHostAccept info:%@", responseObject);
+            NSError *err = [self getErrorMessage:responseObject];
+            if (err) {
+                completion(nil, err);
+            }
+            else {
+                SubHostModel *m = [[SubHostModel alloc] initWithDictionary:responseObject error:&err];
+                completion(m, nil);
+            }
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSError *err = [self filterTokenInvalid:task.response err:error];
+            completion(nil, err);
+        });
+    }];
+    return task;
+}
+
+- (NSURLSessionDataTask *)subHostDeny:(int64_t)subHostId completion:( void (^)(NSError *error) )completion
+{
+    NSURLSessionDataTask *task = [self.sessionManager PUT:_URL.subHostDeny parameters:@{@"subHostId":@(subHostId)} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LOG_D(@"subHostDeny info:%@", responseObject);
+            NSError *err = [self getErrorMessage:responseObject];
+            if (err) {
+                completion(err);
+            }
+            else {
+                completion(nil);
+            }
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSError *err = [self filterTokenInvalid:task.response err:error];
+            completion(err);
+        });
+    }];
+    return task;
+}
+
+//status : PENDING, ACCEPTED, DENIED
+- (NSURLSessionDataTask *)subHostList:(NSString*)status completion:( void (^)(NSArray* requestFrom, NSArray* requestTo, NSError *error) )completion
+{
+    NSURLSessionDataTask *task = [self.sessionManager GET:_URL.subHostList parameters:@{@"status": status} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LOG_D(@"subHostList info:%@", responseObject);
+            NSError *err = [self getErrorMessage:responseObject];
+            if (err) {
+                completion(nil, nil, err);
+            }
+            else {
+                NSArray *requestFrom = [SubHostModel arrayOfModelsFromDictionaries:responseObject[@"requestFrom"] error:nil];
+                NSArray *requestTo = [SubHostModel arrayOfModelsFromDictionaries:responseObject[@"requestTo"] error:nil];
+                completion(requestFrom, requestTo, nil);
+            }
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSError *err = [self filterTokenInvalid:task.response err:error];
+            completion(nil, nil, err);
+        });
+    }];
+    return task;
+}
+
+- (NSURLSessionDataTask *)subHostRemoveKid:(int64_t)subHostId kidId:(int64_t)kidId completion:( void (^)(id data, NSError *error) )completion
+{
+    NSURLSessionDataTask *task = [self.sessionManager PUT:_URL.subHostRemoveKid parameters:@{@"subHostId":@(subHostId), @"kidId":@(kidId)} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LOG_D(@"subHostRemoveKid info:%@", responseObject);
+            NSError *err = [self getErrorMessage:responseObject];
+            if (err) {
+                completion(nil, err);
+            }
+            else {
+                SubHostModel *m = [[SubHostModel alloc] initWithDictionary:responseObject error:&err];
+                completion(m, nil);
+            }
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSError *err = [self filterTokenInvalid:task.response err:error];
+            completion(nil, err);
+        });
+    }];
+    return task;
+}
+
+- (NSURLSessionDataTask *)subHostDelete:(int64_t)subHostId completion:( void (^)(NSError *error) )completion
+{
+    NSURLSessionDataTask *task = [self.sessionManager DELETE:_URL.subHostDelete parameters:@{@"subHostId":@(subHostId)} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LOG_D(@"subHostDelete info:%@", responseObject);
+            NSError *err = [self getErrorMessage:responseObject];
+            if (err) {
+                completion(err);
+            }
+            else {
+                completion(nil);
+            }
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSError *err = [self filterTokenInvalid:task.response err:error];
+            completion(err);
+        });
+    }];
+    return task;
+}
+
 @end

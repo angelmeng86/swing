@@ -140,10 +140,8 @@
     
 //    [SVProgressHUD dismiss];
     if (exit) {
-        UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
-        UIViewController *ctl = [stroyBoard instantiateInitialViewController];
         AppDelegate *ad = (AppDelegate*)[UIApplication sharedApplication].delegate;
-        ad.window.rootViewController = ctl;
+        [ad goToLogin];
     }
 }
 

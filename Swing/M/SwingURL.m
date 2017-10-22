@@ -140,4 +140,28 @@
     return @"/v1/user/sendResetPasswordEmail";
 }
 
+- (NSString*)subHostAdd {
+    return @"/v1/subHost/add";
+}
+
+- (NSString*)subHostAccept {
+    return @"/v1/subHost/accept";
+}
+
+- (NSString*)subHostDeny {
+    return @"/v1/subHost/deny";
+}
+
+- (NSString*)subHostList {
+    return @"/v1/subHost/list";
+}
+
+- (NSString*)subHostRemoveKid {
+    return @"/v1/subHost/removeKid";
+}
+
+- (NSString*)subHostDelete {
+    return @"/v1/subHost/delete";
+}
+
 @end

@@ -33,6 +33,8 @@
 		0F9734B11F17919900502D8A /* LFSyncSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9734B01F17919900502D8A /* LFSyncSheet.m */; };
 		0F9734B41F19162E00502D8A /* SyncNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9734B31F19162E00502D8A /* SyncNavViewController.m */; };
 		0FCF50421F7A805F00738C23 /* alert2_jp.json in Resources */ = {isa = PBXBuildFile; fileRef = 0FCF50411F7A805F00738C23 /* alert2_jp.json */; };
+		0FCF50571F9CCFCE00738C23 /* SubHostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF50561F9CCFCE00738C23 /* SubHostModel.m */; };
+		0FCF505A1F9CE93C00738C23 /* RequestAccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF50591F9CE93C00738C23 /* RequestAccessViewController.m */; };
 		0FD6B3E71D61B79300C00A45 /* ChoicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6B3E61D61B79300C00A45 /* ChoicesViewController.m */; };
 		0FDAF5AA1D6405EF007CD808 /* citystate.json in Resources */ = {isa = PBXBuildFile; fileRef = 0FDAF5A91D6405EF007CD808 /* citystate.json */; };
 		0FDBDA951D708725004F7AAF /* LMLocalData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FDBDA941D708725004F7AAF /* LMLocalData.m */; };
@@ -180,6 +182,10 @@
 		0F9734B21F19162E00502D8A /* SyncNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncNavViewController.h; sourceTree = "<group>"; };
 		0F9734B31F19162E00502D8A /* SyncNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncNavViewController.m; sourceTree = "<group>"; };
 		0FCF50411F7A805F00738C23 /* alert2_jp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = alert2_jp.json; sourceTree = "<group>"; };
+		0FCF50551F9CCFCE00738C23 /* SubHostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubHostModel.h; sourceTree = "<group>"; };
+		0FCF50561F9CCFCE00738C23 /* SubHostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubHostModel.m; sourceTree = "<group>"; };
+		0FCF50581F9CE93C00738C23 /* RequestAccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestAccessViewController.h; sourceTree = "<group>"; };
+		0FCF50591F9CE93C00738C23 /* RequestAccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestAccessViewController.m; sourceTree = "<group>"; };
 		0FD6B3E51D61B79300C00A45 /* ChoicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoicesViewController.h; sourceTree = "<group>"; };
 		0FD6B3E61D61B79300C00A45 /* ChoicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoicesViewController.m; sourceTree = "<group>"; };
 		0FDAF5A91D6405EF007CD808 /* citystate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = citystate.json; sourceTree = "<group>"; };
@@ -503,6 +509,8 @@
 				ADA1F8291E234D4B0066CD35 /* SwingURL.m */,
 				ADB5A6571F18529F005F8B8B /* FirmwareVersion.h */,
 				ADB5A6581F18529F005F8B8B /* FirmwareVersion.m */,
+				0FCF50551F9CCFCE00738C23 /* SubHostModel.h */,
+				0FCF50561F9CCFCE00738C23 /* SubHostModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -714,6 +722,8 @@
 				ADEF31CE1D478D2B00BB6A9B /* BindReadyViewController.m */,
 				0F15D2A71E0AC48E004F8F69 /* IndexViewController.h */,
 				0F15D2A81E0AC48E004F8F69 /* IndexViewController.m */,
+				0FCF50581F9CE93C00738C23 /* RequestAccessViewController.h */,
+				0FCF50591F9CE93C00738C23 /* RequestAccessViewController.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1033,6 +1043,7 @@
 				AD0B811B1D37EF7400F43E72 /* LMBaseTableViewController2.m in Sources */,
 				AD65905E1DDA8B8A006DD43D /* BLEWaitDevice.m in Sources */,
 				0FDBDA951D708725004F7AAF /* LMLocalData.m in Sources */,
+				0FCF505A1F9CE93C00738C23 /* RequestAccessViewController.m in Sources */,
 				ADBC9BD31D578403007E4A2C /* JSONValueTransformer+UIColor.m in Sources */,
 				AD7438271D4DD50C00F5F9D2 /* JBBaseChartViewController.m in Sources */,
 				AD2D33901D538418005D9298 /* ToDoModel.m in Sources */,
@@ -1047,6 +1058,7 @@
 				ADCED9E71D3D3C8B002E3F78 /* RegisterViewController.m in Sources */,
 				ADEF31D61D47B04200BB6A9B /* VPImageCropperViewController.m in Sources */,
 				0F176EC11DE48FB70014F079 /* Event+CoreDataClass.m in Sources */,
+				0FCF50571F9CCFCE00738C23 /* SubHostModel.m in Sources */,
 				AD95A51B1D5243390047A0A2 /* SwingClientTest.m in Sources */,
 				ADF33CBC1D5A323000AE8874 /* TodayChartViewController.m in Sources */,
 				0F927FD81DDA02680011EF90 /* BLESearchDevice.m in Sources */,

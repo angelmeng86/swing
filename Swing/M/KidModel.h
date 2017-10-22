@@ -9,6 +9,8 @@
 #import "JSONModel.h"
 #import "UserModel.h"
 
+@protocol KidModel @end
+
 @interface KidModel : JSONModel
 
 @property (nonatomic) int64_t objId;

@@ -94,5 +94,19 @@ typedef enum : NSUInteger {
 
 - (NSURLSessionDataTask *)sendResetPasswordEmailWithCompletion:( void (^)(NSError *error) )completion;
 
+//subHost API
+
+- (NSURLSessionDataTask *)subHostAdd:(int64_t)kidId completion:( void (^)(id subHost, NSError *error) )completion;
+
+- (NSURLSessionDataTask *)subHostAccept:(int64_t)subHostId kidIds:(NSArray*)kidIds completion:( void (^)(id subHost, NSError *error) )completion;
+
+- (NSURLSessionDataTask *)subHostDeny:(int64_t)subHostId completion:( void (^)(NSError *error) )completion;
+
+//status : PENDING, ACCEPTED, DENIED
+- (NSURLSessionDataTask *)subHostList:(NSString*)status completion:( void (^)(NSArray* requestFrom, NSArray* requestTo, NSError *error) )completion;
+
+- (NSURLSessionDataTask *)subHostRemoveKid:(int64_t)subHostId kidId:(int64_t)kidId completion:( void (^)(id subHost, NSError *error) )completion;
+
+- (NSURLSessionDataTask *)subHostDelete:(int64_t)subHostId completion:( void (^)(NSError *error) )completion;
 
 @end
