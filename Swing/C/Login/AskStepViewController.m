@@ -9,6 +9,7 @@
 #import "AskStepViewController.h"
 #import "AppDelegate.h"
 #import "CommonDef.h"
+#import "RequestAccessViewController.h"
 
 @interface AskStepViewController ()
 {
@@ -88,7 +89,10 @@
             break;
         case AskTypeWatchRegisted:
         {
-            
+            UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
+            RequestAccessViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"Access"];
+            ctl.kid = self.kid;
+            [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
         default:

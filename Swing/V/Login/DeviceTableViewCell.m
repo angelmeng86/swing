@@ -13,7 +13,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    self.btn.layer.cornerRadius = 5.f;
+    self.iconView.layer.cornerRadius = 12.f;
 //    self.contentView.backgroundColor = [UIColor clearColor];
     
 //    self.backgroundColor = [UIColor clearColor];

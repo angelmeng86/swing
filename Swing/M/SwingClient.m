@@ -101,7 +101,7 @@
                                                    error:nil];
         LOG_D(@"HTTP:%@", obj);
         if ([obj objectForKey:@"message"]) {
-            return [NSError errorWithDomain:@"SwingDomain" code:-2 userInfo:[NSDictionary dictionaryWithObject:[obj objectForKey:@"message"] forKey:NSLocalizedDescriptionKey]];
+            return [NSError errorWithDomain:@"SwingDomain" code:response.statusCode userInfo:[NSDictionary dictionaryWithObject:[obj objectForKey:@"message"] forKey:NSLocalizedDescriptionKey]];
         }
     }
     else if(response.statusCode == 409 || response.statusCode == 500) {//json error
@@ -111,7 +111,7 @@
                                                               error:nil];
         LOG_D(@"HTTP2:%@", obj);
         if ([obj objectForKey:@"message"]) {
-            return [NSError errorWithDomain:@"SwingDomain" code:-3 userInfo:[NSDictionary dictionaryWithObject:[obj objectForKey:@"message"] forKey:NSLocalizedDescriptionKey]];
+            return [NSError errorWithDomain:@"SwingDomain" code:response.statusCode userInfo:[NSDictionary dictionaryWithObject:[obj objectForKey:@"message"] forKey:NSLocalizedDescriptionKey]];
         }
     }
     return error;

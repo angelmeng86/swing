@@ -14,9 +14,12 @@ typedef enum : NSUInteger {
     AskTypeWatchRegisted,
 } AskType;
 
+@class KidModel;
 @interface AskStepViewController : LMBaseViewController
 
 @property (nonatomic) AskType type;
+
+@property (nonatomic, strong) KidModel *kid;
 
 @property (weak, nonatomic) IBOutlet UILabel *label1;
 @property (weak, nonatomic) IBOutlet UIButton *btn1;

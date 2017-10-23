@@ -11,7 +11,7 @@
 #import "CommonDef.h"
 #import "BLEClient.h"
 #import "KidBindViewController.h"
-#import "RequestAccessViewController.h"
+#import "AskStepViewController.h"
 
 #define SHOW_MACADDRESS
 
@@ -82,7 +82,12 @@
                     if (!error) {
                         if (kid) {
                             LOG_D(@"%@ is registed.", macAddress);
+                            if ([GlobalCache shareInstance].user.objId == kid.parent.objId) {
+                                LOG_D(@"Current user is registed.");
+                                return;
+                            }
                             self.kidDict[peripheral] = kid;
+                            
                         }
                         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_peripherals.count inSection:0];
                         [_peripherals addObject:peripheral];
@@ -171,16 +176,16 @@
     }
 #else
     CBPeripheral *peripheral = [_peripherals objectAtIndex:indexPath.row];
-    cell.iconView.image = LOAD_IMAGE(@"dev_header_icon");
+    cell.iconView.image = LOAD_IMAGE(@"icon_profile");
     if (self.kidDict[peripheral]) {
         KidModel *kid = self.kidDict[peripheral];
         cell.titleLabel.text = kid.name;
         
         if (kid.profile) {
-            [cell.iconView sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:kid.profile]] placeholderImage:LOAD_IMAGE(@"dev_header_icon")];
+            [cell.iconView sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:kid.profile]] placeholderImage:LOAD_IMAGE(@"icon_profile")];
         }
         
-        [cell.btn setTitle:@"|" forState:UIControlStateNormal];
+        [cell.btn setImage:LOAD_IMAGE(@"icon_request") forState:UIControlStateNormal];
     }
     else if (self.macAddressDict[peripheral]) {
         NSString *mac = [Fun dataToHex:self.macAddressDict[peripheral]];
@@ -193,7 +198,7 @@
         }
         cell.titleLabel.text = [peripheral.name stringByAppendingFormat:@"-%@", macShow];
         
-        [cell.btn setTitle:@"+" forState:UIControlStateNormal];
+        [cell.btn setImage:LOAD_IMAGE(@"icon_add") forState:UIControlStateNormal];
     }
     else {
         cell.titleLabel.text = peripheral.name;
@@ -202,15 +207,25 @@
     return cell;
 }
 
-- (void)deviceTableViewCellDidClicked:(DeviceTableViewCell*)cell {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self selectAction:indexPath];
+}
+
+- (void)deviceTableViewCellDidClicked:(DeviceTableViewCell*)cell
+{
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    [self selectAction:indexPath];
+}
+
+- (void)selectAction:(NSIndexPath*)indexPath
+{
 #if TARGET_IPHONE_SIMULATOR
     UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
     KidBindViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"KidBind"];
     ctl.macAddress = [Fun hexToData:@"012345678915"];
     [self.navigationController pushViewController:ctl animated:YES];
 #else
-    
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     CBPeripheral *peripheral = [_peripherals objectAtIndex:indexPath.row];
     
 #ifdef SHOW_MACADDRESS
@@ -218,7 +233,8 @@
     if (self.kidDict[peripheral]) {
         KidModel *kid = self.kidDict[peripheral];
         UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
-        RequestAccessViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"Access"];
+        AskStepViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"AskStep"];
+        ctl.type = AskTypeWatchRegisted;
         ctl.kid = kid;
         [self.navigationController pushViewController:ctl animated:YES];
     }

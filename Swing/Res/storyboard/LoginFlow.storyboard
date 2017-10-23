@@ -161,7 +161,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SWING WATCH 123ADSGF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HfG-Xf-uTl">
-                                                    <rect key="frame" x="40" y="11" width="296" height="21"/>
+                                                    <rect key="frame" x="34" y="11" width="302" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="WgO-gA-H8h"/>
                                                     </constraints>
@@ -169,26 +169,24 @@
                                                     <color key="textColor" red="0.47058823529411764" green="0.57647058823529407" blue="0.60784313725490191" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afU-Vk-fwv">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afU-Vk-fwv">
                                                     <rect key="frame" x="336" y="7" width="30" height="30"/>
-                                                    <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="m5h-hn-QPQ"/>
                                                         <constraint firstAttribute="width" constant="30" id="tWF-5r-Oj3"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                    <state key="normal" title="+">
+                                                    <state key="normal" image="icon_request">
                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="btnAction:" destination="ByX-Df-QKI" eventType="touchUpInside" id="M7n-BI-VAp"/>
                                                     </connections>
                                                 </button>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dev_header_icon" translatesAutoresizingMaskIntoConstraints="NO" id="sxR-9u-d4w">
-                                                    <rect key="frame" x="5" y="6.6666666666666661" width="30" height="30"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_profile" translatesAutoresizingMaskIntoConstraints="NO" id="sxR-9u-d4w">
+                                                    <rect key="frame" x="5" y="9.6666666666666643" width="24" height="24"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="Wf5-bf-DLC"/>
-                                                        <constraint firstAttribute="width" constant="30" id="wLm-n3-WfQ"/>
+                                                        <constraint firstAttribute="height" constant="24" id="Wf5-bf-DLC"/>
+                                                        <constraint firstAttribute="width" constant="24" id="wLm-n3-WfQ"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
@@ -340,10 +338,10 @@
             </objects>
             <point key="canvasLocation" x="2293" y="459"/>
         </scene>
-        <!--AskStep-->
+        <!--Ask Step View Controller-->
         <scene sceneID="4t5-3J-B5a">
             <objects>
-                <viewController storyboardIdentifier="AskStep" title="AskStep" id="8JQ-g5-7zn" customClass="AskStepViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AskStep" id="8JQ-g5-7zn" customClass="AskStepViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lzJ-T5-hLE"/>
                         <viewControllerLayoutGuide type="bottom" id="xDr-3e-BAJ"/>
@@ -740,10 +738,10 @@
             </objects>
             <point key="canvasLocation" x="2841" y="1203"/>
         </scene>
-        <!--Access-->
+        <!--Request Access View Controller-->
         <scene sceneID="2gC-Bg-AA4">
             <objects>
-                <viewController storyboardIdentifier="Access" title="Access" id="69W-SO-QAU" customClass="RequestAccessViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Access" id="69W-SO-QAU" customClass="RequestAccessViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="a8W-wm-OEJ"/>
                         <viewControllerLayoutGuide type="bottom" id="c0D-BY-AD3"/>
@@ -789,30 +787,28 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gCb-4W-Ayx">
                                 <rect key="frame" x="20" y="200" width="374" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mxe-y5-wsi">
-                                        <rect key="frame" x="334" y="10" width="30" height="30"/>
-                                        <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mxe-y5-wsi">
+                                        <rect key="frame" x="320" y="3" width="44" height="44"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="Xjy-VJ-f2f"/>
-                                            <constraint firstAttribute="height" constant="30" id="e8t-U9-QiE"/>
+                                            <constraint firstAttribute="width" constant="44" id="Xjy-VJ-f2f"/>
+                                            <constraint firstAttribute="height" constant="44" id="e8t-U9-QiE"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                        <state key="normal" title="+">
+                                        <state key="normal" image="icon_add">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="deviceAction:" destination="69W-SO-QAU" eventType="touchUpInside" id="ZL3-8I-4os"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dev_header_icon" translatesAutoresizingMaskIntoConstraints="NO" id="HE9-Cc-SVO">
-                                        <rect key="frame" x="10" y="10" width="30" height="30"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_profile" translatesAutoresizingMaskIntoConstraints="NO" id="HE9-Cc-SVO">
+                                        <rect key="frame" x="10" y="13" width="24" height="24"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="Cd1-Cj-JmC"/>
-                                            <constraint firstAttribute="height" constant="30" id="qZa-Ku-MAp"/>
+                                            <constraint firstAttribute="width" constant="24" id="Cd1-Cj-JmC"/>
+                                            <constraint firstAttribute="height" constant="24" id="qZa-Ku-MAp"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SWING WATCH 123ADSGF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dlm-8e-WJ7">
-                                        <rect key="frame" x="45" y="14.666666666666657" width="284" height="21"/>
+                                        <rect key="frame" x="39" y="14.666666666666657" width="276" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="pqT-PR-1iE"/>
                                         </constraints>
@@ -870,6 +866,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="dev_header_icon" width="30" height="30"/>
+        <image name="icon_add" width="20" height="20"/>
+        <image name="icon_profile" width="23" height="24"/>
+        <image name="icon_request" width="20" height="20"/>
     </resources>
 </document>
