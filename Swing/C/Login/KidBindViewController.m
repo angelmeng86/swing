@@ -124,12 +124,7 @@
                             if (self.macAddress && [GlobalCache shareInstance].kid == nil) {
                                 [GlobalCache shareInstance].kid = model;
                             }
-                            if ([GlobalCache shareInstance].kidsList) {
-                                [GlobalCache shareInstance].kidsList = [[GlobalCache shareInstance].kidsList arrayByAddingObject:model];
-                            }
-                            else {
-                                [GlobalCache shareInstance].kidsList = @[model];
-                            }
+                            [DBHelper addKid:model];
                             if (image && model) {
                                 [SVProgressHUD showWithStatus:@"UploadImage, please wait..."];
                                 [[SwingClient sharedClient] kidsUploadKidsProfileImage:image kidId:model.objId completion:^(NSString *profileImage, NSError *error) {

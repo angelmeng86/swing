@@ -87,24 +87,7 @@
                     KidModel *model = kid;
                     BOOL finded = NO;
                     [GlobalCache shareInstance].kid = model;
-                    
-                    for (KidModel *m in [GlobalCache shareInstance].kidsList) {
-                        if (m.objId == model.objId) {
-                            m.name = model.name;
-                            m.profile = model.profile;
-                            model = m;
-                            finded = YES;
-                            break;
-                        }
-                    }
-                    if (!finded) {
-                        if ([GlobalCache shareInstance].kidsList) {
-                            [GlobalCache shareInstance].kidsList = [[GlobalCache shareInstance].kidsList arrayByAddingObject:model];
-                        }
-                        else {
-                            [GlobalCache shareInstance].kidsList = @[model];
-                        }
-                    }
+                    [DBHelper addKid:model];
                     if (image && model) {
                         [SVProgressHUD show];
 //                        [SVProgressHUD showWithStatus:@"UploadImage, please wait..."];

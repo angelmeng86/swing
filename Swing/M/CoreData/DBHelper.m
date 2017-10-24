@@ -203,6 +203,7 @@
     [Event MR_truncateAll];
     [Todo MR_truncateAll];
     [Activity MR_truncateAll];
+    [Kid MR_truncateAll];
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
 }
 
@@ -372,6 +373,62 @@
         return YES;
     }
     return NO;
+}
+
++ (BOOL)addKid:(KidModel*)model save:(BOOL)save {
+    Kid *m = [Kid MR_findFirstByAttribute:@"objId" withValue:@(model.objId)];
+    if (m) {
+        LOG_D(@"update Kid %lld", m.objId);
+    }
+    else {
+        LOG_D(@"create Kid %lld", model.objId);
+        m = [Kid MR_createEntity];
+    }
+    [model updateTo:m];
+    if (save) {
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    }
+    return YES;
+}
+
++ (NSArray*)queryKids
+{
+    return [Kid MR_findAll];
+}
+
++ (BOOL)addKid:(KidModel*)model
+{
+    return [DBHelper addKid:model save:YES];
+}
+
++ (BOOL)addKids:(NSArray*)array
+{
+    if (array.count == 0) {
+        return NO;
+    }
+    for (KidModel *m in array) {
+        [self addKid:m save:NO];
+    }
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    return YES;
+}
+
++ (BOOL)delKid:(int64_t)objId
+{
+    BOOL ret = NO;
+    Kid *m = [Kid MR_findFirstByAttribute:@"objId" withValue:@(objId)];
+    if (m) {
+        LOG_D(@"delete Kid %lld", m.objId);
+        ret = [m MR_deleteEntity];
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    }
+    return ret;
+}
+
++ (void)clearKids
+{
+    [Kid MR_truncateAll];
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
 }
 
 @end

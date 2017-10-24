@@ -16,9 +16,19 @@
 
 @interface ProfileViewController ()
 
+@property (nonatomic, strong) NSArray* kids;
+
 @end
 
 @implementation ProfileViewController
+
+- (NSArray*)kids
+{
+    if (_kids == nil) {
+        _kids = [DBHelper queryKids];
+    }
+    return _kids;
+}
 
 - (void)viewDidLoad {
     self.notLoadBackgroudImage = YES;
@@ -40,9 +50,6 @@
     
     self.navigationItem.title = LOC_STR(@"Profile");
     [self.logoutBtn setTitle:LOC_STR(@"Logout") forState:UIControlStateNormal];
-    if ([GlobalCache shareInstance].kidsList == nil && [GlobalCache shareInstance].kid) {
-        [GlobalCache shareInstance].kidsList = @[[GlobalCache shareInstance].kid];
-    }
 }
 
 - (void)optionAction {
@@ -83,6 +90,7 @@
 
 - (void)userProfileLoaded:(NSNotification*)notification {
     [self loadProfile];
+    self.kids = nil;
     [self.deviceConllectionView reloadData];
 }
 
@@ -105,7 +113,7 @@
 //    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editProfileAction:)];
     
     
-    if ([GlobalCache shareInstance].user.profile) {
+    if ([GlobalCache shareInstance].user.profile.length > 0) {
         [self.headerBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:[GlobalCache shareInstance].user.profile]] forState:UIControlStateNormal];
     }
     [self loadProfile];
@@ -113,7 +121,7 @@
 }
 
 - (void)editProfileAction:(id)sender {
-    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
+    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
     UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"EditProfile2"];
 //    [self presentViewController:ctl animated:YES completion:nil];
     [self.navigationController pushViewController:ctl animated:YES];
@@ -134,7 +142,7 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     if (collectionView == self.deviceConllectionView) {
-        return [GlobalCache shareInstance].kidsList.count;
+        return self.kids.count;
     }
     return 0;
 }
@@ -142,7 +150,7 @@
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     if (collectionView == self.deviceConllectionView) {
-        CGFloat left = (collectionView.frame.size.width - (55 * [GlobalCache shareInstance].kidsList.count - 5)) / 2;
+        CGFloat left = (collectionView.frame.size.width - (55 * self.kids.count - 5)) / 2;
         return UIEdgeInsetsMake(10, left > 10 ? left : 10, 0, 10);
     }
     return UIEdgeInsetsZero;
@@ -168,8 +176,8 @@
     UICollectionViewCell *cell = nil;
     if (collectionView == self.deviceConllectionView) {
         ProfileDeviceCell *deviceCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DeviceCell" forIndexPath:indexPath];
-        KidModel *model = [[GlobalCache shareInstance].kidsList objectAtIndex:indexPath.row];
-        if (model.profile) {
+        Kid *model = [self.kids objectAtIndex:indexPath.row];
+        if (model.profile.length > 0) {
             [deviceCell.imageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:model.profile]] forState:UIControlStateNormal];
         }
         else {

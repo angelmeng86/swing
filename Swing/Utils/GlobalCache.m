@@ -44,8 +44,11 @@
 - (void)initConfig {
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"Swing.sqlite"];
 //    [MagicalRecord setupCoreDataStackWithStoreNamed:@"Swing.sqlite"];
+//#ifdef DEBUG
+//    [MagicalRecord setLoggingLevel:MagicalRecordLoggingLevelAll];
+//#else
     [MagicalRecord setLoggingLevel:MagicalRecordLoggingLevelOff];
-    
+//#endif
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     [SVProgressHUD setMinimumDismissTimeInterval:3.0];
     [self setKeyboradManager];
@@ -121,7 +124,6 @@
 - (void)logout:(BOOL)exit {
     self.kid = nil;
     self.user = nil;
-    self.kidsList = nil;
     self.local = nil;
     self.peripheral=nil;
 //    self.activitys = nil;

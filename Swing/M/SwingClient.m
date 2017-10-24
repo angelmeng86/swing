@@ -312,7 +312,8 @@
                     [GlobalCache shareInstance].kid = nil;
                     [[GlobalCache shareInstance] clearInfo:@"kid"];
                 }
-                [GlobalCache shareInstance].kidsList = kids;
+                [DBHelper clearKids];
+                [DBHelper addKids:kids];
                 [GlobalCache shareInstance].user = model;
                 
                 completion(model, kids, nil);

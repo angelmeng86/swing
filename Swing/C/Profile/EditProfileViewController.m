@@ -135,7 +135,7 @@
     
     return YES;
 }
-
+/*
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return [GlobalCache shareInstance].kidsList.count;// + 1;
@@ -181,7 +181,7 @@
         [self.navigationController pushViewController:ctl animated:YES];
     }
 }
-
+*/
 - (void)setHeaderImage:(UIImage*)headImage {
     [self.imageBtn setBackgroundImage:headImage forState:UIControlStateNormal];
 }

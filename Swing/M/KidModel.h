@@ -8,6 +8,7 @@
 
 #import "JSONModel.h"
 #import "UserModel.h"
+#import "Kid+CoreDataClass.h"
 
 @protocol KidModel @end
 
@@ -26,5 +27,8 @@
 @property (strong, nonatomic) NSString<Optional>* firmwareVersion;
 
 @property (nonatomic, strong) UserModel<Optional> *parent;
+
+- (void)updateTo:(Kid*)m;
+- (void)updateFrom:(Kid*)m;
 
 @end

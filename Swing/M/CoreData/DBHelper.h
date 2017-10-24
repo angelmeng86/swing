@@ -32,4 +32,10 @@
 + (BOOL)addActivity:(ActivityModel*)model;
 + (BOOL)delObject:(NSManagedObject*)obj;
 
++ (NSArray*)queryKids;
++ (BOOL)addKid:(KidModel*)kid;
++ (BOOL)addKids:(NSArray*)array;
++ (BOOL)delKid:(int64_t)objId;
++ (void)clearKids;
+
 @end

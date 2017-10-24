@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16A323" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16A323" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="Activity" representedClassName="Activity" syncable="YES">
         <attribute name="indoorActivity" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="macId" optional="YES" attributeType="String" syncable="YES"/>
@@ -22,6 +22,14 @@
         <attribute name="timezoneOffset" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="todoList" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Todo" inverseName="inEvent" inverseEntity="Todo" syncable="YES"/>
     </entity>
+    <entity name="Kid" representedClassName="Kid" syncable="YES" codeGenerationType="class">
+        <attribute name="currentVersion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firmwareVersion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="macId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="objId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="profile" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Todo" representedClassName="Todo" syncable="YES">
         <attribute name="objId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
@@ -32,5 +40,6 @@
         <element name="Activity" positionX="-54" positionY="90" width="128" height="120"/>
         <element name="Event" positionX="-63" positionY="-18" width="128" height="240"/>
         <element name="Todo" positionX="-54" positionY="-9" width="128" height="105"/>
+        <element name="Kid" positionX="-54" positionY="90" width="128" height="135"/>
     </elements>
 </model>
