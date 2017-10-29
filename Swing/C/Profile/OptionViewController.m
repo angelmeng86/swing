@@ -188,6 +188,9 @@
                     break;
                 case 2:
                 {
+                    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
+                    UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"ResetPassword"];
+                    [self.navigationController pushViewController:ctl animated:YES];
                     /*
                     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:LOC_STR(@"Reset Password") message:LOC_STR(@"Are you sure you want to reset your password?") preferredStyle:UIAlertControllerStyleAlert];
                     

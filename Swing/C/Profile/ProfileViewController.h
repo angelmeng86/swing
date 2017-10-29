@@ -12,12 +12,15 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *headerBtn;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *deviceConllectionView;
-@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
-@property (weak, nonatomic) IBOutlet UILabel *addressLabel2;
+@property (weak, nonatomic) IBOutlet UILabel *deviceLabel;
+@property (weak, nonatomic) IBOutlet UICollectionView *deviceSharedCollectionView;
+@property (weak, nonatomic) IBOutlet UILabel *deviceSharedLabel;
+@property (weak, nonatomic) IBOutlet UICollectionView *pendingRequestCollectionView;
+@property (weak, nonatomic) IBOutlet UILabel *pendingLabel;
+@property (weak, nonatomic) IBOutlet UICollectionView *requestCollectionView;
+@property (weak, nonatomic) IBOutlet UILabel *requestLabel;
 
-@property (weak, nonatomic) IBOutlet UIButton *logoutBtn;
-- (IBAction)logoutAction:(id)sender;
 @end

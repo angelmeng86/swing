@@ -46,46 +46,27 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"navi_option") style:UIBarButtonItemStylePlain target:self action:@selector(optionAction)];
     
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:LOC_STR(@"Language") style: UIBarButtonItemStylePlain target:self action:@selector(languageAction)];
-    
     self.navigationItem.title = LOC_STR(@"Profile");
-    [self.logoutBtn setTitle:LOC_STR(@"Logout") forState:UIControlStateNormal];
+    
+    [self.deviceConllectionView registerNib:[UINib nibWithNibName:@"ProfileReusableView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProfileReusableView"];
+    [self.deviceSharedCollectionView registerNib:[UINib nibWithNibName:@"ProfileReusableView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProfileReusableView"];
+    [self.pendingRequestCollectionView registerNib:[UINib nibWithNibName:@"ProfileReusableView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProfileReusableView"];
+    [self.requestCollectionView registerNib:[UINib nibWithNibName:@"ProfileReusableView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProfileReusableView"];
+    
+    self.deviceConllectionView.backgroundColor = self.view.backgroundColor;
+    self.deviceSharedCollectionView.backgroundColor = self.view.backgroundColor;
+    self.pendingRequestCollectionView.backgroundColor = self.view.backgroundColor;
+    self.requestCollectionView.backgroundColor = self.view.backgroundColor;
+    
+    self.deviceLabel.text = LOC_STR(@"My devices");
+    self.deviceSharedLabel.text = LOC_STR(@"Devices shared with me");
+    self.pendingLabel.text = LOC_STR(@"Your pending request to");
+    self.requestLabel.text = LOC_STR(@"You have 2 requests from");
 }
 
 - (void)optionAction {
     OptionViewController *ctl = [[OptionViewController alloc] initWithStyle:UITableViewStylePlain];
     [self.navigationController pushViewController:ctl animated:YES];
-}
-
-- (void)languageAction {
-    ChoicesViewController *ctl = [[ChoicesViewController alloc] initWithStyle:UITableViewStylePlain];
-    ctl.delegate = self;
-    ctl.navigationItem.title = LOC_STR(@"Language");
-    ctl.textArray = @[LOC_STR(@"English"), LOC_STR(@"Spanish"), LOC_STR(@"Russian")];
-    [self.navigationController pushViewController:ctl animated:YES];
-}
-
-- (void)choicesViewControllerDidSelectedIndex:(int)index {
-    NSString *lang = @"en";
-    switch (index) {
-        case 1:
-            lang = @"es";
-            break;
-        case 2:
-            lang = @"ru";
-            break;
-        default:
-            break;
-    }
-    [GlobalCache shareInstance].local.language = lang;
-    [[GlobalCache shareInstance] saveInfo];
-    [self performSelector:@selector(goToMain) withObject:nil afterDelay:0.5];
-}
-
-- (void)goToMain {
-    [GlobalCache shareInstance].cacheLang = nil;
-    AppDelegate *ad = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    [ad goToMain];
 }
 
 - (void)userProfileLoaded:(NSNotification*)notification {
@@ -97,9 +78,6 @@
 - (void)loadProfile {
     if ([GlobalCache shareInstance].user) {
         self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", [GlobalCache shareInstance].user.firstName, [GlobalCache shareInstance].user.lastName];
-        self.phoneLabel.text = [GlobalCache shareInstance].user.phoneNumber;
-        self.addressLabel.text = [GlobalCache shareInstance].user.address;
-        self.addressLabel2.text = [[GlobalCache shareInstance].user address2];
         self.emailLabel.text = [GlobalCache shareInstance].user.email;
     }
 }
@@ -133,10 +111,7 @@
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    if (collectionView == self.deviceConllectionView) {
-        return 1;
-    }
-    return 0;
+    return 1;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -151,24 +126,9 @@
 {
     if (collectionView == self.deviceConllectionView) {
         CGFloat left = (collectionView.frame.size.width - (55 * self.kids.count - 5)) / 2;
-        return UIEdgeInsetsMake(10, left > 10 ? left : 10, 0, 10);
+        return UIEdgeInsetsMake(5, left > 10 ? left : 10, 0, 10);
     }
     return UIEdgeInsetsZero;
-}
-
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-
-{
-    UICollectionReusableView *reusableview = nil;
-    if (kind == UICollectionElementKindSectionHeader){
-        if (collectionView == self.deviceConllectionView) {
-            reusableview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
-            UILabel *label = (UILabel*)[reusableview viewWithTag:2016];
-            label.text = LOC_STR(@"My hosting device");
-        }
-    }
-    
-    return reusableview;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -176,6 +136,7 @@
     UICollectionViewCell *cell = nil;
     if (collectionView == self.deviceConllectionView) {
         ProfileDeviceCell *deviceCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DeviceCell" forIndexPath:indexPath];
+
         Kid *model = [self.kids objectAtIndex:indexPath.row];
         if (model.profile.length > 0) {
             [deviceCell.imageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:model.profile]] forState:UIControlStateNormal];
@@ -194,10 +155,6 @@
     if (collectionView == self.deviceConllectionView) {
         
     }
-}
-
-- (IBAction)logoutAction:(id)sender {
-    [[GlobalCache shareInstance] logout];
 }
 
 @end

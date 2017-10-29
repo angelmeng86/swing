@@ -60,7 +60,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N92-Dp-3AF" customClass="RoundButton">
-                                <rect key="frame" x="60" y="230.33333333333331" width="294" height="34.999999999999943"/>
+                                <rect key="frame" x="60" y="231" width="294" height="35"/>
                                 <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="Qk7-Vj-Ft6"/>
@@ -74,13 +74,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Cb-Nr-DI3">
-                                <rect key="frame" x="60" y="210" width="294" height="15.333333333333343"/>
+                                <rect key="frame" x="60" y="210" width="294" height="16"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="13"/>
                                 <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K5S-4d-KYT" customClass="RoundButton">
-                                <rect key="frame" x="60.333333333333343" y="280.33333333333331" width="294" height="35"/>
+                                <rect key="frame" x="60" y="281" width="294" height="35"/>
                                 <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="6aa-bV-oPA"/>
@@ -183,7 +183,7 @@
                                                     </connections>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_profile" translatesAutoresizingMaskIntoConstraints="NO" id="sxR-9u-d4w">
-                                                    <rect key="frame" x="5" y="9.6666666666666643" width="24" height="24"/>
+                                                    <rect key="frame" x="5" y="10" width="24" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24" id="Wf5-bf-DLC"/>
                                                         <constraint firstAttribute="width" constant="24" id="wLm-n3-WfQ"/>
@@ -423,7 +423,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SEARCHING" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DzD-A9-bys">
-                                <rect key="frame" x="109.66666666666669" y="164" width="195" height="195"/>
+                                <rect key="frame" x="110" y="164" width="195" height="195"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="195" id="H4y-g2-N9l"/>
                                     <constraint firstAttribute="height" constant="195" id="KLL-iY-oB8"/>
@@ -433,7 +433,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Evs-Aa-9Up" customClass="MDRadialProgressView">
-                                <rect key="frame" x="92" y="146.66666666666669" width="230" height="230.00000000000006"/>
+                                <rect key="frame" x="92" y="147" width="230" height="230"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="230" id="Ie7-FN-dLN"/>
@@ -808,7 +808,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SWING WATCH 123ADSGF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dlm-8e-WJ7">
-                                        <rect key="frame" x="39" y="14.666666666666657" width="276" height="21"/>
+                                        <rect key="frame" x="39" y="15" width="276" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="pqT-PR-1iE"/>
                                         </constraints>
