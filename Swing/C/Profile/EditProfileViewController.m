@@ -12,9 +12,10 @@
 #import "ProfileDeviceCell.h"
 #import <SDWebImage/UIButton+WebCache.h>
 
-@interface EditProfileViewController ()<UITextFieldDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, VPImageCropperDelegate>
+@interface EditProfileViewController ()<UITextFieldDelegate, CameraUtilityDelegate>
 {
     UIImage *image;
+    CameraUtility2 *cameraUtility;
 }
 
 @end
@@ -24,6 +25,10 @@
 - (void)viewDidLoad {
     self.notLoadBackgroudImage = YES;
     [super viewDidLoad];
+    cameraUtility = [[CameraUtility2 alloc] init];
+    cameraUtility.originMaxWidth = ORIGINAL_MAX_WIDTH;
+    cameraUtility.targetMaxWidth = TAGET_MAX_WIDTH;
+    
 //    self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view.
     
@@ -186,79 +191,6 @@
     [self.imageBtn setBackgroundImage:headImage forState:UIControlStateNormal];
 }
 
-#pragma mark - UIActionSheetDelegate
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 0) {
-#if TARGET_IPHONE_SIMULATOR
-        [Fun showMessageBoxWithTitle:LOC_STR(@"Prompt") andMessage:@"Simulator does not support camera."];
-#else
-        // 拍照
-        if ([CameraUtility isCameraAvailable] && [CameraUtility doesCameraSupportTakingPhotos]) {
-            UIImagePickerController *controller = [[UIImagePickerController alloc] init];
-            controller.sourceType = UIImagePickerControllerSourceTypeCamera;
-//            if ([CameraUtility isFrontCameraAvailable]) {
-//                controller.cameraDevice = UIImagePickerControllerCameraDeviceFront;
-//            }
-            NSMutableArray *mediaTypes = [[NSMutableArray alloc] init];
-            [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
-            controller.mediaTypes = mediaTypes;
-            controller.delegate = self;
-            [self presentViewController:controller
-                               animated:YES
-                             completion:^(void){
-                                 LOG_D(@"Picker View Controller is presented");
-                             }];
-        }
-#endif
-    } else if (buttonIndex == 1) {
-        // 从相册中选取
-        if ([CameraUtility isPhotoLibraryAvailable]) {
-            UIImagePickerController *controller = [[UIImagePickerController alloc] init];
-            controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            NSMutableArray *mediaTypes = [[NSMutableArray alloc] init];
-            [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
-            controller.mediaTypes = mediaTypes;
-            controller.delegate = self;
-            [self presentViewController:controller
-                               animated:YES
-                             completion:^(void){
-                                 LOG_D(@"Picker View Controller is presented");
-                             }];
-        }
-    }
-}
-
-
-#pragma mark VPImageCropperDelegate
-- (void)imageCropper:(VPImageCropperViewController *)cropperViewController didFinished:(UIImage *)editedImage {
-    [cropperViewController dismissViewControllerAnimated:YES completion:^{
-        // TO DO
-        image = [Fun imageByScalingToMaxSize:editedImage maxWidth:TAGET_MAX_WIDTH];
-        [self setHeaderImage:image];
-    }];
-}
-
-- (void)imageCropperDidCancel:(VPImageCropperViewController *)cropperViewController {
-    [cropperViewController dismissViewControllerAnimated:YES completion:nil];
-}
-
-
-#pragma mark - UIImagePickerControllerDelegate
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    [picker dismissViewControllerAnimated:YES completion:^() {
-        UIImage *portraitImg = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-        portraitImg = [Fun imageByScalingToMaxSize:portraitImg maxWidth:ORIGINAL_MAX_WIDTH];
-        // present the cropper view controller
-        VPImageCropperViewController *imgCropperVC = [[VPImageCropperViewController alloc] initWithImage:portraitImg cropFrame:CGRectMake(0, 100.0f, self.view.frame.size.width, self.view.frame.size.width) limitScaleRatio:3.0];
-        imgCropperVC.delegate = self;
-        [self presentViewController:imgCropperVC animated:YES completion:nil];
-    }];
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [picker dismissViewControllerAnimated:YES completion:nil];
-}
-
 - (IBAction)imageBtnAction:(id)sender {
     [self.firstNameTF resignFirstResponder];
     [self.lastNameTF resignFirstResponder];
@@ -269,11 +201,13 @@
     [self.stateTF resignFirstResponder];
     [self.zipCodeTF resignFirstResponder];
     
-    UIActionSheet *choiceSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                             delegate:self
-                                                    cancelButtonTitle:LOC_STR(@"Cancel")
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:LOC_STR(@"Take a picture"), LOC_STR(@"Choose from library"), nil];
-    [choiceSheet showInView:self.view];
+    [cameraUtility getPhoto:self];
 }
+
+- (void)cameraUtilityFinished:(UIImage*)img
+{
+    image = img;
+    [self setHeaderImage:image];
+}
+
 @end

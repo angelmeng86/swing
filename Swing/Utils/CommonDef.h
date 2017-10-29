@@ -63,7 +63,7 @@
 #import "SubHostModel.h"
 
 #import "Fun.h"
-#import "CameraUtility.h"
+#import "CameraUtility2.h"
 #import "ControlFactory.h"
 #import "LMBaseViewController.h"
 #import "LMBaseTableViewController.h"

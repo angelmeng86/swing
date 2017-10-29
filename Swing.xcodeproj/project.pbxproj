@@ -30,6 +30,8 @@
 		0F927FD71DDA02680011EF90 /* BLEScanDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F927FD01DDA02680011EF90 /* BLEScanDevice.m */; };
 		0F927FD81DDA02680011EF90 /* BLESearchDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F927FD21DDA02680011EF90 /* BLESearchDevice.m */; };
 		0F927FD91DDA02680011EF90 /* BLESyncDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F927FD41DDA02680011EF90 /* BLESyncDevice.m */; };
+		0F9382B41FA4C6C10095C516 /* CameraUtility2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9382B31FA4C6C10095C516 /* CameraUtility2.m */; };
+		0F9382B71FA4CC480095C516 /* PhotoTweakView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9382B61FA4CC480095C516 /* PhotoTweakView.m */; };
 		0F9734B11F17919900502D8A /* LFSyncSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9734B01F17919900502D8A /* LFSyncSheet.m */; };
 		0F9734B41F19162E00502D8A /* SyncNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9734B31F19162E00502D8A /* SyncNavViewController.m */; };
 		0FCF50421F7A805F00738C23 /* alert2_jp.json in Resources */ = {isa = PBXBuildFile; fileRef = 0FCF50411F7A805F00738C23 /* alert2_jp.json */; };
@@ -179,6 +181,10 @@
 		0F927FD21DDA02680011EF90 /* BLESearchDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLESearchDevice.m; sourceTree = "<group>"; };
 		0F927FD31DDA02680011EF90 /* BLESyncDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLESyncDevice.h; sourceTree = "<group>"; };
 		0F927FD41DDA02680011EF90 /* BLESyncDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLESyncDevice.m; sourceTree = "<group>"; };
+		0F9382B21FA4C6C10095C516 /* CameraUtility2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraUtility2.h; sourceTree = "<group>"; };
+		0F9382B31FA4C6C10095C516 /* CameraUtility2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraUtility2.m; sourceTree = "<group>"; };
+		0F9382B51FA4CC480095C516 /* PhotoTweakView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoTweakView.h; sourceTree = "<group>"; };
+		0F9382B61FA4CC480095C516 /* PhotoTweakView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTweakView.m; sourceTree = "<group>"; };
 		0F9734AF1F17919900502D8A /* LFSyncSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFSyncSheet.h; sourceTree = "<group>"; };
 		0F9734B01F17919900502D8A /* LFSyncSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFSyncSheet.m; sourceTree = "<group>"; };
 		0F9734B21F19162E00502D8A /* SyncNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncNavViewController.h; sourceTree = "<group>"; };
@@ -545,6 +551,8 @@
 				AD0B81151D37EF7400F43E72 /* LMBaseViewController.m */,
 				AD77979A1D4CE11B00472B27 /* CameraUtility.h */,
 				AD77979B1D4CE11B00472B27 /* CameraUtility.m */,
+				0F9382B21FA4C6C10095C516 /* CameraUtility2.h */,
+				0F9382B31FA4C6C10095C516 /* CameraUtility2.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -564,6 +572,8 @@
 				AD790F521DAF9D9B002FE2F1 /* LFTextField.h */,
 				ADEF31D01D478E9900BB6A9B /* RoundButton.h */,
 				ADEF31D11D478E9900BB6A9B /* RoundButton.m */,
+				0F9382B51FA4CC480095C516 /* PhotoTweakView.h */,
+				0F9382B61FA4CC480095C516 /* PhotoTweakView.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -1069,6 +1079,7 @@
 				ADCED9E71D3D3C8B002E3F78 /* RegisterViewController.m in Sources */,
 				ADEF31D61D47B04200BB6A9B /* VPImageCropperViewController.m in Sources */,
 				0F176EC11DE48FB70014F079 /* Event+CoreDataClass.m in Sources */,
+				0F9382B71FA4CC480095C516 /* PhotoTweakView.m in Sources */,
 				0FCF50571F9CCFCE00738C23 /* SubHostModel.m in Sources */,
 				0FCF505F1F9F7B7D00738C23 /* Kid+CoreDataClass.m in Sources */,
 				AD95A51B1D5243390047A0A2 /* SwingClientTest.m in Sources */,
@@ -1099,6 +1110,7 @@
 				AD347D1E1D3FDEEC00E91DDD /* SelectWatchViewController.m in Sources */,
 				AD74D4DC1D4F90B5001F3B36 /* EventLabel.m in Sources */,
 				ADFC2C2D1D369949004EDCDF /* main.m in Sources */,
+				0F9382B41FA4C6C10095C516 /* CameraUtility2.m in Sources */,
 				AD289A5E1D3FD0E800898F92 /* AskStepViewController.m in Sources */,
 				AD21A5D61E5FD4B300DA72E3 /* BLEUpdater.m in Sources */,
 				ADDCD3F81D4C557E0031DC66 /* UIFont+AvenirFont.m in Sources */,

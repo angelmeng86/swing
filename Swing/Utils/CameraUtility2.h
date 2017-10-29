@@ -14,7 +14,7 @@
 
 @end
 
-@interface CameraUtility : NSObject
+@interface CameraUtility2 : NSObject
 
 @property (nonatomic) CGFloat originMaxWidth;
 @property (nonatomic) CGFloat targetMaxWidth;
@@ -22,21 +22,5 @@
 @property (nonatomic) BOOL dontCustom;
 
 - (void)getPhoto:(UIViewController<CameraUtilityDelegate>*)ctl;
-
-+ (BOOL) isCameraAvailable;
-
-+ (BOOL) isRearCameraAvailable;
-
-+ (BOOL) isFrontCameraAvailable;
-
-+ (BOOL) doesCameraSupportTakingPhotos;
-
-+ (BOOL) isPhotoLibraryAvailable;
-
-+ (BOOL) canUserPickVideosFromPhotoLibrary;
-
-+ (BOOL) canUserPickPhotosFromPhotoLibrary;
-
-+ (UIImage *)imageByScalingToMaxSize:(UIImage *)sourceImage maxWidth:(CGFloat)maxWidth;
 
 @end
