@@ -22,6 +22,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) KidModel *kid;
 
 @property (weak, nonatomic) IBOutlet UILabel *label1;
+@property (weak, nonatomic) IBOutlet UILabel *subLabel;
 @property (weak, nonatomic) IBOutlet UIButton *btn1;
 @property (weak, nonatomic) IBOutlet UIButton *btn2;
 

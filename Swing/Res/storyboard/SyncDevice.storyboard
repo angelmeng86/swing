@@ -92,7 +92,7 @@
                                     <action selector="syncCurrentAction:" destination="em4-Sk-qTn" eventType="touchUpInside" id="t2O-xl-jsf"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1g-VS-d37" customClass="RoundButton">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1g-VS-d37" customClass="RoundButton">
                                 <rect key="frame" x="60" y="464" width="294" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
@@ -134,6 +134,7 @@
                     <connections>
                         <outlet property="button1" destination="OSR-GF-do6" id="mcS-N2-7fJ"/>
                         <outlet property="button2" destination="vKm-Tb-kJn" id="OKP-zR-aGu"/>
+                        <outlet property="button3" destination="L1g-VS-d37" id="ydc-IT-C90"/>
                         <outlet property="imageView" destination="r2M-W1-s24" id="og1-0B-JdU"/>
                         <outlet property="label1" destination="6XM-8S-BwJ" id="enO-Qa-8gV"/>
                         <outlet property="nameLabel" destination="589-aK-IRG" id="fuk-c7-lV3"/>

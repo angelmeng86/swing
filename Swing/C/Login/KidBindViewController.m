@@ -32,20 +32,22 @@
     cameraUtility.targetMaxWidth = TAGET_MAX_WIDTH;
     
 //    [self.firstNameTF setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
-    [self.lastNameTF setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
-    [self.birthdayTF setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+//    [self.lastNameTF setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+//    [self.birthdayTF setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     
     self.firstNameTF.placeholder=LOC_STR(@"Kid's name");
-    self.lastNameTF.placeholder=LOC_STR(@"Kid's name");
-    self.birthdayTF.placeholder=LOC_STR(@"Kid's birthday");
+//    self.lastNameTF.placeholder=LOC_STR(@"Kid's name");
+//    self.birthdayTF.placeholder=LOC_STR(@"Kid's birthday");
+    
+    [self.doneBtn setTitle:LOC_STR(@"Done") forState:UIControlStateNormal];
     
     self.firstNameTF.delegate = self;
-    self.lastNameTF.delegate = self;
-    self.birthdayTF.delegate = self;
+//    self.lastNameTF.delegate = self;
+//    self.birthdayTF.delegate = self;
     
     self.imageBtn.layer.cornerRadius = 60.f;
     self.imageBtn.layer.borderColor = [self.imageBtn titleColorForState:UIControlStateNormal].CGColor;
-    self.imageBtn.layer.borderWidth = 3.f;
+    self.imageBtn.layer.borderWidth = 4.f;
     self.imageBtn.layer.masksToBounds = YES;
     image = nil;
     
@@ -82,7 +84,7 @@
     UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
     BindReadyViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"BindReady"];
     ctl.image = image;
-    ctl.name = [NSString stringWithFormat:@"%@ %@", self.firstNameTF.text, self.lastNameTF.text];
+    ctl.name = self.firstNameTF.text;
     [self.navigationController pushViewController:ctl animated:YES];
 }
 
@@ -164,10 +166,12 @@
 
 - (IBAction)imageAction:(id)sender {
     [self.firstNameTF resignFirstResponder];
-    [self.lastNameTF resignFirstResponder];
-    [self.birthdayTF resignFirstResponder];
     
     [cameraUtility getPhoto:self];
+}
+
+- (IBAction)doneAction:(id)sender {
+    [self textFieldShouldReturn:self.firstNameTF];
 }
 
 - (void)cameraUtilityFinished:(UIImage*)img

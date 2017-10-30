@@ -185,12 +185,12 @@
 }
 
 - (void)goToMain {
+//    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
+//    UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"AskStep"];
+//    [self.navigationController pushViewController:ctl animated:YES];
+    
     AppDelegate *ad = (AppDelegate*)[UIApplication sharedApplication].delegate;
     [ad goToMain];
-}
-
-- (void)doneAction {
-    
 }
 
 /*
@@ -208,6 +208,10 @@
 }
 
 - (IBAction)resetAction:(id)sender {
+    if (self.emailTextField.text.length == 0 || ![Fun isValidateEmail:self.emailTextField.text]) {
+        [Fun showMessageBoxWithTitle:LOC_STR(@"Error") andMessage:LOC_STR(@"Please input info.")];
+        return;
+    }
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:LOC_STR(@"Reset Password") message:LOC_STR(@"Are you sure you want to reset your password?") preferredStyle:UIAlertControllerStyleAlert];
     
     [alertController addAction:[UIAlertAction actionWithTitle:LOC_STR(@"Cancel") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
@@ -216,10 +220,10 @@
     }]];
     [alertController addAction:[UIAlertAction actionWithTitle:LOC_STR(@"Ok") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [SVProgressHUD show];
-        [[SwingClient sharedClient] sendResetPasswordEmailWithCompletion:^(NSError *error) {
+        [[SwingClient sharedClient] sendResetPasswordEmail:self.emailTextField.text completion:^(NSError *error) {
             if(!error) {
                 [SVProgressHUD dismiss];
-                [Fun showMessageBox:LOC_STR(@"") andFormat:LOC_STR(@"Please check your email at '%@' for the link to reset your password.This link will expire in 24 hours"), [GlobalCache shareInstance].user.email];
+                [Fun showMessageBox:LOC_STR(@"") andFormat:LOC_STR(@"Please check your email at '%@' for the link to reset your password.This link will expire in 24 hours"), self.emailTextField.text];
             }
             else {
                 LOG_D(@"sendResetPasswordEmailWithCompletion fail: %@", error);

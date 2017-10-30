@@ -15,8 +15,8 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *imageBtn;
 @property (weak, nonatomic) IBOutlet UITextField *firstNameTF;
-@property (weak, nonatomic) IBOutlet UITextField *lastNameTF;
-@property (weak, nonatomic) IBOutlet UITextField *birthdayTF;
 - (IBAction)imageAction:(id)sender;
+- (IBAction)doneAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *doneBtn;
 
 @end

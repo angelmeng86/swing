@@ -92,7 +92,7 @@ typedef enum : NSUInteger {
 
 - (NSURLSessionDataTask *)putFirmwareVersion:(NSString*)version macId:(NSString*)macId completion:( void (^)(NSError *error) )completion;
 
-- (NSURLSessionDataTask *)sendResetPasswordEmailWithCompletion:( void (^)(NSError *error) )completion;
+- (NSURLSessionDataTask *)sendResetPasswordEmail:(NSString*)email completion:( void (^)(NSError *error) )completion;
 
 //subHost API
 

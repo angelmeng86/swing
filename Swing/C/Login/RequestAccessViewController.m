@@ -29,6 +29,7 @@
         [self.imageView sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:self.kid.profile]] placeholderImage:LOAD_IMAGE(@"icon_profile")];
     }
     [self changeInfo];
+    [self setCustomBackButton];
 }
 
 - (void)changeInfo
@@ -82,18 +83,20 @@
 }
 
 - (IBAction)deviceAction:(id)sender {
-    [SVProgressHUD show];
-    [[SwingClient sharedClient] subHostAdd:self.kid.parent.objId completion:^(SubHostModel *subHost, NSError *error) {
-        if (error) {
-            LOG_D(@"subHostAdd err: %@", error);
-            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-        }
-        else {
-            _type = RequestTypePending;
-            [self changeInfo];
-            [SVProgressHUD dismiss];
-        }
-    }];
+    if (_type == RequestTypeAccess) {
+        [SVProgressHUD show];
+        [[SwingClient sharedClient] subHostAdd:self.kid.parent.objId completion:^(SubHostModel *subHost, NSError *error) {
+            if (error) {
+                LOG_D(@"subHostAdd err: %@", error);
+                [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+            }
+            else {
+                _type = RequestTypePending;
+                [self changeInfo];
+                [SVProgressHUD dismiss];
+            }
+        }];
+    }
 }
 
 @end

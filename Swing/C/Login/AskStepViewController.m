@@ -28,7 +28,7 @@
     self.label1.adjustsFontSizeToFitWidth = YES;
     
     [self changeInfo];
-//    [self setCustomBackButton];
+    //[self setCustomBackButton];
 }
 
 - (void)changeInfo
@@ -37,21 +37,27 @@
         case AskTypePurchase:
         {
             self.label1.text = LOC_STR(@"Would you like to purchase one?");
+            self.subLabel.hidden = YES;
             
             [self.btn1 setTitle:LOC_STR(@"Yes, please") forState:UIControlStateNormal];
-            [self.btn2 setTitle:LOC_STR(@"Not yet") forState:UIControlStateNormal];
+//            [self.btn2 setTitle:LOC_STR(@"Not yet") forState:UIControlStateNormal];
+            [self.btn2 setTitle:LOC_STR(@"Request access to others") forState:UIControlStateNormal];
         }
             break;
         case AskTypeWatchRegisted:
         {
             self.label1.text = LOC_STR(@"This Watch has been resgitered");
+            self.subLabel.hidden = YES;
             [self.btn1 setTitle:LOC_STR(@"Request access") forState:UIControlStateNormal];
             [self.btn2 setTitle:LOC_STR(@"Contact Us") forState:UIControlStateNormal];
+            [self setCustomBackButton];
         }
             break;
         default:
         {
             self.label1.text = LOC_STR(@"Do you have a Swing Watch?");
+            self.subLabel.hidden = NO;
+            self.subLabel.text = LOC_STR(@"Please have your watch nearby");
             [self.btn1 setTitle:LOC_STR(@"Yes") forState:UIControlStateNormal];
             [self.btn2 setTitle:LOC_STR(@"No") forState:UIControlStateNormal];
         }

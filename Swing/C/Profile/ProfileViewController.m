@@ -36,8 +36,8 @@
     // Do any additional setup after loading the view.
     
     self.headerBtn.layer.cornerRadius = 60.f;
-    self.headerBtn.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.headerBtn.layer.borderWidth = 3.f;
+    self.headerBtn.layer.borderColor = COMMON_HEADER_BORDER_COLOR.CGColor;
+    self.headerBtn.layer.borderWidth = 4.f;
     self.headerBtn.layer.masksToBounds = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userProfileLoaded:) name:USER_PROFILE_LOAD_NOTI object:nil];

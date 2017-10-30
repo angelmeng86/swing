@@ -351,7 +351,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t77-M9-zqa" customClass="RoundButton">
-                                <rect key="frame" x="60" y="216" width="294" height="35"/>
+                                <rect key="frame" x="60" y="230" width="294" height="35"/>
                                 <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="cYF-Nz-gh4"/>
@@ -374,7 +374,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6lr-9t-aES" customClass="RoundButton">
-                                <rect key="frame" x="60" y="271" width="294" height="35"/>
+                                <rect key="frame" x="60" y="285" width="294" height="35"/>
                                 <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                 <state key="normal" title="No">
@@ -384,6 +384,12 @@
                                     <action selector="btn2Action:" destination="8JQ-g5-7zn" eventType="touchUpInside" id="8My-Tj-Tad"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FUa-b6-0Oc">
+                                <rect key="frame" x="186" y="192" width="43" height="19"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="16"/>
+                                <color key="textColor" red="0.47058823529999999" green="0.57647058819999997" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -394,7 +400,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="p9i-3y-4V0" secondAttribute="trailing" id="NdK-7n-g32"/>
                             <constraint firstItem="6lr-9t-aES" firstAttribute="centerX" secondItem="p9i-3y-4V0" secondAttribute="centerX" id="Wwj-2h-vgZ"/>
                             <constraint firstItem="p9i-3y-4V0" firstAttribute="top" secondItem="lzJ-T5-hLE" secondAttribute="bottom" constant="80" id="hjv-zm-7Ie"/>
-                            <constraint firstItem="t77-M9-zqa" firstAttribute="top" secondItem="p9i-3y-4V0" secondAttribute="bottom" constant="26" id="p9p-Ub-zrg"/>
+                            <constraint firstItem="FUa-b6-0Oc" firstAttribute="top" secondItem="p9i-3y-4V0" secondAttribute="bottom" constant="2" id="nxU-Fy-42R"/>
+                            <constraint firstItem="t77-M9-zqa" firstAttribute="top" secondItem="p9i-3y-4V0" secondAttribute="bottom" constant="40" id="p9p-Ub-zrg"/>
+                            <constraint firstItem="FUa-b6-0Oc" firstAttribute="centerX" secondItem="p9i-3y-4V0" secondAttribute="centerX" id="ri9-ok-Jtf"/>
                             <constraint firstItem="p9i-3y-4V0" firstAttribute="leading" secondItem="8Vd-S7-blC" secondAttribute="leadingMargin" id="tCu-rG-nld"/>
                             <constraint firstAttribute="trailingMargin" secondItem="t77-M9-zqa" secondAttribute="trailing" constant="40" id="uKI-yY-NBB"/>
                             <constraint firstItem="6lr-9t-aES" firstAttribute="top" secondItem="t77-M9-zqa" secondAttribute="bottom" constant="20" id="zQZ-lP-Rkw"/>
@@ -404,6 +412,7 @@
                         <outlet property="btn1" destination="t77-M9-zqa" id="ZSL-pM-8Zh"/>
                         <outlet property="btn2" destination="6lr-9t-aES" id="y0z-NL-95a"/>
                         <outlet property="label1" destination="p9i-3y-4V0" id="V40-k9-jBC"/>
+                        <outlet property="subLabel" destination="FUa-b6-0Oc" id="swa-hZ-0zz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K7O-jj-Nof" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -612,42 +621,37 @@
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go"/>
                             </textField>
-                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kid's Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jkL-uI-Ab6">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xj4-H2-di0" customClass="RoundButton">
                                 <rect key="frame" x="60" y="284" width="294" height="35"/>
                                 <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go"/>
-                            </textField>
-                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kid's birthday" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y1h-bD-KAh">
-                                <rect key="frame" x="60" y="339" width="294" height="30"/>
-                                <color key="backgroundColor" red="0.94117647059999998" green="0.36078431370000003" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go"/>
-                            </textField>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="aNb-gk-58d"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="doneAction:" destination="cdu-5p-LYN" eventType="touchUpInside" id="sGh-tv-pCC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Y1h-bD-KAh" firstAttribute="top" secondItem="jkL-uI-Ab6" secondAttribute="bottom" constant="20" id="10m-sg-s6R"/>
-                            <constraint firstItem="Y1h-bD-KAh" firstAttribute="width" secondItem="gKt-no-jls" secondAttribute="width" id="2TS-rm-nEz"/>
                             <constraint firstItem="gKt-no-jls" firstAttribute="top" secondItem="N2T-lL-kcY" secondAttribute="bottom" constant="29" id="45Z-PG-J6b"/>
                             <constraint firstItem="N2T-lL-kcY" firstAttribute="centerX" secondItem="dTy-NP-k9X" secondAttribute="centerX" id="49s-Ji-8CA"/>
-                            <constraint firstItem="jkL-uI-Ab6" firstAttribute="centerX" secondItem="gKt-no-jls" secondAttribute="centerX" id="D4o-bh-IEd"/>
                             <constraint firstItem="gKt-no-jls" firstAttribute="leading" secondItem="dTy-NP-k9X" secondAttribute="leadingMargin" constant="40" id="M8b-pS-MNG"/>
-                            <constraint firstItem="Y1h-bD-KAh" firstAttribute="centerX" secondItem="dTy-NP-k9X" secondAttribute="centerX" id="MdI-XI-N32"/>
-                            <constraint firstItem="jkL-uI-Ab6" firstAttribute="top" secondItem="gKt-no-jls" secondAttribute="bottom" constant="20" id="Qlm-Xq-tge"/>
-                            <constraint firstItem="jkL-uI-Ab6" firstAttribute="height" secondItem="gKt-no-jls" secondAttribute="height" id="Rof-xS-fEP"/>
+                            <constraint firstItem="xj4-H2-di0" firstAttribute="top" secondItem="gKt-no-jls" secondAttribute="bottom" constant="20" id="OjD-Af-nTy"/>
+                            <constraint firstItem="xj4-H2-di0" firstAttribute="width" secondItem="gKt-no-jls" secondAttribute="width" id="Scz-4f-CJ7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gKt-no-jls" secondAttribute="trailing" constant="40" id="Vv9-M9-fXv"/>
+                            <constraint firstItem="xj4-H2-di0" firstAttribute="centerX" secondItem="gKt-no-jls" secondAttribute="centerX" id="Z5Q-2i-QWp"/>
                             <constraint firstItem="N2T-lL-kcY" firstAttribute="top" secondItem="xz0-8R-e1B" secondAttribute="bottom" constant="60" id="dCU-dO-W0d"/>
-                            <constraint firstItem="jkL-uI-Ab6" firstAttribute="width" secondItem="gKt-no-jls" secondAttribute="width" id="fhv-gj-9BT"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="birthdayTF" destination="Y1h-bD-KAh" id="Tln-ll-YRR"/>
+                        <outlet property="doneBtn" destination="xj4-H2-di0" id="9wG-lf-cbT"/>
                         <outlet property="firstNameTF" destination="gKt-no-jls" id="Xge-TE-H0N"/>
                         <outlet property="imageBtn" destination="N2T-lL-kcY" id="zpI-p5-te8"/>
-                        <outlet property="lastNameTF" destination="jkL-uI-Ab6" id="abV-DM-pgz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eUA-0E-V5f" userLabel="First Responder" sceneMemberID="firstResponder"/>

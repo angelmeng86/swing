@@ -23,8 +23,8 @@
     
     // Do any additional setup after loading the view.
     self.imageView.layer.cornerRadius = 60.f;
-    self.imageView.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.imageView.layer.borderWidth = 3.f;
+    self.imageView.layer.borderColor = COMMON_HEADER_BORDER_COLOR.CGColor;
+    self.imageView.layer.borderWidth = 4.f;
     self.imageView.layer.masksToBounds = YES;
     
     self.label1.adjustsFontSizeToFitWidth = YES;
@@ -36,6 +36,9 @@
      UIControlStateNormal];
     self.button2.titleLabel.adjustsFontSizeToFitWidth = YES;
     [self.button2 setTitle:LOC_STR(@"No, go to dashboard") forState:UIControlStateNormal];
+    
+    self.button3.titleLabel.adjustsFontSizeToFitWidth = YES;
+    [self.button3 setTitle:LOC_STR(@"Add another watch") forState:UIControlStateNormal];
     
     if ([GlobalCache shareInstance].user) {
         self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", [GlobalCache shareInstance].user.firstName, [GlobalCache shareInstance].user.lastName];
@@ -61,6 +64,7 @@
         self.button1.tag = TAG_SEARCH_WATCH;
         [self.button1 setTitle:LOC_STR(@"Search a watch") forState:UIControlStateNormal];
         [self.button2 setTitle:LOC_STR(@"Go to dashboard") forState:UIControlStateNormal];
+        self.button3.hidden = YES;
     }
 }
 
