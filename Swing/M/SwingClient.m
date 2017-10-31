@@ -296,23 +296,8 @@
                 completion(nil, nil, err);
             }
             else {
-                
-                BOOL isFinded = NO;
                 UserModel *model = [[UserModel alloc] initWithDictionary:responseObject[@"user"] error:nil];
                 NSArray *kids = [KidModel arrayOfModelsFromDictionaries:responseObject[@"kids"] error:&err];
-                for (KidModel *kid in kids) {
-                    if (kid.macId.length > 0) {
-                        //默认设置第一个Kid的设备为当前设备
-                        [GlobalCache shareInstance].kid = kid;
-                        isFinded = YES;
-                        break;
-                    }
-                }
-                if (!isFinded) {
-                    [GlobalCache shareInstance].kid = nil;
-                    [[GlobalCache shareInstance] clearInfo:@"kid"];
-                }
-                [DBHelper clearKids];
                 [DBHelper addKids:kids];
                 [GlobalCache shareInstance].user = model;
                 

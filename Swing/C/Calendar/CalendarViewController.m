@@ -191,7 +191,7 @@
 }
 
 - (IBAction)syncAction:(id)sender {
-    if ([GlobalCache shareInstance].kid) {
+    if ([GlobalCache shareInstance].currentKid) {
         UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"SyncDevice" bundle:nil];
         UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"Syncing"];
         SyncNavViewController *navCtl = [[SyncNavViewController alloc] initWithRootViewController:ctl];

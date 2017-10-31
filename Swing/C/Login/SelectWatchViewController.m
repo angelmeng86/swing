@@ -18,6 +18,9 @@
 @interface SelectWatchViewController ()<DeviceTableViewCellDelegate>
 {
     BLEClient *client;
+#if TARGET_IPHONE_SIMULATOR
+    NSMutableArray *items;
+#endif
 }
 
 @property (strong, nonatomic) NSMutableArray *peripherals;
@@ -70,7 +73,38 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 #if TARGET_IPHONE_SIMULATOR
-    
+    items = [NSMutableArray array];
+    NSMutableArray *array = [NSMutableArray array];
+    for (int j = 0; j < 3; j++) {
+        Byte addr[6];
+        for (int i = 0; i < 6; i++) {
+            addr[i] = rand();
+        }
+        [array addObject:[Fun dataToHex:[NSData dataWithBytes:addr length:6]]];
+    }
+    [array addObject:@"332211445566"];
+    [array addObject:@"AACCEE003311"];
+    for (NSString *macAddress in array) {
+        NSURLSessionDataTask *task = [[SwingClient sharedClient] whoRegisteredMacID:macAddress completion:^(KidModel *kid, NSError *error) {
+            if (!error) {
+                if (kid) {
+                    LOG_D(@"%@ is registed.", macAddress);
+                    if ([GlobalCache shareInstance].user.objId == kid.parent.objId) {
+                        LOG_D(@"Current user is registed.");
+                        return;
+                    }
+                    self.kidDict[macAddress] = kid;
+                }
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:items.count inSection:0];
+                [items addObject:macAddress];
+                [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+            else {
+                LOG_D(@"whoRegisteredMacID error:%@", error);
+            }
+        }];
+        [self.tasks addObject:task];
+    }
 #else
     client = [[BLEClient alloc] init];
 #ifdef SHOW_MACADDRESS
@@ -156,7 +190,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #if TARGET_IPHONE_SIMULATOR
-    return 2;
+    return items.count;
 #else
     return _peripherals.count;
 #endif
@@ -168,11 +202,29 @@
     DeviceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.delegate = self;
 #if TARGET_IPHONE_SIMULATOR
-    if (indexPath.row == 0) {
-        cell.titleLabel.text = @"SWING WATCH 123DAF523";
+    NSString *mac = items[indexPath.row];
+    cell.iconView.image = LOAD_IMAGE(@"icon_profile");
+    if (self.kidDict[mac]) {
+        KidModel *kid = self.kidDict[mac];
+        cell.titleLabel.text = kid.name;
+        
+        if (kid.profile) {
+            [cell.iconView sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:kid.profile]] placeholderImage:LOAD_IMAGE(@"icon_profile")];
+        }
+        
+        [cell.btn setImage:LOAD_IMAGE(@"icon_request") forState:UIControlStateNormal];
     }
-    else {
-        cell.titleLabel.text = @"SWING WATCH 568DANG5E";
+    else
+    {
+        NSMutableString *macShow = [NSMutableString string];
+        for (int i = 0; i < mac.length; i+=2) {
+            [macShow appendString:[mac substringWithRange:NSMakeRange(i, 2)]];
+            if (i + 2 < mac.length) {
+                [macShow appendString:@":"];
+            }
+        }
+        cell.titleLabel.text = [NSString stringWithFormat:@"SWING-%@", macShow];
+        [cell.btn setImage:LOAD_IMAGE(@"icon_add") forState:UIControlStateNormal];
     }
 #else
     CBPeripheral *peripheral = [_peripherals objectAtIndex:indexPath.row];
@@ -223,7 +275,7 @@
 #if TARGET_IPHONE_SIMULATOR
     UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
     KidBindViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"KidBind"];
-    ctl.macAddress = [Fun hexToData:@"012345678915"];
+    ctl.macAddress = [Fun hexToData:items[indexPath.row]];
     [self.navigationController pushViewController:ctl animated:YES];
 #else
     CBPeripheral *peripheral = [_peripherals objectAtIndex:indexPath.row];

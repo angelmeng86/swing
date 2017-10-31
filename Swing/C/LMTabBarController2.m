@@ -182,12 +182,12 @@
     item.image = [defaultImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 //    item.selectedImage = [LOAD_IMAGE(@"tab_profile_selected") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     item.selectedImage = item.image;
-    if ([GlobalCache shareInstance].kid.profile) {
+    if ([GlobalCache shareInstance].currentKid.profile) {
         if (runOperation) {
             [runOperation cancel];
         }
         __weak __typeof(self)wself = self;
-        id <SDWebImageOperation> operation = [SDWebImageManager.sharedManager downloadImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:[GlobalCache shareInstance].kid.profile]] options:0 progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+        id <SDWebImageOperation> operation = [SDWebImageManager.sharedManager downloadImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:[GlobalCache shareInstance].currentKid.profile]] options:0 progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
             if (!wself) return;
             dispatch_main_sync_safe(^{
                 if (!wself) return;

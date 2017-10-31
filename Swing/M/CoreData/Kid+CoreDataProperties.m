@@ -20,5 +20,6 @@
 @dynamic macId;
 @dynamic objId;
 @dynamic currentVersion;
+@dynamic battery;
 
 @end

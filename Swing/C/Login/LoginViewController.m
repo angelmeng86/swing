@@ -67,8 +67,8 @@
 }
 
 - (void)cacheTodayActivity {
-    int64_t kidId = [[GlobalCache shareInstance] getKidId];
-    if (kidId == -1) {
+    int64_t kidId = [GlobalCache shareInstance].currentKid.objId;
+    if (kidId == 0) {
         return;
     }
     NSDateComponents *comps = [[NSCalendar currentCalendar] components:kCFCalendarUnitYear|kCFCalendarUnitMonth|kCFCalendarUnitDay|NSCalendarUnitWeekday fromDate:[NSDate date]];

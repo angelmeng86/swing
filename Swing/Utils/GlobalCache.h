@@ -37,7 +37,6 @@
 - (void)locationCountry;
 
 @property (strong, nonatomic) UserModel* user;
-@property (strong, nonatomic) KidModel* kid;
 @property (strong, nonatomic) LMLocalData* local;
 @property (strong, nonatomic) FirmwareVersion* firmwareVersion;
 
@@ -48,11 +47,7 @@
 - (NSString*)curEventFile;
 - (NSString *)showText:(NSString *)key;
 
-//@property (strong, nonatomic) WeatherModel* wearther;
-//@property (nonatomic) BOOL weartherRunning;
-
-//@property (strong, nonatomic) NSArray* kidsList;
-- (int64_t)getKidId;//获取第一个有效KidId
+@property (strong, nonatomic) Kid* currentKid;
 
 @property (strong, nonatomic) NSMutableSet* calendarQueue;
 

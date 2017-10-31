@@ -14,6 +14,7 @@
 + (NSCalendar*)calendar;
 
 + (void)clearDatabase;
++ (void)saveDatabase;
 
 + (BOOL)addEvent:(EventModel*)model;
 + (BOOL)delEvent:(int64_t)objId;
@@ -33,6 +34,7 @@
 + (BOOL)delObject:(NSManagedObject*)obj;
 
 + (NSArray*)queryKids;
++ (Kid*)queryKid:(int64_t)kidId;
 + (BOOL)addKid:(KidModel*)kid;
 + (BOOL)addKids:(NSArray*)array;
 + (BOOL)delKid:(int64_t)objId;

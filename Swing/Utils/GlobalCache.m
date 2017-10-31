@@ -53,10 +53,7 @@
     [SVProgressHUD setMinimumDismissTimeInterval:3.0];
     [self setKeyboradManager];
     
-    NSString *json = [[NSUserDefaults standardUserDefaults] objectForKey:@"kid"];
-    _kid = [[KidModel alloc] initWithString:json error:nil];
-    
-    json = [[NSUserDefaults standardUserDefaults] objectForKey:@"firmware"];
+    NSString *json = [[NSUserDefaults standardUserDefaults] objectForKey:@"firmware"];
     _firmwareVersion = [[FirmwareVersion alloc] initWithString:json error:nil];
     
     json = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
@@ -72,12 +69,6 @@
 {
     _firmwareVersion = firmwareVersion;
     [[NSUserDefaults standardUserDefaults] setObject:[_firmwareVersion toJSONString] forKey:@"firmware"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-- (void)setKid:(KidModel *)kid {
-    _kid = kid;
-    [[NSUserDefaults standardUserDefaults] setObject:[_kid toJSONString] forKey:@"kid"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -105,9 +96,6 @@
 
 - (void)saveInfo {
     [[NSUserDefaults standardUserDefaults] setObject:[self.local toDictionary] forKey:@"localData"];
-    if (_kid) {
-        [[NSUserDefaults standardUserDefaults] setObject:[_kid toJSONString] forKey:@"kid"];
-    }
     if (_firmwareVersion) {
         [[NSUserDefaults standardUserDefaults] setObject:[_firmwareVersion toJSONString] forKey:@"firmware"];
     }
@@ -122,7 +110,6 @@
 }
 
 - (void)logout:(BOOL)exit {
-    self.kid = nil;
     self.user = nil;
     self.local = nil;
     self.peripheral=nil;
@@ -159,11 +146,14 @@
     }];
 }
 
-- (int64_t)getKidId {
-    if (self.kid) {
-        return self.kid.objId;
+- (Kid*)currentKid {
+    if (_currentKid == nil) {
+        _currentKid = [DBHelper queryKid:self.local.selectedKidId];
+        if (_currentKid == nil) {
+            _currentKid = [Kid MR_findFirst];
+        }
     }
-    return -1;
+    return _currentKid;
 }
 
 - (NSMutableSet*)calendarQueue {
@@ -356,7 +346,7 @@
      */
     NSString *version = [GlobalCache shareInstance].local.firmwareVer;
     if (version == nil) {
-        version = [GlobalCache shareInstance].kid.firmwareVersion;
+        version = [GlobalCache shareInstance].currentKid.firmwareVersion;
     }
     if (version.length > 0 && [version hasPrefix:@"KDV01"]) {
         return [[NSBundle mainBundle] pathForResource:@"alert2_jp" ofType:@"json"];

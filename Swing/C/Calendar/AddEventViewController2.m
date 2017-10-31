@@ -459,8 +459,8 @@
 }
 
 - (void)saveEventV1 {
-    int64_t kidId = [[GlobalCache shareInstance] getKidId];
-    if (kidId == -1) {
+    int64_t kidId = [GlobalCache shareInstance].currentKid.objId;
+    if (kidId == 0) {
         [Fun showMessageBoxWithTitle:LOC_STR(@"Error") andMessage:LOC_STR(@"You have not bind device yet.")];
         return;
     }

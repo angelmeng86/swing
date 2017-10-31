@@ -44,10 +44,10 @@
     self.imageBtn.layer.masksToBounds = YES;
     image = nil;
     
-    if ([GlobalCache shareInstance].kid) {
-        self.firstNameTF.text = [GlobalCache shareInstance].kid.name;
-        if ([GlobalCache shareInstance].kid.profile) {
-            [self.imageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:[GlobalCache shareInstance].kid.profile]] forState:UIControlStateNormal];
+    if ([GlobalCache shareInstance].currentKid) {
+        self.firstNameTF.text = [GlobalCache shareInstance].currentKid.name;
+        if ([GlobalCache shareInstance].currentKid.profile) {
+            [self.imageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:[GlobalCache shareInstance].currentKid.profile]] forState:UIControlStateNormal];
 //            self.imageBtn.layer.borderColor = [UIColor whiteColor].CGColor;
 //            [self.imageBtn setTitle:nil forState:UIControlStateNormal];
         }
@@ -76,7 +76,7 @@
             [SVProgressHUD show];
 //            [SVProgressHUD showWithStatus:@"Edit kid info, please wait..."];
             
-            NSMutableDictionary *data = [NSMutableDictionary dictionaryWithDictionary:@{@"name":self.firstNameTF.text, @"kidId":@([GlobalCache shareInstance].kid.objId)}];
+            NSMutableDictionary *data = [NSMutableDictionary dictionaryWithDictionary:@{@"name":self.firstNameTF.text, @"kidId":@([GlobalCache shareInstance].currentKid.objId)}];
 //            NSString *mac = [GlobalCache shareInstance].kid.macId;
 //            if (mac) {
 //                [data setObject:mac forKey:@"macId"];
@@ -89,8 +89,6 @@
                 }
                 else {
                     KidModel *model = kid;
-                    BOOL finded = NO;
-                    [GlobalCache shareInstance].kid = model;
                     [DBHelper addKid:model];
                     if (image && model) {
                         [SVProgressHUD show];
@@ -101,7 +99,7 @@
                             }
                             else {
                                 model.profile = profileImage;
-                                [GlobalCache shareInstance].kid = model;
+                                [DBHelper addKid:model];
                                 [[NSNotificationCenter defaultCenter] postNotificationName:KID_AVATAR_NOTIFICATION object:nil];
                             }
                             [SVProgressHUD dismiss];

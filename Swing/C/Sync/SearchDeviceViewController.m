@@ -281,7 +281,7 @@ typedef enum : NSUInteger {
         [self uploadData];
     }
     else {
-        [[SwingClient sharedClient] kidsUploadBatteryStatus:battery macId:[GlobalCache shareInstance].kid.macId completion:^(NSError *error) {
+        [[SwingClient sharedClient] kidsUploadBatteryStatus:battery macId:[GlobalCache shareInstance].currentKid.macId completion:^(NSError *error) {
             if (!error) {
                 LOG_D(@"kidsBatteryStatus success.");
             }
@@ -294,14 +294,14 @@ typedef enum : NSUInteger {
 }
 
 - (void)checkMacId:(NSString*)realMac battery:(int)battery {
-    if (realMac && ![[GlobalCache shareInstance].kid.macId isEqualToString:realMac]) {
+    if (realMac && ![[GlobalCache shareInstance].currentKid.macId isEqualToString:realMac]) {
         LOG_D(@"macId is reverse.");
 //        realMac = [Fun dataToHex:[Fun dataReversal:[Fun hexToData:realMac]]];//后台又做了倒置，所以我们还得倒置成反的。。。
-        [[SwingClient sharedClient] updateKidRevertMacID:[GlobalCache shareInstance].kid.objId macId:realMac completion:^(NSError *error) {
+        [[SwingClient sharedClient] updateKidRevertMacID:[GlobalCache shareInstance].currentKid.objId macId:realMac completion:^(NSError *error) {
             if (!error) {
                 LOG_D(@"updateKidRevertMacID success.");
-                [GlobalCache shareInstance].kid.macId = realMac;
-                [[GlobalCache shareInstance] saveInfo];
+                [GlobalCache shareInstance].currentKid.macId = realMac;
+                [DBHelper saveDatabase];
                 [self uploadData];
             }
             else {

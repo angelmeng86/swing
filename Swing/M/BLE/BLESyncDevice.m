@@ -299,8 +299,8 @@ typedef enum : NSUInteger {
         const Byte* ptr = characteristic.value.bytes;
         LOG_D(@"Read Battery:%d%%", ptr[0]);
         battery = ptr[0];
-        [GlobalCache shareInstance].local.battery = ptr[0];
-        [[GlobalCache shareInstance] saveInfo];
+        [GlobalCache shareInstance].currentKid.battery = ptr[0];
+        [DBHelper saveDatabase];
         [[NSNotificationCenter defaultCenter] postNotificationName:SWING_WATCH_BATTERY_NOTIFY object:[NSNumber numberWithInt:ptr[0]]];
     }
     else if ([characteristic.UUID.UUIDString isEqualToString:@"FFA9"]) {
@@ -482,10 +482,10 @@ typedef enum : NSUInteger {
 
 - (void)checkFirmwareVersion
 {
-    if ([GlobalCache shareInstance].kid.macId.length > 0 && self.updater.deviceVersion.length > 0) {
-        [[SwingClient sharedClient] putFirmwareVersion:self.updater.deviceVersion macId:[GlobalCache shareInstance].kid.macId completion:^(NSError *error) {
+    if ([GlobalCache shareInstance].currentKid.macId.length > 0 && self.updater.deviceVersion.length > 0) {
+        [[SwingClient sharedClient] putFirmwareVersion:self.updater.deviceVersion macId:[GlobalCache shareInstance].currentKid.macId completion:^(NSError *error) {
             if (!error) {
-                [[SwingClient sharedClient] getFirmwareVersion:[GlobalCache shareInstance].kid.macId completion:^(id version, NSError *error) {
+                [[SwingClient sharedClient] getFirmwareVersion:[GlobalCache shareInstance].currentKid.macId completion:^(id version, NSError *error) {
                     if (!error) {
                         [GlobalCache shareInstance].firmwareVersion = version;
                         if ([GlobalCache shareInstance].firmwareVersion.version.length > 0) {

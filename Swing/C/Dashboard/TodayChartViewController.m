@@ -197,8 +197,8 @@
         //判断如果本地有缓存数据则不向后台请求，主要解决因数据未上传引起的前后台数据不一致问题
         return;
     }
-    int64_t kidId = [[GlobalCache shareInstance] getKidId];
-    if (kidId == -1) {
+    int64_t kidId = [GlobalCache shareInstance].currentKid.objId;
+    if (kidId == 0) {
         return;
     }
     NSDateComponents *comps = [[NSCalendar currentCalendar] components:kCFCalendarUnitYear|kCFCalendarUnitMonth|kCFCalendarUnitDay|NSCalendarUnitWeekday fromDate:[NSDate date]];

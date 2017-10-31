@@ -16,13 +16,15 @@
 
 @property (strong, nonatomic) NSString* access_token;
 
-@property (nonatomic) int battery;
+//@property (nonatomic) int battery;
 
 @property (nonatomic) BOOL disableSyncTip;
 
 @property (nonatomic, strong) NSString<Optional> *language;
 
 @property (nonatomic, strong) NSString<Optional> *firmwareVer;
+
+@property (nonatomic) int64_t selectedKidId;
 
 - (void)checkDate;
 

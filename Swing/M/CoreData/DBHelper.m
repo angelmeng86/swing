@@ -207,6 +207,11 @@
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
 }
 
++ (void)saveDatabase
+{
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+}
+
 + (BOOL)addEvent:(EventModel*)model {
     BOOL ret = [self addEvent:model save:YES];
     if (model.repeat.length > 0) {
@@ -394,6 +399,12 @@
 + (NSArray*)queryKids
 {
     return [Kid MR_findAll];
+}
+
++ (Kid*)queryKid:(int64_t)kidId
+{
+    Kid *m = [Kid MR_findFirstByAttribute:@"objId" withValue:@(kidId)];
+    return m;
 }
 
 + (BOOL)addKid:(KidModel*)model

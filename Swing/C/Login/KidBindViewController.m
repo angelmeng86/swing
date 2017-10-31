@@ -100,10 +100,10 @@
 //            [SVProgressHUD showWithStatus:@"Check kid info, please wait..."];
             [[SwingClient sharedClient] userRetrieveProfileWithCompletion:^(id user, NSArray *kids, NSError *error) {
                 if (!error) {
-                    if ([GlobalCache shareInstance].kid) {
-                        [SVProgressHUD showErrorWithStatus:@"You had been bind a watch!"];
-                        return;
-                    }
+//                    if ([GlobalCache shareInstance].currentKid) {
+//                        [SVProgressHUD showErrorWithStatus:@"You had been bind a watch!"];
+//                        return;
+//                    }
                     [SVProgressHUD show];
 //                    [SVProgressHUD showWithStatus:@"Add kid info, please wait..."];
                     
@@ -127,9 +127,6 @@
                             [GlobalCache shareInstance].local.firmwareVer = self.version;
                             [[GlobalCache shareInstance] saveInfo];
                             
-                            if (self.macAddress && [GlobalCache shareInstance].kid == nil) {
-                                [GlobalCache shareInstance].kid = model;
-                            }
                             [DBHelper addKid:model];
                             if (image && model) {
                                 [SVProgressHUD showWithStatus:@"UploadImage, please wait..."];
@@ -139,6 +136,7 @@
                                     }
                                     else {
                                         model.profile = profileImage;
+                                        [DBHelper addKid:model];
                                         [[NSNotificationCenter defaultCenter] postNotificationName:KID_AVATAR_NOTIFICATION object:nil];
                                     }
                                     [SVProgressHUD dismiss];

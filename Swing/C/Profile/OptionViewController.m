@@ -177,7 +177,7 @@
                     break;
                 case 1:
                 {
-                    if (![GlobalCache shareInstance].kid) {
+                    if (![GlobalCache shareInstance].currentKid) {
                         [SVProgressHUD showErrorWithStatus:LOC_STR(@"you have not bind device yet, please sync a watch.")];
                         return;
                     }
@@ -261,8 +261,11 @@
 }
 
 - (void)checkFirmwareVerison {
+    if (![GlobalCache shareInstance].currentKid) {
+        return;
+    }
     [SVProgressHUD show];
-    [[SwingClient sharedClient] getFirmwareVersion:[GlobalCache shareInstance].kid.macId completion:^(FirmwareVersion *version, NSError *error) {
+    [[SwingClient sharedClient] getFirmwareVersion:[GlobalCache shareInstance].currentKid.macId completion:^(FirmwareVersion *version, NSError *error) {
         if (!error) {
             [GlobalCache shareInstance].firmwareVersion = version;
             __block BOOL isDownloaded = NO;
@@ -328,7 +331,7 @@
 }
 
 - (void)syncAction {
-    if ([GlobalCache shareInstance].kid) {
+    if ([GlobalCache shareInstance].currentKid) {
         [SVProgressHUD dismiss];
         UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"SyncDevice" bundle:nil];
         SearchDeviceViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"Syncing"];
