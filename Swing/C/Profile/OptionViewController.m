@@ -28,7 +28,7 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = LOC_STR(@"Option");
     
-    items = @[@[LOC_STR(@"Edit Profile"), LOC_STR(@"Edit Your Kid's Profile"), LOC_STR(@"Reset Password"), LOC_STR(@"Logout")], @[LOC_STR(@"Language"), LOC_STR(@"Swing watch update"), LOC_STR(@"Contact Us"), LOC_STR(@"User Guide"), LOC_STR(@"Version")]];
+    items = @[@[LOC_STR(@"Edit Profile"), LOC_STR(@"Edit Your Kid's Profile"), LOC_STR(@"Reset Password"), LOC_STR(@"Your watch shared with others"), LOC_STR(@"Switch watch account"), LOC_STR(@"Logout")], @[LOC_STR(@"Language"), LOC_STR(@"Swing watch update"), LOC_STR(@"Contact Us"), LOC_STR(@"User Guide"), LOC_STR(@"Version")]];
     self.tableView.tableFooterView = [UIView new];
 }
 
@@ -216,7 +216,18 @@
                 }
                     break;
                 case 3:
-                    [[GlobalCache shareInstance] logout];
+                    
+                    break;
+                case 4:
+                    
+                    break;
+                case 5:
+                {
+                    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
+                    UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"Logout"];
+                    [self presentViewController:ctl animated:YES completion:nil];
+                }
+//                    [[GlobalCache shareInstance] logout];
                     break;
                 default:
                     break;

@@ -172,7 +172,7 @@
 
 "SWING_EVENT"="Your have an event:%@";
 
-/* 20171011 */
+/* 20171011 muti-user*/
 "Try again"="Try again";
 "Go to last synced data"="Go to last synced data";
 "Login again"="Login again";
@@ -184,3 +184,9 @@
 "Enter new password again"="Enter new password again";
 "My devices"="My devices";
 "Please have your watch nearby"="Please have your watch nearby";
+
+"Your watch shared with others"="Your watch shared with others";
+"Switch watch account"="Switch watch account";
+
+"Are you sure to log out?"="Are you sure to log out?";
+"Yes,I am sure"="Yes,I am sure";

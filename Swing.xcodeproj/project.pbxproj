@@ -34,6 +34,7 @@
 		0F9382B71FA4CC480095C516 /* PhotoTweakView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9382B61FA4CC480095C516 /* PhotoTweakView.m */; };
 		0F9382B91FA5CB380095C516 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F9382B81FA5CB380095C516 /* Profile.storyboard */; };
 		0F9382BC1FA5CD030095C516 /* ChangePwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9382BB1FA5CD030095C516 /* ChangePwdViewController.m */; };
+		0F9382C41FAE10C10095C516 /* LogoutConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9382C31FAE10C10095C516 /* LogoutConfirmViewController.m */; };
 		0F9734B11F17919900502D8A /* LFSyncSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9734B01F17919900502D8A /* LFSyncSheet.m */; };
 		0F9734B41F19162E00502D8A /* SyncNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9734B31F19162E00502D8A /* SyncNavViewController.m */; };
 		0FCF50421F7A805F00738C23 /* alert2_jp.json in Resources */ = {isa = PBXBuildFile; fileRef = 0FCF50411F7A805F00738C23 /* alert2_jp.json */; };
@@ -190,6 +191,8 @@
 		0F9382B81FA5CB380095C516 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		0F9382BA1FA5CD030095C516 /* ChangePwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePwdViewController.h; sourceTree = "<group>"; };
 		0F9382BB1FA5CD030095C516 /* ChangePwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePwdViewController.m; sourceTree = "<group>"; };
+		0F9382C21FAE10C10095C516 /* LogoutConfirmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogoutConfirmViewController.h; sourceTree = "<group>"; };
+		0F9382C31FAE10C10095C516 /* LogoutConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogoutConfirmViewController.m; sourceTree = "<group>"; };
 		0F9734AF1F17919900502D8A /* LFSyncSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFSyncSheet.h; sourceTree = "<group>"; };
 		0F9734B01F17919900502D8A /* LFSyncSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFSyncSheet.m; sourceTree = "<group>"; };
 		0F9734B21F19162E00502D8A /* SyncNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncNavViewController.h; sourceTree = "<group>"; };
@@ -726,6 +729,8 @@
 				ADDE016F1F7BA7E30055E6A1 /* OptionViewController.m */,
 				0F9382BA1FA5CD030095C516 /* ChangePwdViewController.h */,
 				0F9382BB1FA5CD030095C516 /* ChangePwdViewController.m */,
+				0F9382C21FAE10C10095C516 /* LogoutConfirmViewController.h */,
+				0F9382C31FAE10C10095C516 /* LogoutConfirmViewController.m */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1101,6 +1106,7 @@
 				ADF985591D50CBFC00B02075 /* DoItemLabel.m in Sources */,
 				0F9734B11F17919900502D8A /* LFSyncSheet.m in Sources */,
 				AD21A5DD1E600EF500DA72E3 /* BLEUtility.m in Sources */,
+				0F9382C41FAE10C10095C516 /* LogoutConfirmViewController.m in Sources */,
 				AD7797991D4CCFD200472B27 /* UnderlineTextField.m in Sources */,
 				AD347D171D3FD8DD00E91DDD /* SearchWatchViewController.m in Sources */,
 				0F1376341DE0593600DB6C33 /* ColorTransformer.m in Sources */,

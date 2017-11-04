@@ -112,8 +112,8 @@
 - (void)logout:(BOOL)exit {
     self.user = nil;
     self.local = nil;
-    self.peripheral=nil;
-//    self.activitys = nil;
+    self.peripheral = nil;
+    self.currentKid = nil;
 //    [self.calendarEventsByMonth removeAllObjects];
     [self.calendarQueue removeAllObjects];
     
@@ -151,6 +151,8 @@
         _currentKid = [DBHelper queryKid:self.local.selectedKidId];
         if (_currentKid == nil) {
             _currentKid = [Kid MR_findFirst];
+            self.local.selectedKidId = _currentKid.objId;
+            [self saveInfo];
         }
     }
     return _currentKid;
