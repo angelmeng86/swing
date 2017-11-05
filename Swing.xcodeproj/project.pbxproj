@@ -35,6 +35,9 @@
 		0F9382B91FA5CB380095C516 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F9382B81FA5CB380095C516 /* Profile.storyboard */; };
 		0F9382BC1FA5CD030095C516 /* ChangePwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9382BB1FA5CD030095C516 /* ChangePwdViewController.m */; };
 		0F9382C41FAE10C10095C516 /* LogoutConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9382C31FAE10C10095C516 /* LogoutConfirmViewController.m */; };
+		0F9382C71FAEBD920095C516 /* MutiConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9382C61FAEBD920095C516 /* MutiConfirmViewController.m */; };
+		0F9382CA1FAEDFB50095C516 /* MutiListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9382C91FAEDFB50095C516 /* MutiListViewController.m */; };
+		0F9382CD1FAEE2940095C516 /* MutiRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9382CC1FAEE2940095C516 /* MutiRequestViewController.m */; };
 		0F9734B11F17919900502D8A /* LFSyncSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9734B01F17919900502D8A /* LFSyncSheet.m */; };
 		0F9734B41F19162E00502D8A /* SyncNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9734B31F19162E00502D8A /* SyncNavViewController.m */; };
 		0FCF50421F7A805F00738C23 /* alert2_jp.json in Resources */ = {isa = PBXBuildFile; fileRef = 0FCF50411F7A805F00738C23 /* alert2_jp.json */; };
@@ -193,6 +196,12 @@
 		0F9382BB1FA5CD030095C516 /* ChangePwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePwdViewController.m; sourceTree = "<group>"; };
 		0F9382C21FAE10C10095C516 /* LogoutConfirmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogoutConfirmViewController.h; sourceTree = "<group>"; };
 		0F9382C31FAE10C10095C516 /* LogoutConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogoutConfirmViewController.m; sourceTree = "<group>"; };
+		0F9382C51FAEBD920095C516 /* MutiConfirmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutiConfirmViewController.h; sourceTree = "<group>"; };
+		0F9382C61FAEBD920095C516 /* MutiConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutiConfirmViewController.m; sourceTree = "<group>"; };
+		0F9382C81FAEDFB50095C516 /* MutiListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutiListViewController.h; sourceTree = "<group>"; };
+		0F9382C91FAEDFB50095C516 /* MutiListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutiListViewController.m; sourceTree = "<group>"; };
+		0F9382CB1FAEE2940095C516 /* MutiRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutiRequestViewController.h; sourceTree = "<group>"; };
+		0F9382CC1FAEE2940095C516 /* MutiRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutiRequestViewController.m; sourceTree = "<group>"; };
 		0F9734AF1F17919900502D8A /* LFSyncSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFSyncSheet.h; sourceTree = "<group>"; };
 		0F9734B01F17919900502D8A /* LFSyncSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFSyncSheet.m; sourceTree = "<group>"; };
 		0F9734B21F19162E00502D8A /* SyncNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncNavViewController.h; sourceTree = "<group>"; };
@@ -731,6 +740,12 @@
 				0F9382BB1FA5CD030095C516 /* ChangePwdViewController.m */,
 				0F9382C21FAE10C10095C516 /* LogoutConfirmViewController.h */,
 				0F9382C31FAE10C10095C516 /* LogoutConfirmViewController.m */,
+				0F9382C51FAEBD920095C516 /* MutiConfirmViewController.h */,
+				0F9382C61FAEBD920095C516 /* MutiConfirmViewController.m */,
+				0F9382C81FAEDFB50095C516 /* MutiListViewController.h */,
+				0F9382C91FAEDFB50095C516 /* MutiListViewController.m */,
+				0F9382CB1FAEE2940095C516 /* MutiRequestViewController.h */,
+				0F9382CC1FAEE2940095C516 /* MutiRequestViewController.m */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1042,6 +1057,7 @@
 				AD9B0D911D3BB935009FDD95 /* DashboardViewController.m in Sources */,
 				ADFC2C301D369949004EDCDF /* AppDelegate.m in Sources */,
 				AD1CEF0D1D5ADA90004FEC24 /* LMArrowView.m in Sources */,
+				0F9382CD1FAEE2940095C516 /* MutiRequestViewController.m in Sources */,
 				0F445E0F1D7094A6008A092C /* JSONValueTransformer+NSData.m in Sources */,
 				ADE6ED901D4E3B7D00FFA573 /* DayCalendarViewController.m in Sources */,
 				ADF519AE1D86D0DF00356CD3 /* AddEventViewController2.m in Sources */,
@@ -1091,6 +1107,7 @@
 				0F9734B41F19162E00502D8A /* SyncNavViewController.m in Sources */,
 				0F927FD91DDA02680011EF90 /* BLESyncDevice.m in Sources */,
 				ADCED9E71D3D3C8B002E3F78 /* RegisterViewController.m in Sources */,
+				0F9382C71FAEBD920095C516 /* MutiConfirmViewController.m in Sources */,
 				ADEF31D61D47B04200BB6A9B /* VPImageCropperViewController.m in Sources */,
 				0F176EC11DE48FB70014F079 /* Event+CoreDataClass.m in Sources */,
 				0F9382B71FA4CC480095C516 /* PhotoTweakView.m in Sources */,
@@ -1109,6 +1126,7 @@
 				0F9382C41FAE10C10095C516 /* LogoutConfirmViewController.m in Sources */,
 				AD7797991D4CCFD200472B27 /* UnderlineTextField.m in Sources */,
 				AD347D171D3FD8DD00E91DDD /* SearchWatchViewController.m in Sources */,
+				0F9382CA1FAEDFB50095C516 /* MutiListViewController.m in Sources */,
 				0F1376341DE0593600DB6C33 /* ColorTransformer.m in Sources */,
 				AD05B5BD1D3BCAA4007BCF7C /* LoginViewController.m in Sources */,
 				ADEF31CC1D47856200BB6A9B /* KidBindViewController.m in Sources */,

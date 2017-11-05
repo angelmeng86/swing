@@ -33,4 +33,19 @@
     return info;
 }
 
+- (NSString*)fullName
+{
+    NSMutableString *info = [NSMutableString new];
+    if (self.firstName) {
+        [info appendString:self.firstName];
+        if (self.lastName) {
+            [info appendString:@" "];
+        }
+    }
+    if (self.lastName) {
+        [info appendString:self.lastName];
+    }
+    return info;
+}
+
 @end

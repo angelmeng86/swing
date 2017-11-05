@@ -12,6 +12,8 @@
 #import "CommonDef.h"
 #import "SyncNavViewController.h"
 #import "SearchDeviceViewController.h"
+#import "MutiListViewController.h"
+#import "EditKidViewController.h"
 #import "LFBadgeLabel.h"
 
 @interface OptionViewController ()
@@ -182,7 +184,10 @@
                         return;
                     }
                     UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
-                    UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"EditKid"];
+                    EditKidViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"EditKid"];
+                    KidModel *m = [KidModel new];
+                    [m updateFrom:[GlobalCache shareInstance].currentKid];
+                    ctl.kid = m;
                     [self.navigationController pushViewController:ctl animated:YES];
                 }
                     break;
@@ -216,10 +221,30 @@
                 }
                     break;
                 case 3:
-                    
+                {
+                    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
+                    MutiListViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MutiList2"];
+                    if ([GlobalCache shareInstance].currentKid) {
+                        KidModel *m = [KidModel new];
+                        [m updateFrom:[GlobalCache shareInstance].currentKid];
+                        ctl.kid = m;
+                    }
+                    ctl.type = MutiListTypeKidProfile;
+                    [self.navigationController pushViewController:ctl animated:YES];
+                }
                     break;
                 case 4:
-                    
+                {
+                    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
+                    MutiListViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MutiList"];
+                    if ([GlobalCache shareInstance].currentKid) {
+                        KidModel *m = [KidModel new];
+                        [m updateFrom:[GlobalCache shareInstance].currentKid];
+                        ctl.kid = m;
+                    }
+                    ctl.type = MutiListTypeSwitchAccount;
+                    [self.navigationController pushViewController:ctl animated:YES];
+                }
                     break;
                 case 5:
                 {

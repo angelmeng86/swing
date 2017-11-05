@@ -56,4 +56,7 @@
 //缓存已经同步的对象，缩短查找设备的时间
 @property (strong, nonatomic) CBPeripheral *peripheral;
 
+@property (strong, nonatomic) NSMutableArray* subHostRequestTo;
+@property (strong, nonatomic) NSMutableArray* subHostRequestFrom;
+
 @end

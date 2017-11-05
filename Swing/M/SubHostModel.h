@@ -24,4 +24,6 @@
 
 @property (nonatomic, strong) NSArray<KidModel, Optional> *kids;
 
++ (NSArray*)loadSubHost:(NSArray*)requests status:(NSString*)status;
+
 @end

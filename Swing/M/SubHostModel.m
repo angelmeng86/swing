@@ -17,5 +17,10 @@
                                                        }];
 }
 
++ (NSArray*)loadSubHost:(NSArray*)requests status:(NSString*)status
+{
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"status = %@", status];
+    return [requests filteredArrayUsingPredicate:pred];
+}
 
 @end

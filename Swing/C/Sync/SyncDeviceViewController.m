@@ -41,7 +41,7 @@
     [self.button3 setTitle:LOC_STR(@"Add another watch") forState:UIControlStateNormal];
     
     if ([GlobalCache shareInstance].user) {
-        self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", [GlobalCache shareInstance].user.firstName, [GlobalCache shareInstance].user.lastName];
+        self.nameLabel.text = [GlobalCache shareInstance].user.fullName;
         if ([GlobalCache shareInstance].user.profile) {
             [self.imageView sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:[GlobalCache shareInstance].user.profile]]];
         }

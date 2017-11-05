@@ -44,9 +44,9 @@
     self.imageBtn.layer.masksToBounds = YES;
     image = nil;
     
-    if ([GlobalCache shareInstance].currentKid) {
-        self.firstNameTF.text = [GlobalCache shareInstance].currentKid.name;
-        if ([GlobalCache shareInstance].currentKid.profile) {
+    if (self.kid) {
+        self.firstNameTF.text = self.kid.name;
+        if (self.kid.profile) {
             [self.imageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:[GlobalCache shareInstance].currentKid.profile]] forState:UIControlStateNormal];
 //            self.imageBtn.layer.borderColor = [UIColor whiteColor].CGColor;
 //            [self.imageBtn setTitle:nil forState:UIControlStateNormal];
@@ -76,7 +76,7 @@
             [SVProgressHUD show];
 //            [SVProgressHUD showWithStatus:@"Edit kid info, please wait..."];
             
-            NSMutableDictionary *data = [NSMutableDictionary dictionaryWithDictionary:@{@"name":self.firstNameTF.text, @"kidId":@([GlobalCache shareInstance].currentKid.objId)}];
+            NSMutableDictionary *data = [NSMutableDictionary dictionaryWithDictionary:@{@"name":self.firstNameTF.text, @"kidId":@(self.kid.objId)}];
 //            NSString *mac = [GlobalCache shareInstance].kid.macId;
 //            if (mac) {
 //                [data setObject:mac forKey:@"macId"];
@@ -100,7 +100,10 @@
                             else {
                                 model.profile = profileImage;
                                 [DBHelper addKid:model];
-                                [[NSNotificationCenter defaultCenter] postNotificationName:KID_AVATAR_NOTIFICATION object:nil];
+                                if ([GlobalCache shareInstance].currentKid.objId == model.objId)
+                                {
+                                    [[NSNotificationCenter defaultCenter] postNotificationName:KID_AVATAR_NOTIFICATION object:nil];
+                                }
                             }
                             [SVProgressHUD dismiss];
                             [self.navigationController popViewControllerAnimated:YES];

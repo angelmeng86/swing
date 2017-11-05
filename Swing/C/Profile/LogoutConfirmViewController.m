@@ -29,11 +29,15 @@
     [self.cancelBtn setTitle:LOC_STR(@"Cancel") forState:UIControlStateNormal];
     
     if ([GlobalCache shareInstance].user) {
-        self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", [GlobalCache shareInstance].user.firstName, [GlobalCache shareInstance].user.lastName];
+        self.nameLabel.text = [GlobalCache shareInstance].user.fullName;
         self.emailLabel.text = [GlobalCache shareInstance].user.email;
         if ([GlobalCache shareInstance].user.profile.length > 0) {
             [self.imageView sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:[GlobalCache shareInstance].user.profile]]];
         }
+    }
+    else {
+        self.nameLabel.text = @"";
+        self.emailLabel.text = @"";
     }
 }
 

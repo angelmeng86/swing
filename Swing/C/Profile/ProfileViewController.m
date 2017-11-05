@@ -13,10 +13,15 @@
 #import "AppDelegate.h"
 #import "ChoicesViewController.h"
 #import "OptionViewController.h"
+#import "MutiRequestViewController.h"
+#import "MutiListViewController.h"
 
 @interface ProfileViewController ()
 
 @property (nonatomic, strong) NSArray* kids;
+@property (nonatomic, strong) NSArray* sharedKids;
+@property (nonatomic, strong) NSArray* pendingRequestToList;
+@property (nonatomic, strong) NSArray* requestFromList;
 
 @end
 
@@ -30,8 +35,38 @@
     return _kids;
 }
 
+- (NSArray*)sharedKids
+{
+    if (_sharedKids == nil) {
+        NSArray *requests = [SubHostModel loadSubHost:[GlobalCache shareInstance].subHostRequestTo status:@"ACCEPTED"];
+        
+        NSMutableArray *array = [NSMutableArray array];
+        for (SubHostModel *m in requests) {
+            [array addObjectsFromArray:m.kids];
+        }
+        _sharedKids = array;
+    }
+    return _sharedKids;
+}
+
+- (NSArray*)pendingRequestToList
+{
+    if (_pendingRequestToList == nil) {
+        _pendingRequestToList = [SubHostModel loadSubHost:[GlobalCache shareInstance].subHostRequestTo status:@"PENDING"];
+    }
+    return _pendingRequestToList;
+}
+
+- (NSArray*)requestFromList
+{
+    if (_requestFromList == nil) {
+        _requestFromList = [SubHostModel loadSubHost:[GlobalCache shareInstance].subHostRequestFrom status:@"PENDING"];
+    }
+    return _requestFromList;
+}
+
 - (void)viewDidLoad {
-    self.notLoadBackgroudImage = YES;
+//    self.notLoadBackgroudImage = YES;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
@@ -53,15 +88,19 @@
     [self.pendingRequestCollectionView registerNib:[UINib nibWithNibName:@"ProfileReusableView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProfileReusableView"];
     [self.requestCollectionView registerNib:[UINib nibWithNibName:@"ProfileReusableView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProfileReusableView"];
     
-    self.deviceConllectionView.backgroundColor = self.view.backgroundColor;
-    self.deviceSharedCollectionView.backgroundColor = self.view.backgroundColor;
-    self.pendingRequestCollectionView.backgroundColor = self.view.backgroundColor;
-    self.requestCollectionView.backgroundColor = self.view.backgroundColor;
+    self.deviceConllectionView.backgroundColor = [UIColor clearColor];
+    self.deviceSharedCollectionView.backgroundColor = [UIColor clearColor];
+    self.pendingRequestCollectionView.backgroundColor = [UIColor clearColor];
+    self.requestCollectionView.backgroundColor = [UIColor clearColor];
+    self.deviceConllectionView.backgroundView = [UIView new];
+    self.deviceSharedCollectionView.backgroundView = [UIView new];
+    self.pendingRequestCollectionView.backgroundView = [UIView new];
+    self.requestCollectionView.backgroundView = [UIView new];
     
     self.deviceLabel.text = LOC_STR(@"My devices");
     self.deviceSharedLabel.text = LOC_STR(@"Devices shared with me");
     self.pendingLabel.text = LOC_STR(@"Your pending request to");
-    self.requestLabel.text = LOC_STR(@"You have 2 requests from");
+    self.requestLabel.text = [NSString stringWithFormat: LOC_STR(@"You have %d requests from"), 0];
 }
 
 - (void)optionAction {
@@ -77,7 +116,7 @@
 
 - (void)loadProfile {
     if ([GlobalCache shareInstance].user) {
-        self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", [GlobalCache shareInstance].user.firstName, [GlobalCache shareInstance].user.lastName];
+        self.nameLabel.text = [GlobalCache shareInstance].user.fullName;
         self.emailLabel.text = [GlobalCache shareInstance].user.email;
     }
 }
@@ -96,6 +135,31 @@
     }
     [self loadProfile];
     [[GlobalCache shareInstance] queryProfile];
+    
+    [[SwingClient sharedClient] subHostList:nil completion:^(NSArray *requestFrom, NSArray *requestTo, NSError *error) {
+        if (!error) {
+            [GlobalCache shareInstance].subHostRequestTo = [NSMutableArray arrayWithArray:requestTo];
+            [GlobalCache shareInstance].subHostRequestFrom = [NSMutableArray arrayWithArray:requestFrom];
+            [self reloadSubHost];
+        }
+        else {
+            LOG_D(@"subHostList fail: %@", error);
+        }
+    }];
+    [self reloadSubHost];
+}
+
+- (void)reloadSubHost {
+    self.kids = nil;
+    self.sharedKids = nil;
+    self.pendingRequestToList = nil;
+    self.requestFromList = nil;
+    
+    [self.deviceSharedCollectionView reloadData];
+    [self.pendingRequestCollectionView reloadData];
+    [self.requestCollectionView reloadData];
+    
+    self.requestLabel.text = [NSString stringWithFormat: LOC_STR(@"You have %d requests from"), (int)self.requestFromList.count];
 }
 
 - (void)editProfileAction:(id)sender {
@@ -119,41 +183,107 @@
     if (collectionView == self.deviceConllectionView) {
         return self.kids.count;
     }
+    else if (collectionView == self.deviceSharedCollectionView) {
+        return self.sharedKids.count;
+    }
+    else if (collectionView == self.pendingRequestCollectionView) {
+        return self.pendingRequestToList.count;
+    }
+    else if (collectionView == self.requestCollectionView) {
+        return self.requestFromList.count;
+    }
     return 0;
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
+    NSUInteger count = 0;
     if (collectionView == self.deviceConllectionView) {
-        CGFloat left = (collectionView.frame.size.width - (55 * self.kids.count - 5)) / 2;
-        return UIEdgeInsetsMake(5, left > 10 ? left : 10, 0, 10);
+        count = self.kids.count;
     }
-    return UIEdgeInsetsZero;
+    else if (collectionView == self.deviceSharedCollectionView) {
+        count = self.sharedKids.count;
+    }
+    else if (collectionView == self.pendingRequestCollectionView) {
+        count = self.pendingRequestToList.count;
+    }
+    else if (collectionView == self.requestCollectionView) {
+        count = self.requestFromList.count;
+    }
+    CGFloat left = (collectionView.frame.size.width - (55 * count - 5)) / 2;
+    return UIEdgeInsetsMake(5, left > 10 ? left : 10, 0, 10);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = nil;
+    ProfileDeviceCell *deviceCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DeviceCell" forIndexPath:indexPath];
+    
+    NSString *profile = nil;
     if (collectionView == self.deviceConllectionView) {
-        ProfileDeviceCell *deviceCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DeviceCell" forIndexPath:indexPath];
-
         Kid *model = [self.kids objectAtIndex:indexPath.row];
-        if (model.profile.length > 0) {
-            [deviceCell.imageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:model.profile]] forState:UIControlStateNormal];
-        }
-        else {
-            [deviceCell.imageBtn setBackgroundImage:nil forState:UIControlStateNormal];
-        }
-        [deviceCell.imageBtn setTitle:nil forState:UIControlStateNormal];
-        cell = deviceCell;
+        profile = model.profile;
     }
+    else if (collectionView == self.deviceSharedCollectionView) {
+        KidModel *model = [self.sharedKids objectAtIndex:indexPath.row];
+        profile = model.profile;
+    }
+    else if (collectionView == self.pendingRequestCollectionView) {
+        SubHostModel *model = [self.pendingRequestToList objectAtIndex:indexPath.row];
+        profile = model.requestToUser.profile;
+    }
+    else if (collectionView == self.requestCollectionView) {
+        SubHostModel *model = [self.requestFromList objectAtIndex:indexPath.row];
+        profile = model.requestFromUser.profile;
+    }
+    
+    
+    if (profile.length > 0) {
+        [deviceCell.imageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:profile]] forState:UIControlStateNormal];
+    }
+    else {
+        [deviceCell.imageBtn setBackgroundImage:nil forState:UIControlStateNormal];
+    }
+    [deviceCell.imageBtn setTitle:nil forState:UIControlStateNormal];
+    cell = deviceCell;
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (collectionView == self.deviceConllectionView) {
-        
+        Kid *m = [self.kids objectAtIndex:indexPath.row];
+        KidModel *model = [KidModel new];
+        [model updateFrom:m];
+        UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
+        MutiListViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MutiList2"];
+        ctl.kid = model;
+        ctl.type = MutiListTypeKidProfile;
+        [self.navigationController pushViewController:ctl animated:YES];
+    }
+    else if (collectionView == self.deviceSharedCollectionView) {
+        KidModel *model = [self.sharedKids objectAtIndex:indexPath.row];
+//        UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
+//        MutiListViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MutiList2"];
+//        ctl.kid = model;
+//        ctl.type = MutiListTypeKidProfile;
+//        [self.navigationController pushViewController:ctl animated:YES];
+    }
+    else if (collectionView == self.pendingRequestCollectionView) {
+        SubHostModel *model = [self.pendingRequestToList objectAtIndex:indexPath.row];
+        UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
+        MutiRequestViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MutiRequest"];
+        ctl.type = MutiRequestTypePending;
+        ctl.subHost = model;
+        [self.navigationController pushViewController:ctl animated:YES];
+    }
+    else if (collectionView == self.requestCollectionView) {
+        SubHostModel *model = [self.requestFromList objectAtIndex:indexPath.row];
+        UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
+        MutiRequestViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MutiRequest"];
+        ctl.type = MutiRequestTypeFrom;
+        ctl.subHost = model;
+        [self.navigationController pushViewController:ctl animated:YES];
     }
 }
 

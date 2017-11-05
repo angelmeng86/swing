@@ -183,6 +183,9 @@
 "New password"="New password";
 "Enter new password again"="Enter new password again";
 "My devices"="My devices";
+"Devices shared with me"="Devices shared with me";
+"Your pending request to"="Your pending request to";
+"You have %d requests from"="You have %d requests from";
 "Please have your watch nearby"="Please have your watch nearby";
 
 "Your watch shared with others"="Your watch shared with others";
@@ -190,3 +193,10 @@
 
 "Are you sure to log out?"="Are you sure to log out?";
 "Yes,I am sure"="Yes,I am sure";
+
+"Edit kid's account"="Edit kid's account";
+"Switch to this account"="Switch to this account";
+"Remove"="Remove";
+"*Tap on profile pictures to switch account"="*Tap on profile pictures to switch account";
+"Switch account"="Switch account";
+"Kid's profile"="Kid's profile";

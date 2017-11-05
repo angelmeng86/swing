@@ -1014,7 +1014,11 @@
 //status : PENDING, ACCEPTED, DENIED
 - (NSURLSessionDataTask *)subHostList:(NSString*)status completion:( void (^)(NSArray* requestFrom, NSArray* requestTo, NSError *error) )completion
 {
-    NSURLSessionDataTask *task = [self.sessionManager GET:_URL.subHostList parameters:@{@"status": status} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSDictionary *data = nil;
+    if (status.length > 0) {
+        data = @{@"status": status};
+    }
+    NSURLSessionDataTask *task = [self.sessionManager GET:_URL.subHostList parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"subHostList info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];

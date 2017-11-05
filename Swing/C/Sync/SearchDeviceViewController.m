@@ -133,7 +133,7 @@ typedef enum : NSUInteger {
 #if TARGET_IPHONE_SIMULATOR
             [self performSelector:@selector(performStatus:) withObject:[NSNumber numberWithUnsignedInteger:SyncStatusFound] afterDelay:3];
 #else
-            [client searchDevice:[Fun hexToData:[GlobalCache shareInstance].kid.macId] completion:^(CBPeripheral *peripheral, NSError *error) {
+            [client searchDevice:[Fun hexToData:[GlobalCache shareInstance].currentKid.macId] completion:^(CBPeripheral *peripheral, NSError *error) {
                 if (!error) {
                     self.peripheral = peripheral;
                     [self changeStatus:SyncStatusFound];
