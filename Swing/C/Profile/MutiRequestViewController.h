@@ -13,6 +13,7 @@ typedef enum : NSUInteger {
     MutiRequestTypePendingCancel,
     MutiRequestTypeFrom,
     MutiRequestTypeFromDeny,
+    MutiRequestTypeShareDone,
 } MutiRequestType;
 @class SubHostModel;
 @interface MutiRequestViewController : LMBaseViewController

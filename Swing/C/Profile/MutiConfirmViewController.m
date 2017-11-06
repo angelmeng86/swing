@@ -86,6 +86,26 @@
             self.button3.hidden = YES;
         }
             break;
+        case MutiConfirmTypeSharedKid:
+        {
+            self.title = LOC_STR(@"Kid's profile");
+            if (self.kid) {
+                self.titleLabel.text = self.kid.name;
+                self.subTitleLabel.text = nil;
+                if (self.kid.profile) {
+                    [self.imageView sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:self.kid.profile]]];
+                }
+                
+            }
+            self.infoLabel.text = nil;
+            
+            self.button1.hidden = NO;
+            self.button2.hidden = NO;
+            [self.button1 setTitle:LOC_STR(@"Switch to this account") forState:UIControlStateNormal];
+            [self.button2 setTitle:LOC_STR(@"Remove") forState:UIControlStateNormal];
+            self.button3.hidden = YES;
+        }
+            break;
         default:
             break;
     }
@@ -101,26 +121,33 @@
         case MutiConfirmTypeSwitch:
         {
             _type = MutiConfirmTypeSwitchDone;
+            [GlobalCache shareInstance].local.selectedKidId = self.kid.objId;
+            [[GlobalCache shareInstance] saveInfo];
             [self loadInfo];
         }
             break;
         case MutiConfirmTypeRemove:
         {
-            /*
             [SVProgressHUD show];
-            [[SwingClient sharedClient] subHostDeny:self.subHost.objId completion:^(NSError *error) {
+            [[SwingClient sharedClient] subHostRemoveKid:self.subHost.objId kidId:self.kid.objId completion:^(id subHost, NSError *error) {
                 if (error) {
-                    LOG_D(@"subHostDeny fail: %@", error);
+                    LOG_D(@"subHostRemoveKid fail: %@", error);
                     [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
                 }
                 else {
+                    [SVProgressHUD dismiss];
                     [[GlobalCache shareInstance].subHostRequestFrom removeObject:self.subHost];
-                    [SVProgressHUD showSuccessWithStatus:@""];
-                    [self backAction];
+                    _type = MutiConfirmTypeRemoveDone;
+                    [self loadInfo];
                 }
             }];
-             */
-            _type = MutiConfirmTypeRemoveDone;
+
+            
+        }
+            break;
+        case MutiConfirmTypeSharedKid:
+        {
+            _type = MutiConfirmTypeSwitch;
             [self loadInfo];
         }
             break;
@@ -135,6 +162,12 @@
         case MutiConfirmTypeRemove:
         {
             [self backAction];
+        }
+            break;
+        case MutiConfirmTypeSharedKid:
+        {
+            _type = MutiConfirmTypeRemove;
+            [self loadInfo];
         }
             break;
         default:

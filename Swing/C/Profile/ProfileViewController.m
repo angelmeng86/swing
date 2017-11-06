@@ -15,6 +15,7 @@
 #import "OptionViewController.h"
 #import "MutiRequestViewController.h"
 #import "MutiListViewController.h"
+#import "MutiConfirmViewController.h"
 
 @interface ProfileViewController ()
 
@@ -263,11 +264,18 @@
     }
     else if (collectionView == self.deviceSharedCollectionView) {
         KidModel *model = [self.sharedKids objectAtIndex:indexPath.row];
-//        UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
-//        MutiListViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MutiList2"];
-//        ctl.kid = model;
-//        ctl.type = MutiListTypeKidProfile;
-//        [self.navigationController pushViewController:ctl animated:YES];
+        UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
+        MutiConfirmViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MutiConfirm"];
+        NSArray *requests = [SubHostModel loadSubHost:[GlobalCache shareInstance].subHostRequestTo status:@"ACCEPTED"];
+        for (SubHostModel *m in requests) {
+            if([m.kids containsObject:model]) {
+                ctl.subHost = m;
+                break;
+            }
+        }
+        ctl.kid = model;
+        ctl.type = MutiConfirmTypeSharedKid;
+        [self.navigationController pushViewController:ctl animated:YES];
     }
     else if (collectionView == self.pendingRequestCollectionView) {
         SubHostModel *model = [self.pendingRequestToList objectAtIndex:indexPath.row];

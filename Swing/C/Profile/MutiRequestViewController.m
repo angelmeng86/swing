@@ -7,6 +7,7 @@
 //
 
 #import "MutiRequestViewController.h"
+#import "MutiShareToViewController.h"
 #import "CommonDef.h"
 
 @interface MutiRequestViewController ()
@@ -92,8 +93,16 @@
             break;
         case MutiRequestTypeFromDeny:
         {
+            self.title = LOC_STR(@"Request to");
             self.titleLabel.text = [NSString stringWithFormat: LOC_STR(@"Are you sure to stop sharing with %@?"), self.subHost.requestFromUser.fullName];
             self.subTitleLabel.text = nil;
+            
+            if (self.subHost.requestFromUser.profile) {
+                [self.imageView sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:self.subHost.requestFromUser.profile]]];
+            }
+            if (self.subHost.requestToUser.profile) {
+                [self.imageView2 sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:self.subHost.requestToUser.profile]]];
+            }
             
             self.iconView.image = LOAD_IMAGE(@"icon_line_arrow_d");
             
@@ -101,6 +110,27 @@
             [self.button1 setTitle:LOC_STR(@"Yes,I am sure") forState:UIControlStateNormal];
             self.button2.hidden = NO;
             [self.button2 setTitle:LOC_STR(@"No") forState:UIControlStateNormal];
+            self.button3.hidden = YES;
+        }
+            break;
+        case MutiRequestTypeShareDone:
+        {
+            self.title = LOC_STR(@"Request from");
+            self.titleLabel.text = LOC_STR(@"Sharing now!");
+            self.subTitleLabel.text = nil;
+            
+            if (self.subHost.requestFromUser.profile) {
+                [self.imageView sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:self.subHost.requestFromUser.profile]]];
+            }
+            if (self.subHost.requestToUser.profile) {
+                [self.imageView2 sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:self.subHost.requestToUser.profile]]];
+            }
+            
+            self.iconView.image = LOAD_IMAGE(@"icon_line_arrow_d");
+            
+            self.button1.hidden = NO;
+            [self.button1 setTitle:LOC_STR(@"Remove") forState:UIControlStateNormal];
+            self.button2.hidden = YES;
             self.button3.hidden = YES;
         }
             break;
@@ -140,7 +170,10 @@
             break;
         case MutiRequestTypeFrom:
         {
-            
+            UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
+            MutiShareToViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MutiShareTo"];
+            ctl.subHost = self.subHost;
+            [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
         case MutiRequestTypeFromDeny:

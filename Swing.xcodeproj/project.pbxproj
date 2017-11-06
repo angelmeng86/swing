@@ -38,6 +38,7 @@
 		0F9382C71FAEBD920095C516 /* MutiConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9382C61FAEBD920095C516 /* MutiConfirmViewController.m */; };
 		0F9382CA1FAEDFB50095C516 /* MutiListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9382C91FAEDFB50095C516 /* MutiListViewController.m */; };
 		0F9382CD1FAEE2940095C516 /* MutiRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9382CC1FAEE2940095C516 /* MutiRequestViewController.m */; };
+		0F9382D01FB09C130095C516 /* MutiShareToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9382CF1FB09C130095C516 /* MutiShareToViewController.m */; };
 		0F9734B11F17919900502D8A /* LFSyncSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9734B01F17919900502D8A /* LFSyncSheet.m */; };
 		0F9734B41F19162E00502D8A /* SyncNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9734B31F19162E00502D8A /* SyncNavViewController.m */; };
 		0FCF50421F7A805F00738C23 /* alert2_jp.json in Resources */ = {isa = PBXBuildFile; fileRef = 0FCF50411F7A805F00738C23 /* alert2_jp.json */; };
@@ -202,6 +203,8 @@
 		0F9382C91FAEDFB50095C516 /* MutiListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutiListViewController.m; sourceTree = "<group>"; };
 		0F9382CB1FAEE2940095C516 /* MutiRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutiRequestViewController.h; sourceTree = "<group>"; };
 		0F9382CC1FAEE2940095C516 /* MutiRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutiRequestViewController.m; sourceTree = "<group>"; };
+		0F9382CE1FB09C130095C516 /* MutiShareToViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutiShareToViewController.h; sourceTree = "<group>"; };
+		0F9382CF1FB09C130095C516 /* MutiShareToViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutiShareToViewController.m; sourceTree = "<group>"; };
 		0F9734AF1F17919900502D8A /* LFSyncSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFSyncSheet.h; sourceTree = "<group>"; };
 		0F9734B01F17919900502D8A /* LFSyncSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFSyncSheet.m; sourceTree = "<group>"; };
 		0F9734B21F19162E00502D8A /* SyncNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncNavViewController.h; sourceTree = "<group>"; };
@@ -746,6 +749,8 @@
 				0F9382C91FAEDFB50095C516 /* MutiListViewController.m */,
 				0F9382CB1FAEE2940095C516 /* MutiRequestViewController.h */,
 				0F9382CC1FAEE2940095C516 /* MutiRequestViewController.m */,
+				0F9382CE1FB09C130095C516 /* MutiShareToViewController.h */,
+				0F9382CF1FB09C130095C516 /* MutiShareToViewController.m */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1149,6 +1154,7 @@
 				AD21A5D61E5FD4B300DA72E3 /* BLEUpdater.m in Sources */,
 				ADDCD3F81D4C557E0031DC66 /* UIFont+AvenirFont.m in Sources */,
 				0F927FD61DDA02680011EF90 /* BLEInitDevice.m in Sources */,
+				0F9382D01FB09C130095C516 /* MutiShareToViewController.m in Sources */,
 				ADEF31D21D478E9900BB6A9B /* RoundButton.m in Sources */,
 				AD0B81191D37EF7400F43E72 /* GlobalCache.m in Sources */,
 				AD74D4E21D4FA750001F3B36 /* EventSelectTableViewCell.m in Sources */,

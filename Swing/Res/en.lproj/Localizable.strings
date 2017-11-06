@@ -200,3 +200,27 @@
 "*Tap on profile pictures to switch account"="*Tap on profile pictures to switch account";
 "Switch account"="Switch account";
 "Kid's profile"="Kid's profile";
+
+"is sharing with"="is sharing with";
+"has requests from"="has requests from";
+
+"Are you sure to switch this account?"="Are you sure to switch this account?";
+"It's done! You are on this account now."="It's done! You are on this account now.";
+"Are you sure to remove this account?"="Are you sure to remove this account?";
+"This account has been removed."="This account has been removed.";
+
+"Select share to watch"="Select share to watch";
+"Please tap on one or more profile pictures to share with "="Please tap on one or more profile pictures to share with ";
+"Confirm"="Confirm";
+"Decline"="Decline";
+
+"Request to"="Request to";
+"You've requested access to %@'s watch."="You've requested access to %@'s watch.";
+"Cancel request"="Cancel request";
+"Are you sure want to cancel this request?"="Are you sure want to cancel this request?";
+"Request from"="Request from";
+"You've got a request"="You've got a request";
+"You've got a request from %@."="You've got a request from %@.";
+"Accept"="Accept";
+"Are you sure to stop sharing with %@?"="Are you sure to stop sharing with %@?";
+"Sharing now!"="Sharing now!";
