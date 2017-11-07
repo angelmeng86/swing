@@ -186,7 +186,7 @@
                 }
                 else {
                     [[GlobalCache shareInstance].subHostRequestFrom removeObject:self.subHost];
-                    [SVProgressHUD showSuccessWithStatus:@""];
+                    [SVProgressHUD showSuccessWithStatus:nil];
                     [self backAction];
                 }
             }];

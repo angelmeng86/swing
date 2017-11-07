@@ -31,7 +31,7 @@
 - (NSArray*)kids
 {
     if (_kids == nil) {
-        _kids = [DBHelper queryKids];
+        _kids = [DBHelper queryKids:NO];
     }
     return _kids;
 }
@@ -39,13 +39,7 @@
 - (NSArray*)sharedKids
 {
     if (_sharedKids == nil) {
-        NSArray *requests = [SubHostModel loadSubHost:[GlobalCache shareInstance].subHostRequestTo status:@"ACCEPTED"];
-        
-        NSMutableArray *array = [NSMutableArray array];
-        for (SubHostModel *m in requests) {
-            [array addObjectsFromArray:m.kids];
-        }
-        _sharedKids = array;
+        _sharedKids = [DBHelper queryKids:YES];;
     }
     return _sharedKids;
 }
@@ -226,7 +220,7 @@
         profile = model.profile;
     }
     else if (collectionView == self.deviceSharedCollectionView) {
-        KidModel *model = [self.sharedKids objectAtIndex:indexPath.row];
+        Kid *model = [self.sharedKids objectAtIndex:indexPath.row];
         profile = model.profile;
     }
     else if (collectionView == self.pendingRequestCollectionView) {
@@ -253,9 +247,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (collectionView == self.deviceConllectionView) {
-        Kid *m = [self.kids objectAtIndex:indexPath.row];
-        KidModel *model = [KidModel new];
-        [model updateFrom:m];
+        Kid *model = [self.kids objectAtIndex:indexPath.row];
         UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
         MutiListViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MutiList2"];
         ctl.kid = model;
@@ -263,16 +255,9 @@
         [self.navigationController pushViewController:ctl animated:YES];
     }
     else if (collectionView == self.deviceSharedCollectionView) {
-        KidModel *model = [self.sharedKids objectAtIndex:indexPath.row];
+        Kid *model = [self.sharedKids objectAtIndex:indexPath.row];
         UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
         MutiConfirmViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MutiConfirm"];
-        NSArray *requests = [SubHostModel loadSubHost:[GlobalCache shareInstance].subHostRequestTo status:@"ACCEPTED"];
-        for (SubHostModel *m in requests) {
-            if([m.kids containsObject:model]) {
-                ctl.subHost = m;
-                break;
-            }
-        }
         ctl.kid = model;
         ctl.type = MutiConfirmTypeSharedKid;
         [self.navigationController pushViewController:ctl animated:YES];

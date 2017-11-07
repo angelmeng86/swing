@@ -19,7 +19,9 @@
 @dynamic firmwareVersion;
 @dynamic macId;
 @dynamic objId;
-@dynamic currentVersion;
 @dynamic battery;
+
+@dynamic currentVersion;
+@dynamic subHostId;
 
 @end

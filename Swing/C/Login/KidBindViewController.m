@@ -124,10 +124,11 @@
                         else {
                             KidModel *model = kid;
                             //保存kid对应的固件版本至本地
-                            [GlobalCache shareInstance].local.firmwareVer = self.version;
-                            [[GlobalCache shareInstance] saveInfo];
                             
-                            [DBHelper addKid:model];
+                            Kid *m = [DBHelper addKid:model save:NO];
+                            m.currentVersion = self.version;
+                            [DBHelper saveDatabase];
+                            
                             if (image && model) {
                                 [SVProgressHUD showWithStatus:@"UploadImage, please wait..."];
                                 [[SwingClient sharedClient] kidsUploadKidsProfileImage:image kidId:model.objId completion:^(NSString *profileImage, NSError *error) {

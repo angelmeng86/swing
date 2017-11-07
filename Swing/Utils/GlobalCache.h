@@ -48,6 +48,7 @@
 - (NSString *)showText:(NSString *)key;
 
 @property (strong, nonatomic) Kid* currentKid;
+- (BOOL)curKidUpdate;
 
 @property (strong, nonatomic) NSMutableSet* calendarQueue;
 

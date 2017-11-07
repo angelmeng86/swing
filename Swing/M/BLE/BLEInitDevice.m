@@ -192,8 +192,8 @@
     //成功并且支持版本更新
     if (self.updater.readyUpdate) {
         //保存kid对应的固件版本至本地
-        [GlobalCache shareInstance].local.firmwareVer = self.updater.deviceVersion;
-        [[GlobalCache shareInstance] saveInfo];
+        [GlobalCache shareInstance].currentKid.currentVersion = self.updater.deviceVersion;
+        [DBHelper saveDatabase];
         LOG_D(@"Device version %@.", self.updater.deviceVersion);
         if (self.checkVerOnly) {
             if ([GlobalCache shareInstance].firmwareVersion.version.length > 0) {
@@ -228,8 +228,8 @@
         //成功并且支持版本更新
         if (self.updater.readyUpdate) {
             //保存kid对应的固件版本至本地
-            [GlobalCache shareInstance].local.firmwareVer = self.updater.deviceVersion;
-            [[GlobalCache shareInstance] saveInfo];
+            [GlobalCache shareInstance].currentKid.currentVersion = self.updater.deviceVersion;
+            [DBHelper saveDatabase];
             LOG_D(@"Device version %@.", self.updater.deviceVersion);
             
             if (self.checkVerOnly) {

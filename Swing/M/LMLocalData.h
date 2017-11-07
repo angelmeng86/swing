@@ -22,8 +22,6 @@
 
 @property (nonatomic, strong) NSString<Optional> *language;
 
-@property (nonatomic, strong) NSString<Optional> *firmwareVer;
-
 @property (nonatomic) int64_t selectedKidId;
 
 - (void)checkDate;

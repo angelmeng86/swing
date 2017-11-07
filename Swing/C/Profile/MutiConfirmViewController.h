@@ -15,13 +15,11 @@ typedef enum : NSUInteger {
     MutiConfirmTypeRemoveDone,
     MutiConfirmTypeSharedKid,
 } MutiConfirmType;
-@class KidModel;
-@class SubHostModel;
+@class Kid;
 @interface MutiConfirmViewController : LMBaseViewController
 
 @property (nonatomic) MutiConfirmType type;
-@property (nonatomic, strong) KidModel* kid;
-@property (nonatomic, strong) SubHostModel* subHost;
+@property (nonatomic, strong) Kid* kid;
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;

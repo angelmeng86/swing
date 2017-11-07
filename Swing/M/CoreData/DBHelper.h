@@ -34,9 +34,13 @@
 + (BOOL)delObject:(NSManagedObject*)obj;
 
 + (NSArray*)queryKids;
++ (NSArray*)queryKids:(BOOL)shared;
+
 + (Kid*)queryKid:(int64_t)kidId;
-+ (BOOL)addKid:(KidModel*)kid;
++ (Kid*)addKid:(KidModel*)kid;
++ (Kid*)addKid:(KidModel*)model save:(BOOL)save;
 + (BOOL)addKids:(NSArray*)array;
++ (BOOL)resetSharedKids:(NSArray*)array;
 + (BOOL)delKid:(int64_t)objId;
 + (void)clearKids;
 

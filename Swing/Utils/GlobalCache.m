@@ -158,6 +158,13 @@
     return _currentKid;
 }
 
+- (BOOL)curKidUpdate {
+    if(self.firmwareVersion.version.length > 0 && self.currentKid.currentVersion.length > 0 && ![self.currentKid.currentVersion isEqualToString:self.firmwareVersion.version]) {
+        return YES;
+    }
+    return NO;
+}
+
 - (NSMutableSet*)calendarQueue {
     if (_calendarQueue == nil) {
         _calendarQueue = [[NSMutableSet alloc] init];
@@ -346,7 +353,7 @@
      00 -> EN, 05 -> Version
      01 -> JP, 05 -> Version
      */
-    NSString *version = [GlobalCache shareInstance].local.firmwareVer;
+    NSString *version = [GlobalCache shareInstance].currentKid.currentVersion;
     if (version == nil) {
         version = [GlobalCache shareInstance].currentKid.firmwareVersion;
     }

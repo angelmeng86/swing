@@ -1028,6 +1028,11 @@
             else {
                 NSArray *requestFrom = [SubHostModel arrayOfModelsFromDictionaries:responseObject[@"requestFrom"] error:nil];
                 NSArray *requestTo = [SubHostModel arrayOfModelsFromDictionaries:responseObject[@"requestTo"] error:nil];
+                
+                //保存shared kids至本地数据库
+                NSArray *requests = [SubHostModel loadSubHost:requestTo status:@"ACCEPTED"];
+                [DBHelper resetSharedKids:requests];
+                
                 completion(requestFrom, requestTo, nil);
             }
         });

@@ -92,7 +92,7 @@
 }
 
 - (IBAction)btn1Action:(id)sender {
-    if (_type == MutiListTypeSwitchAccount) {
+    if (_type == MutiListTypeKidProfile) {
         UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
         EditKidViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"EditKid"];
         ctl.kid = self.kid;
@@ -101,13 +101,13 @@
 }
 
 - (IBAction)btn2Action:(id)sender {
-    if (_type == MutiListTypeSwitchAccount) {
+    if (_type == MutiListTypeKidProfile) {
         
     }
 }
 
 - (IBAction)btn3Action:(id)sender {
-    if (_type == MutiListTypeSwitchAccount) {
+    if (_type == MutiListTypeKidProfile) {
         
     }
 }
@@ -116,7 +116,7 @@
 {
     if (_array1 == nil) {
         if (_type == MutiListTypeSwitchAccount) {
-            _array1 = [DBHelper queryKids];
+            _array1 = [DBHelper queryKids:NO];
         }
         else {
             NSArray *requests = [SubHostModel loadSubHost:[GlobalCache shareInstance].subHostRequestFrom status:@"ACCEPTED"];
@@ -140,13 +140,7 @@
 {
     if (_array2 == nil) {
         if (_type == MutiListTypeSwitchAccount) {
-            NSArray *requests = [SubHostModel loadSubHost:[GlobalCache shareInstance].subHostRequestTo status:@"ACCEPTED"];
-            
-            NSMutableArray *array = [NSMutableArray array];
-            for (SubHostModel *m in requests) {
-                [array addObjectsFromArray:m.kids];
-            }
-            _array2 = array;
+            _array2 = [DBHelper queryKids:YES];
         }
         else {
             _array2 = [SubHostModel loadSubHost:[GlobalCache shareInstance].subHostRequestFrom status:@"PENDING"];
@@ -196,7 +190,7 @@
             profile = model.profile;
         }
         else if (collectionView == self.collectionView2) {
-            KidModel *model = [self.array2 objectAtIndex:indexPath.row];
+            Kid *model = [self.array2 objectAtIndex:indexPath.row];
             profile = model.profile;
         }
     }

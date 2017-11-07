@@ -62,7 +62,7 @@
 
 - (void)newFirmwareVersion:(NSNotification*)notification {
     UITabBarItem *item = [self.tabBar.items lastObject];
-    if ([GlobalCache shareInstance].firmwareVersion.version.length > 0 && [GlobalCache shareInstance].local.firmwareVer.length > 0 && ![[GlobalCache shareInstance].local.firmwareVer isEqualToString:[GlobalCache shareInstance].firmwareVersion.version]) {
+    if ([GlobalCache shareInstance].firmwareVersion.version.length > 0 && [GlobalCache shareInstance].currentKid.currentVersion.length > 0 && ![[GlobalCache shareInstance].currentKid.currentVersion isEqualToString:[GlobalCache shareInstance].firmwareVersion.version]) {
         item.badgeValue = @"1";
     }
     else {

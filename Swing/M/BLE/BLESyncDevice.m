@@ -446,8 +446,8 @@ typedef enum : NSUInteger {
         //成功并且支持版本更新
         if (self.updater.readyUpdate) {
             //保存kid对应的固件版本至本地
-            [GlobalCache shareInstance].local.firmwareVer = self.updater.deviceVersion;
-            [[GlobalCache shareInstance] saveInfo];
+            [GlobalCache shareInstance].currentKid.currentVersion = self.updater.deviceVersion;
+            [DBHelper saveDatabase];
             LOG_D(@"Device version %@.", self.updater.deviceVersion);
             
             if (self.checkVerOnly) {
@@ -488,11 +488,9 @@ typedef enum : NSUInteger {
                 [[SwingClient sharedClient] getFirmwareVersion:[GlobalCache shareInstance].currentKid.macId completion:^(id version, NSError *error) {
                     if (!error) {
                         [GlobalCache shareInstance].firmwareVersion = version;
-                        if ([GlobalCache shareInstance].firmwareVersion.version.length > 0) {
-                            //查询到最新固件版本
-                            if (![[GlobalCache shareInstance].local.firmwareVer isEqualToString:[GlobalCache shareInstance].firmwareVersion.version]) {
-                                [[NSNotificationCenter defaultCenter] postNotificationName:SWING_WATCH_NEW_UPDATE_NOTIFY object:nil];
-                            }
+                        //查询到最新固件版本
+                        if ([[GlobalCache shareInstance] curKidUpdate]) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:SWING_WATCH_NEW_UPDATE_NOTIFY object:nil];
                         }
                     }
                     else {
@@ -513,8 +511,8 @@ typedef enum : NSUInteger {
     //成功并且支持版本更新
     if (self.updater.readyUpdate) {
         //保存kid对应的固件版本至本地
-        [GlobalCache shareInstance].local.firmwareVer = self.updater.deviceVersion;
-        [[GlobalCache shareInstance] saveInfo];
+        [GlobalCache shareInstance].currentKid.currentVersion = self.updater.deviceVersion;
+        [DBHelper saveDatabase];
         LOG_D(@"Device version %@.", self.updater.deviceVersion);
         if (self.checkVerOnly) {
             [self checkFirmwareVersion];
@@ -549,8 +547,8 @@ typedef enum : NSUInteger {
     LOG_D(@"deviceUpdateResult %d", success);
     
     //更新完成后重置当前设备版本
-    [GlobalCache shareInstance].local.firmwareVer = nil;
-    [[GlobalCache shareInstance] saveInfo];
+    [GlobalCache shareInstance].currentKid.currentVersion = nil;
+    [DBHelper saveDatabase];
     [[NSNotificationCenter defaultCenter] postNotificationName:SWING_WATCH_NEW_UPDATE_NOTIFY object:nil];
     
     if ([self.delegate respondsToSelector:@selector(reportSyncDeviceResult:battery:macId:error:)]) {

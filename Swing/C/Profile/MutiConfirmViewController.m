@@ -129,14 +129,14 @@
         case MutiConfirmTypeRemove:
         {
             [SVProgressHUD show];
-            [[SwingClient sharedClient] subHostRemoveKid:self.subHost.objId kidId:self.kid.objId completion:^(id subHost, NSError *error) {
+            [[SwingClient sharedClient] subHostRemoveKid:self.kid.subHostId kidId:self.kid.objId completion:^(id subHost, NSError *error) {
                 if (error) {
                     LOG_D(@"subHostRemoveKid fail: %@", error);
                     [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
                 }
                 else {
                     [SVProgressHUD dismiss];
-                    [[GlobalCache shareInstance].subHostRequestFrom removeObject:self.subHost];
+                    [DBHelper delKid:self.kid.objId];
                     _type = MutiConfirmTypeRemoveDone;
                     [self loadInfo];
                 }

@@ -20,8 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *firmwareVersion;
 @property (nullable, nonatomic, copy) NSString *macId;
 @property (nonatomic) int64_t objId;
-@property (nullable, nonatomic, copy) NSString *currentVersion;
 @property (nonatomic) int32_t battery;
+
+@property (nullable, nonatomic, copy) NSString *currentVersion;
+@property (nonatomic) int64_t subHostId;
 
 @end
 

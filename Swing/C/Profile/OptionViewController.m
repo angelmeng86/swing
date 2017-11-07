@@ -106,7 +106,7 @@
         }
         
         cell.textLabel.text = array[indexPath.row];
-        if ([GlobalCache shareInstance].firmwareVersion.version.length > 0 && [GlobalCache shareInstance].local.firmwareVer.length > 0 && ![[GlobalCache shareInstance].local.firmwareVer isEqualToString:[GlobalCache shareInstance].firmwareVersion.version]) {
+        if ([[GlobalCache shareInstance] curKidUpdate]) {
             UIView *v = [cell.contentView viewWithTag:2017];
             v.hidden = NO;
 //            cell.detailTextLabel.text = @"1";
@@ -145,7 +145,7 @@
     else if(indexPath.section == 1 && indexPath.row == 1) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.detailTextLabel.text = nil;
-        if ([GlobalCache shareInstance].firmwareVersion.version.length > 0 && [GlobalCache shareInstance].local.firmwareVer.length > 0 && ![[GlobalCache shareInstance].local.firmwareVer isEqualToString:[GlobalCache shareInstance].firmwareVersion.version]) {
+        if ([[GlobalCache shareInstance] curKidUpdate]) {
             cell.detailTextLabel.text = @"1";
             cell.detailTextLabel.backgroundColor = [UIColor redColor];
             cell.detailTextLabel.textColor = [UIColor yellowColor];
@@ -185,9 +185,7 @@
                     }
                     UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
                     EditKidViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"EditKid"];
-                    KidModel *m = [KidModel new];
-                    [m updateFrom:[GlobalCache shareInstance].currentKid];
-                    ctl.kid = m;
+                    ctl.kid = [GlobalCache shareInstance].currentKid;
                     [self.navigationController pushViewController:ctl animated:YES];
                 }
                     break;
@@ -267,7 +265,7 @@
                     break;
                 case 1:
                 {
-                    if ([GlobalCache shareInstance].firmwareVersion.version.length > 0 && [GlobalCache shareInstance].local.firmwareVer.length > 0 && ![[GlobalCache shareInstance].local.firmwareVer isEqualToString:[GlobalCache shareInstance].firmwareVersion.version]) {
+                    if ([[GlobalCache shareInstance] curKidUpdate]) {
                         [self checkFirmwareVerison];
                     }
                     else {

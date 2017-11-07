@@ -380,7 +380,7 @@
     return NO;
 }
 
-+ (BOOL)addKid:(KidModel*)model save:(BOOL)save {
++ (Kid*)addKid:(KidModel*)model save:(BOOL)save {
     Kid *m = [Kid MR_findFirstByAttribute:@"objId" withValue:@(model.objId)];
     if (m) {
         LOG_D(@"update Kid %lld", m.objId);
@@ -393,12 +393,23 @@
     if (save) {
         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     }
-    return YES;
+    return m;
 }
 
 + (NSArray*)queryKids
 {
     return [Kid MR_findAll];
+}
+
++ (NSArray*)queryKids:(BOOL)shared
+{
+    if (shared) {
+        return [Kid MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"subHostId > 0"]];
+
+    }
+    else {
+        return [Kid MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"(subHostId = 0) || (subHostId = nil)"]];
+    }
 }
 
 + (Kid*)queryKid:(int64_t)kidId
@@ -407,7 +418,7 @@
     return m;
 }
 
-+ (BOOL)addKid:(KidModel*)model
++ (Kid*)addKid:(KidModel*)model
 {
     return [DBHelper addKid:model save:YES];
 }
@@ -420,6 +431,25 @@
     for (KidModel *m in array) {
         [self addKid:m save:NO];
     }
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    return YES;
+}
+
++ (BOOL)resetSharedKids:(NSArray*)subHosts;
+{
+    [Kid MR_deleteAllMatchingPredicate:[NSPredicate predicateWithFormat:@"subHostId > 0"]];
+    if (subHosts.count == 0) {
+        return NO;
+    }
+    for (SubHostModel *m in subHosts) {
+        for (KidModel *k in m.kids) {
+            Kid *kid = [self addKid:k save:NO];
+            if (kid) {
+                kid.subHostId = m.objId;
+            }
+        }
+    }
+    
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     return YES;
 }
