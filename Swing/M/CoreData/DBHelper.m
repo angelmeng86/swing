@@ -203,7 +203,7 @@
     [Event MR_truncateAll];
     [Todo MR_truncateAll];
     [Activity MR_truncateAll];
-    [Kid MR_truncateAll];
+    [KidInfo MR_truncateAll];
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
 }
 
@@ -380,14 +380,14 @@
     return NO;
 }
 
-+ (Kid*)addKid:(KidModel*)model save:(BOOL)save {
-    Kid *m = [Kid MR_findFirstByAttribute:@"objId" withValue:@(model.objId)];
++ (KidInfo*)addKid:(KidModel*)model save:(BOOL)save {
+    KidInfo *m = [KidInfo MR_findFirstByAttribute:@"objId" withValue:@(model.objId)];
     if (m) {
-        LOG_D(@"update Kid %lld", m.objId);
+        LOG_D(@"update KidInfo %lld", m.objId);
     }
     else {
-        LOG_D(@"create Kid %lld", model.objId);
-        m = [Kid MR_createEntity];
+        LOG_D(@"create KidInfo %lld", model.objId);
+        m = [KidInfo MR_createEntity];
     }
     [model updateTo:m];
     if (save) {
@@ -398,27 +398,27 @@
 
 + (NSArray*)queryKids
 {
-    return [Kid MR_findAll];
+    return [KidInfo MR_findAll];
 }
 
 + (NSArray*)queryKids:(BOOL)shared
 {
     if (shared) {
-        return [Kid MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"subHostId > 0"]];
+        return [KidInfo MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"subHostId > 0"]];
 
     }
     else {
-        return [Kid MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"(subHostId = 0) || (subHostId = nil)"]];
+        return [KidInfo MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"(subHostId = 0) || (subHostId = nil)"]];
     }
 }
 
-+ (Kid*)queryKid:(int64_t)kidId
++ (KidInfo*)queryKid:(int64_t)kidId
 {
-    Kid *m = [Kid MR_findFirstByAttribute:@"objId" withValue:@(kidId)];
+    KidInfo *m = [KidInfo MR_findFirstByAttribute:@"objId" withValue:@(kidId)];
     return m;
 }
 
-+ (Kid*)addKid:(KidModel*)model
++ (KidInfo*)addKid:(KidModel*)model
 {
     return [DBHelper addKid:model save:YES];
 }
@@ -437,13 +437,13 @@
 
 + (BOOL)resetSharedKids:(NSArray*)subHosts;
 {
-    [Kid MR_deleteAllMatchingPredicate:[NSPredicate predicateWithFormat:@"subHostId > 0"]];
+    [KidInfo MR_deleteAllMatchingPredicate:[NSPredicate predicateWithFormat:@"subHostId > 0"]];
     if (subHosts.count == 0) {
         return NO;
     }
     for (SubHostModel *m in subHosts) {
         for (KidModel *k in m.kids) {
-            Kid *kid = [self addKid:k save:NO];
+            KidInfo *kid = [self addKid:k save:NO];
             if (kid) {
                 kid.subHostId = m.objId;
             }
@@ -457,9 +457,9 @@
 + (BOOL)delKid:(int64_t)objId
 {
     BOOL ret = NO;
-    Kid *m = [Kid MR_findFirstByAttribute:@"objId" withValue:@(objId)];
+    KidInfo *m = [KidInfo MR_findFirstByAttribute:@"objId" withValue:@(objId)];
     if (m) {
-        LOG_D(@"delete Kid %lld", m.objId);
+        LOG_D(@"delete KidInfo %lld", m.objId);
         ret = [m MR_deleteEntity];
         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     }
@@ -468,7 +468,7 @@
 
 + (void)clearKids
 {
-    [Kid MR_truncateAll];
+    [KidInfo MR_truncateAll];
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
 }
 

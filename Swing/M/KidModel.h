@@ -8,7 +8,7 @@
 
 #import "JSONModel.h"
 #import "UserModel.h"
-#import "Kid+CoreDataClass.h"
+#import "KidInfo+CoreDataClass.h"
 
 @protocol KidModel @end
 
@@ -28,7 +28,7 @@
 
 @property (nonatomic, strong) UserModel<Optional> *parent;
 
-- (void)updateTo:(Kid*)m;
-- (void)updateFrom:(Kid*)m;
+- (void)updateTo:(KidInfo*)m;
+- (void)updateFrom:(KidInfo*)m;
 
 @end

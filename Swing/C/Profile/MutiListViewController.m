@@ -11,6 +11,8 @@
 #import <SDWebImage/UIButton+WebCache.h>
 #import "CommonDef.h"
 #import "EditKidViewController.h"
+#import "MutiConfirmViewController.h"
+#import "MutiRequestViewController.h"
 
 @interface MutiListViewController ()
 
@@ -58,6 +60,7 @@
             
             [self.button1 setTitle:LOC_STR(@"Edit kid's account") forState:UIControlStateNormal];
             [self.button2 setTitle:LOC_STR(@"Switch to this account") forState:UIControlStateNormal];
+            self.button3.hidden = YES;
             [self.button3 setTitle:LOC_STR(@"Remove") forState:UIControlStateNormal];
         }
             break;
@@ -102,7 +105,11 @@
 
 - (IBAction)btn2Action:(id)sender {
     if (_type == MutiListTypeKidProfile) {
-        
+        UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
+        MutiConfirmViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MutiConfirm"];
+        ctl.kid = self.kid;
+        ctl.type = MutiConfirmTypeSwitch;
+        [self.navigationController pushViewController:ctl animated:YES];
     }
 }
 
@@ -110,6 +117,20 @@
     if (_type == MutiListTypeKidProfile) {
         
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self reloadInfo];
+}
+
+- (void)reloadInfo {
+    self.array1 = nil;
+    self.array2 = nil;
+    
+    [self.collectionView1 reloadData];
+    [self.collectionView2 reloadData];
 }
 
 - (NSArray*)array1
@@ -186,18 +207,18 @@
     NSString *profile = nil;
     if (_type == MutiListTypeSwitchAccount) {
         if (collectionView == self.collectionView1) {
-            Kid *model = [self.array1 objectAtIndex:indexPath.row];
+            KidInfo *model = [self.array1 objectAtIndex:indexPath.row];
             profile = model.profile;
         }
         else if (collectionView == self.collectionView2) {
-            Kid *model = [self.array2 objectAtIndex:indexPath.row];
+            KidInfo *model = [self.array2 objectAtIndex:indexPath.row];
             profile = model.profile;
         }
     }
     else {
         if (collectionView == self.collectionView1) {
             SubHostModel *model = [self.array1 objectAtIndex:indexPath.row];
-            profile = model.requestToUser.profile;
+            profile = model.requestFromUser.profile;
         }
         else if (collectionView == self.collectionView2) {
             SubHostModel *model = [self.array2 objectAtIndex:indexPath.row];
@@ -223,16 +244,26 @@
         if (collectionView == self.collectionView1) {
             
         }
-        else if (collectionView == self.collectionView1) {
+        else if (collectionView == self.collectionView2) {
             
         }
     }
     else {
         if (collectionView == self.collectionView1) {
-            
+            SubHostModel *model = [self.array1 objectAtIndex:indexPath.row];
+            UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
+            MutiRequestViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MutiRequest"];
+            ctl.type = MutiRequestTypeShareDone;
+            ctl.subHost = model;
+            [self.navigationController pushViewController:ctl animated:YES];
         }
-        else if (collectionView == self.collectionView1) {
-            
+        else if (collectionView == self.collectionView2) {
+            SubHostModel *model = [self.array2 objectAtIndex:indexPath.row];
+            UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
+            MutiRequestViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MutiRequest"];
+            ctl.type = MutiRequestTypeFrom;
+            ctl.subHost = model;
+            [self.navigationController pushViewController:ctl animated:YES];
         }
     }
 }

@@ -192,6 +192,12 @@
             }];
         }
             break;
+        case MutiRequestTypeShareDone:
+        {
+            _type = MutiRequestTypeFromDeny;
+            [self loadInfo];
+        }
+            break;
         default:
             break;
     }

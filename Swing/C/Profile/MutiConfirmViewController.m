@@ -116,14 +116,35 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)backAction
+{
+    switch (_type) {
+        case MutiConfirmTypeRemoveDone:
+        case MutiConfirmTypeSwitchDone:
+        {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+            break;
+            
+        default:
+            [super backAction];
+            break;
+    }
+}
+
 - (IBAction)btn1Action:(id)sender {
     switch (_type) {
         case MutiConfirmTypeSwitch:
         {
-            _type = MutiConfirmTypeSwitchDone;
-            [GlobalCache shareInstance].local.selectedKidId = self.kid.objId;
-            [[GlobalCache shareInstance] saveInfo];
-            [self loadInfo];
+            if([[GlobalCache shareInstance] switchKidAccount:self.kid.objId])
+            {
+                _type = MutiConfirmTypeSwitchDone;
+                [self loadInfo];
+            }
+            else
+            {
+                [SVProgressHUD showErrorWithStatus:nil];
+            }
         }
             break;
         case MutiConfirmTypeRemove:

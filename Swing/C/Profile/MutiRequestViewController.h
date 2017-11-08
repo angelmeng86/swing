@@ -35,4 +35,6 @@ typedef enum : NSUInteger {
 - (IBAction)btn2Action:(id)sender;
 - (IBAction)btn3Action:(id)sender;
 
+- (void)loadInfo;
+
 @end

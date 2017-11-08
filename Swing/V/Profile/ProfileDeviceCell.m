@@ -19,4 +19,16 @@
     self.imageBtn.layer.masksToBounds = YES;
 }
 
+- (void)setChecked:(BOOL)checked
+{
+    _checked = checked;
+    if (checked) {
+        self.imageBtn.layer.borderColor = COMMON_TITLE_COLOR.CGColor;
+    }
+    else {
+        self.imageBtn.layer.borderColor = COMMON_HEADER_BORDER_COLOR.CGColor;
+    }
+}
+
+
 @end

@@ -11,10 +11,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Kid : NSManagedObject
+@interface KidInfo : NSManagedObject
 
 @end
 
 NS_ASSUME_NONNULL_END
 
-#import "Kid+CoreDataProperties.h"
+#import "KidInfo+CoreDataProperties.h"

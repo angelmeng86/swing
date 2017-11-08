@@ -216,11 +216,11 @@
     
     NSString *profile = nil;
     if (collectionView == self.deviceConllectionView) {
-        Kid *model = [self.kids objectAtIndex:indexPath.row];
+        KidInfo *model = [self.kids objectAtIndex:indexPath.row];
         profile = model.profile;
     }
     else if (collectionView == self.deviceSharedCollectionView) {
-        Kid *model = [self.sharedKids objectAtIndex:indexPath.row];
+        KidInfo *model = [self.sharedKids objectAtIndex:indexPath.row];
         profile = model.profile;
     }
     else if (collectionView == self.pendingRequestCollectionView) {
@@ -247,7 +247,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (collectionView == self.deviceConllectionView) {
-        Kid *model = [self.kids objectAtIndex:indexPath.row];
+        KidInfo *model = [self.kids objectAtIndex:indexPath.row];
         UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
         MutiListViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MutiList2"];
         ctl.kid = model;
@@ -255,7 +255,7 @@
         [self.navigationController pushViewController:ctl animated:YES];
     }
     else if (collectionView == self.deviceSharedCollectionView) {
-        Kid *model = [self.sharedKids objectAtIndex:indexPath.row];
+        KidInfo *model = [self.sharedKids objectAtIndex:indexPath.row];
         UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
         MutiConfirmViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MutiConfirm"];
         ctl.kid = model;

@@ -12,12 +12,12 @@ typedef enum : NSUInteger {
     MutiListTypeKidProfile,
     MutiListTypeSwitchAccount,
 } MutiListType;
-@class Kid;
+@class KidInfo;
 @interface MutiListViewController : LMBaseViewController
 
 @property (nonatomic) MutiListType type;
 
-@property (nonatomic, strong) Kid* kid;
+@property (nonatomic, strong) KidInfo* kid;
 
 @property (weak, nonatomic) IBOutlet UIButton *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;

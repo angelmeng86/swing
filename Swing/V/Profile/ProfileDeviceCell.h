@@ -12,4 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *imageBtn;
 
+@property (nonatomic) BOOL checked;
+
 @end

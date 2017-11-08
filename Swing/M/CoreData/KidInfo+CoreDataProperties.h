@@ -6,14 +6,14 @@
 //
 //
 
-#import "Kid+CoreDataClass.h"
+#import "KidInfo+CoreDataClass.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Kid (CoreDataProperties)
+@interface KidInfo (CoreDataProperties)
 
-+ (NSFetchRequest<Kid *> *)fetchRequest;
++ (NSFetchRequest<KidInfo *> *)fetchRequest;
 
 @property (nullable, nonatomic, copy) NSString *name;
 @property (nullable, nonatomic, copy) NSString *profile;

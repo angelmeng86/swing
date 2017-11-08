@@ -22,7 +22,7 @@
         <attribute name="timezoneOffset" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="todoList" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Todo" inverseName="inEvent" inverseEntity="Todo" syncable="YES"/>
     </entity>
-    <entity name="Kid" representedClassName="Kid" syncable="YES" codeGenerationType="class">
+    <entity name="KidInfo" representedClassName="KidInfo" syncable="YES" codeGenerationType="class">
         <attribute name="battery" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="currentVersion" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firmwareVersion" optional="YES" attributeType="String" syncable="YES"/>
@@ -41,7 +41,7 @@
     <elements>
         <element name="Activity" positionX="-54" positionY="90" width="128" height="120"/>
         <element name="Event" positionX="-63" positionY="-18" width="128" height="240"/>
-        <element name="Kid" positionX="-54" positionY="90" width="128" height="165"/>
+        <element name="KidInfo" positionX="-54" positionY="90" width="128" height="165"/>
         <element name="Todo" positionX="-54" positionY="-9" width="128" height="105"/>
     </elements>
 </model>

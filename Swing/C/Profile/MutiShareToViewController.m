@@ -23,7 +23,7 @@
 - (NSArray*)array1
 {
     if (_array1 == nil) {
-        _array1 = [DBHelper queryKids];
+        _array1 = [DBHelper queryKids:NO];
     }
     return _array1;
 }
@@ -34,6 +34,10 @@
     
     self.collectionView1.backgroundColor = [UIColor clearColor];
     self.collectionView1.backgroundView = [UIView new];
+    
+    self.collectionView1.allowsMultipleSelection = YES;
+    
+    self.title = LOC_STR(@"Request from");
     
     self.titleLabel.text = LOC_STR(@"Select share to watch");
     self.subTitleLabel.text = [LOC_STR(@"Please tap on one or more profile pictures to share with ") stringByAppendingString:self.subHost.requestFromUser.fullName];
@@ -48,19 +52,35 @@
 }
 
 - (IBAction)btn1Action:(id)sender {
-    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
-    MutiRequestViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MutiRequest"];
-    ctl.type = MutiRequestTypeShareDone;
-    ctl.subHost = self.subHost;
-    [self.navigationController pushViewController:ctl animated:YES];
+    if (self.collectionView1.indexPathsForSelectedItems.count == 0) {
+        return;
+    }
+    [SVProgressHUD show];
+    NSMutableArray *kidIds = [NSMutableArray array];
+    for (NSIndexPath *indexPath in self.collectionView1.indexPathsForSelectedItems) {
+        KidInfo *model = [self.array1 objectAtIndex:indexPath.row];
+        [kidIds addObject:@(model.objId)];
+    }
+    [[SwingClient sharedClient] subHostAccept:self.subHost.objId kidIds:kidIds completion:^(id subHost, NSError *error) {
+        if (error) {
+            LOG_D(@"subHostAccept fail: %@", error);
+            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+        }
+        else {
+            [SVProgressHUD dismiss];
+            [[GlobalCache shareInstance].subHostRequestFrom removeObject:self.subHost];
+            [[GlobalCache shareInstance].subHostRequestFrom addObject:subHost];
+            self.preCtl.type = MutiRequestTypeShareDone;
+            [self.preCtl loadInfo];
+            [self backAction];
+        }
+    }];
 }
 
 - (IBAction)btn2Action:(id)sender {
-    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
-    MutiRequestViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MutiRequest"];
-    ctl.type = MutiRequestTypeFromDeny;
-    ctl.subHost = self.subHost;
-    [self.navigationController pushViewController:ctl animated:YES];
+    self.preCtl.type = MutiRequestTypeFromDeny;
+    [self.preCtl loadInfo];
+    [self backAction];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -93,7 +113,7 @@
     
     NSString *profile = nil;
 
-    Kid *model = [self.array1 objectAtIndex:indexPath.row];
+    KidInfo *model = [self.array1 objectAtIndex:indexPath.row];
     profile = model.profile;
   
     
@@ -105,6 +125,7 @@
         [deviceCell.imageBtn setBackgroundImage:nil forState:UIControlStateNormal];
     }
     [deviceCell.imageBtn setTitle:nil forState:UIControlStateNormal];
+    deviceCell.checked = [collectionView.indexPathsForSelectedItems containsObject:indexPath];
     cell = deviceCell;
     return cell;
 }
@@ -114,5 +135,9 @@
     
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    
+}
 
 @end

@@ -7,12 +7,7 @@
 //
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <UIKit/UIKit.h>
-
-@protocol CameraUtilityDelegate <NSObject>
-
-- (void)cameraUtilityFinished:(UIImage*)image;
-
-@end
+#import "CameraUtility.h"
 
 @interface CameraUtility2 : NSObject
 

@@ -114,6 +114,10 @@
     self.local = nil;
     self.peripheral = nil;
     self.currentKid = nil;
+    
+    self.subHostRequestTo = nil;
+    self.subHostRequestFrom = nil;
+    
 //    [self.calendarEventsByMonth removeAllObjects];
     [self.calendarQueue removeAllObjects];
     
@@ -146,11 +150,11 @@
     }];
 }
 
-- (Kid*)currentKid {
+- (KidInfo*)currentKid {
     if (_currentKid == nil) {
         _currentKid = [DBHelper queryKid:self.local.selectedKidId];
         if (_currentKid == nil) {
-            _currentKid = [Kid MR_findFirst];
+            _currentKid = [KidInfo MR_findFirst];
             self.local.selectedKidId = _currentKid.objId;
             [self saveInfo];
         }
@@ -160,6 +164,18 @@
 
 - (BOOL)curKidUpdate {
     if(self.firmwareVersion.version.length > 0 && self.currentKid.currentVersion.length > 0 && ![self.currentKid.currentVersion isEqualToString:self.firmwareVersion.version]) {
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)switchKidAccount:(int64_t)kidId
+{
+    KidInfo *kid = [DBHelper queryKid:kidId];
+    if (kid) {
+        self.currentKid = kid;
+        self.local.selectedKidId = kidId;
+        [self saveInfo];
         return YES;
     }
     return NO;

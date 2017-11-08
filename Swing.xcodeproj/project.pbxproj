@@ -44,8 +44,8 @@
 		0FCF50421F7A805F00738C23 /* alert2_jp.json in Resources */ = {isa = PBXBuildFile; fileRef = 0FCF50411F7A805F00738C23 /* alert2_jp.json */; };
 		0FCF50571F9CCFCE00738C23 /* SubHostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF50561F9CCFCE00738C23 /* SubHostModel.m */; };
 		0FCF505A1F9CE93C00738C23 /* RequestAccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF50591F9CE93C00738C23 /* RequestAccessViewController.m */; };
-		0FCF505F1F9F7B7D00738C23 /* Kid+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF505C1F9F7B7D00738C23 /* Kid+CoreDataClass.m */; };
-		0FCF50601F9F7B7D00738C23 /* Kid+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF505E1F9F7B7D00738C23 /* Kid+CoreDataProperties.m */; };
+		0FCF505F1F9F7B7D00738C23 /* KidInfo+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF505C1F9F7B7D00738C23 /* KidInfo+CoreDataClass.m */; };
+		0FCF50601F9F7B7D00738C23 /* KidInfo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF505E1F9F7B7D00738C23 /* KidInfo+CoreDataProperties.m */; };
 		0FD6B3E71D61B79300C00A45 /* ChoicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6B3E61D61B79300C00A45 /* ChoicesViewController.m */; };
 		0FDAF5AA1D6405EF007CD808 /* citystate.json in Resources */ = {isa = PBXBuildFile; fileRef = 0FDAF5A91D6405EF007CD808 /* citystate.json */; };
 		0FDBDA951D708725004F7AAF /* LMLocalData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FDBDA941D708725004F7AAF /* LMLocalData.m */; };
@@ -214,10 +214,10 @@
 		0FCF50561F9CCFCE00738C23 /* SubHostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubHostModel.m; sourceTree = "<group>"; };
 		0FCF50581F9CE93C00738C23 /* RequestAccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestAccessViewController.h; sourceTree = "<group>"; };
 		0FCF50591F9CE93C00738C23 /* RequestAccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestAccessViewController.m; sourceTree = "<group>"; };
-		0FCF505B1F9F7B7D00738C23 /* Kid+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Kid+CoreDataClass.h"; sourceTree = "<group>"; };
-		0FCF505C1F9F7B7D00738C23 /* Kid+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Kid+CoreDataClass.m"; sourceTree = "<group>"; };
-		0FCF505D1F9F7B7D00738C23 /* Kid+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Kid+CoreDataProperties.h"; sourceTree = "<group>"; };
-		0FCF505E1F9F7B7D00738C23 /* Kid+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Kid+CoreDataProperties.m"; sourceTree = "<group>"; };
+		0FCF505B1F9F7B7D00738C23 /* KidInfo+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KidInfo+CoreDataClass.h"; sourceTree = "<group>"; };
+		0FCF505C1F9F7B7D00738C23 /* KidInfo+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KidInfo+CoreDataClass.m"; sourceTree = "<group>"; };
+		0FCF505D1F9F7B7D00738C23 /* KidInfo+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KidInfo+CoreDataProperties.h"; sourceTree = "<group>"; };
+		0FCF505E1F9F7B7D00738C23 /* KidInfo+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KidInfo+CoreDataProperties.m"; sourceTree = "<group>"; };
 		0FD6B3E51D61B79300C00A45 /* ChoicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoicesViewController.h; sourceTree = "<group>"; };
 		0FD6B3E61D61B79300C00A45 /* ChoicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoicesViewController.m; sourceTree = "<group>"; };
 		0FDAF5A91D6405EF007CD808 /* citystate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = citystate.json; sourceTree = "<group>"; };
@@ -416,10 +416,10 @@
 		0F17B28E1DDCAED70061D233 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				0FCF505B1F9F7B7D00738C23 /* Kid+CoreDataClass.h */,
-				0FCF505C1F9F7B7D00738C23 /* Kid+CoreDataClass.m */,
-				0FCF505D1F9F7B7D00738C23 /* Kid+CoreDataProperties.h */,
-				0FCF505E1F9F7B7D00738C23 /* Kid+CoreDataProperties.m */,
+				0FCF505B1F9F7B7D00738C23 /* KidInfo+CoreDataClass.h */,
+				0FCF505C1F9F7B7D00738C23 /* KidInfo+CoreDataClass.m */,
+				0FCF505D1F9F7B7D00738C23 /* KidInfo+CoreDataProperties.h */,
+				0FCF505E1F9F7B7D00738C23 /* KidInfo+CoreDataProperties.m */,
 				0F68BEEA1DE87F8D002FDFB2 /* Activity+CoreDataClass.h */,
 				0F68BEEB1DE87F8D002FDFB2 /* Activity+CoreDataClass.m */,
 				0F68BEEC1DE87F8D002FDFB2 /* Activity+CoreDataProperties.h */,
@@ -1067,7 +1067,7 @@
 				ADE6ED901D4E3B7D00FFA573 /* DayCalendarViewController.m in Sources */,
 				ADF519AE1D86D0DF00356CD3 /* AddEventViewController2.m in Sources */,
 				AD83559D1E55512A000AA668 /* UIImage+wiRoundedRectImage.m in Sources */,
-				0FCF50601F9F7B7D00738C23 /* Kid+CoreDataProperties.m in Sources */,
+				0FCF50601F9F7B7D00738C23 /* KidInfo+CoreDataProperties.m in Sources */,
 				AD1CEF0A1D5ACB19004FEC24 /* LMBarView.m in Sources */,
 				AD9B0D941D3BB947009FDD95 /* BatteryViewController.m in Sources */,
 				AD7797A31D4D034600472B27 /* ActivityViewController.m in Sources */,
@@ -1117,7 +1117,7 @@
 				0F176EC11DE48FB70014F079 /* Event+CoreDataClass.m in Sources */,
 				0F9382B71FA4CC480095C516 /* PhotoTweakView.m in Sources */,
 				0FCF50571F9CCFCE00738C23 /* SubHostModel.m in Sources */,
-				0FCF505F1F9F7B7D00738C23 /* Kid+CoreDataClass.m in Sources */,
+				0FCF505F1F9F7B7D00738C23 /* KidInfo+CoreDataClass.m in Sources */,
 				AD95A51B1D5243390047A0A2 /* SwingClientTest.m in Sources */,
 				0F9382BC1FA5CD030095C516 /* ChangePwdViewController.m in Sources */,
 				ADF33CBC1D5A323000AE8874 /* TodayChartViewController.m in Sources */,

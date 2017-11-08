@@ -6,12 +6,12 @@
 //
 //
 
-#import "Kid+CoreDataProperties.h"
+#import "KidInfo+CoreDataProperties.h"
 
-@implementation Kid (CoreDataProperties)
+@implementation KidInfo (CoreDataProperties)
 
-+ (NSFetchRequest<Kid *> *)fetchRequest {
-	return [[NSFetchRequest alloc] initWithEntityName:@"Kid"];
++ (NSFetchRequest<KidInfo *> *)fetchRequest {
+	return [[NSFetchRequest alloc] initWithEntityName:@"KidInfo"];
 }
 
 @dynamic name;

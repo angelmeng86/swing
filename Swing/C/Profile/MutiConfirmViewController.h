@@ -15,11 +15,11 @@ typedef enum : NSUInteger {
     MutiConfirmTypeRemoveDone,
     MutiConfirmTypeSharedKid,
 } MutiConfirmType;
-@class Kid;
+@class KidInfo;
 @interface MutiConfirmViewController : LMBaseViewController
 
 @property (nonatomic) MutiConfirmType type;
-@property (nonatomic, strong) Kid* kid;
+@property (nonatomic, strong) KidInfo* kid;
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -31,5 +31,6 @@ typedef enum : NSUInteger {
 - (IBAction)btn1Action:(id)sender;
 - (IBAction)btn2Action:(id)sender;
 - (IBAction)btn3Action:(id)sender;
+
 
 @end

@@ -17,7 +17,7 @@
                                                        }];
 }
 
-- (void)updateTo:(Kid*)m {
+- (void)updateTo:(KidInfo*)m {
     m.objId = _objId;
     m.name = _name;
     m.profile = _profile;
@@ -25,7 +25,7 @@
     m.macId = _macId;
 }
 
-- (void)updateFrom:(Kid*)m {
+- (void)updateFrom:(KidInfo*)m {
     self.objId = m.objId;
     self.name = m.name;
     self.profile = m.profile;

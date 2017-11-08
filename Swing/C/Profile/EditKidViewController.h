@@ -7,10 +7,10 @@
 //
 
 #import "LMBaseViewController.h"
-@class Kid;
+@class KidInfo;
 @interface EditKidViewController : LMBaseViewController
 
-@property (nonatomic, strong) Kid* kid;
+@property (nonatomic, strong) KidInfo* kid;
 
 @property (weak, nonatomic) IBOutlet UIButton *imageBtn;
 @property (weak, nonatomic) IBOutlet UITextField *firstNameTF;

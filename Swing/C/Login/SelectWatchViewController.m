@@ -82,8 +82,9 @@
         }
         [array addObject:[Fun dataToHex:[NSData dataWithBytes:addr length:6]]];
     }
-    [array addObject:@"332211445566"];
+    [array addObject:@"8D071FCFE5E0"];
     [array addObject:@"AACCEE003311"];
+    [self.tableView reloadData];
     for (NSString *macAddress in array) {
         NSURLSessionDataTask *task = [[SwingClient sharedClient] whoRegisteredMacID:macAddress completion:^(KidModel *kid, NSError *error) {
             if (!error) {
@@ -273,10 +274,21 @@
 - (void)selectAction:(NSIndexPath*)indexPath
 {
 #if TARGET_IPHONE_SIMULATOR
-    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
-    KidBindViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"KidBind"];
-    ctl.macAddress = [Fun hexToData:items[indexPath.row]];
-    [self.navigationController pushViewController:ctl animated:YES];
+    NSString *mac = items[indexPath.row];
+    if (self.kidDict[mac]) {
+        KidModel *kid = self.kidDict[mac];
+        UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
+        AskStepViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"AskStep"];
+        ctl.type = AskTypeWatchRegisted;
+        ctl.kid = kid;
+        [self.navigationController pushViewController:ctl animated:YES];
+    }
+    else {
+        UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
+        KidBindViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"KidBind"];
+        ctl.macAddress = [Fun hexToData:items[indexPath.row]];
+        [self.navigationController pushViewController:ctl animated:YES];
+    }
 #else
     CBPeripheral *peripheral = [_peripherals objectAtIndex:indexPath.row];
     

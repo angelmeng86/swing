@@ -15,6 +15,7 @@
 #import "MutiListViewController.h"
 #import "EditKidViewController.h"
 #import "LFBadgeLabel.h"
+#import "MutiConfirmViewController.h"
 
 @interface OptionViewController ()
 {
@@ -220,26 +221,36 @@
                     break;
                 case 3:
                 {
-                    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
-                    MutiListViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MutiList2"];
-                    if ([GlobalCache shareInstance].currentKid) {
-                        KidModel *m = [KidModel new];
-                        [m updateFrom:[GlobalCache shareInstance].currentKid];
-                        ctl.kid = m;
+                    if (![GlobalCache shareInstance].currentKid) {
+                        [SVProgressHUD showErrorWithStatus:LOC_STR(@"you have not bind device yet, please sync a watch.")];
+                        return;
                     }
-                    ctl.type = MutiListTypeKidProfile;
-                    [self.navigationController pushViewController:ctl animated:YES];
+                    if ([GlobalCache shareInstance].currentKid.subHostId > 0) {
+                        UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
+                        MutiConfirmViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MutiConfirm"];
+                        ctl.kid = [GlobalCache shareInstance].currentKid;
+                        ctl.type = MutiConfirmTypeSharedKid;
+                        [self.navigationController pushViewController:ctl animated:YES];
+                    }
+                    else {
+                        UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
+                        MutiListViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MutiList2"];
+                        ctl.kid = [GlobalCache shareInstance].currentKid;
+                        ctl.type = MutiListTypeKidProfile;
+                        [self.navigationController pushViewController:ctl animated:YES];
+                    }
+                    
                 }
                     break;
                 case 4:
                 {
+                    if (![GlobalCache shareInstance].currentKid) {
+                        [SVProgressHUD showErrorWithStatus:LOC_STR(@"you have not bind device yet, please sync a watch.")];
+                        return;
+                    }
                     UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
                     MutiListViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MutiList"];
-                    if ([GlobalCache shareInstance].currentKid) {
-                        KidModel *m = [KidModel new];
-                        [m updateFrom:[GlobalCache shareInstance].currentKid];
-                        ctl.kid = m;
-                    }
+                    ctl.kid = [GlobalCache shareInstance].currentKid;
                     ctl.type = MutiListTypeSwitchAccount;
                     [self.navigationController pushViewController:ctl animated:YES];
                 }

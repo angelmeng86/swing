@@ -7,8 +7,12 @@
 //
 
 #import "LMBaseViewController.h"
+
 @class SubHostModel;
+@class MutiRequestViewController;
 @interface MutiShareToViewController : LMBaseViewController
+
+@property (weak, nonatomic) MutiRequestViewController* preCtl;
 
 @property (strong, nonatomic) SubHostModel* subHost;
 

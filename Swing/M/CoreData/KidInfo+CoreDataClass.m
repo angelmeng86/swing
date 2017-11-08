@@ -6,9 +6,9 @@
 //
 //
 
-#import "Kid+CoreDataClass.h"
+#import "KidInfo+CoreDataClass.h"
 #import "CommonDef.h"
 
-@implementation Kid
+@implementation KidInfo
 
 @end

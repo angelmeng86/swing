@@ -968,7 +968,9 @@
 
 - (NSURLSessionDataTask *)subHostAccept:(int64_t)subHostId kidIds:(NSArray*)kidIds completion:( void (^)(id data, NSError *error) )completion
 {
-    NSURLSessionDataTask *task = [self.sessionManager PUT:_URL.subHostAccept parameters:@{@"subHostId":@(subHostId), @"KidId": kidIds} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSDictionary *data = @{@"subHostId":@(subHostId), @"KidId": kidIds};
+    LOG_D(@"subHostAccept data:%@", data);
+    NSURLSessionDataTask *task = [self.sessionManager PUT:_URL.subHostAccept parameters:data success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"subHostAccept info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
@@ -1047,7 +1049,9 @@
 
 - (NSURLSessionDataTask *)subHostRemoveKid:(int64_t)subHostId kidId:(int64_t)kidId completion:( void (^)(id data, NSError *error) )completion
 {
-    NSURLSessionDataTask *task = [self.sessionManager PUT:_URL.subHostRemoveKid parameters:@{@"subHostId":@(subHostId), @"kidId":@(kidId)} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSDictionary *data = @{@"subHostId":@(subHostId), @"kidId":@(kidId)};
+    LOG_D(@"subHostRemoveKid data:%@", data);
+    NSURLSessionDataTask *task = [self.sessionManager PUT:_URL.subHostRemoveKid parameters:data success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"subHostRemoveKid info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];

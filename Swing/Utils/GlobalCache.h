@@ -47,8 +47,9 @@
 - (NSString*)curEventFile;
 - (NSString *)showText:(NSString *)key;
 
-@property (strong, nonatomic) Kid* currentKid;
+@property (strong, nonatomic) KidInfo* currentKid;
 - (BOOL)curKidUpdate;
+- (BOOL)switchKidAccount:(int64_t)kidId;
 
 @property (strong, nonatomic) NSMutableSet* calendarQueue;
 

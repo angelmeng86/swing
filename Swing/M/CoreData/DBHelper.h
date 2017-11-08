@@ -36,9 +36,9 @@
 + (NSArray*)queryKids;
 + (NSArray*)queryKids:(BOOL)shared;
 
-+ (Kid*)queryKid:(int64_t)kidId;
-+ (Kid*)addKid:(KidModel*)kid;
-+ (Kid*)addKid:(KidModel*)model save:(BOOL)save;
++ (KidInfo*)queryKid:(int64_t)kidId;
++ (KidInfo*)addKid:(KidModel*)kid;
++ (KidInfo*)addKid:(KidModel*)model save:(BOOL)save;
 + (BOOL)addKids:(NSArray*)array;
 + (BOOL)resetSharedKids:(NSArray*)array;
 + (BOOL)delKid:(int64_t)objId;

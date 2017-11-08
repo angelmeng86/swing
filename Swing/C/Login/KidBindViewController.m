@@ -125,7 +125,7 @@
                             KidModel *model = kid;
                             //保存kid对应的固件版本至本地
                             
-                            Kid *m = [DBHelper addKid:model save:NO];
+                            KidInfo *m = [DBHelper addKid:model save:NO];
                             m.currentVersion = self.version;
                             [DBHelper saveDatabase];
                             
