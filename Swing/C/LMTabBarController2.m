@@ -9,6 +9,8 @@
 #import "LMTabBarController2.h"
 #import "UIImage+wiRoundedRectImage.h"
 #import "CommonDef.h"
+#import "LFDevicesActionSheet.h"
+#import "MutiConfirmViewController.h"
 
 @interface LMTabBarController2 ()<UITabBarControllerDelegate>
 {
@@ -44,12 +46,37 @@
     
 }
 
+- (BOOL)checkIsDoubleClick:(UIViewController *)viewController
+{
+    static UIViewController *lastViewController = nil;
+    static NSTimeInterval lastClickTime = 0;
+    
+    if (lastViewController != viewController) {
+        lastViewController = viewController;
+        lastClickTime = [NSDate timeIntervalSinceReferenceDate];
+        
+        return NO;
+    }
+    
+    NSTimeInterval clickTime = [NSDate timeIntervalSinceReferenceDate];
+    if (clickTime - lastClickTime > 0.5 ) {
+        lastClickTime = clickTime;
+        return NO;
+    }
+    
+    lastClickTime = clickTime;
+    return YES;
+}
+
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
     if (tabBarController.viewControllers[2] == viewController) {
         [self showSyncDialog];
     }
     else if(tabBarController.viewControllers[3] == viewController) {
         [self newFirmwareVersion:nil];
+        if ([self checkIsDoubleClick:viewController]) {
+            [self selectDevice:(UINavigationController*)viewController];
+        }
     }
 }
 
@@ -215,6 +242,22 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)selectDevice:(UINavigationController*)navCtl
+{
+    
+    LFDevicesActionSheet *sheet = [LFDevicesActionSheet actionSheetViewWithBlock:^(LFDevicesActionSheet *actionSheet, KidInfo *kid) {
+        if ([GlobalCache shareInstance].currentKid.objId != kid.objId)
+        {
+            UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
+            MutiConfirmViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MutiConfirm"];
+            ctl.kid = kid;
+            ctl.type = MutiConfirmTypeSwitch;
+            [navCtl pushViewController:ctl animated:YES];
+        }
+    }];
+    [sheet show];
 }
 
 /*

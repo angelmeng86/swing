@@ -242,10 +242,20 @@
 {
     if (_type == MutiListTypeSwitchAccount) {
         if (collectionView == self.collectionView1) {
-            
+            KidInfo *model = [self.array1 objectAtIndex:indexPath.row];
+            UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
+            MutiConfirmViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MutiConfirm"];
+            ctl.kid = model;
+            ctl.type = MutiConfirmTypeSwitch;
+            [self.navigationController pushViewController:ctl animated:YES];
         }
         else if (collectionView == self.collectionView2) {
-            
+            KidInfo *model = [self.array2 objectAtIndex:indexPath.row];
+            UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
+            MutiConfirmViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MutiConfirm"];
+            ctl.kid = model;
+            ctl.type = MutiConfirmTypeSwitch;
+            [self.navigationController pushViewController:ctl animated:YES];
         }
     }
     else {
@@ -254,6 +264,7 @@
             UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
             MutiRequestViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MutiRequest"];
             ctl.type = MutiRequestTypeShareDone;
+            ctl.kid = self.kid;
             ctl.subHost = model;
             [self.navigationController pushViewController:ctl animated:YES];
         }

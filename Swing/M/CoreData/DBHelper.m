@@ -404,11 +404,15 @@
 + (NSArray*)queryKids:(BOOL)shared
 {
     if (shared) {
-        return [KidInfo MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"subHostId > 0"]];
+//        return [KidInfo MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"subHostId > 0"]];
+        
+        return [KidInfo MR_findAllSortedBy:@"objId" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"subHostId > 0"]];
 
     }
     else {
-        return [KidInfo MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"(subHostId = 0) || (subHostId = nil)"]];
+//        return [KidInfo MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"(subHostId = 0) || (subHostId = nil)"]];
+        
+        return [KidInfo MR_findAllSortedBy:@"objId" ascending:YES withPredicate:[NSPredicate predicateWithFormat:@"(subHostId = 0) || (subHostId = nil)"]];
     }
 }
 

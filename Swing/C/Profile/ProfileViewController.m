@@ -16,6 +16,7 @@
 #import "MutiRequestViewController.h"
 #import "MutiListViewController.h"
 #import "MutiConfirmViewController.h"
+#import "LFDevicesActionSheet.h"
 
 @interface ProfileViewController ()
 
@@ -176,13 +177,13 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     if (collectionView == self.deviceConllectionView) {
-        return self.kids.count;
+        return self.kids.count + 1;
     }
     else if (collectionView == self.deviceSharedCollectionView) {
         return self.sharedKids.count;
     }
     else if (collectionView == self.pendingRequestCollectionView) {
-        return self.pendingRequestToList.count;
+        return self.pendingRequestToList.count + 1;
     }
     else if (collectionView == self.requestCollectionView) {
         return self.requestFromList.count;
@@ -194,13 +195,13 @@
 {
     NSUInteger count = 0;
     if (collectionView == self.deviceConllectionView) {
-        count = self.kids.count;
+        count = self.kids.count + 1;
     }
     else if (collectionView == self.deviceSharedCollectionView) {
         count = self.sharedKids.count;
     }
     else if (collectionView == self.pendingRequestCollectionView) {
-        count = self.pendingRequestToList.count;
+        count = self.pendingRequestToList.count + 1;
     }
     else if (collectionView == self.requestCollectionView) {
         count = self.requestFromList.count;
@@ -216,14 +217,26 @@
     
     NSString *profile = nil;
     if (collectionView == self.deviceConllectionView) {
+        if (indexPath.row == self.kids.count) {
+            [deviceCell.imageBtn setBackgroundImage:nil forState:UIControlStateNormal];
+            [deviceCell.imageBtn setTitle:@"+" forState:UIControlStateNormal];
+            return deviceCell;
+        }
         KidInfo *model = [self.kids objectAtIndex:indexPath.row];
         profile = model.profile;
+        deviceCell.checked = model.objId == [GlobalCache shareInstance].currentKid.objId;
     }
     else if (collectionView == self.deviceSharedCollectionView) {
         KidInfo *model = [self.sharedKids objectAtIndex:indexPath.row];
         profile = model.profile;
+        deviceCell.checked = model.objId == [GlobalCache shareInstance].currentKid.objId;
     }
     else if (collectionView == self.pendingRequestCollectionView) {
+        if (indexPath.row == self.pendingRequestToList.count) {
+            [deviceCell.imageBtn setBackgroundImage:nil forState:UIControlStateNormal];
+            [deviceCell.imageBtn setTitle:@"+" forState:UIControlStateNormal];
+            return deviceCell;
+        }
         SubHostModel *model = [self.pendingRequestToList objectAtIndex:indexPath.row];
         profile = model.requestToUser.profile;
     }
@@ -247,6 +260,12 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (collectionView == self.deviceConllectionView) {
+        if (indexPath.row == self.kids.count) {
+            UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
+            UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"SearchWatch"];
+            [self.navigationController pushViewController:ctl animated:YES];
+            return;
+        }
         KidInfo *model = [self.kids objectAtIndex:indexPath.row];
         UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
         MutiListViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MutiList2"];
@@ -263,6 +282,12 @@
         [self.navigationController pushViewController:ctl animated:YES];
     }
     else if (collectionView == self.pendingRequestCollectionView) {
+        if (indexPath.row == self.pendingRequestToList.count) {
+            UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
+            UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"SearchWatch"];
+            [self.navigationController pushViewController:ctl animated:YES];
+            return;
+        }
         SubHostModel *model = [self.pendingRequestToList objectAtIndex:indexPath.row];
         UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
         MutiRequestViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MutiRequest"];

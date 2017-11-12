@@ -15,6 +15,7 @@
 @interface MutiShareToViewController ()
 
 @property (nonatomic, strong) NSArray* array1;
+@property (nonatomic, strong) NSMutableSet *selectedSet;
 
 @end
 
@@ -36,6 +37,7 @@
     self.collectionView1.backgroundView = [UIView new];
     
     self.collectionView1.allowsMultipleSelection = YES;
+    self.selectedSet = [NSMutableSet set];
     
     self.title = LOC_STR(@"Request from");
     
@@ -52,12 +54,12 @@
 }
 
 - (IBAction)btn1Action:(id)sender {
-    if (self.collectionView1.indexPathsForSelectedItems.count == 0) {
+    if (self.selectedSet.count == 0) {
         return;
     }
     [SVProgressHUD show];
     NSMutableArray *kidIds = [NSMutableArray array];
-    for (NSIndexPath *indexPath in self.collectionView1.indexPathsForSelectedItems) {
+    for (NSIndexPath *indexPath in self.selectedSet) {
         KidInfo *model = [self.array1 objectAtIndex:indexPath.row];
         [kidIds addObject:@(model.objId)];
     }
@@ -125,19 +127,20 @@
         [deviceCell.imageBtn setBackgroundImage:nil forState:UIControlStateNormal];
     }
     [deviceCell.imageBtn setTitle:nil forState:UIControlStateNormal];
-    deviceCell.checked = [collectionView.indexPathsForSelectedItems containsObject:indexPath];
+    deviceCell.checked = [self.selectedSet containsObject:indexPath];
     cell = deviceCell;
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(nonnull NSIndexPath *)indexPath
-{
-    
+    if ([self.selectedSet containsObject:indexPath]) {
+        [self.selectedSet removeObject:indexPath];
+    }
+    else {
+        [self.selectedSet addObject:indexPath];
+    }
+    [collectionView reloadItemsAtIndexPaths:@[indexPath]];
 }
 
 @end

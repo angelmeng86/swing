@@ -39,8 +39,8 @@
     self.firstNameTF.delegate = self;
     
     self.imageBtn.layer.cornerRadius = 60.f;
-//    self.imageBtn.layer.borderColor = [self.imageBtn titleColorForState:UIControlStateNormal].CGColor;
-//    self.imageBtn.layer.borderWidth = 3.f;
+    self.imageBtn.layer.borderColor = [self.imageBtn titleColorForState:UIControlStateNormal].CGColor;
+    self.imageBtn.layer.borderWidth = 4.f;
     self.imageBtn.layer.masksToBounds = YES;
     image = nil;
     

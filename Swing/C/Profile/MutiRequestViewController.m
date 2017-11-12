@@ -100,7 +100,11 @@
             if (self.subHost.requestFromUser.profile) {
                 [self.imageView sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:self.subHost.requestFromUser.profile]]];
             }
-            if (self.subHost.requestToUser.profile) {
+            
+            if (self.kid) {
+                [self.imageView2 sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:self.kid.profile]]];
+            }
+            else if (self.subHost.requestToUser.profile) {
                 [self.imageView2 sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:self.subHost.requestToUser.profile]]];
             }
             
@@ -122,7 +126,11 @@
             if (self.subHost.requestFromUser.profile) {
                 [self.imageView sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:self.subHost.requestFromUser.profile]]];
             }
-            if (self.subHost.requestToUser.profile) {
+            
+            if (self.kid) {
+                [self.imageView2 sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:self.kid.profile]]];
+            }
+            else if (self.subHost.requestToUser.profile) {
                 [self.imageView2 sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:self.subHost.requestToUser.profile]]];
             }
             
@@ -172,6 +180,7 @@
         {
             UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
             MutiShareToViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"MutiShareTo"];
+            ctl.preCtl = self;
             ctl.subHost = self.subHost;
             [self.navigationController pushViewController:ctl animated:YES];
         }
@@ -179,17 +188,35 @@
         case MutiRequestTypeFromDeny:
         {
             [SVProgressHUD show];
-            [[SwingClient sharedClient] subHostDeny:self.subHost.objId completion:^(NSError *error) {
-                if (error) {
-                    LOG_D(@"subHostDeny fail: %@", error);
-                    [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-                }
-                else {
-                    [[GlobalCache shareInstance].subHostRequestFrom removeObject:self.subHost];
-                    [SVProgressHUD showSuccessWithStatus:nil];
-                    [self backAction];
-                }
-            }];
+            if (self.kid) {
+                [[SwingClient sharedClient] subHostRemoveKid:self.subHost.objId kidId:self.kid.objId completion:^(id subHost, NSError *error) {
+                    if (error) {
+                        LOG_D(@"subHostRemoveKid fail: %@", error);
+                        [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                    }
+                    else {
+                        SubHostModel *m = subHost;
+                        self.subHost.kids = m.kids;
+//                        [[GlobalCache shareInstance].subHostRequestFrom removeObject:self.subHost];
+                        [SVProgressHUD showSuccessWithStatus:nil];
+                        [self backAction];
+                    }
+                }];
+            }
+            else {
+                [[SwingClient sharedClient] subHostDeny:self.subHost.objId completion:^(NSError *error) {
+                    if (error) {
+                        LOG_D(@"subHostDeny fail: %@", error);
+                        [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                    }
+                    else {
+                        [[GlobalCache shareInstance].subHostRequestFrom removeObject:self.subHost];
+                        [SVProgressHUD showSuccessWithStatus:nil];
+                        [self backAction];
+                    }
+                }];
+            }
+            
         }
             break;
         case MutiRequestTypeShareDone:

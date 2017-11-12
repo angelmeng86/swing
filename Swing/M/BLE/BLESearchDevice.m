@@ -77,7 +77,7 @@
         [peripheral discoverServices:services];
     }
     else {
-        NSArray *services = @[[CBUUID UUIDWithString:@"180A"]];
+        NSArray *services = @[[CBUUID UUIDWithString:@"180A"], [CBUUID UUIDWithString:@"FFA0"]];
         [peripheral discoverServices:services];
     }
 }
@@ -107,12 +107,12 @@
         if ([s.UUID isEqual:[CBUUID UUIDWithString:@"FFA0"]]) {
             NSArray *characters = @[[CBUUID UUIDWithString:@"FFA1"], [CBUUID UUIDWithString:@"FFA3"], [CBUUID UUIDWithString:@"FFA6"]];
             [peripheral discoverCharacteristics:characters forService:s];
-            break;
+//            break;
         }
         if ([s.UUID isEqual:[CBUUID UUIDWithString:@"180A"]]) {
-            NSArray *characters = @[[CBUUID UUIDWithString:@"2A23"], [CBUUID UUIDWithString:@"2A26"]];
+            NSArray *characters = @[/*[CBUUID UUIDWithString:@"2A23"],*/ [CBUUID UUIDWithString:@"2A26"]];
             [peripheral discoverCharacteristics:characters forService:s];
-            break;
+//            break;
         }
     }
 }
@@ -221,8 +221,8 @@
         if (deviceVersion) {
             self.versionDict[peripheral] = deviceVersion;
         }
-        [BLEUtility readCharacteristic:peripheral sUUID:@"180A" cUUID:@"2A23"];
-        LOG_D(@"Read 2A23");
+//        [BLEUtility readCharacteristic:peripheral sUUID:@"180A" cUUID:@"2A23"];
+//        LOG_D(@"Read 2A23");
     }
 
 }

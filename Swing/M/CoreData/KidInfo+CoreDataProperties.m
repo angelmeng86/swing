@@ -1,8 +1,8 @@
 //
-//  Kid+CoreDataProperties.m
+//  KidInfo+CoreDataProperties.m
 //  
 //
-//  Created by Mapple on 2017/10/24.
+//  Created by Mapple on 2017/11/12.
 //
 //
 
@@ -14,14 +14,13 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"KidInfo"];
 }
 
-@dynamic name;
-@dynamic profile;
+@dynamic currentVersion;
 @dynamic firmwareVersion;
 @dynamic macId;
+@dynamic name;
 @dynamic objId;
+@dynamic profile;
 @dynamic battery;
-
-@dynamic currentVersion;
 @dynamic subHostId;
 
 @end

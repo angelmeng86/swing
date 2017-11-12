@@ -1,13 +1,12 @@
 //
-//  Kid+CoreDataClass.m
+//  KidInfo+CoreDataClass.m
 //  
 //
-//  Created by Mapple on 2017/10/24.
+//  Created by Mapple on 2017/11/12.
 //
 //
 
 #import "KidInfo+CoreDataClass.h"
-#import "CommonDef.h"
 
 @implementation KidInfo
 

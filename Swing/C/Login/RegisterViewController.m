@@ -167,7 +167,7 @@
 - (void)setHeaderImage:(UIImage*)headImage {
     [self.imageBtn setBackgroundImage:headImage forState:UIControlStateNormal];
     
-    self.imageBtn.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.imageBtn.layer.borderColor = [self.imageBtn titleColorForState:UIControlStateNormal].CGColor;
     [self.imageBtn setTitle:nil forState:UIControlStateNormal];
 }
 

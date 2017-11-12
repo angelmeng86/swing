@@ -33,6 +33,8 @@
     // Do any additional setup after loading the view.
     
     self.imageBtn.layer.cornerRadius = 60.f;
+    self.imageBtn.layer.borderColor = [self.imageBtn titleColorForState:UIControlStateNormal].CGColor;
+    self.imageBtn.layer.borderWidth = 4.f;
     self.imageBtn.layer.masksToBounds = YES;
     image = nil;
     

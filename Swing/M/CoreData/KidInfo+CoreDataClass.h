@@ -1,8 +1,8 @@
 //
-//  Kid+CoreDataClass.h
+//  KidInfo+CoreDataClass.h
 //  
 //
-//  Created by Mapple on 2017/10/24.
+//  Created by Mapple on 2017/11/12.
 //
 //
 

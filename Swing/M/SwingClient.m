@@ -1034,6 +1034,7 @@
                 //保存shared kids至本地数据库
                 NSArray *requests = [SubHostModel loadSubHost:requestTo status:@"ACCEPTED"];
                 [DBHelper resetSharedKids:requests];
+                [GlobalCache shareInstance].currentKid = nil;
                 
                 completion(requestFrom, requestTo, nil);
             }

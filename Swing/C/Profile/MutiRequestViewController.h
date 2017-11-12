@@ -16,11 +16,13 @@ typedef enum : NSUInteger {
     MutiRequestTypeShareDone,
 } MutiRequestType;
 @class SubHostModel;
+@class KidInfo;
 @interface MutiRequestViewController : LMBaseViewController
 
 @property (nonatomic) MutiRequestType type;
 
 @property (strong, nonatomic) SubHostModel* subHost;
+@property (nonatomic, strong) KidInfo* kid;//MutiRequestTypeShareDone
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView2;

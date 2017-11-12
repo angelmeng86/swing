@@ -9,6 +9,7 @@
 #import "RequestAccessViewController.h"
 #import "SelectWatchViewController.h"
 #import "SyncDeviceViewController.h"
+#import "ProfileViewController.h"
 #import "AppDelegate.h"
 #import "CommonDef.h"
 
@@ -73,6 +74,11 @@
 
 - (IBAction)btn2Action:(id)sender {
     for (UIViewController *ctl in self.navigationController.viewControllers) {
+        if ([ctl isKindOfClass:[ProfileViewController class]]) {
+            //Profile add device flow
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            return;
+        }
         if ([ctl isKindOfClass:[SyncDeviceViewController class]]) {
             [self.navigationController dismissViewControllerAnimated:YES completion:nil];
             return;

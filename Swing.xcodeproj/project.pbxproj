@@ -39,13 +39,16 @@
 		0F9382CA1FAEDFB50095C516 /* MutiListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9382C91FAEDFB50095C516 /* MutiListViewController.m */; };
 		0F9382CD1FAEE2940095C516 /* MutiRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9382CC1FAEE2940095C516 /* MutiRequestViewController.m */; };
 		0F9382D01FB09C130095C516 /* MutiShareToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9382CF1FB09C130095C516 /* MutiShareToViewController.m */; };
+		0F9382DB1FB75FD80095C516 /* KidInfo+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9382D81FB75FD80095C516 /* KidInfo+CoreDataClass.m */; };
+		0F9382DC1FB75FD80095C516 /* KidInfo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9382DA1FB75FD80095C516 /* KidInfo+CoreDataProperties.m */; };
+		0F9382E21FB87E960095C516 /* LFDevicesActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9382E11FB87E960095C516 /* LFDevicesActionSheet.m */; };
+		0F9382E61FB87F2A0095C516 /* DeviceSmallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9382E41FB87F2A0095C516 /* DeviceSmallCell.m */; };
+		0F9382E71FB87F2A0095C516 /* DeviceSmallCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F9382E51FB87F2A0095C516 /* DeviceSmallCell.xib */; };
 		0F9734B11F17919900502D8A /* LFSyncSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9734B01F17919900502D8A /* LFSyncSheet.m */; };
 		0F9734B41F19162E00502D8A /* SyncNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9734B31F19162E00502D8A /* SyncNavViewController.m */; };
 		0FCF50421F7A805F00738C23 /* alert2_jp.json in Resources */ = {isa = PBXBuildFile; fileRef = 0FCF50411F7A805F00738C23 /* alert2_jp.json */; };
 		0FCF50571F9CCFCE00738C23 /* SubHostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF50561F9CCFCE00738C23 /* SubHostModel.m */; };
 		0FCF505A1F9CE93C00738C23 /* RequestAccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF50591F9CE93C00738C23 /* RequestAccessViewController.m */; };
-		0FCF505F1F9F7B7D00738C23 /* KidInfo+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF505C1F9F7B7D00738C23 /* KidInfo+CoreDataClass.m */; };
-		0FCF50601F9F7B7D00738C23 /* KidInfo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF505E1F9F7B7D00738C23 /* KidInfo+CoreDataProperties.m */; };
 		0FD6B3E71D61B79300C00A45 /* ChoicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6B3E61D61B79300C00A45 /* ChoicesViewController.m */; };
 		0FDAF5AA1D6405EF007CD808 /* citystate.json in Resources */ = {isa = PBXBuildFile; fileRef = 0FDAF5A91D6405EF007CD808 /* citystate.json */; };
 		0FDBDA951D708725004F7AAF /* LMLocalData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FDBDA941D708725004F7AAF /* LMLocalData.m */; };
@@ -205,6 +208,15 @@
 		0F9382CC1FAEE2940095C516 /* MutiRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutiRequestViewController.m; sourceTree = "<group>"; };
 		0F9382CE1FB09C130095C516 /* MutiShareToViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutiShareToViewController.h; sourceTree = "<group>"; };
 		0F9382CF1FB09C130095C516 /* MutiShareToViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutiShareToViewController.m; sourceTree = "<group>"; };
+		0F9382D71FB75FD80095C516 /* KidInfo+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KidInfo+CoreDataClass.h"; sourceTree = "<group>"; };
+		0F9382D81FB75FD80095C516 /* KidInfo+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KidInfo+CoreDataClass.m"; sourceTree = "<group>"; };
+		0F9382D91FB75FD80095C516 /* KidInfo+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KidInfo+CoreDataProperties.h"; sourceTree = "<group>"; };
+		0F9382DA1FB75FD80095C516 /* KidInfo+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KidInfo+CoreDataProperties.m"; sourceTree = "<group>"; };
+		0F9382E01FB87E960095C516 /* LFDevicesActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFDevicesActionSheet.h; sourceTree = "<group>"; };
+		0F9382E11FB87E960095C516 /* LFDevicesActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFDevicesActionSheet.m; sourceTree = "<group>"; };
+		0F9382E31FB87F2A0095C516 /* DeviceSmallCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceSmallCell.h; sourceTree = "<group>"; };
+		0F9382E41FB87F2A0095C516 /* DeviceSmallCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceSmallCell.m; sourceTree = "<group>"; };
+		0F9382E51FB87F2A0095C516 /* DeviceSmallCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeviceSmallCell.xib; sourceTree = "<group>"; };
 		0F9734AF1F17919900502D8A /* LFSyncSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFSyncSheet.h; sourceTree = "<group>"; };
 		0F9734B01F17919900502D8A /* LFSyncSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFSyncSheet.m; sourceTree = "<group>"; };
 		0F9734B21F19162E00502D8A /* SyncNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncNavViewController.h; sourceTree = "<group>"; };
@@ -214,10 +226,6 @@
 		0FCF50561F9CCFCE00738C23 /* SubHostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubHostModel.m; sourceTree = "<group>"; };
 		0FCF50581F9CE93C00738C23 /* RequestAccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestAccessViewController.h; sourceTree = "<group>"; };
 		0FCF50591F9CE93C00738C23 /* RequestAccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestAccessViewController.m; sourceTree = "<group>"; };
-		0FCF505B1F9F7B7D00738C23 /* KidInfo+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KidInfo+CoreDataClass.h"; sourceTree = "<group>"; };
-		0FCF505C1F9F7B7D00738C23 /* KidInfo+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KidInfo+CoreDataClass.m"; sourceTree = "<group>"; };
-		0FCF505D1F9F7B7D00738C23 /* KidInfo+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KidInfo+CoreDataProperties.h"; sourceTree = "<group>"; };
-		0FCF505E1F9F7B7D00738C23 /* KidInfo+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KidInfo+CoreDataProperties.m"; sourceTree = "<group>"; };
 		0FD6B3E51D61B79300C00A45 /* ChoicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoicesViewController.h; sourceTree = "<group>"; };
 		0FD6B3E61D61B79300C00A45 /* ChoicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoicesViewController.m; sourceTree = "<group>"; };
 		0FDAF5A91D6405EF007CD808 /* citystate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = citystate.json; sourceTree = "<group>"; };
@@ -416,10 +424,10 @@
 		0F17B28E1DDCAED70061D233 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				0FCF505B1F9F7B7D00738C23 /* KidInfo+CoreDataClass.h */,
-				0FCF505C1F9F7B7D00738C23 /* KidInfo+CoreDataClass.m */,
-				0FCF505D1F9F7B7D00738C23 /* KidInfo+CoreDataProperties.h */,
-				0FCF505E1F9F7B7D00738C23 /* KidInfo+CoreDataProperties.m */,
+				0F9382D71FB75FD80095C516 /* KidInfo+CoreDataClass.h */,
+				0F9382D81FB75FD80095C516 /* KidInfo+CoreDataClass.m */,
+				0F9382D91FB75FD80095C516 /* KidInfo+CoreDataProperties.h */,
+				0F9382DA1FB75FD80095C516 /* KidInfo+CoreDataProperties.m */,
 				0F68BEEA1DE87F8D002FDFB2 /* Activity+CoreDataClass.h */,
 				0F68BEEB1DE87F8D002FDFB2 /* Activity+CoreDataClass.m */,
 				0F68BEEC1DE87F8D002FDFB2 /* Activity+CoreDataProperties.h */,
@@ -643,10 +651,15 @@
 		AD7797901D4C8CF900472B27 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				0F9382E01FB87E960095C516 /* LFDevicesActionSheet.h */,
+				0F9382E11FB87E960095C516 /* LFDevicesActionSheet.m */,
 				AD7797911D4C8D0600472B27 /* ProfileDeviceCell.h */,
 				AD7797921D4C8D0600472B27 /* ProfileDeviceCell.m */,
 				AD7797971D4CCFD200472B27 /* UnderlineTextField.h */,
 				AD7797981D4CCFD200472B27 /* UnderlineTextField.m */,
+				0F9382E31FB87F2A0095C516 /* DeviceSmallCell.h */,
+				0F9382E41FB87F2A0095C516 /* DeviceSmallCell.m */,
+				0F9382E51FB87F2A0095C516 /* DeviceSmallCell.xib */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -976,6 +989,7 @@
 				0F37056E1E096A6700E87BF0 /* Localizable.strings in Resources */,
 				0F140B711D88432B005B9763 /* alert2.json in Resources */,
 				ADDCD3FB1D4C59F10031DC66 /* Avenir-bold.ttf in Resources */,
+				0F9382E71FB87F2A0095C516 /* DeviceSmallCell.xib in Resources */,
 				ADDCD3FC1D4C59F10031DC66 /* Avenir-Book.otf in Resources */,
 				0FEB6D601F014909007507D4 /* B-062617.bin in Resources */,
 				0FCF50421F7A805F00738C23 /* alert2_jp.json in Resources */,
@@ -1050,6 +1064,7 @@
 				AD1CEF101D5AE7F5004FEC24 /* LMTabBarController2.m in Sources */,
 				ADB5A6591F18529F005F8B8B /* FirmwareVersion.m in Sources */,
 				0F45AB8B1D63614800EF385F /* ActivityResultModel.m in Sources */,
+				0F9382E21FB87E960095C516 /* LFDevicesActionSheet.m in Sources */,
 				0F68BEEE1DE87F8D002FDFB2 /* Activity+CoreDataClass.m in Sources */,
 				ADE820791D54D99000E12768 /* WeatherModel.m in Sources */,
 				AD0B811A1D37EF7400F43E72 /* LMBaseTableViewController.m in Sources */,
@@ -1062,12 +1077,12 @@
 				AD9B0D911D3BB935009FDD95 /* DashboardViewController.m in Sources */,
 				ADFC2C301D369949004EDCDF /* AppDelegate.m in Sources */,
 				AD1CEF0D1D5ADA90004FEC24 /* LMArrowView.m in Sources */,
+				0F9382E61FB87F2A0095C516 /* DeviceSmallCell.m in Sources */,
 				0F9382CD1FAEE2940095C516 /* MutiRequestViewController.m in Sources */,
 				0F445E0F1D7094A6008A092C /* JSONValueTransformer+NSData.m in Sources */,
 				ADE6ED901D4E3B7D00FFA573 /* DayCalendarViewController.m in Sources */,
 				ADF519AE1D86D0DF00356CD3 /* AddEventViewController2.m in Sources */,
 				AD83559D1E55512A000AA668 /* UIImage+wiRoundedRectImage.m in Sources */,
-				0FCF50601F9F7B7D00738C23 /* KidInfo+CoreDataProperties.m in Sources */,
 				AD1CEF0A1D5ACB19004FEC24 /* LMBarView.m in Sources */,
 				AD9B0D941D3BB947009FDD95 /* BatteryViewController.m in Sources */,
 				AD7797A31D4D034600472B27 /* ActivityViewController.m in Sources */,
@@ -1091,6 +1106,7 @@
 				0F176EC21DE48FB70014F079 /* Event+CoreDataProperties.m in Sources */,
 				ADE0BE731D59933400E70109 /* LMCalendarDayView.m in Sources */,
 				AD9B0D9A1D3BB964009FDD95 /* ProfileViewController.m in Sources */,
+				0F9382DC1FB75FD80095C516 /* KidInfo+CoreDataProperties.m in Sources */,
 				AD0B81281D37F09900F43E72 /* SimpleLogger.m in Sources */,
 				ADD6555C1D5B886D0054FB24 /* AlertSelectViewController.m in Sources */,
 				ADEF31CF1D478D2B00BB6A9B /* BindReadyViewController.m in Sources */,
@@ -1117,7 +1133,6 @@
 				0F176EC11DE48FB70014F079 /* Event+CoreDataClass.m in Sources */,
 				0F9382B71FA4CC480095C516 /* PhotoTweakView.m in Sources */,
 				0FCF50571F9CCFCE00738C23 /* SubHostModel.m in Sources */,
-				0FCF505F1F9F7B7D00738C23 /* KidInfo+CoreDataClass.m in Sources */,
 				AD95A51B1D5243390047A0A2 /* SwingClientTest.m in Sources */,
 				0F9382BC1FA5CD030095C516 /* ChangePwdViewController.m in Sources */,
 				ADF33CBC1D5A323000AE8874 /* TodayChartViewController.m in Sources */,
@@ -1131,6 +1146,7 @@
 				0F9382C41FAE10C10095C516 /* LogoutConfirmViewController.m in Sources */,
 				AD7797991D4CCFD200472B27 /* UnderlineTextField.m in Sources */,
 				AD347D171D3FD8DD00E91DDD /* SearchWatchViewController.m in Sources */,
+				0F9382DB1FB75FD80095C516 /* KidInfo+CoreDataClass.m in Sources */,
 				0F9382CA1FAEDFB50095C516 /* MutiListViewController.m in Sources */,
 				0F1376341DE0593600DB6C33 /* ColorTransformer.m in Sources */,
 				AD05B5BD1D3BCAA4007BCF7C /* LoginViewController.m in Sources */,

@@ -12,6 +12,7 @@
 #import "BindReadyViewController.h"
 #import "EditProfileViewController.h"
 #import "SyncDeviceViewController.h"
+#import "ProfileViewController.h"
 
 @interface KidBindViewController ()<UITextFieldDelegate, CameraUtilityDelegate>
 {
@@ -73,6 +74,11 @@
         if ([ctl isKindOfClass:[EditProfileViewController class]]) {
             //EditProfile add device flow
             [self.navigationController popToViewController:ctl animated:YES];
+            return;
+        }
+        if ([ctl isKindOfClass:[ProfileViewController class]]) {
+            //Profile add device flow
+            [self.navigationController popToRootViewControllerAnimated:YES];
             return;
         }
         if ([ctl isKindOfClass:[SyncDeviceViewController class]]) {
@@ -182,7 +188,7 @@
 - (void)setHeaderImage:(UIImage*)headImage {
     [self.imageBtn setBackgroundImage:headImage forState:UIControlStateNormal];
     
-    self.imageBtn.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.imageBtn.layer.borderColor = [self.imageBtn titleColorForState:UIControlStateNormal].CGColor;
     [self.imageBtn setTitle:nil forState:UIControlStateNormal];
 }
 

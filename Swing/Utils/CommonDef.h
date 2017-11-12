@@ -37,9 +37,11 @@
 
 #define  TIME_ADJUST        [NSTimeZone localTimeZone].secondsFromGMT
 #define  TIME_STAMP         [[NSDate date] timeIntervalSince1970] + TIME_ADJUST
-
-//#define AVATAR_BASE_URL     @"http://avatar.childrenlab.com/"
+#ifdef DEBUG
+#define AVATAR_BASE_URL     @"https://hildrenlabqa.s3.amazonaws.com/userProfile/"
+#else
 #define AVATAR_BASE_URL     @"https://childrenlab.s3.amazonaws.com/userProfile/"
+#endif
 //userProfile/
 
 #define FILE_BASE_URL     @"https://childrenlab.s3.amazonaws.com/"

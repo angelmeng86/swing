@@ -176,6 +176,7 @@
         self.currentKid = kid;
         self.local.selectedKidId = kidId;
         [self saveInfo];
+        [[NSNotificationCenter defaultCenter] postNotificationName:KID_AVATAR_NOTIFICATION object:nil];
         return YES;
     }
     return NO;
