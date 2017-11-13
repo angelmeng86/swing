@@ -24,11 +24,23 @@
     // Do any additional setup after loading the view.
     self.deviceView.layer.cornerRadius = 5.0f;
     self.imageView.layer.cornerRadius = 12.0f;
-    self.deviceLabel.text = self.kid.name;
+    self.imageView.layer.masksToBounds = YES;
     
-    if (self.kid.profile) {
-        [self.imageView sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:self.kid.profile]] placeholderImage:LOAD_IMAGE(@"icon_profile")];
+    if (self.kid) {
+        self.deviceLabel.text = self.kid.name;
+        
+        if (self.kid.profile) {
+            [self.imageView sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:self.kid.profile]] placeholderImage:LOAD_IMAGE(@"icon_profile")];
+        }
     }
+    else if(self.user) {
+        self.deviceLabel.text = [self.user fullName];
+        
+        if (self.user.profile) {
+            [self.imageView sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:self.user.profile]] placeholderImage:LOAD_IMAGE(@"icon_profile")];
+        }
+    }
+    
     [self changeInfo];
     [self setCustomBackButton];
 }
@@ -67,9 +79,10 @@
     for (UIViewController *ctl in array) {
         if ([ctl isKindOfClass:[SelectWatchViewController class]]) {
             [self.navigationController popToViewController:ctl animated:YES];
-            break;
+            return;
         }
     }
+    [self backAction];
 }
 
 - (IBAction)btn2Action:(id)sender {
@@ -91,7 +104,15 @@
 - (IBAction)deviceAction:(id)sender {
     if (_type == RequestTypeAccess) {
         [SVProgressHUD show];
-        [[SwingClient sharedClient] subHostAdd:self.kid.parent.objId completion:^(SubHostModel *subHost, NSError *error) {
+        int64_t objId = 0;
+        if (self.kid) {
+            objId = self.kid.parent.objId;
+        }
+        else if (self.user) {
+            objId = self.user.objId;
+        }
+        
+        [[SwingClient sharedClient] subHostAdd:objId completion:^(SubHostModel *subHost, NSError *error) {
             if (error) {
                 LOG_D(@"subHostAdd err: %@", error);
                 [SVProgressHUD showErrorWithStatus:[error localizedDescription]];

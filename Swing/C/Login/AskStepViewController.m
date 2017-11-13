@@ -97,6 +97,7 @@
         {
             UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
             RequestAccessViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"Access"];
+            ctl.type = RequestTypeAccess;
             ctl.kid = self.kid;
             [self.navigationController pushViewController:ctl animated:YES];
         }
@@ -117,9 +118,11 @@
             break;
         case AskTypePurchase:
         {
-            //Continue as a guest user
-            AppDelegate *ad = (AppDelegate*)[UIApplication sharedApplication].delegate;
-            [ad goToMain];
+//            AppDelegate *ad = (AppDelegate*)[UIApplication sharedApplication].delegate;
+//            [ad goToMain];
+            UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
+            UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"SearchEmail"];
+            [self.navigationController pushViewController:ctl animated:YES];
         }
             break;
         case AskTypeWatchRegisted:

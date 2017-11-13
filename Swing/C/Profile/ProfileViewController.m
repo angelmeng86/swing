@@ -284,7 +284,7 @@
     else if (collectionView == self.pendingRequestCollectionView) {
         if (indexPath.row == self.pendingRequestToList.count) {
             UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
-            UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"SearchWatch"];
+            UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"SearchEmail"];
             [self.navigationController pushViewController:ctl animated:YES];
             return;
         }

@@ -18,6 +18,7 @@ typedef enum : NSUInteger {
 
 @property (nonatomic) RequestType type;
 @property (nonatomic, strong) KidModel *kid;
+@property (nonatomic, strong) UserModel *user;
 
 @property (weak, nonatomic) IBOutlet UILabel *label1;
 @property (weak, nonatomic) IBOutlet UIButton *btn1;

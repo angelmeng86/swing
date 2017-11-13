@@ -966,6 +966,30 @@
     return task;
 }
 
+- (NSURLSessionDataTask *)getUserByEmail:(NSString*)email completion:( void (^)(id user, NSError *error) )completion
+{
+    NSDictionary *data = @{@"email":email};
+    NSURLSessionDataTask *task = [self.sessionManager GET:_URL.getUserByEmail parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LOG_D(@"getUserByEmail info:%@", responseObject);
+            NSError *err = [self getErrorMessage:responseObject];
+            if (err) {
+                completion(nil, err);
+            }
+            else {
+                UserModel *model = [[UserModel alloc] initWithDictionary:responseObject error:nil];
+                completion(model, nil);
+            }
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSError *err = [self filterTokenInvalid:task.response err:error];
+            completion(nil, err);
+        });
+    }];
+    return task;
+}
+
 - (NSURLSessionDataTask *)subHostAdd:(int64_t)kidId completion:( void (^)(id data, NSError *error) )completion
 {
     NSURLSessionDataTask *task = [self.sessionManager POST:_URL.subHostAdd parameters:@{@"hostId":@(kidId)} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

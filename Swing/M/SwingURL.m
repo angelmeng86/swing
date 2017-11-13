@@ -144,6 +144,10 @@
     return @"/v1/user/updatePassword";
 }
 
+- (NSString*)getUserByEmail {
+    return @"/v1/user/getUserByEmail";
+}
+
 - (NSString*)subHostAdd {
     return @"/v1/subHost/add";
 }

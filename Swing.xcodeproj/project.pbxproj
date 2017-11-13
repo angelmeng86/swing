@@ -46,6 +46,7 @@
 		0F9382E71FB87F2A0095C516 /* DeviceSmallCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F9382E51FB87F2A0095C516 /* DeviceSmallCell.xib */; };
 		0F9734B11F17919900502D8A /* LFSyncSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9734B01F17919900502D8A /* LFSyncSheet.m */; };
 		0F9734B41F19162E00502D8A /* SyncNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9734B31F19162E00502D8A /* SyncNavViewController.m */; };
+		0FC529A21FB9F3FD004CFBA0 /* SearchEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FC529A11FB9F3FD004CFBA0 /* SearchEmailViewController.m */; };
 		0FCF50421F7A805F00738C23 /* alert2_jp.json in Resources */ = {isa = PBXBuildFile; fileRef = 0FCF50411F7A805F00738C23 /* alert2_jp.json */; };
 		0FCF50571F9CCFCE00738C23 /* SubHostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF50561F9CCFCE00738C23 /* SubHostModel.m */; };
 		0FCF505A1F9CE93C00738C23 /* RequestAccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF50591F9CE93C00738C23 /* RequestAccessViewController.m */; };
@@ -221,6 +222,8 @@
 		0F9734B01F17919900502D8A /* LFSyncSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFSyncSheet.m; sourceTree = "<group>"; };
 		0F9734B21F19162E00502D8A /* SyncNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncNavViewController.h; sourceTree = "<group>"; };
 		0F9734B31F19162E00502D8A /* SyncNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncNavViewController.m; sourceTree = "<group>"; };
+		0FC529A01FB9F3FD004CFBA0 /* SearchEmailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchEmailViewController.h; sourceTree = "<group>"; };
+		0FC529A11FB9F3FD004CFBA0 /* SearchEmailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchEmailViewController.m; sourceTree = "<group>"; };
 		0FCF50411F7A805F00738C23 /* alert2_jp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = alert2_jp.json; sourceTree = "<group>"; };
 		0FCF50551F9CCFCE00738C23 /* SubHostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubHostModel.h; sourceTree = "<group>"; };
 		0FCF50561F9CCFCE00738C23 /* SubHostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubHostModel.m; sourceTree = "<group>"; };
@@ -789,6 +792,8 @@
 				0F15D2A81E0AC48E004F8F69 /* IndexViewController.m */,
 				0FCF50581F9CE93C00738C23 /* RequestAccessViewController.h */,
 				0FCF50591F9CE93C00738C23 /* RequestAccessViewController.m */,
+				0FC529A01FB9F3FD004CFBA0 /* SearchEmailViewController.h */,
+				0FC529A11FB9F3FD004CFBA0 /* SearchEmailViewController.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1062,6 +1067,7 @@
 				0F927FD51DDA02680011EF90 /* BLEClient.m in Sources */,
 				ADCED9E41D3D2BAC002E3F78 /* LoginedModel.m in Sources */,
 				AD1CEF101D5AE7F5004FEC24 /* LMTabBarController2.m in Sources */,
+				0FC529A21FB9F3FD004CFBA0 /* SearchEmailViewController.m in Sources */,
 				ADB5A6591F18529F005F8B8B /* FirmwareVersion.m in Sources */,
 				0F45AB8B1D63614800EF385F /* ActivityResultModel.m in Sources */,
 				0F9382E21FB87E960095C516 /* LFDevicesActionSheet.m in Sources */,
