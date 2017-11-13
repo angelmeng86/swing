@@ -50,6 +50,7 @@
 @property (nonatomic, readonly, strong) NSString* putFirmwareVersion;
 
 @property (nonatomic, readonly, strong) NSString* sendResetPasswordEmail;
+@property (nonatomic, readonly, strong) NSString* updatePassword;
 
 @property (nonatomic, readonly, strong) NSString* subHostAdd;
 @property (nonatomic, readonly, strong) NSString* subHostAccept;

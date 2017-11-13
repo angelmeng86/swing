@@ -40,7 +40,25 @@
 */
 
 - (IBAction)saveAction:(id)sender {
-    
+    if (![self.pwdTF.text isEqualToString:self.pwdTF2.text]) {
+        [Fun showMessageBoxWithTitle:LOC_STR(@"Error") andMessage:LOC_STR(@"The two password is inconsistent")];
+        return;
+    }
+    if (self.pwdTF.text.length < 6) {
+        [Fun showMessageBoxWithTitle:LOC_STR(@"Error") andMessage:LOC_STR(@"The password length has to be longer than 6 characters")];
+        return;
+    }
+    [SVProgressHUD show];
+    [[SwingClient sharedClient] updatePassword:self.pwdTF.text completion:^(NSError *error) {
+        if (error) {
+            LOG_D(@"updatePassword fail: %@", error);
+            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+        }
+        else {
+            [SVProgressHUD showSuccessWithStatus:nil];
+            [self backAction];
+        }
+    }];
 }
 
 @end

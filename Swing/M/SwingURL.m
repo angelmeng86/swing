@@ -140,6 +140,10 @@
     return @"/v1/user/sendResetPasswordEmail";
 }
 
+- (NSString*)updatePassword {
+    return @"/v1/user/updatePassword";
+}
+
 - (NSString*)subHostAdd {
     return @"/v1/subHost/add";
 }

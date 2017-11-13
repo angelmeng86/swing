@@ -224,3 +224,6 @@
 "Accept"="Accept";
 "Are you sure to stop sharing with %@?"="Are you sure to stop sharing with %@?";
 "Sharing now!"="Sharing now!";
+
+"The two password is inconsistent"="The two password is inconsistent";
+"The password length has to be longer than 6 characters"="The password length has to be longer than 6 characters";

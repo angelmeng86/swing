@@ -177,6 +177,7 @@
         self.local.selectedKidId = kidId;
         [self saveInfo];
         [[NSNotificationCenter defaultCenter] postNotificationName:KID_AVATAR_NOTIFICATION object:nil];
+        LOG_D(@"switchKid %lld:%@", kidId, kid.macId);
         return YES;
     }
     return NO;

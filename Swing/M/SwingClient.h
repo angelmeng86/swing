@@ -94,6 +94,8 @@ typedef enum : NSUInteger {
 
 - (NSURLSessionDataTask *)sendResetPasswordEmail:(NSString*)email completion:( void (^)(NSError *error) )completion;
 
+- (NSURLSessionDataTask *)updatePassword:(NSString*)newpwd completion:( void (^)(NSError *error) )completion;
+
 //subHost API
 
 - (NSURLSessionDataTask *)subHostAdd:(int64_t)kidId completion:( void (^)(id subHost, NSError *error) )completion;

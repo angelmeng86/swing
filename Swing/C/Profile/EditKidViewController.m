@@ -46,8 +46,8 @@
     
     if (self.kid) {
         self.firstNameTF.text = self.kid.name;
-        if (self.kid.profile) {
-            [self.imageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:[GlobalCache shareInstance].currentKid.profile]] forState:UIControlStateNormal];
+        if (self.kid.profile.length > 0) {
+            [self.imageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:self.kid.profile]] forState:UIControlStateNormal];
 //            self.imageBtn.layer.borderColor = [UIColor whiteColor].CGColor;
 //            [self.imageBtn setTitle:nil forState:UIControlStateNormal];
         }

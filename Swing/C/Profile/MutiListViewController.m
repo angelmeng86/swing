@@ -37,7 +37,7 @@
     self.collectionView2.backgroundColor = [UIColor clearColor];
     self.collectionView2.backgroundView = [UIView new];
     
-    [self loadInfo];
+//    [self loadInfo];
 }
 
 - (void)loadInfo
@@ -119,9 +119,10 @@
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
+    [self loadInfo];
     [self reloadInfo];
 }
 
