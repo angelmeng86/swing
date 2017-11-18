@@ -44,8 +44,10 @@
     self.todayBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
     self.monthBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
     [self.todayBtn setTitle:LOC_STR(@"Today's Schedule") forState:UIControlStateNormal];
-    [self.monthBtn setTitle:LOC_STR(@"Monthly Schedule") forState:UIControlStateNormal];
-    [self.syncBtn setTitle:LOC_STR(@"Sync Now") forState:UIControlStateNormal];
+    [self.monthBtn setTitle:LOC_STR(@"Sync Now") forState:UIControlStateNormal];
+    self.syncBtn.hidden = YES;
+//    [self.monthBtn setTitle:LOC_STR(@"Monthly Schedule") forState:UIControlStateNormal];
+//    [self.syncBtn setTitle:LOC_STR(@"Sync Now") forState:UIControlStateNormal];
 }
 
 - (void)setTimeDesc:(NSString*)time desc:(NSString*)desc {
@@ -187,7 +189,7 @@
 }
 
 - (IBAction)monthlyAction:(id)sender {
-    
+    [self syncAction:sender];
 }
 
 - (IBAction)syncAction:(id)sender {
@@ -211,7 +213,7 @@
 {
     if (![GlobalCache shareInstance].local.disableSyncTip) {
         UIWindow * window = [[[UIApplication sharedApplication] delegate] window];
-        CGRect rect = [self.syncBtn convertRect:self.syncBtn.bounds toView:window];
+        CGRect rect = [self.monthBtn convertRect:self.monthBtn.bounds toView:window];
         
         LFSyncSheet *sheet = [LFSyncSheet actionSheetViewWithBlock:^(LFSyncSheet *actionSheet, BOOL check) {
             if (check) {

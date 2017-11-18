@@ -23,6 +23,7 @@
 		0F45AB831D6316FA00EF385F /* STextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB821D6316FA00EF385F /* STextField.m */; };
 		0F45AB881D63593400EF385F /* ActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB871D63593400EF385F /* ActivityModel.m */; };
 		0F45AB8B1D63614800EF385F /* ActivityResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB8A1D63614800EF385F /* ActivityResultModel.m */; };
+		0F5E32501FBF2C3200E0B1B3 /* DashboardViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5E324F1FBF2C3200E0B1B3 /* DashboardViewController2.m */; };
 		0F68BEEE1DE87F8D002FDFB2 /* Activity+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F68BEEB1DE87F8D002FDFB2 /* Activity+CoreDataClass.m */; };
 		0F68BEEF1DE87F8D002FDFB2 /* Activity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F68BEED1DE87F8D002FDFB2 /* Activity+CoreDataProperties.m */; };
 		0F927FD51DDA02680011EF90 /* BLEClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F927FCC1DDA02680011EF90 /* BLEClient.m */; };
@@ -47,6 +48,9 @@
 		0F9734B11F17919900502D8A /* LFSyncSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9734B01F17919900502D8A /* LFSyncSheet.m */; };
 		0F9734B41F19162E00502D8A /* SyncNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9734B31F19162E00502D8A /* SyncNavViewController.m */; };
 		0FC529A21FB9F3FD004CFBA0 /* SearchEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FC529A11FB9F3FD004CFBA0 /* SearchEmailViewController.m */; };
+		0FC529A41FBB3CD1004CFBA0 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FC529A31FBB3CD1004CFBA0 /* Dashboard.storyboard */; };
+		0FC529A71FBC96F4004CFBA0 /* StepsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FC529A61FBC96F4004CFBA0 /* StepsInfoView.m */; };
+		0FC529A91FBC9706004CFBA0 /* StepsInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FC529A81FBC9706004CFBA0 /* StepsInfoView.xib */; };
 		0FCF50421F7A805F00738C23 /* alert2_jp.json in Resources */ = {isa = PBXBuildFile; fileRef = 0FCF50411F7A805F00738C23 /* alert2_jp.json */; };
 		0FCF50571F9CCFCE00738C23 /* SubHostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF50561F9CCFCE00738C23 /* SubHostModel.m */; };
 		0FCF505A1F9CE93C00738C23 /* RequestAccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF50591F9CE93C00738C23 /* RequestAccessViewController.m */; };
@@ -178,6 +182,8 @@
 		0F45AB871D63593400EF385F /* ActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityModel.m; sourceTree = "<group>"; };
 		0F45AB891D63614800EF385F /* ActivityResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityResultModel.h; sourceTree = "<group>"; };
 		0F45AB8A1D63614800EF385F /* ActivityResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityResultModel.m; sourceTree = "<group>"; };
+		0F5E324E1FBF2C3200E0B1B3 /* DashboardViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController2.h; sourceTree = "<group>"; };
+		0F5E324F1FBF2C3200E0B1B3 /* DashboardViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardViewController2.m; sourceTree = "<group>"; };
 		0F68BEEA1DE87F8D002FDFB2 /* Activity+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Activity+CoreDataClass.h"; sourceTree = "<group>"; };
 		0F68BEEB1DE87F8D002FDFB2 /* Activity+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Activity+CoreDataClass.m"; sourceTree = "<group>"; };
 		0F68BEEC1DE87F8D002FDFB2 /* Activity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Activity+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -224,6 +230,10 @@
 		0F9734B31F19162E00502D8A /* SyncNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncNavViewController.m; sourceTree = "<group>"; };
 		0FC529A01FB9F3FD004CFBA0 /* SearchEmailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchEmailViewController.h; sourceTree = "<group>"; };
 		0FC529A11FB9F3FD004CFBA0 /* SearchEmailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchEmailViewController.m; sourceTree = "<group>"; };
+		0FC529A31FBB3CD1004CFBA0 /* Dashboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
+		0FC529A51FBC96F4004CFBA0 /* StepsInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepsInfoView.h; sourceTree = "<group>"; };
+		0FC529A61FBC96F4004CFBA0 /* StepsInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepsInfoView.m; sourceTree = "<group>"; };
+		0FC529A81FBC9706004CFBA0 /* StepsInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StepsInfoView.xib; sourceTree = "<group>"; };
 		0FCF50411F7A805F00738C23 /* alert2_jp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = alert2_jp.json; sourceTree = "<group>"; };
 		0FCF50551F9CCFCE00738C23 /* SubHostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubHostModel.h; sourceTree = "<group>"; };
 		0FCF50561F9CCFCE00738C23 /* SubHostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubHostModel.m; sourceTree = "<group>"; };
@@ -682,6 +692,9 @@
 				AD1CEF091D5ACB19004FEC24 /* LMBarView.m */,
 				AD1CEF0B1D5ADA90004FEC24 /* LMArrowView.h */,
 				AD1CEF0C1D5ADA90004FEC24 /* LMArrowView.m */,
+				0FC529A51FBC96F4004CFBA0 /* StepsInfoView.h */,
+				0FC529A61FBC96F4004CFBA0 /* StepsInfoView.m */,
+				0FC529A81FBC9706004CFBA0 /* StepsInfoView.xib */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -740,6 +753,8 @@
 				AD7797A51D4D085600472B27 /* ChartViewController.m */,
 				ADF33CBA1D5A323000AE8874 /* TodayChartViewController.h */,
 				ADF33CBB1D5A323000AE8874 /* TodayChartViewController.m */,
+				0F5E324E1FBF2C3200E0B1B3 /* DashboardViewController2.h */,
+				0F5E324F1FBF2C3200E0B1B3 /* DashboardViewController2.m */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -831,6 +846,7 @@
 				ADDCD3F01D4C54960031DC66 /* SyncDevice.storyboard */,
 				AD1CEF111D5AE886004FEC24 /* MainTab2.storyboard */,
 				0F9382B81FA5CB380095C516 /* Profile.storyboard */,
+				0FC529A31FBB3CD1004CFBA0 /* Dashboard.storyboard */,
 			);
 			path = storyboard;
 			sourceTree = "<group>";
@@ -996,6 +1012,7 @@
 				ADDCD3FB1D4C59F10031DC66 /* Avenir-bold.ttf in Resources */,
 				0F9382E71FB87F2A0095C516 /* DeviceSmallCell.xib in Resources */,
 				ADDCD3FC1D4C59F10031DC66 /* Avenir-Book.otf in Resources */,
+				0FC529A41FBB3CD1004CFBA0 /* Dashboard.storyboard in Resources */,
 				0FEB6D601F014909007507D4 /* B-062617.bin in Resources */,
 				0FCF50421F7A805F00738C23 /* alert2_jp.json in Resources */,
 				ADDCD3F31D4C54960031DC66 /* LoginFlow.storyboard in Resources */,
@@ -1005,6 +1022,7 @@
 				AD1CEF121D5AE886004FEC24 /* MainTab2.storyboard in Resources */,
 				ADDCD3F41D4C54960031DC66 /* MainTab.storyboard in Resources */,
 				0FDAF5AA1D6405EF007CD808 /* citystate.json in Resources */,
+				0FC529A91FBC9706004CFBA0 /* StepsInfoView.xib in Resources */,
 				ADFC2C3B1D369949004EDCDF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1166,8 +1184,10 @@
 				AD790F531DAF9D9B002FE2F1 /* LFTextField.m in Sources */,
 				0F927FD71DDA02680011EF90 /* BLEScanDevice.m in Sources */,
 				0F68BEEF1DE87F8D002FDFB2 /* Activity+CoreDataProperties.m in Sources */,
+				0F5E32501FBF2C3200E0B1B3 /* DashboardViewController2.m in Sources */,
 				AD978D0C1D585EF000E59D2B /* MessageViewController.m in Sources */,
 				0FD6B3E71D61B79300C00A45 /* ChoicesViewController.m in Sources */,
+				0FC529A71FBC96F4004CFBA0 /* StepsInfoView.m in Sources */,
 				AD347D1E1D3FDEEC00E91DDD /* SelectWatchViewController.m in Sources */,
 				AD74D4DC1D4F90B5001F3B36 /* EventLabel.m in Sources */,
 				ADFC2C2D1D369949004EDCDF /* main.m in Sources */,

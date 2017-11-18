@@ -19,7 +19,7 @@
         <scene sceneID="AZA-2Z-giU">
             <objects>
                 <navigationController id="J63-vw-OfT" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="8LF-pz-0QP">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8LF-pz-0QP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -102,7 +102,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="WxS-KM-iCW" kind="push" id="SsR-gr-1hb"/>
+                                    <action selector="monthlyAction:" destination="4vA-Cq-YDg" eventType="touchUpInside" id="yoy-Fd-fIX"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LH6-Bz-oxy" customClass="MDRadialProgressView">
@@ -252,21 +252,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oQa-Nr-wu7" customClass="JTCalendarMenuView">
-                                <rect key="frame" x="0.0" y="74" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="30" width="414" height="50"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="gYR-UZ-NFN"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ewy-05-8JU" customClass="JTHorizontalCalendarView">
-                                <rect key="frame" x="0.0" y="124" width="414" height="300"/>
+                                <rect key="frame" x="0.0" y="80" width="414" height="300"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="4PD-pt-JyE"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xr9-EB-2MD" customClass="RoundButton">
-                                <rect key="frame" x="60" y="444" width="294" height="30"/>
+                                <rect key="frame" x="60" y="400" width="294" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="2Fn-vY-kZr"/>
@@ -731,7 +731,7 @@ You can do this!</string>
         <!--Activity-->
         <scene sceneID="BW6-6p-HJP">
             <objects>
-                <viewController title="Activity" id="PlN-3i-RHN" customClass="ActivityViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Activity" title="Activity" id="PlN-3i-RHN" customClass="ActivityViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="N1s-y9-op7"/>
                         <viewControllerLayoutGuide type="bottom" id="xE2-qE-hO3"/>

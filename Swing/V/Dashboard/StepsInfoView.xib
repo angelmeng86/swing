@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Avenir-bold.ttf">
+            <string>ArialRoundedMTBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StepsInfoView">
+            <connections>
+                <outlet property="leftLabel1" destination="Sq2-KF-h12" id="5ui-or-FkM"/>
+                <outlet property="leftLabel2" destination="p5A-1r-qKY" id="CuA-Pt-PwY"/>
+                <outlet property="rightLabel" destination="Hem-lb-M4r" id="m3X-V5-MJd"/>
+                <outlet property="timeLabel" destination="taj-k3-wA8" id="l5x-Ra-jKo"/>
+                <outlet property="valueLabel" destination="jdb-b8-gp7" id="YwM-ya-nw8"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="67"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Indoor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sq2-KF-h12">
+                    <rect key="frame" x="20" y="10" width="54.5" height="20"/>
+                    <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                    <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="steps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p5A-1r-qKY">
+                    <rect key="frame" x="20" y="35" width="40" height="17.5"/>
+                    <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="15"/>
+                    <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1,234" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jdb-b8-gp7">
+                    <rect key="frame" x="237.5" y="5" width="67.5" height="29"/>
+                    <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="25"/>
+                    <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today, 8:40am" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="taj-k3-wA8">
+                    <rect key="frame" x="250" y="39" width="105" height="17.5"/>
+                    <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="15"/>
+                    <color key="textColor" red="0.47058823529999999" green="0.57647058819999997" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="steps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hem-lb-M4r">
+                    <rect key="frame" x="315" y="16.5" width="40" height="17.5"/>
+                    <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="15"/>
+                    <color key="textColor" red="1" green="0.44705882349999998" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="jdb-b8-gp7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="4BV-ag-ZNo"/>
+                <constraint firstItem="Hem-lb-M4r" firstAttribute="trailing" secondItem="taj-k3-wA8" secondAttribute="trailing" id="4rN-bS-CaL"/>
+                <constraint firstItem="p5A-1r-qKY" firstAttribute="leading" secondItem="Sq2-KF-h12" secondAttribute="leading" id="8tP-PW-Tns"/>
+                <constraint firstAttribute="bottom" secondItem="taj-k3-wA8" secondAttribute="bottom" constant="10" id="AKc-TR-I00"/>
+                <constraint firstItem="Hem-lb-M4r" firstAttribute="bottom" secondItem="jdb-b8-gp7" secondAttribute="bottom" id="M3j-cp-5SX"/>
+                <constraint firstItem="p5A-1r-qKY" firstAttribute="top" secondItem="Sq2-KF-h12" secondAttribute="bottom" constant="5" id="MZF-Cf-VrC"/>
+                <constraint firstItem="taj-k3-wA8" firstAttribute="top" secondItem="Hem-lb-M4r" secondAttribute="bottom" constant="5" id="c7d-Zv-ffT"/>
+                <constraint firstItem="Sq2-KF-h12" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="iTB-63-1TB"/>
+                <constraint firstItem="Hem-lb-M4r" firstAttribute="leading" secondItem="jdb-b8-gp7" secondAttribute="trailing" constant="10" id="ici-C2-XR2"/>
+                <constraint firstItem="Sq2-KF-h12" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="jZG-7u-Ypp"/>
+                <constraint firstAttribute="trailing" secondItem="Hem-lb-M4r" secondAttribute="trailing" constant="20" id="ron-7R-4qF"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="32.5" y="-222.5"/>
+        </view>
+    </objects>
+</document>

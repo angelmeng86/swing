@@ -38,6 +38,13 @@
         if(i == 3) {
             i++;
         }
+        else if(i == 2) {
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Dashboard" bundle:nil];
+            UIViewController *ctl = [sb instantiateInitialViewController];
+            [navCtl setViewControllers:@[ctl] animated:NO];
+            i++;
+            continue;
+        }
         UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:[NSString stringWithFormat:@"SwingTab%d", i]];
         [navCtl setViewControllers:@[ctl] animated:NO];
         i++;
