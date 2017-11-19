@@ -98,6 +98,7 @@
 #import "Todo+CoreDataClass.h"
 #import "Activity+CoreDataClass.h"
 #import "KidInfo+CoreDataClass.h"
+#import "EventKid+CoreDataClass.h"
 #import "DBHelper.h"
 
 #endif

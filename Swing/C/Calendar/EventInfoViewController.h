@@ -19,6 +19,7 @@
 
 @property (strong, nonatomic) EventModel *model;
 @property (weak, nonatomic) IBOutlet UIButton *saveBtn;
+@property (weak, nonatomic) IBOutlet UIButton *delBtn;
 
 - (IBAction)saveAction:(id)sender;
 - (IBAction)delAction:(id)sender;

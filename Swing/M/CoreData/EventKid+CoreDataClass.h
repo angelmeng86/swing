@@ -1,5 +1,5 @@
 //
-//  Event+CoreDataClass.h
+//  EventKid+CoreDataClass.h
 //  
 //
 //  Created by Mapple on 2017/11/19.
@@ -9,14 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class EventKid, Todo, UIColor;
+@class Event;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Event : NSManagedObject
+@interface EventKid : NSManagedObject
 
 @end
 
 NS_ASSUME_NONNULL_END
 
-#import "Event+CoreDataProperties.h"
+#import "EventKid+CoreDataProperties.h"

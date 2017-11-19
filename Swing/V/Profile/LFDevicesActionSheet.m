@@ -30,7 +30,6 @@
 
 @property (nonatomic, copy) LFDevicesActionSheetDidSelectBlock actionBlock;
 
-@property (nonatomic, weak) UIView *cover;
 @property (nonatomic, weak) UIView *actionSheet;
 
 @property (nonatomic, weak) UITableView *tableView;
@@ -66,8 +65,6 @@
     
     if (self = [super initWithFrame:SCREEN_BOUNDS]) {
         self.actionBlock = block;
-        [self setupCover];
-        [self setupActionSheet];
     }
     return self;
 }
@@ -138,18 +135,6 @@
     
     _actionSheet.frame = CGRectMake(10, CGRectGetHeight(self.frame), CGRectGetWidth(self.frame) - 20, _offsetY);
     _actionSheetHeight = _offsetY + 10;
-}
-
-- (void)setupCover {
-    
-    [self addSubview:({
-        UIView *cover = [[UIView alloc] init];
-        cover.frame = self.bounds;
-        cover.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.33];
-        cover.alpha = 0;
-        [cover addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)]];
-        _cover = cover;
-    })];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

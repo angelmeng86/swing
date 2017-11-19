@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LFBaseSheet.h"
 
 @class LFDevicesActionSheet;
 @class KidInfo;
 
 typedef void (^LFDevicesActionSheetDidSelectBlock)(LFDevicesActionSheet *actionSheet, KidInfo* kid);
 
-@interface LFDevicesActionSheet : UIView
+@interface LFDevicesActionSheet : LFBaseSheet
 
 + (instancetype)actionSheetViewWithBlock:(LFDevicesActionSheetDidSelectBlock)actionBlock;
 

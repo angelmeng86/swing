@@ -1,12 +1,15 @@
 //
 //  Event+CoreDataClass.m
-//  Swing
+//  
 //
-//  Created by Mapple on 2016/11/22.
-//  Copyright © 2016年 zzteam. All rights reserved.
+//  Created by Mapple on 2017/11/19.
+//
 //
 
 #import "Event+CoreDataClass.h"
+#import "EventKid+CoreDataClass.h"
+
+#import "Todo+CoreDataClass.h"
 
 @implementation Event
 

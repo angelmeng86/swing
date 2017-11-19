@@ -12,6 +12,7 @@
 #import "CommonDef.h"
 #import "KeyboardManager.h"
 #import "LMArrowView.h"
+#import "EventIntroSheet.h"
 
 #define TAG_REPEAT  2017
 
@@ -212,6 +213,22 @@
             }
         }
         
+        if (self.model.kid.count > 0) {
+            NSMutableArray *profiles = [NSMutableArray array];
+            NSMutableArray *ids = [NSMutableArray array];
+            for (KidModel *k in self.model.kid) {
+                if (k.profile.length > 0) {
+                    [profiles addObject:k.profile];
+                }
+                else {
+                    [profiles addObject:@""];
+                }
+                [ids addObject:@(k.objId)];
+            }
+            kidIds = ids;
+            [self setAssginTo:profiles];
+        }
+        
         
         
         [self.todoCtl setItemList:self.model.todo];
@@ -317,19 +334,24 @@
 }
 
 - (void)choicesViewController:(ChoicesViewController*)ctl didMutiSelected:(NSArray*)indexs {
-    NSMutableArray *kids = [NSMutableArray array];
+    NSMutableArray *profiles = [NSMutableArray array];
     NSMutableArray *ids = [NSMutableArray array];
     for (NSIndexPath *indexPath in indexs) {
         KidInfo *k = ctl.array[indexPath.row];
-        [kids addObject:k];
+        if (k.profile.length > 0) {
+            [profiles addObject:k.profile];
+        }
+        else {
+            [profiles addObject:@""];
+        }
         [ids addObject:@(k.objId)];
     }
     kidIds = ids;
-    [self setAssginTo:kids];
+    [self setAssginTo:profiles];
 }
 
-- (void)setAssginTo:(NSArray*)kids {
-    if (kids.count == 0) {
+- (void)setAssginTo:(NSArray*)kidProfiles {
+    if (kidProfiles.count == 0) {
         return;
     }
     UIView *bgView = [UIControl new];
@@ -338,13 +360,13 @@
     bgView.frame = CGRectMake(0, 0, 200, 30);
     self.assignTF.rightView = bgView;
     NSMutableArray *views = [NSMutableArray array];
-    for (KidInfo *kid in kids) {
+    for (NSString *profile in kidProfiles) {
         UIImageView *imgView = [UIImageView new];
         imgView.layer.cornerRadius = 12.f;
         imgView.layer.masksToBounds = YES;
         [bgView addSubview:imgView];
-        if (kid.profile.length > 0) {
-            [imgView sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:kid.profile]] placeholderImage:LOAD_IMAGE(@"icon_profile")];
+        if (profile.length > 0) {
+            [imgView sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:profile]] placeholderImage:LOAD_IMAGE(@"icon_profile")];
         }
         else {
             imgView.image = LOAD_IMAGE(@"icon_profile");
@@ -400,6 +422,10 @@
         AlertSelectViewController *ctl = [[AlertSelectViewController alloc] initWithStyle:UITableViewStylePlain];
         ctl.delegate = self;
         [self.navigationController pushViewController:ctl animated:YES];
+        
+        EventIntroSheet *sheet = [EventIntroSheet actionSheetView];
+        [sheet show];
+        
         return NO;
     }
     else if (textField == self.repeatTF) {

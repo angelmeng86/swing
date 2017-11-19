@@ -33,4 +33,18 @@
     self.macId = m.macId;
 }
 
+- (void)updateTo2:(EventKid*)m {
+    m.objId = _objId;
+    m.name = _name;
+    m.profile = _profile;
+    m.macId = _macId;
+}
+
+- (void)updateFrom2:(EventKid*)m {
+    self.objId = m.objId;
+    self.name = m.name;
+    self.profile = m.profile;
+    self.macId = m.macId;
+}
+
 @end

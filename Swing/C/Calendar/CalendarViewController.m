@@ -14,6 +14,7 @@
 #import "LMCalendarDayView.h"
 #import "LFSyncSheet.h"
 #import "SyncNavViewController.h"
+#import "TodayIntroSheet.h"
 
 @interface CalendarViewController ()
 
@@ -40,6 +41,9 @@
     self.timeLabel.adjustsFontSizeToFitWidth = YES;
     self.descLabel.adjustsFontSizeToFitWidth = YES;
     [self setTimeDesc:LOC_STR(@"No Event") desc:nil];
+    
+    [self.view bringSubviewToFront:self.timeLabel];
+    [ControlFactory setClickAction:self.timeLabel target:self action:@selector(timeLabelAction)];
     
     self.todayBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
     self.monthBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
@@ -121,6 +125,16 @@
     [self loadEventView];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    UIWindow * window = [[[UIApplication sharedApplication] delegate] window];
+    CGRect todayRect = [self.todayView convertRect:self.todayView.bounds toView:window];
+    CGRect timeRect = [self.timeLabel convertRect:self.timeLabel.bounds toView:window];
+    TodayIntroSheet *sheet = [TodayIntroSheet actionSheetView];
+    [sheet show:todayRect time:timeRect];
+}
+
 - (void)modeAction:(id)sender {
     if (!self.calendarManager.settings.weekModeEnabled) {
         self.progressView.hidden = NO;
@@ -180,6 +194,12 @@
 //    else {
 //        [super calendar:calendar didTouchDayView:dayView];
 //    }
+}
+
+- (void)timeLabelAction {
+    if (self.descLabel.text.length > 0) {
+        [self todayAction:nil];
+    }
 }
 
 - (IBAction)todayAction:(id)sender {

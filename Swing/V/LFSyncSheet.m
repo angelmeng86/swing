@@ -31,7 +31,6 @@
 
 @property (nonatomic, copy) LFSyncSheetDidActionBlock selectActionBlock;
 
-@property (nonatomic, weak) UIView *cover;
 @property (nonatomic, weak) UIView *actionSheet;
 @property (nonatomic, weak) UIButton *btn;
 @property (nonatomic, weak) UIButton *checkBtn;
@@ -46,8 +45,6 @@
     
     if (self = [super initWithFrame:SCREEN_BOUNDS]) {
         _selectActionBlock = actionBlock;
-        [self setupCover];
-        [self setupActionSheet];
     }
     return self;
 }
@@ -55,24 +52,6 @@
 + (instancetype)actionSheetViewWithBlock:(LFSyncSheetDidActionBlock)actionBlock
 {
     return [[self alloc] initWithBlock:actionBlock];
-}
-
-#pragma mark - Animations
-
-- (void)show {
-    [[UIApplication sharedApplication].keyWindow addSubview:self];
-    [UIView animateWithDuration:0.5
-                          delay:0.0
-         usingSpringWithDamping:0.9
-          initialSpringVelocity:0.7
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         self.cover.alpha = 1.0;
-                         
-                     }
-                     completion:^(BOOL finished) {
-                         
-                     }];
 }
 
 - (void)showArrow:(CGRect)target
@@ -85,35 +64,14 @@
     [line autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.actionSheet withOffset:20];
     [line autoAlignAxisToSuperviewAxis:ALAxisVertical];
     [line autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:SCREEN_HEIGHT - target.origin.y + 10];
-    
-    [[UIApplication sharedApplication].keyWindow addSubview:self];
-    [UIView animateWithDuration:0.5
-                          delay:0.0
-         usingSpringWithDamping:0.9
-          initialSpringVelocity:0.7
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         self.cover.alpha = 1.0;
-                         
-                     }
-                     completion:^(BOOL finished) {
-                         
-                     }];
-}
 
-- (void)dismiss {
+    UIBezierPath *path = [UIBezierPath bezierPathWithRect:self.cover.frame];
+    [path appendPath:[[UIBezierPath bezierPathWithRoundedRect: target cornerRadius:5.0f] bezierPathByReversingPath]];
+    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+    shapeLayer.path = path.CGPath;
+    [self.cover.layer setMask:shapeLayer];
     
-    [UIView animateWithDuration:0.5
-                          delay:0.0
-         usingSpringWithDamping:0.9
-          initialSpringVelocity:0.7
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         self.cover.alpha = 0.0;
-                     }
-                     completion:^(BOOL finished) {
-                         [self removeFromSuperview];
-                     }];
+    [super show];
 }
 
 - (void)setupActionSheet {
@@ -131,7 +89,8 @@
     })];
     
     [_imageView autoAlignAxisToSuperviewAxis:ALAxisVertical];
-    [_imageView autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:_actionSheet withOffset:-120];
+    [_imageView autoSetDimensionsToSize:CGSizeMake(120, 120)];
+    [_imageView autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:_actionSheet withOffset:-90];
     
     [_actionSheet autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:40];
     [_actionSheet autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:40];
@@ -216,18 +175,6 @@
         _selectActionBlock(self, self.checkBtn.selected);
     }
     [self dismiss];
-}
-
-- (void)setupCover {
-    
-    [self addSubview:({
-        UIView *cover = [[UIView alloc] init];
-        cover.frame = self.bounds;
-        cover.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.66];
-        cover.alpha = 0;
-//        [cover addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)]];
-        _cover = cover;
-    })];
 }
 
 @end

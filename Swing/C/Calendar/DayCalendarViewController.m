@@ -290,7 +290,7 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
 
 - (void)tapAction:(UITapGestureRecognizer*)recognizer {
     EventLabel *label = (EventLabel *)[recognizer view];
-    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
+    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"Calendar" bundle:nil];
     EventInfoViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"EventInfo"];
     ctl.dateSelected = self.dateSelected;
     ctl.model = label.model;

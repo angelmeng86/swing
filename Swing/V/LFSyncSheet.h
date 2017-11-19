@@ -7,16 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LFBaseSheet.h"
 
 @class LFSyncSheet;
 
 typedef void (^LFSyncSheetDidActionBlock)(LFSyncSheet *actionSheet, BOOL check);
 
-@interface LFSyncSheet : UIView
+@interface LFSyncSheet : LFBaseSheet
 
 + (instancetype)actionSheetViewWithBlock:(LFSyncSheetDidActionBlock)actionBlock;
 
-- (void)show;
 - (void)showArrow:(CGRect)target;
 
 @end

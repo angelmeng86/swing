@@ -1,9 +1,9 @@
 //
 //  Event+CoreDataProperties.m
-//  Swing
+//  
 //
-//  Created by Mapple on 2016/11/22.
-//  Copyright © 2016年 zzteam. All rights reserved.
+//  Created by Mapple on 2017/11/19.
+//
 //
 
 #import "Event+CoreDataProperties.h"
@@ -21,11 +21,12 @@
 @dynamic endDate;
 @dynamic eventName;
 @dynamic objId;
+@dynamic repeat;
 @dynamic startDate;
 @dynamic state;
 @dynamic status;
 @dynamic timezoneOffset;
-@dynamic repeat;
 @dynamic todoList;
+@dynamic kidList;
 
 @end

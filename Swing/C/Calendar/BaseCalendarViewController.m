@@ -196,6 +196,7 @@
 //        dayView.dotView.backgroundColor = [UIColor whiteColor];
         dayView.textLabel.textColor = [UIColor whiteColor];
         dayView.dotColors = @[[UIColor blackColor]];
+        self.todayView = dayView;
     }
     // Selected date
     else if(_dateSelected && [calendar.dateHelper date:_dateSelected isTheSameDayThan:dayView.date]){

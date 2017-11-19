@@ -9,6 +9,7 @@
 #import "EventInfoViewController.h"
 #import "EventSelectTableViewCell.h"
 #import "AddEventViewController2.h"
+#import "EventEditIntroSheet.h"
 #import "CommonDef.h"
 
 @interface EventInfoViewController ()
@@ -34,6 +35,13 @@
     [self reloadData];
 //    self.navigationItem.rightBarButtonItem = nil;
     [self.saveBtn setTitle:LOC_STR(@"Save") forState:UIControlStateNormal];
+    [self.delBtn setTitle:LOC_STR(@"Delete") forState:UIControlStateNormal];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    EventEditIntroSheet *sheet = [EventEditIntroSheet actionSheetView];
+    [sheet show];
 }
 
 - (void)reloadData {

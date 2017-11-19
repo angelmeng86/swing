@@ -9,6 +9,7 @@
 #import "JSONModel.h"
 #import "UserModel.h"
 #import "KidInfo+CoreDataClass.h"
+#import "EventKid+CoreDataClass.h"
 
 @protocol KidModel @end
 
@@ -30,5 +31,8 @@
 
 - (void)updateTo:(KidInfo*)m;
 - (void)updateFrom:(KidInfo*)m;
+
+- (void)updateTo2:(EventKid*)m;
+- (void)updateFrom2:(EventKid*)m;
 
 @end

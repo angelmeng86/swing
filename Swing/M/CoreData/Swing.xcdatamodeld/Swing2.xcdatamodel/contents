@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16A323" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16A323" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="Activity" representedClassName="Activity" syncable="YES">
         <attribute name="indoorActivity" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="macId" optional="YES" attributeType="String" syncable="YES"/>
@@ -20,7 +20,25 @@
         <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timezoneOffset" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="kidList" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="EventKid" inverseName="eventKids" inverseEntity="EventKid" syncable="YES"/>
         <relationship name="todoList" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Todo" inverseName="inEvent" inverseEntity="Todo" syncable="YES"/>
+    </entity>
+    <entity name="EventKid" representedClassName="EventKid" syncable="YES" codeGenerationType="class">
+        <attribute name="macId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="objId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="profile" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="eventKids" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="kidList" inverseEntity="Event" syncable="YES"/>
+    </entity>
+    <entity name="KidInfo" representedClassName="KidInfo" syncable="YES" codeGenerationType="class">
+        <attribute name="battery" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="currentVersion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firmwareVersion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="macId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="objId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="profile" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="subHostId" optional="YES" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Todo" representedClassName="Todo" syncable="YES">
         <attribute name="objId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -30,7 +48,9 @@
     </entity>
     <elements>
         <element name="Activity" positionX="-54" positionY="90" width="128" height="120"/>
-        <element name="Event" positionX="-63" positionY="-18" width="128" height="240"/>
+        <element name="Event" positionX="-63" positionY="-18" width="128" height="255"/>
         <element name="Todo" positionX="-54" positionY="-9" width="128" height="105"/>
+        <element name="KidInfo" positionX="-54" positionY="90" width="128" height="165"/>
+        <element name="EventKid" positionX="-45" positionY="108" width="128" height="120"/>
     </elements>
 </model>

@@ -11,6 +11,8 @@
 
 @interface BaseCalendarViewController : LMBaseViewController<JTCalendarDelegate>
 
+@property (nonatomic, weak) UIView* todayView;
+
 @property (strong, nonatomic) JTCalendarManager *calendarManager;
 
 @property (nonatomic, strong) NSDate *dateSelected;

@@ -46,6 +46,19 @@
         [m updateTo:t];
         [event addTodoListObject:t];
     }
+    
+    for (EventKid *k in event.kidList) {
+        LOG_D(@"del event kid:%lld", k.objId);
+        [k MR_deleteEntity];
+    }
+    if (event.kidList) {
+        [event removeKidList:event.kidList];
+    }
+    for (KidModel *m in _kid) {
+        EventKid *k = [EventKid MR_createEntity];
+        [m updateTo2:k];
+        [event addKidListObject:k];
+    }
 }
 
 - (void)updateFrom:(Event*)event {
@@ -79,6 +92,16 @@
             return NSOrderedSame;
         }];
         self.todo = (NSArray<ToDoModel>*)array;
+    }
+    
+    if (event.kidList) {
+        NSMutableArray *array = [NSMutableArray array];
+        for (EventKid *t in event.kidList) {
+            KidModel *m = [KidModel new];
+            [m updateFrom2:t];
+            [array addObject:m];
+        }
+        self.kid = (NSArray<KidModel>*)array;
     }
 }
 
