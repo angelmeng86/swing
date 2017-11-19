@@ -393,11 +393,11 @@
     ChoicesViewController *ctl = [[ChoicesViewController alloc] initWithStyle:UITableViewStylePlain];
     ctl.delegate = self;
     ctl.navigationItem.title = LOC_STR(@"Language");
-    ctl.textArray = @[LOC_STR(@"English"), LOC_STR(@"Spanish"), LOC_STR(@"Russian"), LOC_STR(@"Japanese"), LOC_STR(@"Chinese Traditional")];
+    ctl.array = @[LOC_STR(@"English"), LOC_STR(@"Spanish"), LOC_STR(@"Russian"), LOC_STR(@"Japanese"), LOC_STR(@"Chinese Traditional")];
     [self.navigationController pushViewController:ctl animated:YES];
 }
 
-- (void)choicesViewControllerDidSelectedIndex:(int)index {
+- (void)choicesViewController:(ChoicesViewController*)ctl didSelectedIndex:(int)index {
     NSString *lang = @"en";
     switch (index) {
         case 1:

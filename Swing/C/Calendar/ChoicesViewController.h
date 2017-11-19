@@ -8,16 +8,22 @@
 
 #import "LMBaseTableViewController.h"
 
+@class ChoicesViewController;
 @protocol ChoicesViewDelegate <NSObject>
 
-- (void)choicesViewControllerDidSelected:(NSString*)text;
-- (void)choicesViewControllerDidSelectedIndex:(int)index;
+- (void)choicesViewController:(ChoicesViewController*)ctl didSelected:(id)data;
+- (void)choicesViewController:(ChoicesViewController*)ctl didSelectedIndex:(int)index;
+
+- (void)choicesViewController:(ChoicesViewController*)ctl didMutiSelected:(NSArray*)indexs;
 
 @end
 
 @interface ChoicesViewController : LMBaseTableViewController
 
-@property (nonatomic, strong) NSArray *textArray;
+@property (nonatomic, strong) NSArray *array;
 @property (nonatomic, assign) id delegate;
+
+@property (nonatomic, strong) NSMutableSet *selectArray;
+@property (nonatomic) BOOL mutiSelected;
 
 @end

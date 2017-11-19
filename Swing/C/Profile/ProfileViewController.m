@@ -11,7 +11,6 @@
 #import <SDWebImage/UIButton+WebCache.h>
 #import "ProfileDeviceCell.h"
 #import "AppDelegate.h"
-#import "ChoicesViewController.h"
 #import "OptionViewController.h"
 #import "MutiRequestViewController.h"
 #import "MutiListViewController.h"

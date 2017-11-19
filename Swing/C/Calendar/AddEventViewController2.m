@@ -24,6 +24,8 @@
     int repeatIndex;
     
     NSArray *repeatArray;
+    
+    NSArray *kidIds;
 }
 
 @property (nonatomic, strong) AlertModel* alert;
@@ -73,15 +75,15 @@
     
     UIControl *bgView = [UIControl new];
     bgView.frame = CGRectMake(0, 0, 30, 30);
-    LMArrowView *arrow = [[LMArrowView alloc]initWithFrame:CGRectMake(0, 0, 10, 6)];
-    arrow.arrow = LMArrowDown;
+    LMArrowView *arrow = [[LMArrowView alloc]initWithFrame:CGRectMake(0, 0, 6, 10)];
+    arrow.arrow = LMArrowRight;
     arrow.color = RGBA(0xfd, 0x73, 0x3e, 1.0f);
     arrow.isNotFill = YES;
     [bgView addSubview:arrow];
     [arrow autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
     [arrow autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:5];
     arrow.userInteractionEnabled = NO;
-    [arrow autoSetDimensionsToSize:CGSizeMake(10, 6)];
+    [arrow autoSetDimensionsToSize:CGSizeMake(6, 10)];
     [bgView addTarget:self action:@selector(dorpdownAction) forControlEvents:UIControlEventTouchUpInside];
     self.nameTF.rightView = bgView;
     self.nameTF.rightViewMode = UITextFieldViewModeAlways;
@@ -96,20 +98,42 @@
     label.textColor = RGBA(187, 186, 194, 1.0f);
     [bgView addSubview:label];
     
-    arrow = [[LMArrowView alloc]initWithFrame:CGRectMake(0, 0, 10, 6)];
-    arrow.arrow = LMArrowDown;
+    arrow = [[LMArrowView alloc]initWithFrame:CGRectMake(0, 0, 6, 10)];
+    arrow.arrow = LMArrowRight;
     arrow.color = RGBA(0xfd, 0x73, 0x3e, 1.0f);
     arrow.isNotFill = YES;
     [bgView addSubview:arrow];
     [arrow autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
     [arrow autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:15];
-    [arrow autoSetDimensionsToSize:CGSizeMake(10, 6)];
+    [arrow autoSetDimensionsToSize:CGSizeMake(6, 10)];
     arrow.userInteractionEnabled = NO;
     [bgView addTarget:self action:@selector(repeatAction) forControlEvents:UIControlEventTouchUpInside];
     self.repeatTF.rightView = bgView;
     self.repeatTF.rightViewMode = UITextFieldViewModeAlways;
 //    self.repeatTF.enabled = NO;
     repeatArray = @[LOC_STR(@"Never"), LOC_STR(@"Every Day"), LOC_STR(@"Every Week")/*, @"Every Month"*/];
+    
+    bgView = [UIControl new];
+    bgView.frame = CGRectMake(0, 0, 110, 30);
+    
+    label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
+    label.textAlignment = NSTextAlignmentRight;
+    label.tag = 2016;
+    label.font = self.assignTF.font;
+    label.textColor = RGBA(187, 186, 194, 1.0f);
+    [bgView addSubview:label];
+    arrow = [[LMArrowView alloc]initWithFrame:CGRectMake(0, 0, 6, 10)];
+    arrow.arrow = LMArrowRight;
+    arrow.color = RGBA(0xfd, 0x73, 0x3e, 1.0f);
+    arrow.isNotFill = YES;
+    [bgView addSubview:arrow];
+    [arrow autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+    [arrow autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:15];
+    [arrow autoSetDimensionsToSize:CGSizeMake(6, 10)];
+    arrow.userInteractionEnabled = NO;
+    [bgView addTarget:self action:@selector(assignAction) forControlEvents:UIControlEventTouchUpInside];
+    self.assignTF.rightView = bgView;
+    self.assignTF.rightViewMode = UITextFieldViewModeAlways;
     
     self.navigationItem.title = LOC_STR(@"Calendar");
     [self.shortSaveBtn setTitle:LOC_STR(@"Save") forState:UIControlStateNormal];
@@ -123,6 +147,7 @@
     self.cityTF.placeholder = LOC_STR(@"City");
     self.stateTF.placeholder = LOC_STR(@"State");
     self.repeatTF.placeholder = LOC_STR(@"Repeat");
+    self.assignTF.placeholder = LOC_STR(@"Assign to");
     self.descTF.placeholder = LOC_STR(@"Description");
     
     UIDatePicker *datePicker = [[UIDatePicker alloc] init];
@@ -140,6 +165,7 @@
     [datePicker2 addTarget:self action:@selector(endChange:) forControlEvents:UIControlEventValueChanged];
     
     self.repeatTF.delegate = self;
+    self.assignTF.delegate = self;
     
     self.nameTF.delegate = self;
     self.stateTF.delegate = self;
@@ -276,8 +302,66 @@
     ChoicesViewController *ctl = [[ChoicesViewController alloc] initWithStyle:UITableViewStylePlain];
     ctl.delegate = self;
     ctl.navigationItem.title = self.repeatTF.placeholder;
-    ctl.textArray = repeatArray;
+    ctl.array = repeatArray;
     [self.navigationController pushViewController:ctl animated:YES];
+}
+
+- (void)assignAction {
+    [[IQKeyboardManager sharedManager] resignFirstResponder];
+    ChoicesViewController *ctl = [[ChoicesViewController alloc] initWithStyle:UITableViewStylePlain];
+    ctl.delegate = self;
+    ctl.navigationItem.title = self.assignTF.placeholder;
+    ctl.mutiSelected = YES;
+    ctl.array = [DBHelper queryKids];
+    [self.navigationController pushViewController:ctl animated:YES];
+}
+
+- (void)choicesViewController:(ChoicesViewController*)ctl didMutiSelected:(NSArray*)indexs {
+    NSMutableArray *kids = [NSMutableArray array];
+    NSMutableArray *ids = [NSMutableArray array];
+    for (NSIndexPath *indexPath in indexs) {
+        KidInfo *k = ctl.array[indexPath.row];
+        [kids addObject:k];
+        [ids addObject:@(k.objId)];
+    }
+    kidIds = ids;
+    [self setAssginTo:kids];
+}
+
+- (void)setAssginTo:(NSArray*)kids {
+    if (kids.count == 0) {
+        return;
+    }
+    UIView *bgView = [UIControl new];
+    bgView.userInteractionEnabled = NO;
+//    bgView.backgroundColor = [UIColor lightGrayColor];
+    bgView.frame = CGRectMake(0, 0, 200, 30);
+    self.assignTF.rightView = bgView;
+    NSMutableArray *views = [NSMutableArray array];
+    for (KidInfo *kid in kids) {
+        UIImageView *imgView = [UIImageView new];
+        imgView.layer.cornerRadius = 12.f;
+        imgView.layer.masksToBounds = YES;
+        [bgView addSubview:imgView];
+        if (kid.profile.length > 0) {
+            [imgView sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:kid.profile]] placeholderImage:LOAD_IMAGE(@"icon_profile")];
+        }
+        else {
+            imgView.image = LOAD_IMAGE(@"icon_profile");
+        }
+        [views addObject:imgView];
+    }
+    [[views lastObject] autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+    [[views lastObject] autoPinEdgeToSuperviewMargin:ALEdgeRight];
+    [views autoSetViewsDimensionsToSize:CGSizeMake(24, 24)];
+    UIView *preView = nil;
+    for (UIView *v in views) {
+        if (preView) {
+            [preView autoAlignAxis:ALAxisHorizontal toSameAxisOfView:v];
+            [preView autoPinEdge:ALEdgeRight toEdge:ALEdgeLeft ofView:v withOffset:-5];
+        }
+        preView = v;
+    }
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
@@ -322,6 +406,10 @@
         [self repeatAction];
         return NO;
     }
+    else if (textField == self.assignTF) {
+        [self assignAction];
+        return NO;
+    }
     else if (textField == self.endTF) {
         UIDatePicker* datePicker = (UIDatePicker*)self.startTF.inputView;
         NSDate *sDate = datePicker.date;
@@ -346,7 +434,7 @@
     return YES;
 }
 
-- (void)choicesViewControllerDidSelectedIndex:(int)index {
+- (void)choicesViewController:(ChoicesViewController*)ctl didSelectedIndex:(int)index {
 //    self.repeatTF.text = text;
     [self setRepeatText:repeatArray[index]];
     self.repeatTF.tag = TAG_REPEAT + index;
@@ -419,7 +507,8 @@
 - (BOOL)validateTextField {
     if (self.nameTF.text.length == 0
          || self.startTF.text.length == 0
-         || self.endTF.text.length == 0) {
+         || self.endTF.text.length == 0
+        || kidIds.count == 0) {
         [Fun showMessageBoxWithTitle:LOC_STR(@"Error") andMessage:LOC_STR(@"Please input info.")];
         if (!isAddTip) {
             isAddTip = YES;
@@ -484,7 +573,7 @@
         }
     }
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    [data addEntriesFromDictionary:@{@"kidId":@[@(kidId)], @"name":self.nameTF.text, @"startDate":[self dateToString2:[self dateFromString:self.startTF.text]]
+    [data addEntriesFromDictionary:@{@"kidId":kidIds, @"name":self.nameTF.text, @"startDate":[self dateToString2:[self dateFromString:self.startTF.text]]
                                      , @"endDate":[self dateToString2:[self dateFromString:self.endTF.text]]
                                      , @"color":[Fun stringFromColor:self.colorCtl.selectedColor]
                                      , @"timezoneOffset" : @([NSTimeZone localTimeZone].secondsFromGMT / 60)}];

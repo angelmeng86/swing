@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "JSONModel.h"
 #import "ToDoModel.h"
+#import "KidModel.h"
 #import "Event+CoreDataClass.h"
 
 @class UIColor;
@@ -30,6 +31,7 @@
 @property (nonatomic, strong) NSString<Optional> *state;
 
 @property (nonatomic, strong) NSArray<ToDoModel, Optional> *todo;
+@property (nonatomic, strong) NSArray<KidModel, Optional> *kid;
 
 @property (strong, nonatomic) NSString<Optional>* repeat;
 

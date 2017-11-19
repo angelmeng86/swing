@@ -28,6 +28,7 @@
 
 @property (weak, nonatomic) IBOutlet ColorLabel *colorCtl;
 @property (weak, nonatomic) IBOutlet ToDoListView *todoCtl;
+@property (weak, nonatomic) IBOutlet UITextField *assignTF;
 
 @property (strong, nonatomic) NSDate* currentDate;
 @property (weak, nonatomic) id delegate;

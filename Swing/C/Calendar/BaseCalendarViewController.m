@@ -44,7 +44,7 @@
 }
 
 - (void)addAction:(id)sender {
-    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
+    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"Calendar" bundle:nil];
     AddEventViewController2 *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"AddEvent2"];
     ctl.delegate = self;
     [self.navigationController pushViewController:ctl animated:YES];

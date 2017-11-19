@@ -103,7 +103,7 @@
     //当被隐藏时恢复原状
     if (!self.calendarManager.settings.weekModeEnabled) {
         self.progressView.hidden = NO;
-        self.monthBtn.hidden = NO;
+//        self.monthBtn.hidden = NO;
         self.todayBtn.hidden = NO;
         self.timeLabel.hidden = NO;
         self.descLabel.hidden = NO;
@@ -124,7 +124,7 @@
 - (void)modeAction:(id)sender {
     if (!self.calendarManager.settings.weekModeEnabled) {
         self.progressView.hidden = NO;
-        self.monthBtn.hidden = NO;
+//        self.monthBtn.hidden = NO;
         self.todayBtn.hidden = NO;
         self.timeLabel.hidden = NO;
         self.descLabel.hidden = NO;
@@ -132,7 +132,7 @@
     }
     else {
         self.progressView.hidden = YES;
-        self.monthBtn.hidden = YES;
+//        self.monthBtn.hidden = YES;
         self.todayBtn.hidden = YES;
         self.timeLabel.hidden = YES;
         self.descLabel.hidden = YES;

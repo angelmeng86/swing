@@ -91,7 +91,7 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
 }
 
 - (void)addAction:(id)sender {
-    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
+    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"Calendar" bundle:nil];
     AddEventViewController2 *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"AddEvent2"];
     ctl.delegate = self;
     ctl.currentDate = self.dateSelected;

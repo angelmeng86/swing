@@ -36,6 +36,8 @@
 @property (nonatomic, weak) UIButton *btn;
 @property (nonatomic, weak) UIButton *checkBtn;
 
+@property (nonatomic, weak) UIImageView *imageView;
+
 @end
 
 @implementation LFSyncSheet
@@ -115,6 +117,10 @@
 }
 
 - (void)setupActionSheet {
+    [self.cover addSubview:({
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:LOAD_IMAGE(@"monster-yellow")];
+        _imageView = imageView;
+    })];
     
     [self.cover addSubview:({
         UIView *actionSheet = [[UIView alloc] init];
@@ -124,9 +130,12 @@
         _actionSheet = actionSheet;
     })];
     
+    [_imageView autoAlignAxisToSuperviewAxis:ALAxisVertical];
+    [_imageView autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:_actionSheet withOffset:-120];
+    
     [_actionSheet autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:40];
     [_actionSheet autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:40];
-    [_actionSheet autoSetDimension:ALDimensionHeight toSize:240];
+    [_actionSheet autoSetDimension:ALDimensionHeight toSize:200];
     NSLayoutConstraint *lc = [_actionSheet autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
     lc.constant = -80.0f;
     

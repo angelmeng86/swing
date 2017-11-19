@@ -14,6 +14,7 @@
     [super awakeFromNib];
     // Initialization code
     self.iconView.layer.cornerRadius = 12.f;
+    self.iconView.layer.masksToBounds = YES;
 //    self.contentView.backgroundColor = [UIColor clearColor];
     
 //    self.backgroundColor = [UIColor clearColor];

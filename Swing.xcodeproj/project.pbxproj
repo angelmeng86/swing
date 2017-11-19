@@ -24,6 +24,9 @@
 		0F45AB881D63593400EF385F /* ActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB871D63593400EF385F /* ActivityModel.m */; };
 		0F45AB8B1D63614800EF385F /* ActivityResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F45AB8A1D63614800EF385F /* ActivityResultModel.m */; };
 		0F5E32501FBF2C3200E0B1B3 /* DashboardViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5E324F1FBF2C3200E0B1B3 /* DashboardViewController2.m */; };
+		0F5E32521FC00DEB00E0B1B3 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F5E32511FC00DEB00E0B1B3 /* Calendar.storyboard */; };
+		0F5E32591FC05E9900E0B1B3 /* KidInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5E32571FC05E9900E0B1B3 /* KidInfoTableViewCell.m */; };
+		0F5E325A1FC05E9900E0B1B3 /* KidInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F5E32581FC05E9900E0B1B3 /* KidInfoTableViewCell.xib */; };
 		0F68BEEE1DE87F8D002FDFB2 /* Activity+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F68BEEB1DE87F8D002FDFB2 /* Activity+CoreDataClass.m */; };
 		0F68BEEF1DE87F8D002FDFB2 /* Activity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F68BEED1DE87F8D002FDFB2 /* Activity+CoreDataProperties.m */; };
 		0F927FD51DDA02680011EF90 /* BLEClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F927FCC1DDA02680011EF90 /* BLEClient.m */; };
@@ -184,6 +187,10 @@
 		0F45AB8A1D63614800EF385F /* ActivityResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityResultModel.m; sourceTree = "<group>"; };
 		0F5E324E1FBF2C3200E0B1B3 /* DashboardViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController2.h; sourceTree = "<group>"; };
 		0F5E324F1FBF2C3200E0B1B3 /* DashboardViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardViewController2.m; sourceTree = "<group>"; };
+		0F5E32511FC00DEB00E0B1B3 /* Calendar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
+		0F5E32561FC05E9900E0B1B3 /* KidInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KidInfoTableViewCell.h; sourceTree = "<group>"; };
+		0F5E32571FC05E9900E0B1B3 /* KidInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KidInfoTableViewCell.m; sourceTree = "<group>"; };
+		0F5E32581FC05E9900E0B1B3 /* KidInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KidInfoTableViewCell.xib; sourceTree = "<group>"; };
 		0F68BEEA1DE87F8D002FDFB2 /* Activity+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Activity+CoreDataClass.h"; sourceTree = "<group>"; };
 		0F68BEEB1DE87F8D002FDFB2 /* Activity+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Activity+CoreDataClass.m"; sourceTree = "<group>"; };
 		0F68BEEC1DE87F8D002FDFB2 /* Activity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Activity+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -847,6 +854,7 @@
 				AD1CEF111D5AE886004FEC24 /* MainTab2.storyboard */,
 				0F9382B81FA5CB380095C516 /* Profile.storyboard */,
 				0FC529A31FBB3CD1004CFBA0 /* Dashboard.storyboard */,
+				0F5E32511FC00DEB00E0B1B3 /* Calendar.storyboard */,
 			);
 			path = storyboard;
 			sourceTree = "<group>";
@@ -872,6 +880,9 @@
 				ADE0BE721D59933400E70109 /* LMCalendarDayView.m */,
 				0F45AB811D6316FA00EF385F /* STextField.h */,
 				0F45AB821D6316FA00EF385F /* STextField.m */,
+				0F5E32561FC05E9900E0B1B3 /* KidInfoTableViewCell.h */,
+				0F5E32571FC05E9900E0B1B3 /* KidInfoTableViewCell.m */,
+				0F5E32581FC05E9900E0B1B3 /* KidInfoTableViewCell.xib */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -1013,6 +1024,8 @@
 				0F9382E71FB87F2A0095C516 /* DeviceSmallCell.xib in Resources */,
 				ADDCD3FC1D4C59F10031DC66 /* Avenir-Book.otf in Resources */,
 				0FC529A41FBB3CD1004CFBA0 /* Dashboard.storyboard in Resources */,
+				0F5E325A1FC05E9900E0B1B3 /* KidInfoTableViewCell.xib in Resources */,
+				0F5E32521FC00DEB00E0B1B3 /* Calendar.storyboard in Resources */,
 				0FEB6D601F014909007507D4 /* B-062617.bin in Resources */,
 				0FCF50421F7A805F00738C23 /* alert2_jp.json in Resources */,
 				ADDCD3F31D4C54960031DC66 /* LoginFlow.storyboard in Resources */,
@@ -1104,6 +1117,7 @@
 				0F9382E61FB87F2A0095C516 /* DeviceSmallCell.m in Sources */,
 				0F9382CD1FAEE2940095C516 /* MutiRequestViewController.m in Sources */,
 				0F445E0F1D7094A6008A092C /* JSONValueTransformer+NSData.m in Sources */,
+				0F5E32591FC05E9900E0B1B3 /* KidInfoTableViewCell.m in Sources */,
 				ADE6ED901D4E3B7D00FFA573 /* DayCalendarViewController.m in Sources */,
 				ADF519AE1D86D0DF00356CD3 /* AddEventViewController2.m in Sources */,
 				AD83559D1E55512A000AA668 /* UIImage+wiRoundedRectImage.m in Sources */,

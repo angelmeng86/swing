@@ -45,7 +45,7 @@
 }
 
 - (void)editEventAction {
-    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
+    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"Calendar" bundle:nil];
     AddEventViewController2 *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"AddEvent2"];
     ctl.model = self.model;
     ctl.delegate = self;
