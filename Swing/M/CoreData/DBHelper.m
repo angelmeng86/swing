@@ -202,6 +202,7 @@
 + (void)clearDatabase {
     [Event MR_truncateAll];
     [Todo MR_truncateAll];
+    [EventKid MR_truncateAll];
     [Activity MR_truncateAll];
     [KidInfo MR_truncateAll];
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];

@@ -422,9 +422,15 @@
         AlertSelectViewController *ctl = [[AlertSelectViewController alloc] initWithStyle:UITableViewStylePlain];
         ctl.delegate = self;
         [self.navigationController pushViewController:ctl animated:YES];
+        if (![GlobalCache shareInstance].local.showedEventAlertTip)
+        {
+            EventIntroSheet *sheet = [EventIntroSheet actionSheetView];
+            [sheet show];
+            [GlobalCache shareInstance].local.showedEventAlertTip = YES;
+            [[GlobalCache shareInstance] saveInfo];
+        }
         
-        EventIntroSheet *sheet = [EventIntroSheet actionSheetView];
-        [sheet show];
+
         
         return NO;
     }

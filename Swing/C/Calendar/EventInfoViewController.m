@@ -40,8 +40,12 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    EventEditIntroSheet *sheet = [EventEditIntroSheet actionSheetView];
-    [sheet show];
+    if (![GlobalCache shareInstance].local.showedEventEditTip) {
+        EventEditIntroSheet *sheet = [EventEditIntroSheet actionSheetView];
+        [sheet show];
+        [GlobalCache shareInstance].local.showedEventEditTip = YES;
+        [[GlobalCache shareInstance] saveInfo];
+    }
 }
 
 - (void)reloadData {

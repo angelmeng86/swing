@@ -20,6 +20,10 @@
 
 @property (nonatomic) BOOL disableSyncTip;
 
+@property (nonatomic) BOOL showedEventAlertTip;
+@property (nonatomic) BOOL showedEventEditTip;
+@property (nonatomic) BOOL showedEventTodayTip;
+
 @property (nonatomic, strong) NSString<Optional> *language;
 
 @property (nonatomic) int64_t selectedKidId;

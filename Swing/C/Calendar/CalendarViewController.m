@@ -127,12 +127,15 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    UIWindow * window = [[[UIApplication sharedApplication] delegate] window];
-    CGRect todayRect = [self.todayView convertRect:self.todayView.bounds toView:window];
-    CGRect timeRect = [self.timeLabel convertRect:self.timeLabel.bounds toView:window];
-    TodayIntroSheet *sheet = [TodayIntroSheet actionSheetView];
-    [sheet show:todayRect time:timeRect];
+    if (![GlobalCache shareInstance].local.showedEventTodayTip) {
+        UIWindow * window = [[[UIApplication sharedApplication] delegate] window];
+        CGRect todayRect = [self.todayView convertRect:self.todayView.bounds toView:window];
+        CGRect timeRect = [self.timeLabel convertRect:self.timeLabel.bounds toView:window];
+        TodayIntroSheet *sheet = [TodayIntroSheet actionSheetView];
+        [sheet show:todayRect time:timeRect];
+        [GlobalCache shareInstance].local.showedEventTodayTip = YES;
+        [[GlobalCache shareInstance] saveInfo];
+    }
 }
 
 - (void)modeAction:(id)sender {
