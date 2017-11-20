@@ -39,7 +39,7 @@
     static NSDateFormatter *df = nil;
     if (df == nil) {
         df = [[NSDateFormatter alloc] init];
-        [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        [df setDateFormat:@"yyyy-MM-dd hh:mm a"];
 //        [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
     }
     return [df dateFromString:str];
@@ -49,7 +49,7 @@
     static NSDateFormatter *df = nil;
     if (df == nil) {
         df = [[NSDateFormatter alloc] init];
-        [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        [df setDateFormat:@"yyyy-MM-dd hh:mm a"];
 //        [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
     }
     return [df stringFromDate:date];

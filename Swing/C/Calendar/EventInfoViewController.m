@@ -50,7 +50,8 @@
 
 - (void)reloadData {
     if (_model) {
-        self.titleLabel.text = [self getTitle];
+        self.timeLabel.text = [self getTime];
+        self.titleLabel.text = _model.eventName;
         self.descLabel.text = _model.desc;
     }
     [self.selectTableView reloadData];
@@ -70,18 +71,16 @@
     [self.calendarManager setDate:date];
 }
 
-- (NSString*)getTitle {
+- (NSString*)getTime {
     static NSDateFormatter *dateFormatter;
     if(!dateFormatter){
         dateFormatter = [NSDateFormatter new];
-        dateFormatter.dateFormat = @"HH:mm";
+        dateFormatter.dateFormat = @"hh:mm a";
     }
     NSMutableString *info = [NSMutableString string];
     [info appendString:[dateFormatter stringFromDate:_model.startDate]];
-    [info appendString:@"-"];
+    [info appendString:@" - "];
     [info appendString:[dateFormatter stringFromDate:_model.endDate]];
-    [info appendString:@" "];
-    [info appendString:_model.eventName];
     return info;
 }
 

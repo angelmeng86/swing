@@ -135,7 +135,7 @@
 }
 
 - (BOOL)validateTextField {
-    if (self.firstNameTF.text.length == 0 || self.lastNameTF.text.length == 0 || self.phoneTF.text.length == 0) {
+    if (self.firstNameTF.text.length == 0 || self.lastNameTF.text.length == 0 /*|| self.phoneTF.text.length == 0*/) {
         [Fun showMessageBoxWithTitle:LOC_STR(@"Error") andMessage:LOC_STR(@"Please input info.")];
         return NO;
     }
