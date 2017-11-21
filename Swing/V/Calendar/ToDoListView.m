@@ -69,9 +69,11 @@
     UIButton *addBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     [addBtn setTitle:@"+" forState:UIControlStateNormal];
     addBtn.titleEdgeInsets = UIEdgeInsetsMake(-1, 0, 1, 0);
-    [addBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [addBtn setTitleColor:COMMON_TITLE_COLOR forState:UIControlStateNormal];
     addBtn.titleLabel.font = [UIFont systemFontOfSize:20];
-    addBtn.backgroundColor = COMMON_TITLE_COLOR;
+//    addBtn.backgroundColor = COMMON_TITLE_COLOR;
+    addBtn.layer.borderColor = COMMON_TITLE_COLOR.CGColor;
+    addBtn.layer.borderWidth = 2.0f;
     addBtn.layer.cornerRadius = 10.f;
     addBtn.layer.masksToBounds = YES;
     [addBtn addTarget:self action:@selector(addAction) forControlEvents:UIControlEventTouchUpInside];

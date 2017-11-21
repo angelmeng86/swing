@@ -28,12 +28,13 @@
         [self addSubview:dotView];
         
         
-        
-        [dotView setTitle:@"-" forState:UIControlStateNormal];
+        dotView.titleLabel.font = [UIFont systemFontOfSize:15];
+        [dotView setTitle:@"x" forState:UIControlStateNormal];
         dotView.titleEdgeInsets = UIEdgeInsetsMake(-1, 0, 1, 0);
         
-        [dotView setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        dotView.backgroundColor = COMMON_TITLE_COLOR;
+        [dotView setTitleColor:COMMON_TITLE_COLOR forState:UIControlStateNormal];
+        dotView.layer.borderColor = COMMON_TITLE_COLOR.CGColor;
+        dotView.layer.borderWidth = 2.0f;
         dotView.layer.cornerRadius = 10.f;
         dotView.layer.masksToBounds = YES;
         
