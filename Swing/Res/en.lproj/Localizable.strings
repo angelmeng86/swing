@@ -188,7 +188,7 @@
 "You have %d requests from"="You have %d requests from";
 "Please have your watch nearby"="Please have your watch nearby";
 
-"Your watch shared with others"="Your watch shared with others";
+"Manage access permission of Swing"="Manage access permission of Swing";
 "Switch watch account"="Switch watch account";
 
 "Are you sure to log out?"="Are you sure to log out?";
@@ -235,3 +235,5 @@
 "Events will have sound alerts on your watch."="Events will have sound alerts on your watch.";
 "Edit your existing schedule by tapping on the pen icon."="Edit your existing schedule by tapping on the pen icon.";
 "Tap on the date or event to see today's full schedule."="Tap on the date or event to see today's full schedule.";
+
+"Only primary account has permission to edit"="Only primary account has permission to edit";

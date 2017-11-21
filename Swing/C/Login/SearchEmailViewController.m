@@ -29,6 +29,7 @@
     [self.deviceBtn setImage:LOAD_IMAGE(@"icon_add") forState:UIControlStateNormal];
     
     self.deviceView.hidden = YES;
+    [self setCustomBackButton];
 }
 
 - (void)didReceiveMemoryWarning {

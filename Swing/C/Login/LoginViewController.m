@@ -66,6 +66,14 @@
     }];
 }
 
+- (void)cacheSharedDevice {
+    [[SwingClient sharedClient] subHostList:@"ACCEPTED" completion:^(NSArray *requestFrom, NSArray *requestTo, NSError *error) {
+        if (error) {
+            LOG_D(@"subHostList ACCEPTED fail: %@", error);
+        }
+    }];
+}
+
 - (void)cacheTodayActivity {
     int64_t kidId = [GlobalCache shareInstance].currentKid.objId;
     if (kidId == 0) {
@@ -154,6 +162,8 @@
                                         [self cacheEventsV1];
                                         //继续获取当天步数进行本地缓存
                                         [self cacheTodayActivity];
+                                        //获取subHost分享的设备
+                                        [self cacheSharedDevice];
                                     }
                                 }];
                             }

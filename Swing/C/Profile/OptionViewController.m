@@ -31,7 +31,7 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = LOC_STR(@"Option");
     
-    items = @[@[LOC_STR(@"Edit Profile"), LOC_STR(@"Edit Your Kid's Profile"), LOC_STR(@"Reset Password"), LOC_STR(@"Your watch shared with others"), LOC_STR(@"Switch watch account"), LOC_STR(@"Logout")], @[LOC_STR(@"Language"), LOC_STR(@"Swing watch update"), LOC_STR(@"Contact Us"), LOC_STR(@"User Guide"), LOC_STR(@"Version")]];
+    items = @[@[LOC_STR(@"Edit Profile"), LOC_STR(@"Edit Your Kid's Profile"), LOC_STR(@"Reset Password"), LOC_STR(@"Manage access permission of Swing"), LOC_STR(@"Switch watch account"), LOC_STR(@"Logout")], @[LOC_STR(@"Language"), LOC_STR(@"Swing watch update"), LOC_STR(@"Contact Us"), LOC_STR(@"User Guide"), LOC_STR(@"Version")]];
     self.tableView.tableFooterView = [UIView new];
 }
 
@@ -182,6 +182,11 @@
                 {
                     if (![GlobalCache shareInstance].currentKid) {
                         [SVProgressHUD showErrorWithStatus:LOC_STR(@"you have not bind device yet, please sync a watch.")];
+                        return;
+                    }
+                    if ([GlobalCache shareInstance].currentKid.subHostId > 0)
+                    {
+                        [SVProgressHUD showErrorWithStatus:LOC_STR(@"Only primary account has permission to edit")];
                         return;
                     }
                     UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
