@@ -1080,6 +1080,14 @@
                 
                 //保存shared kids至本地数据库
                 NSArray *requests = [SubHostModel loadSubHost:requestTo status:@"ACCEPTED"];
+                //删除kids为空并且status为ACCEPTED的subhost
+                for (SubHostModel *m in requests) {
+                    if (m.kids.count == 0) {
+                        [self subHostDelete:m.objId completion:^(NSError *error) {
+                            
+                        }];
+                    }
+                }
                 [DBHelper resetSharedKids:requests];
                 [GlobalCache shareInstance].currentKid = nil;
                 

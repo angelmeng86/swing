@@ -73,7 +73,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
 //}
 
 - (void)viewDidLoad {
-    self.notLoadBackgroudImage = YES;
+//    self.notLoadBackgroudImage = YES;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.titleLabel = [UILabel new];

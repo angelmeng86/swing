@@ -55,6 +55,11 @@ typedef enum : NSUInteger {
     else {
         [self setType:DashboardTypeNormal];
     }
+    
+//    static int oye = 0;
+//    [self setType:oye];
+//    oye++;
+//    oye %= 3;
 }
 
 - (NSString *)countNumAndChangeformat:(long)num
@@ -92,7 +97,7 @@ typedef enum : NSUInteger {
             //            self.view.backgroundColor = RGBA(249, 211, 186, 1.0f);
             self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dashboard-bg-monster-3"]];
             self.imageView.image = LOAD_IMAGE(@"monster-yellow");
-            [self.stepBtn setImage:LOAD_IMAGE(@"orange_activity_button") forState:UIControlStateNormal];
+//            [self.stepBtn setImage:LOAD_IMAGE(@"orange_activity_button") forState:UIControlStateNormal];
         }
             break;
         case DashboardTypeNormal:
@@ -103,7 +108,7 @@ typedef enum : NSUInteger {
             //            self.view.backgroundColor = RGBA(167, 205, 191, 1.0f);
             self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dashboard-bg-monster-2"]];
             self.imageView.image = LOAD_IMAGE(@"monster-bluegreen");
-            [self.stepBtn setImage:LOAD_IMAGE(@"blue_activity_button") forState:UIControlStateNormal];
+//            [self.stepBtn setImage:LOAD_IMAGE(@"blue_activity_button") forState:UIControlStateNormal];
         }
             break;
         case DashboardTypeDown:
@@ -114,7 +119,7 @@ typedef enum : NSUInteger {
             //            self.view.backgroundColor = RGBA(218, 193, 247, 1.0f);
             self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dashboard-bg-monster-1"]];
             self.imageView.image = LOAD_IMAGE(@"monster-purple");
-            [self.stepBtn setImage:LOAD_IMAGE(@"activity_button") forState:UIControlStateNormal];
+//            [self.stepBtn setImage:LOAD_IMAGE(@"activity_button") forState:UIControlStateNormal];
         }
             break;
         default:
@@ -125,6 +130,7 @@ typedef enum : NSUInteger {
     self.infoLabel.textColor = self.titleLabel.textColor;
     [self.indoorView setThemeColor:self.titleLabel.textColor];
     [self.outdoorView setThemeColor:self.titleLabel.textColor];
+    self.stepBtn.backgroundColor = self.titleLabel.textColor;
 }
 
 - (IBAction)stepAction:(id)sender {
