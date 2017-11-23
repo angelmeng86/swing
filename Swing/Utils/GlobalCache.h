@@ -23,6 +23,7 @@
 - (void)saveInfo;
 - (void)clearInfo:(NSString*)key;
 - (void)queryProfile;
+- (void)querySharedDevice;
 //- (void)queryWeather;
 
 - (void)logout;

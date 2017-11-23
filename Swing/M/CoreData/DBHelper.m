@@ -122,6 +122,8 @@
 
 - (BOOL)hasAlertRepeatEvent {
     BOOL has = NO;
+    int64_t kidId = [GlobalCache shareInstance].currentKid.objId;
+    
     for (int i = (int)_repeatEventModels.count; --i >= 0; ) {
         EventModel *model = _repeatEventModels[i];
         if(![repeatTypes containsObject:model.repeat]) {
@@ -132,16 +134,25 @@
         if (model.alert <= 35) {
             continue;
         }
-        has = YES;
+        //过滤非当前KidId的Event
+        for (KidModel *k in model.kid) {
+            if (k.objId == kidId) {
+                has = YES;
+            }
+        }
     }
     return has;
 }
 
 - (void)appendOneDayAlertEvents:(NSMutableArray*)array date:(NSDate*)date checkDue:(BOOL)checked {
+    int64_t kidId = [GlobalCache shareInstance].currentKid.objId;
+    
     NSDateComponents *comps = [[NSCalendar currentCalendar] components:kCFCalendarUnitYear|kCFCalendarUnitMonth|kCFCalendarUnitDay|NSCalendarUnitWeekday fromDate:date];
     for (int i = (int)_repeatEventModels.count; --i >= 0; ) {
         EventModel *model = _repeatEventModels[i];
+        
         NSDateComponents *comps2 = [[NSCalendar currentCalendar] components:kCFCalendarUnitHour|kCFCalendarUnitMinute|kCFCalendarUnitSecond|NSCalendarUnitWeekday fromDate:model.startDate];
+
         if ([model.repeat isEqualToString:@"DAILY"]) {
 
         }
@@ -163,12 +174,19 @@
             //检查当天是否过期
             continue;
         }
-        EventModel *newModel = [model copy];
-        comps2.year = comps.year;
-        comps2.month = comps.month;
-        comps2.day = comps.day;
-        newModel.startDate = [[NSCalendar currentCalendar] dateFromComponents:comps2];
-        [array addObject:newModel];
+        
+        //过滤非当前KidId的Event
+        for (KidModel *k in model.kid) {
+            if (k.objId == kidId) {
+                EventModel *newModel = [model copy];
+                comps2.year = comps.year;
+                comps2.month = comps.month;
+                comps2.day = comps.day;
+                newModel.startDate = [[NSCalendar currentCalendar] dateFromComponents:comps2];
+                [array addObject:newModel];
+            }
+        }
+       
 //        LOG_D(@"date1[%@]~date2[%@]", [Fun dateToString:model.startDate], [Fun dateToString:newModel.startDate]);
     }
 }
@@ -200,6 +218,7 @@
 }
 
 + (void)clearDatabase {
+    [DBHelper privateInstance].repeatEventModels = nil;
     [Event MR_truncateAll];
     [Todo MR_truncateAll];
     [EventKid MR_truncateAll];
@@ -318,19 +337,29 @@
                                                 ascending:YES
                                             withPredicate:predicate_date
                                                 inContext:[NSManagedObjectContext MR_defaultContext]];
-    request.fetchLimit = limit;
+    request.fetchLimit = limit * 2;
+    
+    int64_t kidId = [GlobalCache shareInstance].currentKid.objId;
+    
     NSArray *array =  [Event MR_executeFetchRequest:request inContext:[NSManagedObjectContext MR_defaultContext]];
 //    NSArray *array = [Event MR_findAllSortedBy:@"startDate" ascending:YES withPredicate:predicate_date];
     NSMutableArray *list = [NSMutableArray array];
     for (Event *e in array) {
-        EventModel *model = [EventModel new];
-        [model updateFrom:e];
-        [list addObject:model];
-        LOG_D(@"model date %@, name %@, alert %d", model.startDate, model.eventName, model.alert);
+        //过滤非当前KidId的Event
+        for (EventKid *k in e.kidList) {
+            if (k.objId == kidId) {
+                EventModel *model = [EventModel new];
+                [model updateFrom:e];
+                [list addObject:model];
+                LOG_D(@"model date %@, name %@, alert %d", model.startDate, model.eventName, model.alert);
+                break;
+            }
+        }
     }
     
     NSArray *repeatEvents = [[DBHelper privateInstance] generateEvents:limit];
     [list addObjectsFromArray:repeatEvents];
+    
     [list sortUsingComparator:^NSComparisonResult(EventModel *obj1, EventModel *obj2) {
         return [obj1.startDate compare:obj2.startDate];
     }];

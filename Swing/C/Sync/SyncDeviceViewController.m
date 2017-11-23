@@ -40,11 +40,14 @@
     self.button3.titleLabel.adjustsFontSizeToFitWidth = YES;
     [self.button3 setTitle:LOC_STR(@"Add another watch") forState:UIControlStateNormal];
     
-    if ([GlobalCache shareInstance].user) {
-        self.nameLabel.text = [GlobalCache shareInstance].user.fullName;
-        if ([GlobalCache shareInstance].user.profile) {
-            [self.imageView sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:[GlobalCache shareInstance].user.profile]]];
+    if ([GlobalCache shareInstance].currentKid) {
+        self.nameLabel.text = [GlobalCache shareInstance].currentKid.name;
+        if ([GlobalCache shareInstance].currentKid.profile) {
+            [self.imageView sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:[GlobalCache shareInstance].currentKid.profile]]];
         }
+    }
+    else {
+        self.nameLabel.text = nil;
     }
     
     [self setCustomBackBarButtonItem];
@@ -65,6 +68,12 @@
         [self.button1 setTitle:LOC_STR(@"Search a watch") forState:UIControlStateNormal];
         [self.button2 setTitle:LOC_STR(@"Go to dashboard") forState:UIControlStateNormal];
         self.button3.hidden = YES;
+    }
+    else {
+        self.nameLabel.text = [GlobalCache shareInstance].currentKid.name;
+        if ([GlobalCache shareInstance].currentKid.profile) {
+            [self.imageView sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:[GlobalCache shareInstance].currentKid.profile]]];
+        }
     }
 }
 

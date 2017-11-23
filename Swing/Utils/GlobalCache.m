@@ -141,11 +141,22 @@
 - (void)queryProfile {
     [[SwingClient sharedClient] userRetrieveProfileWithCompletion:^(id user, NSArray *kids, NSError *error) {
         if (!error) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:USER_PROFILE_LOAD_NOTI object:user];
+            [[NSNotificationCenter defaultCenter] postNotificationName:USER_PROFILE_LOAD_NOTI object:nil];
         }
         else {
             LOG_D(@"retrieveProfile fail: %@", error);
 //            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+        }
+    }];
+}
+
+- (void)querySharedDevice {
+    [[SwingClient sharedClient] subHostList:@"ACCEPTED" completion:^(NSArray *requestFrom, NSArray *requestTo, NSError *error) {
+        if (!error) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:USER_PROFILE_LOAD_NOTI object:nil];
+        }
+        else {
+            LOG_D(@"subHostList ACCEPTED fail: %@", error);
         }
     }];
 }

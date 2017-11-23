@@ -200,9 +200,9 @@
 }
 
 - (void)timeLabelAction {
-    if (self.descLabel.text.length > 0) {
+//    if (self.descLabel.text.length > 0) {
         [self todayAction:nil];
-    }
+//    }
 }
 
 - (IBAction)todayAction:(id)sender {
