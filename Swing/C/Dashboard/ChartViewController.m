@@ -78,7 +78,7 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     // Do any additional setup after loading the view.
     self.titleLabel = [UILabel new];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
-    self.titleLabel.font = [UIFont avenirFontOfSize:20];
+    self.titleLabel.font = [UIFont boldAvenirFontOfSize:17];
     [self.view addSubview:_titleLabel];
     [_titleLabel autoSetDimensionsToSize:CGSizeMake(180, 30)];
     [_titleLabel autoAlignAxisToSuperviewAxis:ALAxisVertical];
@@ -141,10 +141,10 @@ NSInteger const kJBBarChartViewControllerMinBarHeight = 5;
     
     [self.view addSubview:leftView];
     [self.view addSubview:rightView];
-    [leftView autoSetDimensionsToSize:CGSizeMake(10, 20)];
+    [leftView autoSetDimensionsToSize:CGSizeMake(10, 10)];
     [leftView autoAlignAxis:ALAxisHorizontal toSameAxisOfView:_titleLabel];
     [leftView autoPinEdge:ALEdgeTrailing toEdge:ALEdgeLeading ofView:_titleLabel];
-    [rightView autoSetDimensionsToSize:CGSizeMake(10, 20)];
+    [rightView autoSetDimensionsToSize:CGSizeMake(10, 10)];
     [rightView autoAlignAxis:ALAxisHorizontal toSameAxisOfView:_titleLabel];
     [rightView autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:_titleLabel];
     

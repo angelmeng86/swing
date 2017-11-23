@@ -35,6 +35,7 @@
 		0F5E32851FC13A8600E0B1B3 /* EventIntroSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5E32841FC13A8600E0B1B3 /* EventIntroSheet.m */; };
 		0F5E32881FC1945800E0B1B3 /* EventEditIntroSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5E32871FC1945800E0B1B3 /* EventEditIntroSheet.m */; };
 		0F5E328B1FC19BD600E0B1B3 /* TodayIntroSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5E328A1FC19BD600E0B1B3 /* TodayIntroSheet.m */; };
+		0F5E328E1FC720A300E0B1B3 /* LFLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5E328D1FC720A300E0B1B3 /* LFLineView.m */; };
 		0F68BEEE1DE87F8D002FDFB2 /* Activity+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F68BEEB1DE87F8D002FDFB2 /* Activity+CoreDataClass.m */; };
 		0F68BEEF1DE87F8D002FDFB2 /* Activity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F68BEED1DE87F8D002FDFB2 /* Activity+CoreDataProperties.m */; };
 		0F927FD51DDA02680011EF90 /* BLEClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F927FCC1DDA02680011EF90 /* BLEClient.m */; };
@@ -214,6 +215,8 @@
 		0F5E32871FC1945800E0B1B3 /* EventEditIntroSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventEditIntroSheet.m; sourceTree = "<group>"; };
 		0F5E32891FC19BD600E0B1B3 /* TodayIntroSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayIntroSheet.h; sourceTree = "<group>"; };
 		0F5E328A1FC19BD600E0B1B3 /* TodayIntroSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayIntroSheet.m; sourceTree = "<group>"; };
+		0F5E328C1FC720A300E0B1B3 /* LFLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFLineView.h; sourceTree = "<group>"; };
+		0F5E328D1FC720A300E0B1B3 /* LFLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFLineView.m; sourceTree = "<group>"; };
 		0F68BEEA1DE87F8D002FDFB2 /* Activity+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Activity+CoreDataClass.h"; sourceTree = "<group>"; };
 		0F68BEEB1DE87F8D002FDFB2 /* Activity+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Activity+CoreDataClass.m"; sourceTree = "<group>"; };
 		0F68BEEC1DE87F8D002FDFB2 /* Activity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Activity+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -647,6 +650,8 @@
 				0F9382B61FA4CC480095C516 /* PhotoTweakView.m */,
 				0F5E32801FC1352200E0B1B3 /* LFBaseSheet.h */,
 				0F5E32811FC1352200E0B1B3 /* LFBaseSheet.m */,
+				0F5E328C1FC720A300E0B1B3 /* LFLineView.h */,
+				0F5E328D1FC720A300E0B1B3 /* LFLineView.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -1218,6 +1223,7 @@
 				AD21A5DD1E600EF500DA72E3 /* BLEUtility.m in Sources */,
 				0F9382C41FAE10C10095C516 /* LogoutConfirmViewController.m in Sources */,
 				AD7797991D4CCFD200472B27 /* UnderlineTextField.m in Sources */,
+				0F5E328E1FC720A300E0B1B3 /* LFLineView.m in Sources */,
 				AD347D171D3FD8DD00E91DDD /* SearchWatchViewController.m in Sources */,
 				0F9382CA1FAEDFB50095C516 /* MutiListViewController.m in Sources */,
 				0F1376341DE0593600DB6C33 /* ColorTransformer.m in Sources */,

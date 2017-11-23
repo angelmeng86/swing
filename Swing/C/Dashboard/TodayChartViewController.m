@@ -10,8 +10,12 @@
 #import "RectProgress.h"
 #import "CommonDef.h"
 #import "LMArrowView.h"
+#import "LFLineView.h"
 
 @interface TodayChartViewController ()
+{
+    LFLineView *line;
+}
 
 @property (nonatomic, strong) NSLayoutConstraint *lineWidth;
 
@@ -36,10 +40,10 @@
     
     [self.view addSubview:leftView];
     [self.view addSubview:rightView];
-    [leftView autoSetDimensionsToSize:CGSizeMake(10, 20)];
+    [leftView autoSetDimensionsToSize:CGSizeMake(10, 10)];
     [leftView autoAlignAxis:ALAxisHorizontal toSameAxisOfView:_titleLabel];
     [leftView autoPinEdge:ALEdgeTrailing toEdge:ALEdgeLeading ofView:_titleLabel];
-    [rightView autoSetDimensionsToSize:CGSizeMake(10, 20)];
+    [rightView autoSetDimensionsToSize:CGSizeMake(10, 10)];
     [rightView autoAlignAxis:ALAxisHorizontal toSameAxisOfView:_titleLabel];
     [rightView autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:_titleLabel];
     
@@ -52,13 +56,23 @@
     self.flightsProgress.progressTotal = 150;
     self.flightsProgress.progressCounter = 0;
     
-    UIView *line = [UIView new];
-    line.backgroundColor = [UIColor redColor];
+//    LFLineView *line = [LFLineView new];
+    line = [[LFLineView alloc] initWithLineLength:6 withLineSpacing:3 withLineColor:COMMON_TITLE_COLOR];
+//    line.backgroundColor = [UIColor redColor];
     [self.view addSubview:line];
     
-    [line autoSetDimension:ALDimensionWidth toSize:3];
+    [line autoSetDimension:ALDimensionWidth toSize:5];
     [line autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:_stepProgress withOffset:-15];
     [line autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:_stepProgress withOffset:15];
+    
+    UILabel *label = [UILabel new];
+    label.textColor = COMMON_TITLE_COLOR;
+    label.font = [UIFont boldAvenirFontOfSize:15];
+    label.text = LOC_STR(@"Goal");
+    [self.view addSubview:label];
+    [label autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:line withOffset:3];
+    [label autoAlignAxis:ALAxisVertical toSameAxisOfView:line];
+    
     
     self.lineWidth = [line autoPinEdge:ALEdgeTrailing toEdge:ALEdgeTrailing ofView:_stepProgress withOffset:-50];
 //    [line autoAlignAxis:ALAxisHorizontal toSameAxisOfView:_distanceProgress];
@@ -94,6 +108,7 @@
 //    self.stepProgress.backgroundColor = [UIColor lightGrayColor];
     
     self.titleLabel.text = LOC_STR(@"Today");
+    self.titleLabel.font = [UIFont boldAvenirFontOfSize:17];
     [self.indoorBtn setTitle:LOC_STR(@"Indoor") forState:UIControlStateNormal];
     [self.outdoorBtn setTitle:LOC_STR(@"Outdoor") forState:UIControlStateNormal];
     self.subTitle.adjustsFontSizeToFitWidth = YES;
