@@ -57,6 +57,7 @@
     if (![GlobalCache shareInstance].currentKid) {
         //当前用户没有绑定设备，执行查询
         [[GlobalCache shareInstance] queryProfile];
+        [[GlobalCache shareInstance] querySharedDevice];
     }
 }
 
@@ -74,6 +75,15 @@
         if ([GlobalCache shareInstance].currentKid.profile) {
             [self.imageView sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:[GlobalCache shareInstance].currentKid.profile]]];
         }
+        
+        self.label1.text = LOC_STR(@"Would you like to sync now?");
+        [self.button1 setTitle:LOC_STR(@"Yes, please") forState:
+         UIControlStateNormal];
+        self.button2.titleLabel.adjustsFontSizeToFitWidth = YES;
+        [self.button2 setTitle:LOC_STR(@"No, go to dashboard") forState:UIControlStateNormal];
+        
+        self.button3.titleLabel.adjustsFontSizeToFitWidth = YES;
+        [self.button3 setTitle:LOC_STR(@"Add another watch") forState:UIControlStateNormal];
     }
 }
 
