@@ -36,6 +36,11 @@
 		0F5E32881FC1945800E0B1B3 /* EventEditIntroSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5E32871FC1945800E0B1B3 /* EventEditIntroSheet.m */; };
 		0F5E328B1FC19BD600E0B1B3 /* TodayIntroSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5E328A1FC19BD600E0B1B3 /* TodayIntroSheet.m */; };
 		0F5E328E1FC720A300E0B1B3 /* LFLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5E328D1FC720A300E0B1B3 /* LFLineView.m */; };
+		0F5E32921FC8640800E0B1B3 /* TodayStepCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5E32901FC8640800E0B1B3 /* TodayStepCell.m */; };
+		0F5E32931FC8640800E0B1B3 /* TodayStepCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F5E32911FC8640800E0B1B3 /* TodayStepCell.xib */; };
+		0F5E32971FC86A3E00E0B1B3 /* DateStepCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5E32951FC86A3E00E0B1B3 /* DateStepCell.m */; };
+		0F5E32981FC86A3E00E0B1B3 /* DateStepCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F5E32961FC86A3E00E0B1B3 /* DateStepCell.xib */; };
+		0F5E329B1FC872EB00E0B1B3 /* StepsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5E329A1FC872EB00E0B1B3 /* StepsTableViewController.m */; };
 		0F68BEEE1DE87F8D002FDFB2 /* Activity+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F68BEEB1DE87F8D002FDFB2 /* Activity+CoreDataClass.m */; };
 		0F68BEEF1DE87F8D002FDFB2 /* Activity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F68BEED1DE87F8D002FDFB2 /* Activity+CoreDataProperties.m */; };
 		0F927FD51DDA02680011EF90 /* BLEClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F927FCC1DDA02680011EF90 /* BLEClient.m */; };
@@ -217,6 +222,14 @@
 		0F5E328A1FC19BD600E0B1B3 /* TodayIntroSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayIntroSheet.m; sourceTree = "<group>"; };
 		0F5E328C1FC720A300E0B1B3 /* LFLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFLineView.h; sourceTree = "<group>"; };
 		0F5E328D1FC720A300E0B1B3 /* LFLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFLineView.m; sourceTree = "<group>"; };
+		0F5E328F1FC8640800E0B1B3 /* TodayStepCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayStepCell.h; sourceTree = "<group>"; };
+		0F5E32901FC8640800E0B1B3 /* TodayStepCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayStepCell.m; sourceTree = "<group>"; };
+		0F5E32911FC8640800E0B1B3 /* TodayStepCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TodayStepCell.xib; sourceTree = "<group>"; };
+		0F5E32941FC86A3E00E0B1B3 /* DateStepCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateStepCell.h; sourceTree = "<group>"; };
+		0F5E32951FC86A3E00E0B1B3 /* DateStepCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateStepCell.m; sourceTree = "<group>"; };
+		0F5E32961FC86A3E00E0B1B3 /* DateStepCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateStepCell.xib; sourceTree = "<group>"; };
+		0F5E32991FC872EB00E0B1B3 /* StepsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepsTableViewController.h; sourceTree = "<group>"; };
+		0F5E329A1FC872EB00E0B1B3 /* StepsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepsTableViewController.m; sourceTree = "<group>"; };
 		0F68BEEA1DE87F8D002FDFB2 /* Activity+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Activity+CoreDataClass.h"; sourceTree = "<group>"; };
 		0F68BEEB1DE87F8D002FDFB2 /* Activity+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Activity+CoreDataClass.m"; sourceTree = "<group>"; };
 		0F68BEEC1DE87F8D002FDFB2 /* Activity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Activity+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -732,6 +745,12 @@
 				0FC529A51FBC96F4004CFBA0 /* StepsInfoView.h */,
 				0FC529A61FBC96F4004CFBA0 /* StepsInfoView.m */,
 				0FC529A81FBC9706004CFBA0 /* StepsInfoView.xib */,
+				0F5E328F1FC8640800E0B1B3 /* TodayStepCell.h */,
+				0F5E32901FC8640800E0B1B3 /* TodayStepCell.m */,
+				0F5E32911FC8640800E0B1B3 /* TodayStepCell.xib */,
+				0F5E32941FC86A3E00E0B1B3 /* DateStepCell.h */,
+				0F5E32951FC86A3E00E0B1B3 /* DateStepCell.m */,
+				0F5E32961FC86A3E00E0B1B3 /* DateStepCell.xib */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -792,6 +811,8 @@
 				ADF33CBB1D5A323000AE8874 /* TodayChartViewController.m */,
 				0F5E324E1FBF2C3200E0B1B3 /* DashboardViewController2.h */,
 				0F5E324F1FBF2C3200E0B1B3 /* DashboardViewController2.m */,
+				0F5E32991FC872EB00E0B1B3 /* StepsTableViewController.h */,
+				0F5E329A1FC872EB00E0B1B3 /* StepsTableViewController.m */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -1067,6 +1088,8 @@
 				ADDCD3F31D4C54960031DC66 /* LoginFlow.storyboard in Resources */,
 				ADDCD3F51D4C54960031DC66 /* SyncDevice.storyboard in Resources */,
 				0F9382B91FA5CB380095C516 /* Profile.storyboard in Resources */,
+				0F5E32931FC8640800E0B1B3 /* TodayStepCell.xib in Resources */,
+				0F5E32981FC86A3E00E0B1B3 /* DateStepCell.xib in Resources */,
 				0FEB6D5F1F014909007507D4 /* A-062617.bin in Resources */,
 				AD1CEF121D5AE886004FEC24 /* MainTab2.storyboard in Resources */,
 				ADDCD3F41D4C54960031DC66 /* MainTab.storyboard in Resources */,
@@ -1178,6 +1201,7 @@
 				AD6654541D490C110056632C /* SyncDeviceViewController.m in Sources */,
 				AD7797A01D4CF9C400472B27 /* ChartFooterView.m in Sources */,
 				AD1C61971DDB2AEF00331474 /* ActivityCache.m in Sources */,
+				0F5E329B1FC872EB00E0B1B3 /* StepsTableViewController.m in Sources */,
 				AD0B81181D37EF7400F43E72 /* Fun.m in Sources */,
 				AD7797A61D4D085600472B27 /* ChartViewController.m in Sources */,
 				AD7797961D4C9B5200472B27 /* EditProfileViewController.m in Sources */,
@@ -1242,6 +1266,7 @@
 				0F5E32501FBF2C3200E0B1B3 /* DashboardViewController2.m in Sources */,
 				AD978D0C1D585EF000E59D2B /* MessageViewController.m in Sources */,
 				0FD6B3E71D61B79300C00A45 /* ChoicesViewController.m in Sources */,
+				0F5E32971FC86A3E00E0B1B3 /* DateStepCell.m in Sources */,
 				0F5E32881FC1945800E0B1B3 /* EventEditIntroSheet.m in Sources */,
 				0FC529A71FBC96F4004CFBA0 /* StepsInfoView.m in Sources */,
 				AD347D1E1D3FDEEC00E91DDD /* SelectWatchViewController.m in Sources */,
@@ -1256,6 +1281,7 @@
 				0F9382D01FB09C130095C516 /* MutiShareToViewController.m in Sources */,
 				ADEF31D21D478E9900BB6A9B /* RoundButton.m in Sources */,
 				AD0B81191D37EF7400F43E72 /* GlobalCache.m in Sources */,
+				0F5E32921FC8640800E0B1B3 /* TodayStepCell.m in Sources */,
 				AD74D4E21D4FA750001F3B36 /* EventSelectTableViewCell.m in Sources */,
 				AD21A5DA1E5FD9E100DA72E3 /* CBService+LMMethod.m in Sources */,
 				ADE6ED941D4E415900FFA573 /* TimeLineView.m in Sources */,

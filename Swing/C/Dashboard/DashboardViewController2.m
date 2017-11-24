@@ -7,6 +7,7 @@
 //
 
 #import "DashboardViewController2.h"
+#import "StepsTableViewController.h"
 #import "StepsInfoView.h"
 #import "CommonDef.h"
 
@@ -41,6 +42,29 @@ typedef enum : NSUInteger {
     
     self.titleLabel.adjustsFontSizeToFitWidth = YES;
     self.subTitleLabel.adjustsFontSizeToFitWidth = YES;
+    
+    self.indoorView.leftLabel1.text = LOC_STR(@"Indoor");
+    self.outdoorView.leftLabel1.text = LOC_STR(@"Outdoor");
+    
+    [ControlFactory setClickAction:self.indoorView target:self action:@selector(indoorAction)];
+    [ControlFactory setClickAction:self.outdoorView target:self action:@selector(outdoorAction)];
+}
+
+- (void)indoorAction {
+    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Dashboard" bundle:nil];
+    StepsTableViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"StepsTableCtl"];
+    ctl.title = LOC_STR(@"Today");
+    ctl.todaySteps = YES;
+    [self.navigationController pushViewController:ctl animated:YES];
+}
+
+- (void)outdoorAction {
+    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Dashboard" bundle:nil];
+    StepsTableViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"StepsTableCtl"];
+    ctl.title = LOC_STR(@"Today");
+    ctl.todaySteps = YES;
+    ctl.outdoorFirstShow = YES;
+    [self.navigationController pushViewController:ctl animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

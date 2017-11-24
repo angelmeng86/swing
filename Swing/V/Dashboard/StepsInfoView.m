@@ -7,6 +7,7 @@
 //
 
 #import "StepsInfoView.h"
+#import "CommonDef.h"
 
 @implementation StepsInfoView
 
@@ -44,6 +45,10 @@
     [super awakeFromNib];
     self.layer.cornerRadius = 10.f;
     self.layer.masksToBounds = YES;
+    
+    self.leftLabel1.text = LOC_STR(@"Indoor");
+    self.leftLabel2.text = LOC_STR(@"Steps");
+    self.rightLabel.text = LOC_STR(@"Steps");
 }
 
 @end
