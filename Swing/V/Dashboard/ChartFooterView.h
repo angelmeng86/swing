@@ -18,9 +18,10 @@
 @interface ChartFooterView : UIView
 
 @property (nonatomic, strong) UIColor *lineColor;
-@property (nonatomic, strong) UILabel *titleLabel;
+//@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UIView *lineView;
 
-- (void)reload;
+//- (void)reload;
 
 @property (nonatomic, strong) UILabel *leftLabel;
 @property (nonatomic, strong) UILabel *rightLabel;

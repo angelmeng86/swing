@@ -103,7 +103,7 @@ static UIColor *kJBChartVerticalSelectionViewDefaultBgColor = nil;
 		_footerView = nil;
 	}
 	_footerView = footerView;
-	_footerView.clipsToBounds = YES;
+//	_footerView.clipsToBounds = YES;
 	
 	[self validateHeaderAndFooterHeights];
 	

@@ -41,6 +41,7 @@
 		0F5E32971FC86A3E00E0B1B3 /* DateStepCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5E32951FC86A3E00E0B1B3 /* DateStepCell.m */; };
 		0F5E32981FC86A3E00E0B1B3 /* DateStepCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F5E32961FC86A3E00E0B1B3 /* DateStepCell.xib */; };
 		0F5E329B1FC872EB00E0B1B3 /* StepsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5E329A1FC872EB00E0B1B3 /* StepsTableViewController.m */; };
+		0F5E32A11FC94FB400E0B1B3 /* ChartViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5E32A01FC94FB400E0B1B3 /* ChartViewController2.m */; };
 		0F68BEEE1DE87F8D002FDFB2 /* Activity+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F68BEEB1DE87F8D002FDFB2 /* Activity+CoreDataClass.m */; };
 		0F68BEEF1DE87F8D002FDFB2 /* Activity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F68BEED1DE87F8D002FDFB2 /* Activity+CoreDataProperties.m */; };
 		0F927FD51DDA02680011EF90 /* BLEClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F927FCC1DDA02680011EF90 /* BLEClient.m */; };
@@ -113,7 +114,6 @@
 		AD77979C1D4CE11B00472B27 /* CameraUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = AD77979B1D4CE11B00472B27 /* CameraUtility.m */; };
 		AD7797A01D4CF9C400472B27 /* ChartFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD77979F1D4CF9C400472B27 /* ChartFooterView.m */; };
 		AD7797A31D4D034600472B27 /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7797A21D4D034600472B27 /* ActivityViewController.m */; };
-		AD7797A61D4D085600472B27 /* ChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7797A51D4D085600472B27 /* ChartViewController.m */; };
 		AD790F531DAF9D9B002FE2F1 /* LFTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = AD790F511DAF9D9B002FE2F1 /* LFTextField.m */; };
 		AD83559D1E55512A000AA668 /* UIImage+wiRoundedRectImage.m in Sources */ = {isa = PBXBuildFile; fileRef = AD83559C1E55512A000AA668 /* UIImage+wiRoundedRectImage.m */; };
 		AD95A51B1D5243390047A0A2 /* SwingClientTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AD95A51A1D5243390047A0A2 /* SwingClientTest.m */; };
@@ -230,6 +230,8 @@
 		0F5E32961FC86A3E00E0B1B3 /* DateStepCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateStepCell.xib; sourceTree = "<group>"; };
 		0F5E32991FC872EB00E0B1B3 /* StepsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepsTableViewController.h; sourceTree = "<group>"; };
 		0F5E329A1FC872EB00E0B1B3 /* StepsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepsTableViewController.m; sourceTree = "<group>"; };
+		0F5E329F1FC94FB400E0B1B3 /* ChartViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartViewController2.h; sourceTree = "<group>"; };
+		0F5E32A01FC94FB400E0B1B3 /* ChartViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartViewController2.m; sourceTree = "<group>"; };
 		0F68BEEA1DE87F8D002FDFB2 /* Activity+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Activity+CoreDataClass.h"; sourceTree = "<group>"; };
 		0F68BEEB1DE87F8D002FDFB2 /* Activity+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Activity+CoreDataClass.m"; sourceTree = "<group>"; };
 		0F68BEEC1DE87F8D002FDFB2 /* Activity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Activity+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -371,8 +373,6 @@
 		AD77979F1D4CF9C400472B27 /* ChartFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartFooterView.m; sourceTree = "<group>"; };
 		AD7797A11D4D034600472B27 /* ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityViewController.h; sourceTree = "<group>"; };
 		AD7797A21D4D034600472B27 /* ActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityViewController.m; sourceTree = "<group>"; };
-		AD7797A41D4D085600472B27 /* ChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartViewController.h; sourceTree = "<group>"; };
-		AD7797A51D4D085600472B27 /* ChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartViewController.m; sourceTree = "<group>"; };
 		AD790F511DAF9D9B002FE2F1 /* LFTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFTextField.m; sourceTree = "<group>"; };
 		AD790F521DAF9D9B002FE2F1 /* LFTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFTextField.h; sourceTree = "<group>"; };
 		AD83559B1E55512A000AA668 /* UIImage+wiRoundedRectImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+wiRoundedRectImage.h"; sourceTree = "<group>"; };
@@ -799,14 +799,14 @@
 		AD9B0D8D1D3BB89E009FDD95 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				0F5E329F1FC94FB400E0B1B3 /* ChartViewController2.h */,
+				0F5E32A01FC94FB400E0B1B3 /* ChartViewController2.m */,
 				AD7438251D4DD50C00F5F9D2 /* JBBaseChartViewController.h */,
 				AD7438261D4DD50C00F5F9D2 /* JBBaseChartViewController.m */,
 				AD9B0D8F1D3BB935009FDD95 /* DashboardViewController.h */,
 				AD9B0D901D3BB935009FDD95 /* DashboardViewController.m */,
 				AD7797A11D4D034600472B27 /* ActivityViewController.h */,
 				AD7797A21D4D034600472B27 /* ActivityViewController.m */,
-				AD7797A41D4D085600472B27 /* ChartViewController.h */,
-				AD7797A51D4D085600472B27 /* ChartViewController.m */,
 				ADF33CBA1D5A323000AE8874 /* TodayChartViewController.h */,
 				ADF33CBB1D5A323000AE8874 /* TodayChartViewController.m */,
 				0F5E324E1FBF2C3200E0B1B3 /* DashboardViewController2.h */,
@@ -1203,7 +1203,6 @@
 				AD1C61971DDB2AEF00331474 /* ActivityCache.m in Sources */,
 				0F5E329B1FC872EB00E0B1B3 /* StepsTableViewController.m in Sources */,
 				AD0B81181D37EF7400F43E72 /* Fun.m in Sources */,
-				AD7797A61D4D085600472B27 /* ChartViewController.m in Sources */,
 				AD7797961D4C9B5200472B27 /* EditProfileViewController.m in Sources */,
 				ADE0BE731D59933400E70109 /* LMCalendarDayView.m in Sources */,
 				0F5E327C1FC1217700E0B1B3 /* EventKid+CoreDataClass.m in Sources */,
@@ -1226,6 +1225,7 @@
 				AD2D338D1D5378AD005D9298 /* KidModel.m in Sources */,
 				AD9B0D971D3BB954009FDD95 /* CalendarViewController.m in Sources */,
 				0F1376131DE04A5D00DB6C33 /* DBHelper.m in Sources */,
+				0F5E32A11FC94FB400E0B1B3 /* ChartViewController2.m in Sources */,
 				AD347D1B1D3FDE1A00E91DDD /* DeviceTableViewCell.m in Sources */,
 				0F9734B41F19162E00502D8A /* SyncNavViewController.m in Sources */,
 				0F927FD91DDA02680011EF90 /* BLESyncDevice.m in Sources */,

@@ -14,6 +14,7 @@
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.lineColor = [UIColor blackColor];
+        /*
         self.titleLabel = [UILabel new];
         [self addSubview:self.titleLabel];
         
@@ -24,33 +25,39 @@
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
         
         self.titleLabel.font = [UIFont boldAvenirFontOfSize:14];
-        
+        */
         self.leftLabel = [UILabel new];
         [self addSubview:self.leftLabel];
         
-        [self.leftLabel autoPinEdgeToSuperviewEdge:ALEdgeTop];
+        [self.leftLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:5];
         [self.leftLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading];
         [self.leftLabel autoSetDimension:ALDimensionHeight toSize:20];
-        self.leftLabel.textColor = [UIColor whiteColor];
+        self.leftLabel.textColor = _lineColor;
         self.leftLabel.textAlignment = NSTextAlignmentLeft;
         
-        self.leftLabel.font = [UIFont avenirFontOfSize:13];
+        self.leftLabel.font = [UIFont avenirFontOfSize:15];
         
         self.rightLabel = [UILabel new];
         [self addSubview:self.rightLabel];
         
-        [self.rightLabel autoPinEdgeToSuperviewEdge:ALEdgeTop];
+        [self.rightLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:5];
         [self.rightLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing];
         [self.rightLabel autoSetDimension:ALDimensionHeight toSize:20];
-        self.rightLabel.textColor = [UIColor whiteColor];
+        self.rightLabel.textColor = _lineColor;
         self.rightLabel.textAlignment = NSTextAlignmentRight;
         
-        self.rightLabel.font = [UIFont avenirFontOfSize:13];
+        self.rightLabel.font = [UIFont avenirFontOfSize:15];
         
         [self.leftLabel autoPinEdge:ALEdgeTrailing toEdge:ALEdgeLeading ofView:self.rightLabel];
         [self.leftLabel autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:self.rightLabel];
         
         self.backgroundColor = [UIColor clearColor];
+        
+        self.lineView = [UIView new];
+        _lineView.backgroundColor = _lineColor;
+        [self addSubview:_lineView];
+        [self.lineView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(0, -10, 0, -10) excludingEdge:ALEdgeBottom];
+        [self.lineView autoSetDimension:ALDimensionHeight toSize:3];
     }
     return self;
 }
@@ -68,7 +75,7 @@
             [array addObject:label];
             [label autoPinEdgeToSuperviewEdge:ALEdgeTop];
             [label autoSetDimension:ALDimensionHeight toSize:20];
-            label.textColor = [UIColor whiteColor];
+            label.textColor = _lineColor;
             label.font = [UIFont avenirFontOfSize:13];
             label.adjustsFontSizeToFitWidth = YES;
             if (i == 0) {
@@ -95,16 +102,18 @@
 
 - (void)setLineColor:(UIColor *)lineColor {
     _lineColor = lineColor;
-    self.titleLabel.backgroundColor = lineColor;
+    self.leftLabel.textColor = lineColor;
+    self.rightLabel.textColor = lineColor;
+    self.lineView.backgroundColor = lineColor;
 }
 
-- (void)drawRect:(CGRect)rect {
-    [super drawRect:rect];
-    // Drawing code
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, _lineColor.CGColor);
-    CGContextFillRect(context, CGRectMake(0, 0, CGRectGetWidth(self.frame), 3));
-}
+//- (void)drawRect:(CGRect)rect {
+//    [super drawRect:rect];
+//    // Drawing code
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//    CGContextSetFillColorWithColor(context, _lineColor.CGColor);
+//    CGContextFillRect(context, CGRectMake(0, 0, CGRectGetWidth(self.frame), 3));
+//}
 
 
 @end

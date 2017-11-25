@@ -27,7 +27,7 @@ typedef enum : NSUInteger {
 @implementation DashboardViewController2
 
 - (void)viewDidLoad {
-    self.notLoadBackgroudImage = YES;
+//    self.notLoadBackgroudImage = YES;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
@@ -48,6 +48,9 @@ typedef enum : NSUInteger {
     
     [ControlFactory setClickAction:self.indoorView target:self action:@selector(indoorAction)];
     [ControlFactory setClickAction:self.outdoorView target:self action:@selector(outdoorAction)];
+    
+    self.indoorView.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.8f];
+    self.outdoorView.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.8f];
 }
 
 - (void)indoorAction {

@@ -7,7 +7,7 @@
 //
 
 #import "ActivityViewController.h"
-#import "ChartViewController.h"
+#import "ChartViewController2.h"
 #import "TodayChartViewController.h"
 #import "CommonDef.h"
 
@@ -38,15 +38,15 @@
     todayCtl.delegate = self;
     todayCtl.pageIndex = 0;
     
-    ChartViewController *weekCtl = [ChartViewController new];
+    ChartViewController2 *weekCtl = [ChartViewController2 new];
     weekCtl.type = ChartTypeWeek;
     weekCtl.pageIndex = 1;
     
-    ChartViewController *monthCtl = [ChartViewController new];
+    ChartViewController2 *monthCtl = [ChartViewController2 new];
     monthCtl.type = ChartTypeMonth;
     monthCtl.pageIndex = 2;
     
-    ChartViewController *yearCtl = [ChartViewController new];
+    ChartViewController2 *yearCtl = [ChartViewController2 new];
     yearCtl.type = ChartTypeYear;
     yearCtl.pageIndex = 3;
     

@@ -58,7 +58,7 @@
     _dateLabel.font = [UIFont avenirFontOfSize:15];
     _dateLabel.adjustsFontSizeToFitWidth = YES;
     [_dateLabel autoAlignAxisToSuperviewMarginAxis:ALAxisVertical];
-    [_dateLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self];
+    [_dateLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self withOffset:5];
     [_dateLabel autoSetDimension:ALDimensionHeight toSize:20];
     [_dateLabel autoConstrainAttribute:ALAttributeWidth toAttribute:ALAttributeWidth ofView:self withMultiplier:1.5];
 }

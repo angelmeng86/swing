@@ -20,6 +20,7 @@
     
     self.backView.layer.cornerRadius = 10.f;
     self.backView.layer.masksToBounds = YES;
+    self.backView.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.8f];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
