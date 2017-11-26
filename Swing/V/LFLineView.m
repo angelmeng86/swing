@@ -31,7 +31,12 @@
     CGFloat lengths[] = {_lineLength,_lineSpacing};
     CGContextSetLineDash(context, 0, lengths,2);
     CGContextMoveToPoint(context, 0, 0);
-    CGContextAddLineToPoint(context, 0, rect.size.height);
+    if (_horizontalLine) {
+        CGContextAddLineToPoint(context, rect.size.width, 0);
+    }
+    else {
+        CGContextAddLineToPoint(context, 0, rect.size.height);
+    }
     CGContextStrokePath(context);
     CGContextClosePath(context);
 }

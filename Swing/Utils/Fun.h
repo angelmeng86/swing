@@ -49,4 +49,6 @@
 
 + (NSData*)dataReversal:(NSData*)data;
 
++ (NSString *)countNumAndChangeformat:(long)num;
+
 @end

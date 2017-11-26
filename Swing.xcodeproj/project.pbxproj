@@ -42,6 +42,7 @@
 		0F5E32981FC86A3E00E0B1B3 /* DateStepCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F5E32961FC86A3E00E0B1B3 /* DateStepCell.xib */; };
 		0F5E329B1FC872EB00E0B1B3 /* StepsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5E329A1FC872EB00E0B1B3 /* StepsTableViewController.m */; };
 		0F5E32A11FC94FB400E0B1B3 /* ChartViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5E32A01FC94FB400E0B1B3 /* ChartViewController2.m */; };
+		0F5E32A41FCAA60700E0B1B3 /* LMArrowLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5E32A31FCAA60700E0B1B3 /* LMArrowLabel.m */; };
 		0F68BEEE1DE87F8D002FDFB2 /* Activity+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F68BEEB1DE87F8D002FDFB2 /* Activity+CoreDataClass.m */; };
 		0F68BEEF1DE87F8D002FDFB2 /* Activity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F68BEED1DE87F8D002FDFB2 /* Activity+CoreDataProperties.m */; };
 		0F927FD51DDA02680011EF90 /* BLEClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F927FCC1DDA02680011EF90 /* BLEClient.m */; };
@@ -232,6 +233,8 @@
 		0F5E329A1FC872EB00E0B1B3 /* StepsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepsTableViewController.m; sourceTree = "<group>"; };
 		0F5E329F1FC94FB400E0B1B3 /* ChartViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartViewController2.h; sourceTree = "<group>"; };
 		0F5E32A01FC94FB400E0B1B3 /* ChartViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartViewController2.m; sourceTree = "<group>"; };
+		0F5E32A21FCAA60700E0B1B3 /* LMArrowLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMArrowLabel.h; sourceTree = "<group>"; };
+		0F5E32A31FCAA60700E0B1B3 /* LMArrowLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMArrowLabel.m; sourceTree = "<group>"; };
 		0F68BEEA1DE87F8D002FDFB2 /* Activity+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Activity+CoreDataClass.h"; sourceTree = "<group>"; };
 		0F68BEEB1DE87F8D002FDFB2 /* Activity+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Activity+CoreDataClass.m"; sourceTree = "<group>"; };
 		0F68BEEC1DE87F8D002FDFB2 /* Activity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Activity+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -751,6 +754,8 @@
 				0F5E32941FC86A3E00E0B1B3 /* DateStepCell.h */,
 				0F5E32951FC86A3E00E0B1B3 /* DateStepCell.m */,
 				0F5E32961FC86A3E00E0B1B3 /* DateStepCell.xib */,
+				0F5E32A21FCAA60700E0B1B3 /* LMArrowLabel.h */,
+				0F5E32A31FCAA60700E0B1B3 /* LMArrowLabel.m */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -1195,6 +1200,7 @@
 				ADF33CB91D5A159400AE8874 /* LMCalendarWeekDayView.m in Sources */,
 				ADD655611D5B8DAC0054FB24 /* AlertModel.m in Sources */,
 				AD7438231D4DD47100F5F9D2 /* JBChartTooltipTipView.m in Sources */,
+				0F5E32A41FCAA60700E0B1B3 /* LMArrowLabel.m in Sources */,
 				AD05B5C01D3BD187007BCF7C /* SwingClient.m in Sources */,
 				0F176EC01DE48FB70014F079 /* Todo+CoreDataProperties.m in Sources */,
 				0F5E328B1FC19BD600E0B1B3 /* TodayIntroSheet.m in Sources */,

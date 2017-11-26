@@ -46,6 +46,10 @@ typedef enum : NSUInteger {
     self.indoorView.leftLabel1.text = LOC_STR(@"Indoor");
     self.outdoorView.leftLabel1.text = LOC_STR(@"Outdoor");
     
+    self.indoorView.timeLabel.text = LOC_STR(@"Today");
+    self.outdoorView.timeLabel.text = LOC_STR(@"Today");
+    
+    
     [ControlFactory setClickAction:self.indoorView target:self action:@selector(indoorAction)];
     [ControlFactory setClickAction:self.outdoorView target:self action:@selector(outdoorAction)];
     
@@ -89,32 +93,9 @@ typedef enum : NSUInteger {
 //    oye %= 3;
 }
 
-- (NSString *)countNumAndChangeformat:(long)num
-{
-    int count = 0;
-    long a = num;
-    while (a != 0)
-    {
-        count++;
-        a /= 10;
-    }
-    NSMutableString *string = [NSMutableString stringWithFormat:@"%ld",num];
-    NSMutableString *newstring = [NSMutableString string];
-    while (count > 3) {
-        count -= 3;
-        NSRange rang = NSMakeRange(string.length - 3, 3);
-        NSString *str = [string substringWithRange:rang];
-        [newstring insertString:str atIndex:0];
-        [newstring insertString:@"," atIndex:0];
-        [string deleteCharactersInRange:rang];
-    }
-    [newstring insertString:string atIndex:0];
-    return newstring;
-}
-
 - (void)setType:(DashboardType)type {
-    self.indoorView.valueLabel.text = [self countNumAndChangeformat:[GlobalCache shareInstance].local.indoorSteps];
-    self.outdoorView.valueLabel.text = [self countNumAndChangeformat:[GlobalCache shareInstance].local.outdoorSteps];
+    self.indoorView.valueLabel.text = [Fun countNumAndChangeformat:[GlobalCache shareInstance].local.indoorSteps];
+    self.outdoorView.valueLabel.text = [Fun countNumAndChangeformat:[GlobalCache shareInstance].local.outdoorSteps];
     switch (type) {
         case DashboardTypeHappy:
         {

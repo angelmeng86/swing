@@ -180,5 +180,7 @@
  *  @return The UIView representing the bar view at a given index or nil if the index is out of range.
  */
 - (UIView *)barViewAtIndex:(NSUInteger)index;
+//maple add
+- (CGFloat)availableHeight;
 
 @end

@@ -16,6 +16,8 @@
     CGFloat _height;
 }
 
+@property (nonatomic) BOOL  horizontalLine;
+
 - (instancetype)initWithLineLength:(NSInteger)lineLength withLineSpacing:(NSInteger)lineSpacing withLineColor:(UIColor *)lineColor;
 
 @end

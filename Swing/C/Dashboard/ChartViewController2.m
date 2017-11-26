@@ -17,9 +17,13 @@
 #import "LMArrowView.h"
 #import "RoundButton.h"
 #import "StepsTableViewController.h"
+#import "LFLineView.h"
+#import "LMArrowLabel.h"
 
 // Numerics
 static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
+
+#define CHART_VIEW_LINE_VALUE       12000.0f
 
 @interface ChartViewController2 ()<JBBarChartViewDelegate, JBBarChartViewDataSource, ChartFooterViewDelegate>
 {
@@ -27,10 +31,13 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
     UIButton *indoorBtn;
     UIButton *outdoorBtn;
     NSDateFormatter *localeDateFormatter;
+    
+    NSLayoutConstraint *standardLC;
+    CGFloat lineValue;
 }
 
 @property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) JBChartView *stepsChartView;
+@property (nonatomic, strong) JBBarChartView *stepsChartView;
 
 @property (nonatomic, strong) ChartFooterView *stepFooter;
 
@@ -80,6 +87,7 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
     switch (_type) {
         case ChartTypeMonth:
         {
+            lineValue = CHART_VIEW_LINE_VALUE;
 //            [self initFakeData:30 value:0];
             self.stepsChartView = [self createBarChartView];
             self.stepChartColor = RGBA(58, 188, 164, 1.0f);
@@ -101,6 +109,7 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
 //        case ChartTypeWeek:
             default:
         {
+            lineValue = CHART_VIEW_LINE_VALUE;
 //            [self initFakeData:7 value:0];
             self.stepsChartView = [self createBarChartView];
             self.stepChartColor = RGBA(98, 91, 180, 1.0f);
@@ -139,7 +148,7 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
     UILabel *label = [UILabel new];
     [backView addSubview:label];
     [label autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(10, 0, 0, 0) excludingEdge:ALEdgeBottom];
-    [label autoSetDimension:ALDimensionHeight toSize:30];
+    [label autoSetDimension:ALDimensionHeight toSize:20];
     label.textColor = _stepChartColor;
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont boldAvenirFontOfSize:17];
@@ -152,9 +161,34 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
     [self.stepsChartView autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:backView withOffset:15];
     [self.stepsChartView autoPinEdge:ALEdgeRight toEdge:ALEdgeRight ofView:backView withOffset:-15];
     [self.stepsChartView autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:backView withOffset:-10];
-    [self.stepsChartView autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:backView withOffset:10];
+    [self.stepsChartView autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:backView withOffset:30];
     
     [self createBtn:backView offset:30];
+    
+    if (lineValue > 0) {
+        LFLineView *line = [[LFLineView alloc] initWithLineLength:6 withLineSpacing:3 withLineColor:_stepChartColor];
+        line.horizontalLine = YES;
+        [self.view addSubview:line];
+        
+        [line autoSetDimension:ALDimensionHeight toSize:2];
+        standardLC = [line autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.stepsChartView withOffset:-20];
+        [line autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:backView withOffset:10];
+        [line autoPinEdge:ALEdgeRight toEdge:ALEdgeRight ofView:backView withOffset:-10];
+        
+        LMArrowLabel *label = [LMArrowLabel new];
+        label.font = [UIFont avenirFontOfSize:13];
+        label.adjustsFontSizeToFitWidth = YES;
+        label.textAlignment = NSTextAlignmentCenter;
+        label.text = [Fun countNumAndChangeformat:lineValue];
+        label.textColor = [UIColor whiteColor];
+        label.backgroundColor = _stepChartColor;
+        [self.view addSubview:label];
+        [label autoSetDimensionsToSize:CGSizeMake(30, 16)];
+        [label autoAlignAxis:ALAxisHorizontal toSameAxisOfView:line];
+        [label autoPinEdge:ALEdgeRight toEdge:ALEdgeRight ofView:line];
+        
+    }
+    
 
     self.isLoadData = NO;
     task = nil;
@@ -376,9 +410,9 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
 - (CGFloat)dataDate:(NSDictionary*)dict index:(NSUInteger)index {
     int maxCount = [self dataCount];
     NSDate *date = [NSDate date];
-    if (maxCount > 0) {
-        return 12000 / maxCount * index;
-    }
+//    if (maxCount > 0) {
+//        return 12000 / maxCount * (index + 1) + 3000;
+//    }
     switch (_type) {
         case ChartTypeYear:
         {
@@ -427,9 +461,13 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
     
     LOG_D(@"stepChartData:%@", _stepChartData);
     [self.stepsChartView reloadData];
-    
+    if (lineValue > 0) {
+        CGFloat maxHeight = _stepsChartView.maximumValue;
+        CGFloat boundHeight = [_stepsChartView availableHeight];
+        CGFloat realHeight = lineValue / maxHeight * boundHeight;
+        standardLC.constant = - 20.0f - realHeight;
+    }
 //    [self.stepFooter reload];
-//    [self.distanceFooter reload];
 }
 
 - (void)reloadChartView {
@@ -463,7 +501,12 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
     }
     
     [_stepsChartView reloadData];
-    
+    if (lineValue > 0) {
+        CGFloat maxHeight = _stepsChartView.maximumValue;
+        CGFloat boundHeight = [_stepsChartView availableHeight];
+        CGFloat realHeight = lineValue / maxHeight * boundHeight;
+        standardLC.constant = - 20.0f - realHeight;
+    }
 //    [stepFooter reload];
     
     self.stepFooter = stepFooter;
@@ -476,10 +519,45 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
     barChartView.headerPadding = 10.f;
     barChartView.minimumValue = 0.0f;
     barChartView.inverted = NO;
-    barChartView.maximumValue = 12000.0f;
+    barChartView.maximumValue = lineValue;
     barChartView.clipsToBounds = NO;
     
+    [ControlFactory setClickAction:barChartView target:self action:@selector(detailAction)];
+    
     return barChartView;
+}
+
+- (void)detailAction
+{
+    switch (_type) {
+        case ChartTypeMonth:
+        {
+            UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Dashboard" bundle:nil];
+            StepsTableViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"StepsTableCtl"];
+            ctl.title = self.titleLabel.text;
+            ctl.todaySteps = NO;
+            [self.navigationController pushViewController:ctl animated:YES];
+        }
+            break;
+        case ChartTypeYear:
+        {
+            UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Dashboard" bundle:nil];
+            StepsTableViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"StepsTableCtl"];
+            ctl.title = self.titleLabel.text;
+            ctl.todaySteps = NO;
+            [self.navigationController pushViewController:ctl animated:YES];
+        }
+            break;
+        default:
+        {
+            UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Dashboard" bundle:nil];
+            StepsTableViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"StepsTableCtl"];
+            ctl.title = self.titleLabel.text;
+            ctl.todaySteps = NO;
+            [self.navigationController pushViewController:ctl animated:YES];
+        }
+            break;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -531,48 +609,19 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
 {
     return [self dataCount];
 }
-
+/*
 - (void)barChartView:(JBBarChartView *)barChartView didSelectBarAtIndex:(NSUInteger)index touchPoint:(CGPoint)touchPoint
 {
 //    NSNumber *valueNumber = [self.chartData objectAtIndex:index];
 //    [self setTooltipVisible:YES animated:YES atTouchPoint:touchPoint atChartView:barChartView];
 //    [self.tooltipView setText:[valueNumber stringValue]];
-    
 }
 
 - (void)didDeselectBarChartView:(JBBarChartView *)barChartView
 {
 //    [self setTooltipVisible:NO animated:YES atChartView:barChartView];
-    switch (_type) {
-        case ChartTypeMonth:
-        {
-            UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Dashboard" bundle:nil];
-            StepsTableViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"StepsTableCtl"];
-            ctl.title = self.titleLabel.text;
-            ctl.todaySteps = NO;
-            [self.navigationController pushViewController:ctl animated:YES];
-        }
-            break;
-        case ChartTypeYear:
-        {
-            UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Dashboard" bundle:nil];
-            StepsTableViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"StepsTableCtl"];
-            ctl.title = self.titleLabel.text;
-            ctl.todaySteps = NO;
-            [self.navigationController pushViewController:ctl animated:YES];
-        }
-            break;
-        default:
-        {
-            UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Dashboard" bundle:nil];
-            StepsTableViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"StepsTableCtl"];
-            ctl.title = self.titleLabel.text;
-            ctl.todaySteps = NO;
-            [self.navigationController pushViewController:ctl animated:YES];
-        }
-            break;
-    }
 }
+*/
 
 #pragma mark - JBBarChartViewDelegate
 
@@ -599,8 +648,9 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
         NSDate *preDate = [[NSDate date] dateByAddingTimeInterval: (pos - 6) * 24 * 60 * 60];
         
         LMBarView *v = [LMBarView new];
-        v.label.text = [NSString stringWithFormat:@"%d", (int)[self barChartView:barChartView heightForBarViewAtIndex:index]];
-        v.label.textColor = _stepChartColor;
+        v.label.text = [Fun countNumAndChangeformat:[self barChartView:barChartView heightForBarViewAtIndex:index]];
+//        v.label.text = [NSString stringWithFormat:@"%d", (int)[self barChartView:barChartView heightForBarViewAtIndex:index]];
+//        v.label.textColor = _stepChartColor;
         v.dateLabel.textColor = _stepChartColor;
         v.dateLabel.text = [df stringFromDate:preDate];
         view = v;
@@ -616,7 +666,7 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
         NSDateComponents *comp = [cal components:NSCalendarUnitYear|NSCalendarUnitMonth fromDate:[NSDate date]];
         
         LMBarView *v = [LMBarView new];
-        v.label.textColor = _stepChartColor;
+//        v.label.textColor = _stepChartColor;
         v.dateLabel.textColor = _stepChartColor;
         v.dateLabel.text = [array objectAtIndex:(index + comp.month) % 12];
         view = v;
@@ -630,7 +680,7 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
 
 - (UIColor *)barSelectionColorForBarChartView:(JBBarChartView *)barChartView
 {
-    return [UIColor whiteColor];
+    return [UIColor clearColor];
 }
 
 - (CGFloat)barPaddingForBarChartView:(JBBarChartView *)barChartView
