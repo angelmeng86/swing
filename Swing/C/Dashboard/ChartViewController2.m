@@ -120,6 +120,20 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
             break;
     }
     
+    long steps = [GlobalCache shareInstance].local.indoorSteps + [GlobalCache shareInstance].local.outdoorSteps;
+    if (steps < STEPS_LEVEL_LOW) {
+        self.stepChartColor = RGBA(99, 92, 170, 1.0f);;
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dashboard-bg-monster-1"]];
+    }
+    else if(steps > STEPS_LEVEL_GOOD) {
+        self.stepChartColor = RGBA(56, 181, 155, 1.0f);
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dashboard-bg-monster-2"]];
+    }
+    else {
+        self.stepChartColor = RGBA(226, 103, 46, 1.0f);
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dashboard-bg-monster-3"]];
+    }
+    
     _titleLabel.textColor = _stepChartColor;
     
     LMArrowView *leftView = [LMArrowView new];
@@ -223,6 +237,7 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
     [outdoorBtn autoAlignAxis:ALAxisHorizontal toSameAxisOfView:middleView];
     
     [indoorBtn setTitle:LOC_STR(@"Indoor") forState:UIControlStateNormal];
+    indoorBtn.titleLabel.font = [UIFont avenirFontOfSize:17];
     indoorBtn.backgroundColor = [UIColor whiteColor];
     indoorBtn.layer.borderWidth = 2;
     indoorBtn.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -236,6 +251,7 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
     indoorBtn.selected = YES;
     
     [outdoorBtn setTitle:LOC_STR(@"Outdoor") forState:UIControlStateNormal];
+    outdoorBtn.titleLabel.font = [UIFont avenirFontOfSize:17];
     outdoorBtn.backgroundColor = [UIColor whiteColor];
     outdoorBtn.layer.borderWidth = 2;
     outdoorBtn.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -529,6 +545,15 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
 
 - (void)detailAction
 {
+    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Dashboard" bundle:nil];
+    StepsTableViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"StepsTableCtl"];
+    ctl.title = self.titleLabel.text;
+    ctl.todaySteps = NO;
+    ctl.outdoorFirstShow = outdoorBtn.selected;
+    ctl.indoorData = self.indoorData.allValues;
+    ctl.outdoorData = self.outdoorData.allValues;
+    [self.navigationController pushViewController:ctl animated:YES];
+    /*
     switch (_type) {
         case ChartTypeMonth:
         {
@@ -558,6 +583,7 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
         }
             break;
     }
+     */
 }
 
 - (void)didReceiveMemoryWarning {

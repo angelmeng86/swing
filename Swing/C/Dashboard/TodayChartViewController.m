@@ -11,6 +11,7 @@
 #import "CommonDef.h"
 #import "LMArrowView.h"
 #import "LFLineView.h"
+#import "StepsTableViewController.h"
 
 @interface TodayChartViewController ()
 {
@@ -31,12 +32,28 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = RGBA(0xdc, 0xcc, 0xfe, 1.0f);
     
+    long steps = [GlobalCache shareInstance].local.indoorSteps + [GlobalCache shareInstance].local.outdoorSteps;
+    if (steps < STEPS_LEVEL_LOW) {
+        self.titleLabel.textColor = RGBA(99, 92, 170, 1.0f);;
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dashboard-bg-monster-1"]];
+    }
+    else if(steps > STEPS_LEVEL_GOOD) {
+        self.titleLabel.textColor = RGBA(56, 181, 155, 1.0f);
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dashboard-bg-monster-2"]];
+    }
+    else {
+        self.titleLabel.textColor = RGBA(226, 103, 46, 1.0f);
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dashboard-bg-monster-3"]];
+    }
+    
     LMArrowView *leftView = [LMArrowView new];
     LMArrowView *rightView = [LMArrowView new];
     rightView.arrow = LMArrowRight;
     
     leftView.color = _titleLabel.textColor;
     rightView.color = _titleLabel.textColor;
+    
+    self.subTitle.textColor = _titleLabel.textColor;
     
     [self.view addSubview:leftView];
     [self.view addSubview:rightView];
@@ -77,14 +94,15 @@
     self.lineWidth = [line autoPinEdge:ALEdgeTrailing toEdge:ALEdgeTrailing ofView:_stepProgress withOffset:-50];
 //    [line autoAlignAxis:ALAxisHorizontal toSameAxisOfView:_distanceProgress];
     
-    UIImage *image = [ControlFactory imageFromColor:RGBA(0x67, 0x5c, 0xa7, 1.0f) size:CGSizeMake(100, 30)];
-//    UIImage *image = [ControlFactory imageFromColor:[UIColor redColor] size:CGSizeMake(100, 30)];
+//    UIImage *image = [ControlFactory imageFromColor:RGBA(0x67, 0x5c, 0xa7, 1.0f) size:CGSizeMake(100, 30)];
+    UIImage *image = [ControlFactory imageFromColor:_titleLabel.textColor size:CGSizeMake(100, 30)];
     
     self.indoorBtn.layer.borderWidth = 2;
     self.indoorBtn.layer.borderColor = [UIColor whiteColor].CGColor;
     self.indoorBtn.layer.masksToBounds = YES;
     self.indoorBtn.adjustsImageWhenHighlighted = NO;
     self.indoorBtn.showsTouchWhenHighlighted = NO;
+    [self.indoorBtn setTitleColor:_titleLabel.textColor forState:UIControlStateNormal];
     [self.indoorBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     [self.indoorBtn setBackgroundImage:image forState:UIControlStateSelected];
     [self.indoorBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -95,6 +113,7 @@
     self.outdoorBtn.layer.masksToBounds = YES;
     self.outdoorBtn.adjustsImageWhenHighlighted = NO;
     self.outdoorBtn.showsTouchWhenHighlighted = NO;
+    [self.outdoorBtn setTitleColor:_titleLabel.textColor forState:UIControlStateNormal];
     [self.outdoorBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     [self.outdoorBtn setBackgroundImage:image forState:UIControlStateSelected];
     [self.outdoorBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -115,6 +134,18 @@
     self.subTitle.text = LOC_STR(@"Don't give up. You can do this!");
     
     [self reloadData];
+    
+    [ControlFactory setClickAction:self.stepProgress target:self action:@selector(stepAction)];
+}
+
+- (void)stepAction
+{
+    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Dashboard" bundle:nil];
+    StepsTableViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"StepsTableCtl"];
+    ctl.title = self.titleLabel.text;
+    ctl.todaySteps = YES;
+    ctl.outdoorFirstShow = self.outdoorBtn.selected;
+    [self.navigationController pushViewController:ctl animated:YES];
 }
 
 - (void)btnAction:(id)sender {

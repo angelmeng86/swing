@@ -26,9 +26,11 @@
     _checked = checked;
     if (checked) {
         self.imageBtn.layer.borderColor = COMMON_TITLE_COLOR.CGColor;
+        self.imageBtn.layer.borderWidth = 2.0f;
     }
     else {
         self.imageBtn.layer.borderColor = COMMON_HEADER_BORDER_COLOR.CGColor;
+        self.imageBtn.layer.borderWidth = 1.0f;
     }
 }
 

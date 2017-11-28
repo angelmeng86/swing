@@ -45,6 +45,7 @@
 @property (nonatomic, readonly, strong) NSString* getRetrieveActivity;
 
 @property (nonatomic, readonly, strong) NSString* retrieveActivityByTime;
+@property (nonatomic, readonly, strong) NSString* retrieveHourlyDataByTime;
 
 @property (nonatomic, readonly, strong) NSString* currentVersion;
 @property (nonatomic, readonly, strong) NSString* putFirmwareVersion;

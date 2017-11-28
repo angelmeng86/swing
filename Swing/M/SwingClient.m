@@ -808,6 +808,9 @@
         case GetActivityTypeWeekly:
             period = @"WEEKLY";
             break;
+        case GetActivityTypeHourly:
+            period = @"HOURLY";
+            break;
         default:
             break;
     }
@@ -856,6 +859,37 @@
 //                    //时区运算
 //                    m.receivedDate = [m.receivedDate dateByAddingTimeInterval:TIME_ADJUST];
 //                }
+                completion(list, nil);
+            }
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSError *err = [self filterTokenInvalid:task.response err:error];
+            completion(nil ,err);
+        });
+    }];
+    return task;
+}
+
+- (NSURLSessionDataTask *)deviceGetActivityHourlyByTime:(int64_t)kidId beginTimestamp:(NSDate*)beginTime endTimestamp:(NSDate*)endTime completion:( void (^)(id dailyActs ,NSError *error) )completion
+{
+    //该接口传入的TimeStamp需要加入当前时区
+    NSDictionary *data = @{@"kidId":@(kidId), @"start":@([beginTime timeIntervalSince1970] + TIME_ADJUST), @"end":@([endTime timeIntervalSince1970] + TIME_ADJUST)};
+    LOG_D(@"kidId:%lld beginTime:%@ endTime:%@", kidId, beginTime, endTime);
+    LOG_D(@"data:%@", data);
+    NSURLSessionDataTask *task = [self.sessionManager GET:_URL.retrieveHourlyDataByTime parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LOG_D(@"deviceGetActivityByTime info:%@", responseObject);
+            NSError *err = [self getErrorMessage:responseObject];
+            if (err) {
+                completion(nil ,err);
+            }
+            else {
+                NSArray *list = [ActivityResultModel arrayOfModelsFromDictionaries:responseObject[@"activities"] error:nil];
+                //                for (ActivityResultModel *m in list) {
+                //                    //时区运算
+                //                    m.receivedDate = [m.receivedDate dateByAddingTimeInterval:TIME_ADJUST];
+                //                }
                 completion(list, nil);
             }
         });

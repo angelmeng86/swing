@@ -127,6 +127,10 @@
     return @"/v1/activity/retrieveDataByTime";
 }
 
+- (NSString*)retrieveHourlyDataByTime {
+    return @"/v1/activity/retrieveHourlyDataByTime";
+}
+
 - (NSString*)currentVersion {
     return @"/v1/fw/currentVersion";
 }

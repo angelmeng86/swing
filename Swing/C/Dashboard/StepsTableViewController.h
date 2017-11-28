@@ -17,4 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *indoorBtn;
 @property (weak, nonatomic) IBOutlet UIButton *outdoorBtn;
 
+@property (nonatomic, strong) NSArray *indoorData;
+@property (nonatomic, strong) NSArray *outdoorData;
+
 @end

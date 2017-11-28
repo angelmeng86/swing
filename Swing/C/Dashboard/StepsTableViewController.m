@@ -12,6 +12,10 @@
 #import "DateStepCell.h"
 
 @interface StepsTableViewController ()
+{
+    NSDateFormatter *dateFormatter;
+    NSDateFormatter *dateFormatter2;
+}
 
 @end
 
@@ -59,6 +63,43 @@
     
     [self.indoorBtn setTitle:LOC_STR(@"Indoor") forState:UIControlStateNormal];
     [self.outdoorBtn setTitle:LOC_STR(@"Outdoor") forState:UIControlStateNormal];
+    
+    if (self.todaySteps) {
+        [self requestData];
+    }
+}
+
+- (void)requestData {
+    
+    int64_t kidId = [GlobalCache shareInstance].currentKid.objId;
+    if (kidId == 0) {
+        return;
+    }
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:kCFCalendarUnitYear|kCFCalendarUnitMonth|kCFCalendarUnitDay|NSCalendarUnitWeekday fromDate:[NSDate date]];
+    NSDate *startDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
+    NSDate *endDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:1 toDate:startDate options:0];
+    
+    [[SwingClient sharedClient] deviceGetActivityByTime:kidId beginTimestamp:startDate endTimestamp:endDate completion:^(id dailyActs, NSError *error) {
+        if (!error) {
+            LOG_D(@"hourly dailyActs:%@", dailyActs);
+            NSMutableArray *indoors = [NSMutableArray array];
+            NSMutableArray *outdoors = [NSMutableArray array];
+            for (ActivityResultModel *m in dailyActs) {
+                if ([m.type isEqualToString:@"INDOOR"]) {
+                    [indoors addObject:m];
+                }
+                else if([m.type isEqualToString:@"OUTDOOR"]) {
+                    [outdoors addObject:m];
+                }
+            }
+            self.indoorData = indoors;
+            self.outdoorData = outdoors;
+            [self.tableView reloadData];
+        }
+        else {
+            LOG_D(@"deviceGetActivity fail: %@", error);
+        }
+    }];
 }
 
 - (void)btnAction:(id)sender {
@@ -90,7 +131,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.indoorBtn.selected ? self.indoorData.count : self.outdoorData.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -101,13 +142,44 @@
         TodayStepCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         cell.backgroundColor = [UIColor clearColor];
         
+        static NSDateFormatter *df = nil;
+        if (df == nil) {
+            df = [[NSDateFormatter alloc] init];
+            [df setDateFormat:@"hh:mm a"];
+        }
+        
+        NSArray *array = self.indoorBtn.selected ? self.indoorData : self.outdoorData;
+        
+        ActivityResultModel *model = array[indexPath.row];
+        
+        
+        
+        
         return cell;
     }
     else {
         static NSString *CellIdentifier = @"DateStepCell";
+        if(!dateFormatter){
+            dateFormatter = [NSDateFormatter new];
+            dateFormatter.dateFormat = @"MMM d, yyyy";
+            
+            dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:[GlobalCache shareInstance].curLanguage];
+            
+            dateFormatter2 = [NSDateFormatter new];
+            dateFormatter2.dateFormat = @"EEEE";
+            
+            dateFormatter2.locale = [NSLocale localeWithLocaleIdentifier:[GlobalCache shareInstance].curLanguage];
+        }
         
+        NSArray *array = self.indoorBtn.selected ? self.indoorData : self.outdoorData;
+        
+        ActivityResultModel *model = array[indexPath.row];
         DateStepCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         cell.backgroundColor = [UIColor clearColor];
+        
+        cell.dateLabel.text = [dateFormatter stringFromDate:model.receivedDate];
+        cell.weekDayLabel.text = [dateFormatter2 stringFromDate:model.receivedDate];
+        cell.valueLabel.text = [Fun countNumAndChangeformat:model.steps];
         
         return cell;
     }
