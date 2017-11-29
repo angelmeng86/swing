@@ -15,6 +15,7 @@
 {
     NSDateFormatter *dateFormatter;
     NSDateFormatter *dateFormatter2;
+    NSDateFormatter *dateFormatter3;
 }
 
 @end
@@ -79,7 +80,7 @@
     NSDate *startDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
     NSDate *endDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:1 toDate:startDate options:0];
     
-    [[SwingClient sharedClient] deviceGetActivityByTime:kidId beginTimestamp:startDate endTimestamp:endDate completion:^(id dailyActs, NSError *error) {
+    [[SwingClient sharedClient] deviceGetActivityHourlyByTime:kidId beginTimestamp:startDate endTimestamp:endDate completion:^(id dailyActs, NSError *error) {
         if (!error) {
             LOG_D(@"hourly dailyActs:%@", dailyActs);
             NSMutableArray *indoors = [NSMutableArray array];
@@ -92,8 +93,17 @@
                     [outdoors addObject:m];
                 }
             }
+            
+            [indoors sortUsingComparator:^NSComparisonResult(ActivityResultModel *obj1, ActivityResultModel* obj2) {
+                return [obj2.receivedDate compare:obj1.receivedDate];
+            }];
+            [outdoors sortUsingComparator:^NSComparisonResult(ActivityResultModel *obj1, ActivityResultModel* obj2) {
+                return [obj2.receivedDate compare:obj1.receivedDate];
+            }];
+            
             self.indoorData = indoors;
             self.outdoorData = outdoors;
+            
             [self.tableView reloadData];
         }
         else {
@@ -142,26 +152,37 @@
         TodayStepCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         cell.backgroundColor = [UIColor clearColor];
         
-        static NSDateFormatter *df = nil;
-        if (df == nil) {
-            df = [[NSDateFormatter alloc] init];
-            [df setDateFormat:@"hh:mm a"];
+        if (dateFormatter3 == nil) {
+            dateFormatter3 = [[NSDateFormatter alloc] init];
+            dateFormatter3.locale = [NSLocale localeWithLocaleIdentifier:[GlobalCache shareInstance].curLanguage];
+            [dateFormatter3 setDateFormat:@"hh:mm a"];
         }
         
         NSArray *array = self.indoorBtn.selected ? self.indoorData : self.outdoorData;
         
         ActivityResultModel *model = array[indexPath.row];
+        cell.subTitleLabel.text = LOC_STR(@"Today");
         
+        NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSCalendarUnitHour fromDate:model.receivedDate];
+        NSDate *startDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
+        NSDate *endDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitMinute value:59 toDate:startDate options:0];
+        cell.startTimeLabel.text = [dateFormatter3 stringFromDate:startDate];
+        cell.endTimeLabel.text = [dateFormatter3 stringFromDate:endDate];
         
-        
-        
+        cell.valueLabel.text = [Fun countNumAndChangeformat:model.steps];
         return cell;
     }
     else {
         static NSString *CellIdentifier = @"DateStepCell";
         if(!dateFormatter){
             dateFormatter = [NSDateFormatter new];
-            dateFormatter.dateFormat = @"MMM d, yyyy";
+            if ([[GlobalCache shareInstance].curLanguage.lowercaseString isEqualToString:@"ja"] || [[GlobalCache shareInstance].curLanguage.lowercaseString isEqualToString:@"zh-hant"]) {
+                dateFormatter.dateFormat = @"MMM d日, yyyy";
+            }
+            else {
+                dateFormatter.dateFormat = @"MMM d, yyyy";
+            }
+//            dateFormatter.dateFormat = @"MMM d, yyyy";
             
             dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:[GlobalCache shareInstance].curLanguage];
             

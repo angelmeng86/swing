@@ -106,7 +106,6 @@
     [self.indoorBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     [self.indoorBtn setBackgroundImage:image forState:UIControlStateSelected];
     [self.indoorBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
-    self.indoorBtn.selected = YES;
     
     self.outdoorBtn.layer.borderWidth = 2;
     self.outdoorBtn.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -132,6 +131,13 @@
     [self.outdoorBtn setTitle:LOC_STR(@"Outdoor") forState:UIControlStateNormal];
     self.subTitle.adjustsFontSizeToFitWidth = YES;
     self.subTitle.text = LOC_STR(@"Don't give up. You can do this!");
+    
+    if (self.outdoorFirstShow) {
+        self.outdoorBtn.selected = YES;
+    }
+    else {
+        self.indoorBtn.selected = YES;
+    }
     
     [self reloadData];
     
@@ -238,7 +244,10 @@
 //        self.stepProgress.progressCounter = [GlobalCache shareInstance].outdoorSteps;
 //    }
 //    [self.stepProgress setNeedsLayout];
-    
+    [self requestData];
+}
+
+- (void)requestData {
     if ([GlobalCache shareInstance].local.indoorSteps > 0 || [GlobalCache shareInstance].local.outdoorSteps > 0) {
         //判断如果本地有缓存数据则不向后台请求，主要解决因数据未上传引起的前后台数据不一致问题
         return;

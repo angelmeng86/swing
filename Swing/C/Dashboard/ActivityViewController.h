@@ -10,4 +10,6 @@
 
 @interface ActivityViewController : LMBaseViewController
 
+@property (nonatomic) BOOL outdoorFirstShowInToday;
+
 @end

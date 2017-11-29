@@ -219,6 +219,7 @@
         if (indexPath.row == self.kids.count) {
             [deviceCell.imageBtn setBackgroundImage:nil forState:UIControlStateNormal];
             [deviceCell.imageBtn setTitle:@"+" forState:UIControlStateNormal];
+            deviceCell.checked = NO;
             return deviceCell;
         }
         KidInfo *model = [self.kids objectAtIndex:indexPath.row];

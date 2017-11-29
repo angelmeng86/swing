@@ -37,6 +37,7 @@
     TodayChartViewController *todayCtl = [stroyBoard instantiateViewControllerWithIdentifier:@"TodayChart"];
     todayCtl.delegate = self;
     todayCtl.pageIndex = 0;
+    todayCtl.outdoorFirstShow = self.outdoorFirstShowInToday;
     
     ChartViewController2 *weekCtl = [ChartViewController2 new];
     weekCtl.type = ChartTypeWeek;

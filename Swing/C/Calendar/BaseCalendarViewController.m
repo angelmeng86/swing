@@ -143,7 +143,13 @@
 {
     if(!dateFormatter){
         dateFormatter = [NSDateFormatter new];
-        dateFormatter.dateFormat = @"MMM d, yyyy";
+        
+        if ([[GlobalCache shareInstance].curLanguage.lowercaseString isEqualToString:@"ja"] || [[GlobalCache shareInstance].curLanguage.lowercaseString isEqualToString:@"zh-hant"]) {
+            dateFormatter.dateFormat = @"MMM d日, yyyy";
+        }
+        else {
+            dateFormatter.dateFormat = @"MMM d, yyyy";
+        }
         
         dateFormatter.locale = _calendarManager.dateHelper.calendar.locale;
         dateFormatter.timeZone = _calendarManager.dateHelper.calendar.timeZone;

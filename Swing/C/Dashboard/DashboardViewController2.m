@@ -8,6 +8,7 @@
 
 #import "DashboardViewController2.h"
 #import "StepsTableViewController.h"
+#import "ActivityViewController.h"
 #import "StepsInfoView.h"
 #import "CommonDef.h"
 
@@ -58,24 +59,42 @@ typedef enum : NSUInteger {
 }
 
 - (void)indoorAction {
-    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Dashboard" bundle:nil];
-    StepsTableViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"StepsTableCtl"];
-    ctl.title = LOC_STR(@"Today");
-    ctl.todaySteps = YES;
+    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
+    UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"Activity"];
     [self.navigationController pushViewController:ctl animated:YES];
+    
+//    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Dashboard" bundle:nil];
+//    StepsTableViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"StepsTableCtl"];
+//    ctl.title = LOC_STR(@"Today");
+//    ctl.todaySteps = YES;
+//    [self.navigationController pushViewController:ctl animated:YES];
 }
 
 - (void)outdoorAction {
-    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Dashboard" bundle:nil];
-    StepsTableViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"StepsTableCtl"];
-    ctl.title = LOC_STR(@"Today");
-    ctl.todaySteps = YES;
-    ctl.outdoorFirstShow = YES;
+    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
+    ActivityViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"Activity"];
+    ctl.outdoorFirstShowInToday = YES;
     [self.navigationController pushViewController:ctl animated:YES];
+    
+//    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Dashboard" bundle:nil];
+//    StepsTableViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"StepsTableCtl"];
+//    ctl.title = LOC_STR(@"Today");
+//    ctl.todaySteps = YES;
+//    ctl.outdoorFirstShow = YES;
+//    [self.navigationController pushViewController:ctl animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self reloadData];
+    [self requestData];
+//    static int oye = 0;
+//    [self setType:oye];
+//    oye++;
+//    oye %= 3;
+}
+
+- (void)reloadData {
     long steps = [GlobalCache shareInstance].local.indoorSteps + [GlobalCache shareInstance].local.outdoorSteps;
     if (steps < STEPS_LEVEL_LOW) {
         [self setType:DashboardTypeDown];
@@ -86,11 +105,58 @@ typedef enum : NSUInteger {
     else {
         [self setType:DashboardTypeNormal];
     }
+}
+
+- (void)requestData {
+    if ([GlobalCache shareInstance].local.indoorSteps > 0 || [GlobalCache shareInstance].local.outdoorSteps > 0) {
+        //判断如果本地有缓存数据则不向后台请求，主要解决因数据未上传引起的前后台数据不一致问题
+        return;
+    }
+    int64_t kidId = [GlobalCache shareInstance].currentKid.objId;
+    if (kidId == 0) {
+        return;
+    }
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:kCFCalendarUnitYear|kCFCalendarUnitMonth|kCFCalendarUnitDay|NSCalendarUnitWeekday fromDate:[NSDate date]];
+    NSDate *startDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
+    NSDate *endDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:1 toDate:startDate options:0];
     
-//    static int oye = 0;
-//    [self setType:oye];
-//    oye++;
-//    oye %= 3;
+    [[SwingClient sharedClient] deviceGetActivityByTime:kidId beginTimestamp:startDate endTimestamp:endDate completion:^(id dailyActs, NSError *error) {
+        if (!error) {
+            LOG_D(@"today dailyActs:%@", dailyActs);
+            ActivityResultModel *indoorModel = nil;
+            ActivityResultModel *outdoorModel = nil;
+            for (ActivityResultModel *m in dailyActs) {
+                if ([m.type isEqualToString:@"INDOOR"]) {
+                    if (indoorModel) {
+                        indoorModel.steps += m.steps;
+                    }
+                    else {
+                        indoorModel = m;
+                    }
+                    
+                }
+                else if([m.type isEqualToString:@"OUTDOOR"]) {
+                    if (outdoorModel) {
+                        outdoorModel.steps += m.steps;
+                    }
+                    else {
+                        outdoorModel = m;
+                    }
+                }
+            }
+            if (indoorModel) {
+                [GlobalCache shareInstance].local.indoorSteps = indoorModel.steps;
+            }
+            if (outdoorModel) {
+                [GlobalCache shareInstance].local.outdoorSteps = outdoorModel.steps;
+            }
+            [[GlobalCache shareInstance] saveInfo];
+            [self reloadData];
+        }
+        else {
+            LOG_D(@"deviceGetActivity fail: %@", error);
+        }
+    }];
 }
 
 - (void)setType:(DashboardType)type {

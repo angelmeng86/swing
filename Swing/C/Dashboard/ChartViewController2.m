@@ -98,6 +98,8 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
             break;
         case ChartTypeYear:
         {
+            lineValue = CHART_VIEW_LINE_VALUE;
+
 //            [self initFakeData:12 value:0];
             self.stepsChartView = [self createBarChartView];
             self.stepChartColor = RGBA(240, 91, 36, 1.0f);
@@ -203,6 +205,12 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
         
     }
     
+    if (self.outdoorFirstShow) {
+        outdoorBtn.selected = YES;
+    }
+    else {
+        indoorBtn.selected = YES;
+    }
 
     self.isLoadData = NO;
     task = nil;
@@ -248,7 +256,6 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
     [indoorBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     [indoorBtn setBackgroundImage:image forState:UIControlStateSelected];
     [indoorBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
-    indoorBtn.selected = YES;
     
     [outdoorBtn setTitle:LOC_STR(@"Outdoor") forState:UIControlStateNormal];
     outdoorBtn.titleLabel.font = [UIFont avenirFontOfSize:17];
@@ -449,7 +456,13 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
 //            LOG_D(@"month:%@", key);
             ActivityResultModel *model = dict[key];
             if (model) {
-                return model.steps;
+                //steps / days of the month
+                NSRange range = [[NSCalendar currentCalendar]
+                                            rangeOfUnit:NSCalendarUnitDay
+                                               inUnit: NSCalendarUnitMonth
+                                              forDate:targetDate];
+//                LOG_D(@"range:%d", range.length);
+                return model.steps / range.length;
             }
         }
             break;
@@ -550,8 +563,28 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
     ctl.title = self.titleLabel.text;
     ctl.todaySteps = NO;
     ctl.outdoorFirstShow = outdoorBtn.selected;
-    ctl.indoorData = self.indoorData.allValues;
-    ctl.outdoorData = self.outdoorData.allValues;
+    
+    NSStringCompareOptions comparisonOptions = NSCaseInsensitiveSearch|NSNumericSearch|
+    NSWidthInsensitiveSearch|NSForcedOrderingSearch;
+    NSComparator sort = ^(NSString *obj1,NSString *obj2){
+        NSRange range = NSMakeRange(0, obj1.length);
+        return [obj1 compare:obj2 options:comparisonOptions range:range];
+    };
+    NSArray *indoorDates = [self.indoorData.allKeys sortedArrayUsingComparator:sort];
+    NSArray *outdoorDates = [self.outdoorData.allKeys sortedArrayUsingComparator:sort];
+    
+    NSMutableArray *indoorList = [NSMutableArray array];
+    NSMutableArray *outdoorList = [NSMutableArray array];
+    
+    for (NSString *key in indoorDates) {
+        [indoorList addObject:self.indoorData[key]];
+    }
+    for (NSString *key in outdoorDates) {
+        [outdoorList addObject:self.outdoorData[key]];
+    }
+    
+    ctl.indoorData = indoorList;
+    ctl.outdoorData = outdoorList;
     [self.navigationController pushViewController:ctl animated:YES];
     /*
     switch (_type) {

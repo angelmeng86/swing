@@ -185,6 +185,8 @@
     if (kid) {
         self.currentKid = kid;
         self.local.selectedKidId = kidId;
+        self.local.indoorSteps = 0;
+        self.local.outdoorSteps = 0;
         [self saveInfo];
         [[NSNotificationCenter defaultCenter] postNotificationName:KID_AVATAR_NOTIFICATION object:nil];
         LOG_D(@"switchKid %lld:%@", kidId, kid.macId);

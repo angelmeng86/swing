@@ -879,7 +879,7 @@
     LOG_D(@"data:%@", data);
     NSURLSessionDataTask *task = [self.sessionManager GET:_URL.retrieveHourlyDataByTime parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            LOG_D(@"deviceGetActivityByTime info:%@", responseObject);
+            LOG_D(@"deviceGetActivityHourlyByTime info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
             if (err) {
                 completion(nil ,err);

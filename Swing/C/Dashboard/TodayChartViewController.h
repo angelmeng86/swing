@@ -29,4 +29,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *indoorBtn;
 @property (weak, nonatomic) IBOutlet UIButton *outdoorBtn;
 
+@property (nonatomic) BOOL outdoorFirstShow;
+
 @end
