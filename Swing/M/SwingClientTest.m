@@ -198,15 +198,15 @@
             //query - month or day.
             //If query == month, only month and year are required from parameters.
             //If query == day, month, year, and day are required from parameters.
-            [[SwingClient sharedClient] calendarGetEvents:[NSDate date] type:GetEventTypeMonth completion:^(NSArray *eventArray, NSError *error) {
-                if (error) {
-                    LOG_D(@"calendarGetEvents1 fail: %@", error);
-                }
-                else {
-                    NSLog(@"eventArray:%@", eventArray);
-                }
-                [self test:index + 1];
-            }];
+//            [[SwingClient sharedClient] calendarGetEvents:[NSDate date] type:GetEventTypeMonth completion:^(NSArray *eventArray, NSError *error) {
+//                if (error) {
+//                    LOG_D(@"calendarGetEvents1 fail: %@", error);
+//                }
+//                else {
+//                    NSLog(@"eventArray:%@", eventArray);
+//                }
+//                [self test:index + 1];
+//            }];
         }
             break;
         case 10:
@@ -215,15 +215,15 @@
             //query - month or day.
             //If query == month, only month and year are required from parameters.
             //If query == day, month, year, and day are required from parameters.
-            [[SwingClient sharedClient] calendarGetEvents:[NSDate date] type:GetEventTypeDay completion:^(NSArray *eventArray, NSError *error) {
-                if (error) {
-                    LOG_D(@"calendarGetEvents2 fail: %@", error);
-                }
-                else {
-                    NSLog(@"eventArray:%@", eventArray);
-                }
-                [self test:index + 1];
-            }];
+//            [[SwingClient sharedClient] calendarGetEvents:[NSDate date] type:GetEventTypeDay completion:^(NSArray *eventArray, NSError *error) {
+//                if (error) {
+//                    LOG_D(@"calendarGetEvents2 fail: %@", error);
+//                }
+//                else {
+//                    NSLog(@"eventArray:%@", eventArray);
+//                }
+//                [self test:index + 1];
+//            }];
         }
             break;
         case 11:

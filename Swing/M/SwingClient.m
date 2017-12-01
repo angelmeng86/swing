@@ -654,7 +654,7 @@
     
     return task;
 }
-
+/*
 - (NSURLSessionDataTask *)calendarGetEvents:(NSDate*)date type:(GetEventType)type completion:( void (^)(NSArray* eventArray, NSError *error) )completion {
     
     static NSDateFormatter *df = nil;
@@ -688,7 +688,7 @@
     
     return task;
 }
-
+*/
 - (NSURLSessionDataTask *)calendarGetAllEventsWithCompletion:( void (^)(NSArray* eventArray, NSError *error) )completion {
     NSURLSessionDataTask *task = [self.sessionManager GET:_URL.retrieveAllEventsWithTodo parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -700,7 +700,7 @@
             else {
                 NSArray *list = [EventModel arrayOfModelsFromDictionaries:responseObject error:nil];
                 
-                [DBHelper addEvents:list];
+                [DBHelper resetEvents:list];
                 
                 completion(list, nil);
             }

@@ -285,13 +285,27 @@
     return YES;
 }
 
-+ (BOOL)addEvents:(NSArray*)array {
-    if (array.count == 0) {
-        return NO;
-    }
++ (BOOL)resetEvents:(NSArray*)array {
+    //查询所有Event过滤已删除的Event
+    NSMutableIndexSet *objIds = [NSMutableIndexSet indexSet];
     for (EventModel *m in array) {
         [self addEvent:m save:NO];
+        [objIds addIndex:m.objId];
     }
+    NSArray *events = [Event MR_findAll];
+    for (Event *e in events) {
+        if (![objIds containsIndex:e.objId]) {
+            LOG_D(@"del event %lld", e.objId);
+            [e MR_deleteEntity];
+        }
+    }
+    
+//    if (array.count == 0) {
+//        return NO;
+//    }
+//    for (EventModel *m in array) {
+//        [self addEvent:m save:NO];
+//    }
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     [[DBHelper privateInstance] reloadRepeatEvent];
     return YES;
@@ -471,16 +485,27 @@
 
 + (BOOL)resetSharedKids:(NSArray*)subHosts;
 {
-    [KidInfo MR_deleteAllMatchingPredicate:[NSPredicate predicateWithFormat:@"subHostId > 0"]];
-    if (subHosts.count == 0) {
-        return NO;
-    }
+//    [KidInfo MR_deleteAllMatchingPredicate:[NSPredicate predicateWithFormat:@"subHostId > 0"]];
+//    if (subHosts.count == 0) {
+//        return NO;
+//    }
+    
+    //查询所有subKids过滤已删除的kid
+    NSMutableIndexSet *objIds = [NSMutableIndexSet indexSet];
     for (SubHostModel *m in subHosts) {
         for (KidModel *k in m.kids) {
             KidInfo *kid = [self addKid:k save:NO];
             if (kid) {
                 kid.subHostId = m.objId;
+                [objIds addIndex:k.objId];
             }
+        }
+    }
+    NSArray *kids = [KidInfo MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"subHostId > 0"]];
+    for (KidInfo *k in kids) {
+        if (![objIds containsIndex:k.objId]) {
+            LOG_D(@"del shareKid %lld", k.objId);
+            [k MR_deleteEntity];
         }
     }
     

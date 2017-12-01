@@ -21,7 +21,7 @@
 
 + (BOOL)addTodo:(ToDoModel*)model;
 
-+ (BOOL)addEvents:(NSArray*)array;
++ (BOOL)resetEvents:(NSArray*)array;
 
 + (NSArray*)queryEventModelByDay:(NSDate*)date;
 //+ (NSArray*)queryEventModelByDay:(NSDate*)date ascending:(BOOL)ascend;
@@ -39,6 +39,7 @@
 + (KidInfo*)queryKid:(int64_t)kidId;
 + (KidInfo*)addKid:(KidModel*)kid;
 + (KidInfo*)addKid:(KidModel*)model save:(BOOL)save;
+
 + (BOOL)addKids:(NSArray*)array;
 + (BOOL)resetSharedKids:(NSArray*)array;
 + (BOOL)delKid:(int64_t)objId;
