@@ -304,7 +304,7 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
     
     NSDate *endDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:1 toDate:todayDate options:0];
     
-    [[SwingClient sharedClient] deviceGetActivityByTime:kidId beginTimestamp:startDate endTimestamp:endDate completion:^(id dailyActs, NSError *error) {
+    task = [[SwingClient sharedClient] deviceGetActivityByTime:kidId beginTimestamp:startDate endTimestamp:endDate completion:^(id dailyActs, NSError *error) {
         task = nil;
         if (!error) {
             LOG_D(@"dailyActs:%@", dailyActs);
@@ -751,6 +751,16 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
     }
     return kJBBarChartViewControllerBarPadding;
 //    return padWidth;
+}
+
+- (CGFloat)normalizedHeight:(CGFloat)height barChartView:(JBBarChartView *)barChartView
+{
+    if (_type == ChartTypeWeek) {
+        if (height > 0 && height < 20) {
+            return 20;
+        }
+    }
+    return height;
 }
 
 @end

@@ -56,7 +56,7 @@
             }
             self.infoLabel.text = nil;
             self.conllectionLabel1.text = LOC_STR(@"is sharing with");
-            self.conllectionLabel2.text = LOC_STR(@"has requests from");
+            self.conllectionLabel2.text = [NSString stringWithFormat: LOC_STR(@"You have %d requests from"), (int)self.array2.count];
             
             [self.button1 setTitle:LOC_STR(@"Edit kid's account") forState:UIControlStateNormal];
             [self.button2 setTitle:LOC_STR(@"Switch to this account") forState:UIControlStateNormal];

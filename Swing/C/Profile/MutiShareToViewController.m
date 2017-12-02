@@ -41,8 +41,8 @@
     
     self.title = LOC_STR(@"Request from");
     
-    self.titleLabel.text = LOC_STR(@"Select share to watch");
-    self.subTitleLabel.text = [LOC_STR(@"Please tap on one or more profile pictures to share with ") stringByAppendingString:self.subHost.requestFromUser.fullName];
+    self.titleLabel.text = LOC_STR(@"Select watch to share");
+    self.subTitleLabel.text = [NSString stringWithFormat:LOC_STR(@"Please tap on one or more profile pictures to share with %@"), self.subHost.requestFromUser.fullName];
     
     [self.button1 setTitle:LOC_STR(@"Confirm") forState:UIControlStateNormal];
     [self.button2 setTitle:LOC_STR(@"Decline") forState:UIControlStateNormal];

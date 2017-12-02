@@ -31,7 +31,7 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = LOC_STR(@"Option");
     
-    items = @[@[LOC_STR(@"Edit Profile"), LOC_STR(@"Edit Your Kid's Profile"), LOC_STR(@"Reset Password"), LOC_STR(@"Manage access permission of Swing"), LOC_STR(@"Switch watch account"), LOC_STR(@"Logout")], @[LOC_STR(@"Language"), LOC_STR(@"Swing watch update"), LOC_STR(@"Contact Us"), LOC_STR(@"User Guide"), LOC_STR(@"Version")]];
+    items = @[@[LOC_STR(@"Edit Profile"), LOC_STR(@"Edit Your Kid's Profile"), LOC_STR(@"Change password"), LOC_STR(@"Manage access permission of Swing"), LOC_STR(@"Switch watch"), LOC_STR(@"Logout")], @[LOC_STR(@"Language"), LOC_STR(@"Swing watch update"), LOC_STR(@"Contact Us"), LOC_STR(@"User Guide"), LOC_STR(@"Version")]];
     self.tableView.tableFooterView = [UIView new];
 }
 

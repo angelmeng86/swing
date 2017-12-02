@@ -181,7 +181,7 @@
 "Cancel & go to dashboard"="Cancel & go to dashboard";
 "Use your finger to adjust picture position."="Use your finger to adjust picture position.";
 "New password"="New password";
-"Enter new password again"="Enter new password again";
+"New Password, Again!"="New Password, Again!";
 "My devices"="My devices";
 "Devices shared with me"="Devices shared with me";
 "Your pending request to"="Your pending request to";
@@ -198,7 +198,7 @@
 "Switch to this account"="Switch to this account";
 "Remove"="Remove";
 "*Tap on profile pictures to switch account"="*Tap on profile pictures to switch account";
-"Switch account"="Switch account";
+"Switch watch"="Switch watch";
 "Kid's profile"="Kid's profile";
 
 "is sharing with"="is sharing with";
@@ -225,7 +225,7 @@
 "Are you sure to stop sharing with %@?"="Are you sure to stop sharing with %@?";
 "Sharing now!"="Sharing now!";
 
-"The two password is inconsistent"="The two password is inconsistent";
+"Your password does not match."="Your password does not match.";
 "The password length has to be longer than 6 characters"="The password length has to be longer than 6 characters";
 "Search"="Search";
 
@@ -235,7 +235,7 @@
 "Events will have sound alerts on your watch."="Events will have sound alerts on your watch.";
 "Edit your existing schedule by tapping on the pen icon."="Edit your existing schedule by tapping on the pen icon.";
 "Tap on the date or event to see today's full schedule."="Tap on the date or event to see today's full schedule.";
-
+"Please sync with your watch after editing events."="Please sync with your watch after editing events.";
 "Only primary account has permission to edit"="Only primary account has permission to edit";
 
 "Goal"="Goal";

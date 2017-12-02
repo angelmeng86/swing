@@ -226,15 +226,15 @@
 "Request access pending"="Запрос на доступ в обработке";
 "Cancel & go to dashboard"="Отменить и перейти на панель инструментов";
 "Use your finger to adjust picture position."="Используйте палец, чтобы отрегулировать положение изображения.";
-"New password"="New password";
-"Enter new password again"="Enter new password again";
+"New password"="Новый пароль";
+"New Password, Again!"="Подтвердить пароль";
 "My devices"="Мои часы";
 "Devices shared with me"="Часы предоставлены мне";
-"Your pending request to"="Ваш запрос к [xx] в ожидании";
+"Your pending request to"="Ваш запрос к в ожидании";
 "You have %d requests from"="Ваш запрос к %d в ожидании";
 "Please have your watch close by"="Часы должны находиться поблизости";
 
-"Manage access permission of Swing"="Manage access permission of Swing";
+"Manage access permission of Swing"="Часы используются совместно с другими пользователями";
 "Switch watch"="Переключить часы";
 
 "Are you sure to log out?"="Are you sure to log out?";
@@ -247,16 +247,15 @@
 "Switch account"="Переключить учетные записи";
 "Kid's profile"="Профиль ребенка";
 
-"is sharing with"="У вас есть [xx] запросов от";
-"has requests from"="has requests from";
+"is sharing with"="У вас есть запросов от";
 
 "Are you sure to switch this account?"="Вы действительно хотите переключиться на эту учетную запись?";
 "It's done! You are on this account now."="Готово.Сейчас вы находитесь в этой учетной записи.";
 "Are you sure to remove this account?"="Вы действительно хотите удалить эту учетную запись?";
 "This account has been removed."="Эта учетная запись была удалена.";
 
-"Select share to watch"="Выберите часы для подключения";
-"Please tap on one or more profile pictures to share with "="Нажмите одну или несколько фотографий профиля, чтобы подключиться к ";
+"Select watch to share"="Выберите часы для подключения";
+"Please tap on one or more profile pictures to share with %@"="Нажмите одну или несколько фотографий профиля, чтобы подключиться к %@";
 "Confirm"="Подтвердить";
 "Decline"="Отклонить";
 
@@ -272,7 +271,6 @@
 "Sharing now!"="Дать доступ!";
 
 "Your password does not match."="Ваши пароли не совпадают.";
-"The two password is inconsistent"="The two password is inconsistent";
 "The password length has to be longer than 6 characters"="The password length has to be longer than 6 characters";
 "Search"="Search";
 
@@ -282,7 +280,7 @@
 "Events will have sound alerts on your watch."="Событиям на часах будут присвоены звуковые сигналы.";
 "Edit your existing schedule by tapping on the pen icon."="Отредактируйте существующее расписание, нажав на значок пера.";
 "Tap on the date or event to see today's full schedule."="Нажмите на дату или событие, чтобы увидеть полное расписание.";
-
+"Please sync with your watch after editing events."="Пожалуйста, проведите синхронизацию с часами после редактирования событий.";
 "Only primary account has permission to edit"="Только первичная учетная запись имеет разрешение на редактирование";
 
 "Goal"="Цель";

@@ -217,3 +217,71 @@
 
 "SWING_EVENT"="tienes un evento:%@";
 "Swing watch update"="Swing watch actualizar";
+
+/* 20171011 muti-user*/
+"Try again"="Inténtalo de nuevo";
+"Go to last synced data"="Volver a la última sincronización";
+"Login again"="Iniciar sesión de nuevo";
+"This Watch has been resgitered"="Este reloj ha sido registrado";
+"Request access pending"="Solicitud de acceso pendiente";
+"Cancel & go to dashboard"="Cancelar e ir al panel";
+"Use your finger to adjust picture position."="Usar su dedo para ajustar la posición de la foto";
+"Change password"="Cambiar contraseña";
+"New password"="Nueva contraseña";
+"New Password, Again!"="Confirmar contraseña";
+"My devices"="Mis relojes";
+"Devices shared with me"="Reloj compartido conmigo";
+"Your pending request to"="Su solicitud pendiente a";
+"You have %d requests from"="Su solicitud pendiente a %d";
+"Please have your watch nearby"="Por favor, tenga su reloj cerca.";
+
+"Manage access permission of Swing"="Reloj compartido con otros";
+"Switch watch"="Cambiar reloj";
+
+"Are you sure to log out?"="Are you sure to log out?";
+"Yes,I am sure"="Sí, estoy seguro";
+
+"Edit kid's account"="está compartiendo con";
+"Switch to this account"="Editar cuenta para niños";
+"Remove"="Eliminar";
+"*Tap on profile pictures to switch account"="*Pulse en las fotos de perfil para cambiar cuentas";
+"Switch account"="Cambiar cuentas";
+"Kid's profile"="Perfil para niños";
+
+"is sharing with"="Tiene peticiones de";
+
+"Are you sure to switch this account?"="¿Está seguro de cambiar a esta cuenta?";
+"It's done! You are on this account now."="Hecho.Está en esta cuenta ahora.";
+"Are you sure to remove this account?"="¿Está seguro de eliminar esta cuenta?";
+"This account has been removed."="Esta cuenta ha sido eliminada.";
+
+"Select watch to share"="Seleccione el reloj para compartir";
+"Please tap on one or more profile pictures to share with %@"="Por favor, pulse en una o más fotos de perfil para compartir con %@";
+"Confirm"="Confirmar";
+"Decline"="Rechazar";
+
+"Request to"="Pedir a";
+"You've requested access to %@'s watch."="Tiene peticiones de acceso al reloj de %@";
+"Cancel request"="Cancelar solicitud.";
+"Are you sure want to cancel this request?"="¿Está seguro que desea cancelar esta solicitud?";
+"Request from"="Petición de";
+"You've got a request"="Tiene una solicitud.";
+"You've got a request from %@."="Tiene una solicitud de %@.";
+"Accept"="Aceptar";
+"Are you sure to stop sharing with %@?"="¿Está seguro de no compartir con %@?";
+"Sharing now!"="¡Compartiendo ahora!";
+
+"Your password does not match."="Su contraseña no coincide";
+"The password length has to be longer than 6 characters"="The password length has to be longer than 6 characters";
+"Search"="Buscar";
+
+"Today's Summary"="Resumen de hoy";
+"Assign to"="Asignar a";
+
+"Events will have sound alerts on your watch."="Los eventos tendrán alertas de sonido en su reloj.";
+"Edit your existing schedule by tapping on the pen icon."="Edite su horario existente pulsando en el icono del bolígrafo.";
+"Tap on the date or event to see today's full schedule."="Pulse en la fecha o evento para ver el horario completo para hoy.";
+"Please sync with your watch after editing events."="Por favor, sincronice con su reloj después de editar eventos.";
+"Only primary account has permission to edit"="Solo la cuenta principal tiene permiso para editar";
+
+"Goal"="Gol";

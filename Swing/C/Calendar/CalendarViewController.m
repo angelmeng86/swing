@@ -126,6 +126,7 @@
     [[SwingClient sharedClient] calendarGetAllEventsWithCompletion:^(NSArray *eventArray, NSError *error) {
         if(!error) {
             [self loadEventView];
+            [self.calendarManager reload];
         }
     }];
     [self loadEventView];

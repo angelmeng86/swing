@@ -164,7 +164,7 @@
     if (_currentKid == nil) {
         _currentKid = [DBHelper queryKid:self.local.selectedKidId];
         if (_currentKid == nil) {
-            _currentKid = [KidInfo MR_findFirst];
+            _currentKid = [KidInfo MR_findFirstOrderedByAttribute:@"objId" ascending:YES];
             self.local.selectedKidId = _currentKid.objId;
             [self saveInfo];
         }

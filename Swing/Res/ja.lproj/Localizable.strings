@@ -227,15 +227,15 @@
 "Request access pending"="アクセスリクエスト保留中";
 "Cancel & go to dashboard"="取り消す＆ダッシュボードへ";
 "Use your finger to adjust picture position."="指で写真の位置を調整してください。";
-"New password"="New password";
-"Enter new password again"="Enter new password again";
+"New password"="新しいパスワード";
+"New Password, Again!"="もう一度新しいパスワードを入力してください";
 "My devices"="私の時計";
 "Devices shared with me"="わたしと共有する時計";
-"Your pending request to"="[xx]への保留中のリクエスト";
+"Your pending request to"="への保留中のリクエスト";
 "You have %d requests from"="%dへの保留中のリクエスト";
 "Please have your watch close by"="貴方の時計を携帯電話の近くに寄せてください";
 
-"Manage access permission of Swing"="Manage access permission of Swing";
+"Manage access permission of Swing"="他者と共有する時計";
 "Switch watch"="ウォッチを切り替える";
 
 "Are you sure to log out?"="Are you sure to log out?";
@@ -249,15 +249,14 @@
 "Kid's profile"="子どものプロフィール";
 
 "is sharing with"="から[xx]のリクエストがあります";
-"has requests from"="has requests from";
 
 "Are you sure to switch this account?"="このアカウントに切り替えますか。";
 "It's done! You are on this account now."="完了。ただいまこのアカウントになっています。";
 "Are you sure to remove this account?"="このアカウントを削除しますか。";
 "This account has been removed."="このアカウントが削除されました。";
 
-"Select share to watch"="ウォッチを選択して共有する";
-"Please tap on one or more profile pictures to share with "="１枚か複数のプロフィール写真をタップし、[XX]と共有する。";
+"Select watch to share"="ウォッチを選択して共有する";
+"Please tap on one or more profile pictures to share with %@"="１枚か複数のプロフィール写真をタップし、%@と共有する。";
 "Confirm"="確定";
 "Decline"="拒否";
 
@@ -273,7 +272,6 @@
 "Sharing now!"="いま共有しよう！";
 
 "Your password does not match."="パスワードが合致しません。";
-"The two password is inconsistent"="The two password is inconsistent";
 "The password length has to be longer than 6 characters"="The password length has to be longer than 6 characters";
 "Search"="Search";
 
@@ -283,7 +281,7 @@
 "Events will have sound alerts on your watch."="イベントはウォッチから音声でお知らせします。";
 "Edit your existing schedule by tapping on the pen icon."="筆のアイコンをタップし、既存の日程を編集する。";
 "Tap on the date or event to see today's full schedule."="日付かイベントをタップし、本日のすべての日程を見る。";
-
+"Please sync with your watch after editing events."="イベントを編集した後、お持ちのウォッチと同期化を行ってください。";
 "Only primary account has permission to edit"="Only primary account has permission to edit";
 
 "Goal"="ゴール";

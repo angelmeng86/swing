@@ -222,67 +222,66 @@
 /* 20171011 muti-user*/
 "Try again"="再試一次";
 "Go to last synced data"="開啟舊的同步紀錄";
-"Login again"="Login again";
+"Login again"="再次登入";
 "This Watch has been resgitered"="這隻手錶已經被註冊過了";
-"Request access pending"="Request access pending";
-"Cancel & go to dashboard"="Cancel & go to dashboard";
-"Use your finger to adjust picture position."="Use your finger to adjust picture position.";
-"New password"="New password";
-"Enter new password again"="Enter new password again";
+"Request access pending"="等待通過請求";
+"Cancel & go to dashboard"="取消或進入Dashboard";
+"Use your finger to adjust picture position."="調整您照片位置";
+"New password"="新密碼";
+"New Password, Again!"="請再次輸入新密碼";
 "My devices"="我的手錶";
 "Devices shared with me"="已分享對象";
-"Your pending request to"="Your pending request to";
-"You have %d requests from"="You have %d requests from";
+"Your pending request to"="等待邀請請求";
+"You have %d requests from"="你有來自%d的請求";
 "Please have your watch close by"="請把手錶靠近手機";
 
-"Manage access permission of Swing"="Manage access permission of Swing";
-"Switch watch account"="Switch watch account";
+"Manage access permission of Swing"="管理分享權限";
+"Switch watch"="轉換手錶帳戶";
 
 "Are you sure to log out?"="Are you sure to log out?";
-"Yes,I am sure"="Yes,I am sure";
+"Yes,I am sure"="是的,我確定";
 
-"Edit kid's account"="Edit kid's account";
-"Switch to this account"="Switch to this account";
+"Edit kid's account"="編輯兒童帳號";
+"Switch to this account"="切換至此帳號";
 "Remove"="移除";
-"*Tap on profile pictures to switch account"="*Tap on profile pictures to switch account";
-"Switch account"="Switch account";
-"Kid's profile"="Kid's profile";
+"*Tap on profile pictures to switch account"="*請點選頭像轉換手錶帳戶";
+"Switch account"="切換帳號";
+"Kid's profile"="兒童基本資料";
 
 "is sharing with"="is sharing with";
-"has requests from"="has requests from";
 
-"Are you sure to switch this account?"="Are you sure to switch this account?";
-"It's done! You are on this account now."="It's done! You are on this account now.";
-"Are you sure to remove this account?"="Are you sure to remove this account?";
-"This account has been removed."="This account has been removed.";
+"Are you sure to switch this account?"="確定要切換至此帳號？";
+"It's done! You are on this account now."="完成切換。您已在此帳號";
+"Are you sure to remove this account?"="您確定要刪除此帳號？";
+"This account has been removed."="此帳號已經被刪除";
 
-"Select share to watch"="Select share to watch";
-"Please tap on one or more profile pictures to share with "="Please tap on one or more profile pictures to share with ";
-"Confirm"="Confirm";
-"Decline"="Decline";
+"Select watch to share"="選擇手錶分享";
+"Please tap on one or more profile pictures to share with %@"="請選擇頭像進行分享至%@";
+"Confirm"="確認";
+"Decline"="拒絕";
 
-"Request to"="Request to";
-"You've requested access to %@'s watch."="You've requested access to %@'s watch.";
-"Cancel request"="Cancel request";
-"Are you sure want to cancel this request?"="Are you sure want to cancel this request?";
-"Request from"="Request from";
-"You've got a request"="You've got a request";
-"You've got a request from %@."="You've got a request from %@.";
-"Accept"="Accept";
-"Are you sure to stop sharing with %@?"="Are you sure to stop sharing with %@?";
-"Sharing now!"="Sharing now!";
+"Request to"="請求";
+"You've requested access to %@'s watch."="你有一個請求至%@的手錶";
+"Cancel request"="取消請求";
+"Are you sure want to cancel this request?"="您確定要刪除這個請求？";
+"Request from"="邀請";
+"You've got a request"="您收到一個請求";
+"You've got a request from %@."="您收到一個請求來自%@";
+"Accept"="同意";
+"Are you sure to stop sharing with %@?"="您確定要停止與%@分享？";
+"Sharing now!"="已經分享";
 
-"The two password is inconsistent"="The two password is inconsistent";
+"Your password does not match."="您的密碼不匹配";
 "The password length has to be longer than 6 characters"="The password length has to be longer than 6 characters";
 "Search"="Search";
 
 "Today's Summary"="本日總結";
 "Assign to"="指派";
 
-"Events will have sound alerts on your watch."="Events will have sound alerts on your watch.";
-"Edit your existing schedule by tapping on the pen icon."="Edit your existing schedule by tapping on the pen icon.";
-"Tap on the date or event to see today's full schedule."="Tap on the date or event to see today's full schedule.";
-
+"Events will have sound alerts on your watch."="事件將會在手錶上產生有聲提示";
+"Edit your existing schedule by tapping on the pen icon."="編輯您已存在的時程安排，請按鉛筆圖示";
+"Tap on the date or event to see today's full schedule."="點擊時間或是間，查看日程安排";
+"Please sync with your watch after editing events."="編輯完成後，請與Swing watch 同步";
 "Only primary account has permission to edit"="只有主要帳戶有編輯權限";
 
 "Goal"="目標";

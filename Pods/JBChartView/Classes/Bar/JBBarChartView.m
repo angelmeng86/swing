@@ -514,11 +514,16 @@ static UIColor *kJBBarChartViewDefaultBarColor = nil;
 	//mapple edit
 	if ((maxHeight - minHeight) <= 0)
 	{
-        return 0;//[self availableHeight];
+        return 20;//[self availableHeight];
 	}
     //mapple end
-	
-	return ((value - minHeight) / (maxHeight - minHeight)) * [self availableHeight];
+    CGFloat height = ((value - minHeight) / (maxHeight - minHeight)) * [self availableHeight];
+    
+    if ([self.delegate respondsToSelector:@selector(normalizedHeight:barChartView:)])
+    {
+        height = [self.delegate normalizedHeight:height barChartView:self];
+    }
+	return height;
 }
 
 - (CGFloat)barWidth

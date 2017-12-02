@@ -20,7 +20,7 @@
     self.navigationItem.title = LOC_STR(@"Reset Password");
     // Do any additional setup after loading the view.
     self.pwdTF.placeholder = LOC_STR(@"New password");
-    self.pwdTF2.placeholder = LOC_STR(@"Enter new password again");
+    self.pwdTF2.placeholder = LOC_STR(@"New Password, Again!");
     [self.saveBtn setTitle:LOC_STR(@"Save") forState:UIControlStateNormal];
 }
 
@@ -41,7 +41,7 @@
 
 - (IBAction)saveAction:(id)sender {
     if (![self.pwdTF.text isEqualToString:self.pwdTF2.text]) {
-        [Fun showMessageBoxWithTitle:LOC_STR(@"Error") andMessage:LOC_STR(@"The two password is inconsistent")];
+        [Fun showMessageBoxWithTitle:LOC_STR(@"Error") andMessage:LOC_STR(@"Your password does not match.")];
         return;
     }
     if (self.pwdTF.text.length < 6) {

@@ -126,6 +126,9 @@
  */
 - (CGFloat)barPaddingForBarChartView:(JBBarChartView *)barChartView;
 
+//调整柱状图高度
+- (CGFloat)normalizedHeight:(CGFloat)height barChartView:(JBBarChartView *)barChartView;
+
 @end
 
 @interface JBBarChartView : JBChartView
