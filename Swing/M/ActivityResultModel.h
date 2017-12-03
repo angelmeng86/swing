@@ -27,11 +27,13 @@
  */
 //@property (nonatomic) int objId;
 @property (nonatomic) long steps;
-@property (nonatomic, strong) NSDate *receivedDate;
+@property (nonatomic, strong) NSDate<Optional> *receivedDate;
 //@property (nonatomic) long distance;
 //@property (nonatomic) long calories;
 
 //@property (nonatomic) long receivedTime;
 @property (nonatomic, strong) NSString *type;
+
+@property (nonatomic) NSNumber<Optional> *month;
 
 @end

@@ -871,6 +871,33 @@
     return task;
 }
 
+- (NSURLSessionDataTask *)deviceGetMonthlyActivityByTime:(int64_t)kidId beginTimestamp:(NSDate*)beginTime endTimestamp:(NSDate*)endTime completion:( void (^)(id monthlyActs ,NSError *error) )completion
+{
+    //该接口传入的TimeStamp需要加入当前时区
+    NSDictionary *data = @{@"kidId":@(kidId), @"start":@([beginTime timeIntervalSince1970] + TIME_ADJUST), @"end":@([endTime timeIntervalSince1970] + TIME_ADJUST)};
+    LOG_D(@"kidId:%lld beginTime:%@ endTime:%@", kidId, beginTime, endTime);
+    LOG_D(@"data:%@", data);
+    NSURLSessionDataTask *task = [self.sessionManager GET:_URL.retrieveMonthlyActivity parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LOG_D(@"deviceGetMonthlyActivityByTime info:%@", responseObject);
+            NSError *err = [self getErrorMessage:responseObject];
+            if (err) {
+                completion(nil ,err);
+            }
+            else {
+                NSArray *list = [ActivityResultModel arrayOfModelsFromDictionaries:responseObject[@"activities"] error:nil];
+                completion(list, nil);
+            }
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSError *err = [self filterTokenInvalid:task.response err:error];
+            completion(nil ,err);
+        });
+    }];
+    return task;
+}
+
 - (NSURLSessionDataTask *)deviceGetActivityHourlyByTime:(int64_t)kidId beginTimestamp:(NSDate*)beginTime endTimestamp:(NSDate*)endTime completion:( void (^)(id dailyActs ,NSError *error) )completion
 {
     //该接口传入的TimeStamp需要加入当前时区

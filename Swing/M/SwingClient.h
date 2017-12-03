@@ -89,6 +89,8 @@ typedef enum : NSUInteger {
 
 - (NSURLSessionDataTask *)deviceGetActivityByTime:(int64_t)kidId beginTimestamp:(NSDate*)beginTime endTimestamp:(NSDate*)endTime completion:( void (^)(id dailyActs ,NSError *error) )completion;
 
+- (NSURLSessionDataTask *)deviceGetMonthlyActivityByTime:(int64_t)kidId beginTimestamp:(NSDate*)beginTime endTimestamp:(NSDate*)endTime completion:( void (^)(id monthlyActs ,NSError *error) )completion;
+
 - (NSURLSessionDataTask *)deviceGetActivityHourlyByTime:(int64_t)kidId beginTimestamp:(NSDate*)beginTime endTimestamp:(NSDate*)endTime completion:( void (^)(id dailyActs ,NSError *error) )completion;
 
 - (NSURLSessionDataTask *)getFirmwareVersion:(NSString*)macId completion:( void (^)(id version, NSError *error) )completion;

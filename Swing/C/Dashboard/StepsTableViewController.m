@@ -65,7 +65,7 @@
     [self.indoorBtn setTitle:LOC_STR(@"Indoor") forState:UIControlStateNormal];
     [self.outdoorBtn setTitle:LOC_STR(@"Outdoor") forState:UIControlStateNormal];
     
-    if (self.todaySteps) {
+    if (self.type == StepsTypeToday) {
         [self requestData];
     }
 }
@@ -140,13 +140,27 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (int)dataCount {
+    switch (_type) {
+        case StepsTypeMonth:
+            return 30;
+        case StepsTypeYear:
+            return 12;
+        case StepsTypeWeek:
+            return 7;
+        default:
+            return 24;
+    }
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.indoorBtn.selected ? self.indoorData.count : self.outdoorData.count;
+//    return [self dataCount];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (self.todaySteps) {
+    if (self.type == StepsTypeToday) {
         static NSString *CellIdentifier = @"TodayStepCell";
         
         TodayStepCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
@@ -170,6 +184,27 @@
         cell.endTimeLabel.text = [dateFormatter3 stringFromDate:endDate];
         
         cell.valueLabel.text = [Fun countNumAndChangeformat:model.steps];
+        return cell;
+    }
+    else if(self.type == StepsTypeYear){
+        static NSString *CellIdentifier = @"DateStepCell";
+        
+        if (dateFormatter == nil) {
+            dateFormatter = [[NSDateFormatter alloc] init];
+            dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:[GlobalCache shareInstance].curLanguage];
+            [dateFormatter setDateFormat:@"MMM , yyyy"];
+        }
+        
+        NSArray *array = self.indoorBtn.selected ? self.indoorData : self.outdoorData;
+        
+        ActivityResultModel *model = array[indexPath.row];
+        DateStepCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        cell.backgroundColor = [UIColor clearColor];
+        
+        cell.dateLabel.text = [dateFormatter stringFromDate:model.receivedDate];
+        cell.weekDayLabel.text = nil;
+        cell.valueLabel.text = [Fun countNumAndChangeformat:model.steps];
+        
         return cell;
     }
     else {

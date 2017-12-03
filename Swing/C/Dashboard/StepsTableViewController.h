@@ -8,9 +8,16 @@
 
 #import "LMBaseViewController.h"
 
+typedef enum : NSUInteger {
+    StepsTypeYear,
+    StepsTypeMonth,
+    StepsTypeWeek,
+    StepsTypeToday,
+} StepsType;
+
 @interface StepsTableViewController : LMBaseViewController
 
-@property (nonatomic) BOOL todaySteps;
+@property (nonatomic) StepsType type;
 @property (nonatomic) BOOL outdoorFirstShow;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

@@ -332,6 +332,122 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
                     }
                 }
             }
+            
+            int maxCount = [self dataCount];
+            NSDate *date = [NSDate date];
+            for (int index = 0; index < maxCount; index++) {
+                if(_type == ChartTypeMonth || _type == ChartTypeWeek) {
+                    NSDate *targetDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:index-maxCount+1 toDate:date options:0];
+                    NSString *key = [GlobalCache dateToDayString:targetDate];
+                    
+                    ActivityResultModel *model = indoors[key];
+                    if (model == nil) {
+                        model = [ActivityResultModel new];
+                        model.steps = 0;
+                        model.receivedDate = targetDate;
+                        model.type = @"INDOOR";
+                        indoors[key] = model;
+                    }
+                    
+                    model = outdoors[key];
+                    if (model == nil) {
+                        model = [ActivityResultModel new];
+                        model.steps = 0;
+                        model.receivedDate = targetDate;
+                        model.type = @"OUTDOOR";
+                        outdoors[key] = model;
+                    }
+                }
+            }
+            
+            self.indoorData = indoors;
+            self.outdoorData = outdoors;
+            [self reloadData];
+        }
+        else {
+            LOG_D(@"deviceGetActivity fail: %@", error);
+        }
+    }];
+}
+
+- (void)requestMonthlyByTimestamp:(int64_t)kidId {
+    
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:kCFCalendarUnitYear|kCFCalendarUnitMonth|kCFCalendarUnitDay|NSCalendarUnitWeekday fromDate:[NSDate date]];
+    NSDate *todayDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
+    
+    NSDate *startDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitYear value:-1 toDate:todayDate options:0];
+    
+    NSDate *endDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:1 toDate:todayDate options:0];
+    
+    task = [[SwingClient sharedClient] deviceGetMonthlyActivityByTime:kidId beginTimestamp:startDate endTimestamp:endDate completion:^(id monthlyActs, NSError *error) {
+        task = nil;
+        if (!error) {
+            LOG_D(@"monthlyActs:%@", monthlyActs);
+            NSMutableDictionary *indoors = [NSMutableDictionary dictionary];
+            NSMutableDictionary *outdoors = [NSMutableDictionary dictionary];
+            
+            static NSDateFormatter *df = nil;
+            if (df == nil) {
+                df = [[NSDateFormatter alloc] init];
+                [df setDateFormat:@"MM"];
+            }
+            NSMutableDictionary *tempDates = [NSMutableDictionary dictionary];
+            
+            int maxCount = [self dataCount];
+            NSDate *date = [NSDate date];
+            for (int index = 0; index < maxCount; index++) {
+                if (_type == ChartTypeYear) {
+                    //从前12个月开始计算
+                    NSDate *targetDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitMonth value:index-maxCount+1 toDate:date options:0];
+
+                    NSString *key = [GlobalCache dateToMonthString:targetDate];
+                    NSString *tempKey = [df stringFromDate:targetDate];
+                    tempDates[tempKey] = key;
+                    
+                    ActivityResultModel *model = indoors[key];
+                    if (model == nil) {
+                        model = [ActivityResultModel new];
+                        model.steps = 0;
+                        model.receivedDate = targetDate;
+                        model.type = @"INDOOR";
+                        indoors[key] = model;
+                    }
+                    
+                    model = outdoors[key];
+                    if (model == nil) {
+                        model = [ActivityResultModel new];
+                        model.steps = 0;
+                        model.receivedDate = targetDate;
+                        model.type = @"OUTDOOR";
+                        outdoors[key] = model;
+                    }
+                }
+            }
+            
+            for (ActivityResultModel *m in monthlyActs) {
+                NSString *key = [NSString stringWithFormat:@"%02d", [m.month intValue]];
+                key = tempDates[key];
+                
+                if ([m.type isEqualToString:@"INDOOR"]) {
+                    if (indoors[key]) {
+                        ActivityResultModel *model = indoors[key];
+                        model.steps += m.steps;
+                    }
+                    else {
+                        indoors[key] = m;
+                    }
+                }
+                else if([m.type isEqualToString:@"OUTDOOR"]) {
+                    if (outdoors[key]) {
+                        ActivityResultModel *model = outdoors[key];
+                        model.steps += m.steps;
+                    }
+                    else {
+                        outdoors[key] = m;
+                    }
+                }
+            }
+            
             self.indoorData = indoors;
             self.outdoorData = outdoors;
             [self reloadData];
@@ -356,6 +472,8 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
         return;
     }
     
+    [self requestMonthlyByTimestamp:kidId];
+    /*
     task = [[SwingClient sharedClient] deviceGetActivity:kidId type:(GetActivityType)_type completion:^(id dailyActs, NSError *error) {
         task = nil;
         if (!error) {
@@ -397,6 +515,7 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
             LOG_D(@"deviceGetActivity fail: %@", error);
         }
     }];
+     */
 }
 
 - (void)viewDidLayoutSubviews {
@@ -561,7 +680,7 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
     UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Dashboard" bundle:nil];
     StepsTableViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"StepsTableCtl"];
     ctl.title = self.titleLabel.text;
-    ctl.todaySteps = NO;
+    ctl.type = (StepsType)_type;
     ctl.outdoorFirstShow = outdoorBtn.selected;
     
     NSStringCompareOptions comparisonOptions = NSCaseInsensitiveSearch|NSNumericSearch|

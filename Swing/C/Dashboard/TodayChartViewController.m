@@ -149,7 +149,7 @@
     UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Dashboard" bundle:nil];
     StepsTableViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"StepsTableCtl"];
     ctl.title = self.titleLabel.text;
-    ctl.todaySteps = YES;
+    ctl.type = StepsTypeToday;
     ctl.outdoorFirstShow = self.outdoorBtn.selected;
     [self.navigationController pushViewController:ctl animated:YES];
 }

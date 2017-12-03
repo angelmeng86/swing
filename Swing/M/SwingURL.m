@@ -127,6 +127,10 @@
     return @"/v1/activity/retrieveDataByTime";
 }
 
+- (NSString*)retrieveMonthlyActivity {
+    return @"/v1/activity/retrieveMonthlyActivity";
+}
+
 - (NSString*)retrieveHourlyDataByTime {
     return @"/v1/activity/retrieveHourlyDataByTime";
 }
