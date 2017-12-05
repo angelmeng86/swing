@@ -238,7 +238,7 @@
 "Manage access permission of Swing"="Reloj compartido con otros";
 "Switch watch"="Cambiar reloj";
 
-"Are you sure to log out?"="Are you sure to log out?";
+"Are you sure to log out?"="¿Estás seguro de cerrar la sesión?";
 "Yes,I am sure"="Sí, estoy seguro";
 
 "Edit kid's account"="está compartiendo con";
@@ -272,7 +272,7 @@
 "Sharing now!"="¡Compartiendo ahora!";
 
 "Your password does not match."="Su contraseña no coincide";
-"The password length has to be longer than 6 characters"="The password length has to be longer than 6 characters";
+"The password length has to be longer than 6 characters"="La longitud de la contraseña debe ser mayor a 6 caracteres";
 "Search"="Buscar";
 
 "Today's Summary"="Resumen de hoy";
@@ -285,3 +285,4 @@
 "Only primary account has permission to edit"="Solo la cuenta principal tiene permiso para editar";
 
 "Goal"="Gol";
+"Delete"="borrar";

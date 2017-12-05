@@ -227,6 +227,7 @@
 "Request access pending"="アクセスリクエスト保留中";
 "Cancel & go to dashboard"="取り消す＆ダッシュボードへ";
 "Use your finger to adjust picture position."="指で写真の位置を調整してください。";
+"Change password"="パスワードを変更する";
 "New password"="新しいパスワード";
 "New Password, Again!"="もう一度新しいパスワードを入力してください";
 "My devices"="私の時計";
@@ -238,7 +239,7 @@
 "Manage access permission of Swing"="他者と共有する時計";
 "Switch watch"="ウォッチを切り替える";
 
-"Are you sure to log out?"="Are you sure to log out?";
+"Are you sure to log out?"="ログアウトしてもよろしいですか？";
 "Yes,I am sure"="はい、切り替えます";
 
 "Edit kid's account"="と共有している";
@@ -272,8 +273,8 @@
 "Sharing now!"="いま共有しよう！";
 
 "Your password does not match."="パスワードが合致しません。";
-"The password length has to be longer than 6 characters"="The password length has to be longer than 6 characters";
-"Search"="Search";
+"The password length has to be longer than 6 characters"="パスワードの長さは6文字より長くなければなりません";
+"Search"="検索";
 
 "Today's Summary"="本日の概要";
 "Assign to"="指名";
@@ -285,3 +286,4 @@
 "Only primary account has permission to edit"="Only primary account has permission to edit";
 
 "Goal"="ゴール";
+"Delete"="削除";

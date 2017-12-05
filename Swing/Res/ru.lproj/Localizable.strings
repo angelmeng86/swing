@@ -226,6 +226,7 @@
 "Request access pending"="Запрос на доступ в обработке";
 "Cancel & go to dashboard"="Отменить и перейти на панель инструментов";
 "Use your finger to adjust picture position."="Используйте палец, чтобы отрегулировать положение изображения.";
+"Change password"="Изменить пароль";
 "New password"="Новый пароль";
 "New Password, Again!"="Подтвердить пароль";
 "My devices"="Мои часы";
@@ -237,7 +238,7 @@
 "Manage access permission of Swing"="Часы используются совместно с другими пользователями";
 "Switch watch"="Переключить часы";
 
-"Are you sure to log out?"="Are you sure to log out?";
+"Are you sure to log out?"="Вы обязательно выходите из системы?";
 "Yes,I am sure"="Да, я уверен";
 
 "Edit kid's account"="поделиться с";
@@ -271,8 +272,8 @@
 "Sharing now!"="Дать доступ!";
 
 "Your password does not match."="Ваши пароли не совпадают.";
-"The password length has to be longer than 6 characters"="The password length has to be longer than 6 characters";
-"Search"="Search";
+"The password length has to be longer than 6 characters"="Длина пароля должна быть длиннее 6 символов";
+"Search"="поиск";
 
 "Today's Summary"="Итоги дня";
 "Assign to"="Назначить в";
@@ -284,3 +285,4 @@
 "Only primary account has permission to edit"="Только первичная учетная запись имеет разрешение на редактирование";
 
 "Goal"="Цель";
+"Delete"="Удалить";

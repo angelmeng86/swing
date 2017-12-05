@@ -227,6 +227,7 @@
 "Request access pending"="等待通過請求";
 "Cancel & go to dashboard"="取消或進入Dashboard";
 "Use your finger to adjust picture position."="調整您照片位置";
+"Change password"="更新密碼";
 "New password"="新密碼";
 "New Password, Again!"="請再次輸入新密碼";
 "My devices"="我的手錶";
@@ -238,7 +239,7 @@
 "Manage access permission of Swing"="管理分享權限";
 "Switch watch"="轉換手錶帳戶";
 
-"Are you sure to log out?"="Are you sure to log out?";
+"Are you sure to log out?"="請問您是否確定登出？";
 "Yes,I am sure"="是的,我確定";
 
 "Edit kid's account"="編輯兒童帳號";
@@ -248,7 +249,7 @@
 "Switch account"="切換帳號";
 "Kid's profile"="兒童基本資料";
 
-"is sharing with"="is sharing with";
+"is sharing with"="已分享至";
 
 "Are you sure to switch this account?"="確定要切換至此帳號？";
 "It's done! You are on this account now."="完成切換。您已在此帳號";
@@ -272,8 +273,8 @@
 "Sharing now!"="已經分享";
 
 "Your password does not match."="您的密碼不匹配";
-"The password length has to be longer than 6 characters"="The password length has to be longer than 6 characters";
-"Search"="Search";
+"The password length has to be longer than 6 characters"="密碼長度必須大於6個字元";
+"Search"="搜尋";
 
 "Today's Summary"="本日總結";
 "Assign to"="指派";
@@ -285,3 +286,4 @@
 "Only primary account has permission to edit"="只有主要帳戶有編輯權限";
 
 "Goal"="目標";
+"Delete"="刪除";

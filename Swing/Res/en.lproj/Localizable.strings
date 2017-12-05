@@ -180,6 +180,7 @@
 "Request access pending"="Request access pending";
 "Cancel & go to dashboard"="Cancel & go to dashboard";
 "Use your finger to adjust picture position."="Use your finger to adjust picture position.";
+"Change password"="Change password";
 "New password"="New password";
 "New Password, Again!"="New Password, Again!";
 "My devices"="My devices";
@@ -239,3 +240,4 @@
 "Only primary account has permission to edit"="Only primary account has permission to edit";
 
 "Goal"="Goal";
+"Delete"="Delete";
