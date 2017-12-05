@@ -97,6 +97,9 @@
 
 - (void)eventLoaded:(NSNotification*)notification {
     [super eventLoaded:notification];
+    if (notification.object == nil) {
+        [self loadEventView];
+    }
 //    [self loadEventView];
 }
 
@@ -123,12 +126,6 @@
     [super viewWillAppear:animated];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"calendar_icon") style:UIBarButtonItemStylePlain target:self action:@selector(modeAction:)];
     
-    [[SwingClient sharedClient] calendarGetAllEventsWithCompletion:^(NSArray *eventArray, NSError *error) {
-        if(!error) {
-            [self loadEventView];
-            [self.calendarManager reload];
-        }
-    }];
     [self loadEventView];
 }
 

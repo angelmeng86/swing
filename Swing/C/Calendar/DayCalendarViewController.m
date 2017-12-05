@@ -91,6 +91,11 @@ CGFloat const kDayCalendarViewControllerTimePading = 40.0f;
 }
 
 - (void)addAction:(id)sender {
+    int64_t kidId = [GlobalCache shareInstance].currentKid.objId;
+    if (kidId == 0) {
+        [Fun showMessageBoxWithTitle:LOC_STR(@"Error") andMessage:LOC_STR(@"You have not bind device yet.")];
+        return;
+    }
     UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"Calendar" bundle:nil];
     AddEventViewController2 *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"AddEvent2"];
     ctl.delegate = self;

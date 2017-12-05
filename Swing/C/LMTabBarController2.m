@@ -76,7 +76,14 @@
 }
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
-    if (tabBarController.viewControllers[2] == viewController) {
+    if (tabBarController.viewControllers[1] == viewController) {
+        [[SwingClient sharedClient] calendarGetAllEventsWithCompletion:^(NSArray *eventArray, NSError *error) {
+            if(!error) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:EVENT_LIST_UPDATE_NOTI object:nil];
+            }
+        }];
+    }
+    else if (tabBarController.viewControllers[2] == viewController) {
         [self showSyncDialog];
     }
     else if(tabBarController.viewControllers[3] == viewController) {

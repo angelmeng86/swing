@@ -340,6 +340,23 @@
         }
     }
     [[DBHelper privateInstance] insertRepeatEventModel:list date:date ascending:ascend];
+    
+    //只显示当前切换的设备Event
+    int64_t kidId = [GlobalCache shareInstance].currentKid.objId;
+    for (int i = (int)list.count; --i >= 0;) {
+        EventModel *m = list[i];
+        BOOL isFinded = NO;
+        for (KidModel *k in m.kid) {
+            if (k.objId == kidId) {
+                isFinded = YES;
+                break;
+            }
+        }
+        if (!isFinded) {
+            [list removeObjectAtIndex:i];
+        }
+    }
+    
     return list;
 }
 
