@@ -85,6 +85,8 @@
     }
     else if (tabBarController.viewControllers[2] == viewController) {
         [self showSyncDialog];
+        //如果存在未上传的Activity，则进行后台上传操作。
+        [[GlobalCache shareInstance] uploadActivity];
     }
     else if(tabBarController.viewControllers[3] == viewController) {
         [self newFirmwareVersion:nil];

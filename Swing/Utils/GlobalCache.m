@@ -309,6 +309,28 @@
                                          }];
 }
 
+- (void)uploadActivity {
+    NSMutableArray *array = [DBHelper queryActivityModel];
+    if (array.count > 0) {
+        LOG_D(@"upload activity in background.");
+        [self uploadData:array];
+    }
+}
+
+- (void)uploadData:(NSMutableArray*)activitys {
+    ActivityModel *model = [activitys firstObject];
+    if (model) {
+        [[SwingClient sharedClient] deviceUploadRawData:model completion:^(NSError *error) {
+            if (!error) {
+                [DBHelper delObject:model.obj];
+                [activitys removeObject:model];
+                [self uploadData:activitys];
+            }
+            
+        }];
+    }
+}
+
 - (NSString*)cacheSupportUrl {
     if (_cacheSupportUrl == nil) {
 //        _cacheSupportUrl = @"http://kidsdynamic.com";

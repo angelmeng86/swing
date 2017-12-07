@@ -36,6 +36,7 @@
 
 - (NSArray*)queryEventColorForDay:(NSDate *)date;
 - (void)locationCountry;
+- (void)uploadActivity;
 
 @property (strong, nonatomic) UserModel* user;
 @property (strong, nonatomic) LMLocalData* local;
