@@ -74,7 +74,7 @@
     self.flightsProgress.progressCounter = 0;
     
 //    LFLineView *line = [LFLineView new];
-    line = [[LFLineView alloc] initWithLineLength:6 withLineSpacing:3 withLineColor:COMMON_TITLE_COLOR];
+    line = [[LFLineView alloc] initWithLineLength:6 withLineSpacing:3 withLineColor:DASHBOARD_LINE_COLOR];
 //    line.backgroundColor = [UIColor redColor];
     [self.view addSubview:line];
     
@@ -83,7 +83,7 @@
     [line autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:_stepProgress withOffset:15];
     
     UILabel *label = [UILabel new];
-    label.textColor = COMMON_TITLE_COLOR;
+    label.textColor = DASHBOARD_LINE_COLOR;
     label.font = [UIFont boldAvenirFontOfSize:15];
     label.text = LOC_STR(@"Goal");
     [self.view addSubview:label];

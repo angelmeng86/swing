@@ -20,6 +20,8 @@
 
 #define LOAD_IMAGE(name)                [UIImage imageNamed:name]
 
+#define TEXTFIELD_PLACEHOLDER_COLOR     RGBA(0x99, 0x98, 0x99, 1.0)
+#define DASHBOARD_LINE_COLOR            RGBA(0xee, 0x1e, 0x23, 1.0)
 #define COMMON_TITLE_COLOR              RGBA(0xff, 0x72, 0x31, 1.0f)//RGBA(240, 92, 37, 1.0f)
 #define COMMON_BACKGROUND_COLOR         RGBA(194, 235, 246, 1.0f)//RGBA(185, 232, 245, 1.0f)
 #define COMMON_NAV_TINT_COLOR           RGBA(0x67, 0xc8, 0xe5, 1.0f)//RGBA(0x7E, 0xAD, 0xBB, 1.0f)

@@ -7,8 +7,39 @@
 //
 
 #import "LFTextField.h"
+#import "CommonDef.h"
 
 @implementation LFTextField
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if(!self){
+        return nil;
+    }
+    
+    [self commonInit];
+    
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if(!self){
+        return nil;
+    }
+    
+    [self commonInit];
+    
+    return self;
+}
+
+- (void)commonInit
+{
+    [self setValue:TEXTFIELD_PLACEHOLDER_COLOR forKeyPath:@"_placeholderLabel.textColor"];
+    self.textColor = TEXTFIELD_PLACEHOLDER_COLOR;
+}
 
 - (CGRect)textRectForBounds:(CGRect)bounds {
     CGRect rect = [super textRectForBounds:bounds];

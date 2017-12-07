@@ -48,7 +48,7 @@
         [_textLabel autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeLeading];
         
         _textLabel.textColor = RGBA(150, 150, 150, 1.0f);
-        _textLabel.font = [UIFont avenirFontOfSize:14];
+        _textLabel.font = [UIFont boldAvenirFontOfSize:14];
     }
     return self;
 }

@@ -182,7 +182,7 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
     [self createBtn:backView offset:30];
     
     if (lineValue > 0) {
-        LFLineView *line = [[LFLineView alloc] initWithLineLength:6 withLineSpacing:3 withLineColor:_stepChartColor];
+        LFLineView *line = [[LFLineView alloc] initWithLineLength:6 withLineSpacing:3 withLineColor:DASHBOARD_LINE_COLOR];
         line.horizontalLine = YES;
         [self.view addSubview:line];
         
@@ -197,7 +197,7 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
         label.textAlignment = NSTextAlignmentCenter;
         label.text = [Fun countNumAndChangeformat:lineValue];
         label.textColor = [UIColor whiteColor];
-        label.backgroundColor = _stepChartColor;
+        label.backgroundColor = DASHBOARD_LINE_COLOR;
         [self.view addSubview:label];
         [label autoSetDimensionsToSize:CGSizeMake(30, 16)];
         [label autoAlignAxis:ALAxisHorizontal toSameAxisOfView:line];

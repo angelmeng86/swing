@@ -38,8 +38,16 @@
         if(i == 3) {
             i++;
         }
-        else if(i == 2) {
+        
+        if(i == 2) {
             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Dashboard" bundle:nil];
+            UIViewController *ctl = [sb instantiateInitialViewController];
+            [navCtl setViewControllers:@[ctl] animated:NO];
+            i++;
+            continue;
+        }
+        else if(i == 4) {
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
             UIViewController *ctl = [sb instantiateInitialViewController];
             [navCtl setViewControllers:@[ctl] animated:NO];
             i++;

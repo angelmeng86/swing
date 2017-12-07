@@ -186,7 +186,7 @@
     
     for(UILabel *label in view.dayViews){
         label.textColor = [UIColor blackColor];
-        label.font = [UIFont avenirFontOfSize:10];
+        label.font = [UIFont boldAvenirFontOfSize:10];
     }
     
     return view;

@@ -8,6 +8,7 @@
 #import "LMCalendarDayView.h"
 
 #import "JTCalendarManager.h"
+#import "CommonDef.h"
 
 NSInteger const kLMCalendarDayViewDotViewFlex = 3;
 
@@ -79,7 +80,7 @@ NSInteger const kLMCalendarDayViewDotViewFlex = 3;
     {
         _textLabel = [UILabel new];
         [self addSubview:_textLabel];
-        
+        _textLabel.font = [UIFont boldAvenirFontOfSize:15];
         _textLabel.textColor = [UIColor blackColor];
         _textLabel.textAlignment = NSTextAlignmentCenter;
         _textLabel.font = [UIFont systemFontOfSize:[UIFont systemFontSize]];

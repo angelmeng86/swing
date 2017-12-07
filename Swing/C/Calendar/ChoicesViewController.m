@@ -96,6 +96,7 @@
 //        cell.textLabel.textAlignment = NSTextAlignmentCenter;
         //        cell.selectionStyle = UITableViewCellSelectionStyleGray;
         cell.textLabel.font = [UIFont avenirFontOfSize:17];
+        cell.textLabel.textColor = TEXTFIELD_PLACEHOLDER_COLOR;
     }
     
     cell.textLabel.text = data;

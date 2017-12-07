@@ -31,7 +31,8 @@ typedef enum : NSUInteger {
 //    self.notLoadBackgroudImage = YES;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    UIView *v = [self.view viewWithTag:2017];
+    v.alpha = 0.2f;
     self.stepBtn.layer.cornerRadius = 40.f;
     self.stepBtn.layer.masksToBounds = YES;
     

@@ -96,7 +96,7 @@
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont boldAvenirFontOfSize:17];
     label.textColor = COMMON_TITLE_COLOR;
-    
+    /*
     UIView *topLine = [UIView new];
     [label addSubview:topLine];
     [topLine autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeBottom];
@@ -108,7 +108,7 @@
     [downLine autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeTop];
     [downLine autoSetDimension:ALDimensionHeight toSize:1];
     downLine.backgroundColor = RGBA(0xc8, 0xc7, 0xcc, 1.0f);
-    
+    */
     return label;
 }
 
@@ -120,7 +120,7 @@
             inputCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"inputReuseIdentifier"];
             
             inputCell.textLabel.textAlignment = NSTextAlignmentLeft;
-            inputCell.textLabel.font = [UIFont avenirFontOfSize:17];
+            inputCell.textLabel.font = [UIFont boldAvenirFontOfSize:17];
             inputCell.textLabel.textColor = RGBA(0x97, 0x96, 0x97, 1.0f);
             inputCell.textLabel.adjustsFontSizeToFitWidth = YES;
             /*

@@ -61,8 +61,9 @@
     [_textField autoPinEdgeToSuperviewEdge:ALEdgeBottom];
     [_textField autoSetDimension:ALDimensionHeight toSize:35];
     
+    [_textField setValue:TEXTFIELD_PLACEHOLDER_COLOR forKeyPath:@"_placeholderLabel.textColor"];  
     _textField.placeholder = LOC_STR(@"To Do List");
-    _textField.font = [UIFont avenirFontOfSize:15];
+    _textField.font = [UIFont boldAvenirFontOfSize:15];
     _textField.delegate = self;
     _textField.returnKeyType = UIReturnKeyDone;
     

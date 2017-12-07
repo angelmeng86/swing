@@ -12,7 +12,8 @@
 
 + (UIFont *)avenirFontOfSize:(CGFloat)fontSize
 {
-    return [UIFont fontWithName:@"Avenir-Book" size:fontSize];
+//    return [UIFont fontWithName:@"Avenir-Book" size:fontSize];
+    return [UIFont fontWithName:@"ArialRoundedMTBold" size:fontSize];
 }
 
 + (UIFont *)boldAvenirFontOfSize:(CGFloat)fontSize

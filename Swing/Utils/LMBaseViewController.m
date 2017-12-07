@@ -72,7 +72,7 @@
     if (!self.notLoadBackgroudImage) {
         UIImage *image = LOAD_IMAGE(self.backgroudImageName == nil ? @"california_bg" : self.backgroudImageName);
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-        
+        imageView.tag = 2017;
         [self.view addSubview:imageView];
         
         [imageView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeTop];

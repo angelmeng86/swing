@@ -50,7 +50,8 @@
     
     UILabel *label = [UILabel new];
     label.text = LOC_STR(@"Color Label");
-    label.font = [UIFont avenirFontOfSize:15];
+    label.font = [UIFont boldAvenirFontOfSize:15];
+    label.textColor = TEXTFIELD_PLACEHOLDER_COLOR;
     [self addSubview:label];
     [label autoPinEdgeToSuperviewEdge:ALEdgeTop];
     [label autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:TEXTFIELD_EDGE + 10];
