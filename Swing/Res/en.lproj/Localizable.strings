@@ -193,7 +193,7 @@
 "Switch watch account"="Switch watch account";
 
 "Are you sure to log out?"="Are you sure to log out?";
-"Yes,I am sure"="Yes,I am sure";
+"Yes,I am sure"="Yes, I am sure";
 
 "Edit kid's account"="Edit kid's account";
 "Switch to this account"="Switch to this account";
@@ -242,3 +242,6 @@
 "Goal"="Goal";
 "Delete"="Delete";
 "Uploading"="Uploading";
+
+"Edit profile"="Edit profile";
+"Edit kid's profile"="Edit kid's profile";

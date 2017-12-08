@@ -10,6 +10,7 @@
 #import "CommonDef.h"
 #import "VPImageCropperViewController.h"
 #import "ProfileDeviceCell.h"
+#import "OptionViewController.h"
 #import <SDWebImage/UIButton+WebCache.h>
 
 @interface EditProfileViewController ()<UITextFieldDelegate, CameraUtilityDelegate>
@@ -31,17 +32,25 @@
     
 //    self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view.
-    
+    [self.saveBtn setTitle:LOC_STR(@"Save") forState:UIControlStateNormal];
     self.imageBtn.layer.cornerRadius = 60.f;
     self.imageBtn.layer.borderColor = [self.imageBtn titleColorForState:UIControlStateNormal].CGColor;
     self.imageBtn.layer.borderWidth = 4.f;
     self.imageBtn.layer.masksToBounds = YES;
     image = nil;
     
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(doneAction:)];
-    self.navigationItem.title = LOC_STR(@"Edit");
+    UIView *panelView = [UIView new];
+    [self.imageBtn addSubview:panelView];
+    panelView.backgroundColor = [UIColor whiteColor];
+    panelView.userInteractionEnabled = NO;
+    panelView.alpha = 0.5f;
+    [panelView autoPinEdgesToSuperviewEdges];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"navi_save") style:UIBarButtonItemStylePlain target:self action:@selector(doneAction:)];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(doneAction:)];
+    self.navigationItem.title = LOC_STR(@"Edit profile");
+    
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"navi_save") style:UIBarButtonItemStylePlain target:self action:@selector(doneAction:)];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"navi_option") style:UIBarButtonItemStylePlain target:self action:@selector(optionAction)];
     
     if ([GlobalCache shareInstance].user.profile) {
         [self.imageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:[GlobalCache shareInstance].user.profile]] forState:UIControlStateNormal];
@@ -82,6 +91,11 @@
     self.zipCodeTF.delegate = self;
 }
 
+- (void)optionAction {
+    OptionViewController *ctl = [[OptionViewController alloc] initWithStyle:UITableViewStylePlain];
+    [self.navigationController pushViewController:ctl animated:YES];
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
@@ -101,7 +115,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)doneAction:(id)sender {
+- (IBAction)saveAction:(id)sender {
     if ([self validateTextField]) {
         [SVProgressHUD show];
 //        [SVProgressHUD showWithStatus:@"Saving, please wait..."];

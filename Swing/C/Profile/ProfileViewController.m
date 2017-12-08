@@ -158,7 +158,7 @@
 }
 
 - (void)editProfileAction:(id)sender {
-    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
+    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
     UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"EditProfile2"];
 //    [self presentViewController:ctl animated:YES completion:nil];
     [self.navigationController pushViewController:ctl animated:YES];

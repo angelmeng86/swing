@@ -54,7 +54,6 @@
                 }
                 
             }
-            self.infoLabel.text = nil;
             self.conllectionLabel1.text = LOC_STR(@"is sharing with");
             self.conllectionLabel2.text = [NSString stringWithFormat: LOC_STR(@"You have %d requests from"), (int)self.array2.count];
             
@@ -77,7 +76,7 @@
                 
             }
             
-            self.infoLabel.text = LOC_STR(@"*Tap on profile pictures to switch account");
+            self.subTitleLabel.text = LOC_STR(@"*Tap on profile pictures to switch account");
             
             self.conllectionLabel1.text = LOC_STR(@"My devices");
             self.conllectionLabel2.text = LOC_STR(@"Devices shared with me");
@@ -97,7 +96,7 @@
 - (IBAction)btn1Action:(id)sender {
     if (_type == MutiListTypeKidProfile) {
         UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
-        EditKidViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"EditKid"];
+        EditKidViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"Profile"];
         ctl.kid = self.kid;
         [self.navigationController pushViewController:ctl animated:YES];
     }

@@ -27,11 +27,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = LOC_STR(@"Edit");
+    self.navigationItem.title = LOC_STR(@"Edit kid's profile");
     cameraUtility = [[CameraUtility2 alloc] init];
     cameraUtility.originMaxWidth = ORIGINAL_MAX_WIDTH;
     cameraUtility.targetMaxWidth = TAGET_MAX_WIDTH;
-    
+    [self.saveBtn setTitle:LOC_STR(@"Save") forState:UIControlStateNormal];
     [self.firstNameTF setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     
     self.firstNameTF.placeholder=LOC_STR(@"Kid's name");
@@ -44,6 +44,13 @@
     self.imageBtn.layer.masksToBounds = YES;
     image = nil;
     
+    UIView *panelView = [UIView new];
+    [self.imageBtn addSubview:panelView];
+    panelView.backgroundColor = [UIColor whiteColor];
+    panelView.userInteractionEnabled = NO;
+    panelView.alpha = 0.5f;
+    [panelView autoPinEdgesToSuperviewEdges];
+    
     if (self.kid) {
         self.firstNameTF.text = self.kid.name;
         if (self.kid.profile.length > 0) {
@@ -54,7 +61,7 @@
         
     }
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"navi_save") style:UIBarButtonItemStylePlain target:self action:@selector(doneAction)];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:LOAD_IMAGE(@"navi_save") style:UIBarButtonItemStylePlain target:self action:@selector(doneAction)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -71,7 +78,7 @@
     return YES;
 }
 
-- (void)doneAction {
+- (IBAction)saveAction:(id)sender {
         if ([self validateTextField]) {
             [SVProgressHUD show];
 //            [SVProgressHUD showWithStatus:@"Edit kid info, please wait..."];

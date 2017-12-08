@@ -20,7 +20,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *stateTF;
 @property (weak, nonatomic) IBOutlet UITextField *zipCodeTF;
 @property (weak, nonatomic) IBOutlet UICollectionView *deviceConllectionView;
+@property (weak, nonatomic) IBOutlet UIButton *saveBtn;
 
 - (IBAction)imageBtnAction:(id)sender;
+- (IBAction)saveAction:(id)sender;
 
 @end

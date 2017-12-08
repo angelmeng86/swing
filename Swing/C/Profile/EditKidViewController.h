@@ -14,7 +14,9 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *imageBtn;
 @property (weak, nonatomic) IBOutlet UITextField *firstNameTF;
+@property (weak, nonatomic) IBOutlet UIButton *saveBtn;
 
 - (IBAction)imageAction:(id)sender;
+- (IBAction)saveAction:(id)sender;
 
 @end

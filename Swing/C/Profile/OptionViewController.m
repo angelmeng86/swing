@@ -173,7 +173,7 @@
             switch (indexPath.row) {
                 case 0:
                 {
-                    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
+                    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"Profile" bundle:nil];
                     UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"EditProfile2"];
                     [self.navigationController pushViewController:ctl animated:YES];
                 }
@@ -189,7 +189,7 @@
                         [SVProgressHUD showErrorWithStatus:LOC_STR(@"Only primary account has permission to edit")];
                         return;
                     }
-                    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
+                    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"Profile" bundle:nil];
                     EditKidViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"EditKid"];
                     ctl.kid = [GlobalCache shareInstance].currentKid;
                     [self.navigationController pushViewController:ctl animated:YES];
