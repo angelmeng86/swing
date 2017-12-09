@@ -82,6 +82,8 @@
     [line autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:_stepProgress withOffset:-15];
     [line autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:_stepProgress withOffset:15];
     
+    
+    
     UILabel *label = [UILabel new];
     label.textColor = DASHBOARD_LINE_COLOR;
     label.font = [UIFont boldAvenirFontOfSize:15];
@@ -90,8 +92,8 @@
     [label autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:line withOffset:3];
     [label autoAlignAxis:ALAxisVertical toSameAxisOfView:line];
     
-    
-    self.lineWidth = [line autoPinEdge:ALEdgeTrailing toEdge:ALEdgeTrailing ofView:_stepProgress withOffset:-50];
+    CGFloat lineWidth = STEPS_LEVEL_GOAL / (STEPS_LEVEL_HIGH / (kDeviceWidth - 40));
+    self.lineWidth = [line autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:_stepProgress withOffset:lineWidth];
 //    [line autoAlignAxis:ALAxisHorizontal toSameAxisOfView:_distanceProgress];
     
 //    UIImage *image = [ControlFactory imageFromColor:RGBA(0x67, 0x5c, 0xa7, 1.0f) size:CGSizeMake(100, 30)];

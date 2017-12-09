@@ -20,5 +20,6 @@
 @property (weak, nonatomic) IBOutlet MDRadialProgressView *progressView;
 - (IBAction)btnAction:(id)sender;
 - (IBAction)btn2Action:(id)sender;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *statusLabelLC;
 
 @end

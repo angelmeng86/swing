@@ -26,6 +26,8 @@ typedef enum : NSUInteger {
     MDRadialProgressTheme *progressTheme;
 //    MDRadialProgressTheme *doneTheme;
     
+    UIImageView *iconView;
+    
     BLEClient *client;
     
     BOOL updateLoaded;
@@ -70,6 +72,17 @@ typedef enum : NSUInteger {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didBecomeActive:)
                                                  name:UIApplicationDidBecomeActiveNotification object:nil];
+    iconView = [UIImageView new];
+    [self.view addSubview:iconView];
+    [self.view sendSubviewToBack:iconView];
+//    [iconView autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.progressView];
+//    [iconView autoPinEdge:ALEdgeLeft toEdge:ALEdgeLeft ofView:self.progressView];
+//    [iconView autoPinEdge:ALEdgeRight toEdge:ALEdgeRight ofView:self.progressView];
+    
+    [iconView autoMatchDimension:ALDimensionWidth toDimension:ALDimensionHeight ofView:self.progressView withMultiplier:0.45];
+    [iconView autoMatchDimension:ALDimensionHeight toDimension:ALDimensionHeight ofView:self.progressView withMultiplier:0.45];
+    [iconView autoAlignAxisToSuperviewAxis:ALAxisVertical];
+    [iconView autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.progressView withOffset:-5];
     
     updateLoaded = NO;
 }
@@ -116,6 +129,8 @@ typedef enum : NSUInteger {
     }
     self.subTitleLabel.text = nil;
     self.button2.hidden = YES;
+    iconView.image = nil;
+    self.statusLabelLC.constant = 195;
     switch (status) {
         case SyncStatusSearching:
         {
@@ -150,8 +165,13 @@ typedef enum : NSUInteger {
             break;
         case SyncStatusFound:
         {
-            self.statusLabel.text = LOC_STR(@"Found your device!");
+            self.statusLabel.text = LOC_STR(@"Found!");
+            iconView.image = LOAD_IMAGE(@"happy_sync_icon");
+            self.statusLabelLC.constant = 130;
             self.button.hidden = NO;
+            self.statusLabel.text = LOC_STR(@"We can't find your watch!");
+            self.statusLabelLC.constant = 130;
+            iconView.image = LOAD_IMAGE(@"unhappy_sync_icon");
             
             self.progressView.isIndeterminateProgress = NO;
 //            self.progressView.theme = doneTheme;
@@ -179,7 +199,9 @@ typedef enum : NSUInteger {
             break;
         case SyncStatusSyncCompleted:
         {
-            self.statusLabel.text = LOC_STR(@"Sync Completed");
+            self.statusLabel.text = LOC_STR(@"Completed");
+            self.statusLabelLC.constant = 130;
+            iconView.image = LOAD_IMAGE(@"happy_sync_icon");
             [self.button setTitle:LOC_STR(@"Go to dashboard") forState:UIControlStateNormal];
             
             self.progressView.isIndeterminateProgress = NO;
@@ -198,7 +220,9 @@ typedef enum : NSUInteger {
             break;
         case SyncStatusNotFound:
         {
-            self.statusLabel.text = LOC_STR(@"We can't find your device!");
+            self.statusLabel.text = LOC_STR(@"We can't find your watch!");
+            self.statusLabelLC.constant = 130;
+            iconView.image = LOAD_IMAGE(@"unhappy_sync_icon");
             self.button.hidden = NO;
             self.button2.hidden = NO;
             
@@ -262,6 +286,8 @@ typedef enum : NSUInteger {
         self.statusLabel.text = [text stringByAppendingString:remainTime];
         if (!updateLoaded) {
             updateLoaded = YES;
+            iconView.image = nil;
+            self.statusLabelLC.constant = 195;
             self.progressView.progressTotal = 100;
             self.progressView.progressCounter = 0;
             self.progressView.isIndeterminateProgress = NO;

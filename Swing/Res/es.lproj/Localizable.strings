@@ -290,3 +290,8 @@
 
 "Edit profile"="Editar perfil";
 "Edit kid's profile"="Editar el perfil para niños";
+
+"Found!"="Reloj encontrado";
+"Completed"="Sincronización finalizada";
+"We can't find your watch!"="Reloj no encontrado";
+"%@'s watch is sharing with %@ now."="El reloj de %@ está compartiendo con %@ ahora.";

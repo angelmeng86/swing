@@ -195,6 +195,7 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
         label.font = [UIFont avenirFontOfSize:13];
         label.adjustsFontSizeToFitWidth = YES;
         label.textAlignment = NSTextAlignmentCenter;
+        label.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
         label.text = [Fun countNumAndChangeformat:lineValue];
         label.textColor = [UIColor whiteColor];
         label.backgroundColor = DASHBOARD_LINE_COLOR;

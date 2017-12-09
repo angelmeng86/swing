@@ -52,6 +52,8 @@
 #define STEPS_LEVEL_GOOD        10000
 #define STEPS_LEVEL_HIGH        15000
 
+#define STEPS_LEVEL_GOAL        12000
+
 //------------------------------------------------------------------
 
 #import "SwingClient.h"

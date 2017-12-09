@@ -290,3 +290,8 @@
 
 "Edit profile"="Редактировать профиль";
 "Edit kid's profile"="Изменить профиль ребенка";
+
+"Found!"="Часы найдены";
+"Completed"="Синхронизация завершена";
+"We can't find your watch!"="Часы не найдены";
+"%@'s watch is sharing with %@ now."="Часы %@ теперь доступны с %@.";

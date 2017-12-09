@@ -291,3 +291,8 @@
 
 "Edit profile"="プロフィール編集";
 "Edit kid's profile"="子どものプロフィールを編集する";
+
+"Found!"="貴方の時計見つけました。";
+"Completed"="接続しました";
+"We can't find your watch!"="あなたの時計が見つかりません";
+"%@'s watch is sharing with %@ now."="%@のウォッチはただいま%@と共有しています。";

@@ -291,3 +291,8 @@
 
 "Edit profile"="修改基本資料";
 "Edit kid's profile"="修改小孩資料";
+
+"Found!"="找到您的手錶";
+"Completed"="同步完成";
+"We can't find your watch!"="無法找到您的手錶";
+"%@'s watch is sharing with %@ now."="%@'s watch is sharing with %@ now.";

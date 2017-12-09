@@ -121,7 +121,7 @@
         {
             self.title = LOC_STR(@"Request from");
             self.titleLabel.text = LOC_STR(@"Sharing now!");
-            self.subTitleLabel.text = nil;
+            self.subTitleLabel.text = [NSString stringWithFormat:LOC_STR(@"%@'s watch is sharing with %@ now."), [self.subHost.requestFromUser fullName], [self.subHost.requestToUser fullName]];
             
             if (self.subHost.requestFromUser.profile) {
                 [self.imageView sd_setImageWithURL:[NSURL URLWithString:[AVATAR_BASE_URL stringByAppendingString:self.subHost.requestFromUser.profile]]];
