@@ -70,10 +70,10 @@
                 static NSDateFormatter *dateFormatter;
                 if(!dateFormatter){
                     dateFormatter = [NSDateFormatter new];
-                    dateFormatter.dateFormat = @"HH:mm";
+                    dateFormatter.dateFormat = @"h:mm a";
                 }
                 
-                [self setTimeDesc:[dateFormatter stringFromDate:event.startDate] desc:event.eventName];
+                [self setTimeDesc:[[dateFormatter stringFromDate:event.startDate] lowercaseString] desc:event.eventName];
                 
                 NSCalendar *cal = [NSCalendar currentCalendar];
                 NSDateComponents *start = [cal components:NSCalendarUnitHour fromDate:event.startDate];

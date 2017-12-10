@@ -169,9 +169,6 @@ typedef enum : NSUInteger {
             iconView.image = LOAD_IMAGE(@"happy_sync_icon");
             self.statusLabelLC.constant = 130;
             self.button.hidden = NO;
-            self.statusLabel.text = LOC_STR(@"We can't find your watch!");
-            self.statusLabelLC.constant = 130;
-            iconView.image = LOAD_IMAGE(@"unhappy_sync_icon");
             
             self.progressView.isIndeterminateProgress = NO;
 //            self.progressView.theme = doneTheme;
