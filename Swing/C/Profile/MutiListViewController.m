@@ -37,6 +37,8 @@
     self.collectionView2.backgroundColor = [UIColor clearColor];
     self.collectionView2.backgroundView = [UIView new];
     
+    self.subTitleLabel.text = nil;
+    self.infoLabel.text = nil;
 //    [self loadInfo];
 }
 

@@ -142,7 +142,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (_type = StepsTypeToday) {
+    if (_type == StepsTypeToday) {
         return 24;
     }
     return self.indoorBtn.selected ? self.indoorData.count : self.outdoorData.count;

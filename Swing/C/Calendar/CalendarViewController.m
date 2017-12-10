@@ -157,7 +157,12 @@
         self.todayBtn.hidden = YES;
         self.timeLabel.hidden = YES;
         self.descLabel.hidden = YES;
-        self.calendarHeight.constant = 300;
+        if (kDevice_Is_iPhoneX) {
+            self.calendarHeight.constant = 400;
+        }
+        else {
+            self.calendarHeight.constant = 300;
+        }
     }
     self.calendarManager.settings.weekModeEnabled = !self.calendarManager.settings.weekModeEnabled;
     [self.calendarManager reload];

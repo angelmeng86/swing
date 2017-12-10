@@ -46,7 +46,7 @@ NSInteger const kLMCalendarDayViewDotViewFlex = 3;
 
 - (void)commonInit
 {
-    self.clipsToBounds = YES;
+//    self.clipsToBounds = YES;
     
     _circleRatio = .9;
     _dotRatio = 1. / 9.;
@@ -98,22 +98,27 @@ NSInteger const kLMCalendarDayViewDotViewFlex = 3;
 {
     [super layoutSubviews];
     
-    _textLabel.frame = self.bounds;
-    
     CGFloat sizeCircle = MIN(self.frame.size.width, self.frame.size.height);
     CGFloat sizeDot = sizeCircle;
     
     sizeCircle = sizeCircle * _circleRatio;
     sizeDot = sizeDot * _dotRatio;
     
+    CGRect rect = self.bounds;
+    rect.size.height -= sizeDot + 4;
+    _textLabel.frame = rect;
+    sizeCircle = MIN(rect.size.width, rect.size.height);
+    sizeCircle = sizeCircle * _circleRatio;
+    sizeCircle = sizeCircle < 30 ? sizeCircle : 30;
+    
     sizeCircle = roundf(sizeCircle);
     sizeDot = roundf(sizeDot);
     
     _circleView.frame = CGRectMake(0, 0, sizeCircle, sizeCircle);
-    _circleView.center = CGPointMake(self.frame.size.width / 2., self.frame.size.height / 2.);
+    _circleView.center = _textLabel.center;
     _circleView.layer.cornerRadius = sizeCircle / 2.;
     
-    CGPoint center = CGPointMake(self.frame.size.width / 2., (self.frame.size.height / 2.) +sizeDot * 2.5);
+    CGPoint center = CGPointMake(self.frame.size.width / 2., (self.frame.size.height / 2.) + sizeDot * 3);
     int count = (int)_dotColors.count;
     float x = (kLMCalendarDayViewDotViewFlex + sizeDot) * (count - 1) / 2;
     int i = 0;

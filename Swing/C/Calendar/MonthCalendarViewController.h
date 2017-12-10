@@ -22,5 +22,6 @@
 @property (weak, nonatomic) IBOutlet JTHorizontalCalendarView *calendarContentView;
 @property (weak, nonatomic) IBOutlet UIButton *syncBtn;
 - (IBAction)syncAction:(id)sender;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentHeightLC;
 
 @end

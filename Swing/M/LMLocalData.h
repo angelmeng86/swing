@@ -14,7 +14,7 @@
 @property (nonatomic) long outdoorSteps;
 @property (nonatomic, strong) NSString<Optional> *date;
 
-@property (strong, nonatomic) NSString* access_token;
+@property (strong, nonatomic) NSString<Optional> *access_token;
 
 //@property (nonatomic) int battery;
 

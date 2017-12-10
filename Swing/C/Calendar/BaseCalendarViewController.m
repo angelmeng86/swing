@@ -185,7 +185,7 @@
     LMCalendarWeekDayView *view = [LMCalendarWeekDayView new];
     
     for(UILabel *label in view.dayViews){
-        label.textColor = [UIColor blackColor];
+        label.textColor = COMMON_TITLE_COLOR;
         label.font = [UIFont boldAvenirFontOfSize:10];
     }
     

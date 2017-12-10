@@ -22,6 +22,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    if (kDevice_Is_iPhoneX) {
+        self.contentHeightLC.constant = 400;
+    }
+    
     [self initCalendarManager:NO];
     
     [self.syncBtn setTitle:LOC_STR(@"Sync Now") forState:UIControlStateNormal];

@@ -22,7 +22,7 @@ typedef enum : NSUInteger {
 @property (weak, nonatomic) IBOutlet UIButton *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *subTitleLabel;
-
+@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *conllectionLabel1;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView1;
 @property (weak, nonatomic) IBOutlet UILabel *conllectionLabel2;
