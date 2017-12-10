@@ -119,10 +119,7 @@
     [self.outdoorBtn setBackgroundImage:image forState:UIControlStateSelected];
     [self.outdoorBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
     
-    self.indoor = [ActivityResultModel new];
-    self.outdoor = [ActivityResultModel new];
-    self.indoor.steps = [GlobalCache shareInstance].local.indoorSteps;
-    self.outdoor.steps = [GlobalCache shareInstance].local.outdoorSteps;
+    
     
     self.stepProgress.adjustsFontSizeToFitWidth = YES;
 //    self.stepProgress.backgroundColor = [UIColor lightGrayColor];
@@ -141,6 +138,10 @@
         self.indoorBtn.selected = YES;
     }
     
+    self.indoor = [ActivityResultModel new];
+    self.outdoor = [ActivityResultModel new];
+    self.indoor.steps = [GlobalCache shareInstance].local.indoorSteps;
+    self.outdoor.steps = [GlobalCache shareInstance].local.outdoorSteps;
     [self reloadData];
     
     [ControlFactory setClickAction:self.stepProgress target:self action:@selector(stepAction)];
@@ -152,6 +153,8 @@
     StepsTableViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"StepsTableCtl"];
     ctl.title = self.titleLabel.text;
     ctl.type = StepsTypeToday;
+    ctl.stepChartColor = _titleLabel.textColor;
+    ctl.backgroundColor = self.view.backgroundColor;
     ctl.outdoorFirstShow = self.outdoorBtn.selected;
     [self.navigationController pushViewController:ctl animated:YES];
 }
@@ -252,6 +255,11 @@
 - (void)requestData {
     if ([GlobalCache shareInstance].local.indoorSteps > 0 || [GlobalCache shareInstance].local.outdoorSteps > 0) {
         //判断如果本地有缓存数据则不向后台请求，主要解决因数据未上传引起的前后台数据不一致问题
+        self.indoor = [ActivityResultModel new];
+        self.outdoor = [ActivityResultModel new];
+        self.indoor.steps = [GlobalCache shareInstance].local.indoorSteps;
+        self.outdoor.steps = [GlobalCache shareInstance].local.outdoorSteps;
+        [self reloadData];
         return;
     }
     int64_t kidId = [GlobalCache shareInstance].currentKid.objId;

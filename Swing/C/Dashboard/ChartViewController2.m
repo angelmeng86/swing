@@ -682,6 +682,8 @@ static CGFloat const kJBBarChartViewControllerBarPadding = 20.0f;
     StepsTableViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"StepsTableCtl"];
     ctl.title = self.titleLabel.text;
     ctl.type = (StepsType)_type;
+    ctl.stepChartColor = self.stepChartColor;
+    ctl.backgroundColor = self.view.backgroundColor;
     ctl.outdoorFirstShow = outdoorBtn.selected;
     
     NSStringCompareOptions comparisonOptions = NSCaseInsensitiveSearch|NSNumericSearch|

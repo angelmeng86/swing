@@ -576,7 +576,7 @@ You can do this!</string>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FEo-ce-J8T" customClass="RoundButton">
                                 <rect key="frame" x="212" y="686" width="120" height="30"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                 <state key="normal" title="Outdoor">
                                     <color key="titleColor" red="0.4039215686" green="0.36078431370000003" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -597,7 +597,7 @@ You can do this!</string>
                                     <constraint firstAttribute="height" constant="30" id="2rC-NC-TDV"/>
                                     <constraint firstAttribute="width" constant="120" id="HpS-FH-mSF"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                 <state key="normal" title="Indoor">
                                     <color key="titleColor" red="0.4039215686" green="0.36078431370000003" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>

@@ -25,7 +25,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UIImage *image = [ControlFactory imageFromColor:RGBA(0x67, 0x5c, 0xa7, 1.0f) size:CGSizeMake(100, 30)];
+    UIImage *image = [ControlFactory imageFromColor:self.stepChartColor size:CGSizeMake(100, 30)];
+    self.view.backgroundColor = self.backgroundColor;
     //    UIImage *image = [ControlFactory imageFromColor:[UIColor redColor] size:CGSizeMake(100, 30)];
     
     self.indoorBtn.layer.borderWidth = 2;
@@ -140,22 +141,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (int)dataCount {
-    switch (_type) {
-        case StepsTypeMonth:
-            return 30;
-        case StepsTypeYear:
-            return 12;
-        case StepsTypeWeek:
-            return 7;
-        default:
-            return 24;
-    }
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (_type = StepsTypeToday) {
+        return 24;
+    }
     return self.indoorBtn.selected ? self.indoorData.count : self.outdoorData.count;
-//    return [self dataCount];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -165,6 +155,10 @@
         
         TodayStepCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         cell.backgroundColor = [UIColor clearColor];
+        cell.startTimeLabel.textColor = self.stepChartColor;
+        cell.endTimeLabel.textColor = self.stepChartColor;
+        cell.valueLabel.textColor = self.stepChartColor;
+        cell.stepsLabel.textColor = self.stepChartColor;
         
         if (dateFormatter3 == nil) {
             dateFormatter3 = [[NSDateFormatter alloc] init];
@@ -174,16 +168,27 @@
         
         NSArray *array = self.indoorBtn.selected ? self.indoorData : self.outdoorData;
         
-        ActivityResultModel *model = array[indexPath.row];
         cell.subTitleLabel.text = LOC_STR(@"Today");
-        
-        NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSCalendarUnitHour fromDate:model.receivedDate];
+        for (ActivityResultModel *model in array) {
+            NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSCalendarUnitHour fromDate:model.receivedDate];
+            if (comps.hour == indexPath.row) {
+                NSDate *startDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
+                NSDate *endDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitMinute value:59 toDate:startDate options:0];
+                cell.startTimeLabel.text = [dateFormatter3 stringFromDate:startDate];
+                cell.endTimeLabel.text = [dateFormatter3 stringFromDate:endDate];
+                
+                cell.valueLabel.text = [Fun countNumAndChangeformat:model.steps];
+                return cell;
+            }
+        }
+        NSDateComponents *comps = [[NSDateComponents alloc] init];
+        [comps setValue:indexPath.row forComponent:NSCalendarUnitHour];
         NSDate *startDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
         NSDate *endDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitMinute value:59 toDate:startDate options:0];
         cell.startTimeLabel.text = [dateFormatter3 stringFromDate:startDate];
         cell.endTimeLabel.text = [dateFormatter3 stringFromDate:endDate];
         
-        cell.valueLabel.text = [Fun countNumAndChangeformat:model.steps];
+        cell.valueLabel.text = @"0";
         return cell;
     }
     else if(self.type == StepsTypeYear){
@@ -192,7 +197,12 @@
         if (dateFormatter == nil) {
             dateFormatter = [[NSDateFormatter alloc] init];
             dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:[GlobalCache shareInstance].curLanguage];
-            [dateFormatter setDateFormat:@"MMM , yyyy"];
+            [dateFormatter setDateFormat:@"MMM"];
+            
+            dateFormatter2 = [NSDateFormatter new];
+            dateFormatter2.dateFormat = @"yyyy";
+            
+            dateFormatter2.locale = [NSLocale localeWithLocaleIdentifier:[GlobalCache shareInstance].curLanguage];
         }
         
         NSArray *array = self.indoorBtn.selected ? self.indoorData : self.outdoorData;
@@ -200,9 +210,12 @@
         ActivityResultModel *model = array[indexPath.row];
         DateStepCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         cell.backgroundColor = [UIColor clearColor];
+        cell.dateLabel.textColor = self.stepChartColor;
+        cell.valueLabel.textColor = self.stepChartColor;
+        cell.stepsLabel.textColor = self.stepChartColor;
         
         cell.dateLabel.text = [dateFormatter stringFromDate:model.receivedDate];
-        cell.weekDayLabel.text = nil;
+        cell.weekDayLabel.text = [dateFormatter2 stringFromDate:model.receivedDate];
         cell.valueLabel.text = [Fun countNumAndChangeformat:model.steps];
         
         return cell;
@@ -232,6 +245,9 @@
         ActivityResultModel *model = array[indexPath.row];
         DateStepCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         cell.backgroundColor = [UIColor clearColor];
+        cell.dateLabel.textColor = self.stepChartColor;
+        cell.valueLabel.textColor = self.stepChartColor;
+        cell.stepsLabel.textColor = self.stepChartColor;
         
         cell.dateLabel.text = [dateFormatter stringFromDate:model.receivedDate];
         cell.weekDayLabel.text = [dateFormatter2 stringFromDate:model.receivedDate];

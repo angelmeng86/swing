@@ -20,6 +20,9 @@ typedef enum : NSUInteger {
 @property (nonatomic) StepsType type;
 @property (nonatomic) BOOL outdoorFirstShow;
 
+@property (nonatomic, strong) UIColor *stepChartColor;
+@property (nonatomic, strong) UIColor *backgroundColor;
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *indoorBtn;
 @property (weak, nonatomic) IBOutlet UIButton *outdoorBtn;
