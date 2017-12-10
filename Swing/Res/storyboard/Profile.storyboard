@@ -628,6 +628,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="tab_profile" selectedImage="tab_profile_selected" id="QTb-T5-VGF"/>
                     <connections>
+                        <outlet property="bottomLC" destination="rqu-7b-eeH" id="xpG-OU-8po"/>
                         <outlet property="deviceConllectionView" destination="qlZ-Ch-QXA" id="51N-w5-kPE"/>
                         <outlet property="deviceLabel" destination="xJE-7L-ONg" id="Mm5-56-i5h"/>
                         <outlet property="deviceSharedCollectionView" destination="qHL-ie-kY2" id="zy9-VL-I40"/>
@@ -639,6 +640,7 @@
                         <outlet property="pendingRequestCollectionView" destination="TIP-MX-kpJ" id="OOn-b6-eFI"/>
                         <outlet property="requestCollectionView" destination="MVp-0A-EzZ" id="kGW-Bm-JZj"/>
                         <outlet property="requestLabel" destination="sEe-rz-otc" id="dhP-53-9Mf"/>
+                        <outlet property="scrollView" destination="NuW-9A-LHf" id="xMe-p8-j9o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g8C-y5-gFG" userLabel="First Responder" sceneMemberID="firstResponder"/>

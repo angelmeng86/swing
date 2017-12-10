@@ -49,6 +49,8 @@
     self.monthBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
     [self.todayBtn setTitle:LOC_STR(@"Today's Schedule") forState:UIControlStateNormal];
     [self.monthBtn setTitle:LOC_STR(@"Sync Now") forState:UIControlStateNormal];
+    [self.monthSync setTitle:LOC_STR(@"Sync Now") forState:UIControlStateNormal];
+    self.monthSync.hidden = YES;
     self.syncBtn.hidden = YES;
 //    [self.monthBtn setTitle:LOC_STR(@"Monthly Schedule") forState:UIControlStateNormal];
 //    [self.syncBtn setTitle:LOC_STR(@"Sync Now") forState:UIControlStateNormal];
@@ -145,18 +147,20 @@
 - (void)modeAction:(id)sender {
     if (!self.calendarManager.settings.weekModeEnabled) {
         self.progressView.hidden = NO;
-//        self.monthBtn.hidden = NO;
+        self.monthBtn.hidden = NO;
         self.todayBtn.hidden = NO;
         self.timeLabel.hidden = NO;
         self.descLabel.hidden = NO;
+        self.monthSync.hidden = YES;
         self.calendarHeight.constant = 70;
     }
     else {
         self.progressView.hidden = YES;
-//        self.monthBtn.hidden = YES;
+        self.monthBtn.hidden = YES;
         self.todayBtn.hidden = YES;
         self.timeLabel.hidden = YES;
         self.descLabel.hidden = YES;
+        self.monthSync.hidden = NO;
         if (kDevice_Is_iPhoneX) {
             self.calendarHeight.constant = 400;
         }

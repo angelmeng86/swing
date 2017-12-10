@@ -22,5 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *pendingLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *requestCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *requestLabel;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomLC;
 
 @end

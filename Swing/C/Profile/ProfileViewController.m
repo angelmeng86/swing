@@ -61,7 +61,7 @@
 }
 
 - (void)viewDidLoad {
-//    self.notLoadBackgroudImage = YES;
+    self.notLoadBackgroudImage = YES;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
@@ -96,6 +96,14 @@
     self.deviceSharedLabel.text = LOC_STR(@"Devices shared with me");
     self.pendingLabel.text = LOC_STR(@"Your pending request to");
     self.requestLabel.text = [NSString stringWithFormat: LOC_STR(@"You have %d requests from"), 0];
+    
+    UIImage *image = LOAD_IMAGE(@"california_bg");
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    [self.scrollView addSubview:imageView];
+    
+    [imageView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeTop];
+    [imageView autoSetDimension:ALDimensionHeight toSize:kDeviceWidth * image.size.height / image.size.width];
+    self.bottomLC.constant = kDeviceWidth * image.size.height / image.size.width;
 }
 
 - (void)optionAction {
