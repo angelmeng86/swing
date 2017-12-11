@@ -91,7 +91,7 @@
 "Searching for your device!"="貴方の時計を検索しています。";
 "Found your device!"="貴方の時計見つけました。";
 "Sync Now"="接続を始めます";
-"Syncing"="接続ています";
+"Syncing"="接続しています";
 "Sync Completed"="接続しました";
 "Go to dashboard"="イベント・レコードを開きます。";
 "We can't find your device!"="あなたの時計が見つかりません";
@@ -101,7 +101,7 @@
 "My Watch"="私の時計";
 "Battery"="電池";
 
-"Profile"="個人資料";
+"Profile"="プロフィール";
 "Edit"="編集";
 "Parent"="両親";
 "My hosting device"="私の時計";
@@ -184,7 +184,7 @@
 
 "Activity"="運動した量";
 "Login"="ログイン";
-"Option"="オープション";
+"Option"="オプション";
 "Account"="アカウント";
 "Edit Profile"="プロファイル編集";
 "Edit Your Kid's Profile"="お子さんのプロフィールを編集する";
@@ -204,7 +204,7 @@
 "Updating Your Watch!"="貴方の時計を更新中です";
 "Please Have Your Watch Close by. the watch is locked during sync."="貴方の時計を携帯電話の近くに寄せてください";
 
-"User Guide"="ユーザーウィザード";
+"User Guide"="ユーザーガイド";
 "Error"="エラー";
 "Please input info."="メッセージを入力してください";
 "Token invalid, please login again."="リクエストエラー　通信障害です";
@@ -287,7 +287,7 @@
 
 "Goal"="ゴール";
 "Delete"="削除";
-"Uploading"="いまアップデートする";
+"Uploading"="アップロード";
 
 "Edit profile"="プロフィール編集";
 "Edit kid's profile"="子どものプロフィールを編集する";
@@ -296,3 +296,5 @@
 "Completed"="接続しました";
 "We can't find your watch!"="あなたの時計が見つかりません";
 "%@'s watch is sharing with %@ now."="%@のウォッチはただいま%@と共有しています。";
+
+"UserGuideUrl"="https://childrenlab.s3.amazonaws.com/pdf/Swing_UserGuide_JA_KD_v1.0.pdf";

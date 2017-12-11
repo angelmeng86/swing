@@ -204,7 +204,7 @@
 "Updating Your Watch!"="您的手錶正在更新中";
 "Please Have Your Watch Close by. the watch is locked during sync."="請把手錶靠近手機";
 
-"User Guide"="用戶嚮導";
+"User Guide"="使用手冊";
 "Error"="錯誤";
 "Please input info."="請輸入信息";
 "Token invalid, please login again."="指令失效";
@@ -296,3 +296,5 @@
 "Completed"="同步完成";
 "We can't find your watch!"="無法找到您的手錶";
 "%@'s watch is sharing with %@ now."="%@'s watch is sharing with %@ now.";
+
+"UserGuideUrl"="https://childrenlab.s3.amazonaws.com/pdf/Swing_UserGuide_CN_KD_v1.0.pdf";

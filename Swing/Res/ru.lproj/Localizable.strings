@@ -184,7 +184,7 @@
 
 "Activity"="Деятельность";
 "Login"="Логин";
-"Option"="Опция";
+"Option"="Настройки";
 "Account"="Аккаунт";
 "Edit Profile"="Редактировать профиль";
 "Edit Your Kid's Profile"="Редактировать профиль вашего ребенка";
@@ -295,3 +295,5 @@
 "Completed"="Синхронизация завершена";
 "We can't find your watch!"="Часы не найдены";
 "%@'s watch is sharing with %@ now."="Часы %@ теперь доступны с %@.";
+
+"UserGuideUrl"="https://childrenlab.s3.amazonaws.com/pdf/Swing_User_Guide.pdf";

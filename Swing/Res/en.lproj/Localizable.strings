@@ -250,3 +250,5 @@
 "Completed"="Completed";
 "We can't find your watch!"="We can't find your watch!";
 "%@'s watch is sharing with %@ now."="%@'s watch is sharing with %@ now.";
+
+"UserGuideUrl"="https://childrenlab.s3.amazonaws.com/pdf/Swing_UserGuide_ENG_KD_v1.0.pdf";
