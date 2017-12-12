@@ -90,7 +90,9 @@
             break;
         case AskTypePurchase:
         {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[GlobalCache shareInstance].cacheSupportUrl]];
+//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[GlobalCache shareInstance].cacheSupportUrl]];
+            NSString *url = LOC_STR(@"SupporUrl");
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
         }
             break;
         case AskTypeWatchRegisted:
@@ -127,7 +129,9 @@
             break;
         case AskTypeWatchRegisted:
         {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[GlobalCache shareInstance].cacheSupportUrl]];
+//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[GlobalCache shareInstance].cacheSupportUrl]];
+            NSString *url = LOC_STR(@"SupporUrl");
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
         }
             break;
         default:

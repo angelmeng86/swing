@@ -247,7 +247,7 @@
     
     return nil;
 }
-
+#ifdef LOCAL_ENABLE
 - (void)locationCountry {
 //    NSTimeZone *tz = [NSTimeZone localTimeZone];
 //    LOG_D(@"Local timezone: %@", tz.name);
@@ -308,7 +308,7 @@
                                              }
                                          }];
 }
-
+#endif
 - (void)uploadActivity {
     NSMutableArray *array = [DBHelper queryActivityModel];
     if (array.count > 0) {
@@ -330,7 +330,7 @@
         }];
     }
 }
-
+/*
 - (NSString*)cacheSupportUrl {
     if (_cacheSupportUrl == nil) {
 //        _cacheSupportUrl = @"http://kidsdynamic.com";
@@ -339,7 +339,7 @@
     return _cacheSupportUrl;
 }
 
-/*
+
 - (void)queryWeather {
     if (_weartherRunning) {
         return;

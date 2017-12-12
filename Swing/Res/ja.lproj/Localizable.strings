@@ -180,7 +180,7 @@
 "Lesson time"="習い事の時間です";
 "Time to go home"="お家に帰る時間です";
 
-"SupporUrl"="http://kidsdynamic.com";
+"SupporUrl"="https://www.kidsdynamic.com";
 
 "Activity"="運動した量";
 "Login"="ログイン";
@@ -297,4 +297,4 @@
 "We can't find your watch!"="あなたの時計が見つかりません";
 "%@'s watch is sharing with %@ now."="%@のウォッチはただいま%@と共有しています。";
 
-"UserGuideUrl"="https://childrenlab.s3.amazonaws.com/pdf/Swing_UserGuide_JA_KD_v1.0.pdf";
+"UserGuideUrl"="https://childrenlab.s3.amazonaws.com/pdf/Swing_UserGuide_JP_KD_v1.0.pdf";

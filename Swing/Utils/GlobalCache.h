@@ -35,7 +35,7 @@
 - (void)postUpdateNotification:(NSDate*)date;
 
 - (NSArray*)queryEventColorForDay:(NSDate *)date;
-- (void)locationCountry;
+//- (void)locationCountry;
 - (void)uploadActivity;
 
 @property (strong, nonatomic) UserModel* user;
@@ -43,7 +43,7 @@
 @property (strong, nonatomic) FirmwareVersion* firmwareVersion;
 
 @property (strong, nonatomic) NSString* cacheLang;
-@property (strong, nonatomic) NSString* cacheSupportUrl;
+//@property (strong, nonatomic) NSString* cacheSupportUrl;
 
 - (NSString*)curLanguage;
 - (NSString*)curEventFile;
