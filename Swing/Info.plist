@@ -30,13 +30,11 @@
 		<true/>
 	</dict>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>Use Bluetooth</string>
+	<string>Connect your swing device</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Use Camera</string>
-	<key>NSLocationUsageDescription</key>
-	<string>Use Location</string>
+	<string>Capture your avatar</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Use Photo Library</string>
+	<string>Select your avatar</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Avenir-bold.ttf</string>
