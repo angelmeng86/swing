@@ -97,8 +97,8 @@
 
 - (IBAction)btn1Action:(id)sender {
     if (_type == MutiListTypeKidProfile) {
-        UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"MainTab" bundle:nil];
-        EditKidViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"Profile"];
+        UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"Profile" bundle:nil];
+        EditKidViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"EditKid"];
         ctl.kid = self.kid;
         [self.navigationController pushViewController:ctl animated:YES];
     }
