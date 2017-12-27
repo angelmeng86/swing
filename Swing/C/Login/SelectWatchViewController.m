@@ -94,6 +94,11 @@
                         LOG_D(@"Current user is registed.");
                         return;
                     }
+                    //设备已经被分享
+                    if ([DBHelper queryKid:kid.objId]) {
+                        LOG_D(@"Current user is shared.");
+                        return;
+                    }
                     self.kidDict[macAddress] = kid;
                 }
                 NSIndexPath *indexPath = [NSIndexPath indexPathForRow:items.count inSection:0];

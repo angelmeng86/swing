@@ -13,7 +13,7 @@
 #import "oad.h"
 
 #define OAD_TRANSMIT_INTERVAL           0.03
-#define OAD_ONCE_NUMBER                 1
+#define OAD_ONCE_NUMBER                 4
 
 #define KD_IMAGE_VERSION            @"KDV0005-A"
 #define KD_IMAGE_A                  @"A-062617.bin"
@@ -310,10 +310,7 @@ typedef enum : NSUInteger {
         self.iBytes += OAD_BLOCK_SIZE;
         
         if(self.iBlocks == self.nBlocks) {
-            self.state = BLEUpdaterStateNone;
-            if ([_delegate respondsToSelector:@selector(deviceUpdateResult:)]) {
-                [_delegate deviceUpdateResult:YES];
-            }
+            [self performSelector:@selector(downImageSuccess) withObject:nil afterDelay:0.5];
             return;
         }
         else {
@@ -330,6 +327,13 @@ typedef enum : NSUInteger {
     }
     
     LOG_D(@". iBlocks %d / nBlocks %d", self.iBlocks, self.nBlocks);
+}
+
+- (void)downImageSuccess {
+    self.state = BLEUpdaterStateNone;
+    if ([_delegate respondsToSelector:@selector(deviceUpdateResult:)]) {
+        [_delegate deviceUpdateResult:YES];
+    }
 }
 
 @end

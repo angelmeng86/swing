@@ -53,6 +53,7 @@
             if ([GlobalCache shareInstance].user.objId == self.user.objId)
             {
                 LOG_D(@"This is myself.");
+//                [SVProgressHUD showInfoWithStatus:LOC_STR(@"")];
                 return;
             }
             self.user = model;
