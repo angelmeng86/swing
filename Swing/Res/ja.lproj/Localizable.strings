@@ -209,8 +209,8 @@
 "Please input info."="メッセージを入力してください";
 "Token invalid, please login again."="リクエストエラー　通信障害です";
 
-"Please sync after editing events"="イベントを編集すると、時計のシンクロをして下さい。";
-"Hide this reminder"="リマインダーが通知されない";
+"Please sync after editing events"="イベントを編集した後は、時計のシンクロをしてください";
+"Hide this reminder"="リマインダーで通知しない";
 
 "Reset Password"="パスワードをリセット";
 "Are you sure you want to reset your password?"="パスワードをリセットしますか?";
@@ -231,9 +231,9 @@
 "New password"="新しいパスワード";
 "New Password, Again!"="もう一度新しいパスワードを入力してください";
 "My devices"="私の時計";
-"Devices shared with me"="わたしと共有する時計";
-"Your pending request to"="への保留中のリクエスト";
-"You have %d requests from"="%dへの保留中のリクエスト";
+"Devices shared with me"="共有している時計";
+"Your pending request to"="リクエスト中の時計";
+"You have %d requests from"="リクエストがきています%d";
 "Please have your watch close by"="貴方の時計を携帯電話の近くに寄せてください";
 
 "Manage access permission of Swing"="他者と共有する時計";
@@ -242,8 +242,8 @@
 "Are you sure to log out?"="ログアウトしてもよろしいですか？";
 "Yes,I am sure"="はい、切り替えます";
 
-"Edit kid's account"="と共有している";
-"Switch to this account"="子どものアカウントを編集する";
+"Edit kid's account"="子どものアカウントを編集する";
+"Switch to this account"="アカウントを切り替える";
 "Remove"="削除する";
 "*Tap on profile pictures to switch account"="*プロフィール写真をタップして、アカウントを切り替える";
 "Switch account"="アカウントを切り替える";
