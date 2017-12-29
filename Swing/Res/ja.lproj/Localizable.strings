@@ -186,7 +186,7 @@
 "Login"="ログイン";
 "Option"="オプション";
 "Account"="アカウント";
-"Edit Profile"="プロファイル編集";
+"Edit Profile"="プロフィール編集";
 "Edit Your Kid's Profile"="お子さんのプロフィールを編集する";
 "About"="概要";
 "Version"="バージョン";
@@ -233,7 +233,7 @@
 "My devices"="私の時計";
 "Devices shared with me"="共有している時計";
 "Your pending request to"="リクエスト中の時計";
-"You have %d requests from"="リクエストがきています%d";
+"You have %d requests from"="リクエストがきています";
 "Please have your watch close by"="貴方の時計を携帯電話の近くに寄せてください";
 
 "Manage access permission of Swing"="他者と共有する時計";

@@ -225,6 +225,7 @@
     NSString *profile = nil;
     if (collectionView == self.deviceConllectionView) {
         if (indexPath.row == self.kids.count) {
+            [deviceCell.imageBtn sd_cancelBackgroundImageLoadForState:UIControlStateNormal];
             [deviceCell.imageBtn setBackgroundImage:nil forState:UIControlStateNormal];
             [deviceCell.imageBtn setTitle:@"+" forState:UIControlStateNormal];
             deviceCell.checked = NO;
@@ -241,6 +242,7 @@
     }
     else if (collectionView == self.pendingRequestCollectionView) {
         if (indexPath.row == self.pendingRequestToList.count) {
+            [deviceCell.imageBtn sd_cancelBackgroundImageLoadForState:UIControlStateNormal];
             [deviceCell.imageBtn setBackgroundImage:nil forState:UIControlStateNormal];
             [deviceCell.imageBtn setTitle:@"+" forState:UIControlStateNormal];
             return deviceCell;
