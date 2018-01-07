@@ -40,7 +40,7 @@
 + (KidInfo*)addKid:(KidModel*)kid;
 + (KidInfo*)addKid:(KidModel*)model save:(BOOL)save;
 
-+ (BOOL)addKids:(NSArray*)array;
++ (BOOL)resetMyKids:(NSArray*)array;
 + (BOOL)resetSharedKids:(NSArray*)array;
 + (BOOL)delKid:(int64_t)objId;
 + (void)clearKids;

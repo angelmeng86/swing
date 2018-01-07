@@ -298,3 +298,5 @@
 "%@'s watch is sharing with %@ now."="%@のウォッチはただいま%@と共有しています。";
 
 "UserGuideUrl"="https://childrenlab.s3.amazonaws.com/pdf/Swing_UserGuide_JP_KD_v1.0.pdf";
+
+"Once remove all data are deleted. Are you sure?"="削除してしまうと資料は全部なくなります，本当に削除しますか？";

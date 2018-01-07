@@ -298,7 +298,7 @@
             else {
                 UserModel *model = [[UserModel alloc] initWithDictionary:responseObject[@"user"] error:nil];
                 NSArray *kids = [KidModel arrayOfModelsFromDictionaries:responseObject[@"kids"] error:&err];
-                [DBHelper addKids:kids];
+                [DBHelper resetMyKids:kids];
                 [GlobalCache shareInstance].user = model;
                 
                 completion(model, kids, nil);
@@ -452,15 +452,16 @@
     return task;
 }
 
-- (NSURLSessionDataTask *)kidsRemove:(NSString*)kidid completion:( void (^)(NSError *error) )completion {
-    NSURLSessionDataTask *task = [self.sessionManager POST:_URL.kidsRemove parameters:@{@"kidId":kidid} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+- (NSURLSessionDataTask *)kidsDelete:(int64_t)kidId completion:( void (^)(NSError *error) )completion {
+    NSURLSessionDataTask *task = [self.sessionManager DELETE:_URL.kidsDelete parameters:@{@"kidId":@(kidId)} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            LOG_D(@"kidsRemove info:%@", responseObject);
+            LOG_D(@"kidsDelete info:%@", responseObject);
             NSError *err = [self getErrorMessage:responseObject];
             if (err) {
                 completion(err);
             }
             else {
+                [GlobalCache shareInstance].currentKid = nil;
                 completion(nil);
             }
         });

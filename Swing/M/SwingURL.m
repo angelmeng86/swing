@@ -66,9 +66,8 @@
     return @"/v1/kids/updateKidRevertMacID";
 }
 
-//废弃
-- (NSString*)kidsRemove {
-    return @"/v1/kids/remove";
+- (NSString*)kidsDelete {
+    return @"/v1/kids/delete";
 }
 
 - (NSString*)uploadKidsProfileImage {

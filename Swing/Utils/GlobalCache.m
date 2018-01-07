@@ -131,6 +131,9 @@
     
     [[SwingClient sharedClient] logout];
     
+//    [[SDImageCache sharedImageCache] clearDisk];
+//    [[SDImageCache sharedImageCache] clearMemory];
+    
 //    [SVProgressHUD dismiss];
     if (exit) {
         AppDelegate *ad = (AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -168,6 +171,7 @@
             self.local.selectedKidId = _currentKid.objId;
             [self saveInfo];
         }
+        [[NSNotificationCenter defaultCenter] postNotificationName:KID_AVATAR_NOTIFICATION object:nil];
     }
     return _currentKid;
 }

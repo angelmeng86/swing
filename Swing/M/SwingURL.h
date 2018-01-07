@@ -27,7 +27,7 @@
 @property (nonatomic, readonly, strong) NSString* kidsAdd;
 @property (nonatomic, readonly, strong) NSString* kidsUpdate;
 @property (nonatomic, readonly, strong) NSString* updateKidRevertMacID;
-@property (nonatomic, readonly, strong) NSString* kidsRemove;
+@property (nonatomic, readonly, strong) NSString* kidsDelete;
 @property (nonatomic, readonly, strong) NSString* uploadKidsProfileImage;
 @property (nonatomic, readonly, strong) NSString* kidsList;
 

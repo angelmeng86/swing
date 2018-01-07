@@ -298,3 +298,5 @@
 "%@'s watch is sharing with %@ now."="%@'s watch is sharing with %@ now.";
 
 "UserGuideUrl"="https://childrenlab.s3.amazonaws.com/pdf/Swing_UserGuide_CN_KD_v1.0.pdf";
+
+"Once remove all data are deleted. Are you sure?"="一旦刪除帳號全部資料將會一併刪除，確定嗎？";

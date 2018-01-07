@@ -61,8 +61,8 @@
             
             [self.button1 setTitle:LOC_STR(@"Edit kid's account") forState:UIControlStateNormal];
             [self.button2 setTitle:LOC_STR(@"Switch to this account") forState:UIControlStateNormal];
-            self.button3.hidden = YES;
-            [self.button3 setTitle:LOC_STR(@"Remove") forState:UIControlStateNormal];
+//            self.button3.hidden = YES;
+            [self.button3 setTitle:LOC_STR(@"Delete") forState:UIControlStateNormal];
         }
             break;
         case MutiListTypeSwitchAccount:
@@ -116,6 +116,28 @@
 
 - (IBAction)btn3Action:(id)sender {
     if (_type == MutiListTypeKidProfile) {
+        //Delete
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:LOC_STR(@"Delete") message:LOC_STR(@"Once remove all data are deleted. Are you sure?") preferredStyle:UIAlertControllerStyleAlert];
+        
+        [alertController addAction:[UIAlertAction actionWithTitle:LOC_STR(@"Cancel") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            
+            
+        }]];
+        [alertController addAction:[UIAlertAction actionWithTitle:LOC_STR(@"Ok") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [SVProgressHUD show];
+            [[SwingClient sharedClient] kidsDelete:self.kid.objId completion:^(NSError *error) {
+                if (error) {
+                    LOG_D(@"kidsDelete fail: %@", error);
+                    [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+                }
+                else {
+                    [DBHelper delKid:self.kid.objId];
+                    [SVProgressHUD showSuccessWithStatus:nil];
+                    [self backAction];
+                }
+            }];
+        }]];
+        [self presentViewController:alertController animated:YES completion:nil];
         
     }
 }

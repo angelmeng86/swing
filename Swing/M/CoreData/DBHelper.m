@@ -488,14 +488,24 @@
     return [DBHelper addKid:model save:YES];
 }
 
-+ (BOOL)addKids:(NSArray*)array
++ (BOOL)resetMyKids:(NSArray*)array
 {
-    if (array.count == 0) {
-        return NO;
+    NSMutableIndexSet *objIds = [NSMutableIndexSet indexSet];
+    for (KidModel *k in array) {
+        KidInfo *kid = [self addKid:k save:NO];
+        if (kid) {
+            [objIds addIndex:k.objId];
+        }
     }
-    for (KidModel *m in array) {
-        [self addKid:m save:NO];
+    
+    NSArray *kids = [KidInfo MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"(subHostId = 0) || (subHostId = nil)"]];
+    for (KidInfo *k in kids) {
+        if (![objIds containsIndex:k.objId]) {
+            LOG_D(@"del my kid %lld", k.objId);
+            [k MR_deleteEntity];
+        }
     }
+    
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     return YES;
 }

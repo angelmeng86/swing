@@ -57,7 +57,7 @@ typedef enum : NSUInteger {
 - (NSURLSessionDataTask *)kidsUpdate:(NSDictionary*)data completion:( void (^)(id kid, NSError *error) )completion;
 
 
-//- (NSURLSessionDataTask *)kidsRemove:(NSString*)kidid completion:( void (^)(NSError *error) )completion;
+- (NSURLSessionDataTask *)kidsDelete:(int64_t)kidId completion:( void (^)(NSError *error) )completion;
 
 - (NSURLSessionDataTask *)kidsUploadKidsProfileImage:(UIImage*)image kidId:(int64_t)kidId completion:( void (^)(NSString *profileImage, NSError *error) )completion;
 

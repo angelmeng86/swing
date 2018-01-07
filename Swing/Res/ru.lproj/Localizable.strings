@@ -297,3 +297,5 @@
 "%@'s watch is sharing with %@ now."="Часы %@ теперь доступны с %@.";
 
 "UserGuideUrl"="https://childrenlab.s3.amazonaws.com/pdf/Swing_User_Guide.pdf";
+
+"Once remove all data are deleted. Are you sure?"="После удаления все данные будут удалены. Ты уверен?";
