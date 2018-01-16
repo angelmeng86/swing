@@ -171,7 +171,9 @@
             self.local.selectedKidId = _currentKid.objId;
             [self saveInfo];
         }
-        [[NSNotificationCenter defaultCenter] postNotificationName:KID_AVATAR_NOTIFICATION object:nil];
+        if (_currentKid) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:KID_AVATAR_NOTIFICATION object:nil];
+        }
     }
     return _currentKid;
 }
