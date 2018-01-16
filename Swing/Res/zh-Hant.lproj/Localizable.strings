@@ -84,7 +84,7 @@
 
 "Sync"="同步";
 "Would you like to sync now?"="立即同步";
-"Yes, please"="是,請同步";
+"Yes, please"="是";
 "No, go to dashboard"="不，開啟活動紀錄";
 "Sync another watch"="同步另一隻手錶";
 "Select Watch to Sync"="選擇手錶同步";
@@ -300,3 +300,5 @@
 "UserGuideUrl"="https://childrenlab.s3.amazonaws.com/pdf/Swing_UserGuide_CN_KD_v1.0.pdf";
 
 "Once remove all data are deleted. Are you sure?"="一旦刪除帳號全部資料將會一併刪除，確定嗎？";
+
+"Request access to others"="請求其他手錶";
