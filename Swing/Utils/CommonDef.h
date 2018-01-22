@@ -47,7 +47,11 @@
 #endif
 //userProfile/
 
+#ifdef DEBUG
+#define FILE_BASE_URL     @"https://childrenlabqa.s3.amazonaws.com/"
+#else
 #define FILE_BASE_URL     @"https://childrenlab.s3.amazonaws.com/"
+#endif
 
 #define STEPS_LEVEL_LOW         7000
 #define STEPS_LEVEL_GOOD        10000

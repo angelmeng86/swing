@@ -16,6 +16,7 @@
 #import "EditKidViewController.h"
 #import "LFBadgeLabel.h"
 #import "MutiConfirmViewController.h"
+#import "oad.h"
 
 @interface OptionViewController ()
 {
@@ -316,6 +317,150 @@
     }
 }
 
+- (BOOL)verifyFirmwareFile:(NSURL*)path {
+    NSData *imageData = [NSData dataWithContentsOfURL:path];
+    
+    LOG_D(@"Loaded firmware \"%@\"of size : %ld",path, (unsigned long)imageData.length);
+    
+    img_hdr_t imgHeader;
+    memcpy(&imgHeader, imageData.bytes + OAD_IMG_HDR_OSET, sizeof(img_hdr_t));
+    LOG_D(@"Image version = %04hx, len = %04hx",imgHeader.ver,imgHeader.len);
+    return imageData.length == imgHeader.len * 4;
+}
+
+- (void)downFirmwareFiles:(FirmwareVersion *)version {
+    __block BOOL isDownloaded = NO;
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    configuration.timeoutIntervalForRequest = 30;
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    
+    NSURL *URL = [NSURL URLWithString:[FILE_BASE_URL stringByAppendingString:version.fileAUrl]];
+    NSURLRequest *request1 = [NSURLRequest requestWithURL:URL];
+    
+    NSURLSessionDownloadTask *downloadTask1 = [manager downloadTaskWithRequest:request1 progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+        NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
+        return [documentsDirectoryURL URLByAppendingPathComponent:[version.version stringByAppendingString:@"_A.hex"]];
+        //                                return [documentsDirectoryURL URLByAppendingPathComponent:[response suggestedFilename]];
+    } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+        LOG_D(@"FileA response:%@", response);
+        if (!error) {
+            LOG_D(@"FileA downloaded to: %@", filePath);
+            if (![self verifyFirmwareFile:filePath])
+            {
+                [SVProgressHUD showErrorWithStatus:LOC_STR(@"download failed.")];
+                return;
+            }
+            if (isDownloaded) {
+                [self syncAction];
+            }
+            else {
+                isDownloaded = YES;
+            }
+        }
+        else {
+            LOG_D(@"FileA download err: %@", error);
+            [SVProgressHUD showErrorWithStatus:LOC_STR(@"download failed.")];
+        }
+        
+    }];
+    [downloadTask1 resume];
+    
+    URL = [NSURL URLWithString:[FILE_BASE_URL stringByAppendingString:version.fileBUrl]];
+    NSURLRequest *request2 = [NSURLRequest requestWithURL:URL];
+    NSURLSessionDownloadTask *downloadTask2 = [manager downloadTaskWithRequest:request2 progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+        NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
+        return [documentsDirectoryURL URLByAppendingPathComponent:[version.version stringByAppendingString:@"_B.hex"]];
+        //                                return [documentsDirectoryURL URLByAppendingPathComponent:[response suggestedFilename]];
+    } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+        LOG_D(@"FileB response:%@", response);
+        if (!error) {
+            LOG_D(@"FileB downloaded to: %@", filePath);
+            if (![self verifyFirmwareFile:filePath])
+            {
+                [SVProgressHUD showErrorWithStatus:LOC_STR(@"download failed.")];
+                return;
+            }
+            if (isDownloaded) {
+                [self syncAction];
+            }
+            else {
+                isDownloaded = YES;
+            }
+        }
+        else {
+            LOG_D(@"FileB download err: %@", error);
+            [SVProgressHUD showErrorWithStatus:LOC_STR(@"download failed.")];
+        }
+    }];
+    [downloadTask2 resume];
+}
+
+- (void)downFirmwareFiles2:(FirmwareVersion *)version {
+    __block BOOL isDownloaded = NO;
+    //创建传话管理者
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSURL *URL = [NSURL URLWithString:[FILE_BASE_URL stringByAppendingString:version.fileAUrl]];
+    NSURLRequest *request1 = [NSURLRequest requestWithURL:URL];
+    NSURLSessionDownloadTask *download = [manager downloadTaskWithRequest:request1 progress:^(NSProgress * _Nonnull downloadProgress) {
+        //下载进度
+        LOG_D(@"File A %f",1.0 * downloadProgress.completedUnitCount / downloadProgress.totalUnitCount);
+    } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+        NSString *fullPath = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:[version.version stringByAppendingString:@"_A.hex"]];
+        return [NSURL fileURLWithPath:fullPath];
+    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+        if (!error) {
+            LOG_D(@"FileA downloaded to: %@", filePath);
+            if (![self verifyFirmwareFile:filePath])
+            {
+                [SVProgressHUD showErrorWithStatus:LOC_STR(@"download failed.")];
+                return;
+            }
+            if (isDownloaded) {
+                [self syncAction];
+            }
+            else {
+                isDownloaded = YES;
+            }
+        }
+        else {
+            LOG_D(@"FileA download err: %@", error);
+            [SVProgressHUD showErrorWithStatus:LOC_STR(@"download failed.")];
+        }
+    }];
+    [download resume];
+    
+    URL = [NSURL URLWithString:[FILE_BASE_URL stringByAppendingString:version.fileBUrl]];
+    NSURLRequest *request2 = [NSURLRequest requestWithURL:URL];
+    NSURLSessionDownloadTask *download2 = [manager downloadTaskWithRequest:request2 progress:^(NSProgress * _Nonnull downloadProgress) {
+        //下载进度
+        LOG_D(@"File B %f",1.0 * downloadProgress.completedUnitCount / downloadProgress.totalUnitCount);
+    } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+        NSString *fullPath = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:[version.version stringByAppendingString:@"_B.hex"]];
+        return [NSURL fileURLWithPath:fullPath];
+    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+        if (!error) {
+            LOG_D(@"FileB downloaded to: %@", filePath);
+            if (![self verifyFirmwareFile:filePath])
+            {
+                [SVProgressHUD showErrorWithStatus:LOC_STR(@"download failed.")];
+                return;
+            }
+            if (isDownloaded) {
+                [self syncAction];
+            }
+            else {
+                isDownloaded = YES;
+            }
+        }
+        else {
+            LOG_D(@"FileB download err: %@", error);
+            [SVProgressHUD showErrorWithStatus:LOC_STR(@"download failed.")];
+        }
+    }];
+    [download2 resume];
+}
+
 - (void)checkFirmwareVerison {
     if (![GlobalCache shareInstance].currentKid) {
         return;
@@ -324,60 +469,7 @@
     [[SwingClient sharedClient] getFirmwareVersion:[GlobalCache shareInstance].currentKid.macId completion:^(FirmwareVersion *version, NSError *error) {
         if (!error) {
             [GlobalCache shareInstance].firmwareVersion = version;
-            __block BOOL isDownloaded = NO;
-            NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-            configuration.timeoutIntervalForRequest = 30;
-            AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-            
-            NSURL *URL = [NSURL URLWithString:[FILE_BASE_URL stringByAppendingString:version.fileAUrl]];
-            NSURLRequest *request1 = [NSURLRequest requestWithURL:URL];
-            
-            NSURLSessionDownloadTask *downloadTask1 = [manager downloadTaskWithRequest:request1 progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
-                NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
-                return [documentsDirectoryURL URLByAppendingPathComponent:[version.version stringByAppendingString:@"_A.hex"]];
-                //                                return [documentsDirectoryURL URLByAppendingPathComponent:[response suggestedFilename]];
-            } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
-                LOG_D(@"FileA response:%@", response);
-                if (!error) {
-                    LOG_D(@"FileA downloaded to: %@", filePath);
-                    if (isDownloaded) {
-                        [self syncAction];
-                    }
-                    else {
-                        isDownloaded = YES;
-                    }
-                }
-                else {
-                    LOG_D(@"FileA download err: %@", error);
-                    [SVProgressHUD showErrorWithStatus:LOC_STR(@"download failed.")];
-                }
-                
-            }];
-            [downloadTask1 resume];
-            
-            URL = [NSURL URLWithString:[FILE_BASE_URL stringByAppendingString:version.fileBUrl]];
-            NSURLRequest *request2 = [NSURLRequest requestWithURL:URL];
-            NSURLSessionDownloadTask *downloadTask2 = [manager downloadTaskWithRequest:request2 progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
-                NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
-                return [documentsDirectoryURL URLByAppendingPathComponent:[version.version stringByAppendingString:@"_B.hex"]];
-                //                                return [documentsDirectoryURL URLByAppendingPathComponent:[response suggestedFilename]];
-            } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
-                LOG_D(@"FileB response:%@", response);
-                if (!error) {
-                    LOG_D(@"FileB downloaded to: %@", filePath);
-                    if (isDownloaded) {
-                        [self syncAction];
-                    }
-                    else {
-                        isDownloaded = YES;
-                    }
-                }
-                else {
-                    LOG_D(@"FileB download err: %@", error);
-                    [SVProgressHUD showErrorWithStatus:LOC_STR(@"download failed.")];
-                }
-            }];
-            [downloadTask2 resume];
+            [self downFirmwareFiles2:version];
         }
         else {
             LOG_D(@"getFirmwareVersion err %@", error);

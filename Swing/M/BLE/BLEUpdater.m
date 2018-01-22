@@ -12,7 +12,7 @@
 #import "CommonDef.h"
 #import "oad.h"
 
-#define OAD_TRANSMIT_INTERVAL           0.03
+#define OAD_TRANSMIT_INTERVAL           0.09
 #define OAD_ONCE_NUMBER                 4
 
 #define KD_IMAGE_VERSION            @"KDV0005-A"
@@ -68,8 +68,8 @@ typedef enum : NSUInteger {
     if ([GlobalCache shareInstance].firmwareVersion.version.length == 0) {
         return;
     }
-    NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
-    NSURL *path = [documentsDirectoryURL URLByAppendingPathComponent:[[GlobalCache shareInstance].firmwareVersion.version stringByAppendingString:A ? @"_A.hex" : @"_B.hex"]];
+    NSString *fullPath = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:[[GlobalCache shareInstance].firmwareVersion.version stringByAppendingString:A ? @"_A.hex" : @"_B.hex"]];
+    NSURL *path = [NSURL fileURLWithPath:fullPath];
     self.imageData = [NSData dataWithContentsOfURL:path];
     
     LOG_D(@"Loaded firmware \"%@\"of size : %ld",path, (unsigned long)self.imageData.length);
