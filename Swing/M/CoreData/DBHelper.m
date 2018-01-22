@@ -32,7 +32,7 @@
 
 - (id)init {
     if (self = [super init]) {
-        repeatTypes = @[@"DAILY", @"WEEKLY"];
+        repeatTypes = @[@"DAILY", @"WEEKLY", @"WEEKDAY"];
         [self reloadRepeatEvent];
     }
     return self;
@@ -112,6 +112,23 @@
                 }
             }
         }
+        else if([model.repeat isEqualToString:@"WEEKDAY"]) {
+            if (comps.weekday > 1 && comps.weekday < 7) {
+                BOOL inserted = NO;
+                for (int j = (int)array.count; --j >= 0; ) {
+                    EventModel *m = array[j];
+                    if (compareRet == [Fun compareTimePart:model.startDate andDate:m.startDate]) {
+                        [array insertObject:model atIndex:j + 1];
+                        inserted = YES;
+                        //                        LOG_D(@"insert weekly event %lld into date[%@]", m.objId, date);
+                        break;
+                    }
+                }
+                if (!inserted) {
+                    [array insertObject:model atIndex:0];
+                }
+            }
+        }
         else {
             [_repeatEventModels removeObjectAtIndex:i];
             LOG_D(@"clear normal event %lld", model.objId);
@@ -158,6 +175,15 @@
         }
         else if([model.repeat isEqualToString:@"WEEKLY"]) {
             if (comps.weekday != comps2.weekday) {
+                continue;
+            }
+            
+        }
+        else if([model.repeat isEqualToString:@"WEEKDAY"]) {
+            if (comps.weekday > 1 && comps.weekday < 7) {
+                
+            }
+            else {
                 continue;
             }
             

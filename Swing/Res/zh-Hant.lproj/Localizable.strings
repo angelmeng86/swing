@@ -51,7 +51,7 @@
 "Advance"="進階";
 "City"="城市";
 "State"="州/縣";
-"Repeat"="重覆";
+"Repeat"="重複";
 "Description"="詳細描述";
 "To Do List"="代辦事項列表";
 "Add Your To Do List"="新增代辦事項列表";
@@ -302,3 +302,4 @@
 "Once remove all data are deleted. Are you sure?"="一旦刪除帳號全部資料將會一併刪除，確定嗎？";
 
 "Request access to others"="請求其他手錶";
+"Weekday"="平日";

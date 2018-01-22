@@ -112,7 +112,7 @@
     self.repeatTF.rightView = bgView;
     self.repeatTF.rightViewMode = UITextFieldViewModeAlways;
 //    self.repeatTF.enabled = NO;
-    repeatArray = @[LOC_STR(@"Never"), LOC_STR(@"Every Day"), LOC_STR(@"Every Week")/*, @"Every Month"*/];
+    repeatArray = @[LOC_STR(@"Never"), LOC_STR(@"Every Day"), LOC_STR(@"Every Week"), LOC_STR(@"Weekday")];
     
     bgView = [UIControl new];
     bgView.frame = CGRectMake(0, 0, 110, 30);
@@ -210,6 +210,10 @@
             else if ([self.model.repeat isEqualToString:@"WEEKLY"]) {
                 label.text = repeatArray[2];
                 self.repeatTF.tag = TAG_REPEAT + 2;
+            }
+            else if ([self.model.repeat isEqualToString:@"WEEKDAY"]) {
+                label.text = repeatArray[3];
+                self.repeatTF.tag = TAG_REPEAT + 3;
             }
         }
         
@@ -599,6 +603,9 @@
                 break;
             case 2:
                 repeat = @"WEEKLY";
+                break;
+            case 3:
+                repeat = @"WEEKDAY";
                 break;
             default:
                 break;
