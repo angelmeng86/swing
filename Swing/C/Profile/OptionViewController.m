@@ -399,6 +399,7 @@
     __block BOOL isDownloaded = NO;
     //创建传话管理者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer.timeoutInterval = 20.0f;
     
     NSURL *URL = [NSURL URLWithString:[FILE_BASE_URL stringByAppendingString:version.fileAUrl]];
     NSURLRequest *request1 = [NSURLRequest requestWithURL:URL];
@@ -465,8 +466,11 @@
     if (![GlobalCache shareInstance].currentKid) {
         return;
     }
+    if ([GlobalCache shareInstance].currentKid.currentVersion.length == 0) {
+        return;
+    }
     [SVProgressHUD show];
-    [[SwingClient sharedClient] getFirmwareVersion:[GlobalCache shareInstance].currentKid.macId completion:^(FirmwareVersion *version, NSError *error) {
+    [[SwingClient sharedClient] getFirmwareVersion:[GlobalCache shareInstance].currentKid.macId version:[GlobalCache shareInstance].currentKid.currentVersion completion:^(FirmwareVersion *version, NSError *error) {
         if (!error) {
             [GlobalCache shareInstance].firmwareVersion = version;
             [self downFirmwareFiles2:version];

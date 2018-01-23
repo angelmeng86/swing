@@ -485,7 +485,7 @@ typedef enum : NSUInteger {
     if ([GlobalCache shareInstance].currentKid.macId.length > 0 && self.updater.deviceVersion.length > 0) {
         [[SwingClient sharedClient] putFirmwareVersion:self.updater.deviceVersion macId:[GlobalCache shareInstance].currentKid.macId completion:^(NSError *error) {
             if (!error) {
-                [[SwingClient sharedClient] getFirmwareVersion:[GlobalCache shareInstance].currentKid.macId completion:^(id version, NSError *error) {
+                [[SwingClient sharedClient] getFirmwareVersion:[GlobalCache shareInstance].currentKid.macId version:self.updater.deviceVersion completion:^(id version, NSError *error) {
                     if (!error) {
                         [GlobalCache shareInstance].firmwareVersion = version;
                         //查询到最新固件版本
