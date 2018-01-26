@@ -153,14 +153,14 @@
     
     UIDatePicker *datePicker = [[UIDatePicker alloc] init];
     datePicker.datePickerMode = UIDatePickerModeDateAndTime;
-//    datePicker.minimumDate = [NSDate date];
+    datePicker.minimumDate = [NSDate dateWithTimeIntervalSince1970:24 * 60 * 60];
     //    datePicker.minuteInterval = 5;
     self.startTF.inputView = datePicker;
     [datePicker addTarget:self action:@selector(startChange:) forControlEvents:UIControlEventValueChanged];
     
     UIDatePicker *datePicker2 = [[UIDatePicker alloc] init];
     datePicker2.datePickerMode = UIDatePickerModeTime;
-//    datePicker2.minimumDate = [datePicker.date dateByAddingTimeInterval:30 * 60];
+    datePicker2.minimumDate = datePicker.minimumDate;
 //    datePicker2.minuteInterval = 5;
     self.endTF.inputView = datePicker2;
     [datePicker2 addTarget:self action:@selector(endChange:) forControlEvents:UIControlEventValueChanged];
