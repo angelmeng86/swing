@@ -17,6 +17,7 @@
 @property (nonatomic, readonly, strong) NSString* whoRegisteredMacID;
 
 @property (nonatomic, readonly, strong) NSString* userLogin;
+@property (nonatomic, readonly, strong) NSString* userLogout;
 @property (nonatomic, readonly, strong) NSString* userRegister;
 @property (nonatomic, readonly, strong) NSString* updateLanguage;
 @property (nonatomic, readonly, strong) NSString* updateIOSRegistrationId;

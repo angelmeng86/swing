@@ -37,6 +37,8 @@ typedef enum : NSUInteger {
 
 - (NSURLSessionDataTask *)userLogin:(NSString*)email password:(NSString*)pwd completion:( void (^)(NSError *error) )completion;
 
+- (NSURLSessionDataTask *)userLogoutWithCompletion:( void (^)(NSError *error) )completion;
+
 - (NSURLSessionDataTask *)userRegister:(NSDictionary*)data completion:( void (^)(id user, NSError *error) )completion;
 
 - (NSURLSessionDataTask *)updateLanguageWithCompletion:( void (^)(NSError *error) )completion;

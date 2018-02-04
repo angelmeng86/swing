@@ -30,6 +30,10 @@
     return @"/v1/user/login";
 }
 
+- (NSString*)userLogout {
+    return @"/v1/user/logout";
+}
+
 - (NSString*)userRegister {
     return @"/v1/user/register";
 }
