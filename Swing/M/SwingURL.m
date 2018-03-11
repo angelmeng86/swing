@@ -18,6 +18,10 @@
 #endif
 }
 
+- (NSString*)myCountryCode {
+    return @"/v1/user/myCountryCode";
+}
+
 - (NSString*)isEmailRegistered {
     return @"/v1/user/isEmailAvailableToRegister";
 }

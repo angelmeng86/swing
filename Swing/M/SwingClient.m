@@ -223,6 +223,29 @@
     return task;
 }
 
+- (NSURLSessionDataTask *)myCountryCodeWithCompletion:( void (^)(NSString *countryCode ,NSError *error) )completion
+{
+    NSURLSessionDataTask *task = [self.sessionManager GET:_URL.myCountryCode parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LOG_D(@"myCountryCode info:%@", responseObject);
+            NSError *err = [self getErrorMessage:responseObject];
+            if (err) {
+                completion(nil, err);
+            }
+            else {
+                completion(responseObject[@"countryCode"], nil);
+            }
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSError *err = [self filterTokenInvalid:task.response err:error];
+            completion(nil, err);
+        });
+    }];
+    
+    return task;
+}
+
 - (NSURLSessionDataTask *)userLogoutWithCompletion:( void (^)(NSError *error) )completion
 {
     NSURLSessionDataTask *task = [self.sessionManager POST:_URL.userLogout parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

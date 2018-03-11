@@ -11,6 +11,7 @@
 #import "CommonDef.h"
 #import "LFDevicesActionSheet.h"
 #import "MutiConfirmViewController.h"
+#import "JPNoticeViewController.h"
 
 @interface LMTabBarController2 ()<UITabBarControllerDelegate>
 {
@@ -111,6 +112,17 @@
     self.syncDialog = ctl;
 }
 
+- (void)showJPNotice {
+    UIStoryboard *stroyBoard = [UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
+    JPNoticeViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"JPNotice"];
+    ctl.delegate = self;
+    [self presentViewController:ctl animated:YES completion:nil];
+}
+
+- (void)noticeViewControllerBack {
+    [self performSelector:@selector(showSyncDialog) withObject:nil afterDelay:0];
+}
+
 - (void)newFirmwareVersion:(NSNotification*)notification {
     UITabBarItem *item = [self.tabBar.items lastObject];
     if ([GlobalCache shareInstance].firmwareVersion.version.length > 0 && [GlobalCache shareInstance].currentKid.currentVersion.length > 0 && ![[GlobalCache shareInstance].currentKid.currentVersion isEqualToString:[GlobalCache shareInstance].firmwareVersion.version]) {
@@ -128,7 +140,14 @@
     
     self.delegate = self;
     self.selectedIndex = 2;
-    [self performSelector:@selector(showSyncDialog) withObject:nil afterDelay:0.3];
+    if (![GlobalCache shareInstance].local.showedJPNoticTip) {
+        [self performSelector:@selector(showJPNotice) withObject:nil afterDelay:0.3];
+        [GlobalCache shareInstance].local.showedJPNoticTip = YES;
+        [[GlobalCache shareInstance] saveInfo];
+    }
+    else {
+        [self performSelector:@selector(showSyncDialog) withObject:nil afterDelay:0.3];
+    }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRemoteInfo:) name:REMOTE_NOTIFICATION object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newFirmwareVersion:) name:SWING_WATCH_NEW_UPDATE_NOTIFY object:nil];

@@ -32,11 +32,10 @@
     self.pwdTextField.delegate = self;
     self.tipLabel.text = nil;
     
-//#ifdef MAPPLE_DEBUG
-//    self.emailTextField.text = @"lwz1@swing.com";
-//    self.emailTextField.text = @"test11@swing.com";
-//    self.pwdTextField.text = @"1";
-//#endif
+#ifdef DEBUG
+    self.emailTextField.text = @"lwz2@swing.com";
+    self.pwdTextField.text = @"111111";
+#endif
     [self setCustomBackButton];
 }
 
@@ -57,11 +56,26 @@
     return YES;
 }
 
+- (void)queryMyContry {
+    [[SwingClient sharedClient] myCountryCodeWithCompletion:^(NSString *countryCode, NSError *error) {
+        [GlobalCache shareInstance].local.showedJPNoticTip = YES;
+        if (!error) {
+            if ([countryCode isEqualToString:@"JP"]) {
+                [GlobalCache shareInstance].local.showedJPNoticTip = NO;
+            }
+        }
+        [[GlobalCache shareInstance] saveInfo];
+        [SVProgressHUD dismiss];
+        [self goToMain];
+    }];
+}
+
 - (void)cacheEventsV1 {
     [[SwingClient sharedClient] calendarGetAllEventsWithCompletion:^(NSArray *eventArray, NSError *error) {
         if (![self isError:error tag:@"calendarGetAllEvents"]) {
-            [SVProgressHUD dismiss];
-            [self goToMain];
+//            [SVProgressHUD dismiss];
+//            [self goToMain];
+            [self queryMyContry];
         }
     }];
 }

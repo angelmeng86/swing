@@ -64,6 +64,8 @@
 		0F9382E71FB87F2A0095C516 /* DeviceSmallCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F9382E51FB87F2A0095C516 /* DeviceSmallCell.xib */; };
 		0F9734B11F17919900502D8A /* LFSyncSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9734B01F17919900502D8A /* LFSyncSheet.m */; };
 		0F9734B41F19162E00502D8A /* SyncNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9734B31F19162E00502D8A /* SyncNavViewController.m */; };
+		0FA159C8205418AD0018AF9E /* JPNotice.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0FA159C7205418AD0018AF9E /* JPNotice.txt */; };
+		0FA159CB20541F530018AF9E /* JPNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA159CA20541F530018AF9E /* JPNoticeViewController.m */; };
 		0FC529A21FB9F3FD004CFBA0 /* SearchEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FC529A11FB9F3FD004CFBA0 /* SearchEmailViewController.m */; };
 		0FC529A41FBB3CD1004CFBA0 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FC529A31FBB3CD1004CFBA0 /* Dashboard.storyboard */; };
 		0FC529A71FBC96F4004CFBA0 /* StepsInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FC529A61FBC96F4004CFBA0 /* StepsInfoView.m */; };
@@ -275,6 +277,9 @@
 		0F9734B01F17919900502D8A /* LFSyncSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFSyncSheet.m; sourceTree = "<group>"; };
 		0F9734B21F19162E00502D8A /* SyncNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncNavViewController.h; sourceTree = "<group>"; };
 		0F9734B31F19162E00502D8A /* SyncNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncNavViewController.m; sourceTree = "<group>"; };
+		0FA159C7205418AD0018AF9E /* JPNotice.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = JPNotice.txt; sourceTree = "<group>"; };
+		0FA159C920541F530018AF9E /* JPNoticeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPNoticeViewController.h; sourceTree = "<group>"; };
+		0FA159CA20541F530018AF9E /* JPNoticeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPNoticeViewController.m; sourceTree = "<group>"; };
 		0FC529A01FB9F3FD004CFBA0 /* SearchEmailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchEmailViewController.h; sourceTree = "<group>"; };
 		0FC529A11FB9F3FD004CFBA0 /* SearchEmailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchEmailViewController.m; sourceTree = "<group>"; };
 		0FC529A31FBB3CD1004CFBA0 /* Dashboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
@@ -872,6 +877,8 @@
 				0FCF50591F9CE93C00738C23 /* RequestAccessViewController.m */,
 				0FC529A01FB9F3FD004CFBA0 /* SearchEmailViewController.h */,
 				0FC529A11FB9F3FD004CFBA0 /* SearchEmailViewController.m */,
+				0FA159C920541F530018AF9E /* JPNoticeViewController.h */,
+				0FA159CA20541F530018AF9E /* JPNoticeViewController.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -888,6 +895,7 @@
 				ADD267141F0D0453005B18E8 /* alert_jp.json */,
 				0FCF50411F7A805F00738C23 /* alert2_jp.json */,
 				0F3705701E096A6700E87BF0 /* Localizable.strings */,
+				0FA159C7205418AD0018AF9E /* JPNotice.txt */,
 			);
 			path = Res;
 			sourceTree = "<group>";
@@ -1100,6 +1108,7 @@
 				ADDCD3F41D4C54960031DC66 /* MainTab.storyboard in Resources */,
 				0FDAF5AA1D6405EF007CD808 /* citystate.json in Resources */,
 				0FC529A91FBC9706004CFBA0 /* StepsInfoView.xib in Resources */,
+				0FA159C8205418AD0018AF9E /* JPNotice.txt in Resources */,
 				ADFC2C3B1D369949004EDCDF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1259,6 +1268,7 @@
 				0F1376341DE0593600DB6C33 /* ColorTransformer.m in Sources */,
 				AD05B5BD1D3BCAA4007BCF7C /* LoginViewController.m in Sources */,
 				0F5E327E1FC1217700E0B1B3 /* KidInfo+CoreDataClass.m in Sources */,
+				0FA159CB20541F530018AF9E /* JPNoticeViewController.m in Sources */,
 				ADEF31CC1D47856200BB6A9B /* KidBindViewController.m in Sources */,
 				0F176EBF1DE48FB70014F079 /* Todo+CoreDataClass.m in Sources */,
 				0F45AB831D6316FA00EF385F /* STextField.m in Sources */,

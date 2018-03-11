@@ -11,7 +11,7 @@
 @interface SwingURL : NSObject
 
 @property (nonatomic, readonly, strong) NSString* baseURL;
-
+@property (nonatomic, readonly, strong) NSString* myCountryCode;
 @property (nonatomic, readonly, strong) NSString* isEmailRegistered;
 
 @property (nonatomic, readonly, strong) NSString* whoRegisteredMacID;
