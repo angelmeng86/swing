@@ -98,17 +98,11 @@
                                 if (error) {
                                     LOG_D(@"uploadProfileImage fail: %@", error);
                                 }
-                                [SVProgressHUD dismiss];
-                                UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
-                                UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"AskStep"];
-                                [self.navigationController pushViewController:ctl animated:YES];
+                                [self queryMyContry];
                             }];
                         }
                         else {
-                            [SVProgressHUD dismiss];
-                            UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
-                            UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"AskStep"];
-                            [self.navigationController pushViewController:ctl animated:YES];
+                            [self queryMyContry];
                         }
                     }
                     else {
@@ -120,6 +114,26 @@
             }
         }];
     }
+}
+
+- (void)goToNext {
+    [SVProgressHUD dismiss];
+    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
+    UIViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"AskStep"];
+    [self.navigationController pushViewController:ctl animated:YES];
+}
+
+- (void)queryMyContry {
+    [[SwingClient sharedClient] myCountryCodeWithCompletion:^(NSString *countryCode, NSError *error) {
+        [GlobalCache shareInstance].local.showJPNoticTip = NO;
+        if (!error) {
+            if ([countryCode isEqualToString:@"JP"]) {
+                [GlobalCache shareInstance].local.showJPNoticTip = YES;
+            }
+        }
+        [[GlobalCache shareInstance] saveInfo];
+        [self goToNext];
+    }];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

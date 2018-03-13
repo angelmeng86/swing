@@ -140,10 +140,8 @@
     
     self.delegate = self;
     self.selectedIndex = 2;
-    if (![GlobalCache shareInstance].local.showedJPNoticTip) {
+    if ([GlobalCache shareInstance].local.showJPNoticTip) {
         [self performSelector:@selector(showJPNotice) withObject:nil afterDelay:0.3];
-        [GlobalCache shareInstance].local.showedJPNoticTip = YES;
-        [[GlobalCache shareInstance] saveInfo];
     }
     else {
         [self performSelector:@selector(showSyncDialog) withObject:nil afterDelay:0.3];

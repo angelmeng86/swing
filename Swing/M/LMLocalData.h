@@ -24,7 +24,7 @@
 @property (nonatomic) BOOL showedEventEditTip;
 @property (nonatomic) BOOL showedEventTodayTip;
 
-@property (nonatomic) BOOL showedJPNoticTip;
+@property (nonatomic) BOOL showJPNoticTip;
 
 @property (nonatomic, strong) NSString<Optional> *language;
 

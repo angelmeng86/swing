@@ -40,7 +40,8 @@
 */
 
 - (IBAction)agreeAction:(id)sender {
-    
+    [GlobalCache shareInstance].local.showJPNoticTip = NO;
+    [[GlobalCache shareInstance] saveInfo];
     [self dismissViewControllerAnimated:YES completion:^{
         if ([_delegate respondsToSelector:@selector(noticeViewControllerBack)]) {
             [_delegate noticeViewControllerBack];

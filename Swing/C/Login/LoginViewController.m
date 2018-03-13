@@ -58,10 +58,10 @@
 
 - (void)queryMyContry {
     [[SwingClient sharedClient] myCountryCodeWithCompletion:^(NSString *countryCode, NSError *error) {
-        [GlobalCache shareInstance].local.showedJPNoticTip = YES;
+        [GlobalCache shareInstance].local.showJPNoticTip = NO;
         if (!error) {
             if ([countryCode isEqualToString:@"JP"]) {
-                [GlobalCache shareInstance].local.showedJPNoticTip = NO;
+                [GlobalCache shareInstance].local.showJPNoticTip = YES;
             }
         }
         [[GlobalCache shareInstance] saveInfo];
