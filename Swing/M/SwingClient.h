@@ -30,8 +30,7 @@ typedef enum : NSUInteger {
 
 - (void)logout;
 
-
-- (NSURLSessionDataTask *)userIsEmailRegistered:(NSString*)email completion:( void (^)(NSNumber *result, NSError *error) ) completion;
+- (NSURLSessionDataTask *)userIsEmailRegistered:(NSString*)email completion:( void (^)(NSNumber *result, NSString* msg, NSError *error) )completion;
 
 - (NSURLSessionDataTask *)whoRegisteredMacID:(NSString*)macId completion:( void (^)(id  kid, NSError *error) ) completion;
 

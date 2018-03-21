@@ -48,7 +48,7 @@
         case 0:
         {
             //Params(required) email
-            [[SwingClient sharedClient] userIsEmailRegistered:@"test10@swing.com" completion:^(NSNumber *result, NSError *error) {
+            [[SwingClient sharedClient] userIsEmailRegistered:@"test10@swing.com" completion:^(NSNumber *result, NSString* msg, NSError *error) {
                 if (error) {
                     LOG_D(@"isEmailRegistered fail: %@", error);
                 }

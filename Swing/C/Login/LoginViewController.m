@@ -151,11 +151,16 @@
         if ([self validateTextField]) {
             [SVProgressHUD show];
 //            [SVProgressHUD showWithStatus:@"Please wait..."];
-            [[SwingClient sharedClient] userIsEmailRegistered:self.emailTextField.text completion:^(NSNumber *result, NSError *error) {
+            [[SwingClient sharedClient] userIsEmailRegistered:self.emailTextField.text completion:^(NSNumber *result, NSString *msg, NSError *error) {
                 if (![self isError:error tag:@"isEmailRegistered"]) {
                     LOG_D(@"isEmailRegistered success: %@", result);
                     if (![result boolValue]) {
-                        [SVProgressHUD showSuccessWithStatus:@"The email is not registered"];
+                        if (msg.length > 0) {
+                            [SVProgressHUD showSuccessWithStatus:msg];
+                        }
+                        else {
+                            [SVProgressHUD showSuccessWithStatus:@"The email is not registered"];
+                        }
                         [SVProgressHUD dismissWithDelay:1.0];
                         //Go to register
                         UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];

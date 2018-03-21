@@ -132,20 +132,20 @@
     return [NSError errorWithDomain:@"SwingDomain" code:-1 userInfo:[NSDictionary dictionaryWithObject:msg forKey:NSLocalizedDescriptionKey]];
 }
 
-- (NSURLSessionDataTask *)userIsEmailRegistered:(NSString*)email completion:( void (^)(NSNumber *result, NSError *error) )completion {
+- (NSURLSessionDataTask *)userIsEmailRegistered:(NSString*)email completion:( void (^)(NSNumber *result, NSString* msg, NSError *error) )completion {
     NSURLSessionDataTask *task = [self.sessionManager GET:_URL.isEmailRegistered parameters:@{@"email":email} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LOG_D(@"isEmailRegistered info:%@", responseObject);
-            completion(@NO, nil);
+            completion(@NO, responseObject[@"message"], nil);
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
             if(response.statusCode == 409) {
-                completion(@YES, nil);
+                completion(@YES, [error localizedDescription], nil);
             }
             else {
-                completion(nil, error);
+                completion(nil, [error localizedDescription], error);
             }
         });
     }];
