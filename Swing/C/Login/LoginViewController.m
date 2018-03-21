@@ -156,12 +156,15 @@
                     LOG_D(@"isEmailRegistered success: %@", result);
                     if (![result boolValue]) {
                         if (msg.length > 0) {
-                            [SVProgressHUD showSuccessWithStatus:msg];
+//                            [SVProgressHUD showSuccessWithStatus:msg];
+                            [Fun showMessageBoxWithTitle:nil  andMessage:LOC_STR(msg)];
+                            [SVProgressHUD dismiss];
                         }
                         else {
                             [SVProgressHUD showSuccessWithStatus:@"The email is not registered"];
+                            [SVProgressHUD dismissWithDelay:1.0];
                         }
-                        [SVProgressHUD dismissWithDelay:1.0];
+                        
                         //Go to register
                         UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"LoginFlow" bundle:nil];
                         RegisterViewController *ctl = [stroyBoard instantiateViewControllerWithIdentifier:@"Register"];
@@ -206,7 +209,9 @@
             //清空登录信息
             [[GlobalCache shareInstance] logout:NO];
             LOG_D(@"%@ fail: %@", tag, error);
-            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+            [Fun showMessageBoxWithTitle:LOC_STR(@"")  andMessage:LOC_STR([error localizedDescription])];
+            [SVProgressHUD dismiss];
+//            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
         }
         return YES;
     }
