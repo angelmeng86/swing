@@ -59,13 +59,14 @@
 - (IBAction)yesAction:(id)sender {
     [SVProgressHUD show];
     [[SwingClient sharedClient] userLogoutWithCompletion:^(NSError *error) {
-        if (error) {
-            LOG_D(@"userLogout fail: %@", error);
-            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-        }
-        else {
+//        if (error) {
+//            LOG_D(@"userLogout fail: %@", error);
+//            [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+//        }
+//        else {
+            [SVProgressHUD dismiss];
             [[GlobalCache shareInstance] logout];
-        }
+//        }
     }];
 }
 
